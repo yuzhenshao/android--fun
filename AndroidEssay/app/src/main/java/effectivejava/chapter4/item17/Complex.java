@@ -17,6 +17,7 @@ public final class Complex {
     public double realPart()      { return re; }
     public double imaginaryPart() { return im; }
 
+    //注意这些算术运算创建并返回一个新的Complex实例，而不是修改当前实例-----函数方式
     public Complex plus(Complex c) {
         return new Complex(re + c.re, im + c.im);
     }

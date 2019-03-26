@@ -1,5 +1,8 @@
 package effectivejava.chapter3.item13;
 
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,6 +32,7 @@ public final class PhoneNumber implements Cloneable {
                 && pn.areaCode == areaCode;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override public int hashCode() {
         int result = Short.hashCode(areaCode);
         result = 31 * result + Short.hashCode(prefix);
@@ -54,6 +58,7 @@ public final class PhoneNumber implements Cloneable {
     }
 
     // Clone method for class with no references to mutable state (Page 59)
+    //如果对象中的域引用了可变的对象呢？
     @Override public PhoneNumber clone() {
         try {
             return (PhoneNumber) super.clone();

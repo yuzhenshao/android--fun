@@ -5,7 +5,9 @@ import static java.util.Comparator.*;
 
 // Making PhoneNumber comparable (Pages 69-70)
 public final class PhoneNumber implements Cloneable, Comparable<PhoneNumber> {
-    private final short areaCode, prefix, lineNum;
+    private final short areaCode;
+    private final short prefix;
+    private final short lineNum;
 
     public PhoneNumber(int areaCode, int prefix, int lineNum) {
         this.areaCode = rangeCheck(areaCode, 999, "area code");
@@ -71,7 +73,16 @@ public final class PhoneNumber implements Cloneable, Comparable<PhoneNumber> {
                     .thenComparingInt(pn -> pn.lineNum);
 
     public int compareTo(PhoneNumber pn) {
-        return COMPARATOR.compare(this, pn);
+        int result = Short.compare(areaCode, pn.areaCode);
+        if (result == 0) {
+            result = Short.compare(prefix, pn.prefix);
+            if (result == 0)
+                result = Short.compare(lineNum, pn.lineNum);
+        }
+        return result;
+
+        //java 1.8
+        //return COMPARATOR.compare(this, pn);
     }
 
     private static PhoneNumber randomPhoneNumber() {

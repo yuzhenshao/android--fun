@@ -1,11 +1,16 @@
 package effectivejava.chapter4.item18;
 import java.util.*;
 
-// Reusable forwarding class (Page 90)
+
+/*
+  可重用的转发的类：Reusable forwarding class (Page 90)
+* 不要继承一个现有的类，而应该给你的新类增加一个私有属性，该属性是 现有类的实例引用，这种设计被称为组合（composition），因为现有的类成为新类的组成部分。
+* */
 public class ForwardingSet<E> implements Set<E> {
     private final Set<E> s;
     public ForwardingSet(Set<E> s) { this.s = s; }
 
+    //转发方法
     public void clear()               { s.clear();            }
     public boolean contains(Object o) { return s.contains(o); }
     public boolean isEmpty()          { return s.isEmpty();   }
