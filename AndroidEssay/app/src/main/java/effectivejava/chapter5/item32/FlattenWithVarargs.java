@@ -1,6 +1,7 @@
 package effectivejava.chapter5.item32;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 // Safe method with a generic varargs parameter (page 149)
@@ -15,7 +16,7 @@ public class FlattenWithVarargs {
 
     public static void main(String[] args) {
         List<Integer> flatList = flatten(
-                List.of(1, 2), List.of(3, 4, 5), List.of(6,7));
+                Arrays.asList((1, 2), Arrays.asList(3, 4, 5), Arrays.asList(6,7));
         System.out.println(flatList);
     }
 }

@@ -2,6 +2,9 @@ package effectivejava.chapter5.item33;
 import java.util.*;
 
 // Typesafe heterogeneous container pattern (Pages 151-4)
+//Favorites实例是类型安全的：当你请求一个字符串时它永远不会返回一个整数。
+//        它也是异构的：与普通Map不同，所有的键都是不同的类型。
+//        因此，我们将Favorites称为类型安全异构容器（typesafe heterogeneous container.）
 public class Favorites {
     private Map<Class<?>, Object> favorites = new HashMap<>();
 
@@ -28,5 +31,6 @@ public class Favorites {
         Class<?> favoriteClass = f.getFavorite(Class.class);
         System.out.printf("%s %x %s%n", favoriteString,
                 favoriteInteger, favoriteClass.getName());
+        //这个程序打印Java cafebabe Favorites
     }
 }
