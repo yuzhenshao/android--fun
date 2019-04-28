@@ -16,7 +16,7 @@ public class FlattenWithVarargs {
 
     public static void main(String[] args) {
         List<Integer> flatList = flatten(
-                Arrays.asList((1, 2), Arrays.asList(3, 4, 5), Arrays.asList(6,7));
+                Arrays.asList(1, 2), Arrays.asList(3, 4, 5), Arrays.asList(6,7));
         System.out.println(flatList);
     }
 }

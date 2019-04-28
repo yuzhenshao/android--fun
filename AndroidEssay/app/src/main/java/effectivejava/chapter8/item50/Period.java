@@ -21,7 +21,8 @@ public final class Period {
     }
 
     public Date start() {
-        return start;
+//        return start;
+        return (Date) start.clone();
     }
     public Date end() {
         return end;

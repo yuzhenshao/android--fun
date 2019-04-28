@@ -9,6 +9,7 @@ public enum Operation {
     TIMES ("*", (x, y) -> x * y),
     DIVIDE("/", (x, y) -> x / y);
 
+
     private final String symbol;
     private final DoubleBinaryOperator op;
 

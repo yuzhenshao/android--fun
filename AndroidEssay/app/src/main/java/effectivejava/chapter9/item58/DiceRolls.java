@@ -14,7 +14,7 @@ public class DiceRolls {
                 System.out.println(i.next() + " " + j.next());
 
         System.out.println("***************************");
-
+//打印6个重复的组合(从“ONE ONE”到“SIX SIX”)，而不是预期的36个组合。
         for (Face f1 : faces)
             for (Face f2 : faces)
                 System.out.println(f1 + " " + f2);

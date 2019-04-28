@@ -7,7 +7,16 @@ import java.lang.annotation.ElementType;
 
 // Documentation comment examples (Pages 255-9)
 public class DocExamples<E> {
-    // Method comment (Page 255)
+    // 请注意在此文档注释（<p>和<i>）中使用HTML标记。 Javadoc实用工具将文档注释转换为HTML，
+    // 文档注释中的任意HTML元素最终都会生成HTML文档。 有时候，程序员甚至会在他们的文档注释中嵌入HTML表格，尽管这种情况很少见。
+    //
+    // 还要注意在@throw子句中的代码片段周围使用Javadoc的 {@code}标签。这个标签有两个目的:
+    // 它使代码片段以代码字体形式呈现，并且它抑制了代码片段中HTML标记和嵌套Javadoc标记的处理。
+    // 后一个属性允许我们在代码片段中使用小于号(<)，即使它是一个HTML元字符。
+    // 换句话说，在代码示例前面加上字符<pre>{@code，然后在代码后面加上}</pre>。这保留了代码中的换行符，
+    // 并消除了转义HTML元字符的需要，但不需要转义at符号(@)，如果代码示例使用注释，则必须转义at符号(@)。
+    //最后，请注意文档注释中使用的单词“this list”。按照惯例，“this”指的是在实例方法的文档注释中，指向方法调用所在的对象。
+
     /**
      * Returns the element at the specified position in this list.
      *
@@ -25,7 +34,7 @@ public class DocExamples<E> {
         return null;
     }
 
-    // Use of @implSpec to describe self-use patterns & other visible implementation details. (Page 256)
+    // @implSpec注释描述了方法与其子类之间的契约，如果它继承了方法或通过super调用方法，那么允许子类依赖于实现行为
     /**
      * Returns true if this collection is empty.
      *
@@ -37,7 +46,8 @@ public class DocExamples<E> {
         return false;
     }
 
-    // Use of the @literal tag to include HTML and javadoc metacharacters in javadoc comments. (Page 256)
+    // Use of the @literal tag to include HTML and javadoc metacharacters in javadoc comments.
+    // 该标签禁止处理HTML标记和嵌套的Javadoc标记
     /**
      * A geometric series converges if {@literal |r| < 1}.
      */
@@ -52,15 +62,15 @@ public class DocExamples<E> {
         MISS_SCARLETT, PROFESSOR_PLUM, MRS_PEACOCK, MR_GREEN, COLONEL_MUSTARD, MRS_WHITE
     }
 
-
-    // Generating a javadoc index entry in Java 9 and later releases. (Page 258)
+    // 有时，可能希望索引对你的API很重要的其他术语。为此添加了{@index}标签。
+    // 对文档注释中出现的术语进行索引，就像将其包装在这个标签中一样简单
     /**
      * This method complies with the {@index IEEE 754} standard.
      */
     public void fragment2() {
     }
 
-    // Documenting enum constants (Page 258)
+    // 在记录枚举类型时，一定要记录常量，以及类型和任何公共方法
     /**
      * An instrument section of a symphony orchestra.
      */
@@ -78,7 +88,9 @@ public class DocExamples<E> {
         STRING;
     }
 
-    // Documenting an annotation type (Page 259)
+    // 在为注解类型记录文档时，一定要记录任何成员，以及类型本身。
+    // 用名词短语表示的文档成员，就好像它们是属性一样。对于类型的概要描述，
+    // 请使用动词短语，它表示当程序元素具有此类型注解的所表示的含义:
     /**
      * Indicates that the annotated method is a test method that
      * must throw the designated exception to pass.
