@@ -1,5 +1,6 @@
 package effectivejava.chapter5.item31;
 import java.util.*;
+import java.util.EmptyStackException;
 
 // Generic stack with bulk methods using wildcard types (Pages 139-41)
 public class Stack<E> {
