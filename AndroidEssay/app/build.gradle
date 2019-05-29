@@ -5,9 +5,13 @@ android {
     defaultConfig {
         applicationId "com.syz.essay"
         minSdkVersion 24
-        targetSdkVersion 28
+        targetSdkVersion 24
         versionCode 1
         versionName "1.0"
+
+        ndk{
+            moduleName "hello"
+        }
     }
     buildTypes {
         release {
@@ -15,6 +19,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    externalNativeBuild {
+        cmake {
+            version "3.10.2"
+        }
+    }
+
     compileOptions {
         sourceCompatibility = '1.8'
         targetCompatibility = '1.8'
