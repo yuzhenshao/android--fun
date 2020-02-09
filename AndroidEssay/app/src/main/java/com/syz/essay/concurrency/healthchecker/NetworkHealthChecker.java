@@ -1,17 +1,17 @@
-package com.syz.essay.CountDownLatchUtils.healthchecker;
+package com.syz.essay.concurrency.healthchecker;
 
 import java.util.concurrent.CountDownLatch;
 
-public class DatabaseHealthChecker extends BaseHealthChecker {
-    public DatabaseHealthChecker(CountDownLatch latch) {
-        super("Database Service", latch);
+public class NetworkHealthChecker extends BaseHealthChecker {
+    public NetworkHealthChecker(CountDownLatch latch) {
+        super("Network Service", latch);
     }
 
     @Override
     public void verifyService() {
         System.out.println("Checking " + this.getServiceName());
         try {
-            Thread.sleep(3000);
+            Thread.sleep(7000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

@@ -5,6 +5,7 @@ import java.util.concurrent.*;
 public class StopThread {
     private static boolean stopRequested;
 
+    //同步对stopRequested属性的访问
     private static synchronized void requestStop() {
         stopRequested = true;
     }
@@ -27,9 +28,6 @@ public class StopThread {
     }
 
 
-
-
-
     /*
      * 注意，写方法(requestStop)和读方法(stop- required)都是同步的。
      * 仅同步写方法是不够的！除非读和写操作同步，否则不能保证同步工作。
@@ -38,6 +36,6 @@ public class StopThread {
      * 这些方法上的同步仅用于其通信效果，而不是互斥。虽然在循环的每个迭代上同步的成本很小，
      * 但是有一种正确的替代方法，它不那么冗长，而且性能可能更好。如果stoprequest声明为volatile，
      * 则可以省略StopThread的第二个版本中的锁定。
-     *
+     * volatile修饰符不执行互斥，但它保证任何读取属性的线程都会看到最近写入的值
      * */
 }  

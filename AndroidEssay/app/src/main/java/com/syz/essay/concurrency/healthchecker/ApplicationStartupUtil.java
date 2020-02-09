@@ -1,4 +1,4 @@
-package com.syz.essay.CountDownLatchUtils.healthchecker;
+package com.syz.essay.concurrency.healthchecker;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -23,7 +23,7 @@ public class StopThread {
 
 
     /*
-     * 在使用volatile时一定要小心。这里多说下时一定要小心的内容
+     * 在使用volatile时一定要小心。这里多说下一定要小心的内容
      * */
 
 

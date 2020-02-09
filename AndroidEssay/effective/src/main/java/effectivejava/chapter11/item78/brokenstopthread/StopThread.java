@@ -19,7 +19,13 @@ public class StopThread {
         stopRequested = true;
     }
 
-    /*虚拟机将下面代码：
+
+    /*你可能希望这个程序运行大约一秒钟，之后主线程将stoprequired设置为true，从而导致后台线程的循环终止。
+    然而，在我的机器上，程序永远不会终止：后台线程永远循环!问题是在没有同步的情况下，无法确保后台线程何时
+    （如果有的话）看到主线程所做的stopRequested值的变化：*/
+
+
+    /*在没有同步的情况下，虚拟机将下面代码：
 
             while (!stopRequested)
             i++;

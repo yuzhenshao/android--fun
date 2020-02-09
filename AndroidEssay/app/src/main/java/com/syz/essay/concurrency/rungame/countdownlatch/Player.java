@@ -1,4 +1,4 @@
-package com.syz.essay.CountDownLatchUtils.rungame;
+package com.syz.essay.concurrency.rungame.countdownlatch;
 
 import java.util.concurrent.CountDownLatch;
 
