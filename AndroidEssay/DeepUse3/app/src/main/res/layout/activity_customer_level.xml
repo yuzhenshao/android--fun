@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_f5f7fa"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/main_title"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/app_10dp"
+        android:background="@color/color_ffffff">
+
+        <LinearLayout style="@style/newly_ll_st">
+
+            <TextView
+                style="@style/newly_tv_st"
+                android:layout_weight="1"
+                android:text="普通会员"/>
+
+            <ImageView
+                android:id="@+id/iv_cus_pt"
+                style="@style/tips_iv"
+                android:layout_marginRight="@dimen/app_20dp"
+                android:src="@mipmap/regi_weixuan"/>
+
+        </LinearLayout>
+
+        <View style="@style/line_heng"/>
+
+        <LinearLayout style="@style/newly_ll_st">
+
+            <TextView
+                style="@style/newly_tv_st"
+                android:layout_weight="1"
+                android:text="白金会员"/>
+
+            <ImageView
+                android:id="@+id/iv_cus_bj"
+                style="@style/tips_iv"
+                android:layout_marginRight="@dimen/app_20dp"
+                android:src="@mipmap/regi_weixuan"/>
+
+        </LinearLayout>
+
+        <View style="@style/line_heng"/>
+
+        <LinearLayout style="@style/newly_ll_st">
+
+            <TextView
+                style="@style/newly_tv_st"
+                android:layout_weight="1"
+                android:text="黄金会员"/>
+
+            <ImageView
+                android:id="@+id/iv_cus_hj"
+                style="@style/tips_iv"
+                android:layout_marginRight="@dimen/app_20dp"
+                android:src="@mipmap/regi_weixuan"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

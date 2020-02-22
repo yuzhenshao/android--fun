@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/yuanjiao_ffffff_bg_shape">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:paddingLeft="@dimen/app_12dp"
+            android:paddingRight="@dimen/app_12dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginTop="@dimen/app_10dp">
+
+                <TextView
+                    android:id="@+id/tv_wo_item_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/color_3D7EFF"
+                    android:text=""/>
+
+                <ImageView
+                    android:id="@+id/iv_wo_item_ky"
+                    android:layout_width="@dimen/app_40dp"
+                    android:layout_height="@dimen/app_16dp"
+                    android:layout_marginLeft="@dimen/app_10dp"
+                    android:visibility="gone"
+                    android:src="@mipmap/sh_keyong"/>
+
+                <ImageView
+                    android:id="@+id/iv_wo_item_nky"
+                    android:layout_width="@dimen/app_52dp"
+                    android:layout_height="@dimen/app_17dp"
+                    android:layout_marginLeft="@dimen/app_10dp"
+                    android:visibility="gone"
+                    android:src="@mipmap/sh_buke"/>
+
+                <View style="@style/weight_heng"/>
+
+                <TextView
+                    android:id="@+id/tv_wo_item_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="@color/color_3D7EFF"
+                    android:text=""/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_wo_item_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="@color/color_909399"
+                android:layout_marginTop="@dimen/app_5dp"
+                android:text=""/>
+
+            <View
+                style="@style/line_heng"
+                android:layout_marginTop="@dimen/app_9dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="6"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="@dimen/app_4dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:id="@+id/iv_wo_item_dz"
+                        android:layout_width="@dimen/app_26dp"
+                        android:layout_height="@dimen/app_26dp"
+                        android:src="@mipmap/sh_dizhi"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/app_6dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:textColor="@color/color_909399"
+                            android:text="维修地址"/>
+
+                        <TextView
+                            android:id="@+id/tv_wo_item_address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:maxLines="2"
+                            android:ellipsize="end"
+                            android:layout_marginRight="@dimen/app_20dp"
+                            android:textColor="@color/color_303133"
+                            android:text=""/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:id="@+id/iv_wo_item_time"
+                        android:layout_width="@dimen/app_26dp"
+                        android:layout_height="@dimen/app_26dp"
+                        android:src="@mipmap/sh_shijian"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/app_6dp"
+                        android:layout_marginRight="@dimen/app_4dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:textColor="@color/color_909399"
+                            android:text="维修时间"/>
+
+                        <TextView
+                            android:id="@+id/tv_wo_item_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:textColor="@color/color_303133"
+                            android:text=""/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <include layout="@layout/loyout_shouhou_gongdan"/>
+
+    </LinearLayout>
+
+</LinearLayout>

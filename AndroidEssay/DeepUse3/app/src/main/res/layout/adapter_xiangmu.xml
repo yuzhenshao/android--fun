@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/app_103dp"
+    android:background="@drawable/yuanjiao_ffffff_bg_shape">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="@dimen/app_103dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/app_12dp">
+
+        <TextView
+            android:id="@+id/tv_xm_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/color_303133"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/app_9dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="客户："
+                android:textColor="@color/color_303133"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_xm_item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/color_303133"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/iv_xm_item_type"
+                android:layout_width="@dimen/app_70dp"
+                android:layout_height="@dimen/app_25dp"
+                android:layout_marginLeft="@dimen/app_5dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/app_9dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="质保日期："
+                android:textColor="@color/color_303133"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_xm_item_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/color_303133"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_xm_item_qx"
+        android:layout_width="@dimen/app_26dp"
+        android:layout_height="@dimen/app_26dp"
+        android:layout_marginRight="@dimen/app_12dp"
+        android:layout_marginTop="@dimen/app_10dp"/>
+
+</LinearLayout>

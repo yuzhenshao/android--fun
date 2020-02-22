@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/app_30dp">
+
+    <TextView
+        android:id="@+id/tv_zu_item_icon"
+        android:layout_width="@dimen/app_30dp"
+        android:layout_height="@dimen/app_30dp"
+        android:textSize="12sp"
+        android:textColor="@color/color_ffffff"
+        android:gravity="center"
+        android:layout_marginLeft="@dimen/app_15dp"
+        android:background="@drawable/yuan_4a90e2_dian_shape"/>
+
+</LinearLayout>

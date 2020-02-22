@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f5f7fa">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/main_title"/>
+
+        <LinearLayout
+            android:id="@+id/ll_add_com"
+            style="@style/newly_ll_st"
+            android:layout_marginTop="@dimen/app_10dp"
+            android:background="@color/color_ffffff">
+
+            <TextView
+                style="@style/newly_tv_st"
+                android:layout_weight="1"
+                android:text="公司名称" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/color_909399"
+                android:text="请选择"/>
+
+            <ImageView
+                style="@style/bass_iv_you"
+                android:layout_marginRight="@dimen/app_20dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_add_com2"
+            style="@style/newly_ll_st"
+            android:visibility="gone"
+            android:layout_height="@dimen/app_42dp">
+
+            <TextView
+                style="@style/newly_tv_st"
+                android:layout_weight="1"
+                android:text="公司名称" />
+
+            <ImageView
+                style="@style/bass_iv_you"
+                android:layout_marginRight="@dimen/app_20dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_add_com3"
+            android:layout_width="match_parent"
+            android:background="@color/color_ffffff"
+            android:gravity="center_vertical"
+            android:visibility="gone"
+            android:layout_height="@dimen/app_60dp">
+
+            <ImageView
+                android:layout_width="@dimen/app_24dp"
+                android:layout_height="@dimen/app_24dp"
+                android:layout_marginLeft="@dimen/app_24dp"
+                android:src="@mipmap/sh_gongsi"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/app_5dp"
+                android:layout_marginRight="@dimen/app_20dp"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_add_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="@color/color_303133"
+                    android:textStyle="bold"
+                    android:layout_marginTop="@dimen/app_17dp"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:text="麦麸智能（常州）有限公司"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_add_cus"
+            style="@style/newly_ll_st"
+            android:layout_marginTop="@dimen/app_1dp"
+            android:background="@color/color_ffffff">
+
+            <TextView
+                style="@style/newly_tv_st"
+                android:layout_weight="1"
+                android:text="共享客户" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/color_909399"
+                android:text="请选择"/>
+
+            <ImageView
+                style="@style/bass_iv_you"
+                android:layout_marginRight="@dimen/app_20dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_add_cus2"
+            style="@style/newly_ll_st"
+            android:visibility="gone"
+            android:layout_height="@dimen/app_42dp">
+
+            <TextView
+                style="@style/newly_tv_st"
+                android:layout_weight="1"
+                android:text="共享客户" />
+
+            <ImageView
+                style="@style/bass_iv_you"
+                android:layout_marginRight="@dimen/app_20dp" />
+
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/add_listview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@color/color_f5f7fa"
+            android:dividerHeight="@dimen/app_5dp"
+            android:visibility="gone"
+            android:layout_marginBottom="@dimen/app_75dp"
+            android:background="@color/color_ffffff"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/but_add_commit"
+        style="@style/bass_but"
+        android:layout_marginBottom="@dimen/app_30dp"
+        android:background="@drawable/yuanjiao_bfc2cc_button_shape"
+        android:layout_gravity="bottom"
+        android:text="提交" />
+
+</FrameLayout>

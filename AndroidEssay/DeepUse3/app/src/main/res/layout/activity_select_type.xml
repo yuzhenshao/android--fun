@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+    <View
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:background="#00000000"/>
+    
+    <LinearLayout
+        android:layout_width="290dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/color_ffffff">
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_64dp"
+            android:gravity="bottom|right">
+            
+            <LinearLayout
+                android:id="@+id/ll_se_del"
+                android:layout_width="@dimen/app_50dp"
+                android:gravity="center_vertical|right"
+                android:layout_height="@dimen/app_45dp">
+                
+                <ImageView
+                    android:layout_width="@dimen/app_24dp"
+                    android:layout_height="@dimen/app_24dp"
+                    android:src="@drawable/select_delete"
+                    android:layout_marginRight="@dimen/app_12dp"/>
+                
+            </LinearLayout>
+            
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/app_20dp"
+                android:paddingRight="@dimen/app_20dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_se_khdj"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_606266"
+                    android:textSize="16sp"
+                    android:layout_marginTop="@dimen/app_10dp"
+                    android:text="客户等级"/>
+
+                <com.mfzn.deepuses.view.MyRecyclerView
+                    android:id="@+id/khdj_recyleview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tv_se_khzt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_606266"
+                    android:textSize="16sp"
+                    android:layout_marginTop="@dimen/app_35dp"
+                    android:text="跟进状态"/>
+
+                <com.mfzn.deepuses.view.MyRecyclerView
+                    android:id="@+id/khzt_recyleview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_606266"
+                    android:textSize="16sp"
+                    android:layout_marginTop="@dimen/app_35dp"
+                    android:text="有无跟进记录"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/app_25dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_se_wu"
+                        android:layout_width="@dimen/app_70dp"
+                        android:layout_height="@dimen/app_26dp"
+                        android:textSize="14sp"
+                        android:gravity="center"
+                        android:background="@drawable/kehu_recharge_screen_choice"
+                        android:textColor="@drawable/kehu_color_screen_choice"
+                        android:text="无记录"/>
+
+                    <View style="@style/weight_heng"/>
+
+                    <TextView
+                        android:id="@+id/tv_se_you"
+                        android:layout_width="@dimen/app_70dp"
+                        android:layout_height="@dimen/app_26dp"
+                        android:textSize="14sp"
+                        android:gravity="center"
+                        android:background="@drawable/kehu_recharge_screen_choice"
+                        android:textColor="@drawable/kehu_color_screen_choice"
+                        android:layout_marginRight="@dimen/app_10dp"
+                        android:text="有记录"/>
+
+                    <View style="@style/weight_heng"/>
+
+                    <TextView
+                        android:layout_width="@dimen/app_70dp"
+                        android:layout_height="@dimen/app_26dp"/>
+
+                </LinearLayout>
+
+                <!--<com.mfzn.deepuses.view.MyRecyclerView-->
+                    <!--android:id="@+id/khzt_recyleview"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"/>-->
+
+                <Button
+                    android:id="@+id/but_bc"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/app_45dp"
+                    android:layout_marginTop="@dimen/app_35dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/color_ffffff"
+                    android:text="保存"
+                    android:background="@drawable/yuanjiao_4a9012_button_shape"/>
+
+            </LinearLayout>
+
+        </ScrollView>
+        
+    </LinearLayout>
+
+</LinearLayout>

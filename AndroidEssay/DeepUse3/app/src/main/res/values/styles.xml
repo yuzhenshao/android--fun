@@ -1,0 +1,321 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <!--<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
+    <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+    <!--<item name="colorPrimary">@color/colorPrimary</item>-->
+    <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+    <!--<item name="colorAccent">@color/colorAccent</item>-->
+    <!--</style>-->
+
+    <style name="AppTheme" parent="QMUI.Compat.NoActionBar">
+        <!-- 配置qmui提供的theme -->
+        <item name="qmui_config_color_blue">@color/colorPrimary</item>
+
+        <!-- 配置qmui dialog最小显示长宽 -->
+        <item name="qmui_tip_dialog_min_width">80dp</item>
+        <item name="qmui_tip_dialog_min_height">80dp</item>
+    </style>
+
+    <!--圆角图片-->
+    <declare-styleable name="RoundImageView">
+        <attr name="rect_adius" format="float" />
+    </declare-styleable>
+
+
+    <style name="PayDialogStyle" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <!--<item name="android:windowAnimationStyle">@style/PayDialogAnim</item>-->
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <style name="PayDialogAnim">
+        <item name="android:windowEnterAnimation">@anim/pay_dialog_enter</item>
+        <item name="android:windowExitAnimation">@anim/pay_dialog_exit</item>
+    </style>
+
+
+    <!--工作-->
+    <style name="work_ll">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/app_24dp</item>
+        <item name="android:layout_marginRight">@dimen/app_24dp</item>
+        <item name="android:layout_marginTop">@dimen/app_15dp</item>
+    </style>
+    <style name="kanban_ll_bg">
+        <item name="android:layout_width">@dimen/app_95dp</item>
+        <item name="android:layout_height">@dimen/app_92dp</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:background">@drawable/yinying_bg_shape</item>
+    </style>
+    <style name="shenpi_ll_bg">
+        <item name="android:layout_width">@dimen/app_56dp</item>
+        <item name="android:layout_height">@dimen/app_57dp</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+    <style name="shenpi_iv">
+        <item name="android:layout_width">@dimen/app_36dp</item>
+        <item name="android:layout_height">@dimen/app_36dp</item>
+    </style>
+    <style name="shenpi_tv">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/color_606266</item>
+    </style>
+
+    <!--新建项目-->
+    <style name="newly_ll_st">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/app_60dp</item>
+        <item name="android:paddingLeft">@dimen/app_24dp</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+    <style name="newly_tv_st">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">16sp</item><!-- 文字大小-->
+        <item name="android:textColor">@color/color_606266</item>
+    </style>
+    <style name="newly_et_st">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@null</item>
+        <item name="android:textColorHint">@color/color_BFC2CC</item>
+        <item name="android:paddingLeft">@dimen/app_10dp</item>
+        <item name="android:paddingRight">@dimen/app_24dp</item>
+        <item name="android:textSize">16sp</item><!-- 文字大小-->
+        <item name="android:textColor">@color/color_303133</item>
+        <item name="android:gravity">right|center_vertical</item>
+    </style>
+    <style name="newly_et_st2" parent="newly_et_st">
+        <item name="android:focusableInTouchMode">false</item>
+    </style>
+
+    <!--指派人员-->
+    <style name="appoint_tv_title">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/app_30dp</item>
+        <item name="android:paddingLeft">@dimen/app_24dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/color_303133</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+    <style name="appoint_ll">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:background">@color/color_ffffff</item>
+    </style>
+
+    <!--项目概况-->
+    <style name="survey_tv">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:paddingLeft">@dimen/app_10dp</item>
+        <item name="android:paddingRight">@dimen/app_24dp</item>
+        <item name="android:textSize">16sp</item><!-- 文字大小-->
+        <item name="android:textColor">@color/color_303133</item>
+        <item name="android:gravity">right|center_vertical</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+    </style>
+    <style name="survey_iv">
+        <item name="android:layout_width">@dimen/app_20dp</item>
+        <item name="android:layout_height">@dimen/app_20dp</item>
+        <item name="android:layout_marginRight">@dimen/app_20dp</item>
+    </style>
+
+    <!--分享-->
+    <style name="share_code_ll">
+        <item name="android:layout_width">@dimen/app_50dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">@dimen/app_50dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!--编辑员工-->
+    <style name="edit_staff_tv">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">16sp</item><!-- 文字大小-->
+        <item name="android:textColor">@color/color_303133</item>
+    </style>
+
+    <!--新建项目-->
+    <style name="found_pro_ll">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:background">@color/color_ffffff</item>
+    </style>
+    <style name="found_pro_tv">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/app_30dp</item>
+        <item name="android:textSize">16sp</item><!-- 文字大小-->
+        <item name="android:textColor">@color/color_303133</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">@dimen/app_24dp</item>
+    </style>
+
+    <!--售后工单-->
+    <style name="staging_pro_ll">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="staging_pro_tv">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/color_606266</item>
+    </style>
+    <style name="staging_pro_iv">
+        <item name="android:layout_width">@dimen/app_36dp</item>
+        <item name="android:layout_height">@dimen/app_36dp</item>
+    </style>
+
+    <!--新建工单-->
+    <style name="add_work_ll">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/app_38dp</item>
+        <item name="android:paddingLeft">@dimen/app_40dp</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+    <style name="add_work_tv">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">13sp</item><!-- 文字大小-->
+        <item name="android:textColor">@color/color_909399</item>
+    </style>
+    <style name="add_work_et">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@null</item>
+        <item name="android:textColorHint">@color/color_BFC2CC</item>
+        <item name="android:paddingLeft">@dimen/app_10dp</item>
+        <item name="android:textSize">13sp</item><!-- 文字大小-->
+        <item name="android:textColor">@color/color_606266</item>
+        <item name="android:gravity">right|center_vertical</item>
+    </style>
+    <style name="add_work_et2" parent="add_work_et">
+        <item name="android:focusableInTouchMode">false</item>
+    </style>
+
+    <!--售后设置-->
+    <style name="shouhu_ll">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/app_50dp</item>
+        <item name="android:paddingLeft">@dimen/app_24dp</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+    <style name="shouhu_et">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@null</item>
+        <item name="android:textColorHint">@color/color_909399</item>
+        <item name="android:paddingLeft">@dimen/app_10dp</item>
+        <item name="android:textSize">14sp</item><!-- 文字大小-->
+        <item name="android:textColor">@color/color_909399</item>
+        <item name="android:gravity">right|center_vertical</item>
+    </style>
+    <style name="shouhu_et2" parent="shouhu_et">
+        <item name="android:focusableInTouchMode">false</item>
+    </style>
+
+
+
+    <style name="MyTablayoutstyle" parent="Base.Widget.Design.TabLayout">
+        <item name="tabBackground">@color/color_ffffff</item>
+        <item name="tabIndicatorColor">@color/color_3D7EFF</item> <!-- 指示线颜色-->
+        <item name="tabIndicatorHeight">3dp</item> <!-- 指示线高度-->
+        <item name="tabSelectedTextColor">@color/color_3D7EFF</item> <!-- 文字被选中的颜色-->
+    </style>
+    <style name="MyTabText2" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">15sp</item><!-- 文字大小-->
+        <item name="android:textColor">@color/color_303133</item>
+    </style>
+
+
+
+
+    <!--提示-->
+    <style name="tips_ll">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/app_40dp</item>
+        <item name="android:background">@color/color_edeff2</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+    <style name="tips_tv">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/color_606266</item>
+        <item name="android:layout_marginLeft">@dimen/app_20dp</item>
+    </style>
+    <style name="tips_iv">
+        <item name="android:layout_width">@dimen/app_24dp</item>
+        <item name="android:layout_height">@dimen/app_24dp</item>
+        <item name="android:layout_marginRight">@dimen/app_12dp</item>
+    </style>
+
+    <style name="weight_heng">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+    <style name="weight_shu">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="line_heng">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/color_f5f7fa</item>
+    </style>
+
+    <style name="line_shu">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/color_edeff2</item>
+    </style>
+
+    <style name="bass_but">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/app_45dp</item>
+        <item name="android:layout_marginLeft">@dimen/app_20dp</item>
+        <item name="android:layout_marginRight">@dimen/app_20dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/color_ffffff</item>
+        <item name="android:background">@drawable/yuanjiao_bfc2cc_button_shape</item>
+        <item name="android:enabled">false</item>
+    </style>
+
+    <style name="bass_iv_you">
+        <item name="android:layout_width">@dimen/app_24dp</item>
+        <item name="android:layout_height">@dimen/app_24dp</item>
+        <item name="android:src">@mipmap/join_you</item>
+    </style>
+
+    <style name="bass_iv_delete">
+        <item name="android:layout_width">@dimen/app_24dp</item>
+        <item name="android:layout_height">@dimen/app_24dp</item>
+        <item name="android:src">@mipmap/com_delete</item>
+    </style>
+
+</resources>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="392dp"
+        android:background="@drawable/vip_bg"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ll_vip_out"
+            android:layout_width="50dp"
+            android:layout_height="45dp"
+            android:gravity="center_vertical|right"
+            android:layout_gravity="right">
+
+            <ImageView
+                android:layout_width="11dp"
+                android:layout_height="11dp"
+                android:layout_marginRight="18dp"
+                android:src="@drawable/vip_out"/>
+
+        </LinearLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vip_viewpage"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <LinearLayout
+            android:id="@+id/ll_vip_dian"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_horizontal">
+
+            <ImageView
+                android:layout_width="4dp"
+                android:layout_height="4dp"
+                android:src="@drawable/welcome_guide_selector" />
+
+            <ImageView
+                android:layout_width="4dp"
+                android:layout_height="4dp"
+                android:layout_marginLeft="15dp"
+                android:src="@drawable/welcome_guide_selector" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_vip_payment"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginTop="18dp"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:text=""
+        android:background="@drawable/huang_yunajiao_mai_shape"/>
+
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="#333333"-->
+        <!--android:layout_weight="1"/>-->
+
+</LinearLayout>

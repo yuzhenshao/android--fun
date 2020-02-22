@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.qmuiteam.qmui.widget.QMUIWindowInsetLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/main_title" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_f5f7fa"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_fou_jb"
+                    style="@style/found_pro_tv"
+                    android:text="基本信息" />
+
+                <LinearLayout style="@style/found_pro_ll">
+
+                    <LinearLayout style="@style/newly_ll_st">
+
+                        <TextView
+                            style="@style/newly_tv_st"
+                            android:text="项目名称" />
+
+                        <TextView
+                            style="@style/newly_tv_st"
+                            android:text="*"
+                            android:textColor="@color/color_d0021b" />
+
+                        <EditText
+                            android:id="@+id/et_fou_proname"
+                            style="@style/newly_et_st"
+                            android:hint="@string/found_pro_proname" />
+
+                    </LinearLayout>
+
+                    <View style="@style/line_heng" />
+
+                    <LinearLayout
+                        style="@style/newly_ll_st"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/newly_tv_st"
+                            android:text="项目地址" />
+
+                        <TextView
+                            style="@style/newly_tv_st"
+                            android:text="*"
+                            android:textColor="@color/color_d0021b" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/app_121dp"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <LinearLayout style="@style/newly_ll_st">
+
+                                <EditText
+                                    android:id="@+id/et_fou_address"
+                                    style="@style/newly_et_st2"
+                                    android:hint="@string/found_pro_address"
+                                    android:paddingRight="0dp" />
+
+                                <ImageView
+                                    style="@style/bass_iv_you"
+                                    android:layout_marginRight="@dimen/app_20dp" />
+
+                            </LinearLayout>
+
+                            <View
+                                style="@style/line_heng"
+                                android:layout_marginLeft="@dimen/app_18dp" />
+
+                            <LinearLayout style="@style/newly_ll_st">
+
+                                <EditText
+                                    android:id="@+id/et_fou_detail"
+                                    style="@style/newly_et_st"
+                                    android:hint="@string/found_pro_address2" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/found_pro_tv"
+                    android:text="客户信息"
+                    android:textStyle="bold"/>
+
+                <LinearLayout style="@style/found_pro_ll">
+
+
+                    <LinearLayout style="@style/newly_ll_st">
+
+                        <TextView
+                            style="@style/newly_tv_st"
+                            android:text="客户姓名" />
+
+                        <TextView
+                            style="@style/newly_tv_st"
+                            android:text="*"
+                            android:textColor="@color/color_d0021b" />
+
+                        <EditText
+                            android:id="@+id/et_fou_name"
+                            style="@style/newly_et_st2"
+                            android:hint="@string/found_pro_name"
+                            android:paddingRight="0dp" />
+
+                        <ImageView
+                            style="@style/bass_iv_you"
+                            android:layout_marginRight="@dimen/app_20dp" />
+
+                    </LinearLayout>
+
+                    <View style="@style/line_heng" />
+
+                    <LinearLayout style="@style/newly_ll_st">
+
+                        <TextView
+                            style="@style/newly_tv_st"
+                            android:text="客户电话" />
+
+                        <TextView
+                            style="@style/newly_tv_st"
+                            android:text="*"
+                            android:textColor="@color/color_d0021b" />
+
+                        <EditText
+                            android:id="@+id/et_fou_phone"
+                            style="@style/newly_et_st2"
+                            android:inputType="number" />
+
+                    </LinearLayout>
+
+                    <View style="@style/line_heng" />
+
+                    <LinearLayout style="@style/newly_ll_st">
+
+                        <TextView
+                            style="@style/newly_tv_st"
+                            android:text="客户级别" />
+
+                        <EditText
+                            android:id="@+id/et_fou_level"
+                            style="@style/newly_et_st2"
+                            android:hint="@string/found_pro_level"
+                            android:paddingRight="0dp" />
+
+                        <ImageView
+                            style="@style/bass_iv_you"
+                            android:layout_marginRight="@dimen/app_20dp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/found_pro_tv"
+                    android:text="质保设置"
+                    android:textStyle="bold" />
+
+                <LinearLayout style="@style/found_pro_ll">
+
+                    <LinearLayout style="@style/newly_ll_st">
+
+                        <TextView
+                            style="@style/newly_tv_st"
+                            android:text="质保期限" />
+
+                        <EditText
+                            android:id="@+id/et_fou_zbqx"
+                            style="@style/newly_et_st"
+                            android:hint="请输入 月"
+                            android:inputType="number"
+                            android:paddingRight="@dimen/app_10dp" />
+
+                        <ImageView
+                            style="@style/bass_iv_you"
+                            android:layout_marginRight="@dimen/app_20dp" />
+
+                    </LinearLayout>
+
+                    <View style="@style/line_heng" />
+
+                    <LinearLayout style="@style/newly_ll_st">
+
+                        <TextView
+                            style="@style/newly_tv_st"
+                            android:text="质保起始日期" />
+
+                        <EditText
+                            android:id="@+id/tv_fou_start"
+                            style="@style/newly_et_st2"
+                            android:hint="选择时间"
+                            android:paddingRight="@dimen/app_10dp" />
+
+                        <ImageView
+                            style="@style/bass_iv_you"
+                            android:layout_marginRight="@dimen/app_20dp" />
+
+                    </LinearLayout>
+
+                    <View style="@style/line_heng" />
+
+                    <LinearLayout style="@style/newly_ll_st">
+
+                        <TextView
+                            style="@style/newly_tv_st"
+                            android:text="质保截止日期" />
+
+                        <EditText
+                            android:id="@+id/et_fou_end"
+                            style="@style/newly_et_st2"
+                            android:paddingRight="@dimen/app_54dp" />
+
+                    </LinearLayout>
+
+                    <View style="@style/line_heng"
+                        android:layout_height="@dimen/app_10dp"/>
+
+                    <LinearLayout
+                        style="@style/newly_ll_st"
+                        android:background="@color/color_ffffff">
+
+                        <TextView
+                            style="@style/newly_tv_st"
+                            android:layout_weight="1"
+                            android:textStyle="bold"
+                            android:text="质保预警提醒" />
+
+                        <ImageButton
+                            android:id="@+id/ib_shou_zbyj"
+                            android:layout_width="@dimen/app_52dp"
+                            android:layout_height="@dimen/app_23dp"
+                            android:layout_marginRight="@dimen/app_24dp"
+                            android:src="@mipmap/shou_close" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_fou_ht"
+                    style="@style/found_pro_tv"
+                    android:text="合同信息" />
+
+                <LinearLayout style="@style/found_pro_ll">
+
+                    <LinearLayout style="@style/newly_ll_st">
+
+                        <TextView
+                            style="@style/newly_tv_st"
+                            android:text="销售顾问" />
+
+                        <EditText
+                            android:id="@+id/et_fou_gw"
+                            style="@style/newly_et_st2"
+                            android:hint="@string/found_pro_gw"
+                            android:paddingRight="0dp" />
+
+                        <ImageView
+                            style="@style/bass_iv_you"
+                            android:layout_marginRight="@dimen/app_20dp" />
+
+                    </LinearLayout>
+
+                    <View style="@style/line_heng" />
+
+                    <LinearLayout style="@style/newly_ll_st">
+
+                        <TextView
+                            style="@style/newly_tv_st"
+                            android:text="合同金额" />
+
+                        <EditText
+                            android:id="@+id/et_fou_money"
+                            style="@style/newly_et_st"
+                            android:hint="@string/found_pro_money"
+                            android:inputType="number|numberDecimal"
+                            android:paddingRight="@dimen/app_20dp" />
+
+                        <TextView
+                            android:id="@+id/tv_fou_money"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/app_24dp"
+                            android:text="元"
+                            android:textColor="@color/color_303133"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/but_fou_commit"
+                    style="@style/bass_but"
+                    android:layout_marginTop="@dimen/app_30dp"
+                    android:layout_marginBottom="@dimen/app_11dp"
+                    android:background="@drawable/yuanjiao_804a90e2_button_shape"
+                    android:text="提交信息" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</com.qmuiteam.qmui.widget.QMUIWindowInsetLayout>

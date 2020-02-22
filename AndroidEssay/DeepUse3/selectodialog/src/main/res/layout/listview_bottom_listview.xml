@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="59dp">
+
+    <TextView
+        android:id="@+id/tv_item_bo_name"
+        android:layout_width="match_parent"
+        android:layout_height="59dp"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="#333333"
+        android:text="创建或加入"/>
+
+</LinearLayout>

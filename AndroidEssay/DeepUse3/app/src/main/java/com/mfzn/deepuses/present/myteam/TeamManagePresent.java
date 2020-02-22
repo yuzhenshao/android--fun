@@ -1,0 +1,34 @@
+package com.mfzn.deepuses.present.myteam;
+
+import com.mfzn.deepuses.activity.company.ApplyJoinActivity;
+import com.mfzn.deepuses.activity.myteam.TeamManageActivity;
+import com.mfzn.deepuses.model.myTeam.TeamManageModel;
+import com.mfzn.deepuses.net.ApiHelper;
+import com.mfzn.deepuses.net.HttpResult;
+import com.mfzn.deepuses.utils.UserHelper;
+
+import cn.droidlover.xdroidmvp.mvp.XPresent;
+import cn.droidlover.xdroidmvp.net.ApiSubscriber;
+import cn.droidlover.xdroidmvp.net.NetError;
+import cn.droidlover.xdroidmvp.net.XApi;
+
+public class TeamManagePresent extends XPresent<TeamManageActivity> {
+
+    public void teamManage() {
+        ApiHelper.getApiService().teamManage(UserHelper.getToken(), UserHelper.getUid(),UserHelper.getCompanyId())
+                .compose(XApi.getApiTransformer())
+                .compose(XApi.getScheduler())
+                .compose(getV().bindToLifecycle())
+                .subscribe(new ApiSubscriber<HttpResult<TeamManageModel>>() {
+                    @Override
+                    protected void onFail(NetError error) {
+                        getV().showError(error);
+                    }
+
+                    @Override
+                    public void onNext(HttpResult<TeamManageModel> result) {
+                        getV().teamManage(result.getRes());
+                    }
+                });
+    }
+}

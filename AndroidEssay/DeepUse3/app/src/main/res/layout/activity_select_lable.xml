@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_ffffff">
+
+    <include layout="@layout/main_title"/>
+
+    <LinearLayout
+        android:id="@+id/ll_la_hint"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_40dp"
+        android:gravity="center_vertical"
+        android:background="@color/color_edeff2">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/color_606266"
+            android:layout_marginLeft="@dimen/app_20dp"
+            android:text="注：最多选择5个标签"/>
+
+        <ImageView
+            android:id="@+id/iv_la_delete"
+            android:layout_width="@dimen/app_24dp"
+            android:layout_height="@dimen/app_24dp"
+            android:layout_marginRight="@dimen/app_12dp"
+            android:src="@mipmap/select_delete"/>
+
+    </LinearLayout>
+
+    <GridView
+        android:id="@+id/sel_gridview"
+        android:layout_width="match_parent"
+        android:numColumns="3"
+        android:verticalSpacing="@dimen/app_20dp"
+        android:layout_marginTop="@dimen/app_20dp"
+        android:layout_marginLeft="@dimen/app_24dp"
+        android:layout_marginRight="@dimen/app_24dp"
+        android:horizontalSpacing="@dimen/app_20dp"
+        android:layout_height="wrap_content"/>
+    
+    <View style="@style/weight_shu"/>
+
+    <Button
+        android:id="@+id/but_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="30dp"
+        android:text="确认"
+        android:textSize="18sp"
+        android:textColor="#ffffff"
+        android:background="@drawable/yuanjiao_bfc2cc_button_shape"/>
+
+</LinearLayout>

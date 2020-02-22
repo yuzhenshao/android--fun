@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f5f7fa">
+
+    <include layout="@layout/main_title"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:background="#ffffff">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="#909399"
+                android:layout_marginLeft="24dp"
+                android:text="姓名"/>
+
+            <TextView
+                android:id="@+id/tv_qu_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="50dp"
+                android:gravity="right"
+                android:textSize="16sp"
+                android:textColor="#303133"
+                android:layout_marginLeft="24dp"
+                android:text="孙思"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#f5f7fa"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="#909399"
+                android:layout_marginLeft="24dp"
+                android:text="电话"/>
+
+            <TextView
+                android:id="@+id/tv_qu_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="50dp"
+                android:gravity="right"
+                android:textSize="16sp"
+                android:textColor="#303133"
+                android:layout_marginLeft="24dp"
+                android:text="18077778688"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#ffffff"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#909399"
+            android:layout_marginLeft="24dp"
+            android:text="部门"/>
+
+        <EditText
+            android:id="@+id/et_qu_bumen"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:paddingLeft="50dp"
+            android:paddingRight="6dp"
+            android:textSize="16sp"
+            android:textColorHint="#909399"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:gravity="right|center_vertical"
+            android:textColor="#303133"
+            android:focusableInTouchMode="false"
+            android:hint="请选择所属部门"/>
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginRight="20dp"
+            android:src="@mipmap/join_you"/>
+
+    </LinearLayout>
+
+</LinearLayout>

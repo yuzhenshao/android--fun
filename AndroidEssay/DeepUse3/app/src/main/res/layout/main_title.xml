@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:paddingTop="19dp"
+    android:gravity="center_vertical"
+    android:background="#ffffff"
+    android:layout_height="64dp">
+
+    <ImageButton
+        android:id="@+id/iv_login_back"
+        android:layout_width="48dp"
+        android:layout_height="45dp"
+        android:background="@null"
+        android:src="@mipmap/base_back"/>
+
+    <TextView
+        android:id="@+id/tv_bass_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="#303133"
+        android:layout_marginLeft="@dimen/app_80dp"
+        android:layout_marginRight="@dimen/app_80dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:text=""/>
+
+    <TextView
+        android:id="@+id/tv_join_skip"
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:textSize="16sp"
+        android:textColor="#4A90E2"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_alignParentRight="true"
+        android:text="跳过"/>
+
+    <TextView
+        android:id="@+id/tv_bass_more"
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:textSize="16sp"
+        android:textColor="#4A90E2"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_alignParentRight="true"
+        android:text="更多"/>
+
+    <TextView
+        android:id="@+id/tv_bass_comlate"
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:textSize="16sp"
+        android:textColor="#4A90E2"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_alignParentRight="true"
+        android:text="完成"/>
+
+    <TextView
+        android:id="@+id/tv_bass_close"
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:textSize="16sp"
+        android:textColor="#4A90E2"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_alignParentRight="true"
+        android:text="关闭"/>
+
+    <TextView
+        android:id="@+id/tv_bass_content"
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:textSize="16sp"
+        android:textColor="#4A90E2"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_alignParentRight="true"
+        android:text=""/>
+
+    <TextView
+        android:id="@+id/tv_bass_content2"
+        android:layout_width="90dp"
+        android:layout_height="match_parent"
+        android:textSize="16sp"
+        android:textColor="#4A90E2"
+        android:gravity="center"
+        android:layout_alignParentRight="true"
+        android:visibility="gone"
+        android:text=""/>
+
+    <LinearLayout
+        android:id="@+id/ll_bass_kefu"
+        android:layout_width="@dimen/app_50dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:visibility="gone"
+        android:gravity="center_vertical|right">
+
+        <ImageView
+            style="@style/tips_iv"
+            android:src="@mipmap/bass_kefu"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_bass_more"
+        android:layout_width="@dimen/app_50dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:visibility="gone"
+        android:gravity="center_vertical|right">
+
+        <ImageView
+            style="@style/tips_iv"
+            android:src="@mipmap/swi_more"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_bass_add"
+        android:layout_width="@dimen/app_50dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:visibility="gone"
+        android:gravity="center_vertical|right">
+
+        <ImageView
+            style="@style/tips_iv"
+            android:src="@mipmap/com_add"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_bass_select"
+        android:layout_width="@dimen/app_60dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:visibility="gone"
+        android:gravity="center_vertical|right">
+
+        <ImageView
+            style="@style/tips_iv"
+            android:layout_marginRight="@dimen/app_12dp"
+            android:src="@mipmap/visit_select"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_bass_detele"
+        android:layout_width="@dimen/app_60dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:visibility="gone"
+        android:gravity="center_vertical|right">
+
+        <ImageView
+            style="@style/tips_iv"
+            android:layout_marginRight="@dimen/app_12dp"
+            android:src="@mipmap/work_delete2"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_bass_detele2"
+        android:layout_width="@dimen/app_60dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:visibility="gone"
+        android:gravity="center_vertical|right">
+
+        <ImageView
+            style="@style/tips_iv"
+            android:layout_marginRight="@dimen/app_12dp"
+            android:src="@mipmap/xm_delete"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_bass_set"
+        android:layout_width="@dimen/app_60dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:visibility="gone"
+        android:gravity="center_vertical|right">
+
+        <ImageView
+            style="@style/tips_iv"
+            android:layout_marginRight="@dimen/app_12dp"
+            android:src="@mipmap/cus_set"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_bass_search"
+        android:layout_width="@dimen/app_60dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:visibility="gone"
+        android:gravity="center_vertical|right">
+
+        <ImageView
+            style="@style/tips_iv"
+            android:layout_marginRight="@dimen/app_12dp"
+            android:src="@mipmap/search"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_bass_sh"
+        android:layout_width="@dimen/app_80dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:visibility="gone"
+        android:gravity="center_vertical|right">
+
+        <ImageView
+            android:id="@+id/iv_bass_select"
+            style="@style/tips_iv"
+            android:layout_marginRight="@dimen/app_10dp"
+            android:src="@mipmap/visit_select"/>
+
+        <ImageView
+            android:id="@+id/iv_bass_add"
+            style="@style/tips_iv"
+            android:layout_marginRight="@dimen/app_12dp"
+            android:src="@mipmap/pro_add"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_bass_sh2"
+        android:layout_width="@dimen/app_80dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:visibility="gone"
+        android:gravity="center_vertical|right">
+
+        <ImageView
+            android:id="@+id/iv_bass_sel"
+            style="@style/tips_iv"
+            android:layout_marginRight="@dimen/app_10dp"
+            android:src="@mipmap/visit_select"/>
+
+        <ImageView
+            android:id="@+id/iv_bass_del"
+            style="@style/tips_iv"
+            android:layout_marginRight="@dimen/app_12dp"
+            android:src="@mipmap/work_delete2"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

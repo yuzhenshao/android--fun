@@ -1,0 +1,36 @@
+cn.droidlover.xrecyclerview
+attr layoutManager
+attr recyclerBackgroundColor
+attr recyclerClipToPadding
+attr recyclerPadding
+attr recyclerPaddingBottom
+attr recyclerPaddingLeft
+attr recyclerPaddingRight
+attr recyclerPaddingTop
+attr recyclerScrollbarNone
+attr recyclerScrollbarStyle
+attr reverseLayout
+attr spanCount
+attr stackFromEnd
+attr x_contentLayoutId
+attr x_emptyLayoutId
+attr x_errorLayoutId
+attr x_loadingLayoutId
+color x_blue
+color x_green
+color x_red
+color x_yellow
+dimen item_touch_helper_max_drag_scroll_per_frame
+dimen item_touch_helper_swipe_escape_max_velocity
+dimen item_touch_helper_swipe_escape_velocity
+id item_touch_helper_previous_elevation
+id progressBar
+id recyclerView
+id swipeRefreshLayout
+id tv_msg
+layout x_view_footer_load_more_simple
+layout x_view_recycler_content_layout
+string app_name
+styleable RecyclerView android_orientation layoutManager reverseLayout spanCount stackFromEnd
+styleable XRecyclerContentLayout recyclerBackgroundColor recyclerClipToPadding recyclerPadding recyclerPaddingBottom recyclerPaddingLeft recyclerPaddingRight recyclerPaddingTop recyclerScrollbarNone recyclerScrollbarStyle
+styleable XStateController x_contentLayoutId x_emptyLayoutId x_errorLayoutId x_loadingLayoutId

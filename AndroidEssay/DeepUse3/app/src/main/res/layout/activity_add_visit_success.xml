@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="@color/color_ffffff">
+
+    <include layout="@layout/main_title"/>
+
+    <View
+        style="@style/line_heng"
+        android:layout_height="@dimen/app_10dp"/>
+
+    <ImageView
+        android:layout_width="225dp"
+        android:layout_height="230dp"
+        android:layout_marginTop="52dp"
+        android:src="@mipmap/visit_success"/>
+
+    <TextView
+        android:id="@+id/tv_vis_success"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/color_4A90E2"
+        android:layout_marginTop="20dp"
+        android:text="回访成功！"/>
+
+    <TextView
+        android:id="@+id/tv_vis_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/color_606266"
+        android:layout_marginTop="@dimen/app_3dp"
+        android:text=""/>
+
+    <Button
+        android:id="@+id/but_vis_can"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="@dimen/app_38dp"
+        android:layout_marginRight="@dimen/app_38dp"
+        android:text="查看回访记录"
+        android:textSize="18sp"
+        android:textColor="#ffffff"
+        android:background="@drawable/yuanjiao_4a9012_button_shape"
+        android:layout_marginTop="29dp"/>
+
+</LinearLayout>

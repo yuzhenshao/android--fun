@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_ffffff"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/main_title"/>
+
+    <View style="@style/line_heng"
+        android:layout_height="@dimen/app_10dp"/>
+
+    <EditText
+        android:id="@+id/et_feed_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="top"
+        android:paddingLeft="@dimen/app_12dp"
+        android:paddingRight="@dimen/app_12dp"
+        android:paddingTop="@dimen/app_10dp"
+        android:textColor="@color/color_303133"
+        android:textColorHint="@color/color_909399"
+        android:textSize="16sp"
+        android:background="@null"
+        android:hint="请在此输入您的建议"/>
+
+    <Button
+        android:id="@+id/but_feed_commit"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="@dimen/app_20dp"
+        android:text="提交"
+        android:textSize="18sp"
+        android:textColor="#ffffff"
+        android:enabled="false"
+        android:background="@drawable/yuanjiao_bfc2cc_button_shape"
+        android:layout_marginTop="@dimen/app_100dp"/>
+
+</LinearLayout>

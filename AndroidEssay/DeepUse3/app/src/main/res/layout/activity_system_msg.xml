@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_f5f7fa"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <include layout="@layout/main_title"/>
+
+    <FrameLayout
+        android:layout_marginTop="@dimen/app_10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <cn.droidlover.xrecyclerview.XRecyclerContentLayout
+            android:id="@+id/sys_xrecycleview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:recyclerBackgroundColor="@color/color_f5f7fa"
+            android:layout_marginLeft="@dimen/app_12dp"
+            android:layout_marginRight="@dimen/app_12dp" />
+
+        <LinearLayout
+            android:id="@+id/ll_empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:visibility="gone"
+            android:background="@color/color_f5f7fa">
+
+            <ImageView
+                android:layout_width="@dimen/app_120dp"
+                android:layout_height="@dimen/app_120dp"
+                android:src="@mipmap/zuzhi_kongbai"
+                android:layout_marginTop="@dimen/app_72dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/color_909399"
+                android:layout_marginTop="@dimen/app_20dp"
+                android:text="暂无消息"/>
+
+        </LinearLayout>
+    </FrameLayout>
+
+
+</LinearLayout>

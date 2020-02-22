@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_ffffff"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/main_title"/>
+
+    <LinearLayout
+        android:id="@+id/ll_acc_phone"
+        style="@style/newly_ll_st">
+
+        <TextView
+            style="@style/newly_tv_st"
+            android:layout_weight="1"
+            android:text="手机号"/>
+
+        <TextView
+            android:id="@+id/tv_acc_phone"
+            style="@style/newly_tv_st"
+            android:textColor="@color/color_303133"
+            android:layout_marginRight="@dimen/app_10dp"
+            android:text="更换手机号"/>
+
+        <ImageView
+            style="@style/bass_iv_you"
+            android:layout_marginRight="@dimen/app_20dp"/>
+
+    </LinearLayout>
+
+    <!--<TextView-->
+        <!--android:id="@+id/tv_acc_login"-->
+        <!--style="@style/newly_tv_st"-->
+        <!--android:layout_marginLeft="@dimen/app_24dp"-->
+        <!--android:layout_marginTop="@dimen/app_20dp"-->
+        <!--android:layout_marginBottom="@dimen/app_5dp"-->
+        <!--android:textStyle="bold"-->
+        <!--android:text="其他登陆方式"/>-->
+
+    <!--<LinearLayout-->
+        <!--android:id="@+id/ll_acc_wb"-->
+        <!--style="@style/newly_ll_st">-->
+
+        <!--<TextView-->
+            <!--style="@style/newly_tv_st"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="微博"/>-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/tv_acc_wb"-->
+            <!--style="@style/newly_tv_st"-->
+            <!--android:textColor="@color/color_303133"-->
+            <!--android:layout_marginRight="@dimen/app_10dp"-->
+            <!--android:text="未绑定"/>-->
+
+        <!--<ImageView-->
+            <!--style="@style/bass_iv_you"-->
+            <!--android:layout_marginRight="@dimen/app_20dp"/>-->
+
+    <!--</LinearLayout>-->
+
+    <!--<View style="@style/line_heng"/>-->
+
+    <!--<LinearLayout-->
+        <!--android:id="@+id/ll_acc_qq"-->
+        <!--style="@style/newly_ll_st">-->
+
+        <!--<TextView-->
+            <!--style="@style/newly_tv_st"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="QQ"/>-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/tv_acc_qq"-->
+            <!--style="@style/newly_tv_st"-->
+            <!--android:textColor="@color/color_303133"-->
+            <!--android:layout_marginRight="@dimen/app_10dp"-->
+            <!--android:text="未绑定"/>-->
+
+        <!--<ImageView-->
+            <!--style="@style/bass_iv_you"-->
+            <!--android:layout_marginRight="@dimen/app_20dp"/>-->
+
+    <!--</LinearLayout>-->
+
+    <!--<View style="@style/line_heng"/>-->
+
+    <!--<LinearLayout-->
+        <!--android:id="@+id/ll_acc_ali"-->
+        <!--style="@style/newly_ll_st">-->
+
+        <!--<TextView-->
+            <!--style="@style/newly_tv_st"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="支付宝"/>-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/tv_acc_ali"-->
+            <!--style="@style/newly_tv_st"-->
+            <!--android:textColor="@color/color_303133"-->
+            <!--android:layout_marginRight="@dimen/app_10dp"-->
+            <!--android:text="未绑定"/>-->
+
+        <!--<ImageView-->
+            <!--style="@style/bass_iv_you"-->
+            <!--android:layout_marginRight="@dimen/app_20dp"/>-->
+
+    <!--</LinearLayout>-->
+
+    <!--<View style="@style/line_heng"/>-->
+
+</LinearLayout>

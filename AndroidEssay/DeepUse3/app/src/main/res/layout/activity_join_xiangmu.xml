@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff">
+
+    <include layout="@layout/main_title"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#f5f7fa"/>
+
+    <TextView
+        android:id="@+id/tv_app_company"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="#303133"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="24dp"
+        android:text=""/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="#606266"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="10dp"
+        android:text="加入项目，开启智慧工地"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="#303133"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="52dp"
+        android:text="申请理由（选填）"/>
+
+    <EditText
+        android:id="@+id/et_app_reason"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请在此输入申请理由"
+        android:textColorHint="#bfc2cc"
+        android:textSize="16sp"
+        android:paddingLeft="24dp"
+        android:paddingTop="@dimen/app_10dp"
+        android:paddingBottom="@dimen/app_10dp"
+        android:textColor="#303133"
+        android:background="@null"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f5f7fa"/>
+
+    <Button
+        android:id="@+id/but_commit"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="提交申请"
+        android:textSize="18sp"
+        android:textColor="#ffffff"
+        android:background="@drawable/yuanjiao_4a9012_button_shape"
+        android:layout_marginTop="40dp"/>
+
+</LinearLayout>

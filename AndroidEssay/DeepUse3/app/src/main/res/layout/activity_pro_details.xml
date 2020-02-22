@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <include layout="@layout/main_title"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:scrollbars="none"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_82dp"
+                android:focusable="false"
+                android:focusableInTouchMode="true"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/app_42dp"
+                    android:layout_height="@dimen/app_39dp"
+                    android:layout_marginLeft="@dimen/app_24dp"
+                    android:src="@mipmap/stag_xiangmu"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="@dimen/app_20dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tv_stag_time_bold1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:textColor="@color/color_303133"
+                            android:text="保修时间"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_stag_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="@color/color_606266"
+                        android:layout_marginTop="@dimen/app_5dp"
+                        android:text=""/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:layout_marginLeft="@dimen/app_12dp"
+                android:layout_marginRight="@dimen/app_12dp"
+                android:layout_marginBottom="@dimen/app_10dp"
+                android:background="@drawable/yinying_bg_shape">
+
+                <LinearLayout
+                    style="@style/staging_pro_ll">
+
+                    <TextView
+                        android:id="@+id/tv_stag_gzbx"
+                        style="@style/edit_staff_tv"
+                        android:text="0"/>
+
+                    <TextView
+                        style="@style/staging_pro_tv"
+                        android:layout_marginTop="@dimen/app_5dp"
+                        android:text="故障报修"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/staging_pro_ll">
+
+                    <TextView
+                        android:id="@+id/tv_stag_wbsj"
+                        style="@style/edit_staff_tv"
+                        android:text="0"/>
+
+                    <TextView
+                        style="@style/staging_pro_tv"
+                        android:layout_marginTop="@dimen/app_5dp"
+                        android:text="维保升级"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/staging_pro_ll">
+
+                    <TextView
+                        android:id="@+id/tv_stag_hfjl"
+                        style="@style/edit_staff_tv"
+                        android:text="0"/>
+
+                    <TextView
+                        style="@style/staging_pro_tv"
+                        android:layout_marginTop="@dimen/app_5dp"
+                        android:text="回访记录"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <View
+                style="@style/line_heng"
+                android:layout_height="@dimen/app_10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/app_10dp"
+                android:gravity="center_vertical"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_stag_shgl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/color_606266"
+                    android:layout_marginLeft="@dimen/app_24dp"
+                    android:text="售后管理"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_stag_qx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/app_15dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tv_stag_qx"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:textColor="@color/color_d0021b"
+                        android:text=""/>
+
+                    <ImageView
+                        android:layout_width="@dimen/app_14dp"
+                        android:layout_height="@dimen/app_14dp"
+                        android:layout_marginLeft="@dimen/app_5dp"
+                        android:src="@mipmap/qx_wenhao"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/app_25dp">
+
+                <LinearLayout
+                    android:id="@+id/ll_stag_shgd"
+                    style="@style/staging_pro_ll">
+
+                    <ImageView
+                        style="@style/staging_pro_iv"
+                        android:src="@mipmap/stag_shgd"/>
+
+                    <TextView
+                        style="@style/staging_pro_tv"
+                        android:layout_marginTop="@dimen/app_5dp"
+                        android:text="售后工单"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_stag_xjgd"
+                    style="@style/staging_pro_ll">
+
+                    <ImageView
+                        style="@style/staging_pro_iv"
+                        android:src="@mipmap/stag_xjgd"/>
+
+                    <TextView
+                        style="@style/staging_pro_tv"
+                        android:layout_marginTop="@dimen/app_5dp"
+                        android:text="新建工单"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_stag_shsz"
+                    style="@style/staging_pro_ll">
+
+                    <ImageView
+                        style="@style/staging_pro_iv"
+                        android:src="@mipmap/stag_shsz"/>
+
+                    <TextView
+                        style="@style/staging_pro_tv"
+                        android:layout_marginTop="@dimen/app_5dp"
+                        android:text="售后设置"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_stag_shhf"
+                    style="@style/staging_pro_ll">
+
+                    <ImageView
+                        style="@style/staging_pro_iv"
+                        android:src="@mipmap/stag_shhf"/>
+
+                    <TextView
+                        style="@style/staging_pro_tv"
+                        android:layout_marginTop="@dimen/app_5dp"
+                        android:text="回访记录"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/app_35dp">
+
+                <LinearLayout
+                    android:id="@+id/ll_stag_shkf"
+                    style="@style/staging_pro_ll">
+
+                    <ImageView
+                        style="@style/staging_pro_iv"
+                        android:src="@mipmap/stag_shkf"/>
+
+                    <TextView
+                        style="@style/staging_pro_tv"
+                        android:layout_marginTop="@dimen/app_5dp"
+                        android:text="客服设置"/>
+
+                </LinearLayout>
+
+                <!--<LinearLayout-->
+                <!--android:id="@+id/ll_stag_shda"-->
+                <!--style="@style/staging_pro_ll">-->
+
+                <!--<ImageView-->
+                <!--style="@style/staging_pro_iv"-->
+                <!--android:src="@mipmap/stag_shda"/>-->
+
+                <!--<TextView-->
+                <!--style="@style/staging_pro_tv"-->
+                <!--android:layout_marginTop="@dimen/app_5dp"-->
+                <!--android:text="售后档案"/>-->
+
+                <!--</LinearLayout>-->
+
+                <LinearLayout
+                    style="@style/staging_pro_ll"/>
+                <LinearLayout
+                    style="@style/staging_pro_ll"/>
+
+                <LinearLayout
+                    style="@style/staging_pro_ll"/>
+
+            </LinearLayout>
+
+            <View
+                style="@style/line_heng"
+                android:layout_marginTop="@dimen/app_25dp"
+                android:layout_height="@dimen/app_10dp"/>
+
+            <TextView
+                android:id="@+id/tv_stag_xmcy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/color_606266"
+                android:layout_marginLeft="@dimen/app_24dp"
+                android:layout_marginTop="@dimen/app_10dp"
+                android:text="项目成员"/>
+
+            <com.mfzn.deepuses.view.MyRecyclerView
+                android:id="@+id/stag_recyleview"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="@dimen/app_30dp"
+                android:layout_height="wrap_content"/>
+
+            <View
+                style="@style/line_heng"
+                android:layout_height="@dimen/app_10dp"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

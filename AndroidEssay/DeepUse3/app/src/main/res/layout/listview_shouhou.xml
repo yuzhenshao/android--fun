@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/app_95dp"
+    android:background="@drawable/yuanjiao_ffffff_bg_shape">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_95dp"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/app_12dp"
+        android:paddingRight="@dimen/app_12dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tv_sh_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/color_303133"
+            android:text="吾悦广场大厦智能安装"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/app_10dp"
+            android:layout_height="wrap_content">
+
+            <View
+                android:layout_width="@dimen/app_6dp"
+                android:layout_height="@dimen/app_6dp"
+                android:background="@drawable/yuan_4a90e2_dian_shape"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/color_606266"
+                android:text="项目负责人："/>
+
+            <TextView
+                android:id="@+id/tv_sh_item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/color_303133"
+                android:text="赵小"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/app_8dp"
+            android:layout_height="wrap_content">
+
+            <View
+                android:layout_width="@dimen/app_6dp"
+                android:layout_height="@dimen/app_6dp"
+                android:background="@drawable/yuan_4a90e2_dian_shape"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/color_606266"
+                android:text="工期："/>
+
+            <TextView
+                android:id="@+id/tv_sh_item_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/color_303133"
+                android:text="2019/08/09～2019/09/10"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

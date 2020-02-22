@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#ffffff">
+
+    <View style="@style/line_heng"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:paddingTop="@dimen/app_10dp"
+        android:paddingBottom="@dimen/app_10dp"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/app_24dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_wo_item_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/color_606266"
+                android:textStyle="bold"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:text="成功充值88元，获得880+188砖"/>
+
+            <TextView
+                android:id="@+id/tv_wo_item_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/color_606266"
+                android:layout_marginTop="@dimen/app_8dp"
+                android:text="2019/11/12  11:23"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_wo_item_mz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/color_3D7EFF"
+            android:paddingLeft="@dimen/app_15dp"
+            android:textStyle="bold"
+            android:text="-880"/>
+
+        <TextView
+            android:id="@+id/tv_wo_item_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/color_3D7EFF"
+            android:textStyle="bold"
+            android:layout_marginRight="@dimen/app_20dp"
+            android:layout_marginLeft="@dimen/app_5dp"
+            android:text="砖"/>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_ffffff"
+    android:orientation="vertical">
+
+    <include layout="@layout/main_title"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_69dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/app_24dp"
+            android:orientation="vertical"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tv_rec_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="@color/color_606266"
+                android:text=""/>
+
+            <TextView
+                android:id="@+id/tv_rec_typename"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/color_3D7EFF"
+                android:layout_marginTop="@dimen/app_4dp"
+                android:text=""/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="@dimen/app_68dp"
+            android:layout_height="@dimen/app_24dp"
+            android:layout_marginTop="@dimen/app_15dp"
+            android:layout_marginRight="@dimen/app_24dp"
+            android:src="@mipmap/work_daijiedan"/>
+
+    </LinearLayout>
+
+    <View style="@style/line_heng"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_64dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="6"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/app_20dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="@dimen/app_24dp"
+                android:layout_height="@dimen/app_24dp"
+                android:src="@mipmap/sur_dingwei"/>
+
+            <TextView
+                android:id="@+id/tv_rec_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:layout_marginLeft="@dimen/app_7dp"
+                android:layout_marginRight="@dimen/app_30dp"
+                android:textColor="@color/color_909399"
+                android:text=""/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_rec_phone"
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="@dimen/app_24dp"
+                android:layout_height="@dimen/app_24dp"
+                android:src="@mipmap/work_dianhua"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/app_7dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_rec_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="@color/color_909399"
+                    android:text=""/>
+
+                <TextView
+                    android:id="@+id/tv_rec_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="@color/color_909399"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:text=""/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_f5f7fa"
+        android:orientation="vertical">
+
+        <net.lucode.hackware.magicindicator.MagicIndicator
+            android:id="@+id/gd_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/app_50dp"
+            android:layout_gravity="center_horizontal" />
+
+        <View
+            android:layout_width="@dimen/app_1dp"
+            android:layout_height="34dp"
+            android:layout_gravity="center"
+            android:background="@color/color_BFC2CC"/>
+
+    </FrameLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/gd_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <Button
+        android:id="@+id/but_rec_sl"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="@dimen/app_15dp"
+        android:text="重新派工"
+        android:textSize="18sp"
+        android:textColor="#ffffff"
+        android:background="@drawable/yuanjiao_4a9012_button_shape"/>
+
+</LinearLayout>

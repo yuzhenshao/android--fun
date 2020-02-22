@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/app_95dp"
+    android:background="@drawable/yuanjiao_ffffff_bg_shape">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_95dp"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/app_14dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_te_item_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/color_303133"
+                android:text="智能家居工程管理"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginTop="@dimen/app_10dp"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:layout_width="@dimen/app_6dp"
+                    android:layout_height="@dimen/app_6dp"
+                    android:background="@drawable/yuan_4a90e2_dian_shape"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@color/color_606266"
+                    android:layout_marginLeft="@dimen/app_8dp"
+                    android:text="创建者："/>
+
+                <TextView
+                    android:id="@+id/tv_te_item_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@color/color_303133"
+                    android:text="张小厨"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginTop="@dimen/app_8dp"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:layout_width="@dimen/app_6dp"
+                    android:layout_height="@dimen/app_6dp"
+                    android:background="@drawable/yuan_4a90e2_dian_shape"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:layout_marginLeft="@dimen/app_8dp"
+                    android:textColor="@color/color_606266"
+                    android:text="节点数：共"/>
+
+                <TextView
+                    android:id="@+id/tv_te_item_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="@color/color_303133"
+                    android:text="70"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@color/color_606266"
+                    android:text="个"/>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:layout_marginLeft="@dimen/app_8dp"
+                    android:textColor="@color/color_4A90E2"
+                    android:text="使用量："/>
+
+                <TextView
+                    android:id="@+id/tv_te_item_cishu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="@color/color_4A90E2"
+                    android:text="70"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@color/color_4A90E2"
+                    android:layout_marginRight="@dimen/app_14dp"
+                    android:text="次"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_te_item_tj"
+            android:layout_width="@dimen/app_40dp"
+            android:layout_height="@dimen/app_16dp"
+            android:layout_marginTop="@dimen/app_10dp"
+            android:layout_gravity="right"
+            android:textSize="12sp"
+            android:textColor="@color/color_ffffff"
+            android:background="@color/color_d0021b"
+            android:visibility="gone"
+            android:gravity="center"
+            android:text="推荐"/>
+
+    </FrameLayout>
+
+</LinearLayout>

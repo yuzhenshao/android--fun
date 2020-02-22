@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_f5f7fa"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/main_title"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_150dp"
+        android:layout_marginLeft="@dimen/app_12dp"
+        android:layout_marginRight="@dimen/app_12dp"
+        android:layout_marginTop="@dimen/app_10dp"
+        android:paddingLeft="@dimen/app_24dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:background="@mipmap/brick_bg">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tv_br_title"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/color_ffffff"
+                android:textStyle="bold"
+                android:layout_marginRight="@dimen/app_10dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text=""/>
+
+            <ImageView
+                android:id="@+id/iv_br_type"
+                android:layout_width="@dimen/app_90dp"
+                android:layout_height="@dimen/app_19dp"
+                android:layout_marginRight="@dimen/app_19dp"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/color_ffffff"
+            android:layout_marginTop="@dimen/app_18dp"
+            android:text="账户余额"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/app_5dp"
+            android:gravity="bottom">
+
+            <TextView
+                android:id="@+id/tv_br_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="36sp"
+                android:textColor="@color/color_ffffff"
+                android:textStyle="bold"
+                android:text="0"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/color_ffffff"
+                android:layout_marginLeft="@dimen/app_15dp"
+                android:text="砖"/>
+
+            <LinearLayout
+                android:id="@+id/ll_br_cz"
+                android:layout_width="@dimen/app_100dp"
+                android:layout_height="@dimen/app_30dp"
+                android:layout_marginRight="@dimen/app_24dp"
+                android:gravity="center"
+                android:background="@drawable/yuanjiao_33ffffff_bg_shape">
+
+                <TextView
+                    android:layout_width="@dimen/app_19dp"
+                    android:layout_height="@dimen/app_19dp"
+                    android:text="￥"
+                    android:gravity="center"
+                    android:textColor="@color/color_ffffff"
+                    android:textSize="13sp"
+                    android:background="@drawable/yuan_ffffff_xian_bg_shape"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/color_ffffff"
+                    android:layout_marginLeft="@dimen/app_7dp"
+                    android:text="去充值"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.mfzn.deepuses.x5webview.X5WebView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/x5_webview"/>
+
+</LinearLayout>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/ll_hide"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_vis_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/color_303133"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="16dp"
+            android:text="回访详情"/>
+
+        <TextView
+            android:id="@+id/tv_vis_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#909399"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:text="这里是描述这里是描述这里是描述这里是描述。这里是描述这里是描述这里是描述这里是描述，这里是描述这里是描述这里是描述这里是描述。"/>
+
+        <Button
+            android:id="@+id/but_vis_qr"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:textSize="18sp"
+            android:textColor="#ffffff"
+            android:text="确认"
+            android:background="@drawable/shape_yuanjiao_4a90e2_button"/>
+
+    </LinearLayout>
+
+</LinearLayout>

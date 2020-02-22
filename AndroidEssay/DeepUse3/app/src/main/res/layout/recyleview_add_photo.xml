@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/app_85dp">
+
+    <include layout="@layout/add_photo_item_hide2" />
+
+    <FrameLayout
+        android:layout_width="@dimen/app_95dp"
+        android:layout_height="@dimen/app_85dp">
+
+        <FrameLayout
+            android:id="@+id/fl_add_item_hide"
+            android:layout_width="@dimen/app_95dp"
+            android:layout_height="@dimen/app_85dp">
+
+
+            <!--<com.mfzn.app.deepuse.utils.NiceImageView-->
+                <!--android:id="@+id/iv_loc_photo"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/dp110"-->
+                <!--android:scaleType="fitXY"-->
+                <!--custom:corner_top_left_radius="@dimen/dp5"-->
+                <!--custom:corner_top_right_radius="@dimen/dp5" />-->
+
+            <ImageView
+                android:layout_width="@dimen/app_75dp"
+                android:layout_height="@dimen/app_75dp"
+                android:layout_gravity="bottom"
+                android:orientation="vertical"
+                android:src="@mipmap/upload_moren"/>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_add_item_show"
+            android:layout_width="@dimen/app_95dp"
+            android:visibility="gone"
+            android:layout_height="@dimen/app_85dp">
+
+            <ImageView
+                android:id="@+id/iv_add_item_photo"
+                android:layout_width="@dimen/app_75dp"
+                android:layout_height="@dimen/app_75dp"
+                android:scaleType="fitXY"
+                android:layout_gravity="bottom"/>
+
+            <ImageView
+                android:id="@+id/iv_add_item_delete"
+                android:layout_width="@dimen/app_20dp"
+                android:layout_height="@dimen/app_20dp"
+                android:layout_gravity="right"
+                android:layout_marginRight="@dimen/app_10dp"
+                android:src="@mipmap/work_delete"/>
+
+        </FrameLayout>
+
+    </FrameLayout>
+
+    <include layout="@layout/add_photo_item_hide" />
+
+</LinearLayout>

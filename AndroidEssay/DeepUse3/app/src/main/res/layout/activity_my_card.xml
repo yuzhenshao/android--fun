@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_f5f7fa"
+    android:orientation="vertical">
+
+    <include layout="@layout/main_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="462dp"
+                android:layout_marginLeft="@dimen/app_12dp"
+                android:layout_marginTop="@dimen/app_15dp"
+                android:layout_marginRight="@dimen/app_12dp"
+                android:background="@drawable/yuanjiao_ffffff_bg_shape"
+                android:orientation="vertical">
+
+                <com.mfzn.deepuses.view.RoundImageView
+                    android:id="@+id/riv_card_tx"
+                    android:layout_width="@dimen/app_110dp"
+                    android:layout_height="@dimen/app_110dp"
+                    android:layout_margin="@dimen/app_24dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/select_delete" />
+
+                <ImageView
+                    android:id="@+id/iv_card_code"
+                    android:layout_width="@dimen/app_82dp"
+                    android:layout_height="@dimen/app_82dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginRight="@dimen/app_12dp"
+                    android:layout_marginBottom="@dimen/app_40dp"
+                    android:background="#000000" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="@dimen/app_24dp"
+                    android:layout_marginTop="@dimen/app_89dp"
+                    android:layout_marginBottom="@dimen/app_45dp"
+                    android:layout_toLeftOf="@+id/iv_card_code"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:id="@+id/tv_card_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="潘泓言"
+                        android:textColor="@color/color_303133"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/tv_card_company"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/app_20dp"
+                        android:text="麦麸智能科技  工程师  项目经理"
+                        android:textColor="@color/color_909399"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/app_5dp"
+                        android:text="从业 15 年"
+                        android:textColor="@color/color_909399"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/app_5dp"
+                            android:text="家装 100 个"
+                            android:textColor="@color/color_909399"
+                            android:textSize="14sp" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/app_29dp"
+                            android:layout_marginTop="@dimen/app_5dp"
+                            android:text="工装 100 个"
+                            android:textColor="@color/color_909399"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/app_5dp"
+                        android:text="进行中项目 100 个"
+                        android:textColor="@color/color_909399"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/app_5dp"
+                        android:text="+86 18088888888"
+                        android:textColor="@color/color_909399"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/app_5dp"
+                        android:text="1834448888@qq.com"
+                        android:textColor="@color/color_909399"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_104dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/yuanjiao_ffffff_bg_shape"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:id="@+id/ll_card_xiazai"
+                    style="@style/share_code_ll"
+                    android:layout_marginLeft="18dp">
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@mipmap/code_xiazai" />
+
+                </LinearLayout>
+
+                <View style="@style/weight_heng" />
+
+                <LinearLayout
+                    android:id="@+id/ll_card_qq"
+                    style="@style/share_code_ll">
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@mipmap/code_qq" />
+
+                </LinearLayout>
+
+                <View style="@style/weight_heng" />
+
+                <LinearLayout
+                    android:id="@+id/ll_card_weixin"
+                    style="@style/share_code_ll">
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@mipmap/code_weixin" />
+
+                </LinearLayout>
+
+                <View style="@style/weight_heng" />
+
+                <LinearLayout
+                    android:id="@+id/ll_card_dd"
+                    style="@style/share_code_ll"
+                    android:layout_marginRight="18dp">
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@mipmap/my_dingding" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

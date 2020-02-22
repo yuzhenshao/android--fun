@@ -1,0 +1,48 @@
+ext {
+
+    android = [
+            compileSdkVersion: 28,
+            minSdkVersion    : 19,
+            targetSdkVersion : 28,
+            versionCode      : 4,
+            versionName      : '2.0.4',
+            VSupportSdk      : '27.1.1',
+            VRetrofitSdk     : "2.2.0",
+            VOkhttp          : "3.4.2",
+            VRxlifecycle     : "2.0.1"
+    ]
+    dependencies = [
+            "appcompat-v7"               : "com.android.support:appcompat-v7:${android["VSupportSdk"]}",
+            "support-v4"                 : "com.android.support:support-v4:${android["VSupportSdk"]}",
+            "design"                     : "com.android.support:design:${android["VSupportSdk"]}",
+            "annotations"                : "com.android.support:support-annotations:${android["VSupportSdk"]}",
+            "recyclerview-v7"            : "com.android.support:recyclerview-v7:${android["VSupportSdk"]}",
+
+            "butterknife"                : "com.jakewharton:butterknife:8.4.0",
+            "butterknife-apt"            : "com.jakewharton:butterknife-compiler:8.4.0", //注解框架
+            "eventbus"                   : "org.greenrobot:eventbus:3.0.0",//暂时没用到的事件订阅框架
+            "glide"                      : "com.github.bumptech.glide:glide:4.8.0", //图片加载框架
+            "glide-compiler"             : "com.github.bumptech.glide:compiler:4.8.0",//图片加载框架依赖
+            "picasso"                    : "com.squareup.picasso:picasso:2.5.2",//暂时没有用到
+            "xrecyclerview"              : "com.github.limedroid:ARecyclerView:v1.2.3",//Arecycleview框架
+            "avi-loading"                : "com.wang.avi:library:1.0.2",//loading显示框架
+            "rxbus"                      : "com.blankj:rxbus:1.2",//订阅事件
+
+            "gson"                       : "com.google.code.gson:gson:2.6.2", //json解析框架
+            "rxandroid"                  : "io.reactivex.rxjava2:rxandroid:2.0.1", //响应式框架
+            "rxjava"                     : "io.reactivex.rxjava2:rxjava:2.0.1",//是rxandroid的依赖库
+            "retrofit"                   : "com.squareup.retrofit2:retrofit:${android["VRetrofitSdk"]}",//网络框架
+            "retrofit-converter-gson"    : "com.squareup.retrofit2:converter-gson:${android["VRetrofitSdk"]}",//这个是retrofit网络框架的依赖库
+            "retrofit-adapter-rxjava"    : "com.squareup.retrofit2:adapter-rxjava2:${android["VRetrofitSdk"]}",//这个是retrofit网络框架的依赖库
+            "okhttp3-logging-interceptor": "com.squareup.okhttp3:logging-interceptor:${android["VOkhttp"]}",//这个是retrofit网络框架的依赖库
+            "okhttp3"                    : "com.squareup.okhttp3:okhttp:${android["VOkhttp"]}",//这个是retrofit网络框架的依赖库
+            "rxlifecycle"                : "com.trello.rxlifecycle2:rxlifecycle:${android["VRxlifecycle"]}",//内存泄漏框架
+            "rxlifecycle-android"        : "com.trello.rxlifecycle2:rxlifecycle-android:${android["VRxlifecycle"]}",//内存泄漏框架依赖库
+            "rxlifecycle-components"     : "com.trello.rxlifecycle2:rxlifecycle-components:${android["VRxlifecycle"]}",//内存泄漏框架依赖库
+            "rxpermissions"              : "com.tbruyelle.rxpermissions2:rxpermissions:0.9.3@aar",//权限框架
+
+            "canary-debug"               : "com.squareup.leakcanary:leakcanary-android:1.4-beta2",//内存泄漏检测库
+            "canary-release"             : "com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2",//内存泄漏检测库
+    ]
+
+}

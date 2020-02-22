@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_f5f7fa"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/main_title"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/color_303133"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/app_15dp"
+        android:layout_marginLeft="@dimen/app_24dp"
+        android:text="支付方式"/>
+
+    <LinearLayout
+        android:id="@+id/ll_pay_ali"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_60dp"
+        android:gravity="center_vertical"
+        android:background="@color/color_ffffff"
+        android:layout_marginTop="@dimen/app_12dp">
+
+        <ImageView
+            android:layout_width="@dimen/app_36dp"
+            android:layout_height="@dimen/app_36dp"
+            android:layout_marginLeft="@dimen/app_24dp"
+            android:src="@mipmap/code_ali"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/color_606266"
+            android:layout_marginLeft="@dimen/app_15dp"
+            android:text="支付宝支付"/>
+
+        <ImageView
+            android:id="@+id/iv_pay_ali"
+            android:layout_width="@dimen/app_20dp"
+            android:layout_height="@dimen/app_20dp"
+            android:layout_marginRight="@dimen/app_24dp"
+            android:src="@mipmap/regi_xuanzhong"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_pay_wx"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_60dp"
+        android:gravity="center_vertical"
+        android:background="@color/color_ffffff"
+        android:layout_marginTop="@dimen/app_1dp">
+
+        <ImageView
+            android:layout_width="@dimen/app_36dp"
+            android:layout_height="@dimen/app_36dp"
+            android:layout_marginLeft="@dimen/app_24dp"
+            android:src="@mipmap/code_weixin"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/color_606266"
+            android:layout_marginLeft="@dimen/app_15dp"
+            android:text="微信支付"/>
+
+        <ImageView
+            android:id="@+id/iv_pay_wx"
+            android:layout_width="@dimen/app_20dp"
+            android:layout_height="@dimen/app_20dp"
+            android:layout_marginRight="@dimen/app_24dp"
+            android:src="@mipmap/regi_weixuan"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_pay_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/color_d0021b"
+        android:layout_marginTop="@dimen/app_15dp"
+        android:layout_gravity="right"
+        android:layout_marginRight="@dimen/app_24dp"
+        android:text="当前需要支付 88 元"/>
+
+    <View style="@style/weight_shu"/>
+
+    <Button
+        android:id="@+id/but_pay"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_45dp"
+        android:layout_marginTop="@dimen/app_30dp"
+        android:layout_marginLeft="@dimen/app_20dp"
+        android:layout_marginRight="@dimen/app_20dp"
+        android:textSize="18sp"
+        android:textColor="@color/color_ffffff"
+        android:text="去支付"
+        android:background="@drawable/brick_jianbian_but_shape"
+        android:layout_marginBottom="@dimen/app_48dp"/>
+
+</LinearLayout>

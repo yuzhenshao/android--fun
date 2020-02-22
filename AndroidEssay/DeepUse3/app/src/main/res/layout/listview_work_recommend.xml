@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="150dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/app_10dp"
+        android:paddingRight="@dimen/app_10dp"
+        android:background="@drawable/yuanjiao_yinying_xian_shape">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/app_8dp"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@mipmap/moren_touxiang"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="#606266"
+                android:layout_marginLeft="5dp"
+                android:text="云知枢"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="#909399"
+                android:text="2019.08.01"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/app_10dp"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/app_30dp"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textColor="@color/color_303133"
+                    android:text="海格电器：智能家居新战略定位"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="10sp"
+                        android:textColor="@color/color_909399"
+                        android:text="#智能家居"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="10sp"
+                        android:textColor="@color/color_909399"
+                        android:layout_marginLeft="@dimen/app_5dp"
+                        android:text="#智能家居"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:textSize="10sp"
+                        android:textColor="@color/color_3D7EFF"
+                        android:layout_marginLeft="@dimen/app_5dp"
+                        android:text="..."/>
+
+                    <ImageView
+                        android:layout_width="@dimen/app_24dp"
+                        android:layout_height="@dimen/app_24dp"
+                        android:src="@mipmap/comm_look"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="10sp"
+                        android:textColor="@color/color_909399"
+                        android:layout_marginLeft="@dimen/app_2dp"
+                        android:text="999+"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textColor="@color/color_606266"
+                    android:layout_marginTop="@dimen/app_5dp"
+                    android:text="简介简介简介简介简介简介简介简介，介简介简介简介简介简介简介"/>
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="@dimen/app_102dp"
+                android:layout_height="@dimen/app_102dp"
+                android:background="#000000"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

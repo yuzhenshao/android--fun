@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_f5f7fa"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/main_title"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_120dp"
+        android:layout_marginLeft="@dimen/app_12dp"
+        android:layout_marginRight="@dimen/app_12dp"
+        android:layout_marginTop="@dimen/app_10dp"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:background="@mipmap/br_bg_guang">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_ffffff"
+            android:textSize="14sp"
+            android:layout_marginLeft="@dimen/app_21dp"
+            android:text="公司累计充值"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="bottom"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_tr_muney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_ffffff"
+                android:textSize="28sp"
+                android:layout_marginLeft="@dimen/app_19dp"
+                android:text="0"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_ffffff"
+                android:textSize="18sp"
+                android:layout_marginLeft="@dimen/app_10dp"
+                android:layout_marginBottom="@dimen/app_3dp"
+                android:text="元"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/app_10dp"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_ffffff"
+                    android:textSize="12sp"
+                    android:layout_marginLeft="@dimen/app_19dp"
+                    android:text="累计充砖总数"/>
+
+                <TextView
+                    android:id="@+id/tv_tr_cz"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_ffffff"
+                    android:textSize="14sp"
+                    android:layout_marginLeft="@dimen/app_19dp"
+                    android:text="0 砖"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/app_2dp"
+                android:layout_height="33dp"
+                android:background="@color/color_ffffff"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_ffffff"
+                    android:textSize="12sp"
+                    android:layout_marginLeft="@dimen/app_19dp"
+                    android:text="累计消耗的砖总数"/>
+
+                <TextView
+                    android:id="@+id/tv_tr_xz"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_ffffff"
+                    android:textSize="14sp"
+                    android:layout_marginLeft="@dimen/app_19dp"
+                    android:text="0 砖"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <net.lucode.hackware.magicindicator.MagicIndicator
+            android:id="@+id/tr_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/app_50dp"
+            android:layout_gravity="center_horizontal" />
+
+    </FrameLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/tr_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_40dp"
+        android:gravity="center_vertical"
+        android:background="@color/color_f5f7fa">
+
+        <TextView
+            android:id="@+id/tv_share_company"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textSize="14sp"
+            android:textColor="@color/color_606266"
+            android:layout_marginLeft="@dimen/app_24dp"
+            android:text="共享公司"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_share_del"
+            android:layout_width="@dimen/app_80dp"
+            android:layout_height="match_parent"
+            android:textSize="14sp"
+            android:textColor="@color/color_d0021b"
+            android:gravity="center_vertical|right"
+            android:paddingRight="@dimen/app_24dp"
+            android:text="删除"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_80dp">
+
+        <ImageView
+            android:layout_width="@dimen/app_24dp"
+            android:layout_height="@dimen/app_24dp"
+            android:layout_marginLeft="@dimen/app_24dp"
+            android:layout_marginTop="@dimen/app_13dp"
+            android:src="@mipmap/sh_gongsi"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/app_5dp"
+            android:layout_marginRight="@dimen/app_20dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_share_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="@color/color_303133"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/app_17dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="麦麸智能（常州）有限公司"/>
+
+            <ImageView
+                android:id="@+id/iv_share_vip"
+                android:layout_width="@dimen/app_75dp"
+                android:layout_height="@dimen/app_18dp"
+                android:layout_marginTop="@dimen/app_10dp"
+                android:src="@mipmap/br_vip1"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="@dimen/app_24dp"
+            android:layout_height="@dimen/app_24dp"
+            android:layout_marginRight="@dimen/app_20dp"
+            android:layout_gravity="center_vertical"
+            android:src="@mipmap/sh_xia"/>
+
+    </LinearLayout>
+
+    <include layout="@layout/loyout_my_share"/>
+
+</LinearLayout>

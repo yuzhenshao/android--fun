@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/color_f5f7fa"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/main_title"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/ll_task_rc"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <cn.droidlover.xrecyclerview.XRecyclerContentLayout
+                android:id="@+id/task_xrecycleview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/app_10dp"
+                app:recyclerBackgroundColor="@color/color_f5f7fa" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_task_empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:visibility="gone"
+            android:background="@color/color_f5f7fa">
+
+            <ImageView
+                android:layout_width="@dimen/app_120dp"
+                android:layout_height="@dimen/app_120dp"
+                android:src="@mipmap/zuzhi_kongbai"
+                android:layout_marginTop="@dimen/app_72dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/color_909399"
+                android:layout_marginTop="@dimen/app_20dp"
+                android:text="暂无任务"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_task_add"
+            android:layout_width="@dimen/app_54dp"
+            android:layout_height="@dimen/app_54dp"
+            android:layout_gravity="right|bottom"
+            android:layout_marginRight="@dimen/app_24dp"
+            android:layout_marginBottom="@dimen/app_150dp"
+            android:src="@mipmap/task_xinjian"/>
+
+    </FrameLayout>
+
+</LinearLayout>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_60dp">
+
+        <TextView
+            android:id="@+id/tv_man_item_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:textSize="16sp"
+            android:textColor="#606266"
+            android:text="主管理员"/>
+
+        <TextView
+            android:id="@+id/tv_man_item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginRight="49dp"
+            android:textColor="#303133"
+            android:layout_alignParentRight="true"
+            android:text="张三三"/>
+
+        <ImageView
+            android:id="@+id/iv_man_item_you"
+            style="@style/bass_iv_you"
+            android:layout_alignParentRight="true"
+            android:visibility="gone"
+            android:layout_marginRight="@dimen/app_20dp"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_delete"
+        android:layout_width="60dp"
+        android:layout_height="@dimen/app_60dp"
+        android:background="#FFF55030"
+        android:gravity="center"
+        android:text="删除"
+        android:textColor="#FFFFFFFF"
+        android:textSize="16sp" />
+
+</LinearLayout>

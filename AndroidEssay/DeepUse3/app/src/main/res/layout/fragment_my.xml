@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:background="@color/color_ffffff"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_130dp"
+            android:layout_marginTop="@dimen/app_35dp"
+            android:layout_marginLeft="@dimen/app_12dp"
+            android:layout_marginRight="@dimen/app_12dp"
+            android:paddingLeft="@dimen/app_20dp"
+            android:orientation="vertical"
+            android:background="@drawable/yinying_bg_shape">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/app_20dp"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_my_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:textColor="@color/color_303133"
+                        android:text=""/>
+
+                    <TextView
+                        android:id="@+id/tv_my_compaly"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="@color/color_909399"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:layout_marginTop="@dimen/app_7dp"
+                        android:drawablePadding="@dimen/app_5dp"
+                        android:layout_marginRight="@dimen/app_5dp"
+                        android:text=" " />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/iv_my_icon"
+                    android:layout_width="@dimen/app_50dp"
+                    android:layout_height="@dimen/app_50dp"
+                    android:layout_marginRight="@dimen/app_20dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/my_touxiang"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_my_qx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/app_5dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tv_my_qx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="@color/color_d0021b"
+                    android:text=""/>
+
+                <ImageView
+                    android:layout_width="@dimen/app_14dp"
+                    android:layout_height="@dimen/app_14dp"
+                    android:layout_marginLeft="@dimen/app_5dp"
+                    android:src="@mipmap/qx_wenhao"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+        
+        <LinearLayout
+            android:id="@+id/ll_my_tg"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/app_10dp"
+            android:layout_marginLeft="@dimen/app_12dp"
+            android:layout_marginRight="@dimen/app_12dp"
+            android:layout_height="wrap_content">
+
+           <ImageView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:src="@mipmap/person_ad_icon"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_my_card"
+            style="@style/newly_ll_st"
+            android:layout_marginTop="@dimen/app_10dp">
+
+            <TextView
+                style="@style/newly_tv_st"
+                android:textSize="15sp"
+                android:layout_weight="1"
+                android:text="我的名片"/>
+
+            <ImageView
+                style="@style/bass_iv_you"
+                android:layout_marginRight="@dimen/app_20dp"/>
+
+        </LinearLayout>
+
+        <View style="@style/line_heng"/>
+
+        <LinearLayout
+            android:id="@+id/ll_my_zhuan"
+            style="@style/newly_ll_st">
+
+            <TextView
+                style="@style/newly_tv_st"
+                android:textSize="15sp"
+                android:layout_weight="1"
+                android:text="我的充值与用砖"/>
+
+            <ImageView
+                style="@style/bass_iv_you"
+                android:layout_marginRight="@dimen/app_20dp"/>
+
+        </LinearLayout>
+
+        <View style="@style/line_heng"/>
+
+        <LinearLayout
+            android:id="@+id/ll_my_setting"
+            style="@style/newly_ll_st">
+
+            <TextView
+                style="@style/newly_tv_st"
+                android:textSize="15sp"
+                android:layout_weight="1"
+                android:text="设置"/>
+
+            <ImageView
+                style="@style/bass_iv_you"
+                android:layout_marginRight="@dimen/app_20dp"/>
+
+        </LinearLayout>
+
+        <View style="@style/line_heng"/>
+
+        <!--<LinearLayout-->
+            <!--android:id="@+id/ll_my_help"-->
+            <!--style="@style/newly_ll_st">-->
+
+            <!--<TextView-->
+                <!--style="@style/newly_tv_st"-->
+                <!--android:textSize="15sp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="使用帮助"/>-->
+
+            <!--<ImageView-->
+                <!--style="@style/bass_iv_you"-->
+                <!--android:layout_marginRight="@dimen/app_20dp"/>-->
+
+        <!--</LinearLayout>-->
+
+        <!--<View style="@style/line_heng"/>-->
+
+        <LinearLayout
+            android:id="@+id/ll_my_czzn"
+            style="@style/newly_ll_st">
+
+            <TextView
+                style="@style/newly_tv_st"
+                android:textSize="15sp"
+                android:layout_weight="1"
+                android:text="操作指南"/>
+
+            <ImageView
+                style="@style/bass_iv_you"
+                android:layout_marginRight="@dimen/app_20dp"/>
+
+        </LinearLayout>
+
+        <View style="@style/line_heng"/>
+
+        <LinearLayout
+            android:id="@+id/ll_my_tc"
+            style="@style/newly_ll_st">
+
+            <TextView
+                style="@style/newly_tv_st"
+                android:textSize="15sp"
+                android:layout_weight="1"
+                android:text="我要吐槽"/>
+
+            <ImageView
+                style="@style/bass_iv_you"
+                android:layout_marginRight="@dimen/app_20dp"/>
+
+        </LinearLayout>
+
+        <View style="@style/line_heng"/>
+
+        <LinearLayout
+            android:id="@+id/ll_my_gcs"
+            style="@style/newly_ll_st">
+
+            <TextView
+                style="@style/newly_tv_st"
+                android:textSize="15sp"
+                android:layout_weight="1"
+                android:text="工程师通讯录"/>
+
+            <ImageView
+                style="@style/bass_iv_you"
+                android:layout_marginRight="@dimen/app_20dp"/>
+
+        </LinearLayout>
+
+        <View style="@style/line_heng"/>
+
+        <LinearLayout
+            android:id="@+id/ll_my_kf"
+            style="@style/newly_ll_st">
+
+            <TextView
+                style="@style/newly_tv_st"
+                android:textSize="15sp"
+                android:layout_weight="1"
+                android:text="联系客服"/>
+
+            <ImageView
+                style="@style/bass_iv_you"
+                android:layout_marginRight="@dimen/app_20dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

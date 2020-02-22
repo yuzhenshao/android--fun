@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/color_f5f7fa">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_84dp"
+        android:background="@color/color_ffffff">
+
+        <net.lucode.hackware.magicindicator.MagicIndicator
+            android:id="@+id/xm_indicator"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/app_10dp"
+            android:layout_height="@dimen/app_60dp"
+            android:layout_gravity="bottom" />
+
+        <LinearLayout
+            android:id="@+id/ll_xm_search"
+            android:layout_width="@dimen/app_60dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:gravity="center_vertical|right"
+            android:paddingTop="@dimen/app_15dp"
+            android:paddingBottom="@dimen/app_15dp">
+
+            <ImageView
+                android:layout_width="@dimen/app_24dp"
+                android:layout_height="@dimen/app_24dp"
+                android:layout_marginRight="@dimen/app_20dp"
+                android:src="@mipmap/search" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/xm_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

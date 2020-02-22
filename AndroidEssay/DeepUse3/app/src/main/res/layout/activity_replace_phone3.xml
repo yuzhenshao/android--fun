@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="#ffffff">
+
+    <include layout="@layout/main_title"/>
+
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="@dimen/app_70dp"
+        android:src="@mipmap/apply_success"/>
+
+    <TextView
+        android:id="@+id/tv_rep_success"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="#303133"
+        android:layout_marginTop="30dp"
+        android:text="更换手机号成功"/>
+
+    <TextView
+        android:id="@+id/tv_rep_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="#909399"
+        android:layout_marginTop="10dp"
+        android:text="当前手机号为18088888888"/>
+
+
+    <Button
+        android:id="@+id/but_rep_deter"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="@dimen/app_38dp"
+        android:layout_marginRight="@dimen/app_38dp"
+        android:text="确认"
+        android:textSize="18sp"
+        android:textColor="#ffffff"
+        android:background="@drawable/yuanjiao_4a9012_button_shape"
+        android:layout_marginTop="65dp"/>
+
+</LinearLayout>

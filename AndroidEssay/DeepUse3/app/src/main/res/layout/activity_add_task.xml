@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.qmuiteam.qmui.widget.QMUIWindowInsetLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_f5f7fa"
+        android:orientation="vertical">
+
+        <include layout="@layout/main_title" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_f5f7fa"
+                android:orientation="vertical">
+
+                <LinearLayout style="@style/found_pro_ll"
+                    android:layout_marginTop="@dimen/app_10dp">
+
+
+                    <LinearLayout style="@style/newly_ll_st">
+
+                        <TextView
+                            style="@style/newly_tv_st"
+                            android:text="客户姓名" />
+
+                        <EditText
+                            android:id="@+id/et_ta_name"
+                            style="@style/newly_et_st2"
+                            android:hint="@string/add_custom_select"
+                            android:paddingRight="0dp" />
+
+                        <ImageView
+                            style="@style/bass_iv_you"
+                            android:layout_marginRight="@dimen/app_20dp" />
+
+                    </LinearLayout>
+
+                    <View style="@style/line_heng" />
+
+                    <LinearLayout style="@style/newly_ll_st">
+
+                        <TextView
+                            style="@style/newly_tv_st"
+                            android:text="联系方式" />
+
+                        <EditText
+                            android:id="@+id/et_ta_phone"
+                            style="@style/newly_et_st2"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/found_pro_ll"
+                    android:layout_marginTop="@dimen/app_10dp">
+
+
+                    <LinearLayout style="@style/newly_ll_st">
+
+                        <TextView
+                            style="@style/newly_tv_st"
+                            android:text="任务时间" />
+
+                        <EditText
+                            android:id="@+id/et_ta_time"
+                            style="@style/newly_et_st2"
+                            android:hint="@string/add_custom_select"
+                            android:paddingRight="0dp" />
+
+                        <ImageView
+                            style="@style/bass_iv_you"
+                            android:layout_marginRight="@dimen/app_20dp" />
+
+                    </LinearLayout>
+
+                    <View style="@style/line_heng" />
+
+                    <LinearLayout style="@style/newly_ll_st">
+
+                        <TextView
+                            style="@style/newly_tv_st"
+                            android:text="提醒设置" />
+
+                        <EditText
+                            android:id="@+id/et_ta_tq"
+                            style="@style/newly_et_st"
+                            android:inputType="number"
+                            android:hint="提前     小时"/>
+
+                    </LinearLayout>
+
+                    <View style="@style/line_heng" />
+
+                    <TextView
+                        style="@style/newly_tv_st"
+                        android:layout_marginLeft="@dimen/app_24dp"
+                        android:layout_marginTop="@dimen/app_20dp"
+                        android:text="备注" />
+
+                    <EditText
+                        android:id="@+id/et_ta_remark"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:hint="@string/add_custom_shuru"
+                        android:textColorHint="@color/color_BFC2CC"
+                        android:textColor="@color/color_303133"
+                        android:textSize="16sp"
+                        android:paddingLeft="@dimen/app_24dp"
+                        android:paddingRight="@dimen/app_24dp"
+                        android:paddingTop="@dimen/app_20dp"
+                        android:paddingBottom="@dimen/app_20dp"/>
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/but_ta_commit"
+                    style="@style/bass_but"
+                    android:layout_marginTop="@dimen/app_50dp"
+                    android:layout_marginBottom="@dimen/app_11dp"
+                    android:background="@drawable/yuanjiao_bfc2cc_button_shape"
+                    android:text="提交" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</com.qmuiteam.qmui.widget.QMUIWindowInsetLayout>

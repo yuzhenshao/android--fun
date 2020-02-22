@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.qmuiteam.qmui.widget.QMUIWindowInsetLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_ffffff"
+        android:orientation="vertical">
+
+        <include layout="@layout/main_title"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/app_105dp"
+                    android:layout_marginTop="@dimen/app_10dp"
+                    android:layout_marginLeft="@dimen/app_12dp"
+                    android:layout_marginRight="@dimen/app_12dp"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/yuanjiao_yinying_xian_shape">
+
+                    <ImageView
+                        android:layout_width="@dimen/app_52dp"
+                        android:layout_height="@dimen/app_52dp"
+                        android:layout_marginLeft="@dimen/app_26dp"
+                        android:src="@mipmap/work_moren"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="@dimen/app_18dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/tv_or_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="16sp"
+                                android:textColor="@color/color_303133"
+                                android:text=""/>
+
+                            <TextView
+                                android:id="@+id/tv_or_phone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="16sp"
+                                android:textColor="@color/color_303133"
+                                android:layout_marginLeft="@dimen/app_46dp"
+                                android:text=""/>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/tv_or_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:textColor="@color/color_909399"
+                            android:layout_marginTop="@dimen/app_4dp"
+                            android:layout_marginRight="@dimen/app_80dp"
+                            android:text=""/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/app_5dp"
+                    android:scaleType="fitXY"
+                    android:layout_marginLeft="@dimen/app_12dp"
+                    android:layout_marginRight="@dimen/app_12dp"
+                    android:src="@mipmap/work_xian"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/app_25dp"
+                    android:layout_marginLeft="@dimen/app_25dp"
+                    android:gravity="center_vertical">
+
+                    <View
+                        android:layout_width="@dimen/app_10dp"
+                        android:layout_height="@dimen/app_10dp"
+                        android:background="@drawable/yuan_4a90e2_xian_bg_shape"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="@color/color_606266"
+                        android:layout_marginLeft="@dimen/app_5dp"
+                        android:text="工单详情"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/add_work_ll"
+                    android:layout_marginTop="@dimen/app_13dp">
+
+                    <TextView
+                        style="@style/add_work_tv"
+                        android:text="售后类型"/>
+
+                    <TextView
+                        style="@style/add_work_tv"
+                        android:text=" *"/>
+
+                    <EditText
+                        android:id="@+id/et_or_type"
+                        style="@style/add_work_et2"
+                        android:paddingRight="@dimen/app_3dp"
+                        android:hint="@string/word_type"/>
+
+                    <ImageView
+                        android:layout_width="@dimen/app_24dp"
+                        android:layout_height="@dimen/app_24dp"
+                        android:layout_marginRight="@dimen/app_26dp"
+                        android:src="@mipmap/work_xia"/>
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/add_work_ll">
+
+                    <TextView
+                        style="@style/add_work_tv"
+                        android:text="保修状态"/>
+
+                    <View style="@style/weight_heng"/>
+
+                    <TextView
+                        android:id="@+id/tv_bao_type"
+                        style="@style/add_work_tv"
+                        android:layout_marginRight="@dimen/app_53dp"
+                        android:textColor="@color/color_606266"
+                        android:text=""/>
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/add_work_ll">
+
+                    <TextView
+                        style="@style/add_work_tv"
+                        android:text="联系人"/>
+
+                    <TextView
+                        style="@style/add_work_tv"
+                        android:text=" *"/>
+
+                    <EditText
+                        android:id="@+id/et_or_lxr"
+                        style="@style/add_work_et"
+                        android:paddingRight="@dimen/app_3dp"
+                        android:hint="@string/word_name"/>
+
+                    <ImageView
+                        android:layout_width="@dimen/app_24dp"
+                        android:layout_height="@dimen/app_24dp"
+                        android:layout_marginRight="@dimen/app_26dp"
+                        android:src="@mipmap/work_xie"/>
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/add_work_ll">
+
+                    <TextView
+                        style="@style/add_work_tv"
+                        android:text="联系电话"/>
+
+                    <TextView
+                        style="@style/add_work_tv"
+                        android:text=" *"/>
+
+                    <EditText
+                        android:id="@+id/et_or_lxrphone"
+                        style="@style/add_work_et"
+                        android:paddingRight="@dimen/app_3dp"
+                        android:inputType="number"
+                        android:hint="@string/word_phone"/>
+
+                    <ImageView
+                        android:layout_width="@dimen/app_24dp"
+                        android:layout_height="@dimen/app_24dp"
+                        android:layout_marginRight="@dimen/app_26dp"
+                        android:src="@mipmap/work_xie"/>
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/add_work_ll">
+
+                    <TextView
+                        style="@style/add_work_tv"
+                        android:text="期望维护时间"/>
+
+                    <TextView
+                        style="@style/add_work_tv"
+                        android:text=" *"/>
+
+                    <EditText
+                        android:id="@+id/et_or_time"
+                        style="@style/add_work_et2"
+                        android:paddingRight="@dimen/app_32dp"
+                        android:hint="@string/word_time"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/app_9dp"
+                    android:layout_marginLeft="@dimen/app_40dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        style="@style/add_work_tv"
+                        android:text="故障描述"/>
+
+                    <TextView
+                        style="@style/add_work_tv"
+                        android:text=" *"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/app_4dp"
+                    android:layout_marginLeft="@dimen/app_40dp">
+
+                    <EditText
+                        android:id="@+id/et_or_ms"
+                        style="@style/add_work_et"
+                        android:paddingRight="@dimen/app_3dp"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="@dimen/app_15dp"
+                        android:gravity="top"
+                        android:paddingLeft="0dp"
+                        android:hint="@string/word_content"/>
+
+                    <ImageView
+                        android:layout_width="@dimen/app_24dp"
+                        android:layout_height="@dimen/app_24dp"
+                        android:layout_marginRight="@dimen/app_26dp"
+                        android:src="@mipmap/work_xie"/>
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/add_work_tv"
+                    android:layout_marginTop="@dimen/app_4dp"
+                    android:layout_marginLeft="@dimen/app_40dp"
+                    android:text="相关图片"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/or_recycleview"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/app_85dp"
+                    android:layout_marginBottom="@dimen/app_20dp"
+                    android:overScrollMode="never"
+                    android:scrollbars="none" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <Button
+            android:id="@+id/but_or_commit"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="提交"
+            android:textSize="18sp"
+            android:textColor="#ffffff"
+            android:background="@drawable/yuanjiao_4a9012_button_shape"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_50dp">
+
+            <LinearLayout
+                android:id="@+id/ll_or_sf"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="@dimen/app_24dp"
+                    android:layout_height="@dimen/app_24dp"
+                    android:src="@mipmap/work_shoufei"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:textColor="@color/color_4A90E2"
+                    android:layout_marginLeft="@dimen/app_4dp"
+                    android:text="收费标准"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_or_gz"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="@dimen/app_24dp"
+                    android:layout_height="@dimen/app_24dp"
+                    android:src="@mipmap/work_guzhang"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:textColor="@color/color_4A90E2"
+                    android:layout_marginLeft="@dimen/app_4dp"
+                    android:text="常见故障"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.qmuiteam.qmui.widget.QMUIWindowInsetLayout>

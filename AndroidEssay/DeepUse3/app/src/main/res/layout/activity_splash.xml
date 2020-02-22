@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@mipmap/splash_img" />
+
+    <!--<LinearLayout-->
+        <!--android:layout_gravity="right"-->
+        <!--android:id="@+id/all_splash_button"-->
+        <!--android:layout_width="@dimen/app_40dp"-->
+        <!--android:layout_height="@dimen/app_40dp"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_marginRight="50px"-->
+        <!--android:layout_marginTop="100px"-->
+        <!--android:background="@drawable/back_splash_jump_button"-->
+        <!--android:gravity="center"-->
+        <!--android:orientation="vertical">-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:text="跳过"-->
+            <!--android:textColor="@color/color_ffffff"-->
+            <!--android:textSize="12sp"/>-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/tv_splash_second"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="3s"-->
+            <!--android:textColor="@color/color_ffffff"-->
+            <!--android:textSize="11sp"/>-->
+
+
+    <!--</LinearLayout>-->
+
+</FrameLayout>

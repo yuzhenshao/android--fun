@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/app_70dp"
+    android:layout_height="@dimen/app_51dp"
+    android:paddingTop="@dimen/app_25dp">
+
+    <TextView
+        android:id="@+id/tv_iten_bane"
+        android:layout_width="@dimen/app_70dp"
+        android:layout_height="@dimen/app_26dp"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:background="@drawable/kehu_recharge_screen_choice"
+        android:textColor="@drawable/kehu_color_screen_choice"
+        android:text="一星级"/>
+
+</LinearLayout>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/app_114dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_114dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_marginLeft="@dimen/app_38dp">
+
+            <View
+                android:layout_width="@dimen/app_2dp"
+                android:layout_height="@dimen/app_23dp"
+                android:background="@color/color_DCDCDC"/>
+
+            <View
+                android:layout_width="@dimen/app_10dp"
+                android:layout_height="@dimen/app_10dp"
+                android:background="@drawable/yuan_4a90e2_dian_shape"/>
+
+            <View
+                android:layout_width="@dimen/app_2dp"
+                android:layout_height="match_parent"
+                android:background="@color/color_DCDCDC"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/app_11dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/app_20dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tv_acc_item_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@color/color_303133"
+                    android:text=""/>
+
+                <TextView
+                    android:id="@+id/tv_acc_item_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:layout_marginLeft="@dimen/app_16dp"
+                    android:textColor="@color/color_BFC2CC"
+                    android:text=""/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_acc_item_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/color_303133"
+                android:layout_marginTop="@dimen/app_11dp"
+                android:maxLines="3"
+                android:ellipsize="end"
+                android:autoLink="web"
+                android:layout_marginRight="@dimen/app_30dp"
+                android:text=""/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

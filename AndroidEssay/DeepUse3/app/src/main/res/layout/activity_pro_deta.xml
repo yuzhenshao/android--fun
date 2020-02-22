@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/main_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_f5f7fa"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_edit_jb"
+                style="@style/found_pro_tv"
+                android:textStyle="bold"
+                android:text="基本信息" />
+
+            <LinearLayout style="@style/found_pro_ll">
+
+                <LinearLayout style="@style/newly_ll_st">
+
+                    <TextView
+                        style="@style/newly_tv_st"
+                        android:text="项目名称" />
+
+                    <View style="@style/weight_heng"/>
+
+                    <TextView
+                        android:id="@+id/et_edit_proname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:textColor="@color/color_303133"
+                        android:layout_marginRight="@dimen/app_24dp"
+                        android:layout_marginLeft="@dimen/app_10dp"
+                        android:text=""/>
+
+                </LinearLayout>
+
+                <View style="@style/line_heng" />
+
+                <LinearLayout
+                    style="@style/newly_ll_st"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/newly_tv_st"
+                        android:text="项目地址" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/app_121dp"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <LinearLayout style="@style/newly_ll_st">
+
+                            <View style="@style/weight_heng"/>
+
+                            <TextView
+                                android:id="@+id/et_edit_address"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="16sp"
+                                android:textColor="@color/color_303133"
+                                android:layout_marginRight="@dimen/app_24dp"
+                                android:layout_marginLeft="@dimen/app_10dp"
+                                android:text=""/>
+
+                        </LinearLayout>
+
+                        <View
+                            style="@style/line_heng"
+                            android:layout_marginLeft="@dimen/app_18dp" />
+
+                        <LinearLayout style="@style/newly_ll_st">
+
+                            <View style="@style/weight_heng"/>
+
+                            <TextView
+                                android:id="@+id/et_edit_detail"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="16sp"
+                                android:textColor="@color/color_303133"
+                                android:layout_marginLeft="@dimen/app_10dp"
+                                android:layout_marginRight="@dimen/app_24dp"
+                                android:text=""/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_kehu"
+                style="@style/found_pro_tv"
+                android:text="客户信息"
+                android:textStyle="bold" />
+
+            <LinearLayout style="@style/found_pro_ll">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/or_recycleview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/app_10dp"
+                    android:layout_marginBottom="@dimen/app_10dp"
+                    android:overScrollMode="never"
+                    android:scrollbars="none" />
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/found_pro_tv"
+                android:text="质保设置"
+                android:textStyle="bold" />
+
+            <LinearLayout style="@style/found_pro_ll">
+
+                <LinearLayout style="@style/newly_ll_st">
+
+                    <TextView
+                        style="@style/newly_tv_st"
+                        android:text="质保期限" />
+
+                    <View style="@style/weight_heng"/>
+
+                    <TextView
+                        android:id="@+id/et_edit_zbqx"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:textColor="@color/color_303133"
+                        android:layout_marginLeft="@dimen/app_10dp"
+                        android:layout_marginRight="@dimen/app_24dp"
+                        android:text=""/>
+
+                </LinearLayout>
+
+                <View style="@style/line_heng" />
+
+                <LinearLayout style="@style/newly_ll_st">
+
+                    <TextView
+                        style="@style/newly_tv_st"
+                        android:text="质保起始日期" />
+
+                    <View style="@style/weight_heng"/>
+
+                    <TextView
+                        android:id="@+id/tv_edit_start"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:textColor="@color/color_303133"
+                        android:layout_marginLeft="@dimen/app_10dp"
+                        android:layout_marginRight="@dimen/app_24dp"
+                        android:text=""/>
+
+                </LinearLayout>
+
+                <View style="@style/line_heng" />
+
+                <LinearLayout style="@style/newly_ll_st">
+
+                    <TextView
+                        style="@style/newly_tv_st"
+                        android:text="质保截止日期" />
+
+                    <View style="@style/weight_heng"/>
+
+                    <TextView
+                        android:id="@+id/et_edit_end"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:textColor="@color/color_303133"
+                        android:layout_marginLeft="@dimen/app_10dp"
+                        android:layout_marginRight="@dimen/app_24dp"
+                        android:text=""/>
+
+                </LinearLayout>
+
+                <View
+                    style="@style/line_heng"
+                    android:layout_height="@dimen/app_10dp" />
+
+                <LinearLayout
+                    style="@style/newly_ll_st"
+                    android:background="@color/color_ffffff">
+
+                    <TextView
+                        style="@style/newly_tv_st"
+                        android:layout_weight="1"
+                        android:text="质保预警提醒"
+                        android:textStyle="bold" />
+
+                    <ImageButton
+                        android:id="@+id/ib_edit_zbyj"
+                        android:layout_width="@dimen/app_52dp"
+                        android:layout_height="@dimen/app_23dp"
+                        android:layout_marginRight="@dimen/app_24dp"
+                        android:src="@mipmap/shou_close" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/found_pro_tv"
+                android:textStyle="bold"
+                android:text="合同信息" />
+
+            <LinearLayout style="@style/found_pro_ll">
+
+                <LinearLayout style="@style/newly_ll_st">
+
+                    <TextView
+                        style="@style/newly_tv_st"
+                        android:text="合同金额" />
+
+                    <View style="@style/weight_heng"/>
+
+                    <TextView
+                        android:id="@+id/et_edit_money"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:textColor="@color/color_303133"
+                        android:layout_marginLeft="@dimen/app_10dp"
+                        android:layout_marginRight="@dimen/app_24dp"
+                        android:text=""/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

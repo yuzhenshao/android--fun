@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f5f7fa">
+
+    <include layout="@layout/main_title"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/ll_code_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:background="@drawable/yuanjiao_ffffff_bg_shape">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:layout_marginTop="28dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_code_jiacu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#606266"
+                        android:textSize="18sp"
+                        android:text="诚邀您加入"/>
+
+                    <TextView
+                        android:id="@+id/tv_code_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textColor="#909399"
+                        android:textSize="16sp"
+                        android:text=""/>
+
+                </LinearLayout>
+
+                <com.mfzn.deepuses.view.RoundImageView
+                    android:id="@+id/iv_code_icon"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="24dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/code_gongsi"/>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/iv_code"
+                android:layout_width="223dp"
+                android:layout_height="223dp"
+                android:layout_marginTop="40dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:gravity="center"
+                android:layout_marginTop="35dp"
+                android:layout_marginBottom="27dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="#bfc2cc"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="#bfc2cc"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="打开云知枢扫一扫加入项目"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="#bfc2cc"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_code_success"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:src="@mipmap/code_success"/>
+
+        <TextView
+            android:id="@+id/tv_code_fail"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:textSize="15sp"
+            android:textColor="#ffffff"
+            android:visibility="gone"
+            android:background="@drawable/my_code_chenggong_shape"
+            android:gravity="center"
+            android:text="保存失败"/>
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:gravity="center_vertical"
+        android:background="@drawable/yuanjiao_ffffff_bg_shape">
+
+        <Button
+            android:id="@+id/but_fx"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="@dimen/app_45dp"
+            android:layout_marginLeft="@dimen/app_10dp"
+            android:layout_marginRight="@dimen/app_10dp"
+            android:text="分享"
+            android:textSize="18sp"
+            android:textColor="@color/color_ffffff"
+            android:background="@drawable/shape_yuanjiao_4a90e2_button"/>
+
+        <Button
+            android:id="@+id/but_bc"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="@dimen/app_45dp"
+            android:layout_marginLeft="@dimen/app_10dp"
+            android:layout_marginRight="@dimen/app_10dp"
+            android:text="保存"
+            android:textSize="18sp"
+            android:textColor="@color/color_ffffff"
+            android:background="@drawable/shape_yuanjiao_4a90e2_button"/>
+
+    </LinearLayout>
+
+</LinearLayout>

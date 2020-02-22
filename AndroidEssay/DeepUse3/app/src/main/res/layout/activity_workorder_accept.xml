@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_f5f7fa"
+    android:orientation="vertical">
+
+    <include layout="@layout/main_title"/>
+
+    <LinearLayout
+        android:id="@+id/ll_wo_sl"
+        style="@style/newly_ll_st"
+        android:background="@color/color_ffffff"
+        android:layout_marginTop="@dimen/app_10dp">
+
+        <TextView
+            android:id="@+id/tv_wo_slbold"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/color_303133"
+            android:text="是否受理"/>
+
+        <TextView
+            android:id="@+id/tv_wo_sl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/color_606266"
+            android:text="受理"/>
+
+        <ImageView
+            style="@style/bass_iv_you"
+            android:layout_marginRight="@dimen/app_20dp"
+            android:layout_marginLeft="@dimen/app_10dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_wo_tj"
+        style="@style/newly_ll_st"
+        android:background="@color/color_ffffff"
+        android:layout_marginTop="@dimen/app_10dp">
+
+        <TextView
+            android:id="@+id/tv_wo_tj"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/color_303133"
+            android:text="推荐联系人"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/color_606266"
+            android:text="（选填）"/>
+
+        <ImageView
+            android:layout_width="@dimen/app_24dp"
+            android:layout_height="@dimen/app_24dp"
+            android:layout_marginRight="@dimen/app_20dp"
+            android:layout_marginLeft="@dimen/app_10dp"
+            android:src="@mipmap/pro_add"/>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/wo_listview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:dividerHeight="@dimen/app_1dp"
+            android:divider="@color/color_f5f7fa"
+            android:scrollbars="none"
+            android:layout_marginBottom="@dimen/app_90dp"
+            android:background="@color/color_ffffff"/>
+
+        <Button
+            android:id="@+id/but_wo_commit"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="@dimen/app_15dp"
+            android:text="提交"
+            android:textSize="18sp"
+            android:textColor="#ffffff"
+            android:layout_gravity="bottom"
+            android:background="@drawable/yuanjiao_4a9012_button_shape"/>
+
+    </FrameLayout>
+
+</LinearLayout>
