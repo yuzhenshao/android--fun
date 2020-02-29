@@ -13,10 +13,7 @@ import com.mfzn.deepuses.AppManager;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.activity.login.LoginActivity;
 import com.mfzn.deepuses.adapter.jiagou.ZuzhiDepartment2Adapter;
-import com.mfzn.deepuses.adapter.jiagou.ZuzhiDepartmentAdapter;
 import com.mfzn.deepuses.adapter.jiagou.ZuzhiPersonal2Adapter;
-import com.mfzn.deepuses.adapter.jiagou.ZuzhiPersonalAdapter;
-import com.mfzn.deepuses.bass.BaseActivity;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
 import com.mfzn.deepuses.model.jiagou.ZuzhiJiagouModel;
 import com.mfzn.deepuses.present.jiagou.ZuzhiJiagou2Present;
@@ -31,7 +28,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.droidlover.xdroidmvp.router.Router;
 
@@ -135,7 +131,7 @@ public class ZuzhiJiagou2Activity extends BaseMvpActivity<ZuzhiJiagou2Present> {
             llManEmpty.setVisibility(View.GONE);
         }
 
-        List<ZuzhiJiagouModel.SonsBeanX.StaffBeanX> staff = model.getSons().get(positions).getStaff();
+        List<ZuzhiJiagouModel.StaffBeanXX> staff = model.getSons().get(positions).getStaff();
         ZuzhiPersonal2Adapter zuzhiPersonalAdapter = new ZuzhiPersonal2Adapter(this,staff);
         listview1.setAdapter(zuzhiPersonalAdapter);
 

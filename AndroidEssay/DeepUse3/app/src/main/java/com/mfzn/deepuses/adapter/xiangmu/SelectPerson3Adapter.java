@@ -5,7 +5,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -23,10 +22,10 @@ import butterknife.ButterKnife;
 public class SelectPerson3Adapter extends BaseAdapter {
 
     private Context mContext;
-    private List<ZuzhiJiagouModel.SonsBeanX.SonsBean.StaffBean> list;
+    private List<ZuzhiJiagouModel.StaffBeanXX> list;
     private int type;
 
-    public SelectPerson3Adapter(Context context, List<ZuzhiJiagouModel.SonsBeanX.SonsBean.StaffBean> list) {
+    public SelectPerson3Adapter(Context context, List<ZuzhiJiagouModel.StaffBeanXX> list) {
         this.mContext = context;
         this.list = list;
     }
@@ -58,7 +57,7 @@ public class SelectPerson3Adapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        ZuzhiJiagouModel.SonsBeanX.SonsBean.StaffBean staffBeanX = list.get(position);
+        ZuzhiJiagouModel.StaffBeanXX staffBeanX = list.get(position);
 
         String u_head = staffBeanX.getU_head();
         if(!TextUtils.isEmpty(u_head)) {

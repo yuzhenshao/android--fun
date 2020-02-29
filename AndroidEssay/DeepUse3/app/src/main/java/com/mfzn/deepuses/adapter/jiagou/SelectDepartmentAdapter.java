@@ -6,15 +6,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.model.jiagou.ZuzhiJiagouModel;
-import com.mfzn.deepuses.net.ApiHelper;
 import com.mfzn.deepuses.view.MyListview;
-import com.mfzn.deepuses.view.RoundImageView;
 
 import java.util.List;
 
@@ -64,7 +60,7 @@ public class SelectDepartmentAdapter extends BaseAdapter {
         ZuzhiJiagouModel.SonsBeanX staffBeanX = sons.get(position);
 
         viewHolder.ivDeItemName.setText(staffBeanX.getDepartmentName());
-        List<ZuzhiJiagouModel.SonsBeanX.SonsBean> sonsBeans = staffBeanX.getSons();
+        List<ZuzhiJiagouModel.SonsBean> sonsBeans = staffBeanX.getSons();
         if(sonsBeans != null && sonsBeans.size() != 0) {
 //            viewHolder.ivDeItemBj.setVisibility(View.VISIBLE);
             viewHolder.itemListview.setVisibility(View.VISIBLE);
@@ -102,7 +98,7 @@ public class SelectDepartmentAdapter extends BaseAdapter {
                         if(sons.get(i).getSelectDe()) {
                             sons.get(i).setSelectDe(false);
                         }
-                        List<ZuzhiJiagouModel.SonsBeanX.SonsBean> sonsBeans = sons.get(i).getSons();
+                        List<ZuzhiJiagouModel.SonsBean> sonsBeans = sons.get(i).getSons();
                         if(sonsBeans != null && sonsBeans.size() != 0) {
                             for (int j = 0 ; j < sonsBeans.size() ; j++){
                                 if(sonsBeans.get(j).getSelectDe()) {

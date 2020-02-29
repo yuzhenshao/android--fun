@@ -20,12 +20,12 @@ import butterknife.ButterKnife;
 public class SelectBranchItemAdapter extends BaseAdapter {
 
     private Context mContext;
-    private List<ZuzhiJiagouModel.SonsBeanX.SonsBean> sons;
+    private List<ZuzhiJiagouModel.SonsBean> sons;
     private List<ZuzhiJiagouModel.SonsBeanX> beanXES;
 
     private OnItemClickLisenter onItemClickLisenter;
 
-    public SelectBranchItemAdapter(Context context, List<ZuzhiJiagouModel.SonsBeanX.SonsBean> sons, List<ZuzhiJiagouModel.SonsBeanX> beanXES) {
+    public SelectBranchItemAdapter(Context context, List<ZuzhiJiagouModel.SonsBean> sons, List<ZuzhiJiagouModel.SonsBeanX> beanXES) {
         this.mContext = context;
         this.sons = sons;
         this.beanXES = beanXES;
@@ -58,7 +58,7 @@ public class SelectBranchItemAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        ZuzhiJiagouModel.SonsBeanX.SonsBean staffBeanX = sons.get(position);
+        ZuzhiJiagouModel.SonsBean staffBeanX = sons.get(position);
 
         viewHolder.ivDeItemName.setText(staffBeanX.getDepartmentName());
 

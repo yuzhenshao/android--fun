@@ -2,7 +2,6 @@ package com.mfzn.deepuses.activity.jiagou;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -12,9 +11,7 @@ import android.widget.TextView;
 
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.adapter.jiagou.BatchAddStaffAdapter;
-import com.mfzn.deepuses.adapter.jiagou.ManageJiagouAdapter;
 import com.mfzn.deepuses.adapter.jiagou.MoveStaffAdapter;
-import com.mfzn.deepuses.adapter.jiagou.ZuzhiDepartmentAdapter;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
 import com.mfzn.deepuses.model.jiagou.ZuzhiJiagouModel;
 import com.mfzn.deepuses.present.jiagou.BatchAddStaffPresent;
@@ -22,14 +19,11 @@ import com.mfzn.deepuses.utils.Constants;
 import com.mfzn.deepuses.utils.EventMsg;
 import com.mfzn.deepuses.utils.RxBus;
 import com.mfzn.deepuses.utils.ToastUtil;
-import com.mfzn.deepuses.utils.UserHelper;
 import com.mfzn.deepuses.view.MyListview;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class BatchAddStaffActivity extends BaseMvpActivity<BatchAddStaffPresent> {
@@ -134,7 +128,7 @@ public class BatchAddStaffActivity extends BaseMvpActivity<BatchAddStaffPresent>
             Balistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    ZuzhiJiagouModel.SonsBeanX.StaffBeanX staffBeanXX = model.getSons().get(positions).getStaff().get(position);
+                    ZuzhiJiagouModel.StaffBeanXX staffBeanXX = model.getSons().get(positions).getStaff().get(position);
                     if (staffBeanXX.getSelectType()) {
                         staffBeanXX.setSelectType(false);
                     } else {
@@ -151,7 +145,7 @@ public class BatchAddStaffActivity extends BaseMvpActivity<BatchAddStaffPresent>
             Balistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    ZuzhiJiagouModel.SonsBeanX.SonsBean.StaffBean staffBean =
+                    ZuzhiJiagouModel.StaffBeanXX staffBean =
                             model.getSons().get(positions).getSons().get(positions2).getStaff().get(position);
                     if (staffBean.getSelectType()) {
                         staffBean.setSelectType(false);
@@ -197,9 +191,9 @@ public class BatchAddStaffActivity extends BaseMvpActivity<BatchAddStaffPresent>
                     startActivityForResult(new Intent(this, DepartmentActivity.class),Constants.EDIT_STAFF_BM);
                 }
             }else if(types.equals("2")) {
-                List<ZuzhiJiagouModel.SonsBeanX.StaffBeanX> staff = model.getSons().get(positions).getStaff();
+                List<ZuzhiJiagouModel.StaffBeanXX> staff = model.getSons().get(positions).getStaff();
                 for(int i = 0; i < staff.size(); i++) {
-                    ZuzhiJiagouModel.SonsBeanX.StaffBeanX beanXX = staff.get(i);
+                    ZuzhiJiagouModel.StaffBeanXX beanXX = staff.get(i);
                     if (beanXX.getSelectType()) {
                         if(TextUtils.isEmpty(userIDs)) {
                             userIDs = beanXX.getUid();
@@ -215,9 +209,9 @@ public class BatchAddStaffActivity extends BaseMvpActivity<BatchAddStaffPresent>
                     startActivityForResult(new Intent(this, DepartmentActivity.class),Constants.EDIT_STAFF_BM);
                 }
             }else if(types.equals("3")) {
-                List<ZuzhiJiagouModel.SonsBeanX.SonsBean.StaffBean> staff = model.getSons().get(positions).getSons().get(positions2).getStaff();
+                List<ZuzhiJiagouModel.StaffBeanXX> staff = model.getSons().get(positions).getSons().get(positions2).getStaff();
                 for(int i = 0; i < staff.size(); i++) {
-                    ZuzhiJiagouModel.SonsBeanX.SonsBean.StaffBean beanXX = staff.get(i);
+                    ZuzhiJiagouModel.StaffBeanXX beanXX = staff.get(i);
                     if (beanXX.getSelectType()) {
                         if(TextUtils.isEmpty(userIDs)) {
                             userIDs = beanXX.getUid();
@@ -251,9 +245,9 @@ public class BatchAddStaffActivity extends BaseMvpActivity<BatchAddStaffPresent>
                 MoveStaffAdapter recycleAdapter = new MoveStaffAdapter(BatchAddStaffActivity.this,model,types,positions,positions2);
                 baRecycleview.setAdapter(recycleAdapter);
             }else if(types.equals("2")) {
-                List<ZuzhiJiagouModel.SonsBeanX.StaffBeanX> staff = model.getSons().get(positions).getStaff();
+                List<ZuzhiJiagouModel.StaffBeanXX> staff = model.getSons().get(positions).getStaff();
                 for(int i = 0; i < staff.size(); i++) {
-                    ZuzhiJiagouModel.SonsBeanX.StaffBeanX beanXX = staff.get(i);
+                    ZuzhiJiagouModel.StaffBeanXX beanXX = staff.get(i);
                     if (!beanXX.getSelectType()) {
                         beanXX.setSelectType(true);
                     }
@@ -262,9 +256,9 @@ public class BatchAddStaffActivity extends BaseMvpActivity<BatchAddStaffPresent>
                 MoveStaffAdapter recycleAdapter = new MoveStaffAdapter(BatchAddStaffActivity.this,model,types,positions,positions2);
                 baRecycleview.setAdapter(recycleAdapter);
             }else if(types.equals("3")) {
-                List<ZuzhiJiagouModel.SonsBeanX.SonsBean.StaffBean> staff = model.getSons().get(positions).getSons().get(positions2).getStaff();
+                List<ZuzhiJiagouModel.StaffBeanXX> staff = model.getSons().get(positions).getSons().get(positions2).getStaff();
                 for(int i = 0; i < staff.size(); i++) {
-                    ZuzhiJiagouModel.SonsBeanX.SonsBean.StaffBean beanXX = staff.get(i);
+                    ZuzhiJiagouModel.StaffBeanXX beanXX = staff.get(i);
                     if (!beanXX.getSelectType()) {
                         beanXX.setSelectType(true);
                     }

@@ -1,7 +1,6 @@
 package com.mfzn.deepuses.activity.myteam;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,20 +11,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mfzn.deepuses.R;
-import com.mfzn.deepuses.activity.jiagou.EditStaffActivity;
-import com.mfzn.deepuses.activity.jiagou.ManageJiagou2Activity;
-import com.mfzn.deepuses.activity.jiagou.ManageJiagou3Activity;
-import com.mfzn.deepuses.activity.jiagou.PersonalInfoActivity;
 import com.mfzn.deepuses.adapter.company.SelectManage2Adapter;
-import com.mfzn.deepuses.adapter.company.SelectManageAdapter;
-import com.mfzn.deepuses.adapter.jiagou.ManageJiagou2Adapter;
 import com.mfzn.deepuses.adapter.jiagou.MoveStaffAdapter;
 import com.mfzn.deepuses.adapter.jiagou.ZuzhiDepartment2Adapter;
-import com.mfzn.deepuses.adapter.jiagou.ZuzhiDepartmentAdapter;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
 import com.mfzn.deepuses.model.jiagou.ZuzhiJiagouModel;
 import com.mfzn.deepuses.present.myteam.SelectManage2Present;
-import com.mfzn.deepuses.present.myteam.SelectManagePresent;
 import com.mfzn.deepuses.utils.Constants;
 import com.mfzn.deepuses.utils.ToastUtil;
 import com.mfzn.deepuses.view.MyListview;
@@ -51,7 +42,7 @@ public class SelectManage2Activity extends BaseMvpActivity<SelectManage2Present>
 
     private String stringExtra;
     private int positions;
-    private List<ZuzhiJiagouModel.SonsBeanX.StaffBeanX> staff = new ArrayList<>();
+    private List<ZuzhiJiagouModel.StaffBeanXX> staff = new ArrayList<>();
 
     @Override
     public int getLayoutId() {
@@ -132,7 +123,7 @@ public class SelectManage2Activity extends BaseMvpActivity<SelectManage2Present>
         listview1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ZuzhiJiagouModel.SonsBeanX.StaffBeanX beanXX = model.getSons().get(positions).getStaff().get(position);
+                ZuzhiJiagouModel.StaffBeanXX beanXX = model.getSons().get(positions).getStaff().get(position);
                 if(!beanXX.getMoren()) {
                     if(beanXX.getSelectType()) {
                         beanXX.setSelectType(false);

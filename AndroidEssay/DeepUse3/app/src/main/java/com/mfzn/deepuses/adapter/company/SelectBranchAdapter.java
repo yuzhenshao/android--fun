@@ -9,9 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mfzn.deepuses.R;
-import com.mfzn.deepuses.adapter.jiagou.SelectItemDepartmentAdapter;
 import com.mfzn.deepuses.model.jiagou.ZuzhiJiagouModel;
-import com.mfzn.deepuses.model.myTeam.ManageSettingModel;
 import com.mfzn.deepuses.view.MyListview;
 
 import java.util.List;
@@ -62,7 +60,7 @@ public class SelectBranchAdapter extends BaseAdapter {
         ZuzhiJiagouModel.SonsBeanX staffBeanX = sons.get(position);
 
         viewHolder.ivDeItemName.setText(staffBeanX.getDepartmentName());
-        List<ZuzhiJiagouModel.SonsBeanX.SonsBean> sonsBeans = staffBeanX.getSons();
+        List<ZuzhiJiagouModel.SonsBean> sonsBeans = staffBeanX.getSons();
         if(sonsBeans != null && sonsBeans.size() != 0) {
             viewHolder.itemListview.setVisibility(View.VISIBLE);
             viewHolder.show.setVisibility(View.VISIBLE);

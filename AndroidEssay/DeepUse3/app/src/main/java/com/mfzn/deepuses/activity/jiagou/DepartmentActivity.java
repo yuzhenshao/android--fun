@@ -3,14 +3,11 @@ package com.mfzn.deepuses.activity.jiagou;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.mfzn.deepuses.R;
-import com.mfzn.deepuses.adapter.jiagou.ManageJiagouAdapter;
 import com.mfzn.deepuses.adapter.jiagou.SelectDepartmentAdapter;
-import com.mfzn.deepuses.adapter.jiagou.ZuzhiDepartmentAdapter;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
 import com.mfzn.deepuses.model.jiagou.ZuzhiJiagouModel;
 import com.mfzn.deepuses.present.jiagou.DepartmentPresent;
@@ -19,7 +16,6 @@ import com.mfzn.deepuses.utils.Constants;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class DepartmentActivity extends BaseMvpActivity<DepartmentPresent> {
@@ -67,7 +63,7 @@ public class DepartmentActivity extends BaseMvpActivity<DepartmentPresent> {
                         departmentName = sons.get(i).getDepartmentName();
                         break;
                     }
-                    List<ZuzhiJiagouModel.SonsBeanX.SonsBean> sonsBeans = sons.get(i).getSons();
+                    List<ZuzhiJiagouModel.SonsBean> sonsBeans = sons.get(i).getSons();
                     if(sonsBeans != null && sonsBeans.size() != 0) {
                         for (int j = 0 ; j < sonsBeans.size() ; j++){
                             if(sonsBeans.get(j).getSelectDe()) {

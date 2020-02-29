@@ -1,7 +1,6 @@
 package com.mfzn.deepuses.activity.jiagou;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,13 +10,10 @@ import android.widget.TextView;
 
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.adapter.jiagou.ManageJiagou2Adapter;
-import com.mfzn.deepuses.adapter.jiagou.ManageJiagouAdapter;
 import com.mfzn.deepuses.adapter.jiagou.ZuzhiDepartment2Adapter;
-import com.mfzn.deepuses.adapter.jiagou.ZuzhiDepartmentAdapter;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
 import com.mfzn.deepuses.model.jiagou.ZuzhiJiagouModel;
 import com.mfzn.deepuses.present.jiagou.ManageJiagou2Present;
-import com.mfzn.deepuses.present.jiagou.ManageJiagouPresent;
 import com.mfzn.deepuses.utils.Constants;
 import com.mfzn.deepuses.utils.EventMsg;
 import com.mfzn.deepuses.utils.RxBus;
@@ -152,7 +148,7 @@ public class ManageJiagou2Activity extends BaseMvpActivity<ManageJiagou2Present>
             llManEmpty.setVisibility(View.GONE);
         }
 
-        List<ZuzhiJiagouModel.SonsBeanX.StaffBeanX> staff = model.getSons().get(positions).getStaff();
+        List<ZuzhiJiagouModel.StaffBeanXX> staff = model.getSons().get(positions).getStaff();
         zuzhiPersonalAdapter = new ManageJiagou2Adapter(this,staff);
         listview1.setAdapter(zuzhiPersonalAdapter);
         zuzhiPersonalAdapter.setShow(0);

@@ -8,7 +8,6 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -18,8 +17,6 @@ import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.mfzn.deepuses.R;
-import com.mfzn.deepuses.adapter.jiagou.ManageJiagouAdapter;
-import com.mfzn.deepuses.adapter.jiagou.ZuzhiDepartmentAdapter;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
 import com.mfzn.deepuses.model.jiagou.ZuzhiJiagouModel;
 import com.mfzn.deepuses.present.jiagou.EditStaffPresent;
@@ -28,12 +25,10 @@ import com.mfzn.deepuses.utils.EventMsg;
 import com.mfzn.deepuses.utils.RxBus;
 import com.mfzn.deepuses.utils.ToastUtil;
 
-import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class EditStaffActivity extends BaseMvpActivity<EditStaffPresent> {
@@ -90,7 +85,7 @@ public class EditStaffActivity extends BaseMvpActivity<EditStaffPresent> {
             ZuzhiJiagouModel model = (ZuzhiJiagouModel) intent.getSerializableExtra(Constants.EDIT_STAFF);
             int extra = intent.getIntExtra(Constants.EDIT_STAFF_POSITION, 0);
             int extra2 = intent.getIntExtra(Constants.EDIT_STAFF_POSITION2, 0);
-            ZuzhiJiagouModel.SonsBeanX.StaffBeanX staffBeanX = model.getSons().get(extra).getStaff().get(extra2);
+            ZuzhiJiagouModel.StaffBeanXX staffBeanX = model.getSons().get(extra).getStaff().get(extra2);
             etEditName.setText(staffBeanX.getStaffName());
             tvEditPhone.setText(staffBeanX.getU_phone());
             tvEditBm.setText(model.getSons().get(extra).getDepartmentName());
@@ -102,7 +97,7 @@ public class EditStaffActivity extends BaseMvpActivity<EditStaffPresent> {
             int extra = intent.getIntExtra(Constants.EDIT_STAFF_POSITION, 0);
             int extra2 = intent.getIntExtra(Constants.EDIT_STAFF_POSITION2, 0);
             int extra3 = intent.getIntExtra(Constants.EDIT_STAFF_POSITION3, 0);
-            ZuzhiJiagouModel.SonsBeanX.SonsBean.StaffBean staffBeanX = model.getSons().get(extra).getSons().get(extra2).getStaff().get(extra3);
+            ZuzhiJiagouModel.StaffBeanXX staffBeanX = model.getSons().get(extra).getSons().get(extra2).getStaff().get(extra3);
             etEditName.setText(staffBeanX.getStaffName());
             tvEditPhone.setText(staffBeanX.getU_phone());
             tvEditBm.setText(model.getSons().get(extra).getSons().get(extra2).getDepartmentName());

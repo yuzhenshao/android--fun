@@ -8,11 +8,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mfzn.deepuses.R;
-import com.mfzn.deepuses.activity.jiagou.EditStaffActivity;
-import com.mfzn.deepuses.activity.jiagou.ManageJiagou2Activity;
-import com.mfzn.deepuses.activity.jiagou.ManageJiagou3Activity;
-import com.mfzn.deepuses.activity.jiagou.PersonalInfoActivity;
-import com.mfzn.deepuses.adapter.jiagou.ManageJiagou2Adapter;
 import com.mfzn.deepuses.adapter.jiagou.ZuzhiDepartment2Adapter;
 import com.mfzn.deepuses.adapter.xiangmu.SelectPerson2Adapter;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
@@ -24,7 +19,6 @@ import com.mfzn.deepuses.view.MyListview;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class SelectPerson2Activity extends BaseMvpActivity<SelectPerson2Present> {
@@ -72,14 +66,14 @@ public class SelectPerson2Activity extends BaseMvpActivity<SelectPerson2Present>
             llPerEmpty.setVisibility(View.GONE);
         }
 
-        List<ZuzhiJiagouModel.SonsBeanX.StaffBeanX> staff = model.getSons().get(positions).getStaff();
+        List<ZuzhiJiagouModel.StaffBeanXX> staff = model.getSons().get(positions).getStaff();
         SelectPerson2Adapter zuzhiPersonalAdapter = new SelectPerson2Adapter(this,staff);
         listview1.setAdapter(zuzhiPersonalAdapter);
 
         listview1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ZuzhiJiagouModel.SonsBeanX.StaffBeanX staffBeanX = model.getSons().get(positions).getStaff().get(position);
+                ZuzhiJiagouModel.StaffBeanXX staffBeanX = model.getSons().get(positions).getStaff().get(position);
                 Intent intent = new Intent();
                 intent.putExtra(Constants.SELECT_PERSON_ID, staffBeanX.getUid());
                 intent.putExtra(Constants.SELECT_PERSON_NAME, staffBeanX.getStaffName());

@@ -2,17 +2,12 @@ package com.mfzn.deepuses.activityxm;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mfzn.deepuses.R;
-import com.mfzn.deepuses.activity.jiagou.EditStaffActivity;
-import com.mfzn.deepuses.activity.jiagou.ManageJiagou3Activity;
-import com.mfzn.deepuses.activity.jiagou.PersonalInfoActivity;
-import com.mfzn.deepuses.adapter.jiagou.ManageJiagou3Adapter;
 import com.mfzn.deepuses.adapter.xiangmu.SelectPerson3Adapter;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
 import com.mfzn.deepuses.model.jiagou.ZuzhiJiagouModel;
@@ -21,7 +16,6 @@ import com.mfzn.deepuses.utils.Constants;
 import com.mfzn.deepuses.view.MyListview;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class SelectPerson3Activity extends BaseMvpActivity<SelectPerson3Present> {
@@ -71,7 +65,7 @@ public class SelectPerson3Activity extends BaseMvpActivity<SelectPerson3Present>
         perlistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ZuzhiJiagouModel.SonsBeanX.SonsBean.StaffBean staffBean = model.getSons().get(positions).getSons().get(positions2).getStaff().get(position);
+                ZuzhiJiagouModel.StaffBeanXX staffBean = model.getSons().get(positions).getSons().get(positions2).getStaff().get(position);
                 Intent intent = new Intent();
                 intent.putExtra(Constants.SELECT_PERSON_ID, staffBean.getUid());
                 intent.putExtra(Constants.SELECT_PERSON_NAME, staffBean.getStaffName());

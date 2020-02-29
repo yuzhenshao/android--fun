@@ -1,7 +1,6 @@
 package com.mfzn.deepuses.activity.myteam;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,14 +11,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mfzn.deepuses.R;
-import com.mfzn.deepuses.activity.jiagou.ManageJiagou3Activity;
-import com.mfzn.deepuses.adapter.company.SelectManage2Adapter;
 import com.mfzn.deepuses.adapter.company.SelectManage3Adapter;
 import com.mfzn.deepuses.adapter.jiagou.MoveStaffAdapter;
-import com.mfzn.deepuses.adapter.jiagou.ZuzhiDepartmentAdapter;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
 import com.mfzn.deepuses.model.jiagou.ZuzhiJiagouModel;
-import com.mfzn.deepuses.present.myteam.SelectManage2Present;
 import com.mfzn.deepuses.present.myteam.SelectManage3Present;
 import com.mfzn.deepuses.utils.Constants;
 import com.mfzn.deepuses.utils.ToastUtil;
@@ -45,7 +40,7 @@ public class SelectManage3Activity extends BaseMvpActivity<SelectManage3Present>
     private String stringExtra;
     private int positions;
     private int positions2;
-    private List<ZuzhiJiagouModel.SonsBeanX.SonsBean.StaffBean> staff = new ArrayList<>();
+    private List<ZuzhiJiagouModel.StaffBeanXX> staff = new ArrayList<>();
 
     @Override
     public int getLayoutId() {
@@ -123,7 +118,7 @@ public class SelectManage3Activity extends BaseMvpActivity<SelectManage3Present>
         listview1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ZuzhiJiagouModel.SonsBeanX.SonsBean.StaffBean beanXX = model.getSons().get(positions).getSons().get(positions2).getStaff().get(position);
+                ZuzhiJiagouModel.StaffBeanXX beanXX = model.getSons().get(positions).getSons().get(positions2).getStaff().get(position);
                 if(!beanXX.getMoren()) {
                     if(beanXX.getSelectType()) {
                         beanXX.setSelectType(false);

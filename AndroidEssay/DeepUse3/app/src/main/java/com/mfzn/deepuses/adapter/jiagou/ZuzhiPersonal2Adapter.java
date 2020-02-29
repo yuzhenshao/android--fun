@@ -23,9 +23,9 @@ import butterknife.ButterKnife;
 public class ZuzhiPersonal2Adapter extends BaseAdapter {
 
     private Context mContext;
-    private List<ZuzhiJiagouModel.SonsBeanX.StaffBeanX> list;
+    private List<ZuzhiJiagouModel.StaffBeanXX> list;
 
-    public ZuzhiPersonal2Adapter(Context context, List<ZuzhiJiagouModel.SonsBeanX.StaffBeanX> list) {
+    public ZuzhiPersonal2Adapter(Context context, List<ZuzhiJiagouModel.StaffBeanXX> list) {
         this.mContext = context;
         this.list = list;
     }
@@ -57,7 +57,7 @@ public class ZuzhiPersonal2Adapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        ZuzhiJiagouModel.SonsBeanX.StaffBeanX staffBeanX = list.get(position);
+        ZuzhiJiagouModel.StaffBeanXX staffBeanX = list.get(position);
 
         String u_head = staffBeanX.getU_head();
         if(!TextUtils.isEmpty(u_head)) {

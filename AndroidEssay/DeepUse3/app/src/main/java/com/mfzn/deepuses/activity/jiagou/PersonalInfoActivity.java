@@ -17,10 +17,7 @@ import com.mfzn.deepuses.utils.PhoneUtils;
 import com.mfzn.deepuses.utils.UserHelper;
 import com.mfzn.deepuses.view.RoundImageView;
 
-import java.io.Serializable;
-
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class PersonalInfoActivity extends BaseActivity {
@@ -71,7 +68,7 @@ public class PersonalInfoActivity extends BaseActivity {
             ZuzhiJiagouModel model = (ZuzhiJiagouModel) intent.getSerializableExtra(Constants.PERSONAL_INFO);
             int extra = intent.getIntExtra(Constants.EDIT_STAFF_POSITION, 0);
             int extra2 = intent.getIntExtra(Constants.EDIT_STAFF_POSITION2, 0);
-            ZuzhiJiagouModel.SonsBeanX.StaffBeanX staffBeanX = model.getSons().get(extra).getStaff().get(extra2);
+            ZuzhiJiagouModel.StaffBeanXX staffBeanX = model.getSons().get(extra).getStaff().get(extra2);
 
             Glide.with(this).load(ApiHelper.BASE_URL + staffBeanX.getU_head()).into(ivPerIcon);
             tvPerName.setText(staffBeanX.getU_name());
@@ -86,7 +83,7 @@ public class PersonalInfoActivity extends BaseActivity {
             int extra = intent.getIntExtra(Constants.EDIT_STAFF_POSITION, 0);
             int extra2 = intent.getIntExtra(Constants.EDIT_STAFF_POSITION2, 0);
             int extra3 = intent.getIntExtra(Constants.EDIT_STAFF_POSITION3, 0);
-            ZuzhiJiagouModel.SonsBeanX.SonsBean.StaffBean staffBeanX = model.getSons().get(extra).getSons().get(extra2).getStaff().get(extra3);
+            ZuzhiJiagouModel.StaffBeanXX staffBeanX = model.getSons().get(extra).getSons().get(extra2).getStaff().get(extra3);
             Glide.with(this).load(ApiHelper.BASE_URL + staffBeanX.getU_head()).into(ivPerIcon);
             tvPerName.setText(staffBeanX.getU_name());
             tvPerTeam.setText(UserHelper.getCompanyName());

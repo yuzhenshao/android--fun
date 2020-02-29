@@ -10,14 +10,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.mfzn.deepuses.R;
-import com.mfzn.deepuses.activity.jiagou.BatchAddStaffActivity;
 import com.mfzn.deepuses.adapter.company.MoveBranchAdapter;
 import com.mfzn.deepuses.adapter.company.SelectBranchAdapter;
-import com.mfzn.deepuses.adapter.jiagou.MoveStaffAdapter;
-import com.mfzn.deepuses.adapter.jiagou.SelectDepartmentAdapter;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
 import com.mfzn.deepuses.model.jiagou.ZuzhiJiagouModel;
-import com.mfzn.deepuses.model.myTeam.ManageSettingModel;
 import com.mfzn.deepuses.present.myteam.SelectBranchPresent;
 import com.mfzn.deepuses.utils.Constants;
 import com.mfzn.deepuses.utils.ToastUtil;
@@ -26,7 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class SelectBranchActivity extends BaseMvpActivity<SelectBranchPresent> {
@@ -81,7 +76,7 @@ public class SelectBranchActivity extends BaseMvpActivity<SelectBranchPresent> {
                             name = name + "," + sons.get(i).getDepartmentName();
                         }
                     }
-                    List<ZuzhiJiagouModel.SonsBeanX.SonsBean> sons1 = sons.get(i).getSons();
+                    List<ZuzhiJiagouModel.SonsBean> sons1 = sons.get(i).getSons();
                     for(int i1 = 0; i1 < sons1.size(); i1++) {
                         if(sons1.get(i1).getSelectDe()) {
                             if(TextUtils.isEmpty(sss)) {
@@ -122,7 +117,7 @@ public class SelectBranchActivity extends BaseMvpActivity<SelectBranchPresent> {
                         sons.get(i).setSelectDe(true);
                     }
                 }
-                List<ZuzhiJiagouModel.SonsBeanX.SonsBean> sons1 = this.sons.get(i).getSons();
+                List<ZuzhiJiagouModel.SonsBean> sons1 = this.sons.get(i).getSons();
                 for(int i1 = 0; i1 < sons1.size(); i1++) {
                     int departmentID1 = sons1.get(i1).getDepartmentID();
                     for(int d = 0; d < split.length; d++) {
@@ -151,7 +146,7 @@ public class SelectBranchActivity extends BaseMvpActivity<SelectBranchPresent> {
                         branch.add(departmentName);
                         branchID.add(departmentID);
                     }
-                    List<ZuzhiJiagouModel.SonsBeanX.SonsBean> sons1 = sons.get(i).getSons();
+                    List<ZuzhiJiagouModel.SonsBean> sons1 = sons.get(i).getSons();
                     for(int i1 = 0; i1 < sons1.size(); i1++) {
                         if(sons1.get(i1).getSelectDe()) {
                             String departmentName1 = sons1.get(i1).getDepartmentName() + " X";
@@ -175,10 +170,10 @@ public class SelectBranchActivity extends BaseMvpActivity<SelectBranchPresent> {
                                 sonsBeanX.setSelectDe(false);
                                 break;
                             }
-                            List<ZuzhiJiagouModel.SonsBeanX.SonsBean> sons1 = sons.get(i).getSons();
+                            List<ZuzhiJiagouModel.SonsBean> sons1 = sons.get(i).getSons();
                             for(int i1 = 0; i1 < sons1.size(); i1++) {
                                 if(sons1.get(i1).getDepartmentID()  == branchID.get(position)) {
-                                    ZuzhiJiagouModel.SonsBeanX.SonsBean sonsBean = sons1.get(i1);
+                                    ZuzhiJiagouModel.SonsBean sonsBean = sons1.get(i1);
                                     sonsBean.setSelectDe(false);
                                     break;
                                 }
@@ -201,7 +196,7 @@ public class SelectBranchActivity extends BaseMvpActivity<SelectBranchPresent> {
                 branch.add(departmentName);
                 branchID.add(departmentID);
             }
-            List<ZuzhiJiagouModel.SonsBeanX.SonsBean> sons1 = sons.get(i).getSons();
+            List<ZuzhiJiagouModel.SonsBean> sons1 = sons.get(i).getSons();
             for(int i1 = 0; i1 < sons1.size(); i1++) {
                 if(sons1.get(i1).getSelectDe()) {
                     String departmentName1 = sons1.get(i1).getDepartmentName() + " X";
@@ -225,10 +220,10 @@ public class SelectBranchActivity extends BaseMvpActivity<SelectBranchPresent> {
                         sonsBeanX.setSelectDe(false);
                         break;
                     }
-                    List<ZuzhiJiagouModel.SonsBeanX.SonsBean> sons1 = sons.get(i).getSons();
+                    List<ZuzhiJiagouModel.SonsBean> sons1 = sons.get(i).getSons();
                     for(int i1 = 0; i1 < sons1.size(); i1++) {
                         if(sons1.get(i1).getDepartmentID()  == branchID.get(position)) {
-                            ZuzhiJiagouModel.SonsBeanX.SonsBean sonsBean = sons1.get(i1);
+                            ZuzhiJiagouModel.SonsBean sonsBean = sons1.get(i1);
                             sonsBean.setSelectDe(false);
                             break;
                         }

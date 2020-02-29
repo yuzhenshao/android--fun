@@ -6,7 +6,6 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -35,8 +34,8 @@ public class MoveStaffAdapter extends RecyclerView.Adapter {
 
     private String types;
     private List<ZuzhiJiagouModel.StaffBeanXX> staff;
-    private List<ZuzhiJiagouModel.SonsBeanX.StaffBeanX> staff2;
-    private List<ZuzhiJiagouModel.SonsBeanX.SonsBean.StaffBean> staff3;
+    private List<ZuzhiJiagouModel.StaffBeanXX> staff2;
+    private List<ZuzhiJiagouModel.StaffBeanXX> staff3;
 
     public MoveStaffAdapter(Context mContext, ZuzhiJiagouModel model, String types, int positions, int positions2) {
         this.context = mContext;
@@ -57,9 +56,9 @@ public class MoveStaffAdapter extends RecyclerView.Adapter {
                 break;
             case "2":
                 staff2 = new ArrayList<>();
-                List<ZuzhiJiagouModel.SonsBeanX.StaffBeanX> staff = model.getSons().get(positions).getStaff();
+                List<ZuzhiJiagouModel.StaffBeanXX> staff = model.getSons().get(positions).getStaff();
                 for (int i = 0; i < staff.size(); i++) {
-                    ZuzhiJiagouModel.SonsBeanX.StaffBeanX beanXX = staff.get(i);
+                    ZuzhiJiagouModel.StaffBeanXX beanXX = staff.get(i);
                     if (beanXX.getSelectType()) {
                         this.staff2.add(beanXX);
                     }
@@ -67,9 +66,9 @@ public class MoveStaffAdapter extends RecyclerView.Adapter {
                 break;
             case "3":
                 staff3 = new ArrayList<>();
-                List<ZuzhiJiagouModel.SonsBeanX.SonsBean.StaffBean> staff1 = model.getSons().get(positions).getSons().get(positions2).getStaff();
+                List<ZuzhiJiagouModel.StaffBeanXX> staff1 = model.getSons().get(positions).getSons().get(positions2).getStaff();
                 for (int i = 0; i < staff1.size(); i++) {
-                    ZuzhiJiagouModel.SonsBeanX.SonsBean.StaffBean staff1s = staff1.get(i);
+                    ZuzhiJiagouModel.StaffBeanXX staff1s = staff1.get(i);
                     if (staff1s.getSelectType()) {
                         this.staff3.add(staff1s);
                     }
@@ -97,12 +96,12 @@ public class MoveStaffAdapter extends RecyclerView.Adapter {
                 name = staffBeanX.getStaffName();
                 break;
             case "2":
-                ZuzhiJiagouModel.SonsBeanX.StaffBeanX staffBeanX2 = staff2.get(position);
+                ZuzhiJiagouModel.StaffBeanXX staffBeanX2 = staff2.get(position);
                 u_head = staffBeanX2.getU_head();
                 name = staffBeanX2.getStaffName();
                 break;
             case "3":
-                ZuzhiJiagouModel.SonsBeanX.SonsBean.StaffBean staffBeanX3 = staff3.get(position);
+                ZuzhiJiagouModel.StaffBeanXX staffBeanX3 = staff3.get(position);
                 u_head = staffBeanX3.getU_head();
                 name = staffBeanX3.getStaffName();
                 break;
