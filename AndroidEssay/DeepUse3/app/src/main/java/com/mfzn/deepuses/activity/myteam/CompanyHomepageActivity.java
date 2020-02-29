@@ -72,7 +72,7 @@ public class CompanyHomepageActivity extends BaseMvpActivity<CompanyHomepagePres
         tvBassTitle.setText(model.getCompanyName());
         tvCoName.setText(model.getCompanyName());
 
-        Glide.with(this).load(ApiHelper.BASE_URL + model.getLogo()).into(ivCoIcon);
+        Glide.with(this).load(ApiHelper.BASE_URL + model.getCompanyLogo()).into(ivCoIcon);
         tvCoWangzhi.setText(model.getCompanyWebsite());
 
         tvCoYewu.setText(model.getBusinessScope());

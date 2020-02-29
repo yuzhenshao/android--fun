@@ -36,6 +36,7 @@
     <dimen name="app_29dp">29dp</dimen>
     <dimen name="app_30dp">30dp</dimen>
     <dimen name="app_32dp">32dp</dimen>
+    <dimen name="app_34dp">34dp</dimen>
     <dimen name="app_35dp">35dp</dimen>
     <dimen name="app_36dp">36dp</dimen>
     <dimen name="app_38dp">38dp</dimen>

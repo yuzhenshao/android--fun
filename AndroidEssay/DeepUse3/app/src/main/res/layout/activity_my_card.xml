@@ -5,7 +5,44 @@
     android:background="@color/color_f5f7fa"
     android:orientation="vertical">
 
-    <include layout="@layout/main_title" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="#ffffff"
+        android:gravity="center_vertical"
+        android:paddingTop="19dp">
+
+        <ImageButton
+            android:id="@+id/iv_back"
+            android:layout_width="48dp"
+            android:layout_height="45dp"
+            android:background="@null"
+            android:src="@mipmap/base_back" />
+
+        <TextView
+            android:id="@+id/tv_bass_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/app_80dp"
+            android:layout_marginRight="@dimen/app_80dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="名片"
+            android:textColor="#303133"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_edit_card"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:text="编辑名片"
+            android:textColor="#606266"
+            android:textSize="16sp" />
+    </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -17,6 +54,7 @@
             android:orientation="vertical">
 
             <RelativeLayout
+                android:id="@+id/card_container"
                 android:layout_width="match_parent"
                 android:layout_height="462dp"
                 android:layout_marginLeft="@dimen/app_12dp"
@@ -32,6 +70,17 @@
                     android:layout_margin="@dimen/app_24dp"
                     android:scaleType="fitXY"
                     android:src="@mipmap/select_delete" />
+
+                <ImageView
+                    android:id="@+id/iv_company_logo"
+                    android:layout_width="@dimen/app_30dp"
+                    android:layout_height="@dimen/app_64dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="@dimen/app_24dp"
+                    android:layout_marginRight="@dimen/app_12dp"
+                    android:layout_marginBottom="@dimen/app_40dp"
+                    android:src="@mipmap/aaa_bu" />
+
 
                 <ImageView
                     android:id="@+id/iv_card_code"
@@ -72,6 +121,7 @@
                         android:textSize="14sp" />
 
                     <TextView
+                        android:id="@+id/tv_card_work_year"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/app_5dp"
@@ -85,6 +135,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/tv_card_jz"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/app_5dp"
@@ -94,6 +145,7 @@
 
 
                         <TextView
+                            android:id="@+id/tv_card_gz"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/app_29dp"
@@ -105,6 +157,7 @@
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/tv_card_project"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/app_5dp"
@@ -113,6 +166,7 @@
                         android:textSize="14sp" />
 
                     <TextView
+                        android:id="@+id/tv_card_phone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/app_5dp"
@@ -121,6 +175,7 @@
                         android:textSize="14sp" />
 
                     <TextView
+                        android:id="@+id/tv_card_email"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/app_5dp"
@@ -155,18 +210,19 @@
 
                 <View style="@style/weight_heng" />
 
-                <LinearLayout
-                    android:id="@+id/ll_card_qq"
-                    style="@style/share_code_ll">
+                <!--                <LinearLayout-->
+                <!--                    android:id="@+id/ll_card_qq"-->
+                <!--                    style="@style/share_code_ll"-->
+                <!--                    android:visibility="gone">-->
 
-                    <ImageView
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:src="@mipmap/code_qq" />
+                <!--                    <ImageView-->
+                <!--                        android:layout_width="35dp"-->
+                <!--                        android:layout_height="35dp"-->
+                <!--                        android:src="@mipmap/code_qq" />-->
 
-                </LinearLayout>
+                <!--                </LinearLayout>-->
 
-                <View style="@style/weight_heng" />
+                <!--                <View style="@style/weight_heng" />-->
 
                 <LinearLayout
                     android:id="@+id/ll_card_weixin"
@@ -179,19 +235,19 @@
 
                 </LinearLayout>
 
-                <View style="@style/weight_heng" />
+                <!--                <View style="@style/weight_heng" />-->
 
-                <LinearLayout
-                    android:id="@+id/ll_card_dd"
-                    style="@style/share_code_ll"
-                    android:layout_marginRight="18dp">
+                <!--                <LinearLayout-->
+                <!--                    android:id="@+id/ll_card_dd"-->
+                <!--                    style="@style/share_code_ll"-->
+                <!--                    android:layout_marginRight="18dp">-->
 
-                    <ImageView
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:src="@mipmap/my_dingding" />
+                <!--                    <ImageView-->
+                <!--                        android:layout_width="35dp"-->
+                <!--                        android:layout_height="35dp"-->
+                <!--                        android:src="@mipmap/my_dingding" />-->
 
-                </LinearLayout>
+                <!--                </LinearLayout>-->
 
             </LinearLayout>
 

@@ -298,7 +298,8 @@
         <activity android:name=".activitymy.setting.ReplacePhoneActivity" />
         <activity android:name=".activitymy.setting.AccountSettingActivity" />
         <activity android:name=".activitymy.setting.SettingActivity" />
-        <activity android:name=".activitymy.MyCardActivity" />
+        <activity android:name=".mine.activity.MyCardActivity" />
+        <activity android:name=".mine.activity.MyCardEditActivity" />
         <activity android:name=".activitymy.FeedbackActivity" />
         <activity android:name=".activitymy.ModifyCallActivity" />
         <activity android:name=".activitymy.setting.PersonInfoActivity" />

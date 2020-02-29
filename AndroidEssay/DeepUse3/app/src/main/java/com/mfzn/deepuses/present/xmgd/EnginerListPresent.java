@@ -1,11 +1,9 @@
 package com.mfzn.deepuses.present.xmgd;
 
-import com.mfzn.deepuses.activityxm.shgd.CancalAcceptActivity;
 import com.mfzn.deepuses.activityxm.shgd.EnginerListActivity;
 import com.mfzn.deepuses.model.xiangmu.EnginerListModel;
-import com.mfzn.deepuses.net.ApiHelper;
+import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
-import com.mfzn.deepuses.utils.UserHelper;
 
 import java.util.List;
 
@@ -17,7 +15,7 @@ import cn.droidlover.xdroidmvp.net.XApi;
 public class EnginerListPresent extends XPresent<EnginerListActivity> {
 
     public void enginerList() {
-        ApiHelper.getApiService().enginerList(UserHelper.getToken(), UserHelper.getUid())
+       ApiServiceManager.getEngineerList()
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

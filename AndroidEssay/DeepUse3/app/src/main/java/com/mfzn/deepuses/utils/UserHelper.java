@@ -2,6 +2,7 @@ package com.mfzn.deepuses.utils;
 
 
 import com.mfzn.deepuses.BaseApplication;
+import com.mfzn.deepuses.bean.response.UserResponse;
 import com.mfzn.deepuses.model.login.UserModel;
 
 import cn.droidlover.xdroidmvp.cache.SharedPref;
@@ -22,7 +23,16 @@ public class UserHelper {
 //        return SharedPref.getInstance(BaseApplication.getContext()).getBoolean("regist", false);
 //    }
 
-    public static void login(UserModel userModel,String pwd) {
+    public static void login(UserResponse userResponse, String pwd) {
+        SharedPref.getInstance(BaseApplication.getContext()).putBoolean("isLogin", true);
+        SharedPref.getInstance(BaseApplication.getContext()).putString("token", userResponse.getUserToken());
+        SharedPref.getInstance(BaseApplication.getContext()).putString("uid", userResponse.getData_en_id());
+        SharedPref.getInstance(BaseApplication.getContext()).putString("u_phone", userResponse.getUserPhone());
+        SharedPref.getInstance(BaseApplication.getContext()).putString("u_pwd", pwd);
+        SharedPref.getInstance(BaseApplication.getContext()).putString("u_name", userResponse.getUserName());
+    }
+
+    public static void login(UserModel userModel, String pwd) {
 //        SharedPref.getInstance(BaseApplication.getContext()).putBoolean("news_kaiguan", false);
         SharedPref.getInstance(BaseApplication.getContext()).putBoolean("isLogin", true);
         SharedPref.getInstance(BaseApplication.getContext()).putString("token", userModel.getToken());
@@ -154,7 +164,7 @@ public class UserHelper {
     }
 
     public static String getSelectNmae() {
-        return SharedPref.getInstance(BaseApplication.getContext()).getString("selectname","");
+        return SharedPref.getInstance(BaseApplication.getContext()).getString("selectname", "");
     }
 
     /**

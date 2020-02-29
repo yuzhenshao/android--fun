@@ -1,7 +1,6 @@
 package com.mfzn.deepuses.activity.khgl;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.text.TextUtils;
@@ -17,10 +16,8 @@ import com.mfzn.deepuses.activityxm.shhf.VisitRecordActivity;
 import com.mfzn.deepuses.adapter.xiangmu.ProjectStagingAdapter;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
 import com.mfzn.deepuses.model.LookQuanxianModel;
-import com.mfzn.deepuses.model.xiangmu.ProjectChengyModel;
 import com.mfzn.deepuses.model.xiangmu.ProjectStagingModel;
 import com.mfzn.deepuses.model.xiangmu.StagingListModel;
-import com.mfzn.deepuses.model.xiangmu.XiangmuModel;
 import com.mfzn.deepuses.present.customer.ProDetailsPresnet;
 import com.mfzn.deepuses.utils.Constants;
 import com.mfzn.deepuses.utils.DateUtils;
@@ -91,13 +88,13 @@ public class ProDetailsActivity extends BaseMvpActivity<ProDetailsPresnet> {
         tvBassTitle.setText(dataBean.getPro_name());
         String start_time = dataBean.getQualityBegin();
         String end_time = dataBean.getQualityEnd();
-        if(!start_time.equals("0") && !end_time.equals("0")) {
-            if(!TextUtils.isEmpty(start_time) && !TextUtils.isEmpty(end_time)) {
+        if (!start_time.equals("0") && !end_time.equals("0")) {
+            if (!TextUtils.isEmpty(start_time) && !TextUtils.isEmpty(end_time)) {
                 tvStagTime.setText(DateUtils.stampDate(start_time) + "~" + DateUtils.stampDate(end_time));
-            }else {
+            } else {
                 tvStagTime.setText("暂无");
             }
-        }else {
+        } else {
             tvStagTime.setText("暂无");
         }
 
@@ -113,10 +110,10 @@ public class ProDetailsActivity extends BaseMvpActivity<ProDetailsPresnet> {
         getP().stagingList(pro_uid);
 
         int afterSaleInDate = dataBean.getAfterSaleInDate();//0已过期 1可使用
-        if(afterSaleInDate == 0) {
+        if (afterSaleInDate == 0) {
             judgeQx = false;
             tv_stag_qx.setText("已过期");
-        }else if(afterSaleInDate == 1) {
+        } else if (afterSaleInDate == 1) {
             judgeQx = true;
             getP().quanxian(pro_uid);
         }
@@ -127,72 +124,72 @@ public class ProDetailsActivity extends BaseMvpActivity<ProDetailsPresnet> {
     }
 
     @OnClick({R.id.iv_login_back, R.id.ll_stag_shgd, R.id.ll_stag_xjgd,
-            R.id.ll_stag_shhf, R.id.ll_stag_shkf,R.id.ll_stag_shsz,R.id.ll_stag_qx})
+            R.id.ll_stag_shhf, R.id.ll_stag_shkf, R.id.ll_stag_shsz, R.id.ll_stag_qx})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_login_back:
                 finish();
                 break;
             case R.id.ll_stag_shgd:
-                if(judgeQx) {
+                if (judgeQx) {
                     Intent intent = new Intent(this, WorkorderListActivity.class);
-                    intent.putExtra(Constants.WORK_ORDER,dataBean);
+                    intent.putExtra(Constants.WORK_ORDER, dataBean);
                     startActivity(intent);
-                }else {
+                } else {
                     PhoneUtils.dialogPhone2(this, "提示",
-                            "对不起,您的售后板块试用期已结束\n，如需继续使用，请拨打客服电话\n400-055-2011","4000552011");
+                            "对不起,您的售后板块试用期已结束\n，如需继续使用，请拨打客服电话\n400-055-2011", "4000552011");
                 }
                 break;
             case R.id.ll_stag_xjgd:
-                if(judgeQx) {
+                if (judgeQx) {
                     Intent intent1 = new Intent(this, AddWorkorderActivity.class);
-                    intent1.putExtra(Constants.WORK_ORDER,dataBean);
+                    intent1.putExtra(Constants.WORK_ORDER, dataBean);
                     startActivity(intent1);
-                }else {
+                } else {
                     PhoneUtils.dialogPhone2(this, "提示",
-                            "对不起,您的售后板块试用期已结束\n，如需继续使用，请拨打客服电话\n400-055-2011","4000552011");
+                            "对不起,您的售后板块试用期已结束\n，如需继续使用，请拨打客服电话\n400-055-2011", "4000552011");
                 }
                 break;
             case R.id.ll_stag_shsz:
-                if(judgeQx) {
+                if (judgeQx) {
                     Intent intent3 = new Intent(this, ShouhuSettingActivity.class);
-                    intent3.putExtra(Constants.SHOUHOU_PROID,pro_uid);
-                    intent3.putExtra(Constants.SHOUHOU_NAME,customName);
-                    intent3.putExtra(Constants.SHOUHOU_PHONE,customTel);
-                    intent3.putExtra(Constants.SHOUHOU_ADDRESS,address);
+                    intent3.putExtra(Constants.SHOUHOU_PROID, pro_uid);
+                    intent3.putExtra(Constants.SHOUHOU_NAME, customName);
+                    intent3.putExtra(Constants.SHOUHOU_PHONE, customTel);
+                    intent3.putExtra(Constants.SHOUHOU_ADDRESS, address);
                     startActivity(intent3);
-                }else {
+                } else {
                     PhoneUtils.dialogPhone2(this, "提示",
-                            "对不起,您的售后板块试用期已结束\n，如需继续使用，请拨打客服电话\n400-055-2011","4000552011");
+                            "对不起,您的售后板块试用期已结束\n，如需继续使用，请拨打客服电话\n400-055-2011", "4000552011");
                 }
                 break;
             case R.id.ll_stag_shhf:
-                if(judgeQx) {
+                if (judgeQx) {
                     Intent intent2 = new Intent(this, VisitRecordActivity.class);
-                    intent2.putExtra(Constants.SHOUHOU_PROID,pro_uid);
+                    intent2.putExtra(Constants.SHOUHOU_PROID, pro_uid);
                     startActivity(intent2);
-                }else {
+                } else {
                     PhoneUtils.dialogPhone2(this, "提示",
-                            "对不起,您的售后板块试用期已结束\n，如需继续使用，请拨打客服电话\n400-055-2011","4000552011");
+                            "对不起,您的售后板块试用期已结束\n，如需继续使用，请拨打客服电话\n400-055-2011", "4000552011");
                 }
                 break;
             case R.id.ll_stag_shkf:
-                if(judgeQx) {
+                if (judgeQx) {
                     startActivity(new Intent(this, CustomSettingActivity.class));
-                }else {
+                } else {
                     PhoneUtils.dialogPhone2(this, "提示",
-                            "对不起,您的售后板块试用期已结束\n，如需继续使用，请拨打客服电话\n400-055-2011","4000552011");
+                            "对不起,您的售后板块试用期已结束\n，如需继续使用，请拨打客服电话\n400-055-2011", "4000552011");
                 }
                 break;
             case R.id.ll_stag_qx:
-                if(judgeQx) {
+                if (judgeQx) {
                     PhoneUtils.dialogPhone2(this, "提示",
                             "售后板块试用期还剩" + leftDays + "天，到期后\n" +
                                     "如需继续使用，请拨打客服电话\n" +
-                                    "400-055-2011","4000552011");
-                }else {
+                                    "400-055-2011", "4000552011");
+                } else {
                     PhoneUtils.dialogPhone2(this, "提示",
-                            "对不起,您的售后板块试用期已结束\n，如需继续使用，请拨打客服电话\n400-055-2011","4000552011");
+                            "对不起,您的售后板块试用期已结束\n，如需继续使用，请拨打客服电话\n400-055-2011", "4000552011");
                 }
                 break;
         }
@@ -209,55 +206,8 @@ public class ProDetailsActivity extends BaseMvpActivity<ProDetailsPresnet> {
         tvStagHfjl.setText(model.getHfNum() + "");
     }
 
-    public void stagingListSuccess(StagingListModel model) {
-        List<ProjectChengyModel> modelList = new ArrayList<>();
-
-        List<StagingListModel.OthersBean> others = model.getOthers();
-        if(others != null && others.size() != 0) {
-            for(int i = 0; i < others.size(); i++) {
-                ProjectChengyModel model1 = new ProjectChengyModel();
-                StagingListModel.OthersBean othersBean = others.get(i);
-                model1.setProID(othersBean.getProID());
-                model1.setUserID(othersBean.getUserID());
-                model1.setIs_del(othersBean.getIs_del());
-                model1.setAddTime(othersBean.getAddTime());
-                model1.setAddUserID(othersBean.getAddUserID());
-                model1.setUpdateTime(othersBean.getUpdateTime());
-                model1.setUpdateUserID(othersBean.getUpdateUserID());
-                model1.setLabel(othersBean.getLabel());
-                model1.setU_name(othersBean.getU_name());
-                model1.setU_head(othersBean.getU_head());
-                model1.setU_type(othersBean.getU_type());
-                model1.setLabelName(othersBean.getLabelName());
-                model1.setData_id(othersBean.getData_id());
-                model1.setData_en_id(othersBean.getData_en_id());
-                modelList.add(model1);
-            }
-        }
-        List<StagingListModel.EnginerBean> enginer = model.getEnginer();
-        if(enginer != null && enginer.size() != 0) {
-            for(int i = 0; i < enginer.size(); i++) {
-                ProjectChengyModel model1 = new ProjectChengyModel();
-                StagingListModel.EnginerBean othersBean = enginer.get(i);
-                model1.setProID(othersBean.getProID());
-                model1.setUserID(othersBean.getUserID());
-                model1.setIs_del(othersBean.getIs_del());
-                model1.setAddTime(othersBean.getAddTime());
-                model1.setAddUserID(othersBean.getAddUserID());
-                model1.setUpdateTime(othersBean.getUpdateTime());
-                model1.setUpdateUserID(othersBean.getUpdateUserID());
-                model1.setLabel(othersBean.getLabel());
-                model1.setU_name(othersBean.getU_name());
-                model1.setU_head(othersBean.getU_head());
-                model1.setU_type(othersBean.getU_type());
-                model1.setLabelName(othersBean.getLabelName());
-                model1.setData_id(othersBean.getData_id());
-                model1.setData_en_id(othersBean.getData_en_id());
-                modelList.add(model1);
-            }
-        }
-
-        ProjectStagingAdapter adapter= new ProjectStagingAdapter(this,modelList);
+    public void stagingListSuccess(StagingListModel stagingListModel) {
+        ProjectStagingAdapter adapter = new ProjectStagingAdapter(this, stagingListModel.getAllEnginerList());
         stagRecyleview.setAdapter(adapter);
     }
 }

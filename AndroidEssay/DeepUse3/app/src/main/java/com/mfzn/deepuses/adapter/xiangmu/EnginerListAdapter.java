@@ -60,7 +60,7 @@ public class EnginerListAdapter extends BaseAdapter {
 
         EnginerListModel model = models.get(position);
 
-        String u_head = model.getU_head();
+        String u_head = model.getEngineerAvatar();
 //        if(!TextUtils.isEmpty(u_head)) {
 //            Glide.with(mContext).load(ApiHelper.BASE_URL + u_head).into(viewHolder.ivEnItemIcon);
 //        }
@@ -71,7 +71,7 @@ public class EnginerListAdapter extends BaseAdapter {
         }else {
             viewHolder.ivEnItemIcon.setVisibility(View.GONE);
             viewHolder.tvZuItemIcon.setVisibility(View.VISIBLE);
-            String staffName = model.getU_name();
+            String staffName = model.getEngineerName();
             if(staffName.length() > 2) {
                 String substring = staffName.substring(staffName.length() - 2, staffName.length());
                 viewHolder.tvZuItemIcon.setText(substring);
@@ -79,8 +79,8 @@ public class EnginerListAdapter extends BaseAdapter {
                 viewHolder.tvZuItemIcon.setText(staffName);
             }
         }
-        viewHolder.tvEnItemName.setText(model.getU_name());
-        viewHolder.tvEnItemPhone.setText(model.getU_phone());
+        viewHolder.tvEnItemName.setText(model.getEngineerName());
+        viewHolder.tvEnItemPhone.setText(model.getEngineerPhone());
 
         return convertView;
     }

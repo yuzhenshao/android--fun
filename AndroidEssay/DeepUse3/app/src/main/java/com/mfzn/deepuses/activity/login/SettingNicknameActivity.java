@@ -15,6 +15,9 @@ import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.activity.company.SelectCompanyActivity;
 import com.mfzn.deepuses.bass.BaseActivity;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
+import com.mfzn.deepuses.bean.request.LoginRequest;
+import com.mfzn.deepuses.bean.request.RegisterRequest;
+import com.mfzn.deepuses.bean.response.UserResponse;
 import com.mfzn.deepuses.model.login.UserModel;
 import com.mfzn.deepuses.present.login.RegistNickPresent;
 import com.mfzn.deepuses.present.login.RegistPwdPresent;
@@ -88,17 +91,23 @@ public class SettingNicknameActivity extends BaseMvpActivity<RegistNickPresent> 
                 break;
             case R.id.but_start:
                 String name = etNickName.getText().toString().trim();
-                getP().appRegister(phone,code,pwd,pwd,name);
+                RegisterRequest request = new RegisterRequest();
+                request.setSmsCode(code);
+                request.setUserPhone(phone);
+                request.setUserName(name);
+                request.setUserPwd(pwd);
+                request.setUserRePwd(pwd);
+                getP().appRegister(request);
                 break;
         }
     }
 
     public void registSuccess() {
-        getP().login(phone, pwd);
+        getP().login(new LoginRequest(phone, pwd));
     }
 
-    public void loginSuccess(UserModel userModel) {
-        UserHelper.login(userModel,pwd);
+    public void loginSuccess(UserResponse userResponse) {
+        UserHelper.login(userResponse, pwd);
         EventMsg eventMsg = new EventMsg();
         eventMsg.setMsg(Constants.REGISTER);
         RxBus.getInstance().post(eventMsg);

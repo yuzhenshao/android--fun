@@ -81,9 +81,9 @@ public class EnginerListActivity extends BaseMvpActivity<EnginerListPresent> {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 EnginerListModel models = model.get(position);
                 Intent intent = new Intent();
-                intent.putExtra(Constants.ENGINER_ID, models.getEnginerID() + "");
-                intent.putExtra(Constants.ENGINER_NAME, models.getU_name());
-                intent.putExtra(Constants.ENGINER_PHONE, models.getU_phone());
+                intent.putExtra(Constants.ENGINER_ID, models.getEngineerID() + "");
+                intent.putExtra(Constants.ENGINER_NAME, models.getEngineerName());
+                intent.putExtra(Constants.ENGINER_PHONE, models.getEngineerPhone());
                 setResult(Constants.ENGINER_LIST,intent);
                 finish();
             }

@@ -27,7 +27,7 @@ public class TeamManageModel implements Serializable {
 
     private int companyID;
     private String companyName;
-    private String logo;
+    private String companyLogo;
     private String companyTel;
     private String companyLicence;
     private String companyCode;
@@ -59,12 +59,13 @@ public class TeamManageModel implements Serializable {
         this.companyName = companyName;
     }
 
-    public String getLogo() {
-        return logo;
+
+    public String getCompanyLogo() {
+        return companyLogo;
     }
 
-    public void setLogo(String logo) {
-        this.logo = logo;
+    public void setCompanyLogo(String companyLogo) {
+        this.companyLogo = companyLogo;
     }
 
     public String getCompanyTel() {

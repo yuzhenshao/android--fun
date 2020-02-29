@@ -2,8 +2,10 @@ package com.mfzn.deepuses.present.foundxm;
 
 import com.mfzn.deepuses.activity.project.ProjectSearchActivity;
 import com.mfzn.deepuses.activityxm.SearchProjectActivity;
+import com.mfzn.deepuses.bean.request.ProjectListRequest;
 import com.mfzn.deepuses.model.xiangmu.XiangmuModel;
 import com.mfzn.deepuses.net.ApiHelper;
+import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.utils.UserHelper;
 
@@ -15,7 +17,10 @@ import cn.droidlover.xdroidmvp.net.XApi;
 public class ProjectSearchPresnet extends XPresent<ProjectSearchActivity> {
 
     public void xiangmuList(String search) {
-        ApiHelper.getApiService().xiangmuList(UserHelper.getToken(), UserHelper.getUid(),UserHelper.getCompanyId(),"1000",1,search)
+        ProjectListRequest request = new ProjectListRequest(1, ProjectListRequest.MY_PROJECTS);
+        request.setPer(1000);
+        request.setKeywords(search);
+        ApiServiceManager.getProjectList(request)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

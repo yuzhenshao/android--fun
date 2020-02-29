@@ -1,15 +1,12 @@
 package com.mfzn.deepuses.present.company;
 
 import com.mfzn.deepuses.activity.company.ApplyJoinActivity;
-import com.mfzn.deepuses.activity.company.SelectLableActivity;
-import com.mfzn.deepuses.model.company.SelectLableModel;
+import com.mfzn.deepuses.bean.request.CompanyInfoRequest;
 import com.mfzn.deepuses.model.myTeam.TeamManageModel;
-import com.mfzn.deepuses.model.xiangmu.ProjectDetailsModel;
 import com.mfzn.deepuses.net.ApiHelper;
+import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.utils.UserHelper;
-
-import java.util.List;
 
 import cn.droidlover.xdroidmvp.mvp.XPresent;
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
@@ -55,7 +52,7 @@ public class ApplyJoinPresent extends XPresent<ApplyJoinActivity> {
 //    }
 
     public void teamManage(String companyid) {
-        ApiHelper.getApiService().teamManage(UserHelper.getToken(), UserHelper.getUid(),companyid)
+        ApiServiceManager.getCompanyInfo(new CompanyInfoRequest(companyid))
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

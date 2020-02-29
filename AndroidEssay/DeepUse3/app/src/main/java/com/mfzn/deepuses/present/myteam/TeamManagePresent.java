@@ -1,9 +1,10 @@
 package com.mfzn.deepuses.present.myteam;
 
-import com.mfzn.deepuses.activity.company.ApplyJoinActivity;
 import com.mfzn.deepuses.activity.myteam.TeamManageActivity;
+import com.mfzn.deepuses.bean.request.CompanyInfoRequest;
 import com.mfzn.deepuses.model.myTeam.TeamManageModel;
 import com.mfzn.deepuses.net.ApiHelper;
+import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.utils.UserHelper;
 
@@ -15,7 +16,7 @@ import cn.droidlover.xdroidmvp.net.XApi;
 public class TeamManagePresent extends XPresent<TeamManageActivity> {
 
     public void teamManage() {
-        ApiHelper.getApiService().teamManage(UserHelper.getToken(), UserHelper.getUid(),UserHelper.getCompanyId())
+        ApiServiceManager.getCompanyInfo(new CompanyInfoRequest())
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

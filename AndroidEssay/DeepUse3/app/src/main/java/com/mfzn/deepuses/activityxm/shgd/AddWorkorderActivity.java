@@ -121,7 +121,7 @@ public class AddWorkorderActivity extends BaseMvpActivity<AddWorkorderPresent> {
         tvOrPhone.setText(dataBean.getCustomTel());
         tvOrAddress.setText(dataBean.getAreaName() + dataBean.getDetailAddress());
         etOrLxr.setText(dataBean.getContacter());
-        etOrLxrphone.setText(dataBean.getContacter_phone());
+        etOrLxrphone.setText(dataBean.getContacterPhone());
 
         tv_bao_type.setText(setbx(zhib,yanb));
 

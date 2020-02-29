@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.mfzn.deepuses.R;
-import com.mfzn.deepuses.model.xiangmu.ProjectChengyModel;
 import com.mfzn.deepuses.model.xiangmu.StagingListModel;
 import com.mfzn.deepuses.net.ApiHelper;
 import com.mfzn.deepuses.view.RoundImageView;
@@ -29,7 +28,7 @@ import cn.droidlover.xdroidmvp.kit.KnifeKit;
 public class ProjectDetailsAdapter extends RecyclerView.Adapter {
 
     private Context context;
-    private List<ProjectChengyModel> others;
+    private List<StagingListModel.EnginerBean> others;
     private int type = -1;
     /**
      * 以后用它来初始化布局
@@ -39,7 +38,7 @@ public class ProjectDetailsAdapter extends RecyclerView.Adapter {
     private OnDeleteItemClickListener onDeleteItemClickListener = null;
     private OnAddItemClickListener onAddItemClickListener = null;
 
-    public ProjectDetailsAdapter(Context mContext, List<ProjectChengyModel> others) {
+    public ProjectDetailsAdapter(Context mContext, List<StagingListModel.EnginerBean> others) {
         this.context = mContext;
         this.others = others;
         //以后用它来初始化布局
@@ -56,7 +55,7 @@ public class ProjectDetailsAdapter extends RecyclerView.Adapter {
 
         MoreViewHolder bbnViewHolder = (MoreViewHolder) holder;
 
-        ProjectChengyModel othersBean = others.get(position);
+        StagingListModel.EnginerBean othersBean = others.get(position);
 
         if(position == 0) {
             bbnViewHolder.ivStagItemIcon.setImageResource(R.mipmap.pro_add2);
@@ -69,11 +68,11 @@ public class ProjectDetailsAdapter extends RecyclerView.Adapter {
                 }
             });
         }else {
-            String u_head = othersBean.getU_head();
+            String u_head = othersBean.getUserAvatar();
             if(!TextUtils.isEmpty(u_head)) {
                 Glide.with(context).load(ApiHelper.BASE_URL + u_head).into(bbnViewHolder.ivStagItemIcon);
             }
-            bbnViewHolder.tvStagItemName.setText(othersBean.getU_name());
+            bbnViewHolder.tvStagItemName.setText(othersBean.getUserName());
             bbnViewHolder.tvStagItemType.setText(othersBean.getLabelName());
         }
 

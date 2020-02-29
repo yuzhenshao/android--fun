@@ -3,6 +3,7 @@ package com.mfzn.deepuses.present.my;
 
 import com.mfzn.deepuses.activitymy.setting.ReplacePhone2Activity;
 import com.mfzn.deepuses.net.ApiHelper;
+import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.utils.UserHelper;
 
@@ -19,7 +20,7 @@ public class ReplacePhoneCodePresent extends XPresent<ReplacePhone2Activity> {
 
     public void getSmsCode(String phone) {
         getV().showDialog();
-        ApiHelper.getApiService().getSmsCode(phone, "2")
+        ApiServiceManager.getSmsCode(phone, "2")
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

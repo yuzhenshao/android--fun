@@ -1,12 +1,10 @@
 package com.mfzn.deepuses.present.fragment;
 
-import com.mfzn.deepuses.fragment.XiangmuFragment;
+import com.mfzn.deepuses.bean.request.ProjectListRequest;
 import com.mfzn.deepuses.fragment.xm.ShouhouXmFragment;
 import com.mfzn.deepuses.model.xiangmu.XiangmuModel;
-import com.mfzn.deepuses.net.ApiHelper;
+import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
-import com.mfzn.deepuses.utils.UserHelper;
-
 import cn.droidlover.xdroidmvp.mvp.XPresent;
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
@@ -15,7 +13,9 @@ import cn.droidlover.xdroidmvp.net.XApi;
 public class ShouhouXmPresnet extends XPresent<ShouhouXmFragment> {
 
     public void xiangmuList(Integer page) {
-        ApiHelper.getApiService().xiangmuList(UserHelper.getToken(), UserHelper.getUid(),"","10",page,"")
+        ProjectListRequest request = new ProjectListRequest(page, ProjectListRequest.MY_PROJECTS);
+        request.setCompanyID("");
+        ApiServiceManager.getProjectList(request)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

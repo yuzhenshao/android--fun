@@ -20,6 +20,7 @@ import com.mfzn.deepuses.activity.company.EstablishCompanyActivity;
 import com.mfzn.deepuses.activity.company.SelectCompanyActivity;
 import com.mfzn.deepuses.activitymy.WebviewX5Activity;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
+import com.mfzn.deepuses.bean.response.UserResponse;
 import com.mfzn.deepuses.model.login.UserModel;
 import com.mfzn.deepuses.present.login.LoginPresent;
 import com.mfzn.deepuses.utils.Constants;
@@ -74,11 +75,11 @@ public class LoginActivity extends BaseMvpActivity<LoginPresent> {
         tv_agreement.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
         tv_privacy.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
 
-        if(!TextUtils.isEmpty(UserHelper.getU_phone())) {
+        if (!TextUtils.isEmpty(UserHelper.getU_phone())) {
             String companyId = UserHelper.getCompanyId();
-            if(!TextUtils.isEmpty(companyId)) {
+            if (!TextUtils.isEmpty(companyId)) {
                 Router.newIntent(context).to(MainActivity.class).launch();
-            }else {
+            } else {
                 Router.newIntent(context).to(SelectCompanyActivity.class).launch();
             }
 //            Router.newIntent(context).to(SelectCompanyActivity.class).launch();
@@ -93,11 +94,11 @@ public class LoginActivity extends BaseMvpActivity<LoginPresent> {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_login_eye:
-                if(eyeType) {
+                if (eyeType) {
                     ivLoginEye.setImageResource(R.mipmap.pwd_close);
                     eyeType = false;
                     etLoginPwd.setInputType(129);
-                }else {
+                } else {
                     ivLoginEye.setImageResource(R.mipmap.pwd_open);
                     eyeType = true;
                     etLoginPwd.setInputType(128);
@@ -109,7 +110,7 @@ public class LoginActivity extends BaseMvpActivity<LoginPresent> {
             case R.id.but_login:
                 String phone = etLoginPhone.getText().toString().trim();
                 String pwd = etLoginPwd.getText().toString().trim();
-                getP().login(phone,pwd);
+                getP().login(phone, pwd);
                 break;
             case R.id.tv_login_regi:
                 startActivity(new Intent(this, RegisterActivity.class));
@@ -149,19 +150,15 @@ public class LoginActivity extends BaseMvpActivity<LoginPresent> {
         }
     };
 
-    public void loginSuccess(UserModel userModel) {
+    public void loginSuccess(UserResponse userResponse) {
         String pwd = etLoginPwd.getText().toString().trim();
-        UserHelper.login(userModel,pwd);
+        UserHelper.login(userResponse,pwd);
         UserHelper.setOut(false);
-//        //保存登录信息
-//        LoginStorageUtils.loginStorage(userModel.getU_phone(), et_user_pwd.getText().toString().trim(), userModel.getU_head());
-//
-//        BusProvider.getBus().post(new UserEvent());
         mHandler.postDelayed(() -> {
             String companyId = UserHelper.getCompanyId();
-            if(!TextUtils.isEmpty(companyId)) {
+            if (!TextUtils.isEmpty(companyId)) {
                 Router.newIntent(context).to(MainActivity.class).launch();
-            }else {
+            } else {
                 Router.newIntent(context).to(SelectCompanyActivity.class).launch();
             }
             finish();

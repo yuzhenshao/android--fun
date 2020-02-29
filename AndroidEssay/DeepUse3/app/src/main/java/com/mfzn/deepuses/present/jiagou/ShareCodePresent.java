@@ -2,8 +2,10 @@ package com.mfzn.deepuses.present.jiagou;
 
 import com.mfzn.deepuses.activity.jiagou.RemarksAtivity;
 import com.mfzn.deepuses.activity.jiagou.ShareCodeActivity;
+import com.mfzn.deepuses.bean.request.CompanyInfoRequest;
 import com.mfzn.deepuses.model.jiagou.ShareCodeModel;
 import com.mfzn.deepuses.net.ApiHelper;
+import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.utils.UserHelper;
 
@@ -15,7 +17,7 @@ import cn.droidlover.xdroidmvp.net.XApi;
 public class ShareCodePresent extends XPresent<ShareCodeActivity> {
 
     public void shareCode() {
-        ApiHelper.getApiService().shareCode(UserHelper.getToken(), UserHelper.getUid(),UserHelper.getCompanyId())
+        ApiServiceManager.generateCompanyQRCode(new CompanyInfoRequest())
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())
@@ -33,7 +35,7 @@ public class ShareCodePresent extends XPresent<ShareCodeActivity> {
     }
 
     public void shareCode(String company) {
-        ApiHelper.getApiService().shareCode(UserHelper.getToken(), UserHelper.getUid(),company)
+        ApiServiceManager.generateCompanyQRCode(new CompanyInfoRequest(company))
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

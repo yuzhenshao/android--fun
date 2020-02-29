@@ -5,6 +5,7 @@ import com.mfzn.deepuses.activityxm.shgd.SelectEnginerActivity;
 import com.mfzn.deepuses.model.xiangmu.EnginerListModel;
 import com.mfzn.deepuses.model.xiangmu.SelectEnginerModel;
 import com.mfzn.deepuses.net.ApiHelper;
+import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.utils.UserHelper;
 
@@ -18,7 +19,7 @@ import cn.droidlover.xdroidmvp.net.XApi;
 public class SelectEnginerPresent extends XPresent<SelectEnginerActivity> {
 
     public void selectEnginer(String phone) {
-        ApiHelper.getApiService().selectEnginer(UserHelper.getToken(), UserHelper.getUid(),phone)
+        ApiServiceManager.searchEngineer(phone)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())
@@ -36,7 +37,7 @@ public class SelectEnginerPresent extends XPresent<SelectEnginerActivity> {
     }
 
     public void addEnginer(String enginerID) {
-        ApiHelper.getApiService().addEnginer(UserHelper.getToken(), UserHelper.getUid(),enginerID,"通过搜索手机号添加")
+        ApiServiceManager.addEngineer(enginerID,"通过搜索手机号添加")
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

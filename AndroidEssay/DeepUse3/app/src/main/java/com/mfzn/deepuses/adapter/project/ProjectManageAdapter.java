@@ -38,7 +38,7 @@ public class ProjectManageAdapter extends RecyclerAdapter<XiangmuModel.DataBean,
         XiangmuModel.DataBean bean = data.get(position);
 
         holder.tvXmItemTitle.getPaint().setFakeBoldText(true);
-        holder.tvXmItemTitle.setText(bean.getPro_name());
+        holder.tvXmItemTitle.setText(bean.getProName());
         holder.tvXmItemName.setText(bean.getCustomName());
         String start_time = bean.getQualityBegin();
         String end_time = bean.getQualityEnd();

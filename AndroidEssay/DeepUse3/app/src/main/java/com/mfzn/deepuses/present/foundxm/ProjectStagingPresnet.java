@@ -7,6 +7,7 @@ import com.mfzn.deepuses.model.xiangmu.FoundProjectModel;
 import com.mfzn.deepuses.model.xiangmu.ProjectStagingModel;
 import com.mfzn.deepuses.model.xiangmu.StagingListModel;
 import com.mfzn.deepuses.net.ApiHelper;
+import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.utils.UserHelper;
 
@@ -18,7 +19,7 @@ import cn.droidlover.xdroidmvp.net.XApi;
 public class ProjectStagingPresnet extends XPresent<ProjectStagingActivity> {
 
     public void projectStaging(String proID) {
-        ApiHelper.getApiService().projectStaging(UserHelper.getToken(), UserHelper.getUid(),proID)
+        ApiHelper.getApiService().projectStaging(UserHelper.getToken(), UserHelper.getUid(), proID)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())
@@ -36,7 +37,7 @@ public class ProjectStagingPresnet extends XPresent<ProjectStagingActivity> {
     }
 
     public void stagingList(String proID) {
-        ApiHelper.getApiService().stagingList(UserHelper.getToken(), UserHelper.getUid(),proID)
+        ApiServiceManager.getProMemberList(proID)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())
@@ -54,7 +55,7 @@ public class ProjectStagingPresnet extends XPresent<ProjectStagingActivity> {
     }
 
     public void quanxian(String proID) {
-        ApiHelper.getApiService().lookQuanxian(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getCompanyId(),proID)
+        ApiHelper.getApiService().lookQuanxian(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getCompanyId(), proID)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

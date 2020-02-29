@@ -3,8 +3,12 @@ package com.mfzn.deepuses.present.login;
 
 import com.mfzn.deepuses.activity.login.ForgotNewPwdActivity;
 import com.mfzn.deepuses.activity.login.RegisterPwdActivity;
+import com.mfzn.deepuses.bean.request.ForgetRequest;
+import com.mfzn.deepuses.bean.request.LoginRequest;
+import com.mfzn.deepuses.bean.response.UserResponse;
 import com.mfzn.deepuses.model.login.UserModel;
 import com.mfzn.deepuses.net.ApiHelper;
+import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 
 import cn.droidlover.xdroidmvp.mvp.XPresent;
@@ -18,27 +22,27 @@ import cn.droidlover.xdroidmvp.net.XApi;
  */
 public class ForgotPwdPresent extends XPresent<ForgotNewPwdActivity> {
 
-    public void login(String u_phone, String pwd) {
-        ApiHelper.getApiService().appLogin(u_phone, pwd)
+    public void login(LoginRequest request) {
+        ApiServiceManager.appLogin(request)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())
-                .subscribe(new ApiSubscriber<HttpResult<UserModel>>() {
+                .subscribe(new ApiSubscriber<HttpResult<UserResponse>>() {
                     @Override
                     protected void onFail(NetError error) {
                         getV().loginErr();
                     }
 
                     @Override
-                    public void onNext(HttpResult<UserModel> result) {
+                    public void onNext(HttpResult<UserResponse> result) {
                         getV().loginSuccess(result.getRes());
                     }
                 });
     }
 
-    public void forgetPwd(String u_phone, String smscode, String u_pwd, String u_re_pwd) {
+    public void forgetPwd(ForgetRequest request) {
         getV().showDialog();
-        ApiHelper.getApiService().forgetPwd(u_phone, smscode, u_pwd, u_re_pwd)
+        ApiServiceManager.forgetPwd(request)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

@@ -9,22 +9,10 @@ import android.widget.TextView;
 
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.activityxm.shgd.AddWorkorderActivity;
-import com.mfzn.deepuses.activityxm.shgd.AlreadyAppraiseActivity;
-import com.mfzn.deepuses.activityxm.shgd.AlreadyCancalActivity;
-import com.mfzn.deepuses.activityxm.shgd.AlreadyCloseActivity;
-import com.mfzn.deepuses.activityxm.shgd.DaiPaigongActivity;
-import com.mfzn.deepuses.activityxm.shgd.InServiceActivity;
 import com.mfzn.deepuses.activityxm.shgd.ShouhuSettingActivity;
-import com.mfzn.deepuses.activityxm.shgd.StayAcceptActivity;
-import com.mfzn.deepuses.activityxm.shgd.WaitAppraiseActivity;
-import com.mfzn.deepuses.activityxm.shgd.WaitReceiveActivity;
-import com.mfzn.deepuses.activityxm.shgd.WorkorderAcceptActivity;
-import com.mfzn.deepuses.activityxm.shgd.WorkorderDispatchActivity;
-import com.mfzn.deepuses.activityxm.staging.ProjectStagingActivity;
 import com.mfzn.deepuses.adapter.project.ProjectManageAdapter;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
-import com.mfzn.deepuses.model.LookQuanxianModel;
-import com.mfzn.deepuses.model.xiangmu.WorkorderListModel;
+import com.mfzn.deepuses.bean.request.ProjectListRequest;
 import com.mfzn.deepuses.model.xiangmu.XiangmuModel;
 import com.mfzn.deepuses.present.xmgl.SelectProjectPresent;
 import com.mfzn.deepuses.utils.Constants;
@@ -34,7 +22,6 @@ import com.mfzn.deepuses.utils.UserHelper;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.droidlover.xrecyclerview.XRecyclerContentLayout;
 import cn.droidlover.xrecyclerview.XRecyclerView;
@@ -70,7 +57,7 @@ public class SelectProjectActivity extends BaseMvpActivity<SelectProjectPresent>
 
         adapter = new ProjectManageAdapter(getContext());
         seXrecycleview.getRecyclerView().verticalLayoutManager(getContext());
-        seXrecycleview.getRecyclerView().horizontalDivider(R.color.color_f5f7fa,R.dimen.app_10dp);//item之间的分割线
+        seXrecycleview.getRecyclerView().horizontalDivider(R.color.color_f5f7fa, R.dimen.app_10dp);//item之间的分割线
         seXrecycleview.getRecyclerView().setAdapter(adapter);
         seXrecycleview.getRecyclerView().setRefreshEnabled(true);
         seXrecycleview.getRecyclerView().setVerticalScrollBarEnabled(false);//隐藏右侧的线
@@ -83,25 +70,25 @@ public class SelectProjectActivity extends BaseMvpActivity<SelectProjectPresent>
 
                 int afterSaleStatus = dataBean.getAfterSaleStatus();
                 int afterSaleInDate = dataBean.getAfterSaleInDate();//0已过期 1可使用
-                if(afterSaleInDate == 0 && afterSaleStatus != 1) {
+                if (afterSaleInDate == 0 && afterSaleStatus != 1) {
                     PhoneUtils.dialogPhone2(SelectProjectActivity.this, "提示",
-                            "对不起,您的售后板块试用期已结束\n，如需继续使用，请拨打客服电话\n400-055-2011","4000552011");
-                }else {
-                    if(intExtra == 1) {
+                            "对不起,您的售后板块试用期已结束\n，如需继续使用，请拨打客服电话\n400-055-2011", "4000552011");
+                } else {
+                    if (intExtra == 1) {
                         Intent intent1 = new Intent(SelectProjectActivity.this, AddWorkorderActivity.class);
-                        intent1.putExtra(Constants.WORK_ORDER,dataBean);
+                        intent1.putExtra(Constants.WORK_ORDER, dataBean);
                         startActivity(intent1);
-                    }else if(intExtra == 2) {
+                    } else if (intExtra == 2) {
                         Intent intent3 = new Intent(SelectProjectActivity.this, ShouhuSettingActivity.class);
-                        intent3.putExtra(Constants.SHOUHOU_PROID,String.valueOf(dataBean.getData_id()));
-                        intent3.putExtra(Constants.SHOUHOU_NAME,dataBean.getCustomName());
-                        intent3.putExtra(Constants.SHOUHOU_PHONE,dataBean.getCustomTel());
-                        intent3.putExtra(Constants.SHOUHOU_ADDRESS,dataBean.getAreaName() + dataBean.getDetailAddress());
+                        intent3.putExtra(Constants.SHOUHOU_PROID, String.valueOf(dataBean.getData_id()));
+                        intent3.putExtra(Constants.SHOUHOU_NAME, dataBean.getCustomName());
+                        intent3.putExtra(Constants.SHOUHOU_PHONE, dataBean.getCustomTel());
+                        intent3.putExtra(Constants.SHOUHOU_ADDRESS, dataBean.getAreaName() + dataBean.getDetailAddress());
                         startActivity(intent3);
-                    }else if(intExtra == 3) {
+                    } else if (intExtra == 3) {
                         Intent intent = new Intent();
-                        intent.putExtra(Constants.SHOUHOU_PROID,String.valueOf(dataBean.getData_id()));
-                        setResult(Constants.SELECT_PRO,intent);
+                        intent.putExtra(Constants.SHOUHOU_PROID, String.valueOf(dataBean.getData_id()));
+                        setResult(Constants.SELECT_PRO, intent);
                     }
                     finish();
                 }
@@ -112,24 +99,21 @@ public class SelectProjectActivity extends BaseMvpActivity<SelectProjectPresent>
             @Override
             public void onRefresh() {
                 pages = 1;
-                if(!TextUtils.isEmpty(UserHelper.getAuthCreate()) && UserHelper.getAuthCreate().equals("1")) {
-                    getP().xiangmuList2(1);
-                }else {
-                    getP().xiangmuList(1);
-                }
+                getProjectList();
             }
 
             @Override
             public void onLoadMore(int page) {
                 pages = page;
-                if(!TextUtils.isEmpty(UserHelper.getAuthCreate()) && UserHelper.getAuthCreate().equals("1")) {
-                    getP().xiangmuList2(1);
-                }else {
-                    getP().xiangmuList(1);
-                }
+                getProjectList();
             }
         });
         seXrecycleview.onRefresh();
+    }
+
+    private void getProjectList() {
+        boolean isAuthCreate = !TextUtils.isEmpty(UserHelper.getAuthCreate()) && UserHelper.getAuthCreate().equals("1");
+        getP().getProjectList(pages, isAuthCreate ? ProjectListRequest.COMPANY_PROJECTS : ProjectListRequest.MY_PROJECTS);
     }
 
     @OnClick(R.id.iv_login_back)
@@ -139,7 +123,7 @@ public class SelectProjectActivity extends BaseMvpActivity<SelectProjectPresent>
 
     public void xiangmuListSuccess(XiangmuModel model) {
         List<XiangmuModel.DataBean> data = model.getData();
-        if(data != null && data.size() != 0) {
+        if (data != null && data.size() != 0) {
             if (pages == 1) {
                 llSeEmpty.setVisibility(View.GONE);
                 seXrecycleview.setVisibility(View.VISIBLE);
@@ -148,7 +132,7 @@ public class SelectProjectActivity extends BaseMvpActivity<SelectProjectPresent>
                 adapter.addData(data);
             }
             seXrecycleview.getRecyclerView().setPage(model.getCurrent_page(), model.getLast_page());
-        }else {
+        } else {
             if (pages == 1) {
                 llSeEmpty.setVisibility(View.VISIBLE);
                 seXrecycleview.setVisibility(View.GONE);

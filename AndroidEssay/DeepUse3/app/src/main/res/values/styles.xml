@@ -47,6 +47,7 @@
         <item name="android:layout_marginRight">@dimen/app_24dp</item>
         <item name="android:layout_marginTop">@dimen/app_15dp</item>
     </style>
+
     <style name="kanban_ll_bg">
         <item name="android:layout_width">@dimen/app_95dp</item>
         <item name="android:layout_height">@dimen/app_92dp</item>
@@ -54,16 +55,19 @@
         <item name="android:gravity">center_horizontal</item>
         <item name="android:background">@drawable/yinying_bg_shape</item>
     </style>
+
     <style name="shenpi_ll_bg">
         <item name="android:layout_width">@dimen/app_56dp</item>
         <item name="android:layout_height">@dimen/app_57dp</item>
         <item name="android:orientation">vertical</item>
         <item name="android:gravity">center_horizontal</item>
     </style>
+
     <style name="shenpi_iv">
         <item name="android:layout_width">@dimen/app_36dp</item>
         <item name="android:layout_height">@dimen/app_36dp</item>
     </style>
+
     <style name="shenpi_tv">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -75,14 +79,18 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/app_60dp</item>
         <item name="android:paddingLeft">@dimen/app_24dp</item>
+        <item name="android:paddingRight">@dimen/app_24dp</item>
         <item name="android:gravity">center_vertical</item>
+        <item name="android:background">#ffffff</item>
     </style>
+
     <style name="newly_tv_st">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">16sp</item><!-- 文字大小-->
         <item name="android:textColor">@color/color_606266</item>
     </style>
+
     <style name="newly_et_st">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">1</item>
@@ -95,6 +103,7 @@
         <item name="android:textColor">@color/color_303133</item>
         <item name="android:gravity">right|center_vertical</item>
     </style>
+
     <style name="newly_et_st2" parent="newly_et_st">
         <item name="android:focusableInTouchMode">false</item>
     </style>
@@ -108,6 +117,7 @@
         <item name="android:textColor">@color/color_303133</item>
         <item name="android:textSize">16sp</item>
     </style>
+
     <style name="appoint_ll">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -128,6 +138,7 @@
         <item name="android:ellipsize">end</item>
         <item name="android:maxLines">1</item>
     </style>
+
     <style name="survey_iv">
         <item name="android:layout_width">@dimen/app_20dp</item>
         <item name="android:layout_height">@dimen/app_20dp</item>
@@ -157,6 +168,7 @@
         <item name="android:orientation">vertical</item>
         <item name="android:background">@color/color_ffffff</item>
     </style>
+
     <style name="found_pro_tv">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/app_30dp</item>
@@ -174,12 +186,14 @@
         <item name="android:orientation">vertical</item>
         <item name="android:gravity">center</item>
     </style>
+
     <style name="staging_pro_tv">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/color_606266</item>
     </style>
+
     <style name="staging_pro_iv">
         <item name="android:layout_width">@dimen/app_36dp</item>
         <item name="android:layout_height">@dimen/app_36dp</item>
@@ -192,12 +206,14 @@
         <item name="android:paddingLeft">@dimen/app_40dp</item>
         <item name="android:gravity">center_vertical</item>
     </style>
+
     <style name="add_work_tv">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">13sp</item><!-- 文字大小-->
         <item name="android:textColor">@color/color_909399</item>
     </style>
+
     <style name="add_work_et">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">1</item>
@@ -209,6 +225,7 @@
         <item name="android:textColor">@color/color_606266</item>
         <item name="android:gravity">right|center_vertical</item>
     </style>
+
     <style name="add_work_et2" parent="add_work_et">
         <item name="android:focusableInTouchMode">false</item>
     </style>
@@ -220,6 +237,7 @@
         <item name="android:paddingLeft">@dimen/app_24dp</item>
         <item name="android:gravity">center_vertical</item>
     </style>
+
     <style name="shouhu_et">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">1</item>
@@ -231,10 +249,10 @@
         <item name="android:textColor">@color/color_909399</item>
         <item name="android:gravity">right|center_vertical</item>
     </style>
+
     <style name="shouhu_et2" parent="shouhu_et">
         <item name="android:focusableInTouchMode">false</item>
     </style>
-
 
 
     <style name="MyTablayoutstyle" parent="Base.Widget.Design.TabLayout">
@@ -243,12 +261,11 @@
         <item name="tabIndicatorHeight">3dp</item> <!-- 指示线高度-->
         <item name="tabSelectedTextColor">@color/color_3D7EFF</item> <!-- 文字被选中的颜色-->
     </style>
+
     <style name="MyTabText2" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">15sp</item><!-- 文字大小-->
         <item name="android:textColor">@color/color_303133</item>
     </style>
-
-
 
 
     <!--提示-->
@@ -258,6 +275,7 @@
         <item name="android:background">@color/color_edeff2</item>
         <item name="android:gravity">center_vertical</item>
     </style>
+
     <style name="tips_tv">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
@@ -266,6 +284,7 @@
         <item name="android:textColor">@color/color_606266</item>
         <item name="android:layout_marginLeft">@dimen/app_20dp</item>
     </style>
+
     <style name="tips_iv">
         <item name="android:layout_width">@dimen/app_24dp</item>
         <item name="android:layout_height">@dimen/app_24dp</item>
@@ -277,6 +296,7 @@
         <item name="android:layout_height">1dp</item>
         <item name="android:layout_weight">1</item>
     </style>
+
     <style name="weight_shu">
         <item name="android:layout_width">1dp</item>
         <item name="android:layout_height">0dp</item>
@@ -318,4 +338,22 @@
         <item name="android:src">@mipmap/com_delete</item>
     </style>
 
+
+    <style name="card_tv_value_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#303133</item>
+    </style>
+
+    <style name="card_edit_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxWidth">180dp</item>
+
+        <item name="android:background">#ffffff</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#303133</item>
+        <item name="android:textColorHint">#909399</item>
+    </style>
 </resources>

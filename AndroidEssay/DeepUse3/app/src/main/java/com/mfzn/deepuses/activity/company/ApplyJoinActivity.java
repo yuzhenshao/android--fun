@@ -109,7 +109,7 @@ public class ApplyJoinActivity extends BaseMvpActivity<ApplyJoinPresent> {
     }
 
 //    public void xmDetails(ProjectDetailsModel msg) {
-//        tvAppCompany.setText(msg.getPro_name());
+//        tvAppCompany.setText(msg.getProName());
 //    }
 
     public void companyHomepage(TeamManageModel model) {

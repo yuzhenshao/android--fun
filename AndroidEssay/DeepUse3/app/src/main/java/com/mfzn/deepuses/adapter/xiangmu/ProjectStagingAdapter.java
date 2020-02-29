@@ -6,12 +6,10 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.mfzn.deepuses.R;
-import com.mfzn.deepuses.model.xiangmu.ProjectChengyModel;
 import com.mfzn.deepuses.model.xiangmu.StagingListModel;
 import com.mfzn.deepuses.net.ApiHelper;
 import com.mfzn.deepuses.view.RoundImageView;
@@ -21,7 +19,6 @@ import java.util.List;
 import butterknife.BindView;
 import cn.droidlover.xdroidmvp.kit.KnifeKit;
 
-
 /**
  * Created by sun on 2018/6/12.
  */
@@ -29,13 +26,13 @@ import cn.droidlover.xdroidmvp.kit.KnifeKit;
 public class ProjectStagingAdapter extends RecyclerView.Adapter {
 
     private Context context;
-    private List<ProjectChengyModel> others;
+    private List<StagingListModel.EnginerBean> others;
     /**
      * 以后用它来初始化布局
      */
     private final LayoutInflater mLayoutInflater;
 
-    public ProjectStagingAdapter(Context mContext, List<ProjectChengyModel> others) {
+    public ProjectStagingAdapter(Context mContext, List<StagingListModel.EnginerBean> others) {
         this.context = mContext;
         this.others = others;
         //以后用它来初始化布局
@@ -52,48 +49,14 @@ public class ProjectStagingAdapter extends RecyclerView.Adapter {
 
         MoreViewHolder bbnViewHolder = (MoreViewHolder) holder;
 
-        ProjectChengyModel othersBean = others.get(position);
+        StagingListModel.EnginerBean othersBean = others.get(position);
 
-        String u_head = othersBean.getU_head();
-        if(!TextUtils.isEmpty(u_head)) {
+        String u_head = othersBean.getUserAvatar();
+        if (!TextUtils.isEmpty(u_head)) {
             Glide.with(context).load(ApiHelper.BASE_URL + u_head).into(bbnViewHolder.ivStagItemIcon);
         }
-        bbnViewHolder.tvStagItemName.setText(othersBean.getU_name());
+        bbnViewHolder.tvStagItemName.setText(othersBean.getUserName());
         bbnViewHolder.tvStagItemType.setText(othersBean.getLabelName());
-
-//        HomePageBean.DataBean.TwoBean bean = twoBeen.get(position);
-//
-//        bbnViewHolder.setData(bean);
-//
-//        holder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                String store_id = sp.getString(Constants.LOGIN_STORE_ID, "");
-//                if(!TextUtils.isEmpty(store_id)){
-//                    String type = twoBeen.get(position).type;
-//                    if(type.equals("hbfq")){
-//                        Intent intent = new Intent(context, FlowerStagesActivity.class);
-//                        context.startActivity(intent);
-//                    }else if(type.equals("wlxy")){
-//                        Intent intent = new Intent(context, FutureCumpusActivity.class);
-//                        context.startActivity(intent);
-//                    }
-//                }else{
-//                    PublicDialog.getPublicDialog().noPermissions((Activity) context);
-//                }
-//
-//
-////                else{
-////                    String title = twoBeen.get(position).title;
-////                    String url = twoBeen.get(position).url;
-////                    Intent intent = new Intent(context, WebviewActivity.payclass);
-////                    intent.putExtra(Constants.ME_WEBVIEW_TITLE,title);
-////                    intent.putExtra(Constants.ME_WEBVIEW_URL,url);
-////                    context.startActivity(intent);
-////                }
-//            }
-//        });
     }
 
     @Override
@@ -114,13 +77,5 @@ public class ProjectStagingAdapter extends RecyclerView.Adapter {
             super(itemView);
             KnifeKit.bind(this, itemView);
         }
-
-//        public void setData(HomePageBean.DataBean.TwoBean bean) {
-//            //已得到数据了
-//            //设置适配器
-//            //初始化应用列表
-//            Glide.with(context).load(bean.icon).into(iv_more_icon);
-//            tv_more_name.setText(bean.title);
-//        }
     }
 }

@@ -4,6 +4,7 @@ package com.mfzn.deepuses.present.login;
 import com.mfzn.deepuses.activity.login.ForgotCodeActivity;
 import com.mfzn.deepuses.activity.login.RegisterCodeActivity;
 import com.mfzn.deepuses.net.ApiHelper;
+import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 
 import cn.droidlover.xdroidmvp.mvp.XPresent;
@@ -19,7 +20,7 @@ public class ForgotCodePresent extends XPresent<ForgotCodeActivity> {
 
     public void getSmsCode(String phone) {
         getV().showDialog();
-        ApiHelper.getApiService().getSmsCode(phone, "1")
+        ApiServiceManager.getSmsCode(phone, "1")
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

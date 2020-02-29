@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mfzn.deepuses.R;
@@ -61,7 +60,7 @@ public class SearchProjectAdapter extends BaseAdapter {
         XiangmuModel.DataBean dataBean = data.get(position);
 
         viewHolder.tvSeItemTitle.getPaint().setFakeBoldText(true);
-        viewHolder.tvSeItemTitle.setText(dataBean.getPro_name());
+        viewHolder.tvSeItemTitle.setText(dataBean.getProName());
         viewHolder.tvSeItemName.setText(dataBean.getCustomName());
         String start_time = dataBean.getQualityBegin();
         String end_time = dataBean.getQualityEnd();

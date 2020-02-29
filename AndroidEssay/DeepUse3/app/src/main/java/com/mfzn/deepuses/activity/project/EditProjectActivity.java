@@ -4,7 +4,6 @@ import android.Manifest;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -23,17 +22,13 @@ import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.activity.khgl.MultipleSelectActivity;
-import com.mfzn.deepuses.activityxm.FoundSuccessActivity;
 import com.mfzn.deepuses.activityxm.MapLocationActivity;
 import com.mfzn.deepuses.activityxm.ProjectLevelActivity;
 import com.mfzn.deepuses.activityxm.SelectPersonActivity;
 import com.mfzn.deepuses.adapter.khgl.EditCustomerAdapter;
-import com.mfzn.deepuses.adapter.xiangmu.AddPhotoAdapter;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
-import com.mfzn.deepuses.model.xiangmu.FoundProjectModel;
 import com.mfzn.deepuses.model.xiangmu.XiangmuModel;
 import com.mfzn.deepuses.present.foundxm.EditProjectPresnet;
-import com.mfzn.deepuses.present.foundxm.FoundProjectPresnet;
 import com.mfzn.deepuses.utils.Constants;
 import com.mfzn.deepuses.utils.DateUtils;
 import com.mfzn.deepuses.utils.EventMsg;
@@ -48,7 +43,6 @@ import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.functions.Consumer;
 
@@ -131,15 +125,15 @@ public class EditProjectActivity extends BaseMvpActivity<EditProjectPresnet> {
 
         pro_uid = dataBean.getData_id() + "";
 
-        etEditProname.setText(dataBean.getPro_name());
+        etEditProname.setText(dataBean.getProName());
         etEditAddress.setText(dataBean.getAreaName());
         longitude = dataBean.getLongitude() + "";
         latitude = dataBean.getLatitude() + "";
         etEditDetail.setText(dataBean.getDetailAddress());
         etEditLevel.setText(dataBean.getLevelName());
         levelID = dataBean.getCustomLevel() + "";
-        etEditGw.setText(dataBean.getSalesPeople().getSalesName());
-        gwID = dataBean.getSalesPeople().getSalesID();
+        etEditGw.setText(dataBean.getProSalesPersonInfo().getSalesName());
+        gwID = dataBean.getProSalesPersonInfo().getSalesID();
         etEditMoney.setText(dataBean.getContractMoney() + "");
         String qualityBegin = dataBean.getQualityBegin();
         if(!TextUtils.isEmpty(qualityBegin) && !qualityBegin.equals("0")) {
@@ -154,7 +148,7 @@ public class EditProjectActivity extends BaseMvpActivity<EditProjectPresnet> {
             etEditZbqx.setText(qualityTime);
         }
 
-        customers = dataBean.getCustomers();
+        customers = dataBean.getCustomersInfo();
         customers.add(0,new XiangmuModel.DataBean.CustomersBean());
         recycleAdapter = new EditCustomerAdapter(this, customers);
         orRecycleview.setAdapter(recycleAdapter);
@@ -357,7 +351,6 @@ public class EditProjectActivity extends BaseMvpActivity<EditProjectPresnet> {
                 for(int i = 0; i < split.length; i++) {
                     XiangmuModel.DataBean.CustomersBean bean = new XiangmuModel.DataBean.CustomersBean();
                     bean.setCustomerName(split[i]);
-                    bean.setCustomerPhone(split2[i]);
                     bean.setCustomerID(split3[i]);
                     customers.add(bean);
                 }

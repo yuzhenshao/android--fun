@@ -1,10 +1,9 @@
 package com.mfzn.deepuses.present.my;
 
 import com.mfzn.deepuses.activitymy.setting.SettingNewsPwdActivity;
-import com.mfzn.deepuses.net.ApiHelper;
+import com.mfzn.deepuses.bean.request.ChangePwdRequest;
+import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
-import com.mfzn.deepuses.utils.UserHelper;
-
 import cn.droidlover.xdroidmvp.mvp.XPresent;
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
@@ -12,9 +11,9 @@ import cn.droidlover.xdroidmvp.net.XApi;
 
 public class ExchangePswPresent extends XPresent<SettingNewsPwdActivity> {
 
-    public void modifyPsw(String old_pwd, String new_pwd, String re_new_pwd) {
+    public void modifyPsw(String oldPwd, String newPwd, String reNewPwd) {
         getV().showDialog();
-        ApiHelper.getApiService().appModifyPwd(UserHelper.getToken(), UserHelper.getUid(),old_pwd, new_pwd,re_new_pwd)
+        ApiServiceManager.changePwd(new ChangePwdRequest(oldPwd, newPwd,reNewPwd))
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

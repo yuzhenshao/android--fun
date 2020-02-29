@@ -84,7 +84,7 @@ public class InvitationJoinActivity extends BaseMvpActivity<InvitationJoinPresen
     }
 
     public void shareCodeSuccess(ShareCodeModel model) {
-        urlIcon = ApiHelper.BASE_URL + "/" + model.getVcodeUrl();
+        urlIcon = ApiHelper.BASE_URL + "/" + model.getQrCodeUrl();
         String path = download + "text.png";
         File file = new File(path);
         if (file.exists()) {

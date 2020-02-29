@@ -140,11 +140,11 @@ public class ShareCodeActivity extends BaseMvpActivity<ShareCodePresent> {
 
     public void shareCodeSuccess(ShareCodeModel model) {
         tvCodeName.setText(model.getCompanyName());
-        String u_head = model.getU_head();
-        if(!TextUtils.isEmpty(u_head)) {
-            Glide.with(this).load(ApiHelper.BASE_URL + u_head).into(ivCodeIcon);
+        String userAvatar = model.getUserAvatar();
+        if(!TextUtils.isEmpty(userAvatar)) {
+            Glide.with(this).load(ApiHelper.BASE_URL + userAvatar).into(ivCodeIcon);
         }
-        Glide.with(this).load(ApiHelper.BASE_URL + "/" + model.getVcodeUrl()).into(ivCode);
+        Glide.with(this).load(ApiHelper.BASE_URL + "/" + model.getQrCodeUrl()).into(ivCode);
     }
 
     private void jietu() {

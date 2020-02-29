@@ -6,6 +6,7 @@ import com.mfzn.deepuses.model.LookQuanxianModel;
 import com.mfzn.deepuses.model.xiangmu.ProjectStagingModel;
 import com.mfzn.deepuses.model.xiangmu.StagingListModel;
 import com.mfzn.deepuses.net.ApiHelper;
+import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.utils.UserHelper;
 
@@ -35,7 +36,7 @@ public class ProDetailsPresnet extends XPresent<ProDetailsActivity> {
     }
 
     public void stagingList(String proID) {
-        ApiHelper.getApiService().stagingList(UserHelper.getToken(), UserHelper.getUid(),proID)
+        ApiServiceManager.getProMemberList(proID)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

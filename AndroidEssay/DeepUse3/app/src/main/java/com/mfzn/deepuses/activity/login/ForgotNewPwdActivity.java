@@ -14,6 +14,9 @@ import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.activity.company.SelectCompanyActivity;
 import com.mfzn.deepuses.bass.BaseActivity;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
+import com.mfzn.deepuses.bean.request.ForgetRequest;
+import com.mfzn.deepuses.bean.request.LoginRequest;
+import com.mfzn.deepuses.bean.response.UserResponse;
 import com.mfzn.deepuses.model.login.UserModel;
 import com.mfzn.deepuses.present.login.ForgotPwdPresent;
 import com.mfzn.deepuses.present.login.RegistPwdPresent;
@@ -143,7 +146,7 @@ public class ForgotNewPwdActivity extends BaseMvpActivity<ForgotPwdPresent> {
                 String pwd = etForPwd.getText().toString().trim();
                 String pwd2 = etForPwd2.getText().toString().trim();
                 if(pwd.equals(pwd2)) {
-                    getP().forgetPwd(phone,code,pwd,pwd2);
+                    getP().forgetPwd(new ForgetRequest(phone,code,pwd));
                 }else {
                     ToastUtil.showToast(this,"两次密码不一致");
                 }
@@ -166,13 +169,12 @@ public class ForgotNewPwdActivity extends BaseMvpActivity<ForgotPwdPresent> {
     };
 
     public void forgetPwdSuccess() {
-        String pwd = etForPwd.getText().toString().trim();
-        getP().login(phone, pwd);
+        getP().login(new LoginRequest(phone,etForPwd.getText().toString().trim()));
     }
 
-    public void loginSuccess(UserModel userModel) {
+    public void loginSuccess(UserResponse userResponse) {
         String pwd = etForPwd.getText().toString().trim();
-        UserHelper.login(userModel,pwd);
+        UserHelper.login(userResponse,pwd);
         EventMsg eventMsg = new EventMsg();
         eventMsg.setMsg(Constants.REGISTER);
         RxBus.getInstance().post(eventMsg);

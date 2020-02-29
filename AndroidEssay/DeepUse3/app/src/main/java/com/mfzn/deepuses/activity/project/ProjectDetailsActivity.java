@@ -1,28 +1,19 @@
 package com.mfzn.deepuses.activity.project;
 
-import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mfzn.deepuses.R;
-import com.mfzn.deepuses.activity.myteam.ManageSettingActivity;
-import com.mfzn.deepuses.activity.myteam.SelectManageActivity;
 import com.mfzn.deepuses.activityxm.ProjectCodeActivity;
 import com.mfzn.deepuses.activityxm.SelectPersonActivity;
 import com.mfzn.deepuses.activityxm.shgd.ShouhuSettingActivity;
 import com.mfzn.deepuses.adapter.project.ProjectDetailsAdapter;
-import com.mfzn.deepuses.adapter.xiangmu.ProjectStagingAdapter;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
 import com.mfzn.deepuses.model.brick.CompanyInfoModel;
-import com.mfzn.deepuses.model.brick.LevelRightsModel;
-import com.mfzn.deepuses.model.xiangmu.ProjectChengyModel;
 import com.mfzn.deepuses.model.xiangmu.StagingListModel;
 import com.mfzn.deepuses.model.xiangmu.XiangmuModel;
 import com.mfzn.deepuses.present.project.ProjectDetailsPresent;
@@ -33,8 +24,6 @@ import com.mfzn.deepuses.utils.ToastUtil;
 import com.mfzn.deepuses.utils.UserHelper;
 import com.mfzn.deepuses.view.MyRecyclerView;
 import com.mfzn.deepuses.view.NoScrollGridLayoutManager;
-import com.tbruyelle.rxpermissions2.RxPermissions;
-import com.wevey.selector.dialog.AddBranchDialog;
 import com.wevey.selector.dialog.DialogInterface;
 import com.wevey.selector.dialog.NormalAlert2Dialog;
 import com.wevey.selector.dialog.OpenShouhouDialog;
@@ -43,7 +32,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
@@ -74,7 +62,8 @@ public class ProjectDetailsActivity extends BaseMvpActivity<ProjectDetailsPresen
     private ProjectDetailsAdapter adapter;
 
     private int positions;//记录删除的位置
-    private List<ProjectChengyModel> modelList = new ArrayList<>();;
+    private List<StagingListModel.EnginerBean> modelList = new ArrayList<>();
+    ;
 
     private XiangmuModel.DataBean dataBean;
 
@@ -116,7 +105,7 @@ public class ProjectDetailsActivity extends BaseMvpActivity<ProjectDetailsPresen
         customTel = dataBean.getCustomTel();
         address = dataBean.getAreaName() + dataBean.getDetailAddress();
 
-        tvBassTitle.setText(dataBean.getPro_name());
+        tvBassTitle.setText(dataBean.getProName());
 
         pro_uid = dataBean.getData_id() + "";
         getP().stagingList(pro_uid);
@@ -143,7 +132,7 @@ public class ProjectDetailsActivity extends BaseMvpActivity<ProjectDetailsPresen
     }
 
     @OnClick({R.id.iv_login_back, R.id.ll_bass_detele2, R.id.ll_pr_xxbj, R.id.ll_pr_code, R.id.ll_pr_xmxx,
-            R.id.tv_pr_edit, R.id.tv_pr_wc, R.id.ll_pr_shsz,R.id.tv_pr_pay})
+            R.id.tv_pr_edit, R.id.tv_pr_wc, R.id.ll_pr_shsz, R.id.tv_pr_pay})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_login_back:
@@ -154,18 +143,18 @@ public class ProjectDetailsActivity extends BaseMvpActivity<ProjectDetailsPresen
                 break;
             case R.id.ll_pr_xxbj:
                 Intent intent = new Intent(this, EditProjectActivity.class);
-                intent.putExtra(Constants.WORK_ORDER,dataBean);
+                intent.putExtra(Constants.WORK_ORDER, dataBean);
                 startActivity(intent);
                 break;
             case R.id.ll_pr_code:
                 Intent intent2 = new Intent(this, ProjectCodeActivity.class);
-                intent2.putExtra(Constants.FOUND_PROJECT_PROID,pro_uid);
-                intent2.putExtra(Constants.FOUND_PROJECT_NAME,dataBean.getPro_name());
+                intent2.putExtra(Constants.FOUND_PROJECT_PROID, pro_uid);
+                intent2.putExtra(Constants.FOUND_PROJECT_NAME, dataBean.getProName());
                 startActivity(intent2);
                 break;
             case R.id.ll_pr_xmxx:
                 Intent intent3 = new Intent(this, ProjectNewsActivity.class);
-                intent3.putExtra(Constants.FOUND_PROJECT_PROID,pro_uid);
+                intent3.putExtra(Constants.FOUND_PROJECT_PROID, pro_uid);
                 startActivity(intent3);
                 break;
             case R.id.tv_pr_edit:
@@ -180,10 +169,10 @@ public class ProjectDetailsActivity extends BaseMvpActivity<ProjectDetailsPresen
                 break;
             case R.id.ll_pr_shsz:
                 Intent intent4 = new Intent(this, ShouhuSettingActivity.class);
-                intent4.putExtra(Constants.SHOUHOU_PROID,pro_uid);
-                intent4.putExtra(Constants.SHOUHOU_NAME,customName);
-                intent4.putExtra(Constants.SHOUHOU_PHONE,customTel);
-                intent4.putExtra(Constants.SHOUHOU_ADDRESS,address);
+                intent4.putExtra(Constants.SHOUHOU_PROID, pro_uid);
+                intent4.putExtra(Constants.SHOUHOU_NAME, customName);
+                intent4.putExtra(Constants.SHOUHOU_PHONE, customTel);
+                intent4.putExtra(Constants.SHOUHOU_ADDRESS, address);
                 startActivity(intent4);
                 break;
             case R.id.tv_pr_pay:
@@ -192,7 +181,7 @@ public class ProjectDetailsActivity extends BaseMvpActivity<ProjectDetailsPresen
                         .setWidth(1f)  //屏幕宽度*0.65
                         .setBrick(sumZhuan + "")
                         .setPrice(buyPrice + "")
-                        .setName(dataBean.getPro_name())
+                        .setName(dataBean.getProName())
                         .setCanceledOnTouchOutside(false)
                         .setOnclickListener(new DialogInterface.OnLeftAndRightClickListener<OpenShouhouDialog>() {
                             @Override
@@ -202,10 +191,10 @@ public class ProjectDetailsActivity extends BaseMvpActivity<ProjectDetailsPresen
 
                             @Override
                             public void clickRightButton(OpenShouhouDialog dialog, View view) {
-                                if(sumZhuan < buyPrice) {
-                                    ToastUtil.showToast(ProjectDetailsActivity.this,"您的砖数量不够，请先充值");
-                                }else {
-                                    getP().openBk(pro_uid,"1",buyPrice + "");
+                                if (sumZhuan < buyPrice) {
+                                    ToastUtil.showToast(ProjectDetailsActivity.this, "您的砖数量不够，请先充值");
+                                } else {
+                                    getP().openBk(pro_uid, "1", buyPrice + "");
                                 }
                             }
                         })
@@ -223,7 +212,7 @@ public class ProjectDetailsActivity extends BaseMvpActivity<ProjectDetailsPresen
                 userID = data.getStringExtra(Constants.SELECT_PERSON_ID);
                 String name = data.getStringExtra(Constants.SELECT_PERSON_NAME);
 //                etFouGw.setText(name);
-                getP().addStaging(pro_uid,userID);
+                getP().addStaging(pro_uid, userID);
             }
         }
     }
@@ -233,8 +222,8 @@ public class ProjectDetailsActivity extends BaseMvpActivity<ProjectDetailsPresen
         int zhuan2 = (int) Double.parseDouble(model.getGiftZhuan());
         sumZhuan = zhuan + zhuan2;
         List<CompanyInfoModel.LevelRightsBean.ModulePriceBean> modulePrice = model.getLevelRights().getModulePrice();
-        for(int i = 0; i < modulePrice.size(); i++) {
-            if(modulePrice.get(i).getModuleType() == 1) {
+        for (int i = 0; i < modulePrice.size(); i++) {
+            if (modulePrice.get(i).getModuleType() == 1) {
                 buyPrice = modulePrice.get(i).getBuyPrice();
                 tv_pr_price.setText(buyPrice + "");
             }
@@ -242,7 +231,7 @@ public class ProjectDetailsActivity extends BaseMvpActivity<ProjectDetailsPresen
     }
 
     public void openBk() {
-        ToastUtil.showToast(this,"开通成功");
+        ToastUtil.showToast(this, "开通成功");
         EventMsg eventMsg = new EventMsg();
         eventMsg.setMsg(Constants.FOUNDPROJECT);
         RxBus.getInstance().post(eventMsg);
@@ -250,74 +239,29 @@ public class ProjectDetailsActivity extends BaseMvpActivity<ProjectDetailsPresen
     }
 
     public void addStagingSuccess() {
-        ToastUtil.showToast(this,"添加成功");
+        ToastUtil.showToast(this, "添加成功");
         getP().stagingList(pro_uid);
     }
 
     public void deleteStagingSuccess() {
-        ToastUtil.showToast(this,"删除成功");
+        ToastUtil.showToast(this, "删除成功");
         modelList.remove(positions);
         adapter.notifyDataSetChanged();
     }
 
     public void deleteProjectSuccess() {
-        ToastUtil.showToast(this,"删除成功");
+        ToastUtil.showToast(this, "删除成功");
         EventMsg eventMsg = new EventMsg();
         eventMsg.setMsg(Constants.FOUNDPROJECT);
         RxBus.getInstance().post(eventMsg);
         finish();
     }
 
-    public void stagingListSuccess(StagingListModel model) {
+    public void stagingListSuccess(StagingListModel stagingListModel) {
         modelList.clear();
-        modelList.add(new ProjectChengyModel());
-
-        List<StagingListModel.OthersBean> others = model.getOthers();
-        if(others != null && others.size() != 0) {
-            for(int i = 0; i < others.size(); i++) {
-                ProjectChengyModel model1 = new ProjectChengyModel();
-                StagingListModel.OthersBean othersBean = others.get(i);
-                model1.setProID(othersBean.getProID());
-                model1.setUserID(othersBean.getUserID());
-                model1.setIs_del(othersBean.getIs_del());
-                model1.setAddTime(othersBean.getAddTime());
-                model1.setAddUserID(othersBean.getAddUserID());
-                model1.setUpdateTime(othersBean.getUpdateTime());
-                model1.setUpdateUserID(othersBean.getUpdateUserID());
-                model1.setLabel(othersBean.getLabel());
-                model1.setU_name(othersBean.getU_name());
-                model1.setU_head(othersBean.getU_head());
-                model1.setU_type(othersBean.getU_type());
-                model1.setLabelName(othersBean.getLabelName());
-                model1.setData_id(othersBean.getData_id());
-                model1.setData_en_id(othersBean.getData_en_id());
-                modelList.add(model1);
-            }
-        }
-        List<StagingListModel.EnginerBean> enginer = model.getEnginer();
-        if(enginer != null && enginer.size() != 0) {
-            for(int i = 0; i < enginer.size(); i++) {
-                ProjectChengyModel model1 = new ProjectChengyModel();
-                StagingListModel.EnginerBean othersBean = enginer.get(i);
-                model1.setProID(othersBean.getProID());
-                model1.setUserID(othersBean.getUserID());
-                model1.setIs_del(othersBean.getIs_del());
-                model1.setAddTime(othersBean.getAddTime());
-                model1.setAddUserID(othersBean.getAddUserID());
-                model1.setUpdateTime(othersBean.getUpdateTime());
-                model1.setUpdateUserID(othersBean.getUpdateUserID());
-                model1.setLabel(othersBean.getLabel());
-                model1.setU_name(othersBean.getU_name());
-                model1.setU_head(othersBean.getU_head());
-                model1.setU_type(othersBean.getU_type());
-                model1.setLabelName(othersBean.getLabelName());
-                model1.setData_id(othersBean.getData_id());
-                model1.setData_en_id(othersBean.getData_en_id());
-                modelList.add(model1);
-            }
-        }
-
-        adapter = new ProjectDetailsAdapter(this,modelList);
+        modelList.add(new StagingListModel.EnginerBean());
+        modelList.addAll(stagingListModel.getAllEnginerList());
+        adapter = new ProjectDetailsAdapter(this, modelList);
         prRecyleview.setAdapter(adapter);
 
         adapter.setOnAddItemClickListener(new ProjectDetailsAdapter.OnAddItemClickListener() {
@@ -332,7 +276,7 @@ public class ProjectDetailsActivity extends BaseMvpActivity<ProjectDetailsPresen
             @Override
             public void onDeteleItemClick(View view, int position) {
                 positions = position;
-                dialogDelelte2(modelList.get(position).getUserID() + "",modelList.get(position).getU_name());
+                dialogDelelte2(modelList.get(position).getUserID() + "", modelList.get(position).getUserName());
             }
         });
     }
@@ -341,7 +285,7 @@ public class ProjectDetailsActivity extends BaseMvpActivity<ProjectDetailsPresen
         NormalAlert2Dialog normalAlertDialog = new NormalAlert2Dialog.Builder(this)
                 .setHeight(0.25f)  //屏幕高度*0.23
                 .setWidth(0.8f)  //屏幕宽度*0.65
-                .setContentText("删除后，项目将不存在，确定删除" + dataBean.getPro_name() + " 项目吗？")
+                .setContentText("删除后，项目将不存在，确定删除" + dataBean.getProName() + " 项目吗？")
                 .setContentTextColor(R.color.color_606266)
                 .setContentTextSize(16)
                 .setLeftButtonText("取消")
@@ -369,7 +313,7 @@ public class ProjectDetailsActivity extends BaseMvpActivity<ProjectDetailsPresen
         normalAlertDialog.show();
     }
 
-    public void dialogDelelte2(String userID,String name) {
+    public void dialogDelelte2(String userID, String name) {
         NormalAlert2Dialog normalAlertDialog = new NormalAlert2Dialog.Builder(this)
                 .setHeight(0.25f)  //屏幕高度*0.23
                 .setWidth(0.8f)  //屏幕宽度*0.65
@@ -393,7 +337,7 @@ public class ProjectDetailsActivity extends BaseMvpActivity<ProjectDetailsPresen
 
                     @Override
                     public void clickRightButton(NormalAlert2Dialog dialog, View view) {
-                        getP().deleteStaging(pro_uid,userID);
+                        getP().deleteStaging(pro_uid, userID);
                         dialog.dismiss();
                     }
                 })

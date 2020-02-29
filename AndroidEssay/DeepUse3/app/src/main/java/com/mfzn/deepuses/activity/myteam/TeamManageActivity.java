@@ -133,7 +133,7 @@ public class TeamManageActivity extends BaseMvpActivity<TeamManagePresent> {
         tvTeamName.setText(model.getCompanyName());
         tvTeamCopy.setText(model.getCompanyCode());
 
-        logo = model.getLogo();
+        logo = model.getCompanyLogo();
 
         if(model.getIsCheck() == 0) {//0 未认证 1 已认证
             ivTeamType.setImageResource(R.mipmap.team_weirenzheng);

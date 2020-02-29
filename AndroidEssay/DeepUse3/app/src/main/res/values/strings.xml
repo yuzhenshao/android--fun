@@ -134,4 +134,12 @@
         如需继续使用，请拨打客服电话
         400-055-2011</string>
 
+
+    <!--名片-->
+    <string name="company_position">%1$s  %2$s  %3$s</string>
+    <string name="card_word_year">从业 %1$s 年</string>
+    <string name="card_jz">家装 %1$s 个</string>
+    <string name="card_gz">工装 %1$s 个</string>
+    <string name="card_project">进行中项目 %1$s 个</string>
+    <string name="please_install_wechat">请先安装微信</string>
 </resources>

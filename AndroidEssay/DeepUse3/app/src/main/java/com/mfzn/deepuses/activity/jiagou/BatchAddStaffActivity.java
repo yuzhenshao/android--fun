@@ -79,7 +79,7 @@ public class BatchAddStaffActivity extends BaseMvpActivity<BatchAddStaffPresent>
         layoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL);
         baRecycleview.setLayoutManager(layoutManager2);
 
-        getP().jiagouList();
+        getP().getDepartments();
     }
 
     @OnClick({R.id.iv_login_back, R.id.tv_bass_content, R.id.tv_ba_move})
