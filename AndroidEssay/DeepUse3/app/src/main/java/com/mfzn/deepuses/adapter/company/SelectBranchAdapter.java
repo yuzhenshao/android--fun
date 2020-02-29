@@ -60,7 +60,7 @@ public class SelectBranchAdapter extends BaseAdapter {
         ZuzhiJiagouModel.SonsBeanX staffBeanX = sons.get(position);
 
         viewHolder.ivDeItemName.setText(staffBeanX.getDepartmentName());
-        List<ZuzhiJiagouModel.SonsBean> sonsBeans = staffBeanX.getSons();
+        List<ZuzhiJiagouModel.SonsBeanX> sonsBeans = staffBeanX.getSons();
         if(sonsBeans != null && sonsBeans.size() != 0) {
             viewHolder.itemListview.setVisibility(View.VISIBLE);
             viewHolder.show.setVisibility(View.VISIBLE);

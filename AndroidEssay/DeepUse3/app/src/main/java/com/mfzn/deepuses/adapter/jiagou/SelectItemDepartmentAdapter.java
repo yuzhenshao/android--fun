@@ -20,12 +20,12 @@ import butterknife.ButterKnife;
 public class SelectItemDepartmentAdapter extends BaseAdapter {
 
     private Context mContext;
-    private List<ZuzhiJiagouModel.SonsBean> sons;
+    private List<ZuzhiJiagouModel.SonsBeanX> sons;
     private List<ZuzhiJiagouModel.SonsBeanX> beanXES;
 
     private OnItemClickLisenter onItemClickLisenter;
 
-    public SelectItemDepartmentAdapter(Context context, List<ZuzhiJiagouModel.SonsBean> sons, List<ZuzhiJiagouModel.SonsBeanX> beanXES) {
+    public SelectItemDepartmentAdapter(Context context, List<ZuzhiJiagouModel.SonsBeanX> sons, List<ZuzhiJiagouModel.SonsBeanX> beanXES) {
         this.mContext = context;
         this.sons = sons;
         this.beanXES = beanXES;
@@ -58,7 +58,7 @@ public class SelectItemDepartmentAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        ZuzhiJiagouModel.SonsBean staffBeanX = sons.get(position);
+        ZuzhiJiagouModel.SonsBeanX staffBeanX = sons.get(position);
 
         viewHolder.ivDeItemName.setText(staffBeanX.getDepartmentName());
 
@@ -80,7 +80,7 @@ public class SelectItemDepartmentAdapter extends BaseAdapter {
                         if(beanXES.get(i).getSelectDe()) {
                             beanXES.get(i).setSelectDe(false);
                         }
-                        List<ZuzhiJiagouModel.SonsBean> sonsBeans = beanXES.get(i).getSons();
+                        List<ZuzhiJiagouModel.SonsBeanX> sonsBeans = beanXES.get(i).getSons();
                         if(sonsBeans != null && sonsBeans.size() != 0) {
                             for (int j = 0 ; j < sonsBeans.size() ; j++){
                                 if(sonsBeans.get(j).getSelectDe()) {

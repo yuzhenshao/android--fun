@@ -56,7 +56,7 @@ public class ZuzhiDepartmentAdapter extends BaseAdapter {
         viewHolder.tvBumenName.setText(sonsBeanX.getDepartmentName());
 
         int size = sonsBeanX.getStaff().size();
-        List<ZuzhiJiagouModel.SonsBean> sons = sonsBeanX.getSons();
+        List<ZuzhiJiagouModel.SonsBeanX> sons = sonsBeanX.getSons();
         for(int i = 0; i < sons.size(); i++) {
             int size1 = sons.get(i).getStaff().size();
             size = size + size1;

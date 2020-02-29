@@ -70,7 +70,7 @@ public class ZuzhiJiagouModel implements Serializable {
         private int departmentID;
         private String departmentName;
         private int level;
-        private List<ZuzhiJiagouModel.SonsBean> sons;
+        private List<SonsBeanX> sons;
         private List<StaffBeanXX> staff;
         private boolean selectDe = false;
 
@@ -117,11 +117,11 @@ public class ZuzhiJiagouModel implements Serializable {
             this.level = level;
         }
 
-        public List<ZuzhiJiagouModel.SonsBean> getSons() {
+        public List<SonsBeanX> getSons() {
             return sons;
         }
 
-        public void setSons(List<ZuzhiJiagouModel.SonsBean> sons) {
+        public void setSons(List<SonsBeanX> sons) {
             this.sons = sons;
         }
 
@@ -238,73 +238,73 @@ public class ZuzhiJiagouModel implements Serializable {
         }
     }
 
-    public static class SonsBean implements Serializable {
-        /**
-         * departmentID : 238
-         * departmentName : 不急
-         * level : 2
-         * sons : []
-         * staff : [{"positionName":"","u_name":"骨灰盒","uid":28,"userno":"99999999","u_phone":"19941640525","u_head":"/public/images/u_head/28/20190510/0459410707c9973e638fadac8859d02d.jpg","roleID":1}]
-         */
-
-
-        private int departmentID;
-        private String departmentName;
-        private int level;
-        private List<StaffBeanXX> staff;
-        private boolean selectDe = false;
-
-        public boolean getMoren() {
-            return moren;
-        }
-
-        public void setMoren(boolean moren) {
-            this.moren = moren;
-        }
-
-        private boolean moren = false;
-
-        public boolean getSelectDe() {
-            return selectDe;
-        }
-
-        public void setSelectDe(boolean selectDe) {
-            this.selectDe = selectDe;
-        }
-
-        public int getDepartmentID() {
-            return departmentID;
-        }
-
-        public void setDepartmentID(int departmentID) {
-            this.departmentID = departmentID;
-        }
-
-        public String getDepartmentName() {
-            return departmentName;
-        }
-
-        public void setDepartmentName(String departmentName) {
-            this.departmentName = departmentName;
-        }
-
-        public int getLevel() {
-            return level;
-        }
-
-        public void setLevel(int level) {
-            this.level = level;
-        }
-
-        public List<StaffBeanXX> getStaff() {
-            return staff;
-        }
-
-        public void setStaff(List<StaffBeanXX> staff) {
-            this.staff = staff;
-        }
-
-    }
+//    public static class SonsBeanX implements Serializable {
+//        /**
+//         * departmentID : 238
+//         * departmentName : 不急
+//         * level : 2
+//         * sons : []
+//         * staff : [{"positionName":"","u_name":"骨灰盒","uid":28,"userno":"99999999","u_phone":"19941640525","u_head":"/public/images/u_head/28/20190510/0459410707c9973e638fadac8859d02d.jpg","roleID":1}]
+//         */
+//
+//
+//        private int departmentID;
+//        private String departmentName;
+//        private int level;
+//        private List<StaffBeanXX> staff;
+//        private boolean selectDe = false;
+//
+//        public boolean getMoren() {
+//            return moren;
+//        }
+//
+//        public void setMoren(boolean moren) {
+//            this.moren = moren;
+//        }
+//
+//        private boolean moren = false;
+//
+//        public boolean getSelectDe() {
+//            return selectDe;
+//        }
+//
+//        public void setSelectDe(boolean selectDe) {
+//            this.selectDe = selectDe;
+//        }
+//
+//        public int getDepartmentID() {
+//            return departmentID;
+//        }
+//
+//        public void setDepartmentID(int departmentID) {
+//            this.departmentID = departmentID;
+//        }
+//
+//        public String getDepartmentName() {
+//            return departmentName;
+//        }
+//
+//        public void setDepartmentName(String departmentName) {
+//            this.departmentName = departmentName;
+//        }
+//
+//        public int getLevel() {
+//            return level;
+//        }
+//
+//        public void setLevel(int level) {
+//            this.level = level;
+//        }
+//
+//        public List<StaffBeanXX> getStaff() {
+//            return staff;
+//        }
+//
+//        public void setStaff(List<StaffBeanXX> staff) {
+//            this.staff = staff;
+//        }
+//
+//    }
 
 //    public static class StaffBeanXX implements Serializable {
 //        /**
