@@ -23,10 +23,10 @@ import butterknife.ButterKnife;
 public class ManageJiagou2Adapter extends BaseAdapter {
 
     private Context mContext;
-    private List<ZuzhiJiagouModel.StaffBeanXX> list;
+    private List<ZuzhiJiagouModel.StaffBean> list;
     private int type;
 
-    public ManageJiagou2Adapter(Context context, List<ZuzhiJiagouModel.StaffBeanXX> list) {
+    public ManageJiagou2Adapter(Context context, List<ZuzhiJiagouModel.StaffBean> list) {
         this.mContext = context;
         this.list = list;
     }
@@ -58,9 +58,9 @@ public class ManageJiagou2Adapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        ZuzhiJiagouModel.StaffBeanXX staffBeanX = list.get(position);
+        ZuzhiJiagouModel.StaffBean staffBeanX = list.get(position);
 
-        String u_head = staffBeanX.getU_head();
+        String u_head = staffBeanX.getUserAvatar();
         if(!TextUtils.isEmpty(u_head)) {
             viewHolder.ivZuItemIcon.setVisibility(View.VISIBLE);
             viewHolder.tvZuItemIcon.setVisibility(View.GONE);

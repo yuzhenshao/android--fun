@@ -42,7 +42,7 @@ public class SelectManage2Activity extends BaseMvpActivity<SelectManage2Present>
 
     private String stringExtra;
     private int positions;
-    private List<ZuzhiJiagouModel.StaffBeanXX> staff = new ArrayList<>();
+    private List<ZuzhiJiagouModel.StaffBean> staff = new ArrayList<>();
 
     @Override
     public int getLayoutId() {
@@ -80,9 +80,9 @@ public class SelectManage2Activity extends BaseMvpActivity<SelectManage2Present>
                 for(int i = 0; i < staff.size(); i++) {
                     if(staff.get(i).getSelectType()) {
                         if(TextUtils.isEmpty(sss)) {
-                            sss = staff.get(i).getUid();
+                            sss = staff.get(i).getUserID();
                         }else {
-                            sss = sss + "," + staff.get(i).getUid();
+                            sss = sss + "," + staff.get(i).getUserID();
                         }
                     }
                 }
@@ -111,7 +111,7 @@ public class SelectManage2Activity extends BaseMvpActivity<SelectManage2Present>
         String[]  strs = stringExtra.split(",");
         for(int i = 0; i < staff.size(); i++) {
             for(int i1 = 0; i1 < strs.length; i1++) {
-                if(strs[i1].equals(staff.get(i).getUid())) {
+                if(strs[i1].equals(staff.get(i).getUserID())) {
                     staff.get(i).setMoren(true);
                 }
             }
@@ -123,7 +123,7 @@ public class SelectManage2Activity extends BaseMvpActivity<SelectManage2Present>
         listview1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ZuzhiJiagouModel.StaffBeanXX beanXX = model.getSons().get(positions).getStaff().get(position);
+                ZuzhiJiagouModel.StaffBean beanXX = model.getSons().get(positions).getStaff().get(position);
                 if(!beanXX.getMoren()) {
                     if(beanXX.getSelectType()) {
                         beanXX.setSelectType(false);

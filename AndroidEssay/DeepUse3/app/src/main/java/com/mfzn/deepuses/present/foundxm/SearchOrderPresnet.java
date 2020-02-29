@@ -1,9 +1,11 @@
 package com.mfzn.deepuses.present.foundxm;
 
 import com.mfzn.deepuses.activityxm.SearchOrderActivity;
+import com.mfzn.deepuses.bean.request.AfterSaleOrderListRequest;
 import com.mfzn.deepuses.model.LookQuanxianModel;
 import com.mfzn.deepuses.model.xiangmu.WorkorderListModel;
 import com.mfzn.deepuses.net.ApiHelper;
+import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.utils.UserHelper;
 
@@ -15,7 +17,9 @@ import cn.droidlover.xdroidmvp.net.XApi;
 public class SearchOrderPresnet extends XPresent<SearchOrderActivity> {
 
     public void workorderList(String keyword) {
-        ApiHelper.getApiService().workorderList(UserHelper.getToken(), UserHelper.getUid(),"","0","100",1,keyword)
+        AfterSaleOrderListRequest request=new AfterSaleOrderListRequest(100,1);
+        request.setKeywords(keyword);
+        ApiServiceManager.afterSaleOrderList(request)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

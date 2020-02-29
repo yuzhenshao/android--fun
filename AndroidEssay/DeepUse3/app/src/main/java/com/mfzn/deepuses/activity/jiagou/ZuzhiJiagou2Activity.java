@@ -131,7 +131,7 @@ public class ZuzhiJiagou2Activity extends BaseMvpActivity<ZuzhiJiagou2Present> {
             llManEmpty.setVisibility(View.GONE);
         }
 
-        List<ZuzhiJiagouModel.StaffBeanXX> staff = model.getSons().get(positions).getStaff();
+        List<ZuzhiJiagouModel.StaffBean> staff = model.getSons().get(positions).getStaff();
         ZuzhiPersonal2Adapter zuzhiPersonalAdapter = new ZuzhiPersonal2Adapter(this,staff);
         listview1.setAdapter(zuzhiPersonalAdapter);
 

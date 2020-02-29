@@ -24,9 +24,9 @@ public class BatchAddStaffAdapter extends BaseAdapter {
 
     private Context mContext;
     private String types;
-    private List<ZuzhiJiagouModel.StaffBeanXX> staff;
-    private List<ZuzhiJiagouModel.StaffBeanXX> staff2;
-    private List<ZuzhiJiagouModel.StaffBeanXX> staff3;
+    private List<ZuzhiJiagouModel.StaffBean> staff;
+    private List<ZuzhiJiagouModel.StaffBean> staff2;
+    private List<ZuzhiJiagouModel.StaffBean> staff3;
 
     public BatchAddStaffAdapter(Context context, ZuzhiJiagouModel model, String types,int positions,int positions2) {
         this.mContext = context;
@@ -95,20 +95,20 @@ public class BatchAddStaffAdapter extends BaseAdapter {
 
         switch (types) {
             case "1":
-                ZuzhiJiagouModel.StaffBeanXX staffBeanX = staff.get(position);
-                u_head = staffBeanX.getU_head();
+                ZuzhiJiagouModel.StaffBean staffBeanX = staff.get(position);
+                u_head = staffBeanX.getUserAvatar();
                 u_name = staffBeanX.getStaffName();
                 selectType = staffBeanX.getSelectType();
                 break;
             case "2":
-                ZuzhiJiagouModel.StaffBeanXX staffBeanX2 = staff2.get(position);
-                u_head = staffBeanX2.getU_head();
+                ZuzhiJiagouModel.StaffBean staffBeanX2 = staff2.get(position);
+                u_head = staffBeanX2.getUserAvatar();
                 u_name = staffBeanX2.getStaffName();
                 selectType = staffBeanX2.getSelectType();
                 break;
             case "3":
-                ZuzhiJiagouModel.StaffBeanXX staffBeanX3 = staff3.get(position);
-                u_head = staffBeanX3.getU_head();
+                ZuzhiJiagouModel.StaffBean staffBeanX3 = staff3.get(position);
+                u_head = staffBeanX3.getUserAvatar();
                 u_name = staffBeanX3.getStaffName();
                 selectType = staffBeanX3.getSelectType();
                 break;

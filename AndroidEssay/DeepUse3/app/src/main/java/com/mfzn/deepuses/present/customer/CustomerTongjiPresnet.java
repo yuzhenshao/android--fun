@@ -15,7 +15,7 @@ import cn.droidlover.xdroidmvp.net.XApi;
 public class CustomerTongjiPresnet extends XPresent<CustomerTongjiFragment> {
 
 //    public void brickRecord(Integer page) {
-//        ApiHelper.getApiService().brickRecord(UserHelper.getToken(), UserHelper.getUid(),"1","10",page)
+//        ApiHelper.getApiService().brickRecord(UserHelper.getToken(), UserHelper.getUserID(),"1","10",page)
 //                .compose(XApi.getApiTransformer())
 //                .compose(XApi.getScheduler())
 //                .compose(getV().bindToLifecycle())

@@ -1,16 +1,13 @@
 package com.mfzn.deepuses.present.fragment;
 
-import com.mfzn.deepuses.fragment.XiangmuFragment;
+import com.mfzn.deepuses.bean.request.AfterSaleOrderListRequest;
 import com.mfzn.deepuses.fragment.xm.ShouhouGongdanFragment;
 import com.mfzn.deepuses.model.LookQuanxianModel;
 import com.mfzn.deepuses.model.brick.CompanyInfoModel;
 import com.mfzn.deepuses.model.xiangmu.WorkorderListModel;
 import com.mfzn.deepuses.net.ApiHelper;
+import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
-import com.mfzn.deepuses.utils.Constants;
-import com.mfzn.deepuses.utils.EventMsg;
-import com.mfzn.deepuses.utils.RxBus;
-import com.mfzn.deepuses.utils.ToastUtil;
 import com.mfzn.deepuses.utils.UserHelper;
 
 import cn.droidlover.xdroidmvp.mvp.XPresent;
@@ -20,8 +17,8 @@ import cn.droidlover.xdroidmvp.net.XApi;
 
 public class ShouhouGongdanPresnet extends XPresent<ShouhouGongdanFragment> {
 
-    public void workorderList(Integer page) {
-        ApiHelper.getApiService().workorderList(UserHelper.getToken(), UserHelper.getUid(),"","0","10",page,"")
+    public void workorderList(int page) {
+        ApiServiceManager.afterSaleOrderList(new AfterSaleOrderListRequest(10,page))
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

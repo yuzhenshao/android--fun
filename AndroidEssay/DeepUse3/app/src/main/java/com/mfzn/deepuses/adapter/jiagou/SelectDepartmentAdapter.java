@@ -21,11 +21,11 @@ import butterknife.ButterKnife;
 public class SelectDepartmentAdapter extends BaseAdapter {
 
     private Context mContext;
-    private List<ZuzhiJiagouModel.SonsBeanX> sons;
+    private List<ZuzhiJiagouModel.SonsBean> sons;
 
     private OnItemOnClickLisenter onItemOnClickLisenter;
 
-    public SelectDepartmentAdapter(Context context, List<ZuzhiJiagouModel.SonsBeanX> sons) {
+    public SelectDepartmentAdapter(Context context, List<ZuzhiJiagouModel.SonsBean> sons) {
         this.mContext = context;
         this.sons = sons;
     }
@@ -57,10 +57,10 @@ public class SelectDepartmentAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        ZuzhiJiagouModel.SonsBeanX staffBeanX = sons.get(position);
+        ZuzhiJiagouModel.SonsBean staffBeanX = sons.get(position);
 
         viewHolder.ivDeItemName.setText(staffBeanX.getDepartmentName());
-        List<ZuzhiJiagouModel.SonsBeanX> sonsBeans = staffBeanX.getSons();
+        List<ZuzhiJiagouModel.SonsBean> sonsBeans = staffBeanX.getSons();
         if(sonsBeans != null && sonsBeans.size() != 0) {
 //            viewHolder.ivDeItemBj.setVisibility(View.VISIBLE);
             viewHolder.itemListview.setVisibility(View.VISIBLE);
@@ -98,7 +98,7 @@ public class SelectDepartmentAdapter extends BaseAdapter {
                         if(sons.get(i).getSelectDe()) {
                             sons.get(i).setSelectDe(false);
                         }
-                        List<ZuzhiJiagouModel.SonsBeanX> sonsBeans = sons.get(i).getSons();
+                        List<ZuzhiJiagouModel.SonsBean> sonsBeans = sons.get(i).getSons();
                         if(sonsBeans != null && sonsBeans.size() != 0) {
                             for (int j = 0 ; j < sonsBeans.size() ; j++){
                                 if(sonsBeans.get(j).getSelectDe()) {
@@ -117,7 +117,7 @@ public class SelectDepartmentAdapter extends BaseAdapter {
         return convertView;
     }
 
-    private void setSelect(List<ZuzhiJiagouModel.SonsBeanX> sons) {
+    private void setSelect(List<ZuzhiJiagouModel.SonsBean> sons) {
 
     }
 

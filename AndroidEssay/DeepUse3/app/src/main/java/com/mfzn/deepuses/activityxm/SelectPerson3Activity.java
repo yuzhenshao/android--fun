@@ -65,9 +65,9 @@ public class SelectPerson3Activity extends BaseMvpActivity<SelectPerson3Present>
         perlistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ZuzhiJiagouModel.StaffBeanXX staffBean = model.getSons().get(positions).getSons().get(positions2).getStaff().get(position);
+                ZuzhiJiagouModel.StaffBean staffBean = model.getSons().get(positions).getSons().get(positions2).getStaff().get(position);
                 Intent intent = new Intent();
-                intent.putExtra(Constants.SELECT_PERSON_ID, staffBean.getUid());
+                intent.putExtra(Constants.SELECT_PERSON_ID, staffBean.getUserID());
                 intent.putExtra(Constants.SELECT_PERSON_NAME, staffBean.getStaffName());
                 setResult(Constants.SELECT_PERSON,intent);
                 finish();

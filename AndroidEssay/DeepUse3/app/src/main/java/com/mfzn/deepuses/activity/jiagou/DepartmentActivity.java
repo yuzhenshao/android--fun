@@ -27,7 +27,7 @@ public class DepartmentActivity extends BaseMvpActivity<DepartmentPresent> {
     @BindView(R.id.deListview)
     ListView deListview;
 
-    private List<ZuzhiJiagouModel.SonsBeanX> sons;
+    private List<ZuzhiJiagouModel.SonsBean> sons;
     private String departmentID;
     private String departmentName;
 
@@ -63,7 +63,7 @@ public class DepartmentActivity extends BaseMvpActivity<DepartmentPresent> {
                         departmentName = sons.get(i).getDepartmentName();
                         break;
                     }
-                    List<ZuzhiJiagouModel.SonsBeanX> sonsBeans = sons.get(i).getSons();
+                    List<ZuzhiJiagouModel.SonsBean> sonsBeans = sons.get(i).getSons();
                     if(sonsBeans != null && sonsBeans.size() != 0) {
                         for (int j = 0 ; j < sonsBeans.size() ; j++){
                             if(sonsBeans.get(j).getSelectDe()) {

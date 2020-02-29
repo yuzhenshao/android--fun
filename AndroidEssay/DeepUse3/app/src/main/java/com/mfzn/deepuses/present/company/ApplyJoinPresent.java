@@ -34,7 +34,7 @@ public class ApplyJoinPresent extends XPresent<ApplyJoinActivity> {
     }
 
 //    public void xmDetails(String proID) {
-//        ApiHelper.getApiService().xmDetails(UserHelper.getToken(), UserHelper.getUid(),proID)
+//        ApiHelper.getApiService().xmDetails(UserHelper.getToken(), UserHelper.getUserID(),proID)
 //                .compose(XApi.getApiTransformer())
 //                .compose(XApi.getScheduler())
 //                .compose(getV().bindToLifecycle())

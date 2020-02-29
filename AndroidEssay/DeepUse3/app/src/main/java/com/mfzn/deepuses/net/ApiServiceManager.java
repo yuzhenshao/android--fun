@@ -1,6 +1,8 @@
 package com.mfzn.deepuses.net;
 
 import com.libcommon.utils.DomainUtil;
+import com.mfzn.deepuses.bean.request.AddDepartmentRequest;
+import com.mfzn.deepuses.bean.request.AfterSaleOrderListRequest;
 import com.mfzn.deepuses.bean.request.ChangePwdRequest;
 import com.mfzn.deepuses.bean.request.CompanyInfoRequest;
 import com.mfzn.deepuses.bean.request.ProMemberRequest;
@@ -15,14 +17,19 @@ import com.mfzn.deepuses.model.myTeam.TeamManageModel;
 import com.mfzn.deepuses.model.xiangmu.EnginerListModel;
 import com.mfzn.deepuses.model.xiangmu.SelectEnginerModel;
 import com.mfzn.deepuses.model.xiangmu.StagingListModel;
+import com.mfzn.deepuses.model.xiangmu.WorkorderListModel;
 import com.mfzn.deepuses.model.xiangmu.XiangmuModel;
 import com.mfzn.deepuses.utils.UserHelper;
 
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Flowable;
+import retrofit2.http.Field;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 
 /**
  * @author yz @date 2020-02-27
@@ -50,16 +57,16 @@ public class ApiServiceManager {
     }
 
     //工程师通讯录
-    public static Flowable<HttpResult<List<EnginerListModel>>> getEngineerList(){
+    public static Flowable<HttpResult<List<EnginerListModel>>> getEngineerList() {
         return ApiHelper.getApiService().myEngineerList(UserHelper.getToken(), UserHelper.getUid());
     }
 
-    public static Flowable<HttpResult<SelectEnginerModel>>  searchEngineer(String phone){
-        return ApiHelper.getApiService().searchEngineer(UserHelper.getToken(), UserHelper.getUid(),phone);
+    public static Flowable<HttpResult<SelectEnginerModel>> searchEngineer(String phone) {
+        return ApiHelper.getApiService().searchEngineer(UserHelper.getToken(), UserHelper.getUid(), phone);
     }
 
-    public static  Flowable<HttpResult> addEngineer(String enginerID,String remark){
-        return ApiHelper.getApiService().addEngineer(UserHelper.getToken(), UserHelper.getUid(),enginerID,remark);
+    public static Flowable<HttpResult> addEngineer(String enginerID, String remark) {
+        return ApiHelper.getApiService().addEngineer(UserHelper.getToken(), UserHelper.getUid(), enginerID, remark);
     }
 
     //Company
@@ -71,8 +78,8 @@ public class ApiServiceManager {
         return ApiHelper.getApiService().shareCode(DomainUtil.object2Map(request));
     }
 
-    public static Flowable<HttpResult<ZuzhiJiagouModel>> getDepartments(){
-        return ApiHelper.getApiService().getDepartments(UserHelper.getToken(), UserHelper.getUid(),UserHelper.getCompanyId());
+    public static Flowable<HttpResult<ZuzhiJiagouModel>> getDepartments() {
+        return ApiHelper.getApiService().getDepartments(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getCompanyId());
     }
 
 
@@ -93,4 +100,12 @@ public class ApiServiceManager {
         return ApiHelper.getApiService().addProMember(UserHelper.getToken(), UserHelper.getUid(), request);
     }
 
+    public static Flowable<HttpResult> addDepartment(AddDepartmentRequest request) {
+        return ApiHelper.getApiService().addDepartment(UserHelper.getToken(), UserHelper.getUid(), request);
+    }
+
+    //售后
+    public static Flowable<HttpResult<WorkorderListModel>> afterSaleOrderList(AfterSaleOrderListRequest request) {
+        return ApiHelper.getApiService().afterSaleOrderList(DomainUtil.object2Map(request));
+    }
 }

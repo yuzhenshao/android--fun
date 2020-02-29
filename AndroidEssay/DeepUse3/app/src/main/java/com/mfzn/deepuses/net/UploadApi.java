@@ -61,7 +61,7 @@ public class UploadApi {
 //     * 上传头像
 //     */
 //    public static Call<UserUploadModel> uploadMemberIcon(List<MultipartBody.Part> partList) {
-//        return UploadApi.getApiService().uploadMemberIcon(UserHelper.getToken(), UserHelper.getUid(),partList);
+//        return UploadApi.getApiService().uploadMemberIcon(UserHelper.getToken(), UserHelper.getUserID(),partList);
 //    }
 
     /**
@@ -75,14 +75,14 @@ public class UploadApi {
 //     * 上传身份证
 //     */
 //    public static Call<UploadIDModel> uploadIDFile(List<MultipartBody.Part> partList) {
-//        return UploadApi.getApiService().uploadIDFile(UserHelper.getToken(), UserHelper.getUid(),partList);
+//        return UploadApi.getApiService().uploadIDFile(UserHelper.getToken(), UserHelper.getUserID(),partList);
 //    }
 //
 //    /**
 //     * 上传身份证
 //     */
 //    public static Call<UploadZhizhaoModel> uploadZhizhaoFile(List<MultipartBody.Part> partList) {
-//        return UploadApi.getApiService().uploadZhizhaoFile(UserHelper.getToken(), UserHelper.getUid(),partList);
+//        return UploadApi.getApiService().uploadZhizhaoFile(UserHelper.getToken(), UserHelper.getUserID(),partList);
 //    }
 
     /**

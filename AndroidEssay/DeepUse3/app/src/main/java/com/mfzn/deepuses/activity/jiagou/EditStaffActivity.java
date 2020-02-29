@@ -76,33 +76,33 @@ public class EditStaffActivity extends BaseMvpActivity<EditStaffPresent> {
             ZuzhiJiagouModel model = (ZuzhiJiagouModel) intent.getSerializableExtra(Constants.EDIT_STAFF);
             int extra = intent.getIntExtra(Constants.EDIT_STAFF_POSITION, 0);
             etEditName.setText(model.getStaff().get(extra).getStaffName());
-            tvEditPhone.setText(model.getStaff().get(extra).getU_phone());
+            tvEditPhone.setText(model.getStaff().get(extra).getUserPhone());
             tvEditBm.setText(model.getDepartmentName());
             oldDepartmentID = model.getDepartmentID() + "";
-            uid = model.getStaff().get(extra).getUid();
+            uid = model.getStaff().get(extra).getUserID();
             positionName = model.getStaff().get(extra).getPositionName();
         }if(type.equals("2")){
             ZuzhiJiagouModel model = (ZuzhiJiagouModel) intent.getSerializableExtra(Constants.EDIT_STAFF);
             int extra = intent.getIntExtra(Constants.EDIT_STAFF_POSITION, 0);
             int extra2 = intent.getIntExtra(Constants.EDIT_STAFF_POSITION2, 0);
-            ZuzhiJiagouModel.StaffBeanXX staffBeanX = model.getSons().get(extra).getStaff().get(extra2);
+            ZuzhiJiagouModel.StaffBean staffBeanX = model.getSons().get(extra).getStaff().get(extra2);
             etEditName.setText(staffBeanX.getStaffName());
-            tvEditPhone.setText(staffBeanX.getU_phone());
+            tvEditPhone.setText(staffBeanX.getUserPhone());
             tvEditBm.setText(model.getSons().get(extra).getDepartmentName());
             oldDepartmentID = model.getSons().get(extra).getDepartmentID() + "";
-            uid = staffBeanX.getUid();
+            uid = staffBeanX.getUserID();
             positionName = staffBeanX.getPositionName();
         }if(type.equals("3")){
             ZuzhiJiagouModel model = (ZuzhiJiagouModel) intent.getSerializableExtra(Constants.EDIT_STAFF);
             int extra = intent.getIntExtra(Constants.EDIT_STAFF_POSITION, 0);
             int extra2 = intent.getIntExtra(Constants.EDIT_STAFF_POSITION2, 0);
             int extra3 = intent.getIntExtra(Constants.EDIT_STAFF_POSITION3, 0);
-            ZuzhiJiagouModel.StaffBeanXX staffBeanX = model.getSons().get(extra).getSons().get(extra2).getStaff().get(extra3);
+            ZuzhiJiagouModel.StaffBean staffBeanX = model.getSons().get(extra).getSons().get(extra2).getStaff().get(extra3);
             etEditName.setText(staffBeanX.getStaffName());
-            tvEditPhone.setText(staffBeanX.getU_phone());
+            tvEditPhone.setText(staffBeanX.getUserPhone());
             tvEditBm.setText(model.getSons().get(extra).getSons().get(extra2).getDepartmentName());
             oldDepartmentID = model.getSons().get(extra).getSons().get(extra2).getDepartmentID() + "";
-            uid = staffBeanX.getUid();
+            uid = staffBeanX.getUserID();
             positionName = staffBeanX.getPositionName();
         }
 

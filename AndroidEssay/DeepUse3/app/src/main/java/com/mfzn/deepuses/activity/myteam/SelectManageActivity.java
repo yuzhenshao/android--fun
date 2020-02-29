@@ -11,13 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mfzn.deepuses.R;
-import com.mfzn.deepuses.activity.jiagou.BatchAddStaffActivity;
-import com.mfzn.deepuses.activity.jiagou.EditStaffActivity;
-import com.mfzn.deepuses.activity.jiagou.ManageJiagou2Activity;
-import com.mfzn.deepuses.activity.jiagou.ManageJiagouActivity;
-import com.mfzn.deepuses.activity.jiagou.PersonalInfoActivity;
 import com.mfzn.deepuses.adapter.company.SelectManageAdapter;
-import com.mfzn.deepuses.adapter.jiagou.ManageJiagouAdapter;
 import com.mfzn.deepuses.adapter.jiagou.MoveStaffAdapter;
 import com.mfzn.deepuses.adapter.jiagou.ZuzhiDepartmentAdapter;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
@@ -31,7 +25,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class SelectManageActivity extends BaseMvpActivity<SelectManagePresent> {
@@ -48,7 +41,7 @@ public class SelectManageActivity extends BaseMvpActivity<SelectManagePresent> {
     LinearLayout llManEmpty;
 
     private String stringExtra;
-    private List<ZuzhiJiagouModel.StaffBeanXX> modelStaff = new ArrayList<>();
+    private List<ZuzhiJiagouModel.StaffBean> modelStaff = new ArrayList<>();
 
     @Override
     public int getLayoutId() {
@@ -85,9 +78,9 @@ public class SelectManageActivity extends BaseMvpActivity<SelectManagePresent> {
                 for(int i = 0; i < modelStaff.size(); i++) {
                     if(modelStaff.get(i).getSelectType()) {
                         if(TextUtils.isEmpty(sss)) {
-                            sss = modelStaff.get(i).getUid();
+                            sss = modelStaff.get(i).getUserID();
                         }else {
-                            sss = sss + "," + modelStaff.get(i).getUid();
+                            sss = sss + "," + modelStaff.get(i).getUserID();
                         }
                     }
                 }
@@ -116,7 +109,7 @@ public class SelectManageActivity extends BaseMvpActivity<SelectManagePresent> {
         String[]  strs = stringExtra.split(",");
         for(int i = 0; i < modelStaff.size(); i++) {
             for(int i1 = 0; i1 < strs.length; i1++) {
-                if(strs[i1].equals(modelStaff.get(i).getUid())) {
+                if(strs[i1].equals(modelStaff.get(i).getUserID())) {
                     modelStaff.get(i).setMoren(true);
                 }
             }
@@ -128,7 +121,7 @@ public class SelectManageActivity extends BaseMvpActivity<SelectManagePresent> {
         listview1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ZuzhiJiagouModel.StaffBeanXX beanXX = model.getStaff().get(position);
+                ZuzhiJiagouModel.StaffBean beanXX = model.getStaff().get(position);
                 if(!beanXX.getMoren()) {
                     if(beanXX.getSelectType()) {
                         beanXX.setSelectType(false);

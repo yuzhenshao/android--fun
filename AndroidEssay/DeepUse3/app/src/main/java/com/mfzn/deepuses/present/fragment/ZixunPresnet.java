@@ -9,7 +9,7 @@ public class ZixunPresnet extends XPresent<ZixunFragment> {
 
 //    public void xiangmuList(Integer page) {
 //        String companyId = UserHelper.getCompanyId();
-//        ApiHelper.getApiService().xiangmuList(UserHelper.getToken(), UserHelper.getUid(),UserHelper.getCompanyId(),"10",page)
+//        ApiHelper.getApiService().xiangmuList(UserHelper.getToken(), UserHelper.getUserID(),UserHelper.getCompanyId(),"10",page)
 //                .compose(XApi.getApiTransformer())
 //                .compose(XApi.getScheduler())
 //                .compose(getV().bindToLifecycle())

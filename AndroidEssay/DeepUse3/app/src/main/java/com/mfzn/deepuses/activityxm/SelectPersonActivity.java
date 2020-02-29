@@ -2,29 +2,21 @@ package com.mfzn.deepuses.activityxm;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.mfzn.deepuses.R;
-import com.mfzn.deepuses.activity.jiagou.EditStaffActivity;
-import com.mfzn.deepuses.activity.jiagou.ManageJiagou2Activity;
-import com.mfzn.deepuses.activity.jiagou.ManageJiagouActivity;
-import com.mfzn.deepuses.activity.jiagou.PersonalInfoActivity;
-import com.mfzn.deepuses.adapter.jiagou.ManageJiagouAdapter;
 import com.mfzn.deepuses.adapter.jiagou.ZuzhiDepartmentAdapter;
 import com.mfzn.deepuses.adapter.xiangmu.SelectPersonAdapter;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
 import com.mfzn.deepuses.model.jiagou.ZuzhiJiagouModel;
 import com.mfzn.deepuses.present.foundxm.SelectPersonPresent;
-import com.mfzn.deepuses.present.jiagou.ManageJiagouPresent;
 import com.mfzn.deepuses.utils.Constants;
 import com.mfzn.deepuses.utils.UserHelper;
 import com.mfzn.deepuses.view.MyListview;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class SelectPersonActivity extends BaseMvpActivity<SelectPersonPresent> {
@@ -72,7 +64,7 @@ public class SelectPersonActivity extends BaseMvpActivity<SelectPersonPresent> {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent();
-                intent.putExtra(Constants.SELECT_PERSON_ID, model.getStaff().get(position).getUid());
+                intent.putExtra(Constants.SELECT_PERSON_ID, model.getStaff().get(position).getUserID());
                 intent.putExtra(Constants.SELECT_PERSON_NAME, model.getStaff().get(position).getStaffName());
                 setResult(Constants.SELECT_PERSON,intent);
                 finish();

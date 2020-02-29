@@ -111,7 +111,7 @@ public class BatchAddStaffActivity extends BaseMvpActivity<BatchAddStaffPresent>
             Balistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    ZuzhiJiagouModel.StaffBeanXX staffBeanXX = model.getStaff().get(position);
+                    ZuzhiJiagouModel.StaffBean staffBeanXX = model.getStaff().get(position);
                     if (staffBeanXX.getSelectType()) {
                         staffBeanXX.setSelectType(false);
                     } else {
@@ -128,7 +128,7 @@ public class BatchAddStaffActivity extends BaseMvpActivity<BatchAddStaffPresent>
             Balistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    ZuzhiJiagouModel.StaffBeanXX staffBeanXX = model.getSons().get(positions).getStaff().get(position);
+                    ZuzhiJiagouModel.StaffBean staffBeanXX = model.getSons().get(positions).getStaff().get(position);
                     if (staffBeanXX.getSelectType()) {
                         staffBeanXX.setSelectType(false);
                     } else {
@@ -145,7 +145,7 @@ public class BatchAddStaffActivity extends BaseMvpActivity<BatchAddStaffPresent>
             Balistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    ZuzhiJiagouModel.StaffBeanXX staffBean =
+                    ZuzhiJiagouModel.StaffBean staffBean =
                             model.getSons().get(positions).getSons().get(positions2).getStaff().get(position);
                     if (staffBean.getSelectType()) {
                         staffBean.setSelectType(false);
@@ -173,14 +173,14 @@ public class BatchAddStaffActivity extends BaseMvpActivity<BatchAddStaffPresent>
         if(model != null) {
             userIDs = "";
             if(types.equals("1")) {
-                List<ZuzhiJiagouModel.StaffBeanXX> modelStaff = model.getStaff();
+                List<ZuzhiJiagouModel.StaffBean> modelStaff = model.getStaff();
                 for(int i = 0; i < modelStaff.size(); i++) {
-                    ZuzhiJiagouModel.StaffBeanXX beanXX = modelStaff.get(i);
+                    ZuzhiJiagouModel.StaffBean beanXX = modelStaff.get(i);
                     if (beanXX.getSelectType()) {
                         if(TextUtils.isEmpty(userIDs)) {
-                            userIDs = beanXX.getUid();
+                            userIDs = beanXX.getUserID();
                         }else {
-                            userIDs = userIDs + "," + beanXX.getUid();
+                            userIDs = userIDs + "," + beanXX.getUserID();
                         }
                     }
                 }
@@ -191,14 +191,14 @@ public class BatchAddStaffActivity extends BaseMvpActivity<BatchAddStaffPresent>
                     startActivityForResult(new Intent(this, DepartmentActivity.class),Constants.EDIT_STAFF_BM);
                 }
             }else if(types.equals("2")) {
-                List<ZuzhiJiagouModel.StaffBeanXX> staff = model.getSons().get(positions).getStaff();
+                List<ZuzhiJiagouModel.StaffBean> staff = model.getSons().get(positions).getStaff();
                 for(int i = 0; i < staff.size(); i++) {
-                    ZuzhiJiagouModel.StaffBeanXX beanXX = staff.get(i);
+                    ZuzhiJiagouModel.StaffBean beanXX = staff.get(i);
                     if (beanXX.getSelectType()) {
                         if(TextUtils.isEmpty(userIDs)) {
-                            userIDs = beanXX.getUid();
+                            userIDs = beanXX.getUserID();
                         }else {
-                            userIDs = userIDs + "," + beanXX.getUid();
+                            userIDs = userIDs + "," + beanXX.getUserID();
                         }
                     }
                 }
@@ -209,14 +209,14 @@ public class BatchAddStaffActivity extends BaseMvpActivity<BatchAddStaffPresent>
                     startActivityForResult(new Intent(this, DepartmentActivity.class),Constants.EDIT_STAFF_BM);
                 }
             }else if(types.equals("3")) {
-                List<ZuzhiJiagouModel.StaffBeanXX> staff = model.getSons().get(positions).getSons().get(positions2).getStaff();
+                List<ZuzhiJiagouModel.StaffBean> staff = model.getSons().get(positions).getSons().get(positions2).getStaff();
                 for(int i = 0; i < staff.size(); i++) {
-                    ZuzhiJiagouModel.StaffBeanXX beanXX = staff.get(i);
+                    ZuzhiJiagouModel.StaffBean beanXX = staff.get(i);
                     if (beanXX.getSelectType()) {
                         if(TextUtils.isEmpty(userIDs)) {
-                            userIDs = beanXX.getUid();
+                            userIDs = beanXX.getUserID();
                         }else {
-                            userIDs = userIDs + "," + beanXX.getUid();
+                            userIDs = userIDs + "," + beanXX.getUserID();
                         }
                     }
                 }
@@ -234,9 +234,9 @@ public class BatchAddStaffActivity extends BaseMvpActivity<BatchAddStaffPresent>
     private void wholeSelect() {
         if(model != null) {
             if(types.equals("1")) {
-                List<ZuzhiJiagouModel.StaffBeanXX> modelStaff = model.getStaff();
+                List<ZuzhiJiagouModel.StaffBean> modelStaff = model.getStaff();
                 for(int i = 0; i < modelStaff.size(); i++) {
-                    ZuzhiJiagouModel.StaffBeanXX beanXX = modelStaff.get(i);
+                    ZuzhiJiagouModel.StaffBean beanXX = modelStaff.get(i);
                     if (!beanXX.getSelectType()) {
                         beanXX.setSelectType(true);
                     }
@@ -245,9 +245,9 @@ public class BatchAddStaffActivity extends BaseMvpActivity<BatchAddStaffPresent>
                 MoveStaffAdapter recycleAdapter = new MoveStaffAdapter(BatchAddStaffActivity.this,model,types,positions,positions2);
                 baRecycleview.setAdapter(recycleAdapter);
             }else if(types.equals("2")) {
-                List<ZuzhiJiagouModel.StaffBeanXX> staff = model.getSons().get(positions).getStaff();
+                List<ZuzhiJiagouModel.StaffBean> staff = model.getSons().get(positions).getStaff();
                 for(int i = 0; i < staff.size(); i++) {
-                    ZuzhiJiagouModel.StaffBeanXX beanXX = staff.get(i);
+                    ZuzhiJiagouModel.StaffBean beanXX = staff.get(i);
                     if (!beanXX.getSelectType()) {
                         beanXX.setSelectType(true);
                     }
@@ -256,9 +256,9 @@ public class BatchAddStaffActivity extends BaseMvpActivity<BatchAddStaffPresent>
                 MoveStaffAdapter recycleAdapter = new MoveStaffAdapter(BatchAddStaffActivity.this,model,types,positions,positions2);
                 baRecycleview.setAdapter(recycleAdapter);
             }else if(types.equals("3")) {
-                List<ZuzhiJiagouModel.StaffBeanXX> staff = model.getSons().get(positions).getSons().get(positions2).getStaff();
+                List<ZuzhiJiagouModel.StaffBean> staff = model.getSons().get(positions).getSons().get(positions2).getStaff();
                 for(int i = 0; i < staff.size(); i++) {
-                    ZuzhiJiagouModel.StaffBeanXX beanXX = staff.get(i);
+                    ZuzhiJiagouModel.StaffBean beanXX = staff.get(i);
                     if (!beanXX.getSelectType()) {
                         beanXX.setSelectType(true);
                     }

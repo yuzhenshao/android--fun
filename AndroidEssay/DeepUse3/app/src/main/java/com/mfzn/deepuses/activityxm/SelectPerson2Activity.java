@@ -66,16 +66,16 @@ public class SelectPerson2Activity extends BaseMvpActivity<SelectPerson2Present>
             llPerEmpty.setVisibility(View.GONE);
         }
 
-        List<ZuzhiJiagouModel.StaffBeanXX> staff = model.getSons().get(positions).getStaff();
+        List<ZuzhiJiagouModel.StaffBean> staff = model.getSons().get(positions).getStaff();
         SelectPerson2Adapter zuzhiPersonalAdapter = new SelectPerson2Adapter(this,staff);
         listview1.setAdapter(zuzhiPersonalAdapter);
 
         listview1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ZuzhiJiagouModel.StaffBeanXX staffBeanX = model.getSons().get(positions).getStaff().get(position);
+                ZuzhiJiagouModel.StaffBean staffBeanX = model.getSons().get(positions).getStaff().get(position);
                 Intent intent = new Intent();
-                intent.putExtra(Constants.SELECT_PERSON_ID, staffBeanX.getUid());
+                intent.putExtra(Constants.SELECT_PERSON_ID, staffBeanX.getUserID());
                 intent.putExtra(Constants.SELECT_PERSON_NAME, staffBeanX.getStaffName());
                 setResult(Constants.SELECT_PERSON,intent);
                 finish();

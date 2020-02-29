@@ -1,6 +1,7 @@
 package com.mfzn.deepuses.net;
 
 
+import com.mfzn.deepuses.bean.request.AddDepartmentRequest;
 import com.mfzn.deepuses.bean.request.ChangePwdRequest;
 import com.mfzn.deepuses.bean.request.ProMemberRequest;
 import com.mfzn.deepuses.bean.request.EditBusinessCardRequest;
@@ -211,11 +212,11 @@ public interface ApiService {
     Flowable<HttpResult> modifyBmName(@Query("token") String token, @Query("uid") String uid, @Field("companyID") String companyID,
                                       @Field("departmentID") String departmentID, @Field("departName") String departName);
 
-    @FormUrlEncoded  //添加子部门
-    @POST("/two.php/api/Company/addDepartment")
-    Flowable<HttpResult> addSonbm(@Query("token") String token, @Query("uid") String uid, @Field("companyID") String companyID,
-                                  @Field("departmentID") String departmentID, @Field("departmentName") String departmentName,
-                                  @Field("departmentManagerID") String departmentManagerID, @Field("departmentLeaderID") String departmentLeaderID);
+//    @FormUrlEncoded  //添加子部门
+//    @POST("/two.php/api/Company/addDepartment")
+//    Flowable<HttpResult> addSonbm(@Query("token") String token, @Query("uid") String uid, @Field("companyID") String companyID,
+//                                  @Field("departmentID") String departmentID, @Field("departmentName") String departmentName,
+//                                  @Field("departmentManagerID") String departmentManagerID, @Field("departmentLeaderID") String departmentLeaderID);
 
     @FormUrlEncoded  //移动员工到对应部门
     @POST("/two.php/api/Company/moveUsers")
@@ -342,28 +343,28 @@ public interface ApiService {
         //获取项目工作台上的数字
     Flowable<HttpResult<ProjectStagingModel>> projectStaging(@Query("token") String token, @Query("uid") String uid, @Query("proID") String proID);
 
-    @GET("/two.php/api/shou_hou/shOrderList")
-        //售后工单列表  0全部  1故障保修  2维护升级
-    Flowable<HttpResult<WorkorderListModel>> workorderList(@Query("token") String token, @Query("uid") String uid,
-                                                           @Query("proID") String proID, @Query("shType") String shType,
-                                                           @Query("per") String per, @Query("page") Integer page,
-                                                           @Query("keyword") String keyword);
+//    @GET("api/after_sale/afterSaleOrderList")
+//        //售后工单列表  0全部  1故障保修  2维护升级
+//    Flowable<HttpResult<WorkorderListModel>> workorderList(@Query("token") String token, @Query("uid") String uid,
+//                                                           @Query("proID") String proID, @Query("shType") String shType,
+//                                                           @Query("per") String per, @Query("page") Integer page,
+//                                                           @Query("keyword") String keyword);
 
     @GET("api/Project/delPro")
         //删除项目
     Flowable<HttpResult> deleteProject(@Query("token") String token, @Query("uid") String uid, @Query("companyID") String companyID,
                                        @Query("proID") String proID);
 
-    @GET("/two.php/api/shou_hou/lookOrder")
+    @GET("api/after_sale/lookOrder")
         //查看工单信息
     Flowable<HttpResult<GongdanShuxingModel>> gongdanShuxing(@Query("token") String token, @Query("uid") String uid, @Query("orderNo") String orderNo);
 
-    @GET("/two.php/api/shou_hou/lookProcess")
+    @GET("api/after_sale/lookProcess")
         //查看处理过程
     Flowable<HttpResult<List<ChuliGuochengModel>>> chuliGuocheng(@Query("token") String token, @Query("uid") String uid, @Query("orderNo") String orderNo);
 
     @FormUrlEncoded  //创建售后工单
-    @POST("/two.php/api/shou_hou/orderCreateSave")
+    @POST("api/after_sale/orderCreateSave")
     Flowable<HttpResult> addWorkorder(@Query("token") String token, @Query("uid") String uid,
                                       @Field("proId") String proId, @Field("shType") String shType,
                                       @Field("contactName") String contactName, @Field("contactPhone") String contactPhone,
@@ -371,13 +372,13 @@ public interface ApiService {
                                       @Field("fileId") String fileId);
 
     @FormUrlEncoded  //受理工单 isAccept 1受理2不受理
-    @POST("/two.php/api/shou_hou/orderAcceptSave")
+    @POST("api/after_sale/orderAcceptSave")
     Flowable<HttpResult> workorderAccept(@Query("token") String token, @Query("uid") String uid,
                                          @Field("orderNo") String orderNo, @Field("isAccept") String isAccept,
                                          @Field("result") String result, @Field("recommendContact") String recommendContact);
 
     @FormUrlEncoded  //编辑售后工单
-    @POST("/two.php/api/shou_hou/orderEditSave")
+    @POST("api/after_sale/orderEditSave")
     Flowable<HttpResult> editWorkorder(@Query("token") String token, @Query("uid") String uid,
                                        @Field("orderNo") String orderNo, @Field("shtype") String shtype,
                                        @Field("contactName") String contactName, @Field("contactPhone") String contactPhone,
@@ -385,31 +386,31 @@ public interface ApiService {
                                        @Field("fileId") String fileId);
 
     @FormUrlEncoded  //取消工单
-    @POST("/two.php/api/shou_hou/cancelOrderSave")
+    @POST("api/after_sale/cancelOrderSave")
     Flowable<HttpResult> cancalAccept(@Query("token") String token, @Query("uid") String uid,
                                       @Field("orderNo") String orderNo, @Field("cancelNote") String cancelNote);
 
     @FormUrlEncoded  //删除售后工单
-    @POST("/two.php/api/shou_hou/delShOrder")
+    @POST("api/after_sale/delShOrder")
     Flowable<HttpResult> deleteWorkorder(@Query("token") String token, @Query("uid") String uid,
                                          @Field("orderNo") String orderNo, @Field("delNote") String delNote);
 
     @FormUrlEncoded  //工单派工
-    @POST("/two.php/api/shou_hou/orderPaiGong")
+    @POST("api/after_sale/orderPaiGong")
     Flowable<HttpResult> workorderDispatch(@Query("token") String token, @Query("uid") String uid,
                                            @Field("proID") String proId, @Field("orderNo") String orderNo, @Field("enginerID") String enginerID,
                                            @Field("name") String name, @Field("phone") String phone,
                                            @Field("note") String note);
 
     @FormUrlEncoded  //工单重新改派
-    @POST("/two.php/api/shou_hou/orderReAssign")
+    @POST("api/after_sale/orderReAssign")
     Flowable<HttpResult> newsDispatch(@Query("token") String token, @Query("uid") String uid,
                                       @Field("orderNo") String orderNo, @Field("enginerID") String enginerID,
                                       @Field("name") String name, @Field("phone") String phone,
                                       @Field("note") String note, @Field("shJobID") String shJobID);
 
     @FormUrlEncoded  //公司售后客服人员列表
-    @POST("/two.php/api/shou_hou/shKfList")
+    @POST("api/after_sale/shKfList")
     Flowable<HttpResult<List<CustomListModel>>> customList(@Query("token") String token, @Query("uid") String uid,
                                                            @Field("companyID") String companyID);
 
@@ -431,23 +432,23 @@ public interface ApiService {
     Flowable<HttpResult> editCustom(@Query("token") String token, @Query("uid") String uid, @Query("kfID") String kfID,
                                     @Query("kfTypeID") String kfTypeID, @Query("name") String name, @Query("phone") String phone);
 
-    @GET("/two.php/api/shou_hou/visitList")
+    @GET("api/after_sale/visitList")
         //查看回访
     Flowable<HttpResult<VisitRrcordModel>> visitRecord(@Query("token") String token, @Query("uid") String uid, @Query("proId") String proId,
                                                        @Query("per") String per, @Query("page") Integer page);
 
     @FormUrlEncoded  //添加回访
-    @POST("/two.php/api/shou_hou/addVisit")
+    @POST("api/after_sale/addVisit")
     Flowable<HttpResult> addReturnVisit(@Query("token") String token, @Query("uid") String uid,
                                         @Field("proId") String proId, @Field("title") String title, @Field("nowDate") String nowDate,
                                         @Field("content") String content, @Field("nextDate") String nextDate);
 
-    @GET("/two.php/api/shou_hou/lookShSet")
+    @GET("api/after_sale/lookShSet")
         //查看售后设置
     Flowable<HttpResult<SettingInfoModel>> settingInfo(@Query("token") String token, @Query("uid") String uid, @Query("proId") String proId);
 
     @FormUrlEncoded  //售后设置
-    @POST("/two.php/api/shou_hou/shSet")
+    @POST("api/after_sale/shSet")
     Flowable<HttpResult> shouhouSetting(@Query("token") String token, @Query("uid") String uid, @Field("proId") String proId,
                                         @Field("qualityTime") String qualityTime, @Field("qualityBegin") String qualityBegin,
                                         @Field("qualityEnd") String qualityEnd, @Field("nextVisitTime") String nextVisitTime,
@@ -456,18 +457,18 @@ public interface ApiService {
                                         @Field("ybEnd") String ybEnd, @Field("ybTime") String ybTime);
 
     @FormUrlEncoded  //维护项目添加
-    @POST("/two.php/api/shou_hou/wbSetAdd")
+    @POST("api/after_sale/wbSetAdd")
     Flowable<HttpResult> addWhProject(@Query("token") String token, @Query("uid") String uid, @Field("proId") String proId,
                                       @Field("title") String title, @Field("nextDate") String nextDate,
                                       @Field("spaceDate") String spaceDate);
 
     @FormUrlEncoded  //维护项目编辑
-    @POST("/two.php/api/shou_hou/wbSetEdit")
+    @POST("api/after_sale/wbSetEdit")
     Flowable<HttpResult> deleteWb(@Query("token") String token, @Query("uid") String uid, @Field("wbId") String wbId,
                                   @Field("title") String title, @Field("nextDate") String nextDate,
                                   @Field("spaceDate") String spaceDate, @Field("idDel") String idDel);
 
-    @GET("/two.php/api/shou_hou/lookAppraise")
+    @GET("api/after_sale/lookAppraise")
         //查看评价
     Flowable<HttpResult<CheckAppraiseModel>> checkAppraise(@Query("token") String token, @Query("uid") String uid, @Query("orderNo") String orderNo);
 
@@ -538,7 +539,7 @@ public interface ApiService {
                                 @Query("uid") String uid,
                                 @Query("msgID") String msgID);
 
-    @GET("/two.php/api/shou_hou/lookReceipt")
+    @GET("api/after_sale/lookReceipt")
         //查看回单信息
     Flowable<HttpResult<ClzGongdanDetailModel>> lookReceipt(@Query("token") String token,
                                                             @Query("uid") String uid,
@@ -757,7 +758,7 @@ public interface ApiService {
 
     @GET("api/user/addEngineer")
     Flowable<HttpResult> addEngineer(@Query("token") String token, @Query("uid") String uid,
-                                    @Query("enginerID") String enginerID, @Query("remark") String remark);
+                                     @Query("enginerID") String enginerID, @Query("remark") String remark);
 
 
     @GET("/api/User/getBusinessCard")
@@ -787,12 +788,20 @@ public interface ApiService {
     @GET("api/Company/getCompanyInfo")
     Flowable<HttpResult<TeamManageModel>> getCompanyInfo(@QueryMap Map<String, Object> map);
 
-    @GET("api/Company/generateCompanyQRCode")//生成公司邀请二维码
+    @GET("api/Company/generateCompanyQRCode")
+//生成公司邀请二维码
     Flowable<HttpResult<ShareCodeModel>> shareCode(@QueryMap Map<String, Object> map);
 
-    @GET("api/Company/getDepartments")//架构列表
+    @GET("api/Company/getDepartments")
+//架构列表
     Flowable<HttpResult<ZuzhiJiagouModel>> getDepartments(@Query("token") String token, @Query("uid") String uid,
-                                                      @Query("companyID") String companyID);
+                                                          @Query("companyID") String companyID);
+
+    @POST("api/Company/addDepartment")
+    Flowable<HttpResult> addDepartment(@Query("token") String token, @Query("uid") String uid, AddDepartmentRequest request);
 
 
+    //售后
+    @GET("api/after_sale/afterSaleOrderList")
+    Flowable<HttpResult<WorkorderListModel>> afterSaleOrderList(@QueryMap Map<String, Object> map);
 }

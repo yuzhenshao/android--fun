@@ -1,11 +1,12 @@
 package com.mfzn.deepuses.present.xmgl;
 
 import com.mfzn.deepuses.activity.xmgl.MyOrderActivity;
-import com.mfzn.deepuses.fragment.xm.ShouhouGongdanFragment;
+import com.mfzn.deepuses.bean.request.AfterSaleOrderListRequest;
 import com.mfzn.deepuses.model.LookQuanxianModel;
 import com.mfzn.deepuses.model.brick.CompanyInfoModel;
 import com.mfzn.deepuses.model.xiangmu.WorkorderListModel;
 import com.mfzn.deepuses.net.ApiHelper;
+import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.utils.UserHelper;
 
@@ -17,7 +18,7 @@ import cn.droidlover.xdroidmvp.net.XApi;
 public class MyOrderPresnet extends XPresent<MyOrderActivity> {
 
     public void workorderList(Integer page) {
-        ApiHelper.getApiService().workorderList(UserHelper.getToken(), UserHelper.getUid(),"","0","10",page,"")
+        ApiServiceManager.afterSaleOrderList(new AfterSaleOrderListRequest(10,page))
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

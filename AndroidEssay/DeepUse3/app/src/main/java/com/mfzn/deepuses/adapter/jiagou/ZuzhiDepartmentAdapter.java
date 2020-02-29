@@ -17,9 +17,9 @@ import butterknife.ButterKnife;
 public class ZuzhiDepartmentAdapter extends BaseAdapter {
 
     private Context mContext;
-    private List<ZuzhiJiagouModel.SonsBeanX> sons;
+    private List<ZuzhiJiagouModel.SonsBean> sons;
 
-    public ZuzhiDepartmentAdapter(Context context, List<ZuzhiJiagouModel.SonsBeanX> sons) {
+    public ZuzhiDepartmentAdapter(Context context, List<ZuzhiJiagouModel.SonsBean> sons) {
         this.mContext = context;
         this.sons = sons;
     }
@@ -51,12 +51,12 @@ public class ZuzhiDepartmentAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        ZuzhiJiagouModel.SonsBeanX sonsBeanX = sons.get(position);
+        ZuzhiJiagouModel.SonsBean sonsBeanX = sons.get(position);
 
         viewHolder.tvBumenName.setText(sonsBeanX.getDepartmentName());
 
         int size = sonsBeanX.getStaff().size();
-        List<ZuzhiJiagouModel.SonsBeanX> sons = sonsBeanX.getSons();
+        List<ZuzhiJiagouModel.SonsBean> sons = sonsBeanX.getSons();
         for(int i = 0; i < sons.size(); i++) {
             int size1 = sons.get(i).getStaff().size();
             size = size + size1;

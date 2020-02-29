@@ -33,9 +33,9 @@ public class MoveStaffAdapter extends RecyclerView.Adapter {
     private OnPhotoItemClickListener mOnPhotoItemClickListener = null;
 
     private String types;
-    private List<ZuzhiJiagouModel.StaffBeanXX> staff;
-    private List<ZuzhiJiagouModel.StaffBeanXX> staff2;
-    private List<ZuzhiJiagouModel.StaffBeanXX> staff3;
+    private List<ZuzhiJiagouModel.StaffBean> staff;
+    private List<ZuzhiJiagouModel.StaffBean> staff2;
+    private List<ZuzhiJiagouModel.StaffBean> staff3;
 
     public MoveStaffAdapter(Context mContext, ZuzhiJiagouModel model, String types, int positions, int positions2) {
         this.context = mContext;
@@ -46,9 +46,9 @@ public class MoveStaffAdapter extends RecyclerView.Adapter {
         switch (types) {
             case "1":
                 staff = new ArrayList<>();
-                List<ZuzhiJiagouModel.StaffBeanXX> modelStaff = model.getStaff();
+                List<ZuzhiJiagouModel.StaffBean> modelStaff = model.getStaff();
                 for (int i = 0; i < modelStaff.size(); i++) {
-                    ZuzhiJiagouModel.StaffBeanXX beanXX = modelStaff.get(i);
+                    ZuzhiJiagouModel.StaffBean beanXX = modelStaff.get(i);
                     if (beanXX.getSelectType()) {
                         staff.add(beanXX);
                     }
@@ -56,9 +56,9 @@ public class MoveStaffAdapter extends RecyclerView.Adapter {
                 break;
             case "2":
                 staff2 = new ArrayList<>();
-                List<ZuzhiJiagouModel.StaffBeanXX> staff = model.getSons().get(positions).getStaff();
+                List<ZuzhiJiagouModel.StaffBean> staff = model.getSons().get(positions).getStaff();
                 for (int i = 0; i < staff.size(); i++) {
-                    ZuzhiJiagouModel.StaffBeanXX beanXX = staff.get(i);
+                    ZuzhiJiagouModel.StaffBean beanXX = staff.get(i);
                     if (beanXX.getSelectType()) {
                         this.staff2.add(beanXX);
                     }
@@ -66,9 +66,9 @@ public class MoveStaffAdapter extends RecyclerView.Adapter {
                 break;
             case "3":
                 staff3 = new ArrayList<>();
-                List<ZuzhiJiagouModel.StaffBeanXX> staff1 = model.getSons().get(positions).getSons().get(positions2).getStaff();
+                List<ZuzhiJiagouModel.StaffBean> staff1 = model.getSons().get(positions).getSons().get(positions2).getStaff();
                 for (int i = 0; i < staff1.size(); i++) {
-                    ZuzhiJiagouModel.StaffBeanXX staff1s = staff1.get(i);
+                    ZuzhiJiagouModel.StaffBean staff1s = staff1.get(i);
                     if (staff1s.getSelectType()) {
                         this.staff3.add(staff1s);
                     }
@@ -91,18 +91,18 @@ public class MoveStaffAdapter extends RecyclerView.Adapter {
 
         switch (types) {
             case "1":
-                ZuzhiJiagouModel.StaffBeanXX staffBeanX = staff.get(position);
-                u_head = staffBeanX.getU_head();
+                ZuzhiJiagouModel.StaffBean staffBeanX = staff.get(position);
+                u_head = staffBeanX.getUserAvatar();
                 name = staffBeanX.getStaffName();
                 break;
             case "2":
-                ZuzhiJiagouModel.StaffBeanXX staffBeanX2 = staff2.get(position);
-                u_head = staffBeanX2.getU_head();
+                ZuzhiJiagouModel.StaffBean staffBeanX2 = staff2.get(position);
+                u_head = staffBeanX2.getUserAvatar();
                 name = staffBeanX2.getStaffName();
                 break;
             case "3":
-                ZuzhiJiagouModel.StaffBeanXX staffBeanX3 = staff3.get(position);
-                u_head = staffBeanX3.getU_head();
+                ZuzhiJiagouModel.StaffBean staffBeanX3 = staff3.get(position);
+                u_head = staffBeanX3.getUserAvatar();
                 name = staffBeanX3.getStaffName();
                 break;
         }

@@ -274,7 +274,7 @@ public class ManageJiagouActivity extends BaseMvpActivity<ManageJiagouPresent> {
                     @Override
                     public void clickRightButton(ModifyBmNameDialog dialog, View view, EditText text) {
                         if(jiagouModel != null) {
-                            getP().addSonbm("0", text.getText().toString().trim());
+                            getP().addDepartment("0", text.getText().toString().trim());
                             dialog.dismiss();
                         }else {
                             ToastUtil.showToast(ManageJiagouActivity.this,"请重新加载");

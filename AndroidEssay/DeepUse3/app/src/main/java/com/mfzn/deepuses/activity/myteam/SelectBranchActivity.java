@@ -33,7 +33,7 @@ public class SelectBranchActivity extends BaseMvpActivity<SelectBranchPresent> {
     @BindView(R.id.serecycleview)
     RecyclerView serecycleview;
 
-    private List<ZuzhiJiagouModel.SonsBeanX> sons;
+    private List<ZuzhiJiagouModel.SonsBean> sons;
 
     @Override
     public int getLayoutId() {
@@ -76,7 +76,7 @@ public class SelectBranchActivity extends BaseMvpActivity<SelectBranchPresent> {
                             name = name + "," + sons.get(i).getDepartmentName();
                         }
                     }
-                    List<ZuzhiJiagouModel.SonsBeanX> sons1 = sons.get(i).getSons();
+                    List<ZuzhiJiagouModel.SonsBean> sons1 = sons.get(i).getSons();
                     for(int i1 = 0; i1 < sons1.size(); i1++) {
                         if(sons1.get(i1).getSelectDe()) {
                             if(TextUtils.isEmpty(sss)) {
@@ -117,7 +117,7 @@ public class SelectBranchActivity extends BaseMvpActivity<SelectBranchPresent> {
                         sons.get(i).setSelectDe(true);
                     }
                 }
-                List<ZuzhiJiagouModel.SonsBeanX> sons1 = this.sons.get(i).getSons();
+                List<ZuzhiJiagouModel.SonsBean> sons1 = this.sons.get(i).getSons();
                 for(int i1 = 0; i1 < sons1.size(); i1++) {
                     int departmentID1 = sons1.get(i1).getDepartmentID();
                     for(int d = 0; d < split.length; d++) {
@@ -146,7 +146,7 @@ public class SelectBranchActivity extends BaseMvpActivity<SelectBranchPresent> {
                         branch.add(departmentName);
                         branchID.add(departmentID);
                     }
-                    List<ZuzhiJiagouModel.SonsBeanX> sons1 = sons.get(i).getSons();
+                    List<ZuzhiJiagouModel.SonsBean> sons1 = sons.get(i).getSons();
                     for(int i1 = 0; i1 < sons1.size(); i1++) {
                         if(sons1.get(i1).getSelectDe()) {
                             String departmentName1 = sons1.get(i1).getDepartmentName() + " X";
@@ -166,14 +166,14 @@ public class SelectBranchActivity extends BaseMvpActivity<SelectBranchPresent> {
 
                         for(int i = 0; i < sons.size(); i++) {
                             if(sons.get(i).getDepartmentID() == branchID.get(position)) {
-                                ZuzhiJiagouModel.SonsBeanX sonsBeanX = sons.get(i);
+                                ZuzhiJiagouModel.SonsBean sonsBeanX = sons.get(i);
                                 sonsBeanX.setSelectDe(false);
                                 break;
                             }
-                            List<ZuzhiJiagouModel.SonsBeanX> sons1 = sons.get(i).getSons();
+                            List<ZuzhiJiagouModel.SonsBean> sons1 = sons.get(i).getSons();
                             for(int i1 = 0; i1 < sons1.size(); i1++) {
                                 if(sons1.get(i1).getDepartmentID()  == branchID.get(position)) {
-                                    ZuzhiJiagouModel.SonsBeanX sonsBean = sons1.get(i1);
+                                    ZuzhiJiagouModel.SonsBean sonsBean = sons1.get(i1);
                                     sonsBean.setSelectDe(false);
                                     break;
                                 }
@@ -196,7 +196,7 @@ public class SelectBranchActivity extends BaseMvpActivity<SelectBranchPresent> {
                 branch.add(departmentName);
                 branchID.add(departmentID);
             }
-            List<ZuzhiJiagouModel.SonsBeanX> sons1 = sons.get(i).getSons();
+            List<ZuzhiJiagouModel.SonsBean> sons1 = sons.get(i).getSons();
             for(int i1 = 0; i1 < sons1.size(); i1++) {
                 if(sons1.get(i1).getSelectDe()) {
                     String departmentName1 = sons1.get(i1).getDepartmentName() + " X";
@@ -216,14 +216,14 @@ public class SelectBranchActivity extends BaseMvpActivity<SelectBranchPresent> {
 
                 for(int i = 0; i < sons.size(); i++) {
                     if(sons.get(i).getDepartmentID() == branchID.get(position)) {
-                        ZuzhiJiagouModel.SonsBeanX sonsBeanX = sons.get(i);
+                        ZuzhiJiagouModel.SonsBean sonsBeanX = sons.get(i);
                         sonsBeanX.setSelectDe(false);
                         break;
                     }
-                    List<ZuzhiJiagouModel.SonsBeanX> sons1 = sons.get(i).getSons();
+                    List<ZuzhiJiagouModel.SonsBean> sons1 = sons.get(i).getSons();
                     for(int i1 = 0; i1 < sons1.size(); i1++) {
                         if(sons1.get(i1).getDepartmentID()  == branchID.get(position)) {
-                            ZuzhiJiagouModel.SonsBeanX sonsBean = sons1.get(i1);
+                            ZuzhiJiagouModel.SonsBean sonsBean = sons1.get(i1);
                             sonsBean.setSelectDe(false);
                             break;
                         }

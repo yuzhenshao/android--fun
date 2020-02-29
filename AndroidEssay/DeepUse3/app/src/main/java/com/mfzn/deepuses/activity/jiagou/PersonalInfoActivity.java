@@ -55,43 +55,43 @@ public class PersonalInfoActivity extends BaseActivity {
         if(type.equals("1")) {
             ZuzhiJiagouModel model = (ZuzhiJiagouModel) intent.getSerializableExtra(Constants.PERSONAL_INFO);
             int extra = intent.getIntExtra(Constants.EDIT_STAFF_POSITION, 0);
-            ZuzhiJiagouModel.StaffBeanXX staffBeanXX = model.getStaff().get(extra);
-            Glide.with(this).load(ApiHelper.BASE_URL + staffBeanXX.getU_head()).into(ivPerIcon);
-            tvPerName.setText(staffBeanXX.getU_name());
+            ZuzhiJiagouModel.StaffBean staffBeanXX = model.getStaff().get(extra);
+            Glide.with(this).load(ApiHelper.BASE_URL + staffBeanXX.getUserAvatar()).into(ivPerIcon);
+            tvPerName.setText(staffBeanXX.getStaffName());
             tvPerTeam.setText(UserHelper.getCompanyName());
             tvPerCompany.setText(staffBeanXX.getStaffName());
-            u_phone = staffBeanXX.getU_phone();
+            u_phone = staffBeanXX.getUserPhone();
             tvPerPhone.setText(u_phone);
             tvPerBumen.setText(model.getDepartmentName());
-            u_uid = staffBeanXX.getUid();
+            u_uid = staffBeanXX.getUserID();
         }else if(type.equals("2")) {
             ZuzhiJiagouModel model = (ZuzhiJiagouModel) intent.getSerializableExtra(Constants.PERSONAL_INFO);
             int extra = intent.getIntExtra(Constants.EDIT_STAFF_POSITION, 0);
             int extra2 = intent.getIntExtra(Constants.EDIT_STAFF_POSITION2, 0);
-            ZuzhiJiagouModel.StaffBeanXX staffBeanX = model.getSons().get(extra).getStaff().get(extra2);
+            ZuzhiJiagouModel.StaffBean staffBeanX = model.getSons().get(extra).getStaff().get(extra2);
 
-            Glide.with(this).load(ApiHelper.BASE_URL + staffBeanX.getU_head()).into(ivPerIcon);
-            tvPerName.setText(staffBeanX.getU_name());
+            Glide.with(this).load(ApiHelper.BASE_URL + staffBeanX.getUserAvatar()).into(ivPerIcon);
+            tvPerName.setText(staffBeanX.getStaffName());
             tvPerTeam.setText(UserHelper.getCompanyName());
             tvPerCompany.setText(staffBeanX.getStaffName());
-            u_phone = staffBeanX.getU_phone();
+            u_phone = staffBeanX.getUserPhone();
             tvPerPhone.setText(u_phone);
             tvPerBumen.setText(model.getSons().get(extra).getDepartmentName());
-            u_uid = staffBeanX.getUid();
+            u_uid = staffBeanX.getUserID();
         }else if(type.equals("3")) {
             ZuzhiJiagouModel model = (ZuzhiJiagouModel) intent.getSerializableExtra(Constants.PERSONAL_INFO);
             int extra = intent.getIntExtra(Constants.EDIT_STAFF_POSITION, 0);
             int extra2 = intent.getIntExtra(Constants.EDIT_STAFF_POSITION2, 0);
             int extra3 = intent.getIntExtra(Constants.EDIT_STAFF_POSITION3, 0);
-            ZuzhiJiagouModel.StaffBeanXX staffBeanX = model.getSons().get(extra).getSons().get(extra2).getStaff().get(extra3);
-            Glide.with(this).load(ApiHelper.BASE_URL + staffBeanX.getU_head()).into(ivPerIcon);
-            tvPerName.setText(staffBeanX.getU_name());
+            ZuzhiJiagouModel.StaffBean staffBeanX = model.getSons().get(extra).getSons().get(extra2).getStaff().get(extra3);
+            Glide.with(this).load(ApiHelper.BASE_URL + staffBeanX.getUserAvatar()).into(ivPerIcon);
+            tvPerName.setText(staffBeanX.getStaffName());
             tvPerTeam.setText(UserHelper.getCompanyName());
             tvPerCompany.setText(staffBeanX.getStaffName());
-            u_phone = staffBeanX.getU_phone();
+            u_phone = staffBeanX.getUserPhone();
             tvPerPhone.setText(u_phone);
             tvPerBumen.setText(model.getSons().get(extra).getSons().get(extra2).getDepartmentName());
-            u_uid = staffBeanX.getUid();
+            u_uid = staffBeanX.getUserID();
         }else if(type.equals("4")) {
             SearchKeywordModel model = (SearchKeywordModel) intent.getSerializableExtra(Constants.PERSONAL_INFO);
             Glide.with(this).load(ApiHelper.BASE_URL + model.getU_head()).into(ivPerIcon);
