@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @author syz @date 2020-02-22
+ * @author yz @date 2020-02-22
  */
 public class BusinessCardResponse implements Serializable {
 
