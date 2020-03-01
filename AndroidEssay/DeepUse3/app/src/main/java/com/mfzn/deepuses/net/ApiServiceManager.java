@@ -1,20 +1,30 @@
 package com.mfzn.deepuses.net;
 
 import com.libcommon.utils.DomainUtil;
+import com.mfzn.deepuses.bean.request.AcceptAsOrderRequest;
+import com.mfzn.deepuses.bean.request.AddCustomRequest;
 import com.mfzn.deepuses.bean.request.AddDepartmentRequest;
 import com.mfzn.deepuses.bean.request.AfterSaleOrderListRequest;
 import com.mfzn.deepuses.bean.request.ChangePwdRequest;
 import com.mfzn.deepuses.bean.request.CompanyInfoRequest;
+import com.mfzn.deepuses.bean.request.CreateAfterSaleOrderRequest;
+import com.mfzn.deepuses.bean.request.EditAsServicePeopleRequest;
+import com.mfzn.deepuses.bean.request.NewsListRequest;
 import com.mfzn.deepuses.bean.request.ProMemberRequest;
 import com.mfzn.deepuses.bean.request.ForgetRequest;
 import com.mfzn.deepuses.bean.request.LoginRequest;
 import com.mfzn.deepuses.bean.request.ProjectListRequest;
 import com.mfzn.deepuses.bean.request.RegisterRequest;
 import com.mfzn.deepuses.bean.response.UserResponse;
+import com.mfzn.deepuses.model.faxian.News;
 import com.mfzn.deepuses.model.jiagou.ShareCodeModel;
 import com.mfzn.deepuses.model.jiagou.ZuzhiJiagouModel;
 import com.mfzn.deepuses.model.myTeam.TeamManageModel;
+import com.mfzn.deepuses.model.xiangmu.ChuliGuochengModel;
+import com.mfzn.deepuses.model.xiangmu.CustomListModel;
+import com.mfzn.deepuses.model.xiangmu.CustomTypeModel;
 import com.mfzn.deepuses.model.xiangmu.EnginerListModel;
+import com.mfzn.deepuses.model.xiangmu.GongdanShuxingModel;
 import com.mfzn.deepuses.model.xiangmu.SelectEnginerModel;
 import com.mfzn.deepuses.model.xiangmu.StagingListModel;
 import com.mfzn.deepuses.model.xiangmu.WorkorderListModel;
@@ -22,14 +32,7 @@ import com.mfzn.deepuses.model.xiangmu.XiangmuModel;
 import com.mfzn.deepuses.utils.UserHelper;
 
 import java.util.List;
-import java.util.Map;
-
 import io.reactivex.Flowable;
-import retrofit2.http.Field;
-import retrofit2.http.GET;
-import retrofit2.http.POST;
-import retrofit2.http.Query;
-import retrofit2.http.QueryMap;
 
 /**
  * @author yz @date 2020-02-27
@@ -68,6 +71,17 @@ public class ApiServiceManager {
     public static Flowable<HttpResult> addEngineer(String enginerID, String remark) {
         return ApiHelper.getApiService().addEngineer(UserHelper.getToken(), UserHelper.getUid(), enginerID, remark);
     }
+
+    public static Flowable<HttpResult> delEngineer(String enginerID) {
+        return ApiHelper.getApiService().delEngineer(UserHelper.getToken(), UserHelper.getUid(), enginerID);
+    }
+
+    //TODO
+    public static Flowable<HttpResult> uploadAvatar(String userAvatar){
+        return ApiHelper.getApiService().uploadAvatar(UserHelper.getToken(), UserHelper.getUid(),userAvatar);
+    }
+
+
 
     //Company
     public static Flowable<HttpResult<TeamManageModel>> getCompanyInfo(CompanyInfoRequest request) {
@@ -108,4 +122,45 @@ public class ApiServiceManager {
     public static Flowable<HttpResult<WorkorderListModel>> afterSaleOrderList(AfterSaleOrderListRequest request) {
         return ApiHelper.getApiService().afterSaleOrderList(DomainUtil.object2Map(request));
     }
+
+    public static Flowable<HttpResult> createAfterSaleOrder(CreateAfterSaleOrderRequest request){
+        return ApiHelper.getApiService().createAfterSaleOrder(UserHelper.getToken(), UserHelper.getUid(), request);
+    }
+
+    public static Flowable<HttpResult<GongdanShuxingModel>> lookAsOrder(String orderNo){
+        return ApiHelper.getApiService().lookAsOrder(UserHelper.getToken(), UserHelper.getUid(), orderNo);
+    }
+
+    public static Flowable<HttpResult<List<ChuliGuochengModel>>> lookAsOrderProcess(String orderNo){
+        return ApiHelper.getApiService().lookAsOrderProcess(UserHelper.getToken(), UserHelper.getUid(), orderNo);
+    }
+
+    public static Flowable<HttpResult<List<CustomListModel>>> asServicePeopleList(){
+        return ApiHelper.getApiService().asServicePeopleList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getCompanyId());
+    }
+
+    public static  Flowable<HttpResult> addCustom(AddCustomRequest request){
+        return ApiHelper.getApiService().addCustom(UserHelper.getToken(), UserHelper.getUid(),request);
+    }
+
+    public static Flowable<HttpResult> delAsServicePeople(String kfID){
+        return ApiHelper.getApiService().delAsServicePeople(UserHelper.getToken(), UserHelper.getUid(),kfID);
+    }
+
+    public static Flowable<HttpResult> editAsServicePeople(EditAsServicePeopleRequest request){
+        return ApiHelper.getApiService().editAsServicePeople(UserHelper.getToken(), UserHelper.getUid(),request);
+    }
+
+    public static Flowable<HttpResult<List<CustomTypeModel>>> getAsServicePeopleTypeList(){
+        return ApiHelper.getApiService().getAsServicePeopleTypeList(UserHelper.getToken(), UserHelper.getUid());
+    }
+
+    public static  Flowable<HttpResult> acceptAsOrder( AcceptAsOrderRequest request){
+        return ApiHelper.getApiService().acceptAsOrder(UserHelper.getToken(), UserHelper.getUid(),request);
+    }
+
+    public static Flowable<HttpResult<News>> newsList(NewsListRequest request){
+        return ApiHelper.getApiService().newsList(DomainUtil.object2Map(request));
+    }
+
 }

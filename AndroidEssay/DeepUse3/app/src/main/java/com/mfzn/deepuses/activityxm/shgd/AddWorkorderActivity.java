@@ -26,6 +26,7 @@ import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.activitymy.WebviewX5Activity;
 import com.mfzn.deepuses.adapter.xiangmu.AddPhotoAdapter;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
+import com.mfzn.deepuses.bean.request.CreateAfterSaleOrderRequest;
 import com.mfzn.deepuses.model.UploadContractModel;
 import com.mfzn.deepuses.model.xiangmu.XiangmuModel;
 import com.mfzn.deepuses.present.xmgd.AddWorkorderPresent;
@@ -300,7 +301,15 @@ public class AddWorkorderActivity extends BaseMvpActivity<AddWorkorderPresent> {
             String startTime = etOrTime.getText().toString().trim();
             String ms = etOrMs.getText().toString().trim();
 
-            getP().addWorkorder(pro_id,shType,lxr,phone,startTime,ms,res.getFileID());
+            CreateAfterSaleOrderRequest request=new CreateAfterSaleOrderRequest();
+            request.setProID(pro_id);
+            request.setAsType(shType);
+            request.setContactName(lxr);
+            request.setContactPhone(phone);
+            request.setWishTime(startTime);
+            request.setContent(ms);
+            request.setFileUrls(res.getFileID());
+            getP().addWorkorder(request);
 //            recycleAdapter.notifyDataSetChanged();
 //
 //            ToastUtil.showToast(this,"图片上传成功");

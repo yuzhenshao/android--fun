@@ -1,12 +1,10 @@
 package com.mfzn.deepuses.present.foundxm;
 
-import com.mfzn.deepuses.activityxm.FoundProjectActivity;
 import com.mfzn.deepuses.activityxm.shgd.WorkorderAcceptActivity;
+import com.mfzn.deepuses.bean.request.AcceptAsOrderRequest;
 import com.mfzn.deepuses.model.xiangmu.CustomListModel;
-import com.mfzn.deepuses.model.xiangmu.FoundProjectModel;
-import com.mfzn.deepuses.net.ApiHelper;
+import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
-import com.mfzn.deepuses.utils.UserHelper;
 
 import java.util.List;
 
@@ -17,8 +15,8 @@ import cn.droidlover.xdroidmvp.net.XApi;
 
 public class WorkorderAcceptPresnet extends XPresent<WorkorderAcceptActivity> {
 
-    public void workorderAccept(String orderNo,String isAccept,String result,String recommendContact) {
-        ApiHelper.getApiService().workorderAccept(UserHelper.getToken(), UserHelper.getUid(),orderNo,isAccept,result,recommendContact)
+    public void workorderAccept(String orderNo, int isAccept, String result, String recommendContact) {
+        ApiServiceManager.acceptAsOrder(new AcceptAsOrderRequest(orderNo, isAccept, result, recommendContact))
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())
@@ -36,7 +34,7 @@ public class WorkorderAcceptPresnet extends XPresent<WorkorderAcceptActivity> {
     }
 
     public void customList() {
-        ApiHelper.getApiService().customList(UserHelper.getToken(), UserHelper.getUid(),UserHelper.getCompanyId())
+        ApiServiceManager.asServicePeopleList()
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

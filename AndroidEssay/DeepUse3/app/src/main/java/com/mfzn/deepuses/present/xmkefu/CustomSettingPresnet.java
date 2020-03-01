@@ -1,11 +1,9 @@
 package com.mfzn.deepuses.present.xmkefu;
 
-import com.mfzn.deepuses.activityxm.kf.AddCustomActivity;
 import com.mfzn.deepuses.activityxm.kf.CustomSettingActivity;
 import com.mfzn.deepuses.model.xiangmu.CustomListModel;
-import com.mfzn.deepuses.net.ApiHelper;
+import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
-import com.mfzn.deepuses.utils.UserHelper;
 
 import java.util.List;
 
@@ -17,7 +15,7 @@ import cn.droidlover.xdroidmvp.net.XApi;
 public class CustomSettingPresnet extends XPresent<CustomSettingActivity> {
 
     public void customList() {
-        ApiHelper.getApiService().customList(UserHelper.getToken(), UserHelper.getUid(),UserHelper.getCompanyId())
+        ApiServiceManager.asServicePeopleList()
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())
@@ -35,7 +33,7 @@ public class CustomSettingPresnet extends XPresent<CustomSettingActivity> {
     }
 
     public void deleteCustom(String kfID) {
-        ApiHelper.getApiService().deleteCustom(UserHelper.getToken(), UserHelper.getUid(),kfID)
+        ApiServiceManager.delAsServicePeople(kfID)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

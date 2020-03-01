@@ -6,9 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.github.ielse.imagewatcher.ImageWatcherHelper;
@@ -19,7 +17,6 @@ import com.mfzn.deepuses.adapter.GlideSimpleLoader;
 import com.mfzn.deepuses.adapter.xiangmu.ShouliPhotoAdapter;
 import com.mfzn.deepuses.bass.BaseMvpFragment;
 import com.mfzn.deepuses.model.xiangmu.GongdanShuxingModel;
-import com.mfzn.deepuses.model.xiangmu.WorkorderListModel;
 import com.mfzn.deepuses.net.ApiHelper;
 import com.mfzn.deepuses.present.fragment.GongdanFuwuPresnet;
 import com.mfzn.deepuses.utils.Constants;
@@ -30,9 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 public class GongdanFuwuFragment extends BaseMvpFragment<GongdanFuwuPresnet> {
 
@@ -95,9 +90,9 @@ public class GongdanFuwuFragment extends BaseMvpFragment<GongdanFuwuPresnet> {
 
     public void gongdanShuxingSuccess(GongdanShuxingModel model) {
 
-        tvserGcs.setText(model.getEnginerInfo().getU_name());
-        tvserGcs.setText(model.getEnginerInfo().getU_name());
-        u_phone = model.getEnginerInfo().getU_phone();
+        tvserGcs.setText(model.getEnginerInfo().getUserName());
+        tvserGcs.setText(model.getEnginerInfo().getUserName());
+        u_phone = model.getEnginerInfo().getUserPhone();
         tvserGcsphone.setText(u_phone);
         tvserRemarks.setText(model.getEnginerInfo().getNote());
 

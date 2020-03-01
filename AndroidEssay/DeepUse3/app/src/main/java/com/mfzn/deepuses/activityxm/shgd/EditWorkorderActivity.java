@@ -4,8 +4,6 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.provider.MediaStore;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -22,15 +20,11 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
-import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
-import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
-import com.bigkoo.pickerview.view.TimePickerView;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.activitymy.WebviewX5Activity;
 import com.mfzn.deepuses.adapter.xiangmu.AddPhotoAdapter;
-import com.mfzn.deepuses.adapter.xiangmu.ShouliPhotoAdapter;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
 import com.mfzn.deepuses.model.UploadContractModel;
 import com.mfzn.deepuses.model.xiangmu.GongdanShuxingModel;
@@ -39,9 +33,7 @@ import com.mfzn.deepuses.present.xmgd.EditWorkorderPresent;
 import com.mfzn.deepuses.utils.Bimp;
 import com.mfzn.deepuses.utils.BitmapFileSetting;
 import com.mfzn.deepuses.utils.Constants;
-import com.mfzn.deepuses.utils.DateUtils;
 import com.mfzn.deepuses.utils.EventMsg;
-import com.mfzn.deepuses.utils.FileUtils;
 import com.mfzn.deepuses.utils.ImageCompressUtil;
 import com.mfzn.deepuses.utils.PhotographDialog;
 import com.mfzn.deepuses.utils.RxBus;
@@ -51,7 +43,6 @@ import com.mfzn.deepuses.utils.YuyueTimeUtils;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -274,7 +265,7 @@ public class EditWorkorderActivity extends BaseMvpActivity<EditWorkorderPresent>
         tveditPhone.setText(model.getCustomTel());
         tveditAddress.setText(model.getAddress());
 
-        shType = model.getShType() + "";
+        shType = model.getAsType() + "";
 
         if(shType.equals("1")) {
             eteditType.setText("故障报修");

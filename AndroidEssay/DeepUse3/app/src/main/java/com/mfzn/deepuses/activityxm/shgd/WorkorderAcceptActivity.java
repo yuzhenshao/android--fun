@@ -119,7 +119,7 @@ public class WorkorderAcceptActivity extends BaseMvpActivity<WorkorderAcceptPres
 //                        }
 //                    }
 //                }
-                getP().workorderAccept(orderNo,iftype + "",ifcontent,lxrID);
+                getP().workorderAccept(orderNo,iftype ,ifcontent,lxrID);
                 break;
         }
     }

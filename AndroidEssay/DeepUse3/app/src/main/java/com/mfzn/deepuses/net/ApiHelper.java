@@ -10,7 +10,6 @@ import cn.droidlover.xdroidmvp.net.XApi;
  */
 public class ApiHelper {
 
-    //    public static final String BASE_URL = "https://du.itsurfing.cn";
     public static final String BASE_URL = "https://api.useyzs.com/";
 
     private static ApiService apiService;

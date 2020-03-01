@@ -3,68 +3,16 @@ package com.mfzn.deepuses.model.xiangmu;
 import java.util.List;
 
 public class GongdanShuxingModel {
-
-
-    /**
-     * orderNo : yzs2019112200000
-     * shType : 1
-     * proId : 1008
-     * isUnderWarranty : 无
-     * status : 3
-     * createUserId : 834
-     * contactName : 123
-     * contactPhone : 13312345678
-     * wishTime : 2019/11/22 8:00-9:00
-     * content : 456
-     * fileId :
-     * isAccept : 1
-     * result : 受理
-     * recommendContact :
-     * isCancel : 0
-     * cancelNote :
-     * addTime : 1574382695
-     * updateTime : 1574501817
-     * updateUserId : 340
-     * is_del : 0
-     * orderNum : 0
-     * isPay : 1
-     * couponNumber : 0
-     * sumPrice : 0
-     * realPrice : 0
-     * payTime : 0
-     * backTime : 0
-     * addUserID : 340
-     * serviceType :
-     * serviceTime :
-     * shTypeName : 故障报修
-     * statusTypeName : 待接单
-     * u_name : Gavin
-     * detailAddress : 人民西路3号瑞森工厂集成店
-     * companyID : 206
-     * address :
-     * latitude : 31.727863
-     * longitude : 119.915991
-     * pro_name : 橘子洲头
-     * customName : 王二
-     * customTel : 18862237817
-     * fileInfo : []
-     * qualityIsGB : 0
-     * ybIsGB : 0
-     * shouLiRen : {"u_name":"许海豹","data_id":340,"data_en_id":"phv1QBUP5"}
-     * enginerInfo : {"enginerID":900,"u_name":"苹果","u_head":"/uploads/u_head/900/20191119/5e19cdda7989b321c7f4516e944146a5.jpg","u_phone":"15012345678","note":"Ghh "}
-     */
-
     private String orderNo;
-    private int shType;
-    private int proId;
+    private int asType;
+    private int proID;
     private String isUnderWarranty;
     private int status;
-    private int createUserId;
+    private int createUserID;
     private String contactName;
     private String contactPhone;
     private String wishTime;
     private String content;
-    private String fileId;
     private int isAccept;
     private String result;
     private String recommendContact;
@@ -73,10 +21,9 @@ public class GongdanShuxingModel {
     private int addTime;
     private int updateTime;
     private int updateUserId;
-    private int is_del;
+    private int isDel;
     private int orderNum;
     private int isPay;
-    private int couponNumber;
     private int sumPrice;
     private int realPrice;
     private int payTime;
@@ -86,20 +33,22 @@ public class GongdanShuxingModel {
     private String serviceTime;
     private String shTypeName;
     private String statusTypeName;
-    private String u_name;
+    private String userName;
     private String detailAddress;
     private int companyID;
     private String address;
     private double latitude;
     private double longitude;
-    private String pro_name;
+    private String proName;
+    //
     private String customName;
     private String customTel;
+    //
     private int qualityIsGB;
     private int ybIsGB;
-    private ShouLiRenBean shouLiRen;
     private EnginerInfoBean enginerInfo;
-    private List<FileInfoBean> fileInfo;
+    private List<FileInfoBean> fileUrls;
+    private List<CustomersInfo> customersInfo;
 
     public String getOrderNo() {
         return orderNo;
@@ -109,20 +58,22 @@ public class GongdanShuxingModel {
         this.orderNo = orderNo;
     }
 
-    public int getShType() {
-        return shType;
+
+    public int getAsType() {
+        return asType;
     }
 
-    public void setShType(int shType) {
-        this.shType = shType;
+    public void setAsType(int asType) {
+        this.asType = asType;
     }
+
 
     public int getProId() {
-        return proId;
+        return proID;
     }
 
-    public void setProId(int proId) {
-        this.proId = proId;
+    public void setProId(int proID) {
+        this.proID = proID;
     }
 
     public String getIsUnderWarranty() {
@@ -142,11 +93,11 @@ public class GongdanShuxingModel {
     }
 
     public int getCreateUserId() {
-        return createUserId;
+        return createUserID;
     }
 
     public void setCreateUserId(int createUserId) {
-        this.createUserId = createUserId;
+        this.createUserID = createUserId;
     }
 
     public String getContactName() {
@@ -179,14 +130,6 @@ public class GongdanShuxingModel {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public String getFileId() {
-        return fileId;
-    }
-
-    public void setFileId(String fileId) {
-        this.fileId = fileId;
     }
 
     public int getIsAccept() {
@@ -253,13 +196,6 @@ public class GongdanShuxingModel {
         this.updateUserId = updateUserId;
     }
 
-    public int getIs_del() {
-        return is_del;
-    }
-
-    public void setIs_del(int is_del) {
-        this.is_del = is_del;
-    }
 
     public int getOrderNum() {
         return orderNum;
@@ -275,14 +211,6 @@ public class GongdanShuxingModel {
 
     public void setIsPay(int isPay) {
         this.isPay = isPay;
-    }
-
-    public int getCouponNumber() {
-        return couponNumber;
-    }
-
-    public void setCouponNumber(int couponNumber) {
-        this.couponNumber = couponNumber;
     }
 
     public int getSumPrice() {
@@ -357,14 +285,6 @@ public class GongdanShuxingModel {
         this.statusTypeName = statusTypeName;
     }
 
-    public String getU_name() {
-        return u_name;
-    }
-
-    public void setU_name(String u_name) {
-        this.u_name = u_name;
-    }
-
     public String getDetailAddress() {
         return detailAddress;
     }
@@ -387,30 +307,6 @@ public class GongdanShuxingModel {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
-    public String getPro_name() {
-        return pro_name;
-    }
-
-    public void setPro_name(String pro_name) {
-        this.pro_name = pro_name;
     }
 
     public String getCustomName() {
@@ -445,14 +341,6 @@ public class GongdanShuxingModel {
         this.ybIsGB = ybIsGB;
     }
 
-    public ShouLiRenBean getShouLiRen() {
-        return shouLiRen;
-    }
-
-    public void setShouLiRen(ShouLiRenBean shouLiRen) {
-        this.shouLiRen = shouLiRen;
-    }
-
     public EnginerInfoBean getEnginerInfo() {
         return enginerInfo;
     }
@@ -462,11 +350,59 @@ public class GongdanShuxingModel {
     }
 
     public List<FileInfoBean> getFileInfo() {
-        return fileInfo;
+        return fileUrls;
     }
 
     public void setFileInfo(List<FileInfoBean> fileInfo) {
-        this.fileInfo = fileInfo;
+        this.fileUrls = fileInfo;
+    }
+
+    public List<CustomersInfo> getCustomersInfo() {
+        return customersInfo;
+    }
+
+    public void setCustomersInfo(List<CustomersInfo> customersInfo) {
+        this.customersInfo = customersInfo;
+    }
+
+    public int getIsDel() {
+        return isDel;
+    }
+
+    public void setIsDel(int isDel) {
+        this.isDel = isDel;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getProName() {
+        return proName;
+    }
+
+    public void setProName(String proName) {
+        this.proName = proName;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 
     public static class FileInfoBean {
@@ -595,87 +531,44 @@ public class GongdanShuxingModel {
         }
     }
 
-    public static class ShouLiRenBean {
-        /**
-         * u_name : 许海豹
-         * data_id : 340
-         * data_en_id : phv1QBUP5
-         */
-
-        private String u_name;
-        private int data_id;
-        private String data_en_id;
-
-        public String getU_name() {
-            return u_name;
-        }
-
-        public void setU_name(String u_name) {
-            this.u_name = u_name;
-        }
-
-        public int getData_id() {
-            return data_id;
-        }
-
-        public void setData_id(int data_id) {
-            this.data_id = data_id;
-        }
-
-        public String getData_en_id() {
-            return data_en_id;
-        }
-
-        public void setData_en_id(String data_en_id) {
-            this.data_en_id = data_en_id;
-        }
-    }
-
     public static class EnginerInfoBean {
-        /**
-         * enginerID : 900
-         * u_name : 苹果
-         * u_head : /uploads/u_head/900/20191119/5e19cdda7989b321c7f4516e944146a5.jpg
-         * u_phone : 15012345678
-         * note : Ghh
-         */
 
-        private int enginerID;
-        private String u_name;
-        private String u_head;
-        private String u_phone;
+        private int engineerID;
+        private String userName;
+        private String userAvatar;
+        private String userPhone;
         private String note;
 
-        public int getEnginerID() {
-            return enginerID;
+        public int getEngineerID() {
+            return engineerID;
         }
 
-        public void setEnginerID(int enginerID) {
-            this.enginerID = enginerID;
+        public void setEngineerID(int engineerID) {
+            this.engineerID = engineerID;
         }
 
-        public String getU_name() {
-            return u_name;
+        public String getUserName() {
+            return userName;
         }
 
-        public void setU_name(String u_name) {
-            this.u_name = u_name;
+        public void setUserName(String userName) {
+            this.userName = userName;
         }
 
-        public String getU_head() {
-            return u_head;
+        public String getUserAvatar() {
+            return userAvatar;
         }
 
-        public void setU_head(String u_head) {
-            this.u_head = u_head;
+        public void setUserAvatar(String userAvatar) {
+            this.userAvatar = userAvatar;
         }
 
-        public String getU_phone() {
-            return u_phone;
+        public String getUserPhone() {
+            return userPhone;
         }
 
-        public void setU_phone(String u_phone) {
-            this.u_phone = u_phone;
+        public void setUserPhone(String userPhone) {
+            this.userPhone = userPhone;
         }
 
         public String getNote() {
@@ -684,6 +577,144 @@ public class GongdanShuxingModel {
 
         public void setNote(String note) {
             this.note = note;
+        }
+
+    }
+
+    public static class CustomersInfo {
+
+        /**
+         * companyCustomerID : 3
+         * customerID : 5
+         * customerAvatar :
+         * customerName : 张三
+         * customerPhone : 15300000002
+         * note :
+         * addTime : 1578409852
+         * followStatusID : 0
+         * followStatusName :
+         * customerLevelID : 0
+         * levelName :
+         * customerSourceID : 0
+         * customerSourceName :
+         */
+
+        private int companyCustomerID;
+        private int customerID;
+        private String customerAvatar;
+        private String customerName;
+        private String customerPhone;
+        private String note;
+        private String addTime;
+        private int followStatusID;
+        private String followStatusName;
+        private int customerLevelID;
+        private String levelName;
+        private int customerSourceID;
+        private String customerSourceName;
+
+        public int getCompanyCustomerID() {
+            return companyCustomerID;
+        }
+
+        public void setCompanyCustomerID(int companyCustomerID) {
+            this.companyCustomerID = companyCustomerID;
+        }
+
+        public int getCustomerID() {
+            return customerID;
+        }
+
+        public void setCustomerID(int customerID) {
+            this.customerID = customerID;
+        }
+
+        public String getCustomerAvatar() {
+            return customerAvatar;
+        }
+
+        public void setCustomerAvatar(String customerAvatar) {
+            this.customerAvatar = customerAvatar;
+        }
+
+        public String getCustomerName() {
+            return customerName;
+        }
+
+        public void setCustomerName(String customerName) {
+            this.customerName = customerName;
+        }
+
+        public String getCustomerPhone() {
+            return customerPhone;
+        }
+
+        public void setCustomerPhone(String customerPhone) {
+            this.customerPhone = customerPhone;
+        }
+
+        public String getNote() {
+            return note;
+        }
+
+        public void setNote(String note) {
+            this.note = note;
+        }
+
+        public String getAddTime() {
+            return addTime;
+        }
+
+        public void setAddTime(String addTime) {
+            this.addTime = addTime;
+        }
+
+        public int getFollowStatusID() {
+            return followStatusID;
+        }
+
+        public void setFollowStatusID(int followStatusID) {
+            this.followStatusID = followStatusID;
+        }
+
+        public String getFollowStatusName() {
+            return followStatusName;
+        }
+
+        public void setFollowStatusName(String followStatusName) {
+            this.followStatusName = followStatusName;
+        }
+
+        public int getCustomerLevelID() {
+            return customerLevelID;
+        }
+
+        public void setCustomerLevelID(int customerLevelID) {
+            this.customerLevelID = customerLevelID;
+        }
+
+        public String getLevelName() {
+            return levelName;
+        }
+
+        public void setLevelName(String levelName) {
+            this.levelName = levelName;
+        }
+
+        public int getCustomerSourceID() {
+            return customerSourceID;
+        }
+
+        public void setCustomerSourceID(int customerSourceID) {
+            this.customerSourceID = customerSourceID;
+        }
+
+        public String getCustomerSourceName() {
+            return customerSourceName;
+        }
+
+        public void setCustomerSourceName(String customerSourceName) {
+            this.customerSourceName = customerSourceName;
         }
     }
 }
