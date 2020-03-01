@@ -2,8 +2,6 @@ package com.mfzn.deepuses.bean.request;
 
 import com.mfzn.deepuses.utils.UserHelper;
 
-import retrofit2.http.Query;
-
 /**
  * @author yz @date 2020-02-29
  */
@@ -15,16 +13,6 @@ public class AfterSaleOrderListRequest {
     private String keywords;
     private int per;
     private int page;
-
-//    @Query("proID") String proID, @Query("shType") String shType,
-//    @Query("per") String per, @Query("page") Integer page,
-//    @Query("keyword") String keyword
-
-
-    public AfterSaleOrderListRequest(){
-        this.uid=UserHelper.getUid();
-        this.token=UserHelper.getToken();
-    }
 
     public AfterSaleOrderListRequest(int per,int page){
         this.uid=UserHelper.getUid();
