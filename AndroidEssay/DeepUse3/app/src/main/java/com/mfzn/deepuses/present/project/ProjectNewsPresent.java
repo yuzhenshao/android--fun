@@ -1,10 +1,8 @@
 package com.mfzn.deepuses.present.project;
 
-import com.mfzn.deepuses.activity.project.ProjectManageActivity;
 import com.mfzn.deepuses.activity.project.ProjectNewsActivity;
 import com.mfzn.deepuses.model.xiangmu.ProjectNewsModel;
-import com.mfzn.deepuses.model.xiangmu.XiangmuModel;
-import com.mfzn.deepuses.net.ApiHelper;
+import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.utils.UserHelper;
 
@@ -15,8 +13,8 @@ import cn.droidlover.xdroidmvp.net.XApi;
 
 public class ProjectNewsPresent extends XPresent<ProjectNewsActivity> {
 
-    public void projectNews(String proID,Integer page) {
-        ApiHelper.getApiService().projectNews(UserHelper.getToken(), UserHelper.getUid(),UserHelper.getCompanyId(),proID,"10",page)
+    public void projectNews(String proID, Integer page) {
+        ApiServiceManager.appliesList(UserHelper.getCompanyId(), proID, 10, page)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())
@@ -33,8 +31,8 @@ public class ProjectNewsPresent extends XPresent<ProjectNewsActivity> {
                 });
     }
 
-    public void joinProject(String applyID,String status,String checkRemark) {
-        ApiHelper.getApiService().joinProject(UserHelper.getToken(), UserHelper.getUid(),applyID,status,checkRemark)
+    public void joinProject(String applyID, String status, String checkRemark) {
+        ApiServiceManager.doApplyCheck(applyID, status, checkRemark)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

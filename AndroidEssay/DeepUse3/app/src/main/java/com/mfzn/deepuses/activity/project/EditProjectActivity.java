@@ -27,6 +27,7 @@ import com.mfzn.deepuses.activityxm.ProjectLevelActivity;
 import com.mfzn.deepuses.activityxm.SelectPersonActivity;
 import com.mfzn.deepuses.adapter.khgl.EditCustomerAdapter;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
+import com.mfzn.deepuses.bean.request.EditProjectRequest;
 import com.mfzn.deepuses.model.xiangmu.XiangmuModel;
 import com.mfzn.deepuses.present.foundxm.EditProjectPresnet;
 import com.mfzn.deepuses.utils.Constants;
@@ -45,6 +46,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.reactivex.functions.Consumer;
+import retrofit2.http.Query;
 
 public class EditProjectActivity extends BaseMvpActivity<EditProjectPresnet> {
 
@@ -89,7 +91,7 @@ public class EditProjectActivity extends BaseMvpActivity<EditProjectPresnet> {
 
     private TimePickerView pvTime;
 
-    private String pro_uid;
+    private String proId;
     private int zbType = 0;// 1不提醒 1提醒
     private List<XiangmuModel.DataBean.CustomersBean> customers;
     private EditCustomerAdapter recycleAdapter;
@@ -123,7 +125,7 @@ public class EditProjectActivity extends BaseMvpActivity<EditProjectPresnet> {
 
         XiangmuModel.DataBean dataBean = (XiangmuModel.DataBean) getIntent().getSerializableExtra(Constants.WORK_ORDER);
 
-        pro_uid = dataBean.getData_id() + "";
+        proId = dataBean.getData_id() + "";
 
         etEditProname.setText(dataBean.getProName());
         etEditAddress.setText(dataBean.getAreaName());
@@ -302,7 +304,21 @@ public class EditProjectActivity extends BaseMvpActivity<EditProjectPresnet> {
             }
         }
 
-        getP().editProject(pro_uid,proname,latitude,longitude,details,gwID,money,levelID,address,zbqx,start2,end2,zbType + "",sss);
+        EditProjectRequest request=new EditProjectRequest();
+        request.setProID(proId);
+        request.setProName(proname);
+        request.setLatitude(latitude);
+        request.setLongitude(longitude);
+        request.setDetailAddress(details);
+        request.setSalesPersonUserID(gwID);
+        request.setContractMoney(money);
+        request.setAreaName(address);
+        request.setQualityTime(zbqx);
+        request.setQualityBegin(start2);
+        request.setQualityEnd(end2);
+        request.setQualityRing(zbType);
+        request.setCustomerIDs(sss);
+        getP().editProject(request);
     }
 
     public void editProjectSuccess() {

@@ -2,10 +2,8 @@ package com.mfzn.deepuses.present.my;
 
 
 import com.mfzn.deepuses.activitymy.setting.ReplacePhone2Activity;
-import com.mfzn.deepuses.net.ApiHelper;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
-import com.mfzn.deepuses.utils.UserHelper;
 
 import cn.droidlover.xdroidmvp.mvp.XPresent;
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
@@ -39,9 +37,9 @@ public class ReplacePhoneCodePresent extends XPresent<ReplacePhone2Activity> {
                 });
     }
 
-    public void modifyPhone(String nowPwd, String u_phone, String smscode) {
+    public void modifyPhone(String userPhone, String smscode) {
         getV().showDialog();
-        ApiHelper.getApiService().appModifyPhone(UserHelper.getToken(), UserHelper.getUid(),nowPwd, u_phone,smscode)
+        ApiServiceManager.appModifyPhone(userPhone, smscode)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

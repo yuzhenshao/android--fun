@@ -11,11 +11,14 @@ import android.widget.TextView;
 
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
+import com.mfzn.deepuses.bean.request.UpdateManagerRequest;
 import com.mfzn.deepuses.model.myTeam.ManageSettingModel;
+import com.mfzn.deepuses.net.ApiHelper;
 import com.mfzn.deepuses.present.myteam.AuthoritySettingPresent;
 import com.mfzn.deepuses.present.myteam.ManageSettingPresent;
 import com.mfzn.deepuses.utils.Constants;
 import com.mfzn.deepuses.utils.ToastUtil;
+import com.mfzn.deepuses.utils.UserHelper;
 
 import java.io.Serializable;
 import java.util.List;
@@ -23,6 +26,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.http.Field;
 
 public class AuthoritySettingActivity extends BaseMvpActivity<AuthoritySettingPresent> {
 
@@ -71,7 +75,7 @@ public class AuthoritySettingActivity extends BaseMvpActivity<AuthoritySettingPr
         tvBassTitle.setText(getString(R.string.app_authority_set));
 
         model = (ManageSettingModel) getIntent().getSerializableExtra(Constants.QX_SET_MODEL);
-        cjxm = model.getAuthCreate();
+        cjxm = model.getProCreateAuth();
         if(cjxm == 0) {
             ivAuthXmcj.setImageResource(R.mipmap.shou_close);
         }else if(cjxm == 1){

@@ -12,6 +12,7 @@ import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.adapter.xiangmu.EnginerListAdapter;
 import com.mfzn.deepuses.bass.BaseActivity;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
+import com.mfzn.deepuses.bean.request.SendAsOrderRequest;
 import com.mfzn.deepuses.model.xiangmu.EnginerListModel;
 import com.mfzn.deepuses.present.xmgd.EnginerListPresent;
 import com.mfzn.deepuses.present.xmgd.WorkorderDispatchPresent;
@@ -69,20 +70,27 @@ public class WorkorderDispatchActivity extends BaseMvpActivity<WorkorderDispatch
                 finish();
                 break;
             case R.id.et_dis_gcs:
-                startActivityForResult(new Intent(this, EnginerListActivity.class),Constants.ENGINER_LIST);
+                startActivityForResult(new Intent(this, EnginerListActivity.class), Constants.ENGINER_LIST);
                 break;
             case R.id.but_dis_commit:
                 String gcs = etDisGcs.getText().toString().trim();
-                if(TextUtils.isEmpty(gcs)) {
-                    ToastUtil.showToast(this,"请选择工程师");
+                if (TextUtils.isEmpty(gcs)) {
+                    ToastUtil.showToast(this, "请选择工程师");
                     return;
                 }
                 String res = etDisRemarks.getText().toString().trim();
-                if(TextUtils.isEmpty(res)) {
-                    ToastUtil.showToast(this,"请输入备注");
+                if (TextUtils.isEmpty(res)) {
+                    ToastUtil.showToast(this, "请输入备注");
                     return;
                 }
-                getP().workorderDispatch(proId,orderNo,enginerID,name,phone,res);
+                SendAsOrderRequest request = new SendAsOrderRequest();
+                request.setProID(proId);
+                request.setOrderNo(orderNo);
+                request.setEngineerID(enginerID);
+                request.setName(name);
+                request.setPhone(phone);
+                request.setNote(res);
+                getP().workorderDispatch(request);
                 break;
         }
     }
@@ -102,7 +110,7 @@ public class WorkorderDispatchActivity extends BaseMvpActivity<WorkorderDispatch
     }
 
     public void workorderDispatchSuccess() {
-        ToastUtil.showToast(this,"派工成功");
+        ToastUtil.showToast(this, "派工成功");
         EventMsg eventMsg = new EventMsg();
         eventMsg.setMsg(Constants.GONGDAN);
         RxBus.getInstance().post(eventMsg);

@@ -4,6 +4,7 @@ import com.mfzn.deepuses.activitymy.setting.PersonInfoActivity;
 import com.mfzn.deepuses.model.my.UserInfoModel;
 import com.mfzn.deepuses.model.my.UserUploadModel;
 import com.mfzn.deepuses.net.ApiHelper;
+import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.net.UploadApi;
 import com.mfzn.deepuses.utils.UserHelper;
@@ -50,9 +51,9 @@ public class UserInfoPresent extends XPresent<PersonInfoActivity> {
     }
 
     //用户信息
-    public void modifyName(String u_name) {
+    public void modifyName(String userName) {
 //        getV().showDialog();
-        ApiHelper.getApiService().appModifyName(UserHelper.getToken(), UserHelper.getUid(),u_name)
+        ApiServiceManager.appModifyName(userName)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

@@ -1,10 +1,9 @@
 package com.mfzn.deepuses.present.myteam;
 
 import com.mfzn.deepuses.activity.myteam.ManageSettingActivity;
-import com.mfzn.deepuses.activity.myteam.TeamManageActivity;
 import com.mfzn.deepuses.model.myTeam.ManageSettingModel;
-import com.mfzn.deepuses.model.myTeam.TeamManageModel;
 import com.mfzn.deepuses.net.ApiHelper;
+import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.utils.UserHelper;
 
@@ -18,7 +17,7 @@ import cn.droidlover.xdroidmvp.net.XApi;
 public class ManageSettingPresent extends XPresent<ManageSettingActivity> {
 
     public void manageSetting() {
-        ApiHelper.getApiService().manageSetting(UserHelper.getToken(), UserHelper.getUid(),UserHelper.getCompanyId())
+        ApiServiceManager.managerList()
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())
@@ -55,7 +54,7 @@ public class ManageSettingPresent extends XPresent<ManageSettingActivity> {
 
     public void addAuthority(String userID,String managerRoleID,String departIDs,String authCreate,
                              String authData,String authManage,String rechargeAuth,String crmAuth) {
-        ApiHelper.getApiService().addAuthority(UserHelper.getToken(), UserHelper.getUid(),UserHelper.getCompanyId(),
+        ApiHelper.getApiService().addManager(UserHelper.getToken(), UserHelper.getUid(),UserHelper.getCompanyId(),
                 userID,managerRoleID,departIDs,authCreate,authData,authManage,rechargeAuth,crmAuth)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())

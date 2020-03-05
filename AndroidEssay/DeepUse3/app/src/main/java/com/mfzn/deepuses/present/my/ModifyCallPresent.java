@@ -5,6 +5,7 @@ import com.mfzn.deepuses.activitymy.setting.PersonInfoActivity;
 import com.mfzn.deepuses.model.my.UserInfoModel;
 import com.mfzn.deepuses.model.my.UserUploadModel;
 import com.mfzn.deepuses.net.ApiHelper;
+import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.net.UploadApi;
 import com.mfzn.deepuses.utils.UserHelper;
@@ -26,8 +27,8 @@ import retrofit2.Response;
 
 public class ModifyCallPresent extends XPresent<ModifyCallActivity> {
 
-    public void modifyName(String u_name) {
-        ApiHelper.getApiService().appModifyName(UserHelper.getToken(), UserHelper.getUid(),u_name)
+    public void modifyName(String userName) {
+        ApiServiceManager.appModifyName(userName)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())
