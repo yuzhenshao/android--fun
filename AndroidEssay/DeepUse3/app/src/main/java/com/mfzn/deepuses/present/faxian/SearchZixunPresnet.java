@@ -1,9 +1,7 @@
 package com.mfzn.deepuses.present.faxian;
 
 import com.mfzn.deepuses.activity.fx.SearchZixunActivity;
-import com.mfzn.deepuses.activityxm.ProjectLevelActivity;
 import com.mfzn.deepuses.model.faxian.News;
-import com.mfzn.deepuses.model.xiangmu.ProjectLevelModel;
 import com.mfzn.deepuses.net.ApiHelper;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.utils.UserHelper;

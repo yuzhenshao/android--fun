@@ -16,58 +16,58 @@ public class CityModel {
      * provincename : 江苏省
      */
 
-    private String areaid;
-    private String areaname;
-    private String cityid;
-    private String cityname;
-    private String provinceid;
-    private String provincename;
+    private String areaID;
+    private String areaName;
+    private String cityID;
+    private String cityName;
+    private String provinceID;
+    private String provinceName;
 
     public String getAreaid() {
-        return areaid;
+        return areaID;
     }
 
     public void setAreaid(String areaid) {
-        this.areaid = areaid;
+        this.areaID = areaid;
     }
 
     public String getAreaname() {
-        return areaname;
+        return areaName;
     }
 
     public void setAreaname(String areaname) {
-        this.areaname = areaname;
+        this.areaName = areaname;
     }
 
     public String getCityid() {
-        return cityid;
+        return cityID;
     }
 
     public void setCityid(String cityid) {
-        this.cityid = cityid;
+        this.cityID = cityid;
     }
 
     public String getCityname() {
-        return cityname;
+        return cityName;
     }
 
     public void setCityname(String cityname) {
-        this.cityname = cityname;
+        this.cityName = cityname;
     }
 
     public String getProvinceid() {
-        return provinceid;
+        return provinceID;
     }
 
     public void setProvinceid(String provinceid) {
-        this.provinceid = provinceid;
+        this.provinceID = provinceid;
     }
 
     public String getProvincename() {
-        return provincename;
+        return provinceName;
     }
 
     public void setProvincename(String provincename) {
-        this.provincename = provincename;
+        this.provinceName = provincename;
     }
 }

@@ -23,7 +23,6 @@ import com.bigkoo.pickerview.view.TimePickerView;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.activity.khgl.MultipleSelectActivity;
 import com.mfzn.deepuses.activityxm.MapLocationActivity;
-import com.mfzn.deepuses.activityxm.ProjectLevelActivity;
 import com.mfzn.deepuses.activityxm.SelectPersonActivity;
 import com.mfzn.deepuses.adapter.khgl.EditCustomerAdapter;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
@@ -62,8 +61,6 @@ public class EditProjectActivity extends BaseMvpActivity<EditProjectPresnet> {
     EditText etEditAddress;
     @BindView(R.id.et_edit_detail)
     EditText etEditDetail;
-    @BindView(R.id.et_edit_level)
-    EditText etEditLevel;
     @BindView(R.id.tv_edit_ht)
     TextView tvEditHt;
     @BindView(R.id.et_edit_gw)
@@ -132,7 +129,6 @@ public class EditProjectActivity extends BaseMvpActivity<EditProjectPresnet> {
         longitude = dataBean.getLongitude() + "";
         latitude = dataBean.getLatitude() + "";
         etEditDetail.setText(dataBean.getDetailAddress());
-        etEditLevel.setText(dataBean.getLevelName());
         levelID = dataBean.getCustomLevel() + "";
         etEditGw.setText(dataBean.getProSalesPersonInfo().getSalesName());
         gwID = dataBean.getProSalesPersonInfo().getSalesID();
@@ -208,7 +204,7 @@ public class EditProjectActivity extends BaseMvpActivity<EditProjectPresnet> {
         });
     }
 
-    @OnClick({R.id.iv_login_back, R.id.tv_bass_comlate, R.id.et_edit_address, R.id.et_edit_level,
+    @OnClick({R.id.iv_login_back, R.id.tv_bass_comlate, R.id.et_edit_address,
             R.id.et_edit_gw, R.id.tv_edit_start, R.id.ib_edit_zbyj})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -232,11 +228,6 @@ public class EditProjectActivity extends BaseMvpActivity<EditProjectPresnet> {
                                 }
                             }
                         });
-                break;
-            case R.id.et_edit_level:
-                Intent intent = new Intent(this, ProjectLevelActivity.class);
-                intent.putExtra(Constants.PROJECT_LEVEL_POSITION, levelPosition);
-                startActivityForResult(intent, Constants.FOUND_PROJECT_LEVEL);
                 break;
             case R.id.et_edit_gw:
                 UserHelper.setSelectNmae("1");
@@ -332,14 +323,7 @@ public class EditProjectActivity extends BaseMvpActivity<EditProjectPresnet> {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (Constants.FOUND_PROJECT_LEVEL == requestCode) {
-            if (data != null) {
-                levelPosition = data.getIntExtra(Constants.PROJECT_LEVEL_POSITION, -1);
-                levelID = data.getStringExtra(Constants.PROJECT_LEVEL_ID);
-                String name = data.getStringExtra(Constants.PROJECT_LEVEL_NAME);
-                etEditLevel.setText(name);
-            }
-        } else if (Constants.SELECT_PERSON == requestCode) {
+        if (Constants.SELECT_PERSON == requestCode) {
             if (data != null) {
                 gwID = data.getStringExtra(Constants.SELECT_PERSON_ID);
                 String name = data.getStringExtra(Constants.SELECT_PERSON_NAME);

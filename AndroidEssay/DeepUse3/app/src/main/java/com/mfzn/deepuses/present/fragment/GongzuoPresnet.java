@@ -23,9 +23,6 @@ import cn.droidlover.xdroidmvp.net.XApi;
 public class GongzuoPresnet extends XPresent<GongzuoFragment> {
 
     public void judgeLevel() {
-        String token = UserHelper.getToken();
-        String uid = UserHelper.getUid();
-        String companyId = UserHelper.getCompanyId();
         ApiHelper.getApiService().judgeLevel(UserHelper.getToken(), UserHelper.getUid(),UserHelper.getCompanyId())
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())

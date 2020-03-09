@@ -276,7 +276,6 @@
         <activity android:name=".activityxm.SelectPerson3Activity" />
         <activity android:name=".activityxm.SelectPerson2Activity" />
         <activity android:name=".activityxm.SelectPersonActivity" />
-        <activity android:name=".activityxm.ProjectLevelActivity" />
         <activity android:name=".activityxm.FoundProjectActivity" />
         <activity android:name=".activity.jiagou.BatchAddStaffActivity" />
         <activity android:name=".activity.jiagou.ZuzhiJiagou3Activity" />

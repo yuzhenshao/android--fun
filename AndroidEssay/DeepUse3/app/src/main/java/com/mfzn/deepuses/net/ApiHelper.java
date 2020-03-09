@@ -10,7 +10,8 @@ import cn.droidlover.xdroidmvp.net.XApi;
  */
 public class ApiHelper {
 
-    public static final String BASE_URL = "https://api.useyzs.com/";
+    public static final String BASE_URL = "https://cdn.useyzs.com/";
+    public static final String BASE_API_URL = "https://api.useyzs.com/";
 
     private static ApiService apiService;
 
@@ -18,7 +19,7 @@ public class ApiHelper {
         if (apiService == null) {
             synchronized (ApiHelper.class) {
                 if (apiService == null) {
-                    apiService = XApi.getInstance().getRetrofit(BASE_URL, true).create(ApiService.class);
+                    apiService = XApi.getInstance().getRetrofit(BASE_API_URL, true).create(ApiService.class);
                 }
             }
         }

@@ -106,7 +106,7 @@ public interface ApiService {
                                                          @Query("companyID") String companyID, @Query("proID") String proID);
 
     //查看购买模块是否过期
-    @GET("api/index/checkModulesOutOfDate")
+    @GET("api/Company/checkModulesOutOfDate")
     Flowable<HttpResult<LookQuanxian2Model>> lookQuanxian2(@Query("token") String token, @Query("uid") String uid,
                                                            @Query("companyID") String companyID);
 
@@ -284,7 +284,7 @@ public interface ApiService {
 
     @GET("api/after_sale/visitList")
         //查看回访
-    Flowable<HttpResult<VisitRrcordModel>> visitRecord(@Query("token") String token, @Query("uid") String uid, @Query("proId") String proId,
+    Flowable<HttpResult<VisitRrcordModel>> visitRecord(@Query("token") String token, @Query("uid") String uid, @Query("proID") String proId,
                                                        @Query("per") String per, @Query("page") Integer page);
 
     @FormUrlEncoded  //维护项目添加
@@ -300,7 +300,7 @@ public interface ApiService {
                                   @Field("spaceDate") String spaceDate, @Field("idDel") String idDel);
 
     //------------------------------------------------------个人中心-------------------------------------------------
-    @GET("api/users/getuser")
+    @GET("api/user/getuser")
     //获取用户数据
     Flowable<HttpResult<UserInfoModel>> appUserInfo(@Query("token") String token, @Query("uid") String uid);
 
@@ -371,8 +371,9 @@ public interface ApiService {
                                  @Query("uid") String uid,
                                  @Query("rowNum") String rowNum);
 
+    //TODO getCompanyInfo
     //------------------------------------------------------支付-------------------------------------------------
-    @GET("api/Finance/companyInfo")
+    @GET("api/Company/getCompanyInfo")
     //公司信息
     Flowable<HttpResult<CompanyInfoModel>> getCompany(@Query("token") String token, @Query("uid") String uid, @Query("companyID") String companyID);
 
@@ -600,7 +601,7 @@ public interface ApiService {
     @POST("api/Project/delProMember")
     Flowable<HttpResult> deleteProMember(@Query("token") String token, @Query("uid") String uid, @Body ProMemberRequest request);
 
-    @GET("api/Project/addProMember")
+    @POST("api/Project/addProMember")
     Flowable<HttpResult> addProMember(@Query("token") String token, @Query("uid") String uid, @Body ProMemberRequest request);
 
     //加入项目审核接口
@@ -692,7 +693,7 @@ public interface ApiService {
 
     @GET("api/after_sale/asServicePeopleList")
     Flowable<HttpResult<List<CustomListModel>>> asServicePeopleList(@Query("token") String token, @Query("uid") String uid,
-                                                                    @Field("companyID") String companyID);
+                                                                    @Query("companyID") String companyID);
 
     @POST("api/after_sale/addAsServicePeople")
 //售后客服人员设置
@@ -728,6 +729,7 @@ public interface ApiService {
     @POST("api/after_sale/asSet")
     Flowable<HttpResult> asSet(@Query("token") String token, @Query("uid") String uid, @Body AsSetRequest request);
 
+    @FormUrlEncoded
     @POST("api/after_sale/addVisit")
     Flowable<HttpResult> addVisit(@Query("token") String token, @Query("uid") String uid,
                                   @Field("proID") String proId, @Field("title") String title, @Field("nowDate") String nowDate,

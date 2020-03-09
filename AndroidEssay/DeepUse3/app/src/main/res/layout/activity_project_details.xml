@@ -121,7 +121,6 @@
         android:layout_height="@dimen/app_80dp"
         android:gravity="center_vertical"
         android:layout_marginTop="@dimen/app_10dp"
-        android:visibility="gone"
         android:background="@color/color_ffffff">
 
         <ImageView

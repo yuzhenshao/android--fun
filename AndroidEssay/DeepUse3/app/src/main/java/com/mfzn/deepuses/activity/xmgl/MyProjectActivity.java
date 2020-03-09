@@ -7,8 +7,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mfzn.deepuses.R;
-import com.mfzn.deepuses.activity.project.ProjectDetailsActivity;
-import com.mfzn.deepuses.activity.project.ProjectManageActivity;
 import com.mfzn.deepuses.activityxm.SearchProjectActivity;
 import com.mfzn.deepuses.activityxm.staging.ProjectStagingActivity;
 import com.mfzn.deepuses.adapter.project.ProjectManageAdapter;

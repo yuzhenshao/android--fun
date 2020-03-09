@@ -1,52 +1,22 @@
 package com.mfzn.deepuses.activity.khgl;
 
-import android.Manifest;
-import android.app.Dialog;
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
-import com.bigkoo.pickerview.builder.TimePickerBuilder;
-import com.bigkoo.pickerview.listener.OnTimeSelectListener;
-import com.bigkoo.pickerview.view.TimePickerView;
 import com.mfzn.deepuses.R;
-import com.mfzn.deepuses.activityxm.MapLocationActivity;
-import com.mfzn.deepuses.activityxm.ProjectLevelActivity;
-import com.mfzn.deepuses.activityxm.SelectPersonActivity;
-import com.mfzn.deepuses.adapter.khgl.EditCustomerAdapter;
 import com.mfzn.deepuses.adapter.khgl.ProDetAdapter;
 import com.mfzn.deepuses.bass.BaseActivity;
-import com.mfzn.deepuses.model.xiangmu.XiangmuModel;
-import com.mfzn.deepuses.present.foundxm.EditProjectPresnet;
 import com.mfzn.deepuses.utils.Constants;
 import com.mfzn.deepuses.utils.DateUtils;
-import com.mfzn.deepuses.utils.EventMsg;
-import com.mfzn.deepuses.utils.ObtainTime;
-import com.mfzn.deepuses.utils.OnInputChangeListener;
-import com.mfzn.deepuses.utils.RxBus;
-import com.mfzn.deepuses.utils.ToastUtil;
-import com.mfzn.deepuses.utils.UserHelper;
 import com.wevey.selector.dialog.bean.DetailsModel;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import io.reactivex.functions.Consumer;
 
 public class ProDetaActivity extends BaseActivity {
 
