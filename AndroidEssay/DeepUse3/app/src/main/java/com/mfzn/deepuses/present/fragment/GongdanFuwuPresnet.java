@@ -4,6 +4,7 @@ import com.mfzn.deepuses.fragment.xm.GongdanFuwuFragment;
 import com.mfzn.deepuses.fragment.xm.GongdanShuxingFragment;
 import com.mfzn.deepuses.model.xiangmu.GongdanShuxingModel;
 import com.mfzn.deepuses.net.ApiHelper;
+import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.utils.UserHelper;
 
@@ -15,7 +16,7 @@ import cn.droidlover.xdroidmvp.net.XApi;
 public class GongdanFuwuPresnet extends XPresent<GongdanFuwuFragment> {
 
     public void gongdanShuxing(String orderNo) {
-        ApiHelper.getApiService().gongdanShuxing(UserHelper.getToken(), UserHelper.getUid(),orderNo)
+        ApiServiceManager.lookAsOrder(orderNo)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

@@ -96,6 +96,10 @@ import retrofit2.http.QueryMap;
  */
 public interface ApiService {
 
+
+    @GET("api/Index/getQiniuToken")
+    Flowable<HttpResult> getQiniuToken();
+
     @Multipart  //上传图片
     @POST("api/index/upImages")
     Call<UploadContractModel> uploadPhotoIcon(@Query("token") String token, @Query("uid") String uid, @Part List<MultipartBody.Part> partList);
@@ -153,8 +157,6 @@ public interface ApiService {
                                               @Query("city_name") String city_name,
                                               @Query("area_name") String area_name);
 
-    //TODO  先上传七牛
-    @Multipart  //企业LOGO上传
     @POST("api/Company/uploadLogo")
     Call<UserUploadModel> uploadLogoIcon(@Query("token") String token, @Query("uid") String uid, @Part List<MultipartBody.Part> partList);
 
@@ -174,7 +176,7 @@ public interface ApiService {
     @FormUrlEncoded  //删除员工
     @POST("api/Company/delStaff")
     Flowable<HttpResult> deleteStaff(@Query("token") String token, @Query("uid") String uid, @Field("companyID") String companyID,
-                                     @Field("staffUID") String staffUID);
+                                     @Field("staffUserID") String staffUID);
 
     @FormUrlEncoded  //删除部门
     @POST("api/Company/delDepartment")
@@ -207,7 +209,7 @@ public interface ApiService {
     @POST("api/Company/setRemarkName")
     Flowable<HttpResult> remarks(@Query("token") String token, @Query("uid") String uid,
                                  @Field("remarkName") String remarkName, @Field("companyID") String companyID,
-                                 @Field("staffUID") String staffUID);
+                                 @Field("staffUserID") String staffUID);
 
     @FormUrlEncoded  //删除管理员
     @POST("api/Company/delManager")
@@ -225,10 +227,6 @@ public interface ApiService {
         //项目详情
     Flowable<HttpResult<ProjectDetailsModel>> xmDetails(@Query("token") String token, @Query("uid") String uid, @Query("proID") String proID);
 
-    @GET("api/Company/appliesList")
-        //员工申请列表
-    Flowable<HttpResult<TeamApplyModel>> teamApply(@Query("token") String token, @Query("uid") String uid,
-                                                   @Query("per") String per, @Query("page") Integer page);
 
     @FormUrlEncoded  //同意/拒绝员工加入公司申请
     @POST("api/Company/doApply")
@@ -248,10 +246,6 @@ public interface ApiService {
                                                          @Query("qualityEnd") String qualityEnd, @Query("qualityRing") String qualityRing,
                                                          @Query("APP_VERSION") String APP_VERSION, @Query("companyCustomerID") String companyCustomerID);
 
-    @GET("api/Project/getCustomLevel")
-        //客户级别列表
-    Flowable<HttpResult<List<ProjectLevelModel>>> projectLevel(@Query("token") String token, @Query("uid") String uid);
-
     @GET("api/Project/createQrCode")
         //生成项目二维码
     Flowable<HttpResult<ProjectCodeModel>> projectCode(@Query("token") String token, @Query("uid") String uid, @Query("proID") String proID);
@@ -265,17 +259,13 @@ public interface ApiService {
     Flowable<HttpResult> deleteProject(@Query("token") String token, @Query("uid") String uid, @Query("companyID") String companyID,
                                        @Query("proID") String proID);
 
-    @GET("api/after_sale/lookOrder")
-        //查看工单信息
-    Flowable<HttpResult<GongdanShuxingModel>> gongdanShuxing(@Query("token") String token, @Query("uid") String uid, @Query("orderNo") String orderNo);
-
     @FormUrlEncoded  //编辑售后工单
-    @POST("api/after_sale/orderEditSave")
+    @POST("api/after_sale/editAfterSaleOrder")
     Flowable<HttpResult> editWorkorder(@Query("token") String token, @Query("uid") String uid,
-                                       @Field("orderNo") String orderNo, @Field("shtype") String shtype,
+                                       @Field("orderNo") String orderNo, @Field("asType") String shtype,
                                        @Field("contactName") String contactName, @Field("contactPhone") String contactPhone,
                                        @Field("wishTime") String wishTime, @Field("content") String content,
-                                       @Field("fileId") String fileId);
+                                       @Field("fileUrls") String fileId);
 
     @FormUrlEncoded  //取消工单
     @POST("api/after_sale/cancelOrderSave")
@@ -304,29 +294,18 @@ public interface ApiService {
     //获取用户数据
     Flowable<HttpResult<UserInfoModel>> appUserInfo(@Query("token") String token, @Query("uid") String uid);
 
-
-    @POST("api/Discover/newsList")
-    Flowable<HttpResult<News>> newsList(@Query("token") String token,
-                                        @Query("uid") String uid, @Query("per") String per,
-                                        @Query("page") Integer page, @Query("label") String label);
-
-    @POST("api/Discover/search")//搜索
-    Flowable<HttpResult<News>> searchZixun(@Query("token") String token,
-                                           @Query("uid") String uid, @Query("per") String per,
-                                           @Query("page") Integer page, @Query("key") String key, @Query("type") String type);
-
-    @POST("api/Discover/videoList")
+    @GET("api/Content/videoList")
     Flowable<HttpResult<Videos>> videoList(@Query("token") String token,
                                            @Query("uid") String uid,
                                            @Query("per") String per,
-                                           @Query("page") Integer page);
+                                           @Query("page") Integer page, @Query("kw") String kw);
 
     //用户吐槽
     @FormUrlEncoded
-    @POST("api/users/roast")
+    @POST("api/user/roast")
     Flowable<HttpResult> appFeedback(@Query("token") String token, @Query("uid") String uid, @Field("content") String content);
 
-    @GET("/api/users/createRecImg")//为不同用户生成推广二维码
+    @GET("/api/user/createRecImg")//为不同用户生成推广二维码
     Flowable<HttpResult> myPromotion(@Query("token") String token, @Query("uid") String uid, @Query("phone") String phone);
 
     @Multipart  //上传照片
@@ -371,7 +350,6 @@ public interface ApiService {
                                  @Query("uid") String uid,
                                  @Query("rowNum") String rowNum);
 
-    //TODO getCompanyInfo
     //------------------------------------------------------支付-------------------------------------------------
     @GET("api/Company/getCompanyInfo")
     //公司信息
@@ -557,8 +535,8 @@ public interface ApiService {
     @GET("api/User/myEngineerList")
     Flowable<HttpResult<List<EnginerListModel>>> myEngineerList(@Query("token") String token, @Query("uid") String uid);
 
-    @GET("api/user/searchEngineer")
-    Flowable<HttpResult<SelectEnginerModel>> searchEngineer(@Query("token") String token, @Query("uid") String uid,
+    @GET("api/User/searchEngineer")
+    Flowable<HttpResult<List<SelectEnginerModel>>> searchEngineer(@Query("token") String token, @Query("uid") String uid,
                                                             @Query("phone") String phone);
 
     @GET("api/user/addEngineer")
@@ -575,7 +553,7 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("api/user/setNickname")
     Flowable<HttpResult> setNickname(@Query("token") String token, @Query("uid") String uid,
-                                     @Field("userName") String userName);
+                                     @Field("nickName") String userName);
 
     @POST("api/user/changePhone")
     Flowable<HttpResult> appModifyPhone(@Query("token") String token,
@@ -591,7 +569,6 @@ public interface ApiService {
 
 
     /*project*/
-//TODO
     @GET("api/Project/proList")
     Flowable<HttpResult<XiangmuModel>> getProjectList(@QueryMap Map<String, Object> map);
 
@@ -610,9 +587,15 @@ public interface ApiService {
                                       @Query("status") String status, @Query("checkRemark") String checkRemark);
 
     @GET("api/Project/appliesList")
+        //员工申请列表
+    Flowable<HttpResult<TeamApplyModel>> teamApply(@Query("token") String token, @Query("uid") String uid,
+                                                   @Query("type") int tyep,@Query("per") String per, @Query("page") Integer page);
+
+
+    @GET("api/Project/appliesList")
 //加入项目申请列表接口
     Flowable<HttpResult<ProjectNewsModel>> appliesList(@Query("token") String token, @Query("uid") String uid, @Query("companyID") String companyID,
-                                                       @Query("proID") String proID, @Query("per") int per, @Query("page") int page);
+                                                       @Query("proID") String proID, @Query("type") int tyep,@Query("per") int per, @Query("page") int page);
 
     //项目信息编辑
     @POST("api/Project/editPro")
@@ -623,9 +606,10 @@ public interface ApiService {
     @GET("api/Company/getCompanyInfo")
     Flowable<HttpResult<TeamManageModel>> getCompanyInfo(@QueryMap Map<String, Object> map);
 
-    @GET("api/Company/generateCompanyQRCode")
+    @POST("api/Company/generateCompanyQRCode")
 //生成公司邀请二维码
-    Flowable<HttpResult<ShareCodeModel>> shareCode(@QueryMap Map<String, Object> map);
+    Flowable<HttpResult<ShareCodeModel>> shareCode(@Query("token") String token, @Query("uid") String uid,
+                                                   @Query("companyID") String companyID);
 
     @GET("api/Company/getDepartments")
 //架构列表
@@ -637,7 +621,7 @@ public interface ApiService {
 
     @GET("api/Company/managerList")
     Flowable<HttpResult<List<ManageSettingModel>>> managerList(@Query("token") String token, @Query("uid") String uid,
-                                                               @Field("companyID") String companyID);
+                                                               @Query("companyID") String companyID);
 
     @FormUrlEncoded
     @POST("api/Company/updateManager")
@@ -666,7 +650,7 @@ public interface ApiService {
     @FormUrlEncoded  //修改当前部门名称
     @POST("api/Company/editDepartment")
     Flowable<HttpResult> modifyBmName(@Query("token") String token, @Query("uid") String uid, @Field("companyID") String companyID,
-                                      @Field("departmentID") String departmentID, @Field("departName") String departName);
+                                      @Field("departmentID") String departmentID, @Field("departmentName") String departName);
 
 
     @FormUrlEncoded  //修改当前部门名称
@@ -750,7 +734,9 @@ public interface ApiService {
 
     //content
     @GET("api/Content/newsList")
-    Flowable<HttpResult<News>> newsList(@QueryMap Map<String, Object> map);
+    Flowable<HttpResult<News>> newsList(@Query("token") String token,
+                                        @Query("uid") String uid, @Query("per") String per,
+                                        @Query("page") Integer page,@Query("kw") String kw);
 
 
     /*  Finance*/

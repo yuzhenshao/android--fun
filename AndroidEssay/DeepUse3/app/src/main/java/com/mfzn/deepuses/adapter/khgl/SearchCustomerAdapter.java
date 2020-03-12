@@ -80,23 +80,23 @@ public class SearchCustomerAdapter extends BaseAdapter {
         int hasSalesperson = model.getHasSalesperson();//是否待分配 1是0否
         if(hasSalesperson == 0) {
             holder.ivCusItemType.setVisibility(View.VISIBLE);
-            holder.tvCusItemPro.setText("暂无分配项目");
         }else if(hasSalesperson == 1) {
             holder.ivCusItemType.setVisibility(View.GONE);
-            List<WholeCustomerModel.DataBean.ProsBean> pros = model.getPros();
-            if(pros != null && pros.size() != 0) {
-                String sss = null;
-                for(int i = 0; i < pros.size(); i++) {
-                    if(TextUtils.isEmpty(sss)) {
-                        sss = pros.get(i).getPro_name();
-                    }else {
-                        sss = sss + "，" + pros.get(i).getPro_name();
-                    }
+        }
+
+        List<WholeCustomerModel.DataBean.ProsBean> pros = model.getPros();
+        if(pros != null && pros.size() != 0) {
+            String sss = null;
+            for(int i = 0; i < pros.size(); i++) {
+                if(TextUtils.isEmpty(sss)) {
+                    sss = pros.get(i).getPro_name();
+                }else {
+                    sss = sss + "，" + pros.get(i).getPro_name();
                 }
-                holder.tvCusItemPro.setText(sss);
-            }else {
-                holder.tvCusItemPro.setText("暂无分配项目");
             }
+            holder.tvCusItemPro.setText(sss);
+        }else {
+            holder.tvCusItemPro.setText("暂无分配项目");
         }
 
         holder.ivCusItemPhone.setOnClickListener(new View.OnClickListener() {

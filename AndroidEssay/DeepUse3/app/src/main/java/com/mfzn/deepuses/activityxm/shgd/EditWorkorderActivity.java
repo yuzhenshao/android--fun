@@ -190,7 +190,7 @@ public class EditWorkorderActivity extends BaseMvpActivity<EditWorkorderPresent>
         for (int i = 0 ; i < bmp.size() ; i++){
             files.add(BitmapFileSetting.saveBitmapFile(bmp.get(i), PhotographDialog.Image_SAVEDIR + "/" + cameraFile));
         }
-        getP().upLoadFile("15",proId,ms,files);
+        getP().upLoadFile(files);
     }
 
     public void editWorkorderSuccess() {
@@ -245,14 +245,13 @@ public class EditWorkorderActivity extends BaseMvpActivity<EditWorkorderPresent>
     }
 
     //上传头像成功返回
-    public void uploadIconSuccess(int status, UploadContractModel.ResBean res) {
-        if(status == 1){
+    public void uploadIconSuccess(String urls) {
+        if(!TextUtils.isEmpty(urls)){
             String lxr = eteditLxr.getText().toString().trim();
             String phone = eteditLxrphone.getText().toString().trim();
             String startTime = eteditTime.getText().toString().trim();
             String ms = eteditMs.getText().toString().trim();
-
-            getP().editWorkorder(orderNo,shType,lxr,phone,startTime,ms,res.getFileID());
+            getP().editWorkorder(orderNo,shType,lxr,phone,startTime,ms,urls);
         }else {
             ToastUtil.showToast(this,"图片上传失败，请稍后重试");
         }

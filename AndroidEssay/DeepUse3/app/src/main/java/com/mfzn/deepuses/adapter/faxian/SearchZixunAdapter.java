@@ -63,10 +63,10 @@ public class SearchZixunAdapter extends BaseAdapter {
         News.DataBean dataBean = data.get(position);
 
         News.DataBean model = data.get(position);
-        holder.tvTitle.setText(model.getTitle());
-        holder.tvFbr.setText(model.getSource());
+        holder.tvTitle.setText(model.getNewsTitle());
+        holder.tvFbr.setText(model.getSourceName());
         holder.tvFbsj.setText(DateUtils.stampToDate(String.valueOf(model.getAddTime()),"yyyy.MM.dd"));
-        holder.tvBiaoqian.setText(model.getClassName());
+        holder.tvBiaoqian.setText(model.getNewsCategoryName());
         if (model.getHits() > 999){
             holder.tvYdl.setText("999+");
         }else{

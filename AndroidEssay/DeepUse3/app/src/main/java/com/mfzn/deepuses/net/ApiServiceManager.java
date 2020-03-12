@@ -11,7 +11,6 @@ import com.mfzn.deepuses.bean.request.CompanyInfoRequest;
 import com.mfzn.deepuses.bean.request.CreateAfterSaleOrderRequest;
 import com.mfzn.deepuses.bean.request.EditAsServicePeopleRequest;
 import com.mfzn.deepuses.bean.request.EditProjectRequest;
-import com.mfzn.deepuses.bean.request.NewsListRequest;
 import com.mfzn.deepuses.bean.request.ProMemberRequest;
 import com.mfzn.deepuses.bean.request.ForgetRequest;
 import com.mfzn.deepuses.bean.request.LoginRequest;
@@ -39,11 +38,8 @@ import com.mfzn.deepuses.model.xiangmu.StagingListModel;
 import com.mfzn.deepuses.model.xiangmu.WorkorderListModel;
 import com.mfzn.deepuses.model.xiangmu.XiangmuModel;
 import com.mfzn.deepuses.utils.UserHelper;
-
 import java.util.List;
-
 import io.reactivex.Flowable;
-import retrofit2.http.Field;
 
 /**
  * @author yz @date 2020-02-27
@@ -75,7 +71,7 @@ public class ApiServiceManager {
         return ApiHelper.getApiService().myEngineerList(UserHelper.getToken(), UserHelper.getUid());
     }
 
-    public static Flowable<HttpResult<SelectEnginerModel>> searchEngineer(String phone) {
+    public static Flowable<HttpResult<List<SelectEnginerModel>>> searchEngineer(String phone) {
         return ApiHelper.getApiService().searchEngineer(UserHelper.getToken(), UserHelper.getUid(), phone);
     }
 
@@ -87,7 +83,6 @@ public class ApiServiceManager {
         return ApiHelper.getApiService().delEngineer(UserHelper.getToken(), UserHelper.getUid(), enginerID);
     }
 
-    //TODO
     public static Flowable<HttpResult> uploadAvatar(String userAvatar) {
         return ApiHelper.getApiService().uploadAvatar(UserHelper.getToken(), UserHelper.getUid(), userAvatar);
     }
@@ -105,8 +100,8 @@ public class ApiServiceManager {
         return ApiHelper.getApiService().getCompanyInfo(DomainUtil.object2Map(request));
     }
 
-    public static Flowable<HttpResult<ShareCodeModel>> generateCompanyQRCode(CompanyInfoRequest request) {
-        return ApiHelper.getApiService().shareCode(DomainUtil.object2Map(request));
+    public static Flowable<HttpResult<ShareCodeModel>> generateCompanyQRCode(String companyID) {
+        return ApiHelper.getApiService().shareCode(UserHelper.getToken(), UserHelper.getUid(), companyID);
     }
 
     public static Flowable<HttpResult<ZuzhiJiagouModel>> getDepartments() {
@@ -143,9 +138,9 @@ public class ApiServiceManager {
                 status, checkRemark);
     }
 
-    public static Flowable<HttpResult<ProjectNewsModel>> appliesList(String companyID, String proID, int per, int page) {
+    public static Flowable<HttpResult<ProjectNewsModel>> appliesList(String companyID, String proID, int type,int per, int page) {
         return ApiHelper.getApiService().appliesList(UserHelper.getToken(), UserHelper.getUid(), companyID,
-                proID, per, page);
+                proID,type, per, page);
     }
 
     public static Flowable<HttpResult> editProject(EditProjectRequest request){
@@ -232,8 +227,8 @@ public class ApiServiceManager {
         return ApiHelper.getApiService().delAsOrder(UserHelper.getToken(), UserHelper.getUid(),orderNo,delNote);
     }
 
-    public static Flowable<HttpResult<News>> newsList(NewsListRequest request) {
-        return ApiHelper.getApiService().newsList(DomainUtil.object2Map(request));
+    public static Flowable<HttpResult<News>> newsList(String per,int page,String kw) {
+        return ApiHelper.getApiService().newsList(UserHelper.getToken(), UserHelper.getUid(),per,page,kw);
     }
 
     public static Flowable<HttpResult> buyModule(String proId, String moduleType, String brickNum) {

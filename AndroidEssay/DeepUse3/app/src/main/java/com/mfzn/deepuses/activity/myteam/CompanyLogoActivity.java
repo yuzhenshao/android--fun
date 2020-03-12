@@ -140,16 +140,12 @@ public class CompanyLogoActivity extends BaseMvpActivity<CompanyLogoPresent> {
     }
 
     //上传头像成功返回
-    public void uploadIconSuccess(int status, String res) {
-        if (status == 1) {
+    public void uploadIconSuccess(String res) {
             ToastUtil.showToast(this, "logo上传成功");
             Glide.with(this).load(ApiHelper.BASE_URL + res).into(iv_logo_icon);
             EventMsg eventMsg = new EventMsg();
             eventMsg.setMsg(Constants.COMLOGO);
             RxBus.getInstance().post(eventMsg);
-        } else {
-            ToastUtil.showToast(this, "logo上传失败，请稍后重试");
-        }
     }
 
     private void getPerssion() {

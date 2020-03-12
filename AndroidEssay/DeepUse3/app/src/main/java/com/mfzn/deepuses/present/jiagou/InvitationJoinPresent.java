@@ -17,7 +17,7 @@ import cn.droidlover.xdroidmvp.net.XApi;
 public class InvitationJoinPresent extends XPresent<InvitationJoinActivity> {
 
     public void shareCode() {
-        ApiServiceManager.generateCompanyQRCode(new CompanyInfoRequest())
+        ApiServiceManager.generateCompanyQRCode(UserHelper.getCompanyId())
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

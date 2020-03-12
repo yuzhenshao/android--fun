@@ -16,13 +16,16 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.jakewharton.rxbinding2.widget.RxTextView;
+import com.mfzn.deepuses.BaseApplication;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BaseActivity;
 import com.mfzn.deepuses.bean.request.EditBusinessCardRequest;
 import com.mfzn.deepuses.bean.response.BusinessCardResponse;
 import com.mfzn.deepuses.model.my.UserUploadModel;
 import com.mfzn.deepuses.net.ApiHelper;
+import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
+import com.mfzn.deepuses.net.ImageUploadManager;
 import com.mfzn.deepuses.net.UploadApi;
 import com.mfzn.deepuses.utils.BitmapFileSetting;
 import com.mfzn.deepuses.utils.Constants;
@@ -211,42 +214,39 @@ public class MyCardEditActivity extends BaseActivity {
     }
 
     public void upLoadFile(final File file) {
-        MultipartBody.Builder builder = new MultipartBody.Builder()
-                .setType(MultipartBody.FORM);
-        RequestBody imageBody = RequestBody.create(MediaType.parse(getMediaType(file.getName())), file);
-        builder.addFormDataPart("u_head", file.getName(), imageBody);
-        List<MultipartBody.Part> parts = builder.build().parts();
-        UploadApi.uploadMemberIcon(parts).enqueue(new retrofit2.Callback<UserUploadModel>() {
+        ImageUploadManager.uploadImage(file, new ImageUploadManager.ImageUploadCallback() {
+
             @Override
-            public void onResponse(Call<UserUploadModel> call, Response<UserUploadModel> response) {
-                if (response != null && response.body() != null) {
-                    String imgUrl = response.body().res;
-                    if (imgUrl != null) {
-                        ToastUtil.showToast(MyCardEditActivity.this, "图片上传成功");
-                        mBusinessCardResponse.setUserAvatar(imgUrl);
-                        Glide.with(MyCardEditActivity.this).load(ApiHelper.BASE_URL + imgUrl).into(userPhoto);
-                        EventMsg eventMsg = new EventMsg();
-                        eventMsg.setMsg(Constants.MODIFY_ICON);
-                        RxBus.getInstance().post(eventMsg);
-                        return;
-                    }
-                }
-                ToastUtil.showToast(MyCardEditActivity.this, "图片上传失败，请稍后重试");
+            public void uploadSuccess(String url) {
+                uploadAvatar(url);
             }
 
             @Override
-            public void onFailure(Call<UserUploadModel> call, Throwable t) {
-                ToastUtil.showToast(MyCardEditActivity.this, "图片上传失败，请稍后重试");
+            public void uoloadFailed(String error) {
+                ToastUtil.showToast(BaseApplication.getContext(), error);
             }
         });
     }
 
-    private String getMediaType(String fileName) {
-        FileNameMap map = URLConnection.getFileNameMap();
-        String contentTypeFor = map.getContentTypeFor(fileName);
-        if (contentTypeFor == null) {
-            contentTypeFor = "application/octet-stream";
-        }
-        return contentTypeFor;
+    private void uploadAvatar(String userAvatar) {
+        ApiServiceManager.uploadAvatar(userAvatar)
+                .compose(XApi.getApiTransformer())
+                .compose(XApi.getScheduler())
+                .subscribe(new ApiSubscriber<HttpResult>() {
+                    @Override
+                    protected void onFail(NetError error) {
+                        ToastUtil.showToast(MyCardEditActivity.this, "图片上传失败，请稍后重试");
+                    }
+
+                    @Override
+                    public void onNext(HttpResult reuslt) {
+                        ToastUtil.showToast(MyCardEditActivity.this, "图片上传成功");
+                        mBusinessCardResponse.setUserAvatar(userAvatar);
+                        Glide.with(MyCardEditActivity.this).load(ApiHelper.BASE_URL + userAvatar).into(userPhoto);
+                        EventMsg eventMsg = new EventMsg();
+                        eventMsg.setMsg(Constants.MODIFY_ICON);
+                        RxBus.getInstance().post(eventMsg);
+                    }
+                });
     }
 }

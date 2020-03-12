@@ -3,6 +3,7 @@ package com.mfzn.deepuses.present.faxian;
 import com.mfzn.deepuses.activity.fx.SearchZixunActivity;
 import com.mfzn.deepuses.model.faxian.News;
 import com.mfzn.deepuses.net.ApiHelper;
+import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.utils.UserHelper;
 
@@ -17,7 +18,7 @@ public class SearchZixunPresnet extends XPresent<SearchZixunActivity> {
 
     // type 1 新闻 2 视频
     public void searchZixun(String label) {
-        ApiHelper.getApiService().searchZixun(UserHelper.getToken(), UserHelper.getUid(),"200",1,label,"1")
+        ApiServiceManager.newsList("200",1,label)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

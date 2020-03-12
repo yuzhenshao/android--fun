@@ -15,7 +15,7 @@ import cn.droidlover.xdroidmvp.net.XApi;
 public class VideoPresnet extends XPresent<VideoFragmentNew> {
 
     public void videoList(Integer page) {
-        ApiHelper.getApiService().videoList(UserHelper.getToken(), UserHelper.getUid(),"20",page)
+        ApiHelper.getApiService().videoList(UserHelper.getToken(), UserHelper.getUid(),"20",page,null)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

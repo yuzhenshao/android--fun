@@ -207,7 +207,7 @@ public class AddWorkorderActivity extends BaseMvpActivity<AddWorkorderPresent> {
             String cameraFile = DateFormat.format("yy-MM-dd-hh-mm-ss-" + i, new Date()) + ".jpg";
             files.add(BitmapFileSetting.saveBitmapFile(bmp.get(i), PhotographDialog.Image_SAVEDIR + "/" + cameraFile));
         }
-        getP().upLoadFile("15",pro_id,etOrMs.getText().toString().trim(),files);
+        getP().upLoadFile(files);
     }
 
     public void addWorkorderSuccess() {
@@ -294,8 +294,8 @@ public class AddWorkorderActivity extends BaseMvpActivity<AddWorkorderPresent> {
     }
 
     //上传头像成功返回
-    public void uploadIconSuccess(int status, UploadContractModel.ResBean res) {
-        if(status == 1){
+    public void uploadIconSuccess(String urls) {
+        if(!TextUtils.isEmpty(urls)){
             String lxr = etOrLxr.getText().toString().trim();
             String phone = etOrLxrphone.getText().toString().trim();
             String startTime = etOrTime.getText().toString().trim();
@@ -308,7 +308,7 @@ public class AddWorkorderActivity extends BaseMvpActivity<AddWorkorderPresent> {
             request.setContactPhone(phone);
             request.setWishTime(startTime);
             request.setContent(ms);
-            request.setFileUrls(res.getFileID());
+            request.setFileUrls(urls);
             getP().addWorkorder(request);
 //            recycleAdapter.notifyDataSetChanged();
 //

@@ -144,7 +144,7 @@ public class ShareCodeActivity extends BaseMvpActivity<ShareCodePresent> {
         if(!TextUtils.isEmpty(userAvatar)) {
             Glide.with(this).load(ApiHelper.BASE_URL + userAvatar).into(ivCodeIcon);
         }
-        Glide.with(this).load(ApiHelper.BASE_URL + "/" + model.getQrCodeUrl()).into(ivCode);
+        Glide.with(this).load(ApiHelper.BASE_API_URL + model.getQrCodeUrl()).into(ivCode);
     }
 
     private void jietu() {

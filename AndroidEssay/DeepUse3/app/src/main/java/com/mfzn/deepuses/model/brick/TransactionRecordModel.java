@@ -12,8 +12,8 @@ public class TransactionRecordModel {
      */
 
     private String sumRechargeMoney;
-    private String sumRechargeZhuan;
-    private String sumCostZhuan;
+    private String sumRechargeBrick;
+    private String sumCostBrick;
     private FinancialLogBean financialLog;
 
     public String getSumRechargeMoney() {
@@ -25,19 +25,19 @@ public class TransactionRecordModel {
     }
 
     public String getSumRechargeZhuan() {
-        return sumRechargeZhuan;
+        return sumRechargeBrick;
     }
 
     public void setSumRechargeZhuan(String sumRechargeZhuan) {
-        this.sumRechargeZhuan = sumRechargeZhuan;
+        this.sumRechargeBrick = sumRechargeZhuan;
     }
 
     public String getSumCostZhuan() {
-        return sumCostZhuan;
+        return sumCostBrick;
     }
 
     public void setSumCostZhuan(String sumCostZhuan) {
-        this.sumCostZhuan = sumCostZhuan;
+        this.sumCostBrick = sumCostZhuan;
     }
 
     public FinancialLogBean getFinancialLog() {
@@ -122,17 +122,12 @@ public class TransactionRecordModel {
              */
 
             private int id;
-            private int orderID;
             private int userID;
-            private int toCompany;
             private int companyID;
-            private int fromUser;
             private int type;
-            private int isZhuan;
+            private int isBrick;
             private String money;
-            private String nowMoney;
             private String note;
-            private int isDel;
             private int addTime;
             private int updateTime;
 
@@ -144,14 +139,6 @@ public class TransactionRecordModel {
                 this.id = id;
             }
 
-            public int getOrderID() {
-                return orderID;
-            }
-
-            public void setOrderID(int orderID) {
-                this.orderID = orderID;
-            }
-
             public int getUserID() {
                 return userID;
             }
@@ -160,13 +147,6 @@ public class TransactionRecordModel {
                 this.userID = userID;
             }
 
-            public int getToCompany() {
-                return toCompany;
-            }
-
-            public void setToCompany(int toCompany) {
-                this.toCompany = toCompany;
-            }
 
             public int getCompanyID() {
                 return companyID;
@@ -174,14 +154,6 @@ public class TransactionRecordModel {
 
             public void setCompanyID(int companyID) {
                 this.companyID = companyID;
-            }
-
-            public int getFromUser() {
-                return fromUser;
-            }
-
-            public void setFromUser(int fromUser) {
-                this.fromUser = fromUser;
             }
 
             public int getType() {
@@ -193,11 +165,11 @@ public class TransactionRecordModel {
             }
 
             public int getIsZhuan() {
-                return isZhuan;
+                return isBrick;
             }
 
             public void setIsZhuan(int isZhuan) {
-                this.isZhuan = isZhuan;
+                this.isBrick = isZhuan;
             }
 
             public String getMoney() {
@@ -208,13 +180,6 @@ public class TransactionRecordModel {
                 this.money = money;
             }
 
-            public String getNowMoney() {
-                return nowMoney;
-            }
-
-            public void setNowMoney(String nowMoney) {
-                this.nowMoney = nowMoney;
-            }
 
             public String getNote() {
                 return note;
@@ -222,14 +187,6 @@ public class TransactionRecordModel {
 
             public void setNote(String note) {
                 this.note = note;
-            }
-
-            public int getIsDel() {
-                return isDel;
-            }
-
-            public void setIsDel(int isDel) {
-                this.isDel = isDel;
             }
 
             public int getAddTime() {
@@ -240,13 +197,6 @@ public class TransactionRecordModel {
                 this.addTime = addTime;
             }
 
-            public int getUpdateTime() {
-                return updateTime;
-            }
-
-            public void setUpdateTime(int updateTime) {
-                this.updateTime = updateTime;
-            }
         }
     }
 }

@@ -14,7 +14,7 @@ import cn.droidlover.xdroidmvp.net.XApi;
 public class ProjectNewsPresent extends XPresent<ProjectNewsActivity> {
 
     public void projectNews(String proID, Integer page) {
-        ApiServiceManager.appliesList(UserHelper.getCompanyId(), proID, 10, page)
+        ApiServiceManager.appliesList(UserHelper.getCompanyId(), proID,1, 10, page)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

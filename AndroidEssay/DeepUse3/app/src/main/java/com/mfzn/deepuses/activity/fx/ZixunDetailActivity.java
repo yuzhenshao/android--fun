@@ -79,12 +79,12 @@ public class ZixunDetailActivity extends BaseMvpActivity<ZixunDetailPresnet> {
         News.DataBean dataBean = (News.DataBean) getIntent().getSerializableExtra("content");
 
         String content = dataBean.getContent();
-        rowNum = String.valueOf(dataBean.getRowNum());
-        String likeNum = String.valueOf(dataBean.getLikeNums());
-        String commentNum = String.valueOf(dataBean.getCommentsNums());
+        rowNum = String.valueOf(dataBean.getNewsID());
+        String likeNum = String.valueOf(dataBean.getLikeCount());
+        String commentNum = String.valueOf(dataBean.getCommentCount());
 
-        String title = dataBean.getTitle();
-        String fbr = dataBean.getSource();
+        String title = dataBean.getNewsTitle();
+        String fbr = dataBean.getSourceName();
         String date = String.valueOf(dataBean.getAddTime());
 
         tvTitle.setText(title);
