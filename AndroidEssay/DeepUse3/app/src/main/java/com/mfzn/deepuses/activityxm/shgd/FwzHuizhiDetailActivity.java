@@ -132,7 +132,7 @@ public class FwzHuizhiDetailActivity extends BaseMvpActivity<ClzHuidanDetailPres
             tvGzfx.setText(detailModel.getFaultText());
             List<String> gzdxInfo = detailModel.getFaultFileIdUrl();
             ArrayList<String> dataList1 = new ArrayList<>();
-            List<Uri> dataList = new ArrayList<>();
+            ArrayList<Uri> dataList = new ArrayList<>();
             if(gzdxInfo.size() > 0){
                 for (int i = 0; i < gzdxInfo.size(); i++){
                     String[] split = gzdxInfo.get(i).split(",");
@@ -141,7 +141,7 @@ public class FwzHuizhiDetailActivity extends BaseMvpActivity<ClzHuidanDetailPres
                         dataList.add(Uri.parse(ApiHelper.BASE_URL + split[j]));
                     }
                 }
-                ShouliPhotoAdapter recycleAdapter = new ShouliPhotoAdapter(FwzHuizhiDetailActivity.this,dataList1);
+                ShouliPhotoAdapter recycleAdapter = new ShouliPhotoAdapter(FwzHuizhiDetailActivity.this,dataList);
                 gzfx_xgtp.setAdapter(recycleAdapter);
 
                 recycleAdapter.setOnClickListener(new ShouliPhotoAdapter.OnItemClickListener() {
@@ -155,7 +155,7 @@ public class FwzHuizhiDetailActivity extends BaseMvpActivity<ClzHuidanDetailPres
             tvJjfa.setText(detailModel.getContent());
             List<String> jjfaInfo = detailModel.getContentFileIdUrl();
             ArrayList<String> dataList2 = new ArrayList<>();
-            List<Uri> dataList3 = new ArrayList<>();
+            ArrayList<Uri> dataList3 = new ArrayList<>();
             if(jjfaInfo.size() > 0){
                 for (int i = 0; i < jjfaInfo.size(); i++){
 
@@ -165,7 +165,7 @@ public class FwzHuizhiDetailActivity extends BaseMvpActivity<ClzHuidanDetailPres
                         dataList3.add(Uri.parse(ApiHelper.BASE_URL + split[j]));
                     }
                 }
-                ShouliPhotoAdapter recycleAdapter1 = new ShouliPhotoAdapter(FwzHuizhiDetailActivity.this,dataList2);
+                ShouliPhotoAdapter recycleAdapter1 = new ShouliPhotoAdapter(FwzHuizhiDetailActivity.this,dataList3);
                 jjfa_xgtp.setAdapter(recycleAdapter1);
 
                 recycleAdapter1.setOnClickListener(new ShouliPhotoAdapter.OnItemClickListener() {
@@ -186,7 +186,7 @@ public class FwzHuizhiDetailActivity extends BaseMvpActivity<ClzHuidanDetailPres
             tvClxx.setText(detailModel.getContent());
             List<String> jjfaInfo = detailModel.getContentFileIdUrl();
             ArrayList<String> dataList2 = new ArrayList<>();
-            List<Uri> dataList3 = new ArrayList<>();
+            ArrayList<Uri> dataList3 = new ArrayList<>();
             if(jjfaInfo.size() > 0){
                 for (int i = 0; i < jjfaInfo.size(); i++){
                     String[] split = jjfaInfo.get(i).split(",");
@@ -195,7 +195,7 @@ public class FwzHuizhiDetailActivity extends BaseMvpActivity<ClzHuidanDetailPres
                         dataList3.add(Uri.parse(ApiHelper.BASE_URL + split[j]));
                     }
                 }
-                ShouliPhotoAdapter recycleAdapter1 = new ShouliPhotoAdapter(FwzHuizhiDetailActivity.this,dataList2);
+                ShouliPhotoAdapter recycleAdapter1 = new ShouliPhotoAdapter(FwzHuizhiDetailActivity.this,dataList3);
                 clxx_xgtp.setAdapter(recycleAdapter1);
 
                 recycleAdapter1.setOnClickListener(new ShouliPhotoAdapter.OnItemClickListener() {

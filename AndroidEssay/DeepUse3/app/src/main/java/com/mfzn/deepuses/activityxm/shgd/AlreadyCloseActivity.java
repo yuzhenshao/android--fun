@@ -99,7 +99,7 @@ public class AlreadyCloseActivity extends BaseMvpActivity<AlreadyClosePresent> {
 
         orderNo = dataBean.getOrderNo();
         tvcloseType.setText(orderNo);
-        int shType = dataBean.getShType();
+        int shType = dataBean.getAsType();
         if(shType == 1) {//0全部  1故障保修  2维护升级
             tvcloseTypename.setTextColor(getResources().getColor(R.color.color_3D7EFF));
         }else if(shType == 2) {

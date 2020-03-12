@@ -91,7 +91,7 @@ public class AlreadyAppraiseActivity extends BaseMvpActivity<AlreadyAppraisePres
 
         orderNo = dataBean.getOrderNo();
         tvalreType.setText(orderNo);
-        int shType = dataBean.getShType();
+        int shType = dataBean.getAsType();
         if(shType == 1) {//0全部  1故障保修  2维护升级
             tvalreTypename.setTextColor(getResources().getColor(R.color.color_3D7EFF));
         }else if(shType == 2) {

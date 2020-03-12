@@ -89,50 +89,35 @@ public class GongdanShuxingFragment extends BaseMvpFragment<GongdanShuxingPresne
         tvAccWhtime.setText(model.getWishTime());
         tvAccMs.setText(model.getContent());
 
-        tv_bao_type.setText(setbx(model.getQualityIsGB(),model.getYbIsGB()));
+        tv_bao_type.setText(setbx(model.getQualityIsGB(), model.getYbIsGB()));
 
-        List<GongdanShuxingModel.FileInfoBean> fileInfo = model.getFileInfo();
+        ArrayList<Uri> dataList = model.getFileInfo();
+        if (dataList != null && dataList.size() != 0) {
+            ShouliPhotoAdapter recycleAdapter = new ShouliPhotoAdapter(getActivity(), dataList);
+            accRecycleview.setAdapter(recycleAdapter);
 
-        if(fileInfo != null && fileInfo.size() != 0){
-            String fileUrl = fileInfo.get(0).getImgUrl();
-
-            ArrayList<String> lists = new ArrayList<>();
-            List<Uri> dataList = new ArrayList<>();
-            if(!TextUtils.isEmpty(fileUrl)){
-                String[] split = fileUrl.split(",");
-                for (int i = 0 ; i < split.length ; i++){
-                    lists.add(split[i]);
-                    dataList.add(Uri.parse(ApiHelper.BASE_URL + split[i]));
+            recycleAdapter.setOnClickListener(new ShouliPhotoAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(View view, int position) {
+                    iwHelper.show(dataList, position);
                 }
-
-                ShouliPhotoAdapter recycleAdapter = new ShouliPhotoAdapter(getActivity(),lists);
-                accRecycleview.setAdapter(recycleAdapter);
-
-                recycleAdapter.setOnClickListener(new ShouliPhotoAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, int position) {
-                        iwHelper.show(dataList, position);
-                    }
-                });
-            }else {
-                accRecycleview.setVisibility(View.GONE);
-            }
-        }else {
+            });
+        } else {
             accRecycleview.setVisibility(View.GONE);
         }
     }
 
-    public String setbx(int zhib, int yanb){
+    public String setbx(int zhib, int yanb) {
         if (zhib == 1) {
             return "质保期内";
         }
         if (zhib == 2 && yanb == 0) {
             return "已过质保期";
         }
-        if (zhib == 2 && yanb == 1){
+        if (zhib == 2 && yanb == 1) {
             return "延保期内";
         }
-        if (yanb == 2){
+        if (yanb == 2) {
             return "已过延保期";
         }
         return "未设置";

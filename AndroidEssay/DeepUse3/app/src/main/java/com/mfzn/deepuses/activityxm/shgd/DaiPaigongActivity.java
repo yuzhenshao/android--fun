@@ -99,11 +99,11 @@ public class DaiPaigongActivity extends BaseMvpActivity<DaiPaigongPresent> {
 
         WorkorderListModel.DataBean dataBean = (WorkorderListModel.DataBean) getIntent().getSerializableExtra(Constants.SHOUHOU_DETAILS);
 
-        proId = dataBean.getProId() + "";
+        proId = dataBean.getProID() + "";
 
         orderNo = dataBean.getOrderNo();
         tvpaiType.setText(orderNo);
-        int shType = dataBean.getShType();
+        int shType = dataBean.getAsType();
         if(shType == 1) {//0全部  1故障保修  2维护升级
             tvpaiTypename.setTextColor(getResources().getColor(R.color.color_3D7EFF));
         }else if(shType == 2) {

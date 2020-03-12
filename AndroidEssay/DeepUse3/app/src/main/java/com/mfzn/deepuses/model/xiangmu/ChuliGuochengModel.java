@@ -17,10 +17,7 @@ public class ChuliGuochengModel {
     private int addTime;
     private String typeName;
     private String content;
-    private int is_del;
-    private int orderNum;
     private int data_id;
-    private String data_en_id;
 
     public String getOrderNo() {
         return orderNo;
@@ -54,35 +51,11 @@ public class ChuliGuochengModel {
         this.content = content;
     }
 
-    public int getIs_del() {
-        return is_del;
-    }
-
-    public void setIs_del(int is_del) {
-        this.is_del = is_del;
-    }
-
-    public int getOrderNum() {
-        return orderNum;
-    }
-
-    public void setOrderNum(int orderNum) {
-        this.orderNum = orderNum;
-    }
-
     public int getData_id() {
         return data_id;
     }
 
     public void setData_id(int data_id) {
         this.data_id = data_id;
-    }
-
-    public String getData_en_id() {
-        return data_en_id;
-    }
-
-    public void setData_en_id(String data_en_id) {
-        this.data_en_id = data_en_id;
     }
 }

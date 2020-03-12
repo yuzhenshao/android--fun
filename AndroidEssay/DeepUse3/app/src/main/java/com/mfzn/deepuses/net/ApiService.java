@@ -268,7 +268,7 @@ public interface ApiService {
                                        @Field("fileUrls") String fileId);
 
     @FormUrlEncoded  //取消工单
-    @POST("api/after_sale/cancelOrderSave")
+    @POST("api/after_sale/cancelAsOrder")
     Flowable<HttpResult> cancalAccept(@Query("token") String token, @Query("uid") String uid,
                                       @Field("orderNo") String orderNo, @Field("cancelNote") String cancelNote);
 
@@ -340,7 +340,7 @@ public interface ApiService {
                                     @Query("rowNum") String rowNum,
                                     @Query("comment") String comment);
 
-    @POST("api/Discover/commentsList")
+    @GET("api/Discover/commentsList")
     Flowable<HttpResult<CommentBean>> commentsList(@Query("token") String token,
                                                    @Query("uid") String uid,
                                                    @Query("rowNum") String rowNum);
@@ -543,6 +543,7 @@ public interface ApiService {
     Flowable<HttpResult> addEngineer(@Query("token") String token, @Query("uid") String uid,
                                      @Query("engineerUserID") String enginerID, @Query("remark") String remark);
 
+    @FormUrlEncoded
     @POST("api/user/addEngineer")
     Flowable<HttpResult> delEngineer(@Query("token") String token, @Query("uid") String uid, @Field("engineerUserID") String enginerID);
 
@@ -555,6 +556,7 @@ public interface ApiService {
     Flowable<HttpResult> setNickname(@Query("token") String token, @Query("uid") String uid,
                                      @Field("nickName") String userName);
 
+    @FormUrlEncoded
     @POST("api/user/changePhone")
     Flowable<HttpResult> appModifyPhone(@Query("token") String token,
                                         @Query("uid") String uid,
@@ -606,10 +608,11 @@ public interface ApiService {
     @GET("api/Company/getCompanyInfo")
     Flowable<HttpResult<TeamManageModel>> getCompanyInfo(@QueryMap Map<String, Object> map);
 
+    @FormUrlEncoded
     @POST("api/Company/generateCompanyQRCode")
 //生成公司邀请二维码
     Flowable<HttpResult<ShareCodeModel>> shareCode(@Query("token") String token, @Query("uid") String uid,
-                                                   @Query("companyID") String companyID);
+                                                   @Field("companyID") String companyID);
 
     @GET("api/Company/getDepartments")
 //架构列表
@@ -683,9 +686,10 @@ public interface ApiService {
 //售后客服人员设置
     Flowable<HttpResult> addCustom(@Query("token") String token, @Query("uid") String uid, @Body AddCustomRequest request);
 
+    @FormUrlEncoded
     @POST("api/after_sale/delAsServicePeople")
 //公司删除售后人员
-    Flowable<HttpResult> delAsServicePeople(@Query("token") String token, @Query("uid") String uid, @Query("kfID") String kfID);
+    Flowable<HttpResult> delAsServicePeople(@Query("token") String token, @Query("uid") String uid, @Field("kfID") String kfID);
 
     @POST("api/after_sale/editAsServicePeople")
 //公司修改售后客服人员
@@ -727,7 +731,7 @@ public interface ApiService {
 //查看回单信息
     Flowable<HttpResult<ClzGongdanDetailModel>> lookReceipt(@Query("token") String token, @Query("uid") String uid,
                                                             @Query("receiptID") String receiptId);
-
+    @FormUrlEncoded
     @POST("api/after_sale/delAsOrder")
     Flowable<HttpResult> delAsOrder(@Query("token") String token, @Query("uid") String uid,
                                     @Field("orderNo") String orderNo, @Field("delNote") String delNote);

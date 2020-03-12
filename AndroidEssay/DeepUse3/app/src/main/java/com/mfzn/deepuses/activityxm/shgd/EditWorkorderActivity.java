@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -50,6 +51,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 import me.nereo.multi_image_selector.MultiImageSelectorActivity;
+import retrofit2.http.Url;
 
 public class EditWorkorderActivity extends BaseMvpActivity<EditWorkorderPresent> {
 
@@ -158,46 +160,46 @@ public class EditWorkorderActivity extends BaseMvpActivity<EditWorkorderPresent>
 
     private void commitData() {
         String type = eteditType.getText().toString().trim();
-        if(TextUtils.isEmpty(type)) {
-            ToastUtil.showToast(this,"请选择售后类型");
+        if (TextUtils.isEmpty(type)) {
+            ToastUtil.showToast(this, "请选择售后类型");
             return;
         }
         String lxr = eteditLxr.getText().toString().trim();
-        if(TextUtils.isEmpty(lxr)) {
-            ToastUtil.showToast(this,"请输入联系人");
+        if (TextUtils.isEmpty(lxr)) {
+            ToastUtil.showToast(this, "请输入联系人");
             return;
         }
         String phone = eteditLxrphone.getText().toString().trim();
-        if(TextUtils.isEmpty(phone)) {
-            ToastUtil.showToast(this,"请输入联系电话");
+        if (TextUtils.isEmpty(phone)) {
+            ToastUtil.showToast(this, "请输入联系电话");
             return;
         }
         String startTime = eteditTime.getText().toString().trim();
-        if(TextUtils.isEmpty(startTime)) {
-            ToastUtil.showToast(this,"请选择时间");
+        if (TextUtils.isEmpty(startTime)) {
+            ToastUtil.showToast(this, "请选择时间");
             return;
         }
         String ms = eteditMs.getText().toString().trim();
-        if(TextUtils.isEmpty(ms)) {
-            ToastUtil.showToast(this,"请输入故障描述");
+        if (TextUtils.isEmpty(ms)) {
+            ToastUtil.showToast(this, "请输入故障描述");
             return;
         }
-        if(bmp.size() == 0) {
-            ToastUtil.showToast(this,"请添加相关图片");
+        if (bmp.size() == 0) {
+            ToastUtil.showToast(this, "请添加相关图片");
             return;
         }
         String cameraFile = DateFormat.format("yy-MM-dd-hh-mm-ss", new Date()) + ".jpg";
-        for (int i = 0 ; i < bmp.size() ; i++){
+        for (int i = 0; i < bmp.size(); i++) {
             files.add(BitmapFileSetting.saveBitmapFile(bmp.get(i), PhotographDialog.Image_SAVEDIR + "/" + cameraFile));
         }
         getP().upLoadFile(files);
     }
 
     public void editWorkorderSuccess() {
-        ToastUtil.showToast(this,"编辑成功");
+        ToastUtil.showToast(this, "编辑成功");
         Intent intent = new Intent();
         intent.putExtra("fdsaf", "Fafas");
-        setResult(Constants.ACCEPT_GONGDAN,intent);
+        setResult(Constants.ACCEPT_GONGDAN, intent);
         EventMsg eventMsg = new EventMsg();
         eventMsg.setMsg(Constants.GONGDAN);
         RxBus.getInstance().post(eventMsg);
@@ -211,12 +213,12 @@ public class EditWorkorderActivity extends BaseMvpActivity<EditWorkorderPresent>
         if (requestCode == Constants.REAL_NAME_PAIZHAO) {
             String cameraFile = PhotographDialog.mSp.getString("img", "");
             Bitmap bitmap = BitmapFactory.decodeFile(PhotographDialog.Image_SAVEDIR + "/" + cameraFile);//根据路径转为bitmap
-            if(bitmap != null){
-                Bitmap newbitmap = ImageCompressUtil.compressBySize(bitmap, 480,480);
+            if (bitmap != null) {
+                Bitmap newbitmap = ImageCompressUtil.compressBySize(bitmap, 480, 480);
                 bmp.add(newbitmap);
                 gridviewInit();
             }
-        } else if(requestCode == Constants.RESULT_LOAD_IMAGE){
+        } else if (requestCode == Constants.RESULT_LOAD_IMAGE) {
             if (bmp.size() < 9 && resultCode == RESULT_OK && null != data) {
                 mSelectPath = data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
                 Bitmap bitmap;
@@ -246,14 +248,14 @@ public class EditWorkorderActivity extends BaseMvpActivity<EditWorkorderPresent>
 
     //上传头像成功返回
     public void uploadIconSuccess(String urls) {
-        if(!TextUtils.isEmpty(urls)){
+        if (!TextUtils.isEmpty(urls)) {
             String lxr = eteditLxr.getText().toString().trim();
             String phone = eteditLxrphone.getText().toString().trim();
             String startTime = eteditTime.getText().toString().trim();
             String ms = eteditMs.getText().toString().trim();
-            getP().editWorkorder(orderNo,shType,lxr,phone,startTime,ms,urls);
-        }else {
-            ToastUtil.showToast(this,"图片上传失败，请稍后重试");
+            getP().editWorkorder(orderNo, shType, lxr, phone, startTime, ms, urls);
+        } else {
+            ToastUtil.showToast(this, "图片上传失败，请稍后重试");
         }
     }
 
@@ -266,9 +268,9 @@ public class EditWorkorderActivity extends BaseMvpActivity<EditWorkorderPresent>
 
         shType = model.getAsType() + "";
 
-        if(shType.equals("1")) {
+        if (shType.equals("1")) {
             eteditType.setText("故障报修");
-        }else if(shType.equals("2")) {
+        } else if (shType.equals("2")) {
             eteditType.setText("维护升级");
         }
 
@@ -277,46 +279,42 @@ public class EditWorkorderActivity extends BaseMvpActivity<EditWorkorderPresent>
         eteditTime.setText(model.getWishTime());
         eteditMs.setText(model.getContent());
 
-        List<GongdanShuxingModel.FileInfoBean> fileInfo = model.getFileInfo();
+        List<Uri> fileInfo = model.getFileInfo();
 //
-        if(fileInfo != null && fileInfo.size() != 0){
-            String fileUrl = fileInfo.get(0).getImgUrl();
+        if (fileInfo != null && fileInfo.size() != 0) {
 
-            if(!TextUtils.isEmpty(fileUrl)){
-                String[] split = fileUrl.split(",");
-                for (int i = 0 ; i < split.length ; i++){
-                    beanList.add(split[i]);
-                    Bitmap bitmap = BitmapFileSetting.convertStringToIcon(ApiHelper.BASE_URL + split[i]);
-                    bmp.add(bitmap);
-                }
-
-                //多选图片
-                gridviewInit();
+            for (int i = 0; i < fileInfo.size(); i++) {
+                Bitmap bitmap = BitmapFileSetting.convertStringToIcon(fileInfo.get(i).getPath());
+                bmp.add(bitmap);
             }
+
+            //多选图片
+            gridviewInit();
         }
+
     }
 
     public void gridviewInit() {
         getResources().getDimension(R.dimen.app_10dp);
 
-        recycleAdapter = new AddPhotoAdapter(this,bmp);
+        recycleAdapter = new AddPhotoAdapter(this, bmp);
         editRecycleview.setAdapter(recycleAdapter);
 
         recycleAdapter.setOnAddClickListener(new AddPhotoAdapter.OnAddItemClickListener() {
             @Override
             public void onItemAddClick(View view, int position) {
                 if (position == 0 && bmp.size() != 9) {
-                    PhotographDialog.photographDialog(EditWorkorderActivity.this,bmp);
+                    PhotographDialog.photographDialog(EditWorkorderActivity.this, bmp);
                 }
             }
         });
         recycleAdapter.setOnDeleteClickListener(new AddPhotoAdapter.OnDeleteClickListener() {
             @Override
             public void onDeleteClick(View view, int position) {
-                if(bmp.size() == 9) {
+                if (bmp.size() == 9) {
                     bmp.get(position).recycle();
                     bmp.remove(position);
-                }else {
+                } else {
                     bmp.get(position - 1).recycle();
                     bmp.remove(position - 1);
                 }
@@ -326,13 +324,13 @@ public class EditWorkorderActivity extends BaseMvpActivity<EditWorkorderPresent>
     }
 
     //售后类型
-    private void initPartmentPicker(){
+    private void initPartmentPicker() {
         pickerView = new OptionsPickerBuilder(this, new OnOptionsSelectListener() {
             @Override
-            public void onOptionsSelect(int options1, int option2, int options3 ,View v) {
-                if(options1 == 0) {
+            public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                if (options1 == 0) {
                     shType = "1";
-                }else {
+                } else {
                     shType = "2";
                 }
                 eteditType.setText(listType.get(options1));
@@ -341,9 +339,9 @@ public class EditWorkorderActivity extends BaseMvpActivity<EditWorkorderPresent>
                 .setCancelColor(R.color.color_606266)//取消按钮文字颜色
                 .setOutSideCancelable(true)//点击屏幕，点在控件外部范围时，是否取消显示
                 .isDialog(true) //默认设置false ，内部实现将DecorView 作为它的父控件。
-                .setCyclic(false,false,false)//设置是否循环
+                .setCyclic(false, false, false)//设置是否循环
                 .build();
-        pickerView.setPicker(listType, null,null);
+        pickerView.setPicker(listType, null, null);
         Dialog mDialog = pickerView.getDialog();
         if (mDialog != null) {
             FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
@@ -370,7 +368,7 @@ public class EditWorkorderActivity extends BaseMvpActivity<EditWorkorderPresent>
 
         pickerView2 = new OptionsPickerBuilder(this, new OnOptionsSelectListener() {
             @Override
-            public void onOptionsSelect(int options1, int option2, int options3 ,View v) {
+            public void onOptionsSelect(int options1, int option2, int options3, View v) {
                 //返回的分别是三个级别的选中位置
                 eteditTime.setText(strings.get(options1) + " " + lists.get(options1).get(option2));
             }
@@ -378,9 +376,9 @@ public class EditWorkorderActivity extends BaseMvpActivity<EditWorkorderPresent>
                 .setCancelColor(R.color.color_606266)//取消按钮文字颜色
                 .setOutSideCancelable(true)//点击屏幕，点在控件外部范围时，是否取消显示
                 .isDialog(true) //默认设置false ，内部实现将DecorView 作为它的父控件。
-                .setCyclic(false,false,false)//设置是否循环
+                .setCyclic(false, false, false)//设置是否循环
                 .build();
-        pickerView2.setPicker(strings, lists,null);
+        pickerView2.setPicker(strings, lists, null);
         Dialog mDialog = pickerView2.getDialog();
         if (mDialog != null) {
 

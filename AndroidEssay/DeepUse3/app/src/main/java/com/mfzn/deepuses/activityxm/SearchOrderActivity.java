@@ -138,7 +138,7 @@ public class SearchOrderActivity extends BaseMvpActivity<SearchOrderPresnet> {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 positions = position;
                 clickType = 1;
-                getP().quanxian(String.valueOf(data.get(position).getProId()));
+                getP().quanxian(String.valueOf(data.get(position).getProID()));
             }
         });
 
@@ -147,14 +147,14 @@ public class SearchOrderActivity extends BaseMvpActivity<SearchOrderPresnet> {
             public void onItemPgClick(View view, int position) {
                 positions = position;
                 clickType = 2;
-                getP().quanxian(String.valueOf(data.get(position).getProId()));
+                getP().quanxian(String.valueOf(data.get(position).getProID()));
             }
 
             @Override
             public void onItemSlClick(View view, int position) {
                 positions = position;
                 clickType = 3;
-                getP().quanxian(String.valueOf(data.get(position).getProId()));
+                getP().quanxian(String.valueOf(data.get(position).getProID()));
             }
         });
     }
@@ -202,7 +202,7 @@ public class SearchOrderActivity extends BaseMvpActivity<SearchOrderPresnet> {
                 WorkorderListModel.DataBean dataBean = data.get(positions);
                 Intent intent = new Intent(this, WorkorderDispatchActivity.class);
                 intent.putExtra(Constants.SHOUHOU_ORDERNO, dataBean.getOrderNo());
-                intent.putExtra(Constants.SHOUHOU_PROIDS, dataBean.getProId() + "");
+                intent.putExtra(Constants.SHOUHOU_PROIDS, dataBean.getProID() + "");
 //                startActivityForResult(intent,Constants.ACCEPT_GONGDAN);
                 startActivity(intent);
             }else if(clickType == 3) {

@@ -64,7 +64,7 @@ public class SearchOrderAdapter extends BaseAdapter {
 //
         holder.tvWoItemTitle.getPaint().setFakeBoldText(true);
 
-        int shType = model.getShType();
+        int shType = model.getAsType();
         if(shType == 1) {//0全部  1故障保修  2维护升级
             holder.tvWoItemTitle.setTextColor(mContext.getResources().getColor(R.color.color_3D7EFF));
         }else if(shType == 2) {
@@ -81,7 +81,7 @@ public class SearchOrderAdapter extends BaseAdapter {
 
             holder.ll_wo_item_qux.setVisibility(View.VISIBLE);
 
-            String u_name = model.getShouLiRen().getU_name();
+            String u_name = model.getReceiverInfo().getUserName();
             if(TextUtils.isEmpty(u_name)) {
                 holder.ll_wo_item_slr.setVisibility(View.INVISIBLE);
             }else {
@@ -103,7 +103,7 @@ public class SearchOrderAdapter extends BaseAdapter {
             }else {
                 holder.ll_wo_item_pai.setVisibility(View.GONE);
 
-                String u_name1 = model.getEnginerInfo().getU_name();
+                String u_name1 = model.getEngineerInfo().getUserName();
                 if(TextUtils.isEmpty(u_name1)) {
                     holder.ll_wo_item_gcs.setVisibility(View.INVISIBLE);
                 }else {

@@ -112,8 +112,8 @@ public class WorkorderListActivity extends BaseMvpActivity<WorkorderListPresent>
             public void onItemClick(View view, String data, int position) {
                 positions = position;
                 clickType = 1;
-                proID = String.valueOf(adapter.getDataSource().get(position).getProId());
-                getP().quanxian(String.valueOf(adapter.getDataSource().get(position).getProId()));
+                proID = String.valueOf(adapter.getDataSource().get(position).getProID());
+                getP().quanxian(String.valueOf(adapter.getDataSource().get(position).getProID()));
             }
         });
 
@@ -122,14 +122,14 @@ public class WorkorderListActivity extends BaseMvpActivity<WorkorderListPresent>
             public void onItemPgClick(View view, int position) {
                 positions = position;
                 clickType = 2;
-                getP().quanxian(String.valueOf(adapter.getDataSource().get(position).getProId()));
+                getP().quanxian(String.valueOf(adapter.getDataSource().get(position).getProID()));
             }
 
             @Override
             public void onItemSlClick(View view, int position) {
                 positions = position;
                 clickType = 3;
-                getP().quanxian(String.valueOf(adapter.getDataSource().get(position).getProId()));
+                getP().quanxian(String.valueOf(adapter.getDataSource().get(position).getProID()));
             }
         });
 
@@ -253,7 +253,7 @@ public class WorkorderListActivity extends BaseMvpActivity<WorkorderListPresent>
                 WorkorderListModel.DataBean dataBean = adapter.getDataSource().get(positions);
                 Intent intent = new Intent(this, WorkorderDispatchActivity.class);
                 intent.putExtra(Constants.SHOUHOU_ORDERNO, dataBean.getOrderNo());
-                intent.putExtra(Constants.SHOUHOU_PROIDS, dataBean.getProId() + "");
+                intent.putExtra(Constants.SHOUHOU_PROIDS, dataBean.getProID() + "");
 //                startActivityForResult(intent,Constants.ACCEPT_GONGDAN);
                 startActivity(intent);
             }else if(clickType == 3) {
@@ -372,7 +372,7 @@ public class WorkorderListActivity extends BaseMvpActivity<WorkorderListPresent>
                     selectType = 1;
                     List<WorkorderListModel.DataBean> models = new ArrayList<>();
                     for(int i = 0; i < dataSource.size(); i++) {
-                        int shType = dataSource.get(i).getShType();
+                        int shType = dataSource.get(i).getAsType();
                         if(shType == 1) { // 1故障保修  2维护升级
                             models.add(dataSource.get(i));
                         }
@@ -382,7 +382,7 @@ public class WorkorderListActivity extends BaseMvpActivity<WorkorderListPresent>
                     selectType = 1;
                     List<WorkorderListModel.DataBean> models = new ArrayList<>();
                     for(int i = 0; i < dataSource.size(); i++) {
-                        int shType = dataSource.get(i).getShType();
+                        int shType = dataSource.get(i).getAsType();
                         if(shType == 2) { // 1故障保修  2维护升级
                             models.add(dataSource.get(i));
                         }

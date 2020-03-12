@@ -1,5 +1,12 @@
 package com.mfzn.deepuses.model.xiangmu;
 
+import android.net.Uri;
+import android.text.TextUtils;
+
+import com.mfzn.deepuses.net.ApiHelper;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class GongdanShuxingModel {
@@ -46,8 +53,8 @@ public class GongdanShuxingModel {
     //
     private int qualityIsGB;
     private int ybIsGB;
-    private EnginerInfoBean enginerInfo;
-    private List<FileInfoBean> fileUrls;
+    private EnginerInfoBean engineerInfo;
+    private String fileUrls;
     private List<CustomersInfo> customersInfo;
 
     public String getOrderNo() {
@@ -342,19 +349,28 @@ public class GongdanShuxingModel {
     }
 
     public EnginerInfoBean getEnginerInfo() {
-        return enginerInfo;
+        return engineerInfo;
     }
 
     public void setEnginerInfo(EnginerInfoBean enginerInfo) {
-        this.enginerInfo = enginerInfo;
+        this.engineerInfo = enginerInfo;
     }
 
-    public List<FileInfoBean> getFileInfo() {
-        return fileUrls;
-    }
-
-    public void setFileInfo(List<FileInfoBean> fileInfo) {
-        this.fileUrls = fileInfo;
+    public ArrayList<Uri> getFileInfo() {
+        ArrayList<Uri> urls=new ArrayList<>();
+        if(!TextUtils.isEmpty(fileUrls)){
+            String[] files=fileUrls.split(",");
+            if(files.length>0){
+                for(int i=0;i<files.length;i++){
+                    if(!TextUtils.isEmpty(files[i])){
+                        urls.add(Uri.parse(ApiHelper.BASE_URL + files[i]));
+                    }
+                }
+            }else{
+                urls.add(Uri.parse(ApiHelper.BASE_URL + fileUrls));
+            }
+        }
+        return urls;
     }
 
     public List<CustomersInfo> getCustomersInfo() {
@@ -405,130 +421,12 @@ public class GongdanShuxingModel {
         this.longitude = longitude;
     }
 
-    public static class FileInfoBean {
-        /**
-         * imgUrl : /uploads/960/解决方案/20191107094212-wx4310ffe4c9f7f6be.o6zAJswA4YJt_BmV6MObR3eJdK2o.DMScwqhEo5Gr20c32cb68d02e81cfb3f97796bb22bc4
-         * imgNote :
-         * fileUrl :
-         * fileNote :
-         * otherUrl :
-         * otherNote :
-         * is_del : 0
-         * addtime : 1573090932
-         * updateTime : 0
-         * updateUser : 0
-         * data_id : 642
-         * data_en_id : pavhSvgPk
-         */
+    public String getFileUrls() {
+        return fileUrls;
+    }
 
-        private String imgUrl;
-        private String imgNote;
-        private String fileUrl;
-        private String fileNote;
-        private String otherUrl;
-        private String otherNote;
-        private int is_del;
-        private int addtime;
-        private int updateTime;
-        private int updateUser;
-        private int data_id;
-        private String data_en_id;
-
-        public String getImgUrl() {
-            return imgUrl;
-        }
-
-        public void setImgUrl(String imgUrl) {
-            this.imgUrl = imgUrl;
-        }
-
-        public String getImgNote() {
-            return imgNote;
-        }
-
-        public void setImgNote(String imgNote) {
-            this.imgNote = imgNote;
-        }
-
-        public String getFileUrl() {
-            return fileUrl;
-        }
-
-        public void setFileUrl(String fileUrl) {
-            this.fileUrl = fileUrl;
-        }
-
-        public String getFileNote() {
-            return fileNote;
-        }
-
-        public void setFileNote(String fileNote) {
-            this.fileNote = fileNote;
-        }
-
-        public String getOtherUrl() {
-            return otherUrl;
-        }
-
-        public void setOtherUrl(String otherUrl) {
-            this.otherUrl = otherUrl;
-        }
-
-        public String getOtherNote() {
-            return otherNote;
-        }
-
-        public void setOtherNote(String otherNote) {
-            this.otherNote = otherNote;
-        }
-
-        public int getIs_del() {
-            return is_del;
-        }
-
-        public void setIs_del(int is_del) {
-            this.is_del = is_del;
-        }
-
-        public int getAddtime() {
-            return addtime;
-        }
-
-        public void setAddtime(int addtime) {
-            this.addtime = addtime;
-        }
-
-        public int getUpdateTime() {
-            return updateTime;
-        }
-
-        public void setUpdateTime(int updateTime) {
-            this.updateTime = updateTime;
-        }
-
-        public int getUpdateUser() {
-            return updateUser;
-        }
-
-        public void setUpdateUser(int updateUser) {
-            this.updateUser = updateUser;
-        }
-
-        public int getData_id() {
-            return data_id;
-        }
-
-        public void setData_id(int data_id) {
-            this.data_id = data_id;
-        }
-
-        public String getData_en_id() {
-            return data_en_id;
-        }
-
-        public void setData_en_id(String data_en_id) {
-            this.data_en_id = data_en_id;
-        }
+    public void setFileUrls(String fileUrls) {
+        this.fileUrls = fileUrls;
     }
 
     public static class EnginerInfoBean {

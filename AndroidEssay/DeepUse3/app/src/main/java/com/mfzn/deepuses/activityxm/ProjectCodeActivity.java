@@ -148,7 +148,7 @@ public class ProjectCodeActivity extends BaseMvpActivity<ProjectCodePresnet> {
     public void projectCodeSuccess(ProjectCodeModel model) {
         String path = model.getPath();
         if(!TextUtils.isEmpty(path)){
-            Glide.with(this).load(ApiHelper.BASE_URL + path).into(ivCode);
+            Glide.with(this).load(ApiHelper.BASE_API_URL + path).into(ivCode);
         }
     }
 

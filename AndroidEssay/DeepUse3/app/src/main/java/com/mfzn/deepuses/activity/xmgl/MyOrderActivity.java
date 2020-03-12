@@ -100,8 +100,8 @@ public class MyOrderActivity extends BaseMvpActivity<MyOrderPresnet> {
             public void onItemClick(View view, String data, int position) {
                 positions = position;
                 clickType = 1;
-                proID = String.valueOf(adapter.getDataSource().get(position).getProId());
-                getP().quanxian(String.valueOf(adapter.getDataSource().get(position).getProId()));
+                proID = String.valueOf(adapter.getDataSource().get(position).getProID());
+                getP().quanxian(String.valueOf(adapter.getDataSource().get(position).getProID()));
             }
         });
 
@@ -110,14 +110,14 @@ public class MyOrderActivity extends BaseMvpActivity<MyOrderPresnet> {
             public void onItemPgClick(View view, int position) {
                 positions = position;
                 clickType = 2;
-                getP().quanxian(String.valueOf(adapter.getDataSource().get(position).getProId()));
+                getP().quanxian(String.valueOf(adapter.getDataSource().get(position).getProID()));
             }
 
             @Override
             public void onItemSlClick(View view, int position) {
                 positions = position;
                 clickType = 3;
-                getP().quanxian(String.valueOf(adapter.getDataSource().get(position).getProId()));
+                getP().quanxian(String.valueOf(adapter.getDataSource().get(position).getProID()));
             }
         });
 
@@ -226,7 +226,7 @@ public class MyOrderActivity extends BaseMvpActivity<MyOrderPresnet> {
                 WorkorderListModel.DataBean dataBean = adapter.getDataSource().get(positions);
                 Intent intent = new Intent(this, WorkorderDispatchActivity.class);
                 intent.putExtra(Constants.SHOUHOU_ORDERNO, dataBean.getOrderNo());
-                intent.putExtra(Constants.SHOUHOU_PROIDS, dataBean.getProId() + "");
+                intent.putExtra(Constants.SHOUHOU_PROIDS, dataBean.getProID() + "");
 //                startActivityForResult(intent,Constants.ACCEPT_GONGDAN);
                 startActivity(intent);
             }else if(clickType == 3) {

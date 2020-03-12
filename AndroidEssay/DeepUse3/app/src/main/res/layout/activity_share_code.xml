@@ -148,6 +148,7 @@
             android:layout_marginLeft="@dimen/app_10dp"
             android:layout_marginRight="@dimen/app_10dp"
             android:text="分享"
+            android:visibility="gone"
             android:textSize="18sp"
             android:textColor="@color/color_ffffff"
             android:background="@drawable/shape_yuanjiao_4a90e2_button"/>

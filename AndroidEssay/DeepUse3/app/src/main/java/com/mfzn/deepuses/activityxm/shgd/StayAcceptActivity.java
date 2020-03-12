@@ -118,7 +118,7 @@ public class StayAcceptActivity extends BaseMvpActivity<DeleteWorkorderPresent> 
 
         orderNo = dataBean.getOrderNo();
         tvAccType.setText(orderNo);
-        int shType = dataBean.getShType();
+        int shType = dataBean.getAsType();
         if(shType == 1) {//0全部  1故障保修  2维护升级
             tvAccTypename.setTextColor(getResources().getColor(R.color.color_3D7EFF));
         }else if(shType == 2) {
