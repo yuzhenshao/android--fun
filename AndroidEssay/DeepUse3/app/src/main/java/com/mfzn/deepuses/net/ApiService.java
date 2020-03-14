@@ -564,7 +564,7 @@ public interface ApiService {
                                         @Field("smscode") String smscode);
 
     @GET("api/User/getBusinessCard")
-    Flowable<HttpResult<BusinessCardResponse>> getBusinessCard(@Query("userID") String userId);
+    Flowable<HttpResult<BusinessCardResponse>> getBusinessCard(@Query("userID") int userId);
 
     @POST("api/User/editBusinessCard")
     Flowable<HttpResult> editBusinessCard(@Query("token") String token, @Query("uid") String uid, @Body EditBusinessCardRequest request);

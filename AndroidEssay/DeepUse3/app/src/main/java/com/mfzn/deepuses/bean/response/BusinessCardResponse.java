@@ -192,7 +192,7 @@ public class BusinessCardResponse implements Serializable {
         this.proMemberLabels = proMemberLabels;
     }
 
-    public static class ProMemberLabelsBean {
+    public static class ProMemberLabelsBean implements Serializable{
         /**
          * labelID : 2
          * labelName : 工程师

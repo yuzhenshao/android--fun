@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.EditText;
@@ -18,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.jakewharton.rxbinding2.widget.RxTextView;
 import com.mfzn.deepuses.BaseApplication;
 import com.mfzn.deepuses.R;
+import com.mfzn.deepuses.activitymy.setting.SwitchCompanyActivity;
 import com.mfzn.deepuses.bass.BaseActivity;
 import com.mfzn.deepuses.bean.request.EditBusinessCardRequest;
 import com.mfzn.deepuses.bean.response.BusinessCardResponse;
@@ -62,6 +64,7 @@ import static com.mfzn.deepuses.utils.UIUtils.showToast;
 public class MyCardEditActivity extends BaseActivity {
 
     public static String CARD_INFO = "CardInfo";
+    public static String ONLY_SELECTED;
     @BindView(R.id.photo)
     RoundImageView userPhoto;
     @BindView(R.id.name)
@@ -87,7 +90,10 @@ public class MyCardEditActivity extends BaseActivity {
     @BindView(R.id.project_number)
     TextView tvProjectNumber;
 
+    private static int SELECTED = 1;
     private BusinessCardResponse mBusinessCardResponse;
+    private boolean isShowCompany;
+    private boolean isShowProNum;
 
     public static Intent newIntent(Context context, BusinessCardResponse businessCardResponse) {
         Intent intent = new Intent(context, MyCardEditActivity.class);
@@ -108,25 +114,38 @@ public class MyCardEditActivity extends BaseActivity {
                     .into(userPhoto);
             tvCardName.setText(mBusinessCardResponse.getUserName());
             tvCardPhone.setText(mBusinessCardResponse.getCardPhone());
-            tvProjectNumber.setText(mBusinessCardResponse.getProNum());
+            tvCardProjrct.setText(mBusinessCardResponse.getProNum());
             tvCompanySelect.setText(mBusinessCardResponse.getCompanyName());
             etCardEmail.setText(mBusinessCardResponse.getUserEmail());
-            etCompanyPosition.setText(mBusinessCardResponse.getUserEmail());
+            if(!TextUtils.isEmpty(mBusinessCardResponse.getUserEmail())) {
+                etCardEmail.setSelection(mBusinessCardResponse.getUserEmail().length());
+            }
+            etCompanyPosition.setText(mBusinessCardResponse.getUserPosition());
             etWorkYear.setText(mBusinessCardResponse.getWorkYear());
             etCarddJZ.setText(mBusinessCardResponse.getJzNum());
             etCardGZ.setText(mBusinessCardResponse.getGzNum());
 
-            tvCompanyName.setTextColor(Color.parseColor(mBusinessCardResponse.getShowCompany() == 0 ? "#BFC2CC" : "#3D7EFF"));
-            tvCompanyName.setBackgroundResource(mBusinessCardResponse.getShowCompany() == 0 ?
-                    R.drawable.flowing_type_tv_while_shape : R.drawable.flowing_type_tv_bule_shape);
-            tvCardProjrct.setTextColor(Color.parseColor(mBusinessCardResponse.getShowProNum() == 0 ? "#BFC2CC" : "#3D7EFF"));
-            tvCardProjrct.setBackgroundResource(mBusinessCardResponse.getShowProNum() == 0 ?
-                    R.drawable.flowing_type_tv_while_shape : R.drawable.flowing_type_tv_bule_shape);
-
+            setCompanyNameStatus(mBusinessCardResponse.getShowCompany() == 0);
+            setProjectStatus(mBusinessCardResponse.getShowProNum() == 0);
         }
     }
 
-    @OnClick({R.id.iv_back, R.id.photo_icon, R.id.select_company_icon, R.id.compelete})
+    private void setCompanyNameStatus(boolean isShowCompany) {
+        this.isShowCompany = isShowCompany;
+        tvCompanyName.setTextColor(Color.parseColor(isShowCompany ? "#3D7EFF" : "#BFC2CC"));
+        tvCompanyName.setBackgroundResource(isShowCompany ? R.drawable.flowing_type_tv_bule_shape :
+                R.drawable.flowing_type_tv_while_shape);
+    }
+
+    private void setProjectStatus(boolean isShowProNum) {
+        this.isShowProNum = isShowProNum;
+        tvProjectNumber.setTextColor(Color.parseColor(isShowProNum ? "#3D7EFF" : "#BFC2CC"));
+        tvProjectNumber.setBackgroundResource(isShowProNum ? R.drawable.flowing_type_tv_bule_shape :
+                R.drawable.flowing_type_tv_while_shape);
+
+    }
+
+    @OnClick({R.id.iv_back, R.id.photo_icon, R.id.select_company_icon, R.id.compelete, R.id.company_name, R.id.project_number})
     public void onClickView(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
@@ -136,10 +155,18 @@ public class MyCardEditActivity extends BaseActivity {
                 PhotographDialog.photographDialog2(this);
                 break;
             case R.id.select_company_icon:
-
+                Intent intent = new Intent(this, SwitchCompanyActivity.class);
+                intent.putExtra(ONLY_SELECTED, true);
+                startActivityForResult(intent, SELECTED);
                 break;
             case R.id.compelete:
                 uploadEditCard();
+                break;
+            case R.id.company_name:
+                setCompanyNameStatus(!isShowCompany);
+                break;
+            case R.id.project_number:
+                setProjectStatus(!isShowProNum);
                 break;
         }
     }
@@ -155,6 +182,8 @@ public class MyCardEditActivity extends BaseActivity {
         request.setShowProNum(mBusinessCardResponse.getShowProNum());
         request.setCardPhone(mBusinessCardResponse.getCardPhone());
         request.setCardCompanyID(mBusinessCardResponse.getCardCompanyID());
+        request.setShowCompany(isShowCompany ?0:1);
+        request.setShowProNum(isShowProNum?0:1);
         ApiHelper.getApiService().editBusinessCard(UserHelper.getToken(), UserHelper.getUid(), request)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
@@ -190,7 +219,9 @@ public class MyCardEditActivity extends BaseActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == Constants.REAL_NAME_PAIZHAO) {
+        if (requestCode == SELECTED) {
+            tvCompanyName.setText(UserHelper.getCompanyName());
+        } else if (requestCode == Constants.REAL_NAME_PAIZHAO) {
             String cameraFile = PhotographDialog.mSp.getString("img", "");
             Bitmap bitmap = BitmapFactory.decodeFile(PhotographDialog.Image_SAVEDIR + "/" + cameraFile);//根据路径转为bitmap
             if (bitmap != null) {
