@@ -121,6 +121,9 @@ public class MyCardEditActivity extends BaseActivity {
                 etCardEmail.setSelection(mBusinessCardResponse.getUserEmail().length());
             }
             etCompanyPosition.setText(mBusinessCardResponse.getUserPosition());
+            if(!TextUtils.isEmpty(mBusinessCardResponse.getUserPosition())) {
+                etCardEmail.setSelection(mBusinessCardResponse.getUserPosition().length());
+            }
             etWorkYear.setText(mBusinessCardResponse.getWorkYear());
             etCarddJZ.setText(mBusinessCardResponse.getJzNum());
             etCardGZ.setText(mBusinessCardResponse.getGzNum());
