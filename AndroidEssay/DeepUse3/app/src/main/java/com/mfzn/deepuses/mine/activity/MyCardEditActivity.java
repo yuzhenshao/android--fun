@@ -125,8 +125,8 @@ public class MyCardEditActivity extends BaseActivity {
             etCarddJZ.setText(mBusinessCardResponse.getJzNum());
             etCardGZ.setText(mBusinessCardResponse.getGzNum());
 
-            setCompanyNameStatus(mBusinessCardResponse.getShowCompany() == 0);
-            setProjectStatus(mBusinessCardResponse.getShowProNum() == 0);
+            setCompanyNameStatus(mBusinessCardResponse.getShowCompany() != 0);
+            setProjectStatus(mBusinessCardResponse.getShowProNum() != 0);
         }
     }
 
@@ -182,8 +182,8 @@ public class MyCardEditActivity extends BaseActivity {
         request.setShowProNum(mBusinessCardResponse.getShowProNum());
         request.setCardPhone(mBusinessCardResponse.getCardPhone());
         request.setCardCompanyID(mBusinessCardResponse.getCardCompanyID());
-        request.setShowCompany(isShowCompany ?0:1);
-        request.setShowProNum(isShowProNum?0:1);
+        request.setShowCompany(isShowCompany ?1:0);
+        request.setShowProNum(isShowProNum?1:0);
         ApiHelper.getApiService().editBusinessCard(UserHelper.getToken(), UserHelper.getUid(), request)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())

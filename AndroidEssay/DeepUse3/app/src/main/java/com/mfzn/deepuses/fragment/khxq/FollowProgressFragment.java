@@ -4,35 +4,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.github.ielse.imagewatcher.ImageWatcherHelper;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.activity.khgl.AddFollowActivity;
-import com.mfzn.deepuses.activity.khgl.ProDetailsActivity;
-import com.mfzn.deepuses.adapter.CustomDotIndexProvider;
-import com.mfzn.deepuses.adapter.CustomLoadingUIProvider;
-import com.mfzn.deepuses.adapter.GlideSimpleLoader;
-import com.mfzn.deepuses.adapter.khgl.CustomerProAdapter;
 import com.mfzn.deepuses.adapter.khgl.FollowProAdapter;
 import com.mfzn.deepuses.bass.BaseMvpFragment;
-import com.mfzn.deepuses.model.brick.BrickRecordModel;
 import com.mfzn.deepuses.model.khgl.FollowProModel;
 import com.mfzn.deepuses.present.customer.FollowProgressPresnet;
 import com.mfzn.deepuses.utils.Constants;
-import com.mfzn.deepuses.view.MyRecyclerView;
-import com.wevey.selector.dialog.bean.DetailsModel;
 
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 public class FollowProgressFragment extends BaseMvpFragment<FollowProgressPresnet> {
 

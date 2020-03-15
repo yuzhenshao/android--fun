@@ -436,7 +436,7 @@ public interface ApiService {
     @POST("api/Customer/addRelatedPro")
     Flowable<HttpResult> guanliPro(@Query("token") String token, @Query("uid") String uid, @Field("companyID") String companyID,
                                    @Field("proID") String proID,
-                                   @Field("customerUserID") String customerUserID);
+                                   @Field("customerID") String customerUserID);
 
     @GET("api/Customer/getFollowRecords")//跟进记录列表接口
     Flowable<HttpResult<List<FollowProModel>>> followPro(@Query("token") String token, @Query("uid") String uid,

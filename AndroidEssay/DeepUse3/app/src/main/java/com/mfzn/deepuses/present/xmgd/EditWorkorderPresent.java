@@ -43,6 +43,7 @@ public class EditWorkorderPresent extends XPresent<EditWorkorderActivity> {
     private int uploadImageIndex = 0;
 
     public void upLoadFile(List<File> files) {
+        uploadImageIndex=0;
         StringBuffer fileUrls = new StringBuffer();
         for (int i = 0; i < files.size(); i++) {
             if (files.get(i).exists()) {
@@ -55,7 +56,7 @@ public class EditWorkorderPresent extends XPresent<EditWorkorderActivity> {
                             fileUrls.append(",");
                         }
                         fileUrls.append(url);
-                        if (uploadImageIndex == files.size() - 1) {
+                        if (uploadImageIndex == files.size()) {
                             getV().uploadIconSuccess(fileUrls.toString());
                         }
                     }

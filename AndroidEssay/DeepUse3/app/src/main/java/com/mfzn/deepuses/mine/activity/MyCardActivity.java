@@ -92,6 +92,7 @@ public class MyCardActivity extends BaseActivity {
                 .safeSubscribe(new ApiSubscriber<HttpResult<BusinessCardResponse>>() {
                     @Override
                     public void onNext(HttpResult<BusinessCardResponse> result) {
+                        rlCardContainer.setVisibility(View.VISIBLE);
                         initBusinessCard(result.getRes());
                     }
 

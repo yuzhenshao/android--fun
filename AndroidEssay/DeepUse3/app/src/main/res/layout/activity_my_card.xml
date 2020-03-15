@@ -61,15 +61,15 @@
                 android:layout_marginTop="@dimen/app_15dp"
                 android:layout_marginRight="@dimen/app_12dp"
                 android:background="@drawable/yuanjiao_ffffff_bg_shape"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <com.mfzn.deepuses.view.RoundImageView
                     android:id="@+id/riv_card_tx"
                     android:layout_width="@dimen/app_110dp"
                     android:layout_height="@dimen/app_110dp"
                     android:layout_margin="@dimen/app_24dp"
-                    android:scaleType="fitXY"
-                    android:src="@mipmap/select_delete" />
+                    android:scaleType="fitXY" />
 
                 <ImageView
                     android:id="@+id/iv_company_logo"
@@ -78,8 +78,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_margin="@dimen/app_24dp"
                     android:layout_marginRight="@dimen/app_12dp"
-                    android:layout_marginBottom="@dimen/app_40dp"
-                    android:src="@mipmap/aaa_bu" />
+                    android:layout_marginBottom="@dimen/app_40dp" />
 
 
                 <ImageView

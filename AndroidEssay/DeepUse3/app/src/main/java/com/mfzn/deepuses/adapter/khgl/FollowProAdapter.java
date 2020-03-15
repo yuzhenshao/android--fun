@@ -77,7 +77,7 @@ public class FollowProAdapter extends RecyclerView.Adapter {
         viewHolder.tvFollNote.setText(bean.getContent());
 
         List<String> imageUrls = bean.getImageUrls();
-        if (imageUrls != null && !TextUtils.isEmpty(imageUrls.get(0))) {
+        if (imageUrls != null &&imageUrls.size()>0&& !TextUtils.isEmpty(imageUrls.get(0))) {
             viewHolder.flRecycleview.setVisibility(View.VISIBLE);
             LinearLayoutManager layoutManager = new LinearLayoutManager(context);
             layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);

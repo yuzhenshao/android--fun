@@ -4,23 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.activity.khgl.AddProActivity;
-import com.mfzn.deepuses.activity.khgl.MultipleSelectActivity;
-import com.mfzn.deepuses.activity.khgl.ProDetaActivity;
-import com.mfzn.deepuses.activity.khgl.ProDetailsActivity;
 import com.mfzn.deepuses.activity.xmgl.SelectProjectActivity;
-import com.mfzn.deepuses.activityxm.FoundProjectActivity;
-import com.mfzn.deepuses.activityxm.staging.ProjectStagingActivity;
 import com.mfzn.deepuses.adapter.khgl.CustomerProAdapter;
-import com.mfzn.deepuses.adapter.xiangmu.AddPhotoAdapter;
 import com.mfzn.deepuses.bass.BaseMvpFragment;
-import com.mfzn.deepuses.model.xiangmu.XiangmuModel;
 import com.mfzn.deepuses.present.customer.ProjectInfoPresnet;
 import com.mfzn.deepuses.utils.Constants;
 import com.mfzn.deepuses.utils.EventMsg;
@@ -31,9 +22,7 @@ import com.wevey.selector.dialog.bean.DetailsModel;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 
@@ -124,16 +113,6 @@ public class ProjectInfoFragment extends BaseMvpFragment<ProjectInfoPresnet> {
             ll_pr_empty.setVisibility(View.GONE);
             CustomerProAdapter recycleAdapter = new CustomerProAdapter(getActivity(),pros);
             prRecycleview.setAdapter(recycleAdapter);
-
-            recycleAdapter.setOnSeeItemClickListener(new CustomerProAdapter.OnSeeItemClickListener() {
-                @Override
-                public void onItemClick(View view, int position) {
-                    DetailsModel.ProsBean prosBean = pros.get(position);
-                    Intent intent = new Intent(getActivity(), ProDetaActivity.class);
-                    intent.putExtra(Constants.PRO_DETA,prosBean);
-                    startActivity(intent);
-                }
-            });
         }else {
             ll_pr_empty.setVisibility(View.VISIBLE);
         }

@@ -35,7 +35,8 @@
             android:textColor="@color/color_3D7EFF"
             android:gravity="center_vertical|right"
             android:paddingRight="@dimen/app_24dp"
-            android:text="查看详情"/>
+            android:text="查看详情"
+            android:visibility="gone"/>
 
     </LinearLayout>
 
