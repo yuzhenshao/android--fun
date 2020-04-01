@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shape_white_corner8"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/shape_white_corner8"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/with_success"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="23dp"
+            android:gravity="center"
+            android:lines="1"
+            android:textColor="#333333"
+            android:text="提现申请发起成功，系统处理中！"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/dialog_with"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:background="@drawable/blue_yuanjiao_button_shape2"
+            android:layout_marginTop="30dp"
+            android:text="确定"
+            android:layout_marginBottom="18dp"
+            android:textColor="#ffffff"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

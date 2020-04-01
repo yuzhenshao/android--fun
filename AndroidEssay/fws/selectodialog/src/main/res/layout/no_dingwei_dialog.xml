@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shape_white_corner8"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/shape_white_corner8"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="点位有误，需重新调整"
+                android:textColor="#333333"
+                android:textSize="15sp"/>
+
+            <LinearLayout
+                android:id="@+id/ll_ding_youwu"
+                android:layout_width="50dp"
+                android:gravity="center"
+                android:layout_height="40dp">
+
+                <ImageView
+                    android:id="@+id/iv_ding_youwu"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/ding_xuan"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="时间冲突，请重新改派"
+                android:textColor="#333333"
+                android:textSize="15sp"/>
+
+            <LinearLayout
+                android:id="@+id/ll_ding_chongtu"
+                android:layout_width="50dp"
+                android:gravity="center"
+                android:layout_height="40dp">
+
+                <ImageView
+                    android:id="@+id/iv_ding_chongtu"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/ding_buxuan"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_weight="0"
+        android:background="@color/color_cococo"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/dialog_normal_leftbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/selector_widget_dialog_leftbtn"
+            android:gravity="center"
+            android:textColor="@color/color_203B64"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:background="@color/color_cococo"/>
+
+        <Button
+            android:id="@+id/dialog_normal_rightbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/selector_widget_dialog_rightbtn"
+            android:gravity="center"
+            android:textColor="@color/color_888888"
+            android:textSize="14sp"/>
+
+    </LinearLayout>
+
+</LinearLayout>
