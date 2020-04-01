@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_wo_item_qux"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/app_55dp"
+    android:paddingLeft="@dimen/app_12dp"
+    android:visibility="gone"
+    android:paddingRight="@dimen/app_12dp">
+
+    <LinearLayout
+        android:id="@+id/ll_wo_item_slr"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="6"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/app_4dp">
+
+        <TextView
+            android:id="@+id/tv_wo_item_sltx"
+            android:layout_width="@dimen/app_26dp"
+            android:layout_height="@dimen/app_26dp"
+            android:background="@drawable/yuantouxiang_37c1cf_bg_shape"
+            android:gravity="center"
+            android:text="我"
+            android:textColor="@color/color_37C1CF"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/app_6dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="受理人"
+                android:textColor="@color/color_909399"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/tv_wo_item_slname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="color_303133"
+                android:textColor="@color/color_303133"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_wo_item_gcs"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:visibility="gone"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tv_wo_item_sctx"
+            android:layout_width="@dimen/app_26dp"
+            android:layout_height="@dimen/app_26dp"
+            android:background="@drawable/yuantouxiang_5d7dec_bg_shape"
+            android:gravity="center"
+            android:text="刘"
+            android:textColor="@color/color_5D7DEC"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/app_6dp"
+            android:layout_marginRight="@dimen/app_4dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="工程师"
+                android:textColor="@color/color_909399"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/tv_wo_item_gcname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="刘胖胖"
+                android:textColor="@color/color_303133"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_wo_item_pai"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tv_wo_item_pg"
+            android:layout_width="@dimen/app_96dp"
+            android:layout_height="@dimen/app_26dp"
+            android:background="@drawable/yuanjiao_4a9012_button_shape"
+            android:gravity="center"
+            android:text="立即派工"
+            android:textColor="@color/color_ffffff"
+            android:visibility="gone"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_wo_item_sl"
+            android:layout_width="@dimen/app_96dp"
+            android:layout_height="@dimen/app_26dp"
+            android:background="@drawable/yuanjiao_37c1cf_button_shape"
+            android:gravity="center"
+            android:visibility="gone"
+            android:text="立即受理"
+            android:textColor="@color/color_ffffff"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_wo_item_jd"
+            android:layout_width="@dimen/app_96dp"
+            android:layout_height="@dimen/app_26dp"
+            android:background="@drawable/yuanjiao_ljjd_button_shape"
+            android:gravity="center"
+            android:visibility="gone"
+            android:text="立即接单"
+            android:textColor="@color/color_ffffff"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+</LinearLayout>

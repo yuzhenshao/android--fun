@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_ffffff"
+    android:gravity="center_horizontal"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/main_title"/>
+
+    <ImageView
+        android:layout_width="@dimen/app_70dp"
+        android:layout_height="@dimen/app_70dp"
+        android:layout_marginTop="@dimen/app_50dp"
+        android:src="@mipmap/logo"/>
+
+    <TextView
+        android:id="@+id/tv_edi_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color_303133"
+        android:textSize="16sp"
+        android:layout_marginTop="@dimen/app_25dp"
+        android:text="云知枢服务端"/>
+
+    <TextView
+        android:id="@+id/tv_edi_bb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color_303133"
+        android:textSize="16sp"
+        android:layout_marginTop="@dimen/app_10dp"
+        android:text=""/>
+
+    <LinearLayout
+        android:id="@+id/ll_edi_gx"
+        android:layout_marginTop="@dimen/app_50dp"
+        style="@style/newly_ll_st">
+
+        <TextView
+            style="@style/newly_tv_st"
+            android:layout_weight="1"
+            android:textColor="@color/color_909399"
+            android:text="版本更新"/>
+
+        <TextView
+            android:id="@+id/tv_edi_gx"
+            style="@style/newly_tv_st"
+            android:layout_marginRight="@dimen/app_10dp"
+            android:text="已是最新"/>
+
+        <ImageView
+            style="@style/bass_iv_you"
+            android:layout_marginRight="@dimen/app_20dp"/>
+
+    </LinearLayout>
+
+    <View style="@style/line_heng"/>
+
+    <LinearLayout
+        android:id="@+id/ll_edi_sm"
+        style="@style/newly_ll_st">
+
+        <TextView
+            style="@style/newly_tv_st"
+            android:layout_weight="1"
+            android:textColor="@color/color_909399"
+            android:text="法律声明"/>
+
+        <ImageView
+            style="@style/bass_iv_you"
+            android:layout_marginRight="@dimen/app_20dp"/>
+
+    </LinearLayout>
+
+    <View style="@style/line_heng"/>
+
+    <LinearLayout
+        android:id="@+id/ll_edi_xy"
+        style="@style/newly_ll_st">
+
+        <TextView
+            style="@style/newly_tv_st"
+            android:layout_weight="1"
+            android:textColor="@color/color_909399"
+            android:text="用户协议"/>
+
+        <ImageView
+            style="@style/bass_iv_you"
+            android:layout_marginRight="@dimen/app_20dp"/>
+
+    </LinearLayout>
+
+    <View style="@style/line_heng"/>
+
+    <LinearLayout
+        android:id="@+id/ll_edi_pf"
+        style="@style/newly_ll_st">
+
+        <TextView
+            style="@style/newly_tv_st"
+            android:layout_weight="1"
+            android:textColor="@color/color_909399"
+            android:text="去评分"/>
+
+        <ImageView
+            style="@style/bass_iv_you"
+            android:layout_marginRight="@dimen/app_20dp"/>
+
+    </LinearLayout>
+
+    <View style="@style/line_heng"/>
+
+</LinearLayout>

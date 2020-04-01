@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.qmuiteam.qmui.widget.QMUIWindowInsetLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:background="#f5f7fa"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include layout="@layout/main_title"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#ffffff"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:textColor="#909399"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginTop="12dp"
+                        android:text="企业名称"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:gravity="center_vertical"
+                        android:layout_height="match_parent">
+
+                        <EditText
+                            android:id="@+id/et_com_name"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:hint="@string/company_info_name"
+                            android:textColor="#303133"
+                            android:paddingLeft="24dp"
+                            android:textColorHint="#bfc2cc"
+                            android:background="@null"/>
+
+                        <ImageView
+                            android:id="@+id/iv_com_name"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@mipmap/com_delete"
+                            android:visibility="gone"
+                            android:layout_marginRight="20dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#f5f7fa"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:textColor="#909399"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginTop="12dp"
+                        android:text="企业全称"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:gravity="center_vertical"
+                        android:layout_height="match_parent">
+
+                        <EditText
+                            android:id="@+id/et_com_quancheng"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:hint="@string/company_info_qc"
+                            android:textColor="#303133"
+                            android:paddingLeft="24dp"
+                            android:textColorHint="#bfc2cc"
+                            android:background="@null"/>
+
+                        <ImageView
+                            android:id="@+id/iv_com_quancheng"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@mipmap/com_delete"
+                            android:visibility="gone"
+                            android:layout_marginRight="20dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#f5f7fa"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:textColor="#909399"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginTop="12dp"
+                        android:text="企业地址"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:gravity="center_vertical"
+                        android:layout_height="match_parent">
+
+                        <EditText
+                            android:id="@+id/et_com_dizhi"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:hint="@string/company_info_dizhi"
+                            android:textColor="#303133"
+                            android:paddingLeft="24dp"
+                            android:textColorHint="#bfc2cc"
+                            android:background="@null"/>
+
+                        <ImageView
+                            android:id="@+id/iv_com_dizhi"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:visibility="gone"
+                            android:src="@mipmap/com_delete"
+                            android:layout_marginRight="20dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#f5f7fa"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:textColor="#909399"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginTop="12dp"
+                        android:text="企业网址"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:gravity="center_vertical"
+                        android:layout_height="match_parent">
+
+                        <EditText
+                            android:id="@+id/et_com_wangzhi"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textSize="14sp"
+                            android:hint="@string/company_info_wz"
+                            android:textColor="#303133"
+                            android:paddingLeft="24dp"
+                            android:textColorHint="#bfc2cc"
+                            android:background="@null"/>
+
+                        <ImageView
+                            android:id="@+id/iv_com_wangzhi"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@mipmap/com_delete"
+                            android:visibility="gone"
+                            android:layout_marginRight="20dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#f5f7fa"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_com_yewu"
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_height="60dp">
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:textColor="#909399"
+                            android:layout_marginLeft="24dp"
+                            android:layout_marginTop="12dp"
+                            android:text="主营业务"/>
+
+                        <EditText
+                            android:id="@+id/et_com_yewu"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingTop="30dp"
+                            android:textSize="14sp"
+                            android:hint="@string/company_info_yewu"
+                            android:textColor="#303133"
+                            android:focusableInTouchMode="false"
+                            android:paddingLeft="24dp"
+                            android:textColorHint="#bfc2cc"
+                            android:background="@null"/>
+
+                    </FrameLayout>
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@mipmap/join_you"
+                        android:layout_marginRight="20dp"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#f5f7fa"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_com_guimo"
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_height="60dp">
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:textColor="#909399"
+                            android:layout_marginLeft="24dp"
+                            android:layout_marginTop="12dp"
+                            android:text="公司规模"/>
+
+                        <EditText
+                            android:id="@+id/et_com_guimo"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingTop="30dp"
+                            android:textSize="14sp"
+                            android:hint="@string/company_info_guimo"
+                            android:textColor="#303133"
+                            android:focusableInTouchMode="false"
+                            android:paddingLeft="24dp"
+                            android:textColorHint="#bfc2cc"
+                            android:background="@null"/>
+
+                    </FrameLayout>
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@mipmap/join_you"
+                        android:layout_marginRight="20dp"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#f5f7fa"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_height="60dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:textColor="#909399"
+                            android:layout_marginLeft="24dp"
+                            android:layout_marginTop="12dp"
+                            android:text="创建时间"/>
+
+                        <TextView
+                            android:id="@+id/tv_com_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:textSize="14sp"
+                            android:textColor="#303133"
+                            android:layout_marginLeft="24dp"
+                            android:gravity="center_vertical"
+                            android:text=""/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</com.qmuiteam.qmui.widget.QMUIWindowInsetLayout>

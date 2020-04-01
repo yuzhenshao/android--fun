@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tv_add_item_hide2"
+    android:layout_width="@dimen/app_20dp"
+    android:visibility="gone"
+    android:layout_height="@dimen/app_85dp"/>

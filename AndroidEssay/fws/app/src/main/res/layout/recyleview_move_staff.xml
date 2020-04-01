@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/app_30dp">
+
+    <com.mfzn.deepusesSer.view.RoundImageView
+        android:id="@+id/iv_ry_item_icon"
+        android:layout_width="@dimen/app_30dp"
+        android:layout_height="@dimen/app_30dp"
+        android:layout_marginLeft="@dimen/app_15dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/moren_touxiang"/>
+
+</LinearLayout>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_f5f7fa"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/main_title"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_ffffff"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/app_10dp">
+
+        <LinearLayout
+            android:id="@+id/ll_info_icon"
+            style="@style/newly_ll_st">
+
+            <TextView
+                style="@style/newly_tv_st"
+                android:layout_weight="1"
+                android:text="头像"/>
+
+            <com.mfzn.deepusesSer.view.RoundImageView
+                android:id="@+id/iv_info_icon"
+                android:layout_width="@dimen/app_40dp"
+                android:layout_height="@dimen/app_40dp"
+                android:src="@mipmap/moren_touxiang"
+                android:layout_marginRight="@dimen/app_10dp"/>
+
+            <ImageView
+                style="@style/bass_iv_you"
+                android:layout_marginRight="@dimen/app_20dp"/>
+
+        </LinearLayout>
+
+        <View style="@style/line_heng"/>
+
+        <LinearLayout
+            android:id="@+id/ll_info_nic"
+            style="@style/newly_ll_st">
+
+            <TextView
+                style="@style/newly_tv_st"
+                android:layout_weight="1"
+                android:text="昵称"/>
+
+            <TextView
+                android:id="@+id/tv_info_nic"
+                style="@style/newly_tv_st"
+                android:textColor="@color/color_303133"
+                android:layout_marginRight="@dimen/app_10dp"
+                android:text="编号8975"/>
+
+            <ImageView
+                style="@style/bass_iv_you"
+                android:layout_marginRight="@dimen/app_20dp"/>
+
+        </LinearLayout>
+
+        <View style="@style/line_heng"/>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/ll_info_company"
+            style="@style/newly_ll_st">
+
+            <TextView
+                style="@style/newly_tv_st"
+                android:text="所在公司"/>
+
+            <TextView
+                android:id="@+id/tv_info_company"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/app_20dp"
+                android:layout_marginRight="@dimen/app_10dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textSize="16sp"
+                android:textColor="@color/color_303133"
+                android:text="麦麸智能科技"/>
+
+            <ImageView
+                style="@style/bass_iv_you"
+                android:layout_marginRight="@dimen/app_20dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

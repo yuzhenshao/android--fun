@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_ffffff"
+    android:orientation="vertical">
+
+    <include layout="@layout/main_title"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_69dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/app_24dp"
+            android:orientation="vertical"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tv_pai_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="@color/color_606266"
+                android:text="yzs201903130001"/>
+
+            <TextView
+                android:id="@+id/tv_pai_typename"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/color_3D7EFF"
+                android:layout_marginTop="@dimen/app_4dp"
+                android:text="故障报修"/>
+
+        </LinearLayout>
+
+       <ImageView
+           android:layout_width="@dimen/app_68dp"
+           android:layout_height="@dimen/app_24dp"
+           android:layout_marginTop="@dimen/app_15dp"
+           android:layout_marginRight="@dimen/app_24dp"
+           android:src="@mipmap/work_paigong"/>
+
+    </LinearLayout>
+
+    <View style="@style/line_heng"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_64dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="6"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/app_20dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="@dimen/app_24dp"
+                android:layout_height="@dimen/app_24dp"
+                android:src="@mipmap/sur_dingwei"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/app_7dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_pai_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="@color/color_909399"
+                    android:text="江苏省常州市武进区"/>
+
+                <TextView
+                    android:id="@+id/tv_pai_details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="@color/color_909399"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:text="聚通豪庭2懂一单元2908"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_pai_phone"
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="@dimen/app_24dp"
+                android:layout_height="@dimen/app_24dp"
+                android:src="@mipmap/work_dianhua"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/app_7dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_pai_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="@color/color_909399"
+                    android:text="白敬亭"/>
+
+                <TextView
+                    android:id="@+id/tv_pai_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="@color/color_909399"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:text="18099999999"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_48dp"
+        android:gravity="center_vertical"
+        android:background="@color/color_f5f7fa">
+
+        <LinearLayout
+            android:id="@+id/ll_pai_gdsx"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_pai_gdsx"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/color_606266"
+                android:layout_marginTop="@dimen/app_2dp"
+                android:text="工单属性"/>
+
+            <TextView
+                android:id="@+id/tv_pai_gdbold"
+                android:layout_width="66dp"
+                android:layout_height="@dimen/app_2dp"
+                android:background="@color/color_3D7EFF"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="@dimen/app_1dp"
+            android:layout_height="34dp"
+            android:background="@color/color_BFC2CC"/>
+
+        <LinearLayout
+            android:id="@+id/ll_pai_clgc"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_pai_clgc"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/app_2dp"
+                android:textColor="@color/color_606266"
+                android:text="处理过程"/>
+
+            <TextView
+                android:id="@+id/tv_pai_clbold"
+                android:layout_width="66dp"
+                android:layout_height="@dimen/app_2dp"
+                android:visibility="invisible"
+                android:background="@color/color_3D7EFF"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scrollbars="none"
+        android:layout_weight="1">
+
+        <!--<MyViewPager-->
+        <!--android:id="@+id/pai_viewpager"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"/>-->
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/ll_pai_gd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/app_15dp"
+                    android:layout_marginLeft="@dimen/app_25dp"
+                    android:focusable="false"
+                    android:focusableInTouchMode="true"
+                    android:gravity="center_vertical">
+
+                    <View
+                        android:layout_width="@dimen/app_10dp"
+                        android:layout_height="@dimen/app_10dp"
+                        android:background="@drawable/yuan_4a90e2_xian_bg_shape"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="@color/color_606266"
+                        android:layout_marginLeft="@dimen/app_5dp"
+                        android:text="工单详情"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/add_work_ll"
+                    android:layout_marginTop="@dimen/app_13dp">
+
+                    <TextView
+                        style="@style/add_work_tv"
+                        android:layout_weight="1"
+                        android:text="客户姓名"/>
+
+                    <TextView
+                        android:id="@+id/tv_pai_khname"
+                        style="@style/add_work_tv"
+                        android:textColor="@color/color_606266"
+                        android:layout_marginRight="@dimen/app_40dp"
+                        android:text="胡兰成"/>
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/add_work_ll">
+
+                    <TextView
+                        style="@style/add_work_tv"
+                        android:text="保修状态"/>
+
+                    <View style="@style/weight_heng"/>
+
+                    <TextView
+                        style="@style/add_work_tv"
+                        android:layout_marginRight="@dimen/app_40dp"
+                        android:textColor="@color/color_606266"
+                        android:text="保修期内"/>
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/add_work_ll">
+
+                    <TextView
+                        style="@style/add_work_tv"
+                        android:layout_weight="1"
+                        android:text="创建时间"/>
+
+                    <TextView
+                        android:id="@+id/tv_pai_time"
+                        style="@style/add_work_tv"
+                        android:textColor="@color/color_606266"
+                        android:layout_marginRight="@dimen/app_40dp"
+                        android:text="2019/3/23 10:09"/>
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/add_work_ll">
+
+                    <TextView
+                        style="@style/add_work_tv"
+                        android:layout_weight="1"
+                        android:text="期望维护时间"/>
+
+                    <TextView
+                        android:id="@+id/tv_pai_whtime"
+                        style="@style/add_work_tv"
+                        android:textColor="@color/color_606266"
+                        android:layout_marginRight="@dimen/app_40dp"
+                        android:text="2019/3/23 10:30-2019/3/23 13:30"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/app_9dp"
+                    android:layout_marginLeft="@dimen/app_40dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        style="@style/add_work_tv"
+                        android:text="故障描述"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_pai_ms"
+                    style="@style/add_work_tv"
+                    android:textColor="@color/color_606266"
+                    android:layout_marginRight="@dimen/app_40dp"
+                    android:layout_marginLeft="@dimen/app_40dp"
+                    android:layout_marginTop="@dimen/app_4dp"
+                    android:text="我是描述我是描述我是描述我是描述我是描述我是描述我是描述"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/pai_recycleview"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/app_75dp"
+                    android:layout_marginTop="@dimen/app_10dp"
+                    android:layout_marginBottom="@dimen/app_20dp"
+                    android:overScrollMode="never"
+                    android:scrollbars="none" />
+
+            </LinearLayout>
+
+            <com.mfzn.deepusesSer.view.MyListview
+                android:id="@+id/pai_listview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:scrollbars="none"
+                android:listSelector="#00000000"
+                android:divider="@null"/>
+
+        </FrameLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/but_pai_sl"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="@dimen/app_15dp"
+        android:text="工单派工"
+        android:textSize="18sp"
+        android:textColor="#ffffff"
+        android:background="@drawable/yuanjiao_4a9012_button_shape"/>
+
+</LinearLayout>

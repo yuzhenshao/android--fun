@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.qmuiteam.qmui.widget.QMUIWindowInsetLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:orientation="vertical">
+
+        <include layout="@layout/main_title"/>
+
+        <TextView
+            android:id="@+id/tv_ri_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="#303133"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="26dp"
+            android:text="欢迎你"/>
+
+        <EditText
+            android:id="@+id/et_regi_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:background="@null"
+            android:paddingLeft="12dp"
+            android:textSize="14sp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:inputType="number"
+            android:layout_marginTop="55dp"
+            android:hint="请输入手机号（必填）"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:background="#edeff2"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_ri_phoen_err"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11sp"
+                android:textColor="#d0021b"
+                android:visibility="gone"
+                android:layout_marginTop="6dp"
+                android:layout_marginLeft="36dp"
+                android:text="手机号未注册"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginTop="32dp">
+
+                <ImageButton
+                    android:id="@+id/iv_regi_select"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@null"
+                    android:src="@mipmap/regi_weixuan"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:textColor="#909399"
+                    android:text="我已认真阅读并同意"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_ri_zhuce"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="10sp"
+                        android:textColor="#4a90e2"
+                        android:text="《云知枢平台注册协议》"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="#4a90e2"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:textColor="#909399"
+                    android:layout_marginLeft="5dp"
+                    android:text="和"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_ri_yinsi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="10sp"
+                        android:textColor="#4a90e2"
+                        android:layout_marginLeft="5dp"
+                        android:text="《云知枢隐私协议》"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="#4a90e2"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/but_next"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="下一步"
+            android:textSize="18sp"
+            android:textColor="#ffffff"
+            android:enabled="false"
+            android:background="@drawable/yuanjiao_bfc2cc_button_shape"
+            android:layout_marginTop="30dp"/>
+
+    </LinearLayout>
+
+</com.qmuiteam.qmui.widget.QMUIWindowInsetLayout>

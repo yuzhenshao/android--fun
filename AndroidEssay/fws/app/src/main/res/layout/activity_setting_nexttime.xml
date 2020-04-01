@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_ffffff"
+    android:orientation="vertical">
+
+    <include layout="@layout/main_title"/>
+
+    <View
+        style="@style/line_heng"
+        android:layout_height="@dimen/app_10dp" />
+
+    <LinearLayout style="@style/newly_ll_st">
+
+        <TextView
+            style="@style/edit_staff_tv"
+            android:text="智能影音"/>
+
+        <EditText
+            android:id="@+id/et_set_znyx"
+            style="@style/add_work_et"
+            android:textColor="@color/color_909399"
+            android:textSize="14sp"
+            android:paddingRight="@dimen/app_5dp"
+            android:hint="请选择智能影音的时间"/>
+
+        <ImageView
+            style="@style/bass_iv_you"
+            android:layout_marginRight="@dimen/app_10dp"/>
+
+    </LinearLayout>
+
+    <View style="@style/line_heng"/>
+
+    <LinearLayout style="@style/newly_ll_st">
+
+        <TextView
+            style="@style/edit_staff_tv"
+            android:text="红外报警"/>
+
+        <EditText
+            android:id="@+id/et_set_hwjb"
+            style="@style/add_work_et"
+            android:textColor="@color/color_909399"
+            android:textSize="14sp"
+            android:paddingRight="@dimen/app_5dp"
+            android:hint="请选择红外报警的时间"/>
+
+        <ImageView
+            style="@style/bass_iv_you"
+            android:layout_marginRight="@dimen/app_10dp"/>
+
+    </LinearLayout>
+
+    <View style="@style/line_heng"/>
+
+</LinearLayout>

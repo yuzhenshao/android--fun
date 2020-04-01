@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/app_75dp">
+
+    <include layout="@layout/add_photo_item_hide2" />
+
+    <LinearLayout
+        android:layout_width="@dimen/app_95dp"
+        android:layout_height="@dimen/app_75dp">
+
+        <ImageView
+            android:id="@+id/iv_acc_item_photo"
+            android:layout_width="@dimen/app_75dp"
+            android:layout_height="@dimen/app_75dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/moren_touxiang"/>
+
+    </LinearLayout>
+
+</LinearLayout>

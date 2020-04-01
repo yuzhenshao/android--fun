@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f5f7fa">
+
+    <include layout="@layout/main_title"/>
+
+    <LinearLayout
+        android:id="@+id/ll_cus_data"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/cus_listview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="@dimen/app_10dp"
+            android:layout_marginBottom="@dimen/app_5dp"
+            android:divider="@color/color_f5f7fa"
+            android:dividerHeight="@dimen/app_10dp"
+            android:background="@color/color_ffffff"/>
+
+        <TextView
+            android:id="@+id/tv_cus_add"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_45dp"
+            android:textSize="18sp"
+            android:textColor="@color/color_ffffff"
+            android:gravity="center"
+            android:text="添加"
+            android:background="@color/color_4A90E2"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_cus_nodata"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:gravity="center_horizontal">
+
+        <ImageView
+            android:layout_width="301dp"
+            android:layout_height="303dp"
+            android:layout_marginTop="@dimen/app_35dp"
+            android:src="@mipmap/kefu_nodata"/>
+
+        <TextView
+            android:id="@+id/tv_cus_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/color_4A90E2"
+            android:layout_marginTop="@dimen/app_2dp"
+            android:text="暂无数据"/>
+
+        <Button
+            android:id="@+id/but_cus_add"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="@dimen/app_24dp"
+            android:layout_marginRight="@dimen/app_24dp"
+            android:text="添加客服"
+            android:textSize="18sp"
+            android:textColor="#ffffff"
+            android:background="@drawable/yuanjiao_4a9012_button_shape"
+            android:layout_marginTop="22dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

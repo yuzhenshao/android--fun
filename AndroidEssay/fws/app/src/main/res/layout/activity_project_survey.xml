@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_f5f7fa"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/main_title"/>
+
+    <LinearLayout
+        style="@style/newly_ll_st"
+        android:background="@color/color_ffffff"
+        android:layout_marginTop="@dimen/app_10dp">
+
+        <TextView
+            style="@style/newly_tv_st"
+            android:text="项目编号"/>
+
+        <TextView
+            android:id="@+id/tv_sur_number"
+            style="@style/survey_tv"
+            android:paddingRight="@dimen/app_5dp"
+            android:text="JHGP1801011"/>
+
+        <ImageView
+            android:id="@+id/iv_sur_number"
+            style="@style/survey_iv"
+            android:src="@mipmap/sur_copy"/>
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/appoint_ll"
+        android:layout_marginTop="@dimen/app_10dp">
+
+        <LinearLayout style="@style/newly_ll_st">
+
+            <TextView
+                style="@style/newly_tv_st"
+                android:text="项目名称"/>
+
+            <TextView
+                android:id="@+id/tv_sur_xname"
+                style="@style/survey_tv"
+                android:text="万达广场"/>
+
+        </LinearLayout>
+
+        <View style="@style/line_heng"/>
+
+        <LinearLayout style="@style/newly_ll_st">
+
+            <TextView
+                style="@style/newly_tv_st"
+                android:text="客户姓名"/>
+
+            <TextView
+                android:id="@+id/tv_sur_name"
+                style="@style/survey_tv"
+                android:text="万达广场"/>
+
+        </LinearLayout>
+
+        <View style="@style/line_heng"/>
+
+        <LinearLayout style="@style/newly_ll_st">
+
+            <TextView
+                style="@style/newly_tv_st"
+                android:text="联系电话"/>
+
+            <TextView
+                android:id="@+id/tv_sur_phone"
+                style="@style/survey_tv"
+                android:paddingRight="@dimen/app_5dp"
+                android:text="18088889999"/>
+
+            <ImageView
+                android:id="@+id/iv_sur_phone"
+                style="@style/survey_iv"
+                android:src="@mipmap/sur_phone"/>
+
+        </LinearLayout>
+
+        <View style="@style/line_heng"/>
+
+        <LinearLayout style="@style/newly_ll_st">
+
+            <TextView
+                style="@style/newly_tv_st"
+                android:text="项目地址"/>
+
+            <TextView
+                android:id="@+id/tv_sur_address"
+                style="@style/survey_tv"
+                android:paddingRight="@dimen/app_5dp"
+                android:text="常州市武进区人民西路67号"/>
+
+            <ImageView
+                android:id="@+id/iv_sur_dw"
+                style="@style/survey_iv"
+                android:src="@mipmap/sur_dingwei"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/appoint_ll"
+        android:layout_marginTop="@dimen/app_10dp">
+
+        <LinearLayout style="@style/newly_ll_st">
+
+            <TextView
+                style="@style/newly_tv_st"
+                android:text="项目工期"/>
+
+            <TextView
+                android:id="@+id/tv_sur_time"
+                style="@style/survey_tv"
+                android:text="2018/09/10 -2019/09/10"/>
+
+        </LinearLayout>
+
+        <View style="@style/line_heng"/>
+
+        <LinearLayout style="@style/newly_ll_st">
+
+            <TextView
+                style="@style/newly_tv_st"
+                android:text="项目状态"/>
+
+            <TextView
+                android:id="@+id/tv_sur_type"
+                style="@style/survey_tv"
+                android:text="正常"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

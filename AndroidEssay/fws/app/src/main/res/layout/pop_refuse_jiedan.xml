@@ -1,0 +1,47 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="423dp"
+    android:layout_gravity="center"
+    android:background="@color/white"
+    android:gravity="bottom">
+
+    <TextView
+        android:layout_marginLeft="@dimen/app_20dp"
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:gravity="center_vertical"
+        android:text="拒绝理由"
+        android:textColor="#303133"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/et_reaon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv1"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:hint="请输入拒绝理由"
+        android:textColorHint="#909399"
+        android:textColor="#909399"
+        android:background="@null"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/but_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/yuanjiao_4a9012_button_shape"
+        android:paddingBottom="10dp"
+        android:textAlignment="center"
+        android:text="确认"
+        android:textColor="#ffffff"
+        android:textSize="18sp" />
+
+</RelativeLayout>

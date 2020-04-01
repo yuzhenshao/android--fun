@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center_vertical">
+
+        <com.mfzn.deepusesSer.view.RoundImageView
+            android:id="@+id/iv_key_item_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="24dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/moren_touxiang"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/iv_key_item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="#303133"
+                android:text="安三三"/>
+
+            <TextView
+                android:id="@+id/iv_key_item_bumen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="@color/color_909399"
+                android:layout_marginTop="@dimen/app_5dp"
+                android:text="研发部-产品研发部"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

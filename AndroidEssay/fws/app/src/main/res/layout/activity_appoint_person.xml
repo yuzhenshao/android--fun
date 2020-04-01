@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.qmuiteam.qmui.widget.QMUIWindowInsetLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:background="@color/color_f5f7fa"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/main_title"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_app_cbf"
+                    style="@style/appoint_tv_title"
+                    android:text="承包方（项目经理）"/>
+
+                <LinearLayout style="@style/appoint_ll">
+
+                    <LinearLayout style="@style/newly_ll_st">
+
+                        <TextView
+                            style="@style/newly_tv_st"
+                            android:text="项目经理"/>
+
+                        <TextView
+                            style="@style/newly_tv_st"
+                            android:textColor="@color/color_d0021b"
+                            android:text="*"/>
+
+                        <EditText
+                            android:id="@+id/et_app_jl"
+                            style="@style/newly_et_st2"
+                            android:paddingRight="0dp"
+                            android:hint="@string/appoint_person_jl"/>
+
+                        <ImageView
+                            style="@style/tips_iv"
+                            android:layout_marginRight="@dimen/app_20dp"
+                            android:src="@mipmap/join_you"/>
+
+                    </LinearLayout>
+
+                    <View style="@style/line_heng"/>
+
+                    <LinearLayout style="@style/newly_ll_st">
+
+                        <TextView
+                            style="@style/newly_tv_st"
+                            android:text="最迟完工时间"/>
+
+                        <TextView
+                            style="@style/newly_tv_st"
+                            android:textColor="@color/color_d0021b"
+                            android:text="*"/>
+
+                        <EditText
+                            android:id="@+id/et_app_ctime"
+                            style="@style/newly_et_st2"
+                            android:paddingRight="0dp"
+                            android:hint="@string/appoint_person_ctime"/>
+
+                        <ImageView
+                            style="@style/tips_iv"
+                            android:layout_marginRight="@dimen/app_20dp"
+                            android:src="@mipmap/join_you"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_app_fs"
+                    style="@style/appoint_tv_title"
+                    android:text="结算方式"/>
+
+                <LinearLayout style="@style/appoint_ll">
+
+                    <LinearLayout style="@style/newly_ll_st">
+
+                        <TextView
+                            style="@style/newly_tv_st"
+                            android:text="结算类型"/>
+
+                        <EditText
+                            android:id="@+id/et_app_type"
+                            style="@style/newly_et_st2"
+                            android:paddingRight="0dp"
+                            android:hint="@string/appoint_person_type"/>
+
+                        <ImageView
+                            style="@style/tips_iv"
+                            android:layout_marginRight="@dimen/app_20dp"
+                            android:src="@mipmap/join_you"/>
+
+                    </LinearLayout>
+
+                    <View style="@style/line_heng"/>
+
+                    <LinearLayout style="@style/newly_ll_st">
+
+                        <TextView
+                            style="@style/newly_tv_st"
+                            android:text="合同金额"/>
+
+                        <EditText
+                            android:id="@+id/et_app_money"
+                            style="@style/newly_et_st"
+                            android:hint="@string/appoint_person_money"/>
+
+                    </LinearLayout>
+
+                    <View style="@style/line_heng"/>
+
+                    <LinearLayout style="@style/newly_ll_st">
+
+                        <TextView
+                            style="@style/newly_tv_st"
+                            android:text="结算比例"/>
+
+                        <EditText
+                            android:id="@+id/et_app_bili"
+                            style="@style/newly_et_st"
+                            android:hint="@string/appoint_person_bl"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_app_xinfo"
+                    style="@style/appoint_tv_title"
+                    android:text="项目信息"/>
+
+                <LinearLayout style="@style/appoint_ll">
+
+                    <LinearLayout style="@style/newly_ll_st">
+
+                        <TextView
+                            style="@style/newly_tv_st"
+                            android:text="项目名称"/>
+
+                        <EditText
+                            android:id="@+id/et_app_xname"
+                            style="@style/newly_et_st"
+                            android:hint="@string/appoint_person_xname"/>
+
+                    </LinearLayout>
+
+                    <View style="@style/line_heng"/>
+
+                    <LinearLayout style="@style/newly_ll_st">
+
+                        <TextView
+                            style="@style/newly_tv_st"
+                            android:text="工期时间"/>
+
+                        <EditText
+                            android:id="@+id/et_app_gtime"
+                            style="@style/newly_et_st"
+                            android:hint="@string/appoint_person_gtiem"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_app_binfo"
+                    style="@style/appoint_tv_title"
+                    android:text="备注信息"/>
+
+                <EditText
+                    android:id="@+id/et_app_remarks"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/app_60dp"
+                    android:paddingLeft="@dimen/app_24dp"
+                    android:paddingRight="@dimen/app_24dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/color_303133"
+                    android:textColorHint="@color/color_BFC2CC"
+                    android:hint="@string/appoint_person_remarks"
+                    android:background="@color/color_ffffff"/>
+
+                <Button
+                    android:id="@+id/but_app_confirm"
+                    style="@style/bass_but"
+                    android:text="确认指派"
+                    android:layout_marginBottom="@dimen/app_15dp"
+                    android:layout_marginTop="@dimen/app_30dp"/>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</com.qmuiteam.qmui.widget.QMUIWindowInsetLayout>

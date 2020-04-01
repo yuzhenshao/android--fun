@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.mfzn.deepusesSer">
+    <!-- Required -->
+    <permission
+        android:name="com.mfzn.deepusesSer.permission.JPUSH_MESSAGE"
+        android:protectionLevel="signature" /> <!-- Required  极光推送 -->
+    <uses-permission android:name="com.mfzn.deepusesSer.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- 地图SDK（包含其搜索功能）需要的基础权限 -->
+    <!-- 允许程序获取网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 允许程序访问WiFi网络信息 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 允许程序访问CellID或WiFi热点来获取粗略的位置 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- 用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /> <!-- 用于申请调用A-GPS模块 -->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" /> <!-- 用于申请获取蓝牙信息进行室内定位 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" /> <!-- X5内核 -->
+    <uses-permission android:name="android.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" /> <!-- 硬件加速对X5视频播放非常重要，建议开启 -->
+    <uses-permission android:name="android.permission.GET_TASKS" /> <!-- ShareSDK需要权限start -->
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:name=".BaseApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/logo"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <!--<activity-->
+            <!--android:name="com.tencent.bugly.beta.ui.BetaActivity"-->
+            <!--android:configChanges="keyboardHidden|orientation|screenSize|locale"-->
+            <!--android:theme="@android:style/Theme.Translucent" />-->
+
+        <!--<provider-->
+            <!--android:name="com.tencent.bugly.beta.utils.BuglyFileProvider"-->
+            <!--android:authorities="com.mfzn.deepusesSer.FileProvider"-->
+            <!--android:exported="false"-->
+            <!--android:grantUriPermissions="true"-->
+            <!--tools:replace="name,authorities,exported,grantUriPermissions">-->
+            <!--<meta-data-->
+                <!--android:name="android.support.FILE_PROVIDER_PATHS"-->
+                <!--android:resource="@xml/file_paths"-->
+                <!--tools:replace="name,resource" />-->
+        <!--</provider>-->
+
+        <!-- Rich push 核心功能 since 2.0.6-->
+        <activity
+            android:name="cn.jpush.android.ui.PopWinActivity"
+            android:theme="@style/MyDialogStyle"
+            android:exported="false">
+        </activity>
+
+        <!-- Required SDK核心功能-->
+        <activity
+            android:name="cn.jpush.android.ui.PushActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="cn.jpush.android.ui.PushActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="com.mfzn.deepusesSer" />
+            </intent-filter>
+        </activity>
+
+        <!-- Required SDK 核心功能-->
+        <!-- 可配置android:process参数将PushService放在其他进程中 -->
+        <service
+            android:name="cn.jpush.android.service.PushService"
+            android:process=":pushcore"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTER" />
+                <action android:name="cn.jpush.android.intent.REPORT" />
+                <action android:name="cn.jpush.android.intent.PushService" />
+                <action android:name="cn.jpush.android.intent.PUSH_TIME" />
+            </intent-filter>
+        </service>
+
+        <!-- since 3.0.9 Required SDK 核心功能-->
+        <provider
+            android:authorities="com.mfzn.deepusesSer.DataProvider"
+            android:name="cn.jpush.android.service.DataProvider"
+            android:process=":pushcore"
+            android:exported="false"
+            />
+
+        <!-- since 1.8.0 option 可选项。用于同一设备中不同应用的JPush服务相互拉起的功能。 -->
+        <!-- 若不启用该功能可删除该组件，将不拉起其他应用也不能被其他应用拉起 -->
+        <service
+            android:name="cn.jpush.android.service.DaemonService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.DaemonService" />
+                <category android:name="com.mfzn.deepusesSer" />
+            </intent-filter>
+
+        </service>
+
+        <!-- since 3.1.0 Required SDK 核心功能-->
+        <provider
+            android:authorities="com.mfzn.deepusesSer.DownloadProvider"
+            android:name="cn.jpush.android.service.DownloadProvider"
+            android:exported="true"
+            />
+
+        <!-- Required SDK核心功能-->
+        <receiver
+            android:name="cn.jpush.android.service.PushReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter android:priority="1000">
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />   <!--Required  显示通知栏 -->
+                <category android:name="com.mfzn.deepusesSer" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+            <!-- Optional -->
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Required SDK核心功能-->
+        <receiver android:name="cn.jpush.android.service.AlarmReceiver" android:exported="false"/>
+
+
+        <!-- User defined.  For test only  用户自定义的广播接收器-->
+        <receiver
+            android:name="com.mfzn.deepusesSer.jpushpackage.MyReceiver"
+            android:exported="false"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTRATION" /> <!--Required  用户注册SDK的intent-->
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" /> <!--Required  用户接收SDK消息的intent-->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" /> <!--Required  用户接收SDK通知栏信息的intent-->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" /> <!--Required  用户打开自定义通知栏的intent-->
+                <action android:name="cn.jpush.android.intent.CONNECTION" /><!-- 接收网络变化 连接/断开 since 1.6.3 -->
+                <category android:name="com.mfzn.deepusesSer" />
+            </intent-filter>
+        </receiver>
+
+
+
+        <!-- User defined.  For test only  用户自定义接收消息器,3.0.7开始支持,目前新tag/alias接口设置结果会在该广播接收器对应的方法中回调-->
+        <!--since 3.3.0 接收JPush相关事件-->
+        <receiver android:name="com.mfzn.deepusesSer.jpushpackage.MyJPushMessageReceiver">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.RECEIVE_MESSAGE" />
+                <category android:name="com.mfzn.deepusesSer"></category>
+            </intent-filter>
+        </receiver>
+
+        <!--since 3.3.0 Required SDK核心功能-->
+        <activity
+            android:name="cn.jpush.android.service.JNotifyActivity"
+            android:exported="false"
+            android:taskAffinity="jpush.custom"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.JNotifyActivity" />
+                <category android:name="com.mfzn.deepusesSer" />
+            </intent-filter>
+        </activity>
+
+        <!-- since 3.3.0 Required SDK 核心功能-->
+        <!-- 可配置android:process参数将PushService放在其他进程中 -->
+        <!--User defined.  For test only 继承自cn.jpush.android.service.JCommonService-->
+        <service android:name="com.mfzn.deepusesSer.jpushpackage.PushService"
+            android:process=":pushcore">
+            <intent-filter>
+                <action android:name="cn.jiguang.user.service.action" />
+            </intent-filter>
+        </service>
+
+        <!-- Required  . Enable it you can get statistics data with channel -->
+        <meta-data android:name="JPUSH_CHANNEL" android:value="developer-default"/>
+        <meta-data android:name="JPUSH_APPKEY" android:value="c8cb6e8fa11e284db3135649" /> <!--  </>值来自开发者平台取得的AppKey-->
+
+        <activity android:name=".activityxm.shgd.FwzHuizhiDetailActivity" />
+        <activity android:name=".activityxm.shgd.DefendSettingActivity"/>
+        <activity android:name=".activityxm.shgd.ShouhuSettingActivity" />
+        <activity android:name=".activityxm.shgd.EditWorkorderActivity" />
+        <activity android:name=".activityxm.shgd.AlreadyCancalActivity" />
+        <activity android:name=".activityxm.shgd.CheckAppraiseActivity" />
+        <activity android:name=".activityxm.shgd.AlreadyCloseActivity" />
+        <activity android:name=".activityxm.shgd.SettingNexttimeActivity" />
+        <activity android:name=".activityxm.shgd.WaitAppraiseActivity" />
+        <activity android:name=".activityxm.shgd.InServiceActivity" />
+        <activity android:name=".activityxm.shgd.WaitReceiveActivity" />
+        <activity android:name=".activityxm.shgd.PingjiaDetailActivity" />
+        <activity android:name=".activityxm.shgd.WorkorderDispatchActivity" />
+        <activity android:name=".activityxm.shgd.DaiPaigongActivity" />
+        <activity android:name=".activityxm.shgd.CancalAcceptActivity" />
+        <activity android:name=".activityxm.shgd.IfAcceptActivity" />
+        <activity android:name=".activityxm.shgd.FwzHuizhiActivity" />
+        <activity android:name=".activityxm.shgd.WorkorderAcceptActivity" />
+        <activity android:name=".activityxm.shgd.DzqmActivity"/>
+        <activity android:name=".activityxm.shgd.StayAcceptActivity" />
+        <activity android:name=".activityxm.shgd.AddWorkorderActivity" />
+        <activity android:name=".activityxm.shgd.JiedanHuizhiActivity" />
+        <activity android:name=".activityxm.shgd.WorkorderListActivity" />
+        <activity android:name=".activityxm.SearchProjectActivity" />
+        <activity android:name=".activityxm.shhf.VisitRecordActivity" />
+        <activity android:name=".activityxm.shhf.AddVisitSuccessActivity" />
+        <activity android:name=".activityxm.shhf.AddReturnVisitActivity" />
+        <activity android:name=".activityxm.kf.AddCustomActivity" />
+        <activity android:name=".activityxm.kf.CustomSettingActivity" />
+        <activity android:name=".activityxm.staging.ProjectStagingActivity" />
+        <activity android:name=".activityxm.ProjectCodeActivity" />
+        <activity android:name=".activityxm.FoundSuccessActivity" />
+        <activity android:name=".activityxm.MapLocationActivity" /> <!-- 定位 -->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="d4db1000eadd8422115fa8030f2fa6a3" /> <!-- 定位需要的服务 适配Android Q需要加上android:foregroundServiceType="location" -->
+        <service android:name="com.amap.api.location.APSService" />
+
+        <activity android:name=".activityxm.SelectPerson3Activity" />
+        <activity android:name=".activityxm.SelectPerson2Activity" />
+        <activity android:name=".activityxm.SelectPersonActivity" />
+        <activity android:name=".activityxm.ProjectLevelActivity" />
+        <activity android:name=".activityxm.FoundProjectActivity" />
+        <activity android:name=".activity.jiagou.BatchAddStaffActivity" />
+        <activity android:name=".activity.jiagou.ZuzhiJiagou3Activity" />
+        <activity android:name=".activity.jiagou.ManageJiagou3Activity" />
+        <activity android:name=".activity.jiagou.ManageJiagou2Activity" />
+        <activity android:name=".activity.jiagou.DepartmentActivity" />
+        <activity android:name=".activity.jiagou.EditStaffActivity" />
+        <activity android:name=".activity.jiagou.ManageJiagouActivity" />
+        <activity android:name=".activity.myteam.ClipCircularActivity" />
+        <activity android:name=".activity.jiagou.SearchKeywordActivity" />
+        <activity android:name=".activity.jiagou.RemarksAtivity" />
+        <activity android:name=".activity.jiagou.PersonalInfoActivity" />
+        <activity android:name=".activity.company.ScanJoinActivity" />
+        <activity android:name=".activity.company.SelectCompanyActivity" />
+        <activity android:name=".activitymy.setting.NewsSettingActivity" />
+        <activity android:name=".activitymy.setting.SettingNewsPwdActivity" />
+        <activity android:name=".activitymy.setting.EditionInfoActivity" />
+        <activity android:name=".activitymy.setting.ReplacePhone3Activity" />
+        <activity android:name=".activitymy.setting.ReplacePhone2Activity" />
+        <activity android:name=".activitymy.setting.ReplacePhoneActivity" />
+        <activity android:name=".activitymy.setting.AccountSettingActivity" />
+        <activity android:name=".activitymy.setting.SettingActivity" />
+        <activity android:name=".activitymy.MyCardActivity" />
+        <activity android:name=".activitymy.MyCardEditActivity" />
+        <activity android:name=".activitymy.FeedbackActivity" />
+        <activity android:name=".activitymy.ModifyCallActivity" />
+        <activity android:name=".activitymy.setting.PersonInfoActivity" />
+        <activity android:name=".activity.project.ProjectCopyActivity" />
+        <activity android:name=".activity.project.TemplateSelectActivity" />
+        <activity android:name=".activity.project.FoundTemplateActivity" />
+        <activity android:name=".activity.project.ProjectSurveyActivity" />
+        <activity android:name=".activity.project.AppointPersonActivity" />
+        <activity android:name=".activity.project.ProjectJoinActivity" />
+        <activity android:name=".activity.project.NewlySuccessActivity" />
+        <activity android:name=".activity.project.CustomerLevelActivity" />
+        <activity android:name=".activity.project.NewlyProjectActivity" />
+        <activity android:name=".activity.myteam.ManageSettingActivity" />
+        <activity android:name=".activity.myteam.CompanyHomepageActivity" />
+        <activity android:name=".activity.myteam.CompanyScaleActivity" />
+        <activity android:name=".activity.myteam.CompanyInfoActivity" />
+        <activity android:name=".activity.myteam.CompanyLogoActivity" />
+        <activity android:name=".activity.myteam.TeamManageActivity" />
+        <activity android:name=".activitynews.SelectBumenActivity" />
+        <activity android:name=".activitynews.QuerenRequestActivity" />
+        <activity android:name=".activitynews.TeamApplyActivity" />
+        <activity android:name=".activity.jiagou.ShareCodeActivity" />
+        <activity android:name=".activity.jiagou.ZuzhiJiagou2Activity" />
+        <activity android:name=".activity.jiagou.InvitationJoinActivity" />
+        <activity android:name=".activity.jiagou.ZuzhiJiagouActivity" />
+        <activity android:name=".activity.company.ApplySuccessActivity" />
+        <activity android:name=".activity.company.ApplyJoinActivity" />
+        <activity android:name=".activity.company.SelectLableActivity" />
+        <activity android:name=".activity.company.EstablishCompanyActivity" />
+        <activity android:name=".activity.company.EstablishJoinActivity" />
+        <activity android:name=".activity.login.ForgotNewPwdActivity" />
+        <activity android:name=".activity.login.ForgotCodeActivity" />
+        <activity android:name=".activity.login.ForgotPwdActivity" />
+        <activity android:name=".activity.login.SettingNicknameActivity" />
+        <activity android:name=".activity.login.RegisterPwdActivity" />
+        <activity android:name=".activity.login.RegisterCodeActivity" />
+        <activity android:name=".activity.login.RegisterActivity" />
+        <activity android:name=".activity.login.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
+
+        <activity android:name=".activityxm.shgd.WaitReceiveFromMsgActivity" />
+
+        <activity android:name=".activity.fx.SearchChangjingActivity"></activity>
+        <activity android:name=".activity.fx.SearchZixunActivity" />
+        <activity android:name=".activity.fx.ZixunDetailActivity" />
+
+        <activity android:name=".activitymy.WebviewX5Activity" />
+        <activity android:name=".activitymy.MyPromotionActivity" />
+    </application>
+
+</manifest>

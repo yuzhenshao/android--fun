@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/color_f5f7fa"
+    android:orientation="vertical">
+
+    <include layout="@layout/main_title"/>
+
+    <cn.droidlover.xrecyclerview.XRecyclerContentLayout
+        android:id="@+id/re_xrecycleview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/app_10dp"
+        android:layout_marginLeft="@dimen/app_12dp"
+        android:layout_marginRight="@dimen/app_12dp"
+        app:recyclerBackgroundColor="@color/color_ffffff" />
+
+</LinearLayout>

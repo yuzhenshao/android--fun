@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout2"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="@dimen/app_50dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_height="@dimen/app_49dp">
+
+        <ImageView
+            android:id="@+id/iv_dui"
+            android:layout_width="@dimen/app_10dp"
+            android:layout_marginLeft="@dimen/app_10dp"
+            android:layout_height="@dimen/app_12dp"
+            android:visibility="invisible"
+            android:src="@mipmap/location_on_map"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginRight="@dimen/app_10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:textSize="14sp"
+                android:textColor="@color/color_303133"
+                tools:text="广东省博物馆"/>
+
+            <TextView
+                android:id="@+id/tv_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:textSize="11sp"
+                android:textColor="@color/color_888888"
+                tools:text="广东省广州市天河区珠江东路2号"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView style="@style/line_heng"
+        android:layout_marginLeft="@dimen/app_20dp"/>
+
+</LinearLayout>

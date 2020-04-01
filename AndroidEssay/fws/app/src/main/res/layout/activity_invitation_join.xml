@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f5f7fa">
+
+    <include layout="@layout/main_title"/>
+
+    <LinearLayout
+        android:id="@+id/ll_join_weixin"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:gravity="center_vertical|right"
+        android:background="@drawable/yuanjiao_ffffff_bg_shape">
+
+        <ImageView
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_marginLeft="30dp"
+            android:src="@mipmap/join_weixin"/>
+
+        <TextView
+            android:id="@+id/tv_team_sousuo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#606266"
+            android:layout_marginLeft="15dp"
+            android:text="通过微信邀请"/>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@mipmap/join_you"
+            android:layout_marginRight="20dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_join_code"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:gravity="center_vertical|right"
+        android:background="@drawable/yuanjiao_ffffff_bg_shape">
+
+        <ImageView
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_marginLeft="30dp"
+            android:src="@mipmap/team_code"/>
+
+        <TextView
+            android:id="@+id/tv_team_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#606266"
+            android:layout_marginLeft="15dp"
+            android:text="面对面扫描二维码添加"/>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@mipmap/join_you"
+            android:layout_marginRight="20dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

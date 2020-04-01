@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.qmuiteam.qmui.widget.QMUIWindowInsetLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/color_ffffff"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/main_title"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/app_64dp"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_105dp"
+                android:layout_marginTop="@dimen/app_10dp"
+                android:layout_marginLeft="@dimen/app_12dp"
+                android:layout_marginRight="@dimen/app_12dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/yuanjiao_yinying_xian_shape">
+
+                <ImageView
+                    android:layout_width="@dimen/app_52dp"
+                    android:layout_height="@dimen/app_52dp"
+                    android:layout_marginLeft="@dimen/app_26dp"
+                    android:src="@mipmap/work_moren"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="@dimen/app_18dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tv_shou_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:textColor="@color/color_303133"
+                            android:text="胡兰成"/>
+
+                        <TextView
+                            android:id="@+id/tv_shou_phone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:textColor="@color/color_303133"
+                            android:layout_marginLeft="@dimen/app_46dp"
+                            android:text="18088888888"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_shou_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:textColor="@color/color_909399"
+                        android:layout_marginTop="@dimen/app_4dp"
+                        android:layout_marginRight="@dimen/app_80dp"
+                        android:text="江苏省常州市聚通豪庭2幢一单元29楼2908室"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_5dp"
+                android:scaleType="fitXY"
+                android:layout_marginLeft="@dimen/app_12dp"
+                android:layout_marginRight="@dimen/app_12dp"
+                android:src="@mipmap/work_xian"/>
+
+            <TextView
+                style="@style/edit_staff_tv"
+                android:layout_marginLeft="@dimen/app_24dp"
+                android:layout_marginTop="@dimen/app_15dp"
+                android:textStyle="bold"
+                android:text="质保设置"/>
+
+            <LinearLayout style="@style/shouhu_ll">
+
+                <TextView
+                    style="@style/staging_pro_tv"
+                    android:text="质保期限"/>
+
+                <EditText
+                    android:id="@+id/et_shou_zbqx"
+                    style="@style/shouhu_et"
+                    android:paddingRight="@dimen/app_10dp"
+                    android:inputType="number"
+                    android:hint="请输入 年"/>
+
+                <ImageView
+                    style="@style/bass_iv_you"
+                    android:layout_marginRight="@dimen/app_14dp"/>
+
+            </LinearLayout>
+
+            <View style="@style/line_heng"/>
+
+            <LinearLayout style="@style/shouhu_ll">
+
+                <TextView
+                    style="@style/staging_pro_tv"
+                    android:layout_weight="1"
+                    android:text="质保起始日期"/>
+
+                <TextView
+                    android:id="@+id/tv_shou_start"
+                    style="@style/staging_pro_tv"
+                    android:textColor="@color/color_909399"
+                    android:layout_marginRight="@dimen/app_24dp"
+                    android:text="2019-03-23"/>
+
+            </LinearLayout>
+
+            <View style="@style/line_heng"/>
+
+            <LinearLayout style="@style/shouhu_ll">
+
+                <TextView
+                    style="@style/staging_pro_tv"
+                    android:text="质保截止日期"/>
+
+                <EditText
+                    android:id="@+id/et_shou_end"
+                    style="@style/shouhu_et2"
+                    android:paddingRight="@dimen/app_10dp"
+                    android:hint="选择时间"/>
+
+                <ImageView
+                    style="@style/bass_iv_you"
+                    android:layout_marginRight="@dimen/app_14dp"/>
+
+            </LinearLayout>
+
+            <View style="@style/line_heng"
+                android:layout_height="@dimen/app_10dp"/>
+
+            <LinearLayout
+                android:id="@+id/ll_shou_whsz"
+                style="@style/shouhu_ll">
+
+                <TextView
+                    style="@style/edit_staff_tv"
+                    android:textStyle="bold"
+                    android:layout_weight="1"
+                    android:text="维护设置"/>
+
+                <ImageView
+                    style="@style/bass_iv_you"
+                    android:layout_marginRight="@dimen/app_14dp"/>
+
+            </LinearLayout>
+
+            <View style="@style/line_heng"
+                android:layout_height="@dimen/app_10dp"/>
+
+            <TextView
+                style="@style/edit_staff_tv"
+                android:layout_marginLeft="@dimen/app_24dp"
+                android:layout_marginTop="@dimen/app_15dp"
+                android:textStyle="bold"
+                android:text="回访设置"/>
+
+            <LinearLayout style="@style/shouhu_ll">
+
+                <TextView
+                    style="@style/staging_pro_tv"
+                    android:text="下次回访时间"/>
+
+                <EditText
+                    android:id="@+id/et_shou_nexttime"
+                    style="@style/shouhu_et2"
+                    android:paddingRight="@dimen/app_10dp"
+                    android:hint="选择时间"/>
+
+                <ImageView
+                    style="@style/bass_iv_you"
+                    android:layout_marginRight="@dimen/app_14dp"/>
+
+            </LinearLayout>
+
+            <View style="@style/line_heng"/>
+
+            <LinearLayout style="@style/shouhu_ll">
+
+                <TextView
+                    style="@style/staging_pro_tv"
+                    android:text="回访间隔时间"/>
+
+                <EditText
+                    android:id="@+id/et_shou_hfjg"
+                    style="@style/shouhu_et"
+                    android:paddingRight="@dimen/app_10dp"
+                    android:inputType="number"
+                    android:hint="请输入 天"/>
+
+                <ImageView
+                    style="@style/bass_iv_you"
+                    android:layout_marginRight="@dimen/app_14dp"/>
+
+            </LinearLayout>
+
+            <View style="@style/line_heng"
+                android:layout_height="@dimen/app_10dp"/>
+
+            <LinearLayout style="@style/shouhu_ll">
+
+                <TextView
+                    style="@style/edit_staff_tv"
+                    android:textStyle="bold"
+                    android:layout_weight="1"
+                    android:text="质保预警提醒"/>
+
+                <ImageButton
+                    android:id="@+id/ib_shou_zbyj"
+                    android:layout_width="@dimen/app_52dp"
+                    android:layout_height="@dimen/app_23dp"
+                    android:layout_marginRight="@dimen/app_24dp"
+                    android:src="@mipmap/shou_open"/>
+
+            </LinearLayout>
+
+            <View style="@style/line_heng"/>
+
+            <LinearLayout style="@style/shouhu_ll">
+
+                <TextView
+                    style="@style/edit_staff_tv"
+                    android:textStyle="bold"
+                    android:layout_weight="1"
+                    android:text="维保预警提醒"/>
+
+                <ImageButton
+                    android:id="@+id/ib_shou_wbyj"
+                    android:layout_width="@dimen/app_52dp"
+                    android:layout_height="@dimen/app_23dp"
+                    android:layout_marginRight="@dimen/app_24dp"
+                    android:src="@mipmap/shou_close"/>
+
+            </LinearLayout>
+
+            <View style="@style/line_heng"/>
+
+            <LinearLayout style="@style/shouhu_ll">
+
+                <TextView
+                    style="@style/edit_staff_tv"
+                    android:textStyle="bold"
+                    android:layout_weight="1"
+                    android:text="回访提醒"/>
+
+                <ImageButton
+                    android:id="@+id/ib_shou_hftx"
+                    android:layout_width="@dimen/app_52dp"
+                    android:layout_height="@dimen/app_23dp"
+                    android:layout_marginRight="@dimen/app_24dp"
+                    android:src="@mipmap/shou_open"/>
+
+            </LinearLayout>
+
+            <View style="@style/line_heng"
+                android:layout_height="@dimen/app_10dp"/>
+
+            <TextView
+                style="@style/edit_staff_tv"
+                android:layout_marginLeft="@dimen/app_24dp"
+                android:layout_marginTop="@dimen/app_15dp"
+                android:textStyle="bold"
+                android:text="延保设置"/>
+
+            <LinearLayout style="@style/shouhu_ll">
+
+                <TextView
+                    style="@style/staging_pro_tv"
+                    android:layout_weight="1"
+                    android:text="延保到期时间"/>
+
+                <TextView
+                    android:id="@+id/tv_shou_ybdq"
+                    style="@style/staging_pro_tv"
+                    android:textColor="@color/color_909399"
+                    android:layout_marginRight="@dimen/app_24dp"
+                    android:text="2019-03-23"/>
+
+            </LinearLayout>
+
+            <View style="@style/line_heng"/>
+
+            <LinearLayout style="@style/shouhu_ll">
+
+                <TextView
+                    style="@style/staging_pro_tv"
+                    android:text="延保截止日期"/>
+
+                <EditText
+                    android:id="@+id/et_shou_ybjz"
+                    style="@style/shouhu_et2"
+                    android:paddingRight="@dimen/app_10dp"
+                    android:hint="选择时间"/>
+
+                <ImageView
+                    style="@style/bass_iv_you"
+                    android:layout_marginRight="@dimen/app_14dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:background="@color/color_f5f7fa"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/but_shou_qr"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="@dimen/app_15dp"
+                    android:layout_marginBottom="@dimen/app_25dp"
+                    android:text="确认"
+                    android:textSize="18sp"
+                    android:textColor="#ffffff"
+                    android:background="@drawable/yuanjiao_4a9012_button_shape"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</com.qmuiteam.qmui.widget.QMUIWindowInsetLayout>

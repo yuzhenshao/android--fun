@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="#ffffff">
+
+    <include layout="@layout/main_title"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#f5f7fa"/>
+
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="55dp"
+        android:src="@mipmap/apply_success"/>
+
+    <TextView
+        android:id="@+id/tv_app_success"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="#303133"
+        android:layout_marginTop="31dp"
+        android:text="申请已提交"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="#909399"
+        android:layout_marginTop="10dp"
+        android:text="管理员审核中"/>
+
+
+    <Button
+        android:id="@+id/but_deter"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="确定"
+        android:textSize="18sp"
+        android:textColor="#ffffff"
+        android:background="@drawable/yuanjiao_4a9012_button_shape"
+        android:layout_marginTop="65dp"/>
+
+</LinearLayout>

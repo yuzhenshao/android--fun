@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_f5f7fa"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <include layout="@layout/main_title"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/color_ffffff"
+            android:layout_marginTop="@dimen/app_10dp">
+
+            <LinearLayout style="@style/newly_ll_st">
+
+                <TextView
+                    android:id="@+id/tv_if_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/color_303133"
+                    android:text="选择服务方式"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_if_sm"
+                style="@style/newly_ll_st">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/color_606266"
+                    android:text="上门服务"/>
+
+                <ImageView
+                    android:id="@+id/iv_if_sm"
+                    android:layout_width="@dimen/app_18dp"
+                    android:layout_height="@dimen/app_18dp"
+                    android:layout_marginRight="@dimen/app_24dp"
+                    android:src="@mipmap/work_xuanzhong"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_if_yczd"
+                style="@style/newly_ll_st">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/color_606266"
+                    android:text="远程指导"/>
+
+                <ImageView
+                    android:id="@+id/iv_if_yczd"
+                    android:layout_width="@dimen/app_18dp"
+                    android:layout_height="@dimen/app_18dp"
+                    android:layout_marginRight="@dimen/app_24dp"
+                    android:src="@mipmap/work_weixuan"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/color_f5f7fa"/>
+
+            <LinearLayout style="@style/newly_ll_st">
+
+                <TextView
+                    style="@style/newly_tv_st"
+                    android:text="选择服务时间" />
+
+                <EditText
+                    android:id="@+id/et_fwsj"
+                    style="@style/newly_et_st2"
+                    android:hint="请和客户确认后进行选择"
+                    android:paddingRight="0dp" />
+
+                <ImageView
+                    style="@style/bass_iv_you"
+                    android:layout_marginRight="@dimen/app_20dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/but_if_qr"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="@dimen/app_15dp"
+        android:layout_marginTop="@dimen/app_20dp"
+        android:text="确认"
+        android:textSize="18sp"
+        android:textColor="#ffffff"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/yuanjiao_4a9012_button_shape"/>
+
+</RelativeLayout>

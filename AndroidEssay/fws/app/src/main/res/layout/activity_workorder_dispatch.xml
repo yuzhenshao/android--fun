@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_ffffff"
+    android:orientation="vertical">
+
+    <include layout="@layout/main_title" />
+
+    <View
+        style="@style/line_heng"
+        android:layout_height="@dimen/app_10dp" />
+
+    <LinearLayout style="@style/newly_ll_st">
+
+        <TextView
+            style="@style/edit_staff_tv"
+            android:text="工程师"/>
+
+        <EditText
+            android:id="@+id/et_dis_gcs"
+            style="@style/add_work_et"
+            android:textColor="@color/color_909399"
+            android:textSize="14sp"
+            android:hint="请选择工程师"/>
+
+        <ImageView
+            style="@style/bass_iv_you"
+            android:layout_marginRight="@dimen/app_10dp"/>
+
+    </LinearLayout>
+
+    <View style="@style/line_heng"/>
+
+    <LinearLayout style="@style/newly_ll_st">
+
+        <TextView
+            style="@style/edit_staff_tv"
+            android:layout_weight="1"
+            android:text="电话"/>
+
+        <TextView
+            android:id="@+id/tv_dis_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/color_909399"
+            android:layout_marginRight="@dimen/app_24dp"
+            android:text="18088888888"/>
+
+    </LinearLayout>
+
+    <View style="@style/line_heng"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_60dp"
+        android:gravity="center_vertical"
+        android:textSize="16sp"
+        android:textColor="@color/color_303133"
+        android:layout_marginLeft="@dimen/app_24dp"
+        android:text="备注"/>
+    
+    <EditText
+        android:id="@+id/et_dis_remarks"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_150dp"
+        android:layout_marginLeft="@dimen/app_12dp"
+        android:layout_marginRight="@dimen/app_12dp"
+        android:paddingRight="@dimen/app_12dp"
+        android:paddingLeft="@dimen/app_12dp"
+        android:hint="请输入备注"
+        android:textSize="14sp"
+        android:textColorHint="@color/color_909399"
+        android:textColor="@color/color_606266"
+        android:gravity="top"
+        android:paddingTop="@dimen/app_10dp"
+        android:background="@color/color_F1F1F1"/>
+
+    <View style="@style/weight_shu"/>
+
+    <Button
+        android:id="@+id/but_dis_commit"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="@dimen/app_15dp"
+        android:background="@drawable/yuanjiao_4a9012_button_shape"
+        android:text="提交"
+        android:textColor="#ffffff"
+        android:textSize="18sp" />
+
+</LinearLayout>

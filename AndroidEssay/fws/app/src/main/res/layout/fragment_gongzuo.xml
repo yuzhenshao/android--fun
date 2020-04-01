@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    android:layout_width="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/color_ffffff">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/app_45dp"
+            android:layout_marginLeft="@dimen/app_24dp">
+
+            <ImageView
+                android:id="@+id/iv_work_icon"
+                android:layout_width="@dimen/app_50dp"
+                android:layout_height="@dimen/app_50dp"
+                android:src="@mipmap/moren_touxiang"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/app_20dp">
+
+                <TextView
+                    android:id="@+id/tv_work_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="潘泓言早上好"
+                    android:textSize="18sp"
+                    android:textColor="@color/color_303133"/>
+
+                <TextView
+                    android:id="@+id/tv_work_company"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="麦麸智能（常州）有限公司"
+                    android:textSize="14sp"
+                    android:layout_marginTop="@dimen/app_3dp"
+                    android:textColor="@color/color_606266"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/app_15dp">
+
+            <TextView
+                android:id="@+id/tv_work_kanban"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="数据看板"
+                android:textSize="18sp"
+                android:layout_marginLeft="@dimen/app_24dp"
+                android:textColor="@color/color_303133"/>
+
+            <TextView
+                android:id="@+id/tv_work_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="更多"
+                android:textSize="16sp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/app_24dp"
+                android:layout_alignParentBottom="true"
+                android:textColor="@color/color_9B9B9B"/>
+
+        </RelativeLayout>
+        
+        <LinearLayout style="@style/work_ll">
+            
+            <LinearLayout
+                android:id="@+id/ll_kanban_project"
+                style="@style/kanban_ll_bg">
+
+                <ImageView
+                    android:layout_width="@dimen/app_35dp"
+                    android:layout_height="@dimen/app_35dp"
+                    android:src="@mipmap/work_xiangmu"/>
+
+                <TextView
+                    android:id="@+id/tv_kanban_project"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="@color/color_303133"
+                    android:text="50"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="@color/color_909399"
+                    android:text="今日工单"/>
+
+            </LinearLayout>
+
+            <View style="@style/weight_heng"/>
+
+            <LinearLayout
+                android:id="@+id/ll_kanban_money"
+                style="@style/kanban_ll_bg">
+
+                <ImageView
+                    android:layout_width="@dimen/app_35dp"
+                    android:layout_height="@dimen/app_35dp"
+                    android:src="@mipmap/work_weibao"/>
+
+                <TextView
+                    android:id="@+id/tv_kanban_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="@color/color_303133"
+                    android:text="555"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="@color/color_909399"
+                    android:text="维保项目"/>
+
+            </LinearLayout>
+
+            <View style="@style/weight_heng"/>
+
+            <LinearLayout
+                android:id="@+id/ll_kanban_number"
+                style="@style/kanban_ll_bg">
+
+                <ImageView
+                    android:layout_width="@dimen/app_35dp"
+                    android:layout_height="@dimen/app_35dp"
+                    android:src="@mipmap/work_xiangmu2"/>
+
+                <TextView
+                    android:id="@+id/tv_kanban_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="@color/color_303133"
+                    android:text="545"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="@color/color_909399"
+                    android:text="项目总数"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_work_shenpi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="工作"
+            android:textSize="18sp"
+            android:layout_marginLeft="@dimen/app_24dp"
+            android:layout_marginTop="@dimen/app_30dp"
+            android:textColor="@color/color_303133"/>
+
+        <LinearLayout style="@style/work_ll">
+
+            <LinearLayout
+                android:id="@+id/ll_guan_jiagou"
+                style="@style/shenpi_ll_bg">
+
+                <ImageView
+                    style="@style/shenpi_iv"
+                    android:src="@mipmap/work_jiagou"/>
+
+                <TextView
+                    style="@style/shenpi_tv"
+                    android:textSize="13sp"
+                    android:layout_marginTop="@dimen/app_5dp"
+                    android:text="组织架构"/>
+
+            </LinearLayout>
+
+            <View style="@style/weight_heng"/>
+
+            <LinearLayout
+                android:id="@+id/ll_guan_shezhi"
+                style="@style/shenpi_ll_bg">
+
+                <ImageView
+                    style="@style/shenpi_iv"
+                    android:src="@mipmap/work_shezhi"/>
+
+                <TextView
+                    style="@style/shenpi_tv"
+                    android:textSize="13sp"
+                    android:layout_marginTop="@dimen/app_5dp"
+                    android:text="企业设置"/>
+
+            </LinearLayout>
+
+            <View style="@style/weight_heng"/>
+
+            <LinearLayout
+                android:id="@+id/ll_shen_cjxm"
+                style="@style/shenpi_ll_bg">
+
+                <ImageView
+                    style="@style/shenpi_iv"
+                    android:src="@mipmap/home_chuangjian"/>
+
+                <TextView
+                    style="@style/shenpi_tv"
+                    android:textSize="13sp"
+                    android:layout_marginTop="@dimen/app_5dp"
+                    android:text="创建项目"/>
+
+            </LinearLayout>
+
+            <View style="@style/weight_heng"/>
+
+            <LinearLayout
+                android:id="@+id/ll_shen_xmgl"
+                style="@style/shenpi_ll_bg">
+
+                <ImageView
+                    style="@style/shenpi_iv"
+                    android:src="@mipmap/home_guanli"/>
+
+                <TextView
+                    style="@style/shenpi_tv"
+                    android:textSize="13sp"
+                    android:layout_marginTop="@dimen/app_5dp"
+                    android:text="项目管理"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/work_ll"
+            android:layout_marginTop="@dimen/app_35dp">
+
+            <LinearLayout
+                android:id="@+id/ll_shen_kb"
+                style="@style/shenpi_ll_bg">
+
+                <ImageView
+                    style="@style/shenpi_iv"
+                    android:src="@mipmap/work_koubei"/>
+
+                <TextView
+                    style="@style/shenpi_tv"
+                    android:textSize="13sp"
+                    android:layout_marginTop="@dimen/app_5dp"
+                    android:text="口碑包装"/>
+
+            </LinearLayout>
+
+            <View style="@style/weight_heng"/>
+
+            <LinearLayout
+                android:id="@+id/ll_shen_pp"
+                style="@style/shenpi_ll_bg">
+
+                <ImageView
+                    style="@style/shenpi_iv"
+                    android:src="@mipmap/work_pinpai"/>
+
+                <TextView
+                    style="@style/shenpi_tv"
+                    android:textSize="13sp"
+                    android:layout_marginTop="@dimen/app_5dp"
+                    android:text="品牌传播"/>
+
+            </LinearLayout>
+
+            <View style="@style/weight_heng"/>
+
+            <LinearLayout style="@style/shenpi_ll_bg"/>
+
+            <View style="@style/weight_heng"/>
+
+            <LinearLayout style="@style/shenpi_ll_bg"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_work_guanli"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="为你推荐"
+            android:textSize="18sp"
+            android:layout_marginLeft="@dimen/app_24dp"
+            android:layout_marginTop="@dimen/app_30dp"
+            android:textColor="@color/color_303133"/>
+
+        <com.mfzn.deepusesSer.view.MyListview
+            android:id="@+id/work_listview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@color/color_ffffff"
+            android:layout_marginLeft="@dimen/app_12dp"
+            android:layout_marginRight="@dimen/app_12dp"
+            android:layout_marginTop="@dimen/app_15dp"
+            android:dividerHeight="@dimen/app_10dp"/>
+
+    </LinearLayout>
+
+</ScrollView>

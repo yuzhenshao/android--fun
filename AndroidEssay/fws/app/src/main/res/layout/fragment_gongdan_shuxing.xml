@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:scrollbars="none"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/app_15dp"
+            android:layout_marginLeft="@dimen/app_25dp"
+            android:focusable="false"
+            android:focusableInTouchMode="true"
+            android:gravity="center_vertical">
+
+            <View
+                android:layout_width="@dimen/app_10dp"
+                android:layout_height="@dimen/app_10dp"
+                android:background="@drawable/yuan_4a90e2_xian_bg_shape"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/color_606266"
+                android:layout_marginLeft="@dimen/app_5dp"
+                android:text="工单详情"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/add_work_ll"
+            android:layout_marginTop="@dimen/app_13dp">
+
+            <TextView
+                style="@style/add_work_tv"
+                android:layout_weight="1"
+                android:text="客户姓名"/>
+
+            <TextView
+                android:id="@+id/tv_acc_khname"
+                style="@style/add_work_tv"
+                android:textColor="@color/color_606266"
+                android:layout_marginRight="@dimen/app_40dp"
+                android:text=""/>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/add_work_ll">
+
+            <TextView
+                style="@style/add_work_tv"
+                android:text="保修状态"/>
+
+            <View style="@style/weight_heng"/>
+
+            <TextView
+                style="@style/add_work_tv"
+                android:layout_marginRight="@dimen/app_40dp"
+                android:textColor="@color/color_606266"
+                android:text="保修期内"/>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/add_work_ll">
+
+            <TextView
+                style="@style/add_work_tv"
+                android:layout_weight="1"
+                android:text="创建时间"/>
+
+            <TextView
+                android:id="@+id/tv_acc_time"
+                style="@style/add_work_tv"
+                android:textColor="@color/color_606266"
+                android:layout_marginRight="@dimen/app_40dp"
+                android:text=""/>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/add_work_ll">
+
+            <TextView
+                style="@style/add_work_tv"
+                android:layout_weight="1"
+                android:text="期望维护时间"/>
+
+            <TextView
+                android:id="@+id/tv_acc_whtime"
+                style="@style/add_work_tv"
+                android:textColor="@color/color_606266"
+                android:layout_marginRight="@dimen/app_40dp"
+                android:text=""/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/app_9dp"
+            android:layout_marginLeft="@dimen/app_40dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                style="@style/add_work_tv"
+                android:text="故障描述"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_acc_ms"
+            style="@style/add_work_tv"
+            android:textColor="@color/color_606266"
+            android:layout_marginRight="@dimen/app_40dp"
+            android:layout_marginLeft="@dimen/app_40dp"
+            android:layout_marginTop="@dimen/app_4dp"
+            android:text=""/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/acc_recycleview"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_75dp"
+            android:layout_marginTop="@dimen/app_10dp"
+            android:layout_marginBottom="@dimen/app_20dp"
+            android:overScrollMode="never"
+            android:scrollbars="none" />
+
+    </LinearLayout>
+
+</ScrollView>

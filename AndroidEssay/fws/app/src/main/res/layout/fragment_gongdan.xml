@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_f5f7fa">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_ffffff"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/app_26dp"
+            android:layout_marginTop="@dimen/app_45dp"
+            android:layout_marginRight="@dimen/app_16dp">
+
+            <TextView
+                android:id="@+id/tv_fa_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="项目"
+                android:textColor="@color/color_303133"
+                android:textSize="20sp" />
+
+            <View style="@style/weight_heng" />
+
+            <TextView
+                android:id="@+id/tv_fa_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="bottom"
+                android:paddingLeft="@dimen/app_10dp"
+                android:paddingRight="@dimen/app_10dp"
+                android:text="正在进行"
+                android:textColor="@color/color_303133"
+                android:textSize="16sp" />
+
+            <View style="@style/weight_heng" />
+
+            <TextView
+                android:id="@+id/tv_fa_pay"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="bottom"
+                android:paddingLeft="@dimen/app_10dp"
+                android:paddingRight="@dimen/app_10dp"
+                android:text="已交付"
+                android:textColor="@color/color_909399"
+                android:textSize="16sp" />
+
+            <View style="@style/weight_heng" />
+
+            <TextView
+                android:id="@+id/tv_fa_shouhou"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="bottom"
+                android:paddingLeft="@dimen/app_10dp"
+                android:paddingRight="@dimen/app_10dp"
+                android:text="售后中"
+                android:textColor="@color/color_909399"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/app_10dp"
+            android:gravity="center_vertical"
+            android:paddingTop="@dimen/app_10dp"
+            android:paddingBottom="@dimen/app_10dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/yuanjiao_edeff2_bg_shape"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="10dp"
+                    android:src="@mipmap/search" />
+
+                <EditText
+                    android:id="@+id/et_fa_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:background="@null"
+                    android:hint="在项目中搜索"
+                    android:paddingLeft="10dp"
+                    android:textColor="#303133"
+                    android:textColorHint="#909399"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/iv_fa_add"
+                android:layout_width="@dimen/app_24dp"
+                android:layout_height="@dimen/app_24dp"
+                android:layout_marginRight="@dimen/app_20dp"
+                android:src="@mipmap/pro_add" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.mfzn.deepusesSer.view.MyViewPager
+        android:id="@+id/fa_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

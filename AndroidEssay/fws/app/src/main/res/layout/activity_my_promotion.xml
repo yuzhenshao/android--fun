@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_f5f7fa"
+    android:orientation="vertical">
+
+    <include layout="@layout/main_title" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:background="#f0f0f0">
+
+            <ImageView
+                android:id="@+id/iv_my_pro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/app_15dp"
+                android:layout_marginRight="@dimen/app_15dp"
+                android:layout_marginTop="@dimen/app_10dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_marginTop="@dimen/app_10dp"
+                    android:layout_marginBottom="@dimen/app_10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:textColor="@color/color_303133"
+                    android:text="我的推广码"/>
+
+                <TextView
+                    android:id="@+id/tv_pro_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:textColor="@color/color_303133"
+                    android:text=""/>
+
+                <LinearLayout
+                    android:id="@+id/ll_pro_copy"
+                    android:layout_width="@dimen/app_35dp"
+                    android:gravity="center_vertical"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="@dimen/app_20dp"
+                        android:layout_height="@dimen/app_20dp"
+                        android:layout_marginLeft="@dimen/app_7dp"
+                        android:src="@mipmap/sur_copy"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/app_5dp"
+                android:layout_marginLeft="@dimen/app_20dp"
+                android:layout_marginRight="@dimen/app_20dp"
+                android:layout_marginBottom="@dimen/app_20dp"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/but_fx"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="@dimen/app_45dp"
+                    android:text="分享"
+                    android:textSize="18sp"
+                    android:textColor="@color/color_ffffff"
+                    android:background="@drawable/shape_yuanjiao_4a90e2_button"/>
+
+                <Button
+                    android:id="@+id/but_pro_invitation"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="@dimen/app_45dp"
+                    android:text="保存"
+                    android:textSize="18sp"
+                    android:layout_marginLeft="@dimen/app_20dp"
+                    android:textColor="@color/color_ffffff"
+                    android:background="@drawable/yuanjiao_4a9012_button_shape"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_code_success"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:src="@mipmap/code_success"/>
+
+        <TextView
+            android:id="@+id/tv_code_fail"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:textSize="15sp"
+            android:textColor="#ffffff"
+            android:visibility="gone"
+            android:background="@drawable/my_code_chenggong_shape"
+            android:gravity="center"
+            android:text="保存失败"/>
+
+    </FrameLayout>
+
+</LinearLayout>

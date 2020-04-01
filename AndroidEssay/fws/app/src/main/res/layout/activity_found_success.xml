@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_ffffff"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <include layout="@layout/main_title" />
+
+    <View
+        style="@style/line_heng"
+        android:layout_height="@dimen/app_10dp" />
+
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="52dp"
+        android:src="@mipmap/apply_success"/>
+
+    <TextView
+        android:id="@+id/tv_fou_success"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="#303133"
+        android:layout_marginTop="20dp"
+        android:text="项目创建成功"/>
+
+    <Button
+        android:id="@+id/but_fou_can"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="@dimen/app_38dp"
+        android:layout_marginRight="@dimen/app_38dp"
+        android:text="立即查看"
+        android:textSize="18sp"
+        android:textColor="#ffffff"
+        android:background="@drawable/yuanjiao_4a9012_button_shape"
+        android:layout_marginTop="50dp"/>
+
+    <Button
+        android:id="@+id/but_fou_join"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="@dimen/app_38dp"
+        android:layout_marginRight="@dimen/app_38dp"
+        android:text="邀请成员加入"
+        android:textSize="18sp"
+        android:textColor="@color/color_4A90E2"
+        android:background="@drawable/yuanjiao_4a90e2_xian_shape"
+        android:layout_marginTop="@dimen/app_20dp"/>
+
+</LinearLayout>

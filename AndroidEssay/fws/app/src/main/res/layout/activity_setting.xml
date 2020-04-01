@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_f5f7fa"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/main_title"/>
+
+    <LinearLayout
+        android:id="@+id/ll_set_info"
+        style="@style/newly_ll_st"
+        android:layout_marginTop="@dimen/app_10dp"
+        android:background="@color/color_ffffff">
+
+        <TextView
+            style="@style/newly_tv_st"
+            android:layout_weight="1"
+            android:text="个人信息"/>
+
+        <ImageView
+            style="@style/bass_iv_you"
+            android:layout_marginRight="@dimen/app_20dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_ffffff"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/app_10dp">
+
+        <LinearLayout
+            android:id="@+id/ll_set_account"
+            style="@style/newly_ll_st">
+
+            <TextView
+                style="@style/newly_tv_st"
+                android:layout_weight="1"
+                android:text="账号和绑定设置"/>
+
+            <ImageView
+                style="@style/bass_iv_you"
+                android:layout_marginRight="@dimen/app_20dp"/>
+
+        </LinearLayout>
+
+        <View style="@style/line_heng"/>
+
+        <LinearLayout
+            android:id="@+id/ll_set_pwd"
+            style="@style/newly_ll_st">
+
+            <TextView
+                style="@style/newly_tv_st"
+                android:layout_weight="1"
+                android:text="密码设置"/>
+
+            <ImageView
+                style="@style/bass_iv_you"
+                android:layout_marginRight="@dimen/app_20dp"/>
+
+        </LinearLayout>
+
+        <View style="@style/line_heng"/>
+
+        <LinearLayout
+            android:id="@+id/ll_set_news"
+            style="@style/newly_ll_st">
+
+            <TextView
+                style="@style/newly_tv_st"
+                android:layout_weight="1"
+                android:text="消息设置"/>
+
+            <ImageView
+                style="@style/bass_iv_you"
+                android:layout_marginRight="@dimen/app_20dp"/>
+
+        </LinearLayout>
+
+        <View style="@style/line_heng"/>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/ll_set_team"
+            style="@style/newly_ll_st">
+
+            <TextView
+                style="@style/newly_tv_st"
+                android:text="所在企业/团队"/>
+
+            <TextView
+                android:id="@+id/tv_set_team"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/app_80dp"
+                android:layout_marginRight="@dimen/app_10dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textSize="16sp"
+                android:textColor="@color/color_303133"
+                android:text="麦麸智能科技"/>
+
+            <ImageView
+                style="@style/bass_iv_you"
+                android:layout_marginRight="@dimen/app_20dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_set_banben"
+        style="@style/newly_ll_st"
+        android:layout_marginTop="@dimen/app_10dp"
+        android:background="@color/color_ffffff">
+
+        <TextView
+            style="@style/newly_tv_st"
+            android:layout_weight="1"
+            android:text="版本信息"/>
+
+        <TextView
+            android:id="@+id/tv_set_banben"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/color_303133"
+            android:layout_marginRight="@dimen/app_24dp"
+            android:text="当前版本1.1.0"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_set_hc"
+        style="@style/newly_ll_st"
+        android:layout_marginTop="@dimen/app_10dp"
+        android:background="@color/color_ffffff">
+
+        <TextView
+            style="@style/newly_tv_st"
+            android:layout_weight="1"
+            android:text="清除缓存"/>
+
+        <TextView
+            android:id="@+id/tv_set_hc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/app_10dp"
+            android:text="16M"/>
+
+        <ImageView
+            style="@style/bass_iv_you"
+            android:layout_marginRight="@dimen/app_20dp"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_set_out"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_60dp"
+        android:layout_marginTop="@dimen/app_10dp"
+        android:background="@color/color_ffffff"
+        android:gravity="center"
+        android:text="退出登录"
+        android:textColor="@color/color_d0021b"
+        android:textSize="16sp" />
+
+</LinearLayout>
