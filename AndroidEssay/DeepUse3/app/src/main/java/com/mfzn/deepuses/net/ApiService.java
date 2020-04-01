@@ -6,6 +6,7 @@ import com.mfzn.deepuses.bean.request.AddCustomRequest;
 import com.mfzn.deepuses.bean.request.AddDepartmentRequest;
 import com.mfzn.deepuses.bean.request.AsSetRequest;
 import com.mfzn.deepuses.bean.request.ChangePwdRequest;
+import com.mfzn.deepuses.bean.request.CommodityRequest;
 import com.mfzn.deepuses.bean.request.CreateAfterSaleOrderRequest;
 import com.mfzn.deepuses.bean.request.EditAsServicePeopleRequest;
 import com.mfzn.deepuses.bean.request.EditProjectRequest;
@@ -17,6 +18,9 @@ import com.mfzn.deepuses.bean.request.ReSendAsOrderRequest;
 import com.mfzn.deepuses.bean.request.RegisterRequest;
 import com.mfzn.deepuses.bean.request.SendAsOrderRequest;
 import com.mfzn.deepuses.bean.response.BusinessCardResponse;
+import com.mfzn.deepuses.bean.response.GoodsCategoryResponse;
+import com.mfzn.deepuses.bean.response.GoodsUnitResponse;
+import com.mfzn.deepuses.bean.response.StoreResponse;
 import com.mfzn.deepuses.bean.response.UserResponse;
 import com.mfzn.deepuses.model.LookQuanxian2Model;
 import com.mfzn.deepuses.model.LookQuanxianModel;
@@ -78,6 +82,7 @@ import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Flowable;
+import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -747,4 +752,32 @@ public interface ApiService {
     @POST("api/Finance/buyModule")
     Flowable<HttpResult> buyModule(@Query("token") String token, @Query("uid") String uid, @Field("proID") String proId,
                                    @Field("moduleType") String moduleType, @Field("brickNum") String brickNum);
+
+    //进销存
+    @GET("pss/Setting/goodsCategoryList")
+    Flowable<HttpResult<List<GoodsCategoryResponse>>> getGoodsCategoryList(@Query("token") String token,
+                                                                       @Query("uid") String uid, @Query("shopID") String shopID);
+
+    @POST("pss/Setting/addGoods")
+    Flowable<HttpResult> addGoods(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
+                                  @Body CommodityRequest request);
+
+
+    @POST("pss/Setting/editGoodsCategory")
+    Flowable<HttpResult> editGoodsCategory(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
+                                             @Field("catName") String catName, @Field("pID") String pID, @Field("catID") String catID);
+
+
+    @POST("pss/Setting/addGoodsCategory")
+    Flowable<HttpResult> addGoodsCategory(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
+                                             @Field("catName") String catName, @Field("pID") String pID);
+
+    @GET("pss/Setting/storeList")
+    Flowable<HttpResult<List<StoreResponse>>> getStoreList(@Query("token") String token,
+                                                       @Query("uid") String uid, @Query("shopID") String shopID);
+
+    @GET("pss/Setting/goodsUnitList")
+    Flowable<HttpResult<List<GoodsUnitResponse>>> getGoodsUnitList(@Query("token") String token,
+                                                                     @Query("uid") String uid, @Query("shopID") String shopID);
+
 }

@@ -7,6 +7,7 @@ import com.mfzn.deepuses.bean.request.AddDepartmentRequest;
 import com.mfzn.deepuses.bean.request.AfterSaleOrderListRequest;
 import com.mfzn.deepuses.bean.request.AsSetRequest;
 import com.mfzn.deepuses.bean.request.ChangePwdRequest;
+import com.mfzn.deepuses.bean.request.CommodityRequest;
 import com.mfzn.deepuses.bean.request.CompanyInfoRequest;
 import com.mfzn.deepuses.bean.request.CreateAfterSaleOrderRequest;
 import com.mfzn.deepuses.bean.request.EditAsServicePeopleRequest;
@@ -18,6 +19,9 @@ import com.mfzn.deepuses.bean.request.ProjectListRequest;
 import com.mfzn.deepuses.bean.request.ReSendAsOrderRequest;
 import com.mfzn.deepuses.bean.request.RegisterRequest;
 import com.mfzn.deepuses.bean.request.SendAsOrderRequest;
+import com.mfzn.deepuses.bean.response.GoodsCategoryResponse;
+import com.mfzn.deepuses.bean.response.GoodsUnitResponse;
+import com.mfzn.deepuses.bean.response.StoreResponse;
 import com.mfzn.deepuses.bean.response.UserResponse;
 import com.mfzn.deepuses.model.faxian.News;
 import com.mfzn.deepuses.model.jiagou.ShareCodeModel;
@@ -40,6 +44,10 @@ import com.mfzn.deepuses.model.xiangmu.XiangmuModel;
 import com.mfzn.deepuses.utils.UserHelper;
 import java.util.List;
 import io.reactivex.Flowable;
+import io.reactivex.Observable;
+import retrofit2.http.Body;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 /**
  * @author yz @date 2020-02-27
@@ -233,5 +241,25 @@ public class ApiServiceManager {
 
     public static Flowable<HttpResult> buyModule(String proId, String moduleType, String brickNum) {
         return ApiHelper.getApiService().buyModule(UserHelper.getToken(), UserHelper.getUid(), proId, moduleType, brickNum);
+    }
+
+    public static Flowable<HttpResult<List<GoodsCategoryResponse>>> getGoodsCategoryList(String shopID) {
+        return ApiHelper.getApiService().getGoodsCategoryList(UserHelper.getToken(), UserHelper.getUid(), shopID);
+    }
+
+
+    public static Flowable<HttpResult> addGoods(String shopID,CommodityRequest request) {
+        return ApiHelper.getApiService().addGoods(UserHelper.getToken(), UserHelper.getUid(), shopID,request);
+    }
+
+
+
+    public static Flowable<HttpResult<List<StoreResponse>>> getStoreList(String shopID){
+        return ApiHelper.getApiService().getStoreList(UserHelper.getToken(), UserHelper.getUid(), shopID);
+    }
+
+
+    public static Flowable<HttpResult<List<GoodsUnitResponse>>> getGoodsUnitList(String shopID){
+        return ApiHelper.getApiService().getGoodsUnitList(UserHelper.getToken(), UserHelper.getUid(), shopID);
     }
 }

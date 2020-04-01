@@ -11,7 +11,7 @@ public class BrickRecordModel {
      */
 
     private ForCompanyMoneyBean forCompanyMoney;
-    private ForCompanyZhuanBean forCompanyZhuan;
+    private ForCompanyZhuanBean forCompanyBrick;
     private FinancialLogBean financialLog;
 
     public ForCompanyMoneyBean getForCompanyMoney() {
@@ -23,11 +23,11 @@ public class BrickRecordModel {
     }
 
     public ForCompanyZhuanBean getForCompanyZhuan() {
-        return forCompanyZhuan;
+        return forCompanyBrick;
     }
 
     public void setForCompanyZhuan(ForCompanyZhuanBean forCompanyZhuan) {
-        this.forCompanyZhuan = forCompanyZhuan;
+        this.forCompanyBrick = forCompanyZhuan;
     }
 
     public FinancialLogBean getFinancialLog() {

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F7FA"
+    android:orientation="vertical">
+
+    <com.libcommon.titlebar.TitleBar
+        android:id="@+id/titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        style="@style/newly_ll_st">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_alignParentLeft="true"
+            android:paddingLeft="5dp"
+            android:paddingRight="@dimen/app_20dp"
+            android:text="库存"
+            android:textColor="#606266"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/setting_store"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_alignParentRight="true"
+            android:paddingLeft="5dp"
+            android:paddingRight="@dimen/app_20dp"
+            android:text="去设置"
+            android:textColor="#909399"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <View style="@style/line_heng" />
+
+    <RelativeLayout
+        android:id="@+id/store_container"
+        style="@style/newly_ll_st">
+
+        <TextView
+            style="@style/newly_tv_st"
+            android:layout_alignParentLeft="true"
+            android:text="1号仓" />
+
+        <TextView
+            android:id="@+id/store_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="@dimen/app_20dp"
+            android:text="库存：5"
+            android:textColor="#303133"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+</LinearLayout>

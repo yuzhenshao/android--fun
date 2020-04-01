@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.mob.sdk'
+apply plugin: 'com.android.databinding'
 
 MobSDK {
     appKey "2d1e04f9597a6"
@@ -41,6 +42,12 @@ android {
         ndk {
             abiFilters 'armeabi', 'x86'
         }
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath true
+            }
+        }
     }
     buildTypes {
         release {
@@ -55,6 +62,10 @@ android {
     lintOptions {
         checkReleaseBuilds false
         abortOnError false
+    }
+
+    dataBinding {
+        enabled = true
     }
 }
 

@@ -42,11 +42,15 @@ public abstract class XActivity<P extends IPresent> extends RxFragmentActivity i
         getP();
 
         if (getLayoutId() > 0) {
-            setContentView(getLayoutId());
+            setContentViewId();
             bindUI(null);
             bindEvent();
         }
         initData(savedInstanceState);
+    }
+
+    protected void setContentViewId(){
+        setContentView(getLayoutId());
     }
 
     @Override
