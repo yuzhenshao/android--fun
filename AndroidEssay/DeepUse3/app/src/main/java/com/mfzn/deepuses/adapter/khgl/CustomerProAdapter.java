@@ -34,7 +34,6 @@ public class CustomerProAdapter extends RecyclerView.Adapter {
     private final LayoutInflater mLayoutInflater;
 
     private List<DetailsModel.ProsBean> datas;
-    private OnSeeItemClickListener mOnSeeItemClickListener = null;
 
     public CustomerProAdapter(Context mContext, List<DetailsModel.ProsBean> datas) {
         this.context = mContext;
@@ -55,7 +54,7 @@ public class CustomerProAdapter extends RecyclerView.Adapter {
         DetailsModel.ProsBean bean = datas.get(position);
 
         viewHolder.tvPrItemSum.setText(String.valueOf(position + 1));
-        viewHolder.tvPrItemName.setText(bean.getPro_name());
+        viewHolder.tvPrItemName.setText(bean.getProName());
         viewHolder.tvPrItemAddress.setText(bean.getAreaName());
         viewHolder.tvPrItemDetails.setText(bean.getDetailAddress());
 
@@ -70,13 +69,6 @@ public class CustomerProAdapter extends RecyclerView.Adapter {
         }else {
             viewHolder.llPrItemKh.setVisibility(View.GONE);
         }
-
-        viewHolder.tvPrItemSee.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mOnSeeItemClickListener.onItemClick(v, position);
-            }
-        });
     }
 
     @Override
@@ -86,8 +78,6 @@ public class CustomerProAdapter extends RecyclerView.Adapter {
 
     class MoreViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.tv_pr_item_see)
-        TextView tvPrItemSee;
         @BindView(R.id.tv_pr_item_sum)
         TextView tvPrItemSum;
         @BindView(R.id.tv_pr_item_name)
@@ -105,13 +95,5 @@ public class CustomerProAdapter extends RecyclerView.Adapter {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
-    }
-
-    public interface OnSeeItemClickListener {
-        void onItemClick(View view, int position);
-    }
-
-    public void setOnSeeItemClickListener(OnSeeItemClickListener listener) {
-        this.mOnSeeItemClickListener = listener;
     }
 }

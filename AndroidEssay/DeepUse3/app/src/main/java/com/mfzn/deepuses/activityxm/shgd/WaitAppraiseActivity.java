@@ -21,9 +21,11 @@ import com.mfzn.deepuses.adapter.xiangmu.ShouliListviewAdapter;
 import com.mfzn.deepuses.adapter.xiangmu.ShouliPhotoAdapter;
 import com.mfzn.deepuses.bass.BaseActivity;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
+import com.mfzn.deepuses.common.MapNaviUtils;
 import com.mfzn.deepuses.fragment.xm.ChuliGuochengFragment;
 import com.mfzn.deepuses.fragment.xm.GongdanFuwuFragment;
 import com.mfzn.deepuses.fragment.xm.GongdanShuxingFragment;
+import com.mfzn.deepuses.model.xiangmu.GongdanShuxingModel;
 import com.mfzn.deepuses.model.xiangmu.WorkorderListModel;
 import com.mfzn.deepuses.present.xmgd.WaitAppraisePresent;
 import com.mfzn.deepuses.utils.Constants;
@@ -76,7 +78,7 @@ public class WaitAppraiseActivity extends BaseMvpActivity<WaitAppraisePresent> {
 
     private String contactPhone;
     private String orderNo;
-
+private GongdanFuwuFragment shuxingFragment;
     @Override
     public int getLayoutId() {
         return R.layout.activity_wait_appraise;
@@ -98,7 +100,7 @@ public class WaitAppraiseActivity extends BaseMvpActivity<WaitAppraisePresent> {
 
         orderNo = dataBean.getOrderNo();
         tvwaiType.setText(orderNo);
-        int shType = dataBean.getShType();
+        int shType = dataBean.getAsType();
         if(shType == 1) {//0全部  1故障保修  2维护升级
             tvwaiTypename.setTextColor(getResources().getColor(R.color.color_3D7EFF));
         }else if(shType == 2) {
@@ -116,7 +118,7 @@ public class WaitAppraiseActivity extends BaseMvpActivity<WaitAppraisePresent> {
 
         List<Fragment> list = new ArrayList<>();
 
-        GongdanFuwuFragment shuxingFragment = new GongdanFuwuFragment();
+        shuxingFragment = new GongdanFuwuFragment();
         Bundle bundle = new Bundle();
         bundle.putString(Constants.SHOUHOU_ORDERNO, orderNo);
 //        bundle.putSerializable(Constants.SHOUHOU_DETAILS,dataBean);
@@ -133,7 +135,7 @@ public class WaitAppraiseActivity extends BaseMvpActivity<WaitAppraisePresent> {
         initMagicIndicator(mDataList);
     }
 
-    @OnClick({R.id.iv_login_back, R.id.ll_wai_phone, R.id.ll_bass_detele})
+    @OnClick({R.id.iv_login_back, R.id.ll_wai_phone, R.id.ll_bass_detele,R.id.address_container})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_login_back:
@@ -168,6 +170,14 @@ public class WaitAppraiseActivity extends BaseMvpActivity<WaitAppraisePresent> {
                         })
                         .build()
                         .show();
+                break;
+            case  R.id.address_container:
+                if (shuxingFragment != null) {
+                    GongdanShuxingModel model = shuxingFragment.getGongdanShuxingModel();
+                    if (model != null) {
+                        MapNaviUtils.goToMapNavi(this, model.getLatitude(), model.getLongitude(), model.getDetailAddress());
+                    }
+                }
                 break;
         }
     }

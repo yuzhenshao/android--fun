@@ -5,16 +5,14 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.listener.VideoStateListenerAdapter;
 import com.mfzn.deepuses.model.faxian.News;
+import com.mfzn.deepuses.model.faxian.Videos;
 import com.mfzn.deepuses.net.ApiHelper;
-import com.mfzn.deepuses.utils.DateUtils;
 import com.mfzn.deepuses.utils.MyJZVideoPlayerStandard;
 import com.mfzn.deepuses.utils.UIUtils;
 
@@ -31,11 +29,11 @@ import static android.view.View.VISIBLE;
 public class SearchChangjingAdapter extends BaseAdapter {
 
     private Context mContext;
-    private List<News.DataBean> data;
+    private List<Videos.DataBean> data;
 
     private OnitemclickLisenter mOnitemclickLisenter;
 
-    public SearchChangjingAdapter(Context context, List<News.DataBean> data) {
+    public SearchChangjingAdapter(Context context, List<Videos.DataBean> data) {
         this.mContext = context;
         this.data = data;
     }
@@ -67,7 +65,7 @@ public class SearchChangjingAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        News.DataBean model = data.get(position);
+        Videos.DataBean model = data.get(position);
 
         holder.llTitle.setVisibility(VISIBLE);
         holder.tvTitle.setText(model.getTitle());

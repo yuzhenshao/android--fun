@@ -19,6 +19,7 @@ import com.mfzn.deepuses.adapter.faxian.SearchZixunAdapter;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
 import com.mfzn.deepuses.model.HistorySearchModel;
 import com.mfzn.deepuses.model.faxian.News;
+import com.mfzn.deepuses.model.faxian.Videos;
 import com.mfzn.deepuses.present.faxian.SearchChangjingPresnet;
 import com.mfzn.deepuses.utils.OnInputChangeListener;
 import com.mfzn.deepuses.utils.UserHelper;
@@ -103,8 +104,8 @@ public class SearchChangjingActivity extends BaseMvpActivity<SearchChangjingPres
         }
     }
 
-    public void newsListSuccess(News model) {
-        List<News.DataBean> data = model.getData();
+    public void newsListSuccess(Videos model) {
+        List<Videos.DataBean> data = model.getData();
         if(data != null && data.size() != 0) {
             cjListview.setVisibility(View.VISIBLE);
             llCjLs.setVisibility(View.GONE);

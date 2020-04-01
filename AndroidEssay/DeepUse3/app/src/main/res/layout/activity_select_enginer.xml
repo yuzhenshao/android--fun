@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_f5f7fa"
@@ -71,59 +72,14 @@
 
     <View style="@style/line_heng"/>
 
-    <LinearLayout
-        android:id="@+id/ll_se_add"
-        android:visibility="gone"
+
+    <ListView
+        android:id="@+id/enginer_list"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/app_60dp"
-        android:background="@color/color_ffffff"
-        android:gravity="center_vertical">
-
-        <com.mfzn.deepuses.view.RoundImageView
-            android:id="@+id/iv_se_icon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="24dp"
-            android:scaleType="fitXY"
-            android:src="@mipmap/moren_touxiang"/>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/app_10dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_se_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/color_303133"
-                android:textSize="16sp"
-                android:text=""/>
-
-            <TextView
-                android:id="@+id/tv_se_phone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/color_909399"
-                android:layout_marginTop="@dimen/app_5dp"
-                android:textSize="14sp"
-                android:text=""/>
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/tv_se_add"
-            android:layout_width="@dimen/app_70dp"
-            android:layout_height="@dimen/app_23dp"
-            android:textSize="14sp"
-            android:textColor="@color/color_3D7EFF"
-            android:gravity="center"
-            android:layout_marginRight="@dimen/app_24dp"
-            android:background="@drawable/yuanjiao_3d7eff_xian_shape"
-            android:text="+添加"/>
-
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/app_10dp"
+        android:divider="@color/color_f5f7fa"
+        android:dividerHeight="@dimen/app_1dp"
+        android:background="@color/color_ffffff"/>
 
 </LinearLayout>

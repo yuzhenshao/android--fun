@@ -4,6 +4,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -123,25 +124,16 @@ public class FwzHuizhiDetailActivity extends BaseMvpActivity<ClzHuidanDetailPres
     }
 
     public void huidanDetailSuccess(ClzGongdanDetailModel detailModel){
-        if (detailModel.getSignUrl().size() == 0){
+        if (TextUtils.isEmpty(detailModel.getSign())){
             llClz.setVisibility(View.VISIBLE);
             llYwg.setVisibility(View.GONE);
             tvBassTitle.setText("处理中回单");
             tvTitle.setText("处理中回单");
             tvOrderNo.setText(detailModel.getOrderNo());
             tvGzfx.setText(detailModel.getFaultText());
-            List<String> gzdxInfo = detailModel.getFaultFileIdUrl();
-            ArrayList<String> dataList1 = new ArrayList<>();
-            List<Uri> dataList = new ArrayList<>();
-            if(gzdxInfo.size() > 0){
-                for (int i = 0; i < gzdxInfo.size(); i++){
-                    String[] split = gzdxInfo.get(i).split(",");
-                    for (int j = 0 ; j < split.length ; j++){
-                        dataList1.add(split[j]);
-                        dataList.add(Uri.parse(ApiHelper.BASE_URL + split[j]));
-                    }
-                }
-                ShouliPhotoAdapter recycleAdapter = new ShouliPhotoAdapter(FwzHuizhiDetailActivity.this,dataList1);
+            ArrayList<Uri> dataList = detailModel.getFaultFileIdUrl();
+            if(dataList.size() > 0){
+                ShouliPhotoAdapter recycleAdapter = new ShouliPhotoAdapter(FwzHuizhiDetailActivity.this,dataList);
                 gzfx_xgtp.setAdapter(recycleAdapter);
 
                 recycleAdapter.setOnClickListener(new ShouliPhotoAdapter.OnItemClickListener() {
@@ -153,19 +145,9 @@ public class FwzHuizhiDetailActivity extends BaseMvpActivity<ClzHuidanDetailPres
 
             }
             tvJjfa.setText(detailModel.getContent());
-            List<String> jjfaInfo = detailModel.getContentFileIdUrl();
-            ArrayList<String> dataList2 = new ArrayList<>();
-            List<Uri> dataList3 = new ArrayList<>();
-            if(jjfaInfo.size() > 0){
-                for (int i = 0; i < jjfaInfo.size(); i++){
-
-                    String[] split = jjfaInfo.get(i).split(",");
-                    for (int j = 0 ; j < split.length ; j++){
-                        dataList2.add(split[j]);
-                        dataList3.add(Uri.parse(ApiHelper.BASE_URL + split[j]));
-                    }
-                }
-                ShouliPhotoAdapter recycleAdapter1 = new ShouliPhotoAdapter(FwzHuizhiDetailActivity.this,dataList2);
+            ArrayList<Uri> dataList3 = detailModel.getContentFileIdUrl();
+            if(dataList3.size() > 0){
+                ShouliPhotoAdapter recycleAdapter1 = new ShouliPhotoAdapter(FwzHuizhiDetailActivity.this,dataList3);
                 jjfa_xgtp.setAdapter(recycleAdapter1);
 
                 recycleAdapter1.setOnClickListener(new ShouliPhotoAdapter.OnItemClickListener() {
@@ -182,20 +164,11 @@ public class FwzHuizhiDetailActivity extends BaseMvpActivity<ClzHuidanDetailPres
             tvBassTitle.setText("完工回单");
             tvTitle1.setText("完工回单");
             tvOrderNo1.setText(detailModel.getOrderNo());
-            Glide.with(context).load(ApiHelper.BASE_URL + detailModel.getSignUrl().get(0)).into(ivQm);
+            Glide.with(context).load(ApiHelper.BASE_URL + detailModel.getSign()).into(ivQm);
             tvClxx.setText(detailModel.getContent());
-            List<String> jjfaInfo = detailModel.getContentFileIdUrl();
-            ArrayList<String> dataList2 = new ArrayList<>();
-            List<Uri> dataList3 = new ArrayList<>();
-            if(jjfaInfo.size() > 0){
-                for (int i = 0; i < jjfaInfo.size(); i++){
-                    String[] split = jjfaInfo.get(i).split(",");
-                    for (int j = 0 ; j < split.length ; j++){
-                        dataList2.add(split[j]);
-                        dataList3.add(Uri.parse(ApiHelper.BASE_URL + split[j]));
-                    }
-                }
-                ShouliPhotoAdapter recycleAdapter1 = new ShouliPhotoAdapter(FwzHuizhiDetailActivity.this,dataList2);
+            ArrayList<Uri> dataList3 = detailModel.getContentFileIdUrl();
+            if(dataList3.size() > 0){
+                ShouliPhotoAdapter recycleAdapter1 = new ShouliPhotoAdapter(FwzHuizhiDetailActivity.this,dataList3);
                 clxx_xgtp.setAdapter(recycleAdapter1);
 
                 recycleAdapter1.setOnClickListener(new ShouliPhotoAdapter.OnItemClickListener() {

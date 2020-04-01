@@ -23,8 +23,8 @@ public class CompanyInfoModel {
     private String companyName;
     private String shortName;
     private String logo;
-    private String zhuan;
-    private String giftZhuan;
+    private String brick;
+    private String giftBrick;
     private int companyLevel;
     private String levelName;
     private LevelRightsBean levelRights;
@@ -65,19 +65,19 @@ public class CompanyInfoModel {
     }
 
     public String getZhuan() {
-        return zhuan;
+        return brick;
     }
 
     public void setZhuan(String zhuan) {
-        this.zhuan = zhuan;
+        this.brick = zhuan;
     }
 
     public String getGiftZhuan() {
-        return giftZhuan;
+        return giftBrick;
     }
 
     public void setGiftZhuan(String giftZhuan) {
-        this.giftZhuan = giftZhuan;
+        this.giftBrick = giftZhuan;
     }
 
     public int getCompanyLevel() {

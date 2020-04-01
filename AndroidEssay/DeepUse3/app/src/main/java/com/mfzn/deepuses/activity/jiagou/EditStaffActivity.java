@@ -143,7 +143,7 @@ public class EditStaffActivity extends BaseMvpActivity<EditStaffPresent> {
                 pvTime.show(view);
                 break;
             case R.id.tv_edit_delete:
-                getP().deleteStaff(uid,oldDepartmentID);
+                getP().deleteStaff(uid);
                 break;
         }
     }

@@ -22,8 +22,10 @@ import com.mfzn.deepuses.adapter.xiangmu.ShouliListviewAdapter;
 import com.mfzn.deepuses.adapter.xiangmu.ShouliPhotoAdapter;
 import com.mfzn.deepuses.bass.BaseActivity;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
+import com.mfzn.deepuses.common.MapNaviUtils;
 import com.mfzn.deepuses.fragment.xm.ChuliGuochengFragment;
 import com.mfzn.deepuses.fragment.xm.GongdanShuxingFragment;
+import com.mfzn.deepuses.model.xiangmu.GongdanShuxingModel;
 import com.mfzn.deepuses.model.xiangmu.WorkorderListModel;
 import com.mfzn.deepuses.popmune.DropPopMenu;
 import com.mfzn.deepuses.popmune.MenuItem;
@@ -83,6 +85,8 @@ public class WaitReceiveActivity extends BaseMvpActivity<WaitReceivePresent> {
     private String contactPhone;
     private String orderNo;
     private int shJobID;
+    private GongdanShuxingFragment shuxingFragment;
+    private WorkorderListModel.DataBean dataBean;
 
     @Override
     public int getLayoutId() {
@@ -102,15 +106,15 @@ public class WaitReceiveActivity extends BaseMvpActivity<WaitReceivePresent> {
         llBassDelect.setVisibility(View.VISIBLE);
         tvrecTypename.getPaint().setFakeBoldText(true);
 
-        WorkorderListModel.DataBean dataBean = (WorkorderListModel.DataBean) getIntent().getSerializableExtra(Constants.SHOUHOU_DETAILS);
+       dataBean = (WorkorderListModel.DataBean) getIntent().getSerializableExtra(Constants.SHOUHOU_DETAILS);
 
-        shJobID = dataBean.getEnginerInfo().getShJobID();
+        shJobID = dataBean.getEngineerInfo().getAsJobID();
         orderNo = dataBean.getOrderNo();
         tvrecType.setText(orderNo);
-        int shType = dataBean.getShType();
-        if(shType == 1) {//0全部  1故障保修  2维护升级
+        int shType = dataBean.getAsType();
+        if (shType == 1) {//0全部  1故障保修  2维护升级
             tvrecTypename.setTextColor(getResources().getColor(R.color.color_3D7EFF));
-        }else if(shType == 2) {
+        } else if (shType == 2) {
             tvrecTypename.setTextColor(getResources().getColor(R.color.color_62C33A));
         }
         tvrecTypename.setText(dataBean.getShTypeName());
@@ -125,7 +129,7 @@ public class WaitReceiveActivity extends BaseMvpActivity<WaitReceivePresent> {
 
         List<Fragment> list = new ArrayList<>();
 
-        GongdanShuxingFragment shuxingFragment = new GongdanShuxingFragment();
+        shuxingFragment = new GongdanShuxingFragment();
         Bundle bundle = new Bundle();
         bundle.putString(Constants.SHOUHOU_ORDERNO, orderNo);
         shuxingFragment.setArguments(bundle);//数据传递到fragment中
@@ -157,7 +161,7 @@ public class WaitReceiveActivity extends BaseMvpActivity<WaitReceivePresent> {
         });
     }
 
-    @OnClick({R.id.iv_login_back, R.id.ll_bass_select, R.id.ll_rec_phone, R.id.but_rec_sl, R.id.ll_bass_detele})
+    @OnClick({R.id.iv_login_back, R.id.ll_bass_select, R.id.ll_rec_phone, R.id.but_rec_sl, R.id.ll_bass_detele, R.id.address_container})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_login_back:
@@ -175,6 +179,7 @@ public class WaitReceiveActivity extends BaseMvpActivity<WaitReceivePresent> {
                 Intent intent = new Intent(this, NewsDispatchActivity.class);
                 intent.putExtra(Constants.SHOUHOU_ORDERNO, orderNo);
                 intent.putExtra(Constants.SHOUHOU_JOBID, String.valueOf(shJobID));
+                intent.putExtra(Constants.SHOUHOU_PROID,dataBean.getProID());
                 startActivity(intent);
                 break;
             case R.id.ll_bass_detele:
@@ -198,6 +203,14 @@ public class WaitReceiveActivity extends BaseMvpActivity<WaitReceivePresent> {
                         })
                         .build()
                         .show();
+                break;
+            case R.id.address_container:
+                if (shuxingFragment != null) {
+                    GongdanShuxingModel model = shuxingFragment.getGongdanShuxingModel();
+                    if (model != null) {
+                        MapNaviUtils.goToMapNavi(this, model.getLatitude(), model.getLongitude(), model.getDetailAddress());
+                    }
+                }
                 break;
         }
     }
@@ -229,9 +242,9 @@ public class WaitReceiveActivity extends BaseMvpActivity<WaitReceivePresent> {
 
                     @Override
                     public void clickRightButton(ModifyBmNameDialog dialog, View view, EditText text) {
-                        if(TextUtils.isEmpty(text.getText().toString().trim())) {
-                            ToastUtil.showToast(WaitReceiveActivity.this,"请输入删除原因");
-                        }else {
+                        if (TextUtils.isEmpty(text.getText().toString().trim())) {
+                            ToastUtil.showToast(WaitReceiveActivity.this, "请输入删除原因");
+                        } else {
                             getP().deleteWorkorder(orderNo, text.getText().toString().trim());
                         }
                     }
@@ -241,7 +254,7 @@ public class WaitReceiveActivity extends BaseMvpActivity<WaitReceivePresent> {
     }
 
     public void deleteWorkorderSuccess() {
-        ToastUtil.showToast(this,"删除成功");
+        ToastUtil.showToast(this, "删除成功");
         EventMsg eventMsg = new EventMsg();
         eventMsg.setMsg(Constants.GONGDAN);
         RxBus.getInstance().post(eventMsg);
@@ -259,7 +272,7 @@ public class WaitReceiveActivity extends BaseMvpActivity<WaitReceivePresent> {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id, MenuItem menuItem) {
                 Intent intent = new Intent(WaitReceiveActivity.this, EditWorkorderActivity.class);
                 intent.putExtra(Constants.SHOUHOU_ORDERNO, orderNo);
-                startActivityForResult(intent,Constants.ACCEPT_GONGDAN);
+                startActivityForResult(intent, Constants.ACCEPT_GONGDAN);
             }
         });
         dropPopMenu.setMenuList(getIconMenuList());

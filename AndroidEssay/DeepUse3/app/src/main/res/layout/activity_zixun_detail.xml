@@ -86,6 +86,7 @@
                     android:background="@color/white"
                     android:layout_below="@+id/detail_page_above_container"
                     android:id="@+id/ll_pl_like"
+                    android:visibility="gone"
                     android:orientation="horizontal">
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -156,7 +157,8 @@
                     android:background="@color/white"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <com.mfzn.deepuses.view.CommentExpandableListView
                         android:id="@+id/detail_page_lv_comment"
@@ -179,7 +181,8 @@
         android:background="@android:color/white"
         android:elevation="2dp"
         android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:visibility="gone">
         <TextView
             android:id="@+id/detail_page_do_comment"
             android:layout_width="0dp"

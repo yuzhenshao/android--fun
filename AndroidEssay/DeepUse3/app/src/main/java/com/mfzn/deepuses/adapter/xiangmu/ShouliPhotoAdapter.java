@@ -1,6 +1,7 @@
 package com.mfzn.deepuses.adapter.xiangmu;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.net.ApiHelper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,7 +27,7 @@ import butterknife.ButterKnife;
 public class ShouliPhotoAdapter extends RecyclerView.Adapter {
 
     private Context context;
-    private ArrayList<String> lists;
+    private List<Uri> lists;
     /**
      * 以后用它来初始化布局
      */
@@ -33,7 +35,7 @@ public class ShouliPhotoAdapter extends RecyclerView.Adapter {
 
     private OnItemClickListener mOnItemClickListener = null;
 
-    public ShouliPhotoAdapter(Context mContext, ArrayList<String> lists) {
+    public ShouliPhotoAdapter(Context mContext, ArrayList<Uri> lists) {
         this.context = mContext;
         this.lists = lists;
         //以后用它来初始化布局
@@ -55,9 +57,7 @@ public class ShouliPhotoAdapter extends RecyclerView.Adapter {
             viewHolder.tvAddItemHide2.setVisibility(View.GONE);
         }
 
-        String s = lists.get(position);
-
-        Glide.with(context).load(ApiHelper.BASE_URL + s).into(viewHolder.iv_acc_item_photo);
+        Glide.with(context).load(lists.get(position)).into(viewHolder.iv_acc_item_photo);
 
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

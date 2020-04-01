@@ -3,6 +3,7 @@ package com.mfzn.deepuses.present.xmgd;
 import com.mfzn.deepuses.activityxm.shgd.AlreadyAppraiseActivity;
 import com.mfzn.deepuses.activityxm.shgd.AlreadyCancalActivity;
 import com.mfzn.deepuses.net.ApiHelper;
+import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.utils.UserHelper;
 
@@ -14,7 +15,7 @@ import cn.droidlover.xdroidmvp.net.XApi;
 public class AlreadyCancalPresent extends XPresent<AlreadyCancalActivity> {
 
     public void deleteWorkorder(String orderNo,String delNote) {
-        ApiHelper.getApiService().deleteWorkorder(UserHelper.getToken(), UserHelper.getUid(),orderNo,delNote)
+        ApiServiceManager.delAsOrder(orderNo,delNote)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

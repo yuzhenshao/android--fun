@@ -92,7 +92,7 @@ public class ReplacePhone2Activity extends BaseMvpActivity<ReplacePhoneCodePrese
             @Override
             public void inputComplete() {
                 if (code.equals(editRepCode.getEditContent())) {
-                    getP().modifyPhone(UserHelper.getUpwd(), phone, code);
+                    getP().modifyPhone(phone, code);
                 } else {
                     tvCodeErr.setVisibility(View.VISIBLE);
                 }

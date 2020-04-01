@@ -1,10 +1,10 @@
 package com.mfzn.deepuses.present.xmhf;
 
 import com.mfzn.deepuses.activityxm.shgd.ShouhuSettingActivity;
-import com.mfzn.deepuses.activityxm.shhf.VisitRecordActivity;
+import com.mfzn.deepuses.bean.request.AsSetRequest;
 import com.mfzn.deepuses.model.xiangmu.SettingInfoModel;
-import com.mfzn.deepuses.model.xmhf.VisitRrcordModel;
 import com.mfzn.deepuses.net.ApiHelper;
+import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.utils.UserHelper;
 
@@ -16,7 +16,7 @@ import cn.droidlover.xdroidmvp.net.XApi;
 public class ShouhouSettingPresent extends XPresent<ShouhuSettingActivity> {
 
     public void settingInfo(String proId) {
-        ApiHelper.getApiService().settingInfo(UserHelper.getToken(), UserHelper.getUid(),proId)
+        ApiServiceManager.lookAsSet(proId)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())
@@ -33,10 +33,8 @@ public class ShouhouSettingPresent extends XPresent<ShouhuSettingActivity> {
                 });
     }
 
-    public void shouhouSetting(String proId,String qualityTime,String qualityBegin,String qualityEnd,String nextVisitTime,
-                               String visitSpace,String qualityRing,String wbRing,String visitRing,String ybEnd,String ybTime) {
-        ApiHelper.getApiService().shouhouSetting(UserHelper.getToken(), UserHelper.getUid(),proId,qualityTime,qualityBegin,qualityEnd,nextVisitTime,
-                visitSpace,qualityRing,wbRing,visitRing,ybEnd,ybTime)
+    public void shouhouSetting(AsSetRequest request) {
+        ApiServiceManager.asSet(request)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

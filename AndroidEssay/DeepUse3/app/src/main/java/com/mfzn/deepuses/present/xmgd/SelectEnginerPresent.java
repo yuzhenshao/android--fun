@@ -23,14 +23,14 @@ public class SelectEnginerPresent extends XPresent<SelectEnginerActivity> {
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())
-                .subscribe(new ApiSubscriber<HttpResult<SelectEnginerModel>>() {
+                .subscribe(new ApiSubscriber<HttpResult<List<SelectEnginerModel>>>() {
                     @Override
                     protected void onFail(NetError error) {
                         getV().showError(error);
                     }
 
                     @Override
-                    public void onNext(HttpResult<SelectEnginerModel> reuslt) {
+                    public void onNext(HttpResult<List<SelectEnginerModel>> reuslt) {
                         getV().selectEnginerSuccess(reuslt.getRes());
                     }
                 });

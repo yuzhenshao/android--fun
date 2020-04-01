@@ -74,25 +74,22 @@ public class VisitRrcordModel {
          * data_en_id : FahBBddd4
          */
 
-        private int proId;
+        private int proID;
         private String title;
         private String nowDate;
         private String content;
         private String nextDate;
         private int createUserId;
         private int addTime;
-        private int is_del;
-        private int orderNum;
-        private String u_name;
+        private String userName;
         private int data_id;
-        private String data_en_id;
 
         public int getProId() {
-            return proId;
+            return proID;
         }
 
         public void setProId(int proId) {
-            this.proId = proId;
+            this.proID = proId;
         }
 
         public String getTitle() {
@@ -143,28 +140,12 @@ public class VisitRrcordModel {
             this.addTime = addTime;
         }
 
-        public int getIs_del() {
-            return is_del;
-        }
-
-        public void setIs_del(int is_del) {
-            this.is_del = is_del;
-        }
-
-        public int getOrderNum() {
-            return orderNum;
-        }
-
-        public void setOrderNum(int orderNum) {
-            this.orderNum = orderNum;
-        }
-
         public String getU_name() {
-            return u_name;
+            return userName;
         }
 
         public void setU_name(String u_name) {
-            this.u_name = u_name;
+            this.userName = u_name;
         }
 
         public int getData_id() {
@@ -173,14 +154,6 @@ public class VisitRrcordModel {
 
         public void setData_id(int data_id) {
             this.data_id = data_id;
-        }
-
-        public String getData_en_id() {
-            return data_en_id;
-        }
-
-        public void setData_en_id(String data_en_id) {
-            this.data_en_id = data_en_id;
         }
     }
 }

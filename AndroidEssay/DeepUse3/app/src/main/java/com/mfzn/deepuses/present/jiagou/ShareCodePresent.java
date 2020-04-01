@@ -17,7 +17,7 @@ import cn.droidlover.xdroidmvp.net.XApi;
 public class ShareCodePresent extends XPresent<ShareCodeActivity> {
 
     public void shareCode() {
-        ApiServiceManager.generateCompanyQRCode(new CompanyInfoRequest())
+        ApiServiceManager.generateCompanyQRCode(UserHelper.getCompanyId())
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())
@@ -35,7 +35,7 @@ public class ShareCodePresent extends XPresent<ShareCodeActivity> {
     }
 
     public void shareCode(String company) {
-        ApiServiceManager.generateCompanyQRCode(new CompanyInfoRequest(company))
+        ApiServiceManager.generateCompanyQRCode(company)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

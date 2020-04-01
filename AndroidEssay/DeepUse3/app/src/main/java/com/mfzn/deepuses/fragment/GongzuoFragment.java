@@ -45,6 +45,7 @@ import com.mfzn.deepuses.adapter.home.HomeListAdapter;
 import com.mfzn.deepuses.adapter.home.HomeTdglAdapter;
 import com.mfzn.deepuses.adapter.home.HomeWdxmAdapter;
 import com.mfzn.deepuses.bass.BaseMvpFragment;
+import com.mfzn.deepuses.bean.response.UserResponse;
 import com.mfzn.deepuses.model.LookQuanxian2Model;
 import com.mfzn.deepuses.model.LookQuanxianModel;
 import com.mfzn.deepuses.model.company.SelectCompanyModel;
@@ -334,9 +335,9 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
     }
 
     //用户信息成功返回
-    public void userInfoSuccess(UserInfoModel result) {
-        if (!TextUtils.isEmpty(result.u_head)){
-            Glide.with(context).load(ApiHelper.BASE_URL + result.u_head).into(ivWorkIcon);
+    public void userInfoSuccess(UserResponse result) {
+        if (!TextUtils.isEmpty(result.getUserAvatar())){
+            Glide.with(context).load(ApiHelper.BASE_URL + result.getUserAvatar()).into(ivWorkIcon);
         }
     }
 

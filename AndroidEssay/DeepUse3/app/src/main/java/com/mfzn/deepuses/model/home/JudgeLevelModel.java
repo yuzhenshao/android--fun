@@ -15,8 +15,8 @@ public class JudgeLevelModel {
 
     private String roleID;
     private String departIDs;
-    private String authCreate;
-    private String authManage;
+    private String proCreateAuth;
+    private String adminCreateAuth;
     private List<MenuBean> menu;
 
     public String getRoleID() {
@@ -36,19 +36,19 @@ public class JudgeLevelModel {
     }
 
     public String getAuthCreate() {
-        return authCreate;
+        return proCreateAuth;
     }
 
     public void setAuthCreate(String authCreate) {
-        this.authCreate = authCreate;
+        this.proCreateAuth = authCreate;
     }
 
     public String getAuthManage() {
-        return authManage;
+        return adminCreateAuth;
     }
 
     public void setAuthManage(String authManage) {
-        this.authManage = authManage;
+        this.adminCreateAuth = authManage;
     }
 
     public List<MenuBean> getMenu() {

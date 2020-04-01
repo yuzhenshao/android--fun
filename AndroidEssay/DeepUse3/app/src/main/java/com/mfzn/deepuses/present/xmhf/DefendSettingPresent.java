@@ -1,9 +1,9 @@
 package com.mfzn.deepuses.present.xmhf;
 
 import com.mfzn.deepuses.activityxm.shgd.DefendSettingActivity;
-import com.mfzn.deepuses.activityxm.shgd.ShouhuSettingActivity;
 import com.mfzn.deepuses.model.xiangmu.SettingInfoModel;
 import com.mfzn.deepuses.net.ApiHelper;
+import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.utils.UserHelper;
 
@@ -15,7 +15,7 @@ import cn.droidlover.xdroidmvp.net.XApi;
 public class DefendSettingPresent extends XPresent<DefendSettingActivity> {
 
     public void settingInfo(String proId) {
-        ApiHelper.getApiService().settingInfo(UserHelper.getToken(), UserHelper.getUid(),proId)
+        ApiServiceManager.lookAsSet(proId)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

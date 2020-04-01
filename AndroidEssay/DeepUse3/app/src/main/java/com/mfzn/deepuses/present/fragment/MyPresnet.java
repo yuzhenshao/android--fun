@@ -1,5 +1,6 @@
 package com.mfzn.deepuses.present.fragment;
 
+import com.mfzn.deepuses.bean.response.UserResponse;
 import com.mfzn.deepuses.fragment.MyFragment;
 import com.mfzn.deepuses.fragment.XiaoxiFragment;
 import com.mfzn.deepuses.model.LookQuanxian2Model;
@@ -24,14 +25,14 @@ public class MyPresnet extends XPresent<MyFragment> {
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())
-                .subscribe(new ApiSubscriber<HttpResult<UserInfoModel>>() {
+                .subscribe(new ApiSubscriber<HttpResult<UserResponse>>() {
                     @Override
                     protected void onFail(NetError error) {
                         getV().showError(error);
                     }
 
                     @Override
-                    public void onNext(HttpResult<UserInfoModel> result) {
+                    public void onNext(HttpResult<UserResponse> result) {
                         getV().userInfoSuccess(result.getRes());
                     }
 

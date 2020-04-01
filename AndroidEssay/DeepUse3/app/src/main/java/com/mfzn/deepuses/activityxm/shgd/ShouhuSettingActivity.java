@@ -19,6 +19,7 @@ import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
+import com.mfzn.deepuses.bean.request.AsSetRequest;
 import com.mfzn.deepuses.model.xiangmu.SettingInfoModel;
 import com.mfzn.deepuses.present.xmhf.ShouhouSettingPresent;
 import com.mfzn.deepuses.utils.Constants;
@@ -35,6 +36,7 @@ import java.util.Date;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.http.Field;
 
 public class ShouhuSettingActivity extends BaseMvpActivity<ShouhouSettingPresent> {
 
@@ -130,7 +132,7 @@ public class ShouhuSettingActivity extends BaseMvpActivity<ShouhouSettingPresent
                             i = i - 12;
                             year++;
                         }
-                        etShouEnd.setText(ObtainTime.showTime(year,i,day));
+                        etShouEnd.setText(ObtainTime.showTime(year, i, day));
                     }
                 }
             }
@@ -157,8 +159,8 @@ public class ShouhuSettingActivity extends BaseMvpActivity<ShouhouSettingPresent
                             i = i - 12;
                             year++;
                         }
-                        etShouYbjz.setText(ObtainTime.showTime(year,i,day));
-                    }else {
+                        etShouYbjz.setText(ObtainTime.showTime(year, i, day));
+                    } else {
                         etShouYbjz.getText().clear();
                     }
                 }
@@ -183,14 +185,14 @@ public class ShouhuSettingActivity extends BaseMvpActivity<ShouhouSettingPresent
                             i = i - 12;
                             year++;
                         }
-                        etShouYbjz.setText(ObtainTime.showTime(year,i,day));
+                        etShouYbjz.setText(ObtainTime.showTime(year, i, day));
                     }
                 }
             }
         });
     }
 
-    @OnClick({R.id.iv_login_back, R.id.ib_shou_zbyj,R.id.tv_shou_nexttime, R.id.ib_shou_ybyj, R.id.ib_shou_hftx,
+    @OnClick({R.id.iv_login_back, R.id.ib_shou_zbyj, R.id.tv_shou_nexttime, R.id.ib_shou_ybyj, R.id.ib_shou_hftx,
             R.id.but_shou_qr, R.id.tv_shou_start})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -258,8 +260,8 @@ public class ShouhuSettingActivity extends BaseMvpActivity<ShouhouSettingPresent
 //            zbqx = etShouZbqx.getText().toString().trim();
             startTime = DateUtils.getStringToDate(startTime);
             entTime = DateUtils.getStringToDate(etShouEnd.getText().toString().trim());
-        }else  if (TextUtils.isEmpty(zbqx) && TextUtils.isEmpty(startTime)) {
-        }else {
+        } else if (TextUtils.isEmpty(zbqx) && TextUtils.isEmpty(startTime)) {
+        } else {
             ToastUtil.showToast(this, "请先完成质保设置");
             return;
         }
@@ -268,8 +270,8 @@ public class ShouhuSettingActivity extends BaseMvpActivity<ShouhouSettingPresent
         String ybtime = etShouYbjz.getText().toString().trim();
         if (!TextUtils.isEmpty(ybqx) && !TextUtils.isEmpty(ybtime)) {
             ybtime = DateUtils.getStringToDate(ybtime);
-        }else  if (TextUtils.isEmpty(ybqx) && TextUtils.isEmpty(ybtime)) {
-        }else {
+        } else if (TextUtils.isEmpty(ybqx) && TextUtils.isEmpty(ybtime)) {
+        } else {
             ToastUtil.showToast(this, "请先完成延保设置");
             return;
         }
@@ -278,15 +280,24 @@ public class ShouhuSettingActivity extends BaseMvpActivity<ShouhouSettingPresent
         String hfjg = etShouHfjg.getText().toString().trim();
         if (!TextUtils.isEmpty(hfjg) && !TextUtils.isEmpty(hftime)) {
             hftime = DateUtils.getStringToDate(hftime);
-        }else  if (TextUtils.isEmpty(hfjg) && TextUtils.isEmpty(hftime)) {
-        }else {
+        } else if (TextUtils.isEmpty(hfjg) && TextUtils.isEmpty(hftime)) {
+        } else {
             ToastUtil.showToast(this, "请先完成回访设置");
             return;
         }
-
-
-        getP().shouhouSetting(pro_id, zbqx, startTime, entTime, hftime, hfjg, zbType + "",
-                ybType + "", hfType + "", ybtime,ybqx);
+        AsSetRequest request = new AsSetRequest();
+        request.setProId(pro_id);
+        request.setQualityTime(zbqx);
+        request.setQualityBegin(startTime);
+        request.setQualityEnd(entTime);
+        request.setNextVisitTime(hftime);
+        request.setVisitSpace(hfjg);
+        request.setQualityRing(zbType);
+        request.setYbRing(ybType);
+        request.setVisitRing(hfType);
+        request.setYbEnd(ybtime);
+        request.setYbTime(ybqx);
+        getP().shouhouSetting(request);
     }
 
     public void settingInfoSuccess(SettingInfoModel models) {
@@ -304,7 +315,7 @@ public class ShouhuSettingActivity extends BaseMvpActivity<ShouhouSettingPresent
         }
 
         String ybEnd = models.getYbEnd();
-        if(!ybEnd.equals("null")) {
+        if (!ybEnd.equals("null")) {
             if (!TextUtils.isEmpty(ybEnd) && !ybEnd.equals("0")) {
                 etShouYbjz.setText(DateUtils.stampDate(ybEnd));
             }
@@ -362,7 +373,7 @@ public class ShouhuSettingActivity extends BaseMvpActivity<ShouhouSettingPresent
         pvTime = new TimePickerBuilder(this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
-                if(typeTime == 1){
+                if (typeTime == 1) {
                     String num = etShouZbqx.getText().toString().trim();
                     if (TextUtils.isEmpty(num)) {
                         tvShouStart.setText(getTime(date));
@@ -381,10 +392,10 @@ public class ShouhuSettingActivity extends BaseMvpActivity<ShouhouSettingPresent
                             i = i - 12;
                             year++;
                         }
-                        etShouEnd.setText(ObtainTime.showTime(year,i,day));
+                        etShouEnd.setText(ObtainTime.showTime(year, i, day));
                         tvShouStart.setText(getTime(date));
                     }
-                }else if(typeTime == 2){
+                } else if (typeTime == 2) {
                     tvShouNexttime.setText(getTime(date));
                 }
             }

@@ -1,11 +1,16 @@
 package com.mfzn.deepuses.present.my;
 
+import com.mfzn.deepuses.BaseApplication;
 import com.mfzn.deepuses.activitymy.setting.PersonInfoActivity;
+import com.mfzn.deepuses.bean.response.UserResponse;
 import com.mfzn.deepuses.model.my.UserInfoModel;
 import com.mfzn.deepuses.model.my.UserUploadModel;
 import com.mfzn.deepuses.net.ApiHelper;
+import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
+import com.mfzn.deepuses.net.ImageUploadManager;
 import com.mfzn.deepuses.net.UploadApi;
+import com.mfzn.deepuses.utils.ToastUtil;
 import com.mfzn.deepuses.utils.UserHelper;
 
 import java.io.File;
@@ -31,14 +36,14 @@ public class UserInfoPresent extends XPresent<PersonInfoActivity> {
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())
-                .subscribe(new ApiSubscriber<HttpResult<UserInfoModel>>() {
+                .subscribe(new ApiSubscriber<HttpResult<UserResponse>>() {
                     @Override
                     protected void onFail(NetError error) {
                         getV().showError(error);
                     }
 
                     @Override
-                    public void onNext(HttpResult<UserInfoModel> result) {
+                    public void onNext(HttpResult<UserResponse> result) {
                         getV().userInfoSuccess(result.getRes());
                     }
 
@@ -50,9 +55,9 @@ public class UserInfoPresent extends XPresent<PersonInfoActivity> {
     }
 
     //用户信息
-    public void modifyName(String u_name) {
+    public void modifyName(String userName) {
 //        getV().showDialog();
-        ApiHelper.getApiService().appModifyName(UserHelper.getToken(), UserHelper.getUid(),u_name)
+        ApiServiceManager.appModifyName(userName)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())
@@ -78,36 +83,35 @@ public class UserInfoPresent extends XPresent<PersonInfoActivity> {
      * 上传图片
      */
     public void upLoadFile(final File file) {
+        ImageUploadManager.uploadImage(file, new ImageUploadManager.ImageUploadCallback() {
 
-        MultipartBody.Builder builder = new MultipartBody.Builder()
-                .setType(MultipartBody.FORM);//表单类型
-//                .addFormDataPart("token", token);//ParamKey.TOKEN 自定义参数key常量类，即参数名
-        RequestBody imageBody = RequestBody.create(MediaType.parse(getMediaType(file.getName())), file);
-        builder.addFormDataPart("u_head", file.getName(), imageBody);//imgfile 后台接收图片流的参数名
-
-        List<MultipartBody.Part> parts = builder.build().parts();
-
-//        UploadApi.uploadPhoto(parts).enqueue(new retrofit2.Callback<UploadContractModel>() {
-//            @Override
-//            public void onResponse(Call<UploadContractModel> call, Response<UploadContractModel> response) {
-//                getV().uploadGzdxSuccess(response.body().getStatus(),response.body().getRes());
-//            }
-//            @Override
-//            public void onFailure(Call<UploadContractModel> call, Throwable t) {
-//                getV().uploadGzdxSuccess(0,null);
-//            }
-//        });
-
-        UploadApi.uploadMemberIcon(parts).enqueue(new retrofit2.Callback<UserUploadModel>() {
             @Override
-            public void onResponse(Call<UserUploadModel> call, Response<UserUploadModel> response) {
-                getV().uploadIconSuccess(response.body().status,response.body().res);
+            public void uploadSuccess(String url) {
+                uploadAvatar(url);
             }
+
             @Override
-            public void onFailure(Call<UserUploadModel> call, Throwable t) {
-                getV().uploadIconSuccess(0,"1");
+            public void uoloadFailed(String error) {
+                ToastUtil.showToast(BaseApplication.getContext(), error);
             }
         });
+    }
+
+    private void uploadAvatar(String userAvatar) {
+        ApiServiceManager.uploadAvatar(userAvatar)
+                .compose(XApi.getApiTransformer())
+                .compose(XApi.getScheduler())
+                .subscribe(new ApiSubscriber<HttpResult>() {
+                    @Override
+                    protected void onFail(NetError error) {
+                        ToastUtil.showToast(BaseApplication.getContext(), "头像上传失败");
+                    }
+
+                    @Override
+                    public void onNext(HttpResult reuslt) {
+                        getV().uploadIconSuccess(userAvatar);
+                    }
+                });
     }
 
     /**

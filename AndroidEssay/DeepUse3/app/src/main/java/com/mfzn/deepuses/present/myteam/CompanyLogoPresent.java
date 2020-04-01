@@ -1,11 +1,15 @@
 package com.mfzn.deepuses.present.myteam;
 
+import com.mfzn.deepuses.BaseApplication;
 import com.mfzn.deepuses.activity.myteam.CompanyInfoActivity;
 import com.mfzn.deepuses.activity.myteam.CompanyLogoActivity;
 import com.mfzn.deepuses.model.my.UserUploadModel;
 import com.mfzn.deepuses.net.ApiHelper;
+import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
+import com.mfzn.deepuses.net.ImageUploadManager;
 import com.mfzn.deepuses.net.UploadApi;
+import com.mfzn.deepuses.utils.ToastUtil;
 import com.mfzn.deepuses.utils.UserHelper;
 
 import java.io.File;
@@ -30,39 +34,34 @@ public class CompanyLogoPresent extends XPresent<CompanyLogoActivity> {
      */
     public void upLoadFile(final File file) {
 
-        MultipartBody.Builder builder = new MultipartBody.Builder()
-                .setType(MultipartBody.FORM)//表单类型
-                .addFormDataPart("companyID", UserHelper.getCompanyId());
+        ImageUploadManager.uploadImage(file, new ImageUploadManager.ImageUploadCallback() {
 
-//        MultipartBody.Builder builder = new MultipartBody.Builder()
-//                .setType(MultipartBody.FORM);//表单类型
-//                .addFormDataPart("token", token);//ParamKey.TOKEN 自定义参数key常量类，即参数名
-        RequestBody imageBody = RequestBody.create(MediaType.parse(getMediaType(file.getName())), file);
-        builder.addFormDataPart("logo", file.getName(), imageBody);//imgfile 后台接收图片流的参数名
-
-        List<MultipartBody.Part> parts = builder.build().parts();
-
-        UploadApi.uploadLogoIcon(parts).enqueue(new retrofit2.Callback<UserUploadModel>() {
             @Override
-            public void onResponse(Call<UserUploadModel> call, Response<UserUploadModel> response) {
-                getV().uploadIconSuccess(response.body().status,response.body().res);
+            public void uploadSuccess(String url) {
+                uploadLogo(url);
             }
+
             @Override
-            public void onFailure(Call<UserUploadModel> call, Throwable t) {
-                getV().uploadIconSuccess(0,"1");
+            public void uoloadFailed(String error) {
+                ToastUtil.showToast(BaseApplication.getContext(), "logo上传失败，请稍后重试");
             }
         });
     }
 
-    /**
-     * 根据文件的名称判断文件的Mine值
-     */
-    private String getMediaType(String fileName) {
-        FileNameMap map = URLConnection.getFileNameMap();
-        String contentTypeFor = map.getContentTypeFor(fileName);
-        if (contentTypeFor == null) {
-            contentTypeFor = "application/octet-stream";
-        }
-        return contentTypeFor;
+    private void uploadLogo(String logoUrl) {
+        ApiServiceManager.uploadLogo(logoUrl)
+                .compose(XApi.getApiTransformer())
+                .compose(XApi.getScheduler())
+                .subscribe(new ApiSubscriber<HttpResult>() {
+                    @Override
+                    protected void onFail(NetError error) {
+                        ToastUtil.showToast(BaseApplication.getContext(), "头像上传失败");
+                    }
+
+                    @Override
+                    public void onNext(HttpResult reuslt) {
+                        getV().uploadIconSuccess(logoUrl);
+                    }
+                });
     }
 }

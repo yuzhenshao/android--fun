@@ -2,10 +2,8 @@ package com.mfzn.deepuses.activityxm.shgd;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -15,16 +13,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mfzn.deepuses.R;
-import com.mfzn.deepuses.adapter.xiangmu.ShouliPhotoAdapter;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
 import com.mfzn.deepuses.fragment.xm.ChuliGuochengFragment;
 import com.mfzn.deepuses.fragment.xm.GongdanFuwuFragment;
 import com.mfzn.deepuses.model.xiangmu.GongdanShuxingModel;
-import com.mfzn.deepuses.model.xiangmu.WorkorderListModel;
-import com.mfzn.deepuses.net.ApiHelper;
 import com.mfzn.deepuses.present.xmgd.GongdanDetailsPresent;
 import com.mfzn.deepuses.utils.Constants;
-import com.mfzn.deepuses.utils.DateUtils;
 import com.mfzn.deepuses.utils.PhoneUtils;
 import com.mfzn.deepuses.view.MyDuiZhangPagerAdapter;
 
@@ -172,7 +166,7 @@ public class GongdanDetailsActivity extends BaseMvpActivity<GongdanDetailsPresen
         }
         tv_acc_sl.setText(model.getStatusTypeName());
 
-        int shType = model.getShType();
+        int shType = model.getAsType();
         if(shType == 1) {//0全部  1故障保修  2维护升级
             tvserTypename.setTextColor(getResources().getColor(R.color.color_3D7EFF));
         }else if(shType == 2) {

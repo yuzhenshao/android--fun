@@ -23,10 +23,10 @@ import com.bigkoo.pickerview.view.TimePickerView;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.activity.khgl.MultipleSelectActivity;
 import com.mfzn.deepuses.activityxm.MapLocationActivity;
-import com.mfzn.deepuses.activityxm.ProjectLevelActivity;
 import com.mfzn.deepuses.activityxm.SelectPersonActivity;
 import com.mfzn.deepuses.adapter.khgl.EditCustomerAdapter;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
+import com.mfzn.deepuses.bean.request.EditProjectRequest;
 import com.mfzn.deepuses.model.xiangmu.XiangmuModel;
 import com.mfzn.deepuses.present.foundxm.EditProjectPresnet;
 import com.mfzn.deepuses.utils.Constants;
@@ -45,6 +45,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.reactivex.functions.Consumer;
+import retrofit2.http.Query;
 
 public class EditProjectActivity extends BaseMvpActivity<EditProjectPresnet> {
 
@@ -60,8 +61,6 @@ public class EditProjectActivity extends BaseMvpActivity<EditProjectPresnet> {
     EditText etEditAddress;
     @BindView(R.id.et_edit_detail)
     EditText etEditDetail;
-    @BindView(R.id.et_edit_level)
-    EditText etEditLevel;
     @BindView(R.id.tv_edit_ht)
     TextView tvEditHt;
     @BindView(R.id.et_edit_gw)
@@ -89,7 +88,7 @@ public class EditProjectActivity extends BaseMvpActivity<EditProjectPresnet> {
 
     private TimePickerView pvTime;
 
-    private String pro_uid;
+    private String proId;
     private int zbType = 0;// 1不提醒 1提醒
     private List<XiangmuModel.DataBean.CustomersBean> customers;
     private EditCustomerAdapter recycleAdapter;
@@ -123,14 +122,13 @@ public class EditProjectActivity extends BaseMvpActivity<EditProjectPresnet> {
 
         XiangmuModel.DataBean dataBean = (XiangmuModel.DataBean) getIntent().getSerializableExtra(Constants.WORK_ORDER);
 
-        pro_uid = dataBean.getData_id() + "";
+        proId = dataBean.getData_id() + "";
 
         etEditProname.setText(dataBean.getProName());
         etEditAddress.setText(dataBean.getAreaName());
         longitude = dataBean.getLongitude() + "";
         latitude = dataBean.getLatitude() + "";
         etEditDetail.setText(dataBean.getDetailAddress());
-        etEditLevel.setText(dataBean.getLevelName());
         levelID = dataBean.getCustomLevel() + "";
         etEditGw.setText(dataBean.getProSalesPersonInfo().getSalesName());
         gwID = dataBean.getProSalesPersonInfo().getSalesID();
@@ -206,7 +204,7 @@ public class EditProjectActivity extends BaseMvpActivity<EditProjectPresnet> {
         });
     }
 
-    @OnClick({R.id.iv_login_back, R.id.tv_bass_comlate, R.id.et_edit_address, R.id.et_edit_level,
+    @OnClick({R.id.iv_login_back, R.id.tv_bass_comlate, R.id.et_edit_address,
             R.id.et_edit_gw, R.id.tv_edit_start, R.id.ib_edit_zbyj})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -230,11 +228,6 @@ public class EditProjectActivity extends BaseMvpActivity<EditProjectPresnet> {
                                 }
                             }
                         });
-                break;
-            case R.id.et_edit_level:
-                Intent intent = new Intent(this, ProjectLevelActivity.class);
-                intent.putExtra(Constants.PROJECT_LEVEL_POSITION, levelPosition);
-                startActivityForResult(intent, Constants.FOUND_PROJECT_LEVEL);
                 break;
             case R.id.et_edit_gw:
                 UserHelper.setSelectNmae("1");
@@ -302,7 +295,21 @@ public class EditProjectActivity extends BaseMvpActivity<EditProjectPresnet> {
             }
         }
 
-        getP().editProject(pro_uid,proname,latitude,longitude,details,gwID,money,levelID,address,zbqx,start2,end2,zbType + "",sss);
+        EditProjectRequest request=new EditProjectRequest();
+        request.setProID(proId);
+        request.setProName(proname);
+        request.setLatitude(latitude);
+        request.setLongitude(longitude);
+        request.setDetailAddress(details);
+        request.setSalesPersonUserID(gwID);
+        request.setContractMoney(money);
+        request.setAreaName(address);
+        request.setQualityTime(zbqx);
+        request.setQualityBegin(start2);
+        request.setQualityEnd(end2);
+        request.setQualityRing(zbType);
+        request.setCustomerIDs(sss);
+        getP().editProject(request);
     }
 
     public void editProjectSuccess() {
@@ -316,14 +323,7 @@ public class EditProjectActivity extends BaseMvpActivity<EditProjectPresnet> {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (Constants.FOUND_PROJECT_LEVEL == requestCode) {
-            if (data != null) {
-                levelPosition = data.getIntExtra(Constants.PROJECT_LEVEL_POSITION, -1);
-                levelID = data.getStringExtra(Constants.PROJECT_LEVEL_ID);
-                String name = data.getStringExtra(Constants.PROJECT_LEVEL_NAME);
-                etEditLevel.setText(name);
-            }
-        } else if (Constants.SELECT_PERSON == requestCode) {
+        if (Constants.SELECT_PERSON == requestCode) {
             if (data != null) {
                 gwID = data.getStringExtra(Constants.SELECT_PERSON_ID);
                 String name = data.getStringExtra(Constants.SELECT_PERSON_NAME);

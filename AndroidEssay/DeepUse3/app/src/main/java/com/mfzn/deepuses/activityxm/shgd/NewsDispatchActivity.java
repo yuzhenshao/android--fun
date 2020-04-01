@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
+import com.mfzn.deepuses.bean.request.ReSendAsOrderRequest;
+import com.mfzn.deepuses.bean.request.SendAsOrderRequest;
 import com.mfzn.deepuses.present.xmgd.NewsDispatchPresent;
 import com.mfzn.deepuses.present.xmgd.WorkorderDispatchPresent;
 import com.mfzn.deepuses.utils.Constants;
@@ -19,6 +21,7 @@ import com.mfzn.deepuses.utils.ToastUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import retrofit2.http.Field;
 
 public class NewsDispatchActivity extends BaseMvpActivity<NewsDispatchPresent> {
 
@@ -76,7 +79,18 @@ public class NewsDispatchActivity extends BaseMvpActivity<NewsDispatchPresent> {
                     ToastUtil.showToast(this,"请输入备注");
                     return;
                 }
-                getP().newsDispatch(orderNo,enginerID,name,phone,res,jobid);
+//                @Field("orderNo") String orderNo, @Field("enginerID") String enginerID,
+//                @Field("name") String name, @Field("phone") String phone,
+//                @Field("note") String note, @Field("shJobID") String shJobID)
+                ReSendAsOrderRequest request = new ReSendAsOrderRequest();
+                request.setProID(getIntent().getIntExtra(Constants.SHOUHOU_PROID,0));
+                request.setOrderNo(orderNo);
+                request.setEngineerID(enginerID);
+                request.setName(name);
+                request.setPhone(phone);
+                request.setNote(res);
+                request.setShJobID(jobid);
+                getP().newsDispatch(request);
                 break;
         }
     }

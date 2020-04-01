@@ -29,7 +29,7 @@ public class ManageSettingModel implements Serializable {
     private int roleID;
     private int companyID;
     private String departIDs;
-    private int authCreate;
+    private int proCreateAuth;
     private int authData;
     private int is_del;
     private int addTime;
@@ -94,12 +94,13 @@ public class ManageSettingModel implements Serializable {
         this.departIDs = departIDs;
     }
 
-    public int getAuthCreate() {
-        return authCreate;
+
+    public int getProCreateAuth() {
+        return proCreateAuth;
     }
 
-    public void setAuthCreate(int authCreate) {
-        this.authCreate = authCreate;
+    public void setProCreateAuth(int proCreateAuth) {
+        this.proCreateAuth = proCreateAuth;
     }
 
     public int getAuthData() {
@@ -198,7 +199,7 @@ public class ManageSettingModel implements Serializable {
         this.departName = departName;
     }
 
-    public static class DepartNameBean implements Serializable{
+    public static class DepartNameBean implements Serializable {
         /**
          * departID : 236
          * departmentName : 哈哈哈

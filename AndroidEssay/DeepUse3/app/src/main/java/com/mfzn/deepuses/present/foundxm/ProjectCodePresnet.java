@@ -2,6 +2,7 @@ package com.mfzn.deepuses.present.foundxm;
 
 import com.mfzn.deepuses.activityxm.FoundProjectActivity;
 import com.mfzn.deepuses.activityxm.ProjectCodeActivity;
+import com.mfzn.deepuses.bean.response.UserResponse;
 import com.mfzn.deepuses.model.my.UserInfoModel;
 import com.mfzn.deepuses.model.xiangmu.FoundProjectModel;
 import com.mfzn.deepuses.model.xiangmu.ProjectCodeModel;
@@ -40,14 +41,14 @@ public class ProjectCodePresnet extends XPresent<ProjectCodeActivity> {
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())
-                .subscribe(new ApiSubscriber<HttpResult<UserInfoModel>>() {
+                .subscribe(new ApiSubscriber<HttpResult<UserResponse>>() {
                     @Override
                     protected void onFail(NetError error) {
                         getV().showError(error);
                     }
 
                     @Override
-                    public void onNext(HttpResult<UserInfoModel> result) {
+                    public void onNext(HttpResult<UserResponse> result) {
                         getV().userInfoSuccess(result.getRes());
                     }
                 });

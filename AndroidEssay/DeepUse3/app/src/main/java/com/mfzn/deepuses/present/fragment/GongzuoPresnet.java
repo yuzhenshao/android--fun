@@ -1,6 +1,7 @@
 package com.mfzn.deepuses.present.fragment;
 
 import com.mfzn.deepuses.activity.login.LoginActivity;
+import com.mfzn.deepuses.bean.response.UserResponse;
 import com.mfzn.deepuses.fragment.GongzuoFragment;
 import com.mfzn.deepuses.model.LookQuanxian2Model;
 import com.mfzn.deepuses.model.LookQuanxianModel;
@@ -23,9 +24,6 @@ import cn.droidlover.xdroidmvp.net.XApi;
 public class GongzuoPresnet extends XPresent<GongzuoFragment> {
 
     public void judgeLevel() {
-        String token = UserHelper.getToken();
-        String uid = UserHelper.getUid();
-        String companyId = UserHelper.getCompanyId();
         ApiHelper.getApiService().judgeLevel(UserHelper.getToken(), UserHelper.getUid(),UserHelper.getCompanyId())
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
@@ -85,14 +83,14 @@ public class GongzuoPresnet extends XPresent<GongzuoFragment> {
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())
-                .subscribe(new ApiSubscriber<HttpResult<UserInfoModel>>() {
+                .subscribe(new ApiSubscriber<HttpResult<UserResponse>>() {
                     @Override
                     protected void onFail(NetError error) {
                         getV().showError(error);
                     }
 
                     @Override
-                    public void onNext(HttpResult<UserInfoModel> result) {
+                    public void onNext(HttpResult<UserResponse> result) {
                         getV().userInfoSuccess(result.getRes());
                     }
 

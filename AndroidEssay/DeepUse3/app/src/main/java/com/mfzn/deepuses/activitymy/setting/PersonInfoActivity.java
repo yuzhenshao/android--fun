@@ -23,6 +23,7 @@ import com.mfzn.deepuses.activity.myteam.ClipCircularActivity;
 import com.mfzn.deepuses.activitymy.ModifyCallActivity;
 import com.mfzn.deepuses.bass.BaseActivity;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
+import com.mfzn.deepuses.bean.response.UserResponse;
 import com.mfzn.deepuses.model.my.UserInfoModel;
 import com.mfzn.deepuses.net.ApiHelper;
 import com.mfzn.deepuses.present.my.UserInfoPresent;
@@ -93,8 +94,8 @@ public class PersonInfoActivity extends BaseMvpActivity<UserInfoPresent> {
                 break;
             case R.id.ll_info_nic:
                 Intent intent = new Intent(this, ModifyCallActivity.class);
-                intent.putExtra(Constants.MODIFU_NICK,tvInfoNic.getText());
-                startActivityForResult(intent,Constants.MODIFU_NICHENG);
+                intent.putExtra(Constants.MODIFU_NICK, tvInfoNic.getText());
+                startActivityForResult(intent, Constants.MODIFU_NICHENG);
                 break;
         }
     }
@@ -102,12 +103,12 @@ public class PersonInfoActivity extends BaseMvpActivity<UserInfoPresent> {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(Constants.MODIFU_NICHENG == requestCode){
-            if(data != null) {
+        if (Constants.MODIFU_NICHENG == requestCode) {
+            if (data != null) {
                 String nick = data.getStringExtra(Constants.MODIFU_NICK_RETURN);
                 tvInfoNic.setText(nick);
             }
-        }else if (requestCode == Constants.REAL_NAME_PAIZHAO) {
+        } else if (requestCode == Constants.REAL_NAME_PAIZHAO) {
             String cameraFile = PhotographDialog.mSp.getString("img", "");
 //            clipPhotoBySelf(PhotographDialog.Image_SAVEDIR + "/" + cameraFile);
             Bitmap bitmap = BitmapFactory.decodeFile(PhotographDialog.Image_SAVEDIR + "/" + cameraFile);//根据路径转为bitmap
@@ -157,29 +158,25 @@ public class PersonInfoActivity extends BaseMvpActivity<UserInfoPresent> {
     }
 
     //用户信息成功返回
-    public void userInfoSuccess(UserInfoModel result) {
-        if (!TextUtils.isEmpty(result.u_head)){
-            Glide.with(context).load(ApiHelper.BASE_URL + result.u_head).into(ivInfoIcon);
+    public void userInfoSuccess(UserResponse result) {
+        if (!TextUtils.isEmpty(result.getUserAvatar())) {
+            Glide.with(context).load(ApiHelper.BASE_URL + result.getUserAvatar()).into(ivInfoIcon);
         }
     }
 
     //上传头像成功返回
-    public void uploadIconSuccess(int status, String res) {
-        if (status == 1) {
-            ToastUtil.showToast(this, "图片上传成功");
-            Glide.with(this).load(ApiHelper.BASE_URL + res).into(ivInfoIcon);
-            EventMsg eventMsg = new EventMsg();
-            eventMsg.setMsg(Constants.MODIFY_ICON);
-            RxBus.getInstance().post(eventMsg);
-        } else {
-            ToastUtil.showToast(this, "图片上传失败，请稍后重试");
-        }
+    public void uploadIconSuccess(String res) {
+        ToastUtil.showToast(this, "图片上传成功");
+        Glide.with(this).load(ApiHelper.BASE_URL + res).into(ivInfoIcon);
+        EventMsg eventMsg = new EventMsg();
+        eventMsg.setMsg(Constants.MODIFY_ICON);
+        RxBus.getInstance().post(eventMsg);
     }
 
     private void myRequetPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-        }else {
+        } else {
 //            Toast.makeText(this,"您已经申请了权限!",Toast.LENGTH_SHORT).show();
         }
     }

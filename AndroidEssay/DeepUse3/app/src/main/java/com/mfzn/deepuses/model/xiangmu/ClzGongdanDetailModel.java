@@ -1,49 +1,28 @@
 package com.mfzn.deepuses.model.xiangmu;
 
-import java.util.List;
+import android.net.Uri;
+import android.text.TextUtils;
+
+import com.mfzn.deepuses.net.ApiHelper;
+
+import java.util.ArrayList;
 
 public class ClzGongdanDetailModel {
-
-
-    /**
-     * orderNo : yzs2019111200000
-     * faultText :
-     * faultFileId :
-     * content : 明后
-     * contentFileId : 671
-     * status : 2
-     * sign : 670
-     * createUserId : 882
-     * updateUserId : 0
-     * addTime : 1573616675
-     * updateTime : 0
-     * is_del : 0
-     * orderNum : 0
-     * faultFileIdUrl : []
-     * contentFileIdUrl : ["/uploads/977/解决方案/20191113114404-19-11-13-11-44-03.jpg"]
-     * signUrl : ["/uploads/977/解决方案/20191113114350-sign.png"]
-     * data_id : 4
-     * data_en_id : FadBXa1QP
-     */
-
     private String orderNo;
     private String faultText;
-    private String faultFileId;
+    private String faultFileUrls;
     private String content;
-    private String contentFileId;
+    private String contentFileUrls;
     private int status;
     private String sign;
     private int createUserId;
     private int updateUserId;
     private int addTime;
     private int updateTime;
-    private int is_del;
+    private int isDel;
     private int orderNum;
     private int data_id;
     private String data_en_id;
-    private List<String> faultFileIdUrl;
-    private List<String> contentFileIdUrl;
-    private List<String> signUrl;
 
     public String getOrderNo() {
         return orderNo;
@@ -62,11 +41,11 @@ public class ClzGongdanDetailModel {
     }
 
     public String getFaultFileId() {
-        return faultFileId;
+        return faultFileUrls;
     }
 
     public void setFaultFileId(String faultFileId) {
-        this.faultFileId = faultFileId;
+        this.faultFileUrls = faultFileId;
     }
 
     public String getContent() {
@@ -78,11 +57,11 @@ public class ClzGongdanDetailModel {
     }
 
     public String getContentFileId() {
-        return contentFileId;
+        return contentFileUrls;
     }
 
     public void setContentFileId(String contentFileId) {
-        this.contentFileId = contentFileId;
+        this.contentFileUrls = contentFileId;
     }
 
     public int getStatus() {
@@ -134,11 +113,11 @@ public class ClzGongdanDetailModel {
     }
 
     public int getIs_del() {
-        return is_del;
+        return isDel;
     }
 
-    public void setIs_del(int is_del) {
-        this.is_del = is_del;
+    public void setIs_del(int isDel) {
+        this.isDel = isDel;
     }
 
     public int getOrderNum() {
@@ -165,27 +144,38 @@ public class ClzGongdanDetailModel {
         this.data_en_id = data_en_id;
     }
 
-    public List<String> getFaultFileIdUrl() {
-        return faultFileIdUrl;
+    public ArrayList<Uri> getFaultFileIdUrl() {
+        ArrayList<Uri> urls = new ArrayList<>();
+        if (!TextUtils.isEmpty(faultFileUrls)) {
+            String[] files = faultFileUrls.split(",");
+            if (files.length > 0) {
+                for (int i = 0; i < files.length; i++) {
+                    if (!TextUtils.isEmpty(files[i])) {
+                        urls.add(Uri.parse(ApiHelper.BASE_URL + files[i]));
+                    }
+                }
+            } else {
+                urls.add(Uri.parse(ApiHelper.BASE_URL + faultFileUrls));
+            }
+        }
+        return urls;
     }
 
-    public void setFaultFileIdUrl(List<String> faultFileIdUrl) {
-        this.faultFileIdUrl = faultFileIdUrl;
-    }
 
-    public List<String> getContentFileIdUrl() {
-        return contentFileIdUrl;
-    }
-
-    public void setContentFileIdUrl(List<String> contentFileIdUrl) {
-        this.contentFileIdUrl = contentFileIdUrl;
-    }
-
-    public List<String> getSignUrl() {
-        return signUrl;
-    }
-
-    public void setSignUrl(List<String> signUrl) {
-        this.signUrl = signUrl;
+    public ArrayList<Uri> getContentFileIdUrl() {
+        ArrayList<Uri> urls = new ArrayList<>();
+        if (!TextUtils.isEmpty(contentFileUrls)) {
+            String[] files = contentFileUrls.split(",");
+            if (files.length > 0) {
+                for (int i = 0; i < files.length; i++) {
+                    if (!TextUtils.isEmpty(files[i])) {
+                        urls.add(Uri.parse(ApiHelper.BASE_URL + files[i]));
+                    }
+                }
+            } else {
+                urls.add(Uri.parse(ApiHelper.BASE_URL + contentFileUrls));
+            }
+        }
+        return urls;
     }
 }

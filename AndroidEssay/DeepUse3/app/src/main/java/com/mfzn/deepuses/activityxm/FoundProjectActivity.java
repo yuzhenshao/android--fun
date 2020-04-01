@@ -62,8 +62,6 @@ public class FoundProjectActivity extends BaseMvpActivity<FoundProjectPresnet> {
     EditText etFouName;
     @BindView(R.id.et_fou_phone)
     EditText etFouPhone;
-    @BindView(R.id.et_fou_level)
-    EditText etFouLevel;
     @BindView(R.id.tv_fou_ht)
     TextView tvFouHt;
     @BindView(R.id.et_fou_gw)
@@ -83,7 +81,6 @@ public class FoundProjectActivity extends BaseMvpActivity<FoundProjectPresnet> {
     @BindView(R.id.ib_shou_zbyj)
     ImageButton ib_shou_zbyj;
 
-    private int levelPosition = -1;
     private String levelID = "";//等级ID
     private String gwID = "";//销售顾问ID
     private String longitude;//经度
@@ -155,7 +152,7 @@ public class FoundProjectActivity extends BaseMvpActivity<FoundProjectPresnet> {
         });
     }
 
-    @OnClick({R.id.iv_login_back, R.id.et_fou_address, R.id.et_fou_level, R.id.et_fou_gw,
+    @OnClick({R.id.iv_login_back, R.id.et_fou_address,  R.id.et_fou_gw,
             R.id.tv_fou_start, R.id.but_fou_commit, R.id.ib_shou_zbyj,R.id.et_fou_name})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -176,11 +173,6 @@ public class FoundProjectActivity extends BaseMvpActivity<FoundProjectPresnet> {
                                 }
                             }
                         });
-                break;
-            case R.id.et_fou_level:
-                Intent intent = new Intent(this, ProjectLevelActivity.class);
-                intent.putExtra(Constants.PROJECT_LEVEL_POSITION, levelPosition);
-                startActivityForResult(intent, Constants.FOUND_PROJECT_LEVEL);
                 break;
             case R.id.et_fou_gw:
                 UserHelper.setSelectNmae("1");
@@ -214,14 +206,7 @@ public class FoundProjectActivity extends BaseMvpActivity<FoundProjectPresnet> {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (Constants.FOUND_PROJECT_LEVEL == requestCode) {
-            if (data != null) {
-                levelPosition = data.getIntExtra(Constants.PROJECT_LEVEL_POSITION, -1);
-                levelID = data.getStringExtra(Constants.PROJECT_LEVEL_ID);
-                String name = data.getStringExtra(Constants.PROJECT_LEVEL_NAME);
-                etFouLevel.setText(name);
-            }
-        } else if (Constants.SELECT_PERSON == requestCode) {
+        if (Constants.SELECT_PERSON == requestCode) {
             if (data != null) {
                 gwID = data.getStringExtra(Constants.SELECT_PERSON_ID);
                 String name = data.getStringExtra(Constants.SELECT_PERSON_NAME);

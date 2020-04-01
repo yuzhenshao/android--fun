@@ -12,6 +12,7 @@ import android.view.View;
 import com.mfzn.deepuses.AppManager;
 import com.mfzn.deepuses.activity.login.LoginActivity;
 import com.mfzn.deepuses.utils.ToastUtil;
+import com.mfzn.deepuses.utils.UserHelper;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
 
@@ -142,8 +143,8 @@ public abstract class BaseMvpActivity<P extends IPresent> extends XActivity<P> {
 
                 case NetError.AuthError:
                     showFailMsg("身份验证异常,请重新登录");
-//                    UserHelper.logout();
-//                    UserHelper.setOut(true);
+                    UserHelper.logout();
+                    UserHelper.setOut(true);
                     Router.newIntent(context).to(LoginActivity.class).launch();
                     break;
 

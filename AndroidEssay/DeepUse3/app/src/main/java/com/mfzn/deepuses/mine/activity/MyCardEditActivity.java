@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.EditText;
@@ -16,13 +17,17 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.jakewharton.rxbinding2.widget.RxTextView;
+import com.mfzn.deepuses.BaseApplication;
 import com.mfzn.deepuses.R;
+import com.mfzn.deepuses.activitymy.setting.SwitchCompanyActivity;
 import com.mfzn.deepuses.bass.BaseActivity;
 import com.mfzn.deepuses.bean.request.EditBusinessCardRequest;
 import com.mfzn.deepuses.bean.response.BusinessCardResponse;
 import com.mfzn.deepuses.model.my.UserUploadModel;
 import com.mfzn.deepuses.net.ApiHelper;
+import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
+import com.mfzn.deepuses.net.ImageUploadManager;
 import com.mfzn.deepuses.net.UploadApi;
 import com.mfzn.deepuses.utils.BitmapFileSetting;
 import com.mfzn.deepuses.utils.Constants;
@@ -59,6 +64,7 @@ import static com.mfzn.deepuses.utils.UIUtils.showToast;
 public class MyCardEditActivity extends BaseActivity {
 
     public static String CARD_INFO = "CardInfo";
+    public static String ONLY_SELECTED;
     @BindView(R.id.photo)
     RoundImageView userPhoto;
     @BindView(R.id.name)
@@ -84,7 +90,10 @@ public class MyCardEditActivity extends BaseActivity {
     @BindView(R.id.project_number)
     TextView tvProjectNumber;
 
+    private static int SELECTED = 1;
     private BusinessCardResponse mBusinessCardResponse;
+    private boolean isShowCompany;
+    private boolean isShowProNum;
 
     public static Intent newIntent(Context context, BusinessCardResponse businessCardResponse) {
         Intent intent = new Intent(context, MyCardEditActivity.class);
@@ -105,25 +114,41 @@ public class MyCardEditActivity extends BaseActivity {
                     .into(userPhoto);
             tvCardName.setText(mBusinessCardResponse.getUserName());
             tvCardPhone.setText(mBusinessCardResponse.getCardPhone());
-            tvProjectNumber.setText(mBusinessCardResponse.getProNum());
+            tvCardProjrct.setText(mBusinessCardResponse.getProNum());
             tvCompanySelect.setText(mBusinessCardResponse.getCompanyName());
             etCardEmail.setText(mBusinessCardResponse.getUserEmail());
-            etCompanyPosition.setText(mBusinessCardResponse.getUserEmail());
+            if(!TextUtils.isEmpty(mBusinessCardResponse.getUserEmail())) {
+                etCardEmail.setSelection(mBusinessCardResponse.getUserEmail().length());
+            }
+            etCompanyPosition.setText(mBusinessCardResponse.getUserPosition());
+            if(!TextUtils.isEmpty(mBusinessCardResponse.getUserPosition())) {
+                etCardEmail.setSelection(mBusinessCardResponse.getUserPosition().length());
+            }
             etWorkYear.setText(mBusinessCardResponse.getWorkYear());
             etCarddJZ.setText(mBusinessCardResponse.getJzNum());
             etCardGZ.setText(mBusinessCardResponse.getGzNum());
 
-            tvCompanyName.setTextColor(Color.parseColor(mBusinessCardResponse.getShowCompany() == 0 ? "#BFC2CC" : "#3D7EFF"));
-            tvCompanyName.setBackgroundResource(mBusinessCardResponse.getShowCompany() == 0 ?
-                    R.drawable.flowing_type_tv_while_shape : R.drawable.flowing_type_tv_bule_shape);
-            tvCardProjrct.setTextColor(Color.parseColor(mBusinessCardResponse.getShowProNum() == 0 ? "#BFC2CC" : "#3D7EFF"));
-            tvCardProjrct.setBackgroundResource(mBusinessCardResponse.getShowProNum() == 0 ?
-                    R.drawable.flowing_type_tv_while_shape : R.drawable.flowing_type_tv_bule_shape);
-
+            setCompanyNameStatus(mBusinessCardResponse.getShowCompany() != 0);
+            setProjectStatus(mBusinessCardResponse.getShowProNum() != 0);
         }
     }
 
-    @OnClick({R.id.iv_back, R.id.photo_icon, R.id.select_company_icon, R.id.compelete})
+    private void setCompanyNameStatus(boolean isShowCompany) {
+        this.isShowCompany = isShowCompany;
+        tvCompanyName.setTextColor(Color.parseColor(isShowCompany ? "#3D7EFF" : "#BFC2CC"));
+        tvCompanyName.setBackgroundResource(isShowCompany ? R.drawable.flowing_type_tv_bule_shape :
+                R.drawable.flowing_type_tv_while_shape);
+    }
+
+    private void setProjectStatus(boolean isShowProNum) {
+        this.isShowProNum = isShowProNum;
+        tvProjectNumber.setTextColor(Color.parseColor(isShowProNum ? "#3D7EFF" : "#BFC2CC"));
+        tvProjectNumber.setBackgroundResource(isShowProNum ? R.drawable.flowing_type_tv_bule_shape :
+                R.drawable.flowing_type_tv_while_shape);
+
+    }
+
+    @OnClick({R.id.iv_back, R.id.photo_icon, R.id.select_company_icon, R.id.compelete, R.id.company_name, R.id.project_number})
     public void onClickView(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
@@ -133,10 +158,18 @@ public class MyCardEditActivity extends BaseActivity {
                 PhotographDialog.photographDialog2(this);
                 break;
             case R.id.select_company_icon:
-
+                Intent intent = new Intent(this, SwitchCompanyActivity.class);
+                intent.putExtra(ONLY_SELECTED, true);
+                startActivityForResult(intent, SELECTED);
                 break;
             case R.id.compelete:
                 uploadEditCard();
+                break;
+            case R.id.company_name:
+                setCompanyNameStatus(!isShowCompany);
+                break;
+            case R.id.project_number:
+                setProjectStatus(!isShowProNum);
                 break;
         }
     }
@@ -152,6 +185,8 @@ public class MyCardEditActivity extends BaseActivity {
         request.setShowProNum(mBusinessCardResponse.getShowProNum());
         request.setCardPhone(mBusinessCardResponse.getCardPhone());
         request.setCardCompanyID(mBusinessCardResponse.getCardCompanyID());
+        request.setShowCompany(isShowCompany ?1:0);
+        request.setShowProNum(isShowProNum?1:0);
         ApiHelper.getApiService().editBusinessCard(UserHelper.getToken(), UserHelper.getUid(), request)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
@@ -187,7 +222,9 @@ public class MyCardEditActivity extends BaseActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == Constants.REAL_NAME_PAIZHAO) {
+        if (requestCode == SELECTED) {
+            tvCompanyName.setText(UserHelper.getCompanyName());
+        } else if (requestCode == Constants.REAL_NAME_PAIZHAO) {
             String cameraFile = PhotographDialog.mSp.getString("img", "");
             Bitmap bitmap = BitmapFactory.decodeFile(PhotographDialog.Image_SAVEDIR + "/" + cameraFile);//根据路径转为bitmap
             if (bitmap != null) {
@@ -211,42 +248,39 @@ public class MyCardEditActivity extends BaseActivity {
     }
 
     public void upLoadFile(final File file) {
-        MultipartBody.Builder builder = new MultipartBody.Builder()
-                .setType(MultipartBody.FORM);
-        RequestBody imageBody = RequestBody.create(MediaType.parse(getMediaType(file.getName())), file);
-        builder.addFormDataPart("u_head", file.getName(), imageBody);
-        List<MultipartBody.Part> parts = builder.build().parts();
-        UploadApi.uploadMemberIcon(parts).enqueue(new retrofit2.Callback<UserUploadModel>() {
+        ImageUploadManager.uploadImage(file, new ImageUploadManager.ImageUploadCallback() {
+
             @Override
-            public void onResponse(Call<UserUploadModel> call, Response<UserUploadModel> response) {
-                if (response != null && response.body() != null) {
-                    String imgUrl = response.body().res;
-                    if (imgUrl != null) {
-                        ToastUtil.showToast(MyCardEditActivity.this, "图片上传成功");
-                        mBusinessCardResponse.setUserAvatar(imgUrl);
-                        Glide.with(MyCardEditActivity.this).load(ApiHelper.BASE_URL + imgUrl).into(userPhoto);
-                        EventMsg eventMsg = new EventMsg();
-                        eventMsg.setMsg(Constants.MODIFY_ICON);
-                        RxBus.getInstance().post(eventMsg);
-                        return;
-                    }
-                }
-                ToastUtil.showToast(MyCardEditActivity.this, "图片上传失败，请稍后重试");
+            public void uploadSuccess(String url) {
+                uploadAvatar(url);
             }
 
             @Override
-            public void onFailure(Call<UserUploadModel> call, Throwable t) {
-                ToastUtil.showToast(MyCardEditActivity.this, "图片上传失败，请稍后重试");
+            public void uoloadFailed(String error) {
+                ToastUtil.showToast(BaseApplication.getContext(), error);
             }
         });
     }
 
-    private String getMediaType(String fileName) {
-        FileNameMap map = URLConnection.getFileNameMap();
-        String contentTypeFor = map.getContentTypeFor(fileName);
-        if (contentTypeFor == null) {
-            contentTypeFor = "application/octet-stream";
-        }
-        return contentTypeFor;
+    private void uploadAvatar(String userAvatar) {
+        ApiServiceManager.uploadAvatar(userAvatar)
+                .compose(XApi.getApiTransformer())
+                .compose(XApi.getScheduler())
+                .subscribe(new ApiSubscriber<HttpResult>() {
+                    @Override
+                    protected void onFail(NetError error) {
+                        ToastUtil.showToast(MyCardEditActivity.this, "图片上传失败，请稍后重试");
+                    }
+
+                    @Override
+                    public void onNext(HttpResult reuslt) {
+                        ToastUtil.showToast(MyCardEditActivity.this, "图片上传成功");
+                        mBusinessCardResponse.setUserAvatar(userAvatar);
+                        Glide.with(MyCardEditActivity.this).load(ApiHelper.BASE_URL + userAvatar).into(userPhoto);
+                        EventMsg eventMsg = new EventMsg();
+                        eventMsg.setMsg(Constants.MODIFY_ICON);
+                        RxBus.getInstance().post(eventMsg);
+                    }
+                });
     }
 }

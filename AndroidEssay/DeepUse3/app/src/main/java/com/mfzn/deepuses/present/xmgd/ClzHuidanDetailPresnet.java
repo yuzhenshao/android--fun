@@ -3,6 +3,7 @@ package com.mfzn.deepuses.present.xmgd;
 import com.mfzn.deepuses.activityxm.shgd.FwzHuizhiDetailActivity;
 import com.mfzn.deepuses.model.xiangmu.ClzGongdanDetailModel;
 import com.mfzn.deepuses.net.ApiHelper;
+import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.utils.UserHelper;
 
@@ -14,7 +15,7 @@ import cn.droidlover.xdroidmvp.net.XApi;
 public class ClzHuidanDetailPresnet extends XPresent<FwzHuizhiDetailActivity> {
 
     public void huidanDetail(String receiptId) {
-        ApiHelper.getApiService().lookReceipt(UserHelper.getToken(), UserHelper.getUid(),receiptId)
+        ApiServiceManager.lookReceipt(receiptId)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

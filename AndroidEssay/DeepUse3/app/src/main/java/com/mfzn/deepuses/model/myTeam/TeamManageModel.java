@@ -39,6 +39,8 @@ public class TeamManageModel implements Serializable {
     private int scaleID;
     private double latitude;
     private double longitude;
+    private String giftBrick;
+    private String brick;
     private String businessScopeName;
     private String scaleName;
     private int isCheck;
@@ -178,5 +180,21 @@ public class TeamManageModel implements Serializable {
 
     public void setIsCheck(int isCheck) {
         this.isCheck = isCheck;
+    }
+
+    public String getGiftBrick() {
+        return giftBrick;
+    }
+
+    public void setGiftBrick(String giftBrick) {
+        this.giftBrick = giftBrick;
+    }
+
+    public String getBrick() {
+        return brick;
+    }
+
+    public void setBrick(String brick) {
+        this.brick = brick;
     }
 }

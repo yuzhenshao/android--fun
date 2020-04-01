@@ -81,16 +81,14 @@ public class WholeCustomerModel {
          * data_en_id : Fh1SQdvX4
          */
 
-        private int uid;
+        private int userID;
         private int companyID;
-        private String u_name;
+        private String customerName;
         private String note;
-        private int is_del;
+        private int isDel;
         private String addtime;
         private int updateUserID;
         private String updateTime;
-        private int proID;
-        private String relatedProIDs;
         private int followStatusID;
         private int customerLevelID;
         private int customerSourceID;
@@ -111,11 +109,11 @@ public class WholeCustomerModel {
         }
 
         public int getUid() {
-            return uid;
+            return userID;
         }
 
         public void setUid(int uid) {
-            this.uid = uid;
+            this.userID = uid;
         }
 
         public int getCompanyID() {
@@ -127,11 +125,11 @@ public class WholeCustomerModel {
         }
 
         public String getU_name() {
-            return u_name;
+            return customerName;
         }
 
         public void setU_name(String u_name) {
-            this.u_name = u_name;
+            this.customerName = u_name;
         }
 
         public String getNote() {
@@ -143,11 +141,11 @@ public class WholeCustomerModel {
         }
 
         public int getIs_del() {
-            return is_del;
+            return isDel;
         }
 
         public void setIs_del(int is_del) {
-            this.is_del = is_del;
+            this.isDel = is_del;
         }
 
         public String getAddtime() {
@@ -172,22 +170,6 @@ public class WholeCustomerModel {
 
         public void setUpdateTime(String updateTime) {
             this.updateTime = updateTime;
-        }
-
-        public int getProID() {
-            return proID;
-        }
-
-        public void setProID(int proID) {
-            this.proID = proID;
-        }
-
-        public String getRelatedProIDs() {
-            return relatedProIDs;
-        }
-
-        public void setRelatedProIDs(String relatedProIDs) {
-            this.relatedProIDs = relatedProIDs;
         }
 
         public int getFollowStatusID() {
@@ -269,7 +251,7 @@ public class WholeCustomerModel {
              */
 
             private int proID;
-            private String pro_name;
+            private String proName;
 
             public int getProID() {
                 return proID;
@@ -280,11 +262,11 @@ public class WholeCustomerModel {
             }
 
             public String getPro_name() {
-                return pro_name;
+                return proName;
             }
 
             public void setPro_name(String pro_name) {
-                this.pro_name = pro_name;
+                this.proName = pro_name;
             }
         }
     }

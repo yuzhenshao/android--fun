@@ -23,6 +23,7 @@ import com.mfzn.deepuses.BaseApplication;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.activity.jiagou.ShareCodeActivity;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
+import com.mfzn.deepuses.bean.response.UserResponse;
 import com.mfzn.deepuses.model.my.UserInfoModel;
 import com.mfzn.deepuses.model.xiangmu.FoundProjectModel;
 import com.mfzn.deepuses.model.xiangmu.ProjectCodeModel;
@@ -148,13 +149,13 @@ public class ProjectCodeActivity extends BaseMvpActivity<ProjectCodePresnet> {
     public void projectCodeSuccess(ProjectCodeModel model) {
         String path = model.getPath();
         if(!TextUtils.isEmpty(path)){
-            Glide.with(this).load(ApiHelper.BASE_URL + path).into(ivCode);
+            Glide.with(this).load(ApiHelper.BASE_API_URL + path).into(ivCode);
         }
     }
 
     //用户信息成功返回
-    public void userInfoSuccess(UserInfoModel result) {
-        String u_head = result.u_head;
+    public void userInfoSuccess(UserResponse result) {
+        String u_head = result.getUserAvatar();
         if(!TextUtils.isEmpty(u_head)){
             Glide.with(this).load(ApiHelper.BASE_URL + u_head).into(ivCodeIcon);
         }

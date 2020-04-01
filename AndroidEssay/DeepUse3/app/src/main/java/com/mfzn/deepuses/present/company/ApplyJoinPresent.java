@@ -16,7 +16,7 @@ import cn.droidlover.xdroidmvp.net.XApi;
 public class ApplyJoinPresent extends XPresent<ApplyJoinActivity> {
 
     public void applyJoin(String proid,String staffName, String reason) {
-        ApiHelper.getApiService().applyJoin(UserHelper.getToken(), UserHelper.getUid(),proid,staffName,reason)
+        ApiHelper.getApiService().joinWithQrCode(UserHelper.getToken(), UserHelper.getUid(),proid,staffName,reason)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

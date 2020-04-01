@@ -4,6 +4,7 @@ import com.mfzn.deepuses.fragment.xm.ChuliGuochengFragment;
 import com.mfzn.deepuses.fragment.xm.GongdanShuxingFragment;
 import com.mfzn.deepuses.model.xiangmu.ChuliGuochengModel;
 import com.mfzn.deepuses.net.ApiHelper;
+import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.utils.UserHelper;
 
@@ -17,7 +18,7 @@ import cn.droidlover.xdroidmvp.net.XApi;
 public class ChuliGuochengPresnet extends XPresent<ChuliGuochengFragment> {
 
     public void chuliGuocheng(String orderNo) {
-        ApiHelper.getApiService().chuliGuocheng(UserHelper.getToken(), UserHelper.getUid(),orderNo)
+        ApiServiceManager.lookAsOrderProcess(orderNo)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

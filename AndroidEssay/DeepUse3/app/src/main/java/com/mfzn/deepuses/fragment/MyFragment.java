@@ -17,6 +17,7 @@ import com.mfzn.deepuses.activitymy.OperationGuideActivity;
 import com.mfzn.deepuses.activitymy.brick.BrickRecordActivity;
 import com.mfzn.deepuses.activitymy.setting.SettingActivity;
 import com.mfzn.deepuses.bass.BaseMvpFragment;
+import com.mfzn.deepuses.bean.response.UserResponse;
 import com.mfzn.deepuses.mine.activity.MyCardActivity;
 import com.mfzn.deepuses.model.LookQuanxian2Model;
 import com.mfzn.deepuses.model.company.SelectCompanyModel;
@@ -152,11 +153,11 @@ public class MyFragment extends BaseMvpFragment<MyPresnet> {
     }
 
     //用户信息成功返回
-    public void userInfoSuccess(UserInfoModel result) {
-        if (!TextUtils.isEmpty(result.u_head)){
-            Glide.with(context).load(ApiHelper.BASE_URL + result.u_head).into(ivMyIcon);
+    public void userInfoSuccess(UserResponse result) {
+        if (!TextUtils.isEmpty(result.getUserAvatar())){
+            Glide.with(context).load(ApiHelper.BASE_URL + result.getUserAvatar()).into(ivMyIcon);
         }
-        u_phone = result.u_phone;
+        u_phone = result.getUserPhone();
     }
 
     public void lookQxSuccess(LookQuanxian2Model model) {

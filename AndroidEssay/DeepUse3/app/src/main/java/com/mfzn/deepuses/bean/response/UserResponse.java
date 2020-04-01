@@ -32,6 +32,7 @@ public class UserResponse {
     private int birthDay;
     private int userGender;
     private String areaID;
+    private int data_id;
     private String data_en_id;
 
     public String getUserNo() {
@@ -256,5 +257,13 @@ public class UserResponse {
 
     public void setData_en_id(String data_en_id) {
         this.data_en_id = data_en_id;
+    }
+
+    public int getData_id() {
+        return data_id;
+    }
+
+    public void setData_id(int data_id) {
+        this.data_id = data_id;
     }
 }

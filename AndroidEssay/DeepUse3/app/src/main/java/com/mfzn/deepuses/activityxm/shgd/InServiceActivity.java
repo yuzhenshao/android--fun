@@ -21,9 +21,11 @@ import com.mfzn.deepuses.adapter.xiangmu.ShouliListviewAdapter;
 import com.mfzn.deepuses.adapter.xiangmu.ShouliPhotoAdapter;
 import com.mfzn.deepuses.bass.BaseActivity;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
+import com.mfzn.deepuses.common.MapNaviUtils;
 import com.mfzn.deepuses.fragment.xm.ChuliGuochengFragment;
 import com.mfzn.deepuses.fragment.xm.GongdanFuwuFragment;
 import com.mfzn.deepuses.fragment.xm.GongdanShuxingFragment;
+import com.mfzn.deepuses.model.xiangmu.GongdanShuxingModel;
 import com.mfzn.deepuses.model.xiangmu.WorkorderListModel;
 import com.mfzn.deepuses.present.xmgd.InServicePresent;
 import com.mfzn.deepuses.utils.Constants;
@@ -79,7 +81,8 @@ public class InServiceActivity extends BaseMvpActivity<InServicePresent> {
     private String contactPhone;
     private String orderNo;
     private int shJobID;
-
+private  GongdanFuwuFragment shuxingFragment;
+private WorkorderListModel.DataBean dataBean;
     @Override
     public int getLayoutId() {
         return R.layout.activity_in_service;
@@ -97,12 +100,12 @@ public class InServiceActivity extends BaseMvpActivity<InServicePresent> {
         llBassDelect.setVisibility(View.VISIBLE);
         tvserTypename.getPaint().setFakeBoldText(true);
 
-        WorkorderListModel.DataBean dataBean = (WorkorderListModel.DataBean) getIntent().getSerializableExtra(Constants.SHOUHOU_DETAILS);
+       dataBean = (WorkorderListModel.DataBean) getIntent().getSerializableExtra(Constants.SHOUHOU_DETAILS);
 
-        shJobID = dataBean.getEnginerInfo().getShJobID();
+        shJobID = dataBean.getEngineerInfo().getAsJobID();
         orderNo = dataBean.getOrderNo();
         tvserType.setText(orderNo);
-        int shType = dataBean.getShType();
+        int shType = dataBean.getAsType();
         if(shType == 1) {//0全部  1故障保修  2维护升级
             tvserTypename.setTextColor(getResources().getColor(R.color.color_3D7EFF));
         }else if(shType == 2) {
@@ -120,7 +123,7 @@ public class InServiceActivity extends BaseMvpActivity<InServicePresent> {
 
         List<Fragment> list = new ArrayList<>();
 
-        GongdanFuwuFragment shuxingFragment = new GongdanFuwuFragment();
+        shuxingFragment = new GongdanFuwuFragment();
         Bundle bundle = new Bundle();
         bundle.putString(Constants.SHOUHOU_ORDERNO, orderNo);
 //        bundle.putSerializable(Constants.SHOUHOU_DETAILS,dataBean);
@@ -153,7 +156,7 @@ public class InServiceActivity extends BaseMvpActivity<InServicePresent> {
         });
     }
 
-    @OnClick({R.id.iv_login_back, R.id.ll_ser_phone, R.id.but_rec_sl, R.id.ll_bass_detele})
+    @OnClick({R.id.iv_login_back, R.id.ll_ser_phone, R.id.but_rec_sl, R.id.ll_bass_detele,R.id.address_container})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_login_back:
@@ -168,6 +171,7 @@ public class InServiceActivity extends BaseMvpActivity<InServicePresent> {
                 Intent intent = new Intent(this, NewsDispatchActivity.class);
                 intent.putExtra(Constants.SHOUHOU_ORDERNO, orderNo);
                 intent.putExtra(Constants.SHOUHOU_JOBID, String.valueOf(shJobID));
+                intent.putExtra(Constants.SHOUHOU_PROID,dataBean.getProID());
                 startActivity(intent);
                 break;
             case R.id.ll_bass_detele:
@@ -191,6 +195,14 @@ public class InServiceActivity extends BaseMvpActivity<InServicePresent> {
                         })
                         .build()
                         .show();
+                break;
+            case R.id.address_container:
+                if (shuxingFragment != null) {
+                    GongdanShuxingModel model = shuxingFragment.getGongdanShuxingModel();
+                    if (model != null) {
+                        MapNaviUtils.goToMapNavi(this, model.getLatitude(), model.getLongitude(), model.getDetailAddress());
+                    }
+                }
                 break;
         }
     }

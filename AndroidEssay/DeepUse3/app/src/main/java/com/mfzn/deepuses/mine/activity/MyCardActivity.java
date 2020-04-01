@@ -19,6 +19,8 @@ import com.mfzn.deepuses.bean.response.BusinessCardResponse;
 import com.mfzn.deepuses.common.share.WeixinShare;
 import com.mfzn.deepuses.net.ApiHelper;
 import com.mfzn.deepuses.net.HttpResult;
+import com.mfzn.deepuses.utils.Constants;
+import com.mfzn.deepuses.utils.ToastUtil;
 import com.mfzn.deepuses.utils.UserHelper;
 import com.mfzn.deepuses.view.RoundImageView;
 
@@ -83,19 +85,20 @@ public class MyCardActivity extends BaseActivity {
     }
 
     private void getBusinessCard() {
-        ApiHelper.getApiService().getBusinessCard(UserHelper.getUid())
+        ApiHelper.getApiService().getBusinessCard(UserHelper.getUserId())
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(bindToLifecycle())
                 .safeSubscribe(new ApiSubscriber<HttpResult<BusinessCardResponse>>() {
                     @Override
                     public void onNext(HttpResult<BusinessCardResponse> result) {
+                        rlCardContainer.setVisibility(View.VISIBLE);
                         initBusinessCard(result.getRes());
                     }
 
                     @Override
                     protected void onFail(NetError error) {
-
+                        ToastUtil.showToast(MyCardActivity.this, "名片获取失败");
                     }
                 });
     }
@@ -106,7 +109,7 @@ public class MyCardActivity extends BaseActivity {
                 .into(rivCardTx);
         Glide.with(context).load(ApiHelper.BASE_URL + businessCardResponse.getCompanyLogo())
                 .into(ivCompanyLogo);
-        Glide.with(context).load(ApiHelper.BASE_URL + "/" + businessCardResponse.getMyQrCode())
+        Glide.with(context).load(ApiHelper.BASE_API_URL + "/" + businessCardResponse.getMyQrCode())
                 .into(ivCardCode);
         tvCardName.setText(businessCardResponse.getUserName());
         tvCardCompany.setText(getString(R.string.company_position, businessCardResponse.getCompanyName(),
@@ -119,12 +122,12 @@ public class MyCardActivity extends BaseActivity {
         tvCardEmail.setText(businessCardResponse.getUserEmail());
     }
 
-    @OnClick({R.id.iv_back, R.id.ll_card_xiazai, R.id.ll_card_weixin, R.id.tv_edit_card})
+    @OnClick({R.id.ll_card_xiazai, R.id.ll_card_weixin, R.id.tv_edit_card})
     public void onViewClicked(View view) {
+        if (businessCardResponse == null) {
+            return;
+        }
         switch (view.getId()) {
-            case R.id.iv_back:
-                finish();
-                break;
             case R.id.ll_card_xiazai:
                 saveBitmapToLocal();
                 break;
@@ -138,20 +141,27 @@ public class MyCardActivity extends BaseActivity {
         }
     }
 
+    @OnClick(R.id.iv_back)
+    public void goBack() {
+        finish();
+    }
+
     private void saveBitmapToLocal() {
         try {
-            String rootPaht = Environment.getExternalStorageDirectory() + "/Mfzn/Cache";
-            File appDir = new File(rootPaht);
-            if (!appDir.exists()) {
-                appDir.mkdir();
+            File imageDir = new File(Constants.IMAGE_DIR);
+            if (!imageDir.exists()) {
+                imageDir.mkdir();
             }
-            File file = new File(appDir, businessCardResponse.getUserID() + ".jpg");
-            if (!file.exists()) {
-                FileOutputStream fos = new FileOutputStream(file);
-                mShareBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
-                fos.flush();
-                fos.close();
+            String imageName = businessCardResponse.getUserID() + ".png";
+            File file = new File(imageDir, imageName);
+            if (file.exists()) {
+                file.delete();
             }
+            file.createNewFile();
+            FileOutputStream os = new FileOutputStream(file);
+            getViewBitmap().compress(Bitmap.CompressFormat.PNG, 100, os);
+            os.flush();
+            os.close();
             if (file.exists()) {
                 showToast("保存成功");
                 sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + file.getPath())));

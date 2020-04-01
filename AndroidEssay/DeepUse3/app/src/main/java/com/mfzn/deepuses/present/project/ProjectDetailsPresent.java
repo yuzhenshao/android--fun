@@ -107,8 +107,8 @@ public class ProjectDetailsPresent extends XPresent<ProjectDetailsActivity> {
     }
 
     //moduleType  1售后 2流程 3进销存
-    public void openBk(String proId, String moduleType, String zhuanNum) {
-        ApiHelper.getApiService().openBk(UserHelper.getToken(), UserHelper.getUid(), proId, moduleType, zhuanNum)
+    public void openBk(String proId, String moduleType, String brickNum) {
+        ApiServiceManager.buyModule(proId,moduleType,brickNum)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

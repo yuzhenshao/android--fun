@@ -97,26 +97,6 @@
 
                     </LinearLayout>
 
-                    <View style="@style/line_heng" />
-
-                    <LinearLayout style="@style/newly_ll_st">
-
-                        <TextView
-                            style="@style/newly_tv_st"
-                            android:text="客户级别" />
-
-                        <EditText
-                            android:id="@+id/et_edit_level"
-                            style="@style/newly_et_st2"
-                            android:hint="@string/found_pro_level"
-                            android:paddingRight="0dp" />
-
-                        <ImageView
-                            style="@style/bass_iv_you"
-                            android:layout_marginRight="@dimen/app_20dp" />
-
-                    </LinearLayout>
-
                 </LinearLayout>
 
                 <TextView

@@ -7,15 +7,15 @@ public class CompanyScaleModel {
      * scale : 1~10人
      */
 
-    private int scale_id;
+    private int scaleID;
     private String scale;
 
     public int getScale_id() {
-        return scale_id;
+        return scaleID;
     }
 
     public void setScale_id(int scale_id) {
-        this.scale_id = scale_id;
+        this.scaleID = scale_id;
     }
 
     public String getScale() {

@@ -21,10 +21,12 @@ import com.mfzn.deepuses.adapter.xiangmu.ShouliListviewAdapter;
 import com.mfzn.deepuses.adapter.xiangmu.ShouliPhotoAdapter;
 import com.mfzn.deepuses.bass.BaseActivity;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
+import com.mfzn.deepuses.common.MapNaviUtils;
 import com.mfzn.deepuses.fragment.xm.ChuliGuochengFragment;
 import com.mfzn.deepuses.fragment.xm.GongdanCloseFragment;
 import com.mfzn.deepuses.fragment.xm.GongdanFuwuFragment;
 import com.mfzn.deepuses.fragment.xm.GongdanShuxingFragment;
+import com.mfzn.deepuses.model.xiangmu.GongdanShuxingModel;
 import com.mfzn.deepuses.model.xiangmu.WorkorderListModel;
 import com.mfzn.deepuses.present.xmgd.AlreadyClosePresent;
 import com.mfzn.deepuses.utils.Constants;
@@ -77,6 +79,7 @@ public class AlreadyCloseActivity extends BaseMvpActivity<AlreadyClosePresent> {
 
     private String contactPhone;
     private String orderNo;
+    private GongdanFuwuFragment shuxingFragment;
 
     @Override
     public int getLayoutId() {
@@ -99,10 +102,10 @@ public class AlreadyCloseActivity extends BaseMvpActivity<AlreadyClosePresent> {
 
         orderNo = dataBean.getOrderNo();
         tvcloseType.setText(orderNo);
-        int shType = dataBean.getShType();
-        if(shType == 1) {//0全部  1故障保修  2维护升级
+        int shType = dataBean.getAsType();
+        if (shType == 1) {//0全部  1故障保修  2维护升级
             tvcloseTypename.setTextColor(getResources().getColor(R.color.color_3D7EFF));
-        }else if(shType == 2) {
+        } else if (shType == 2) {
             tvcloseTypename.setTextColor(getResources().getColor(R.color.color_62C33A));
         }
         tvcloseTypename.setText(dataBean.getShTypeName());
@@ -117,7 +120,7 @@ public class AlreadyCloseActivity extends BaseMvpActivity<AlreadyClosePresent> {
 
         List<Fragment> list = new ArrayList<>();
 
-        GongdanFuwuFragment shuxingFragment = new GongdanFuwuFragment();
+        shuxingFragment = new GongdanFuwuFragment();
         Bundle bundle = new Bundle();
         bundle.putString(Constants.SHOUHOU_ORDERNO, orderNo);
 //        bundle.putSerializable(Constants.SHOUHOU_DETAILS,dataBean);
@@ -134,7 +137,7 @@ public class AlreadyCloseActivity extends BaseMvpActivity<AlreadyClosePresent> {
         initMagicIndicator(mDataList);
     }
 
-    @OnClick({R.id.iv_login_back, R.id.ll_close_phone, R.id.ll_bass_detele})
+    @OnClick({R.id.iv_login_back, R.id.ll_close_phone, R.id.ll_bass_detele, R.id.address_container})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_login_back:
@@ -167,6 +170,14 @@ public class AlreadyCloseActivity extends BaseMvpActivity<AlreadyClosePresent> {
                         .build()
                         .show();
                 break;
+            case R.id.address_container:
+                if (shuxingFragment != null) {
+                    GongdanShuxingModel model = shuxingFragment.getGongdanShuxingModel();
+                    if (model != null) {
+                        MapNaviUtils.goToMapNavi(this, model.getLatitude(), model.getLongitude(), model.getDetailAddress());
+                    }
+                }
+                break;
         }
     }
 
@@ -187,9 +198,9 @@ public class AlreadyCloseActivity extends BaseMvpActivity<AlreadyClosePresent> {
 
                     @Override
                     public void clickRightButton(ModifyBmNameDialog dialog, View view, EditText text) {
-                        if(TextUtils.isEmpty(text.getText().toString().trim())) {
-                            ToastUtil.showToast(AlreadyCloseActivity.this,"请输入删除原因");
-                        }else {
+                        if (TextUtils.isEmpty(text.getText().toString().trim())) {
+                            ToastUtil.showToast(AlreadyCloseActivity.this, "请输入删除原因");
+                        } else {
                             getP().deleteWorkorder(orderNo, text.getText().toString().trim());
                         }
                     }
@@ -199,7 +210,7 @@ public class AlreadyCloseActivity extends BaseMvpActivity<AlreadyClosePresent> {
     }
 
     public void deleteWorkorderSuccess() {
-        ToastUtil.showToast(this,"删除成功");
+        ToastUtil.showToast(this, "删除成功");
         EventMsg eventMsg = new EventMsg();
         eventMsg.setMsg(Constants.GONGDAN);
         RxBus.getInstance().post(eventMsg);

@@ -16,7 +16,7 @@ import cn.droidlover.xdroidmvp.net.XApi;
 public class TeamApplyPresent extends XPresent<TeamApplyActivity> {
 
     public void teamApply(Integer page) {
-        ApiHelper.getApiService().teamApply(UserHelper.getToken(), UserHelper.getUid(),"10",page)
+        ApiHelper.getApiService().teamApply(UserHelper.getToken(), UserHelper.getUid(),2,"10",page)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

@@ -55,7 +55,7 @@ public class ZuzhiJiagouModel implements Serializable {
         private String departmentName;
         private int level;
         private List<SonsBean> sons;
-        private List<StaffBean> staffs;
+        private List<StaffBean> staff;
         private boolean selectDe = false;
 
         public boolean getMoren() {
@@ -110,11 +110,11 @@ public class ZuzhiJiagouModel implements Serializable {
         }
 
         public List<StaffBean> getStaff() {
-            return staffs;
+            return staff;
         }
 
         public void setStaff(List<StaffBean> staff) {
-            this.staffs = staff;
+            this.staff = staff;
         }
 
     }

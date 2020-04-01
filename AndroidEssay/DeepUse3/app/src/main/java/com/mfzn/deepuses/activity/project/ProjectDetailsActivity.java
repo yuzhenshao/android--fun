@@ -63,7 +63,6 @@ public class ProjectDetailsActivity extends BaseMvpActivity<ProjectDetailsPresen
 
     private int positions;//记录删除的位置
     private List<StagingListModel.EnginerBean> modelList = new ArrayList<>();
-    ;
 
     private XiangmuModel.DataBean dataBean;
 

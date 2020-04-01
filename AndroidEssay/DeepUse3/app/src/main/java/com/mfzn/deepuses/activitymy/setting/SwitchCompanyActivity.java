@@ -40,6 +40,8 @@ import cn.droidlover.xdroidmvp.router.Router;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 
+import static com.mfzn.deepuses.mine.activity.MyCardEditActivity.ONLY_SELECTED;
+
 public class SwitchCompanyActivity extends BaseMvpActivity<SwitchCompanyPresnet> {
 
     @BindView(R.id.tv_bass_title)
@@ -71,7 +73,7 @@ public class SwitchCompanyActivity extends BaseMvpActivity<SwitchCompanyPresnet>
     public void initData(Bundle savedInstanceState) {
         super.initData(savedInstanceState);
         tvBassTitle.setText(getString(R.string.app_switch_company));
-        llBassMore.setVisibility(View.VISIBLE);
+        llBassMore.setVisibility(getIntent().getBooleanExtra(ONLY_SELECTED,false)?View.GONE:View.VISIBLE);
 
         getP().companyList();
 

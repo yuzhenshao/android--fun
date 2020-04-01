@@ -22,8 +22,10 @@ import com.mfzn.deepuses.adapter.xiangmu.ShouliListviewAdapter;
 import com.mfzn.deepuses.adapter.xiangmu.ShouliPhotoAdapter;
 import com.mfzn.deepuses.bass.BaseActivity;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
+import com.mfzn.deepuses.common.MapNaviUtils;
 import com.mfzn.deepuses.fragment.xm.ChuliGuochengFragment;
 import com.mfzn.deepuses.fragment.xm.GongdanShuxingFragment;
+import com.mfzn.deepuses.model.xiangmu.GongdanShuxingModel;
 import com.mfzn.deepuses.model.xiangmu.WorkorderListModel;
 import com.mfzn.deepuses.popmune.DropPopMenu;
 import com.mfzn.deepuses.popmune.MenuItem;
@@ -79,6 +81,7 @@ public class DaiPaigongActivity extends BaseMvpActivity<DaiPaigongPresent> {
     private String contactPhone;
     private String orderNo;
     private String proId;
+    private GongdanShuxingFragment shuxingFragment;
 
     @Override
     public int getLayoutId() {
@@ -99,14 +102,14 @@ public class DaiPaigongActivity extends BaseMvpActivity<DaiPaigongPresent> {
 
         WorkorderListModel.DataBean dataBean = (WorkorderListModel.DataBean) getIntent().getSerializableExtra(Constants.SHOUHOU_DETAILS);
 
-        proId = dataBean.getProId() + "";
+        proId = dataBean.getProID() + "";
 
         orderNo = dataBean.getOrderNo();
         tvpaiType.setText(orderNo);
-        int shType = dataBean.getShType();
-        if(shType == 1) {//0全部  1故障保修  2维护升级
+        int shType = dataBean.getAsType();
+        if (shType == 1) {//0全部  1故障保修  2维护升级
             tvpaiTypename.setTextColor(getResources().getColor(R.color.color_3D7EFF));
-        }else if(shType == 2) {
+        } else if (shType == 2) {
             tvpaiTypename.setTextColor(getResources().getColor(R.color.color_62C33A));
         }
         tvpaiTypename.setText(dataBean.getShTypeName());
@@ -121,7 +124,7 @@ public class DaiPaigongActivity extends BaseMvpActivity<DaiPaigongPresent> {
 
         List<Fragment> list = new ArrayList<>();
 
-        GongdanShuxingFragment shuxingFragment = new GongdanShuxingFragment();
+        shuxingFragment = new GongdanShuxingFragment();
         Bundle bundle = new Bundle();
         bundle.putString(Constants.SHOUHOU_ORDERNO, orderNo);
         shuxingFragment.setArguments(bundle);//数据传递到fragment中
@@ -137,7 +140,7 @@ public class DaiPaigongActivity extends BaseMvpActivity<DaiPaigongPresent> {
         initMagicIndicator(mDataList);
     }
 
-    @OnClick({R.id.iv_login_back, R.id.iv_bass_sel, R.id.ll_pai_phone, R.id.but_pai_sl, R.id.iv_bass_del})
+    @OnClick({R.id.iv_login_back, R.id.iv_bass_sel, R.id.ll_pai_phone, R.id.but_pai_sl, R.id.iv_bass_del, R.id.address_container})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_login_back:
@@ -155,7 +158,7 @@ public class DaiPaigongActivity extends BaseMvpActivity<DaiPaigongPresent> {
                 Intent intent = new Intent(this, WorkorderDispatchActivity.class);
                 intent.putExtra(Constants.SHOUHOU_ORDERNO, orderNo);
                 intent.putExtra(Constants.SHOUHOU_PROIDS, proId);
-                startActivityForResult(intent,Constants.ACCEPT_GONGDAN);
+                startActivityForResult(intent, Constants.ACCEPT_GONGDAN);
                 break;
             case R.id.iv_bass_del:
                 new WeixinTishiDialog1.Builder(this)
@@ -178,6 +181,14 @@ public class DaiPaigongActivity extends BaseMvpActivity<DaiPaigongPresent> {
                         })
                         .build()
                         .show();
+                break;
+            case R.id.address_container:
+                if (shuxingFragment != null) {
+                    GongdanShuxingModel model = shuxingFragment.getGongdanShuxingModel();
+                    if (model != null) {
+                        MapNaviUtils.goToMapNavi(this, model.getLatitude(), model.getLongitude(), model.getDetailAddress());
+                    }
+                }
                 break;
         }
     }
@@ -209,9 +220,9 @@ public class DaiPaigongActivity extends BaseMvpActivity<DaiPaigongPresent> {
 
                     @Override
                     public void clickRightButton(ModifyBmNameDialog dialog, View view, EditText text) {
-                        if(TextUtils.isEmpty(text.getText().toString().trim())) {
-                            ToastUtil.showToast(DaiPaigongActivity.this,"请输入删除原因");
-                        }else {
+                        if (TextUtils.isEmpty(text.getText().toString().trim())) {
+                            ToastUtil.showToast(DaiPaigongActivity.this, "请输入删除原因");
+                        } else {
                             getP().deleteWorkorder(orderNo, text.getText().toString().trim());
                         }
                     }
@@ -221,7 +232,7 @@ public class DaiPaigongActivity extends BaseMvpActivity<DaiPaigongPresent> {
     }
 
     public void deleteWorkorderSuccess() {
-        ToastUtil.showToast(this,"删除成功");
+        ToastUtil.showToast(this, "删除成功");
         EventMsg eventMsg = new EventMsg();
         eventMsg.setMsg(Constants.GONGDAN);
         RxBus.getInstance().post(eventMsg);
@@ -238,14 +249,14 @@ public class DaiPaigongActivity extends BaseMvpActivity<DaiPaigongPresent> {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id, MenuItem menuItem) {
                 int itemId = menuItem.getItemId();
-                if(itemId == 1) {
+                if (itemId == 1) {
                     Intent intent = new Intent(DaiPaigongActivity.this, EditWorkorderActivity.class);
                     intent.putExtra(Constants.SHOUHOU_ORDERNO, orderNo);
-                    startActivityForResult(intent,Constants.ACCEPT_GONGDAN);
-                }else if(itemId == 2) {
+                    startActivityForResult(intent, Constants.ACCEPT_GONGDAN);
+                } else if (itemId == 2) {
                     Intent intent = new Intent(DaiPaigongActivity.this, CancalAcceptActivity.class);
                     intent.putExtra(Constants.SHOUHOU_ORDERNO, orderNo);
-                    startActivityForResult(intent,Constants.ACCEPT_GONGDAN);
+                    startActivityForResult(intent, Constants.ACCEPT_GONGDAN);
                 }
             }
         });

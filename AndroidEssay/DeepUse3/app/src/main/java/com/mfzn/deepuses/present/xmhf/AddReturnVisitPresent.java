@@ -1,6 +1,5 @@
 package com.mfzn.deepuses.present.xmhf;
 
-import com.mfzn.deepuses.activityxm.kf.AddCustomActivity;
 import com.mfzn.deepuses.activityxm.shhf.AddReturnVisitActivity;
 import com.mfzn.deepuses.net.ApiHelper;
 import com.mfzn.deepuses.net.HttpResult;
@@ -14,7 +13,7 @@ import cn.droidlover.xdroidmvp.net.XApi;
 public class AddReturnVisitPresent extends XPresent<AddReturnVisitActivity> {
 
     public void addReturnVisit(String proID,String title,String nowDate,String content,String nextDate) {
-        ApiHelper.getApiService().addReturnVisit(UserHelper.getToken(), UserHelper.getUid(),proID,title,nowDate,content,nextDate)
+        ApiHelper.getApiService().addVisit(UserHelper.getToken(), UserHelper.getUid(),proID,title,nowDate,content,nextDate)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

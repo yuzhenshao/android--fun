@@ -75,8 +75,7 @@
 
                 <TextView
                     android:id="@+id/name"
-                    style="@style/card_tv_value_style"
-                    android:text="姓名" />
+                    style="@style/card_tv_value_style" />
             </LinearLayout>
 
             <View style="@style/line_heng" />
@@ -91,8 +90,7 @@
 
                 <TextView
                     android:id="@+id/phone"
-                    style="@style/card_tv_value_style"
-                    android:text="188*******" />
+                    style="@style/card_tv_value_style" />
             </LinearLayout>
 
             <View style="@style/line_heng" />
@@ -222,8 +220,7 @@
 
                 <TextView
                     android:id="@+id/project"
-                    style="@style/card_tv_value_style"
-                    android:text="100" />
+                    style="@style/card_tv_value_style" />
             </LinearLayout>
 
             <TextView

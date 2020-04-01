@@ -33,9 +33,9 @@ public class EditStaffPresent extends XPresent<EditStaffActivity> {
                 });
     }
 
-    public void deleteStaff(String staffUID,String departmentID) {
+    public void deleteStaff(String staffUID) {
         ApiHelper.getApiService().deleteStaff(UserHelper.getToken(), UserHelper.getUid(),UserHelper.getCompanyId(),
-                staffUID,departmentID)
+                staffUID)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

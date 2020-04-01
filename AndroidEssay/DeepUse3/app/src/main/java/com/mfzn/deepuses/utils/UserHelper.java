@@ -27,37 +27,20 @@ public class UserHelper {
         SharedPref.getInstance(BaseApplication.getContext()).putBoolean("isLogin", true);
         SharedPref.getInstance(BaseApplication.getContext()).putString("token", userResponse.getUserToken());
         SharedPref.getInstance(BaseApplication.getContext()).putString("uid", userResponse.getData_en_id());
-        SharedPref.getInstance(BaseApplication.getContext()).putString("u_phone", userResponse.getUserPhone());
+        SharedPref.getInstance(BaseApplication.getContext()).putString("user_phone", userResponse.getUserPhone());
         SharedPref.getInstance(BaseApplication.getContext()).putString("u_pwd", pwd);
         SharedPref.getInstance(BaseApplication.getContext()).putString("u_name", userResponse.getUserName());
-    }
-
-    public static void login(UserModel userModel, String pwd) {
-//        SharedPref.getInstance(BaseApplication.getContext()).putBoolean("news_kaiguan", false);
-        SharedPref.getInstance(BaseApplication.getContext()).putBoolean("isLogin", true);
-        SharedPref.getInstance(BaseApplication.getContext()).putString("token", userModel.getToken());
-        SharedPref.getInstance(BaseApplication.getContext()).putString("uid", userModel.getData_en_id());
-        SharedPref.getInstance(BaseApplication.getContext()).putString("u_phone", userModel.getU_phone());
-        SharedPref.getInstance(BaseApplication.getContext()).putString("u_pwd", pwd);
-        SharedPref.getInstance(BaseApplication.getContext()).putInt("is_shiming", userModel.getIs_shiming());
-        SharedPref.getInstance(BaseApplication.getContext()).putInt("is_yajin", userModel.getIs_cost());
-        SharedPref.getInstance(BaseApplication.getContext()).putInt("is_personal_b", userModel.getIs_personal_b());
-        SharedPref.getInstance(BaseApplication.getContext()).putInt("u_type", userModel.getU_type());
-        SharedPref.getInstance(BaseApplication.getContext()).putString("u_name", userModel.getU_name());
+        SharedPref.getInstance(BaseApplication.getContext()).putInt("userId", userResponse.getData_id());
     }
 
     public static void logout() {
         SharedPref.getInstance(BaseApplication.getContext()).putBoolean("isLogin", false);
         SharedPref.getInstance(BaseApplication.getContext()).putString("token", "");
         SharedPref.getInstance(BaseApplication.getContext()).putString("uid", "");
-        SharedPref.getInstance(BaseApplication.getContext()).putString("u_phone", "");
+        SharedPref.getInstance(BaseApplication.getContext()).putString("user_phone", "");
         SharedPref.getInstance(BaseApplication.getContext()).putString("u_pwd", "");
-        SharedPref.getInstance(BaseApplication.getContext()).remove("is_shiming");
-        SharedPref.getInstance(BaseApplication.getContext()).remove("is_yajin");
-        SharedPref.getInstance(BaseApplication.getContext()).remove("is_personal_b");
-        SharedPref.getInstance(BaseApplication.getContext()).remove("u_type");
         SharedPref.getInstance(BaseApplication.getContext()).remove("u_name");
-
+        SharedPref.getInstance(BaseApplication.getContext()).remove("userId");
         SharedPref.getInstance(BaseApplication.getContext()).putString("companyId", "");
         SharedPref.getInstance(BaseApplication.getContext()).putString("companyName", "");
 
@@ -130,24 +113,16 @@ public class UserHelper {
         return SharedPref.getInstance(BaseApplication.getContext()).getString("uid", "");
     }
 
+    public static int getUserId() {
+        return SharedPref.getInstance(BaseApplication.getContext()).getInt("userId", 0);
+    }
+
     public static String getU_phone() {
-        return SharedPref.getInstance(BaseApplication.getContext()).getString("u_phone", "");
+        return SharedPref.getInstance(BaseApplication.getContext()).getString("user_phone", "");
     }
 
     public static String getUpwd() {
         return SharedPref.getInstance(BaseApplication.getContext()).getString("u_pwd", "");
-    }
-
-    public static int getIs_shiming() {
-        return SharedPref.getInstance(BaseApplication.getContext()).getInt("is_shiming", 0);
-    }
-
-    public static int getIs_yajin() {
-        return SharedPref.getInstance(BaseApplication.getContext()).getInt("is_yajin", 0);
-    }
-
-    public static int getIs_personal_b() {
-        return SharedPref.getInstance(BaseApplication.getContext()).getInt("is_personal_b", 0);
     }
 
     public static void setCompany(String companyId, String companyName) {
@@ -192,16 +167,11 @@ public class UserHelper {
 
     //-------------------------------------------是否手动退出----------------------------------------------------
     public static void setOut(boolean account) {
-        SharedPref.getInstance(BaseApplication.getContext()).putBoolean("news_out", account);
+        SharedPref.getInstance(BaseApplication.getContext()).putBoolean("is_out", account);
     }
 
     public static boolean getOut() {
-        return SharedPref.getInstance(BaseApplication.getContext()).getBoolean("news_out", false);
-    }
-
-
-    public static int getU_type() {
-        return SharedPref.getInstance(BaseApplication.getContext()).getInt("u_type", 0);
+        return SharedPref.getInstance(BaseApplication.getContext()).getBoolean("is_out", false);
     }
 
     //操作指南

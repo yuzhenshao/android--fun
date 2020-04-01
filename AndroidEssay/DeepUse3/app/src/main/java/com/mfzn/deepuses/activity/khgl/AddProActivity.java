@@ -3,7 +3,6 @@ package com.mfzn.deepuses.activity.khgl;
 import android.Manifest;
 import android.app.Dialog;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Gravity;
@@ -22,12 +21,10 @@ import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.activityxm.MapLocationActivity;
-import com.mfzn.deepuses.activityxm.ProjectLevelActivity;
 import com.mfzn.deepuses.activityxm.SelectPersonActivity;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
 import com.mfzn.deepuses.model.xiangmu.FoundProjectModel;
 import com.mfzn.deepuses.present.customer.AddProPresnet;
-import com.mfzn.deepuses.present.foundxm.FoundProjectPresnet;
 import com.mfzn.deepuses.utils.Constants;
 import com.mfzn.deepuses.utils.DateUtils;
 import com.mfzn.deepuses.utils.EventMsg;
@@ -62,8 +59,6 @@ public class AddProActivity extends BaseMvpActivity<AddProPresnet> {
     TextView etFouName;
     @BindView(R.id.et_fou_phone)
     TextView etFouPhone;
-    @BindView(R.id.et_fou_level)
-    EditText etFouLevel;
     @BindView(R.id.tv_fou_ht)
     TextView tvFouHt;
     @BindView(R.id.et_fou_gw)
@@ -155,7 +150,7 @@ public class AddProActivity extends BaseMvpActivity<AddProPresnet> {
         });
     }
 
-    @OnClick({R.id.iv_login_back, R.id.et_fou_address, R.id.et_fou_level, R.id.et_fou_gw,
+    @OnClick({R.id.iv_login_back, R.id.et_fou_address, R.id.et_fou_gw,
             R.id.tv_fou_start, R.id.but_fou_commit, R.id.ib_shou_zbyj})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -176,11 +171,6 @@ public class AddProActivity extends BaseMvpActivity<AddProPresnet> {
                                 }
                             }
                         });
-                break;
-            case R.id.et_fou_level:
-                Intent intent = new Intent(this, ProjectLevelActivity.class);
-                intent.putExtra(Constants.PROJECT_LEVEL_POSITION, levelPosition);
-                startActivityForResult(intent, Constants.FOUND_PROJECT_LEVEL);
                 break;
             case R.id.et_fou_gw:
                 UserHelper.setSelectNmae("1");
@@ -211,14 +201,7 @@ public class AddProActivity extends BaseMvpActivity<AddProPresnet> {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (Constants.FOUND_PROJECT_LEVEL == requestCode) {
-            if (data != null) {
-                levelPosition = data.getIntExtra(Constants.PROJECT_LEVEL_POSITION, -1);
-                levelID = data.getStringExtra(Constants.PROJECT_LEVEL_ID);
-                String name = data.getStringExtra(Constants.PROJECT_LEVEL_NAME);
-                etFouLevel.setText(name);
-            }
-        } else if (Constants.SELECT_PERSON == requestCode) {
+        if (Constants.SELECT_PERSON == requestCode) {
             if (data != null) {
                 gwID = data.getStringExtra(Constants.SELECT_PERSON_ID);
                 String name = data.getStringExtra(Constants.SELECT_PERSON_NAME);
