@@ -11,16 +11,16 @@ public class GoodsUnitResponse {
      * addTime : 1583762564
      */
 
-    private int goodsUnitID;
+    private String goodsUnitID;
     private String unitName;
     private int addTime;
     private boolean isSelected;
 
-    public int getGoodsUnitID() {
+    public String getGoodsUnitID() {
         return goodsUnitID;
     }
 
-    public void setGoodsUnitID(int goodsUnitID) {
+    public void setGoodsUnitID(String goodsUnitID) {
         this.goodsUnitID = goodsUnitID;
     }
 

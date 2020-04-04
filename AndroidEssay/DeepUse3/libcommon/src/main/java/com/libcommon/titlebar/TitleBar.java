@@ -23,13 +23,6 @@ public class TitleBar extends RelativeLayout implements View.OnClickListener {
     private TextView mRightTv;
     private TextView mCenterTv;
 
-    public interface ElementPressedListener {
-
-        void leftPressed();
-
-        void rightPressed();
-    }
-
     public void setElementPressedListener(ElementPressedListener elementListener) {
         this.elementListener = elementListener;
     }

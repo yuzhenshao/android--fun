@@ -768,10 +768,6 @@ public interface ApiService {
                                              @Field("catName") String catName, @Field("pID") String pID, @Field("catID") String catID);
 
 
-    @POST("pss/Setting/addGoodsCategory")
-    Flowable<HttpResult> addGoodsCategory(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
-                                             @Field("catName") String catName, @Field("pID") String pID);
-
     @GET("pss/Setting/storeList")
     Flowable<HttpResult<List<StoreResponse>>> getStoreList(@Query("token") String token,
                                                        @Query("uid") String uid, @Query("shopID") String shopID);
@@ -779,5 +775,14 @@ public interface ApiService {
     @GET("pss/Setting/goodsUnitList")
     Flowable<HttpResult<List<GoodsUnitResponse>>> getGoodsUnitList(@Query("token") String token,
                                                                      @Query("uid") String uid, @Query("shopID") String shopID);
+
+
+    @POST("pss/Setting/delGoodsUnit")
+    Flowable<HttpResult> deleteGoodsUnit(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
+                                          @Field("goodsUnitID") String goodsUnitID);
+
+    @POST("pss/Setting/addGoodsCategory")
+    Flowable<HttpResult> addGoodsCategory(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
+                                          @Field("catName") String catName, @Field("pID") String pID);
 
 }

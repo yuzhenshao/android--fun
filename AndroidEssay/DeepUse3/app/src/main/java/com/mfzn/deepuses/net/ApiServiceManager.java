@@ -46,6 +46,7 @@ import java.util.List;
 import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
@@ -262,4 +263,14 @@ public class ApiServiceManager {
     public static Flowable<HttpResult<List<GoodsUnitResponse>>> getGoodsUnitList(String shopID){
         return ApiHelper.getApiService().getGoodsUnitList(UserHelper.getToken(), UserHelper.getUid(), shopID);
     }
+
+    public static Flowable<HttpResult> deleteGoodsUnit(String shopID,String goodsUnitID) {
+        return ApiHelper.getApiService().deleteGoodsUnit(UserHelper.getToken(), UserHelper.getUid(), shopID,goodsUnitID);
+    }
+
+    public static Flowable<HttpResult> addGoodsCategory(String shopID, String catName, String pID){
+        return ApiHelper.getApiService().addGoodsCategory(UserHelper.getToken(), UserHelper.getUid(), shopID,catName,pID);
+    }
+
+
 }

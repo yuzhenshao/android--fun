@@ -1,5 +1,6 @@
 package com.mfzn.deepuses.purchasesellsave.setting.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,6 +13,7 @@ import com.libcommon.tree.TreeNode;
 import com.libcommon.utils.ListUtil;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BaseActivity;
+import com.mfzn.deepuses.bass.BasicActivity;
 import com.mfzn.deepuses.bean.response.GoodsCategoryResponse;
 import com.mfzn.deepuses.bean.response.GoodsUnitResponse;
 import com.mfzn.deepuses.bean.response.StoreResponse;
@@ -31,12 +33,9 @@ import cn.droidlover.xdroidmvp.net.XApi;
 /**
  * @author yz @date 2020-03-30
  */
-public class GoodsCategoryActivity extends BaseActivity {
+public class GoodsCategoryActivity extends BasicActivity {
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
-
-    @BindView(R.id.titlebar)
-    TitleBar mTitleBar;
 
     private GoodsCategoryAdapter mAdapter;
     private List<TreeNode<GoodsCategoryResponse>> mSourceList = new ArrayList<>();
@@ -67,8 +66,6 @@ public class GoodsCategoryActivity extends BaseActivity {
                         }
                     }
                 });
-
-
     }
 
     private void initGoodsCategoryList(List<GoodsCategoryResponse> storeResponseList) {
@@ -109,6 +106,11 @@ public class GoodsCategoryActivity extends BaseActivity {
 
             }
         });
+    }
+
+    @Override
+    protected void rightPressed() {
+        startActivity(new Intent(this, GoodsCategoryManagerActivity.class));
     }
 
     @Override

@@ -12,6 +12,7 @@ import com.libcommon.dialog.fragment.CustomDialog;
 import com.libcommon.titlebar.TitleBar;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BaseActivity;
+import com.mfzn.deepuses.bass.BasicActivity;
 import com.mfzn.deepuses.utils.ToastUtil;
 
 import butterknife.BindView;
@@ -20,10 +21,8 @@ import butterknife.OnClick;
 /**
  * @author yz @date 2020-03-30
  */
-public class InventoryWarnSetActivity extends BaseActivity {
+public class InventoryWarnSetActivity extends BasicActivity {
 
-    @BindView(R.id.titlebar)
-    TitleBar mTitleBar;
     @BindView(R.id.store_number)
     TextView mStoreNumber;
 

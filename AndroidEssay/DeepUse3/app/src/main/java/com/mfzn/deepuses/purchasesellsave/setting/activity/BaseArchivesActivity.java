@@ -11,6 +11,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.libcommon.titlebar.TitleBar;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BaseActivity;
+import com.mfzn.deepuses.bass.BasicActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.adapter.SettingModuleAdapter;
 import com.mfzn.deepuses.purchasesellsave.setting.model.ModuleItem;
 
@@ -22,14 +23,11 @@ import butterknife.BindView;
 /**
  * @author syz @date 2020-03-24
  */
-public class BaseArchivesActivity extends BaseActivity {
+public class BaseArchivesActivity extends BasicActivity {
 
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
-
-    @BindView(R.id.titlebar)
-    TitleBar mTitleBar;
 
     private SettingModuleAdapter mAdapter;
     private List<ModuleItem> mSourceList;

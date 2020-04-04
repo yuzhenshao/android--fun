@@ -9,6 +9,7 @@ import android.view.View;
 import com.libcommon.titlebar.TitleBar;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BaseActivity;
+import com.mfzn.deepuses.bass.BasicActivity;
 import com.mfzn.deepuses.bean.request.CommodityRequest;
 import com.mfzn.deepuses.databinding.ActivityCommodityCreateBinding;
 import com.mfzn.deepuses.net.ApiServiceManager;
@@ -24,10 +25,8 @@ import cn.droidlover.xdroidmvp.net.XApi;
 /**
  * @author syz @date 2020-03-26
  */
-public class CommodityCreateActivity extends BaseActivity implements View.OnClickListener {
+public class CommodityCreateActivity extends BasicActivity implements View.OnClickListener {
 
-    @BindView(R.id.titlebar)
-    TitleBar mTitleBar;
     @BindView(R.id.add_image_view)
     AddImageView mAddImageView;
 
