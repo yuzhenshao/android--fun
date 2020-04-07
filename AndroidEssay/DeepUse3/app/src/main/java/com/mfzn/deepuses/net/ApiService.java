@@ -3,7 +3,9 @@ package com.mfzn.deepuses.net;
 
 import com.mfzn.deepuses.bean.request.AcceptAsOrderRequest;
 import com.mfzn.deepuses.bean.request.AddCustomRequest;
+import com.mfzn.deepuses.bean.request.AddCustomerRequest;
 import com.mfzn.deepuses.bean.request.AddDepartmentRequest;
+import com.mfzn.deepuses.bean.request.AddFollowRecordRequest;
 import com.mfzn.deepuses.bean.request.AsSetRequest;
 import com.mfzn.deepuses.bean.request.ChangePwdRequest;
 import com.mfzn.deepuses.bean.request.CreateAfterSaleOrderRequest;
@@ -305,7 +307,7 @@ public interface ApiService {
     @POST("api/user/roast")
     Flowable<HttpResult> appFeedback(@Query("token") String token, @Query("uid") String uid, @Field("content") String content);
 
-    @GET("/api/user/createRecImg")//为不同用户生成推广二维码
+    @GET("api/user/myQrCode")//为不同用户生成推广二维码
     Flowable<HttpResult> myPromotion(@Query("token") String token, @Query("uid") String uid, @Query("phone") String phone);
 
     @Multipart  //上传照片
@@ -393,12 +395,9 @@ public interface ApiService {
                                                          @Field("companyID") String companyID);
 
     //------------------------------------------------------支付-------------------------------------------------
-    @FormUrlEncoded  //添加客户
-    @POST("api/Customer/addCustomer")
-    Flowable<HttpResult> buildCustomer(@Query("token") String token, @Query("uid") String uid, @Field("companyID") String companyID,
-                                       @Field("customerName") String customerName, @Field("customerPhone") String customerPhone,
-                                       @Field("followStatusID") String followStatusID, @Field("customerLevelID") String customerLevelID,
-                                       @Field("customerSourceID") String customerSourceID, @Field("remark") String remark);
+
+    @POST("api/Customer/addCustomer")//添加客户
+    Flowable<HttpResult> buildCustomer(@Query("token") String token, @Query("uid") String uid, @Body AddCustomerRequest request);
 
     @GET("api/Customer/getAllSelections")
         //获取跟进状态、客户等级、客户来源、沟通方式接口
@@ -442,13 +441,10 @@ public interface ApiService {
     Flowable<HttpResult<List<FollowProModel>>> followPro(@Query("token") String token, @Query("uid") String uid,
                                                          @Query("companyID") String companyID, @Query("customerID") String customerID);
 
-    @FormUrlEncoded  //新增跟进记录（跟进状态、沟通方式、日期、内容、图片）
-    @POST("api/Customer/addFollowRecord")
-    Flowable<HttpResult> addFollow(@Query("token") String token, @Query("uid") String uid, @Field("companyID") String companyID,
-                                   @Field("communicationTypeID") String communicationTypeID,
-                                   @Field("followStatusID") String followStatusID, @Field("customerID") String customerID,
-                                   @Field("content") String content, @Field("imageUrls") String imageUrls,
-                                   @Field("followTime") String followTime);
+
+    @POST("api/Customer/addFollowRecord") //新增跟进记录（跟进状态、沟通方式、日期、内容、图片）
+    Flowable<HttpResult> addFollow(@Query("token") String token, @Query("uid") String uid,
+                                   @Body AddFollowRecordRequest request);
 
     @GET("api/Customer/taskList")//我的任务列表
     Flowable<HttpResult<MyTaskModel>> myTask(@Query("token") String token, @Query("uid") String uid,
@@ -544,7 +540,7 @@ public interface ApiService {
                                      @Query("engineerUserID") String enginerID, @Query("remark") String remark);
 
     @FormUrlEncoded
-    @POST("api/user/addEngineer")
+    @POST("api/user/delEngineer")
     Flowable<HttpResult> delEngineer(@Query("token") String token, @Query("uid") String uid, @Field("engineerUserID") String enginerID);
 
     @FormUrlEncoded
@@ -630,9 +626,9 @@ public interface ApiService {
     @POST("api/Company/updateManager")
     Flowable<HttpResult> updateManager(@Query("token") String token, @Query("uid") String uid,
                                        @Field("companyID") String companyID, @Field("managerID") String userID,
-                                       @Field("departIDs") String departIDs, @Field("proCreateAuth") String authCreate,
-                                       @Field("authData") String authData, @Field("authManage") String authManage,
-                                       @Field("rechargeAuth") String rechargeAuth, @Field("crmAuth") String crmAuth);
+                                       @Field("proCreateAuth") int authCreate,
+                                       @Field("adminCreateAuth") int authData,
+                                       @Field("rechargeAuth") int rechargeAuth, @Field("crmAuth") int crmAuth);
 
     @FormUrlEncoded  //添加管理员
     @POST("api/Company/addManager")

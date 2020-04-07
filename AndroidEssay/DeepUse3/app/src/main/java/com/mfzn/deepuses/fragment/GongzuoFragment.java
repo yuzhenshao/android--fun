@@ -111,7 +111,7 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
 
     private PopWindow popWindow;
     private List<SelectCompanyModel> models = new ArrayList<>();
-    
+
     private List<HomeShowModel> homeShowModels = new ArrayList<>();
 
     private List<HomeShowModel> tdglModels = new ArrayList<>();
@@ -152,13 +152,13 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
         getP().kanbData();
         getP().companyList();
         getP().userInfo();
-        if(!TextUtils.isEmpty(UserHelper.getCompanyId())) {
+        if (!TextUtils.isEmpty(UserHelper.getCompanyId())) {
             getP().quanxian();
         }
 
-        if(TextUtils.isEmpty(UserHelper.getCompanyName())) {
-            tvWorkCompany.setText("请选择公司");
-        }else {
+        if (TextUtils.isEmpty(UserHelper.getCompanyName())) {
+            tvWorkCompany.setText("请您创建或者加入公司");
+        } else {
             tvWorkCompany.setText(UserHelper.getCompanyName());
         }
 
@@ -175,9 +175,9 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
             @Override
             public void accept(EventMsg eventMsg) throws Exception {
                 if (eventMsg != null) {
-                    if(eventMsg.getMsg().equals(Constants.ESTABLSISH)){
+                    if (eventMsg.getMsg().equals(Constants.ESTABLSISH)) {
                         getP().companyList();
-                    }else if (eventMsg.getMsg().equals(Constants.COMPANY_NAME)) {
+                    } else if (eventMsg.getMsg().equals(Constants.COMPANY_NAME)) {
                         tvWorkCompany.setText(UserHelper.getCompanyName());
                     } else if (eventMsg.getMsg().equals(Constants.COMPANYJC)) {
                         getP().companyList();
@@ -188,15 +188,15 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
         });
     }
 
-    public void setTime(){
+    public void setTime() {
         Date d = new Date();
-        if(d.getHours()<11){
+        if (d.getHours() < 11) {
             tvWorkType.setText("上午好!");
-        }else if(d.getHours()<13){
+        } else if (d.getHours() < 13) {
             tvWorkType.setText("中午好!");
-        }else if(d.getHours()<18){
+        } else if (d.getHours() < 18) {
             tvWorkType.setText("下午好!");
-        }else if(d.getHours()<24){
+        } else if (d.getHours() < 24) {
             tvWorkType.setText("晚上好!");
         }
     }
@@ -204,7 +204,7 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if(!hidden){
+        if (!hidden) {
             tvWorkName.setText(UserHelper.getU_name() + " ");
             setTime();
             getP().kanbData();
@@ -214,7 +214,7 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
         }
     }
 
-    @OnClick({R.id.ll_kanban_project, R.id.ll_kanban_money, R.id.ll_kanban_number,R.id.iv_work_scan, R.id.iv_work_xia})
+    @OnClick({R.id.ll_kanban_project, R.id.ll_kanban_money, R.id.ll_kanban_number, R.id.iv_work_scan, R.id.iv_work_xia})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_kanban_project:
@@ -227,60 +227,66 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
                 startActivity(new Intent(getActivity(), CaptureActivity.class));
                 break;
             case R.id.iv_work_xia:
-                View customView = View.inflate(getActivity(), R.layout.home_company_list, null);
-                ListView home_list = customView.findViewById(R.id.home_list);
+                if (models == null || models.size() == 0) {
+                    Intent intent = new Intent(getActivity(), EstablishJoinActivity.class);
+                    intent.putExtra("EstablishJoin", 2);
+                    startActivity(intent);
+                } else {
+                    View customView = View.inflate(getActivity(), R.layout.home_company_list, null);
+                    customView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            popWindow.dismiss();
+                        }
+                    });
+                    ListView home_list = customView.findViewById(R.id.home_list);
 
-                popWindow = new PopWindow.Builder(getActivity())
-                        .setStyle(PopWindow.PopWindowStyle.PopDown)
-                        .setView(customView)
-                        .show(view);
+                    popWindow = new PopWindow.Builder(getActivity())
+                            .setStyle(PopWindow.PopWindowStyle.PopDown)
+                            .setView(customView)
+                            .show(view);
 
-                HomeListAdapter adapter = new HomeListAdapter(getActivity(),models,tvWorkCompany.getText().toString());
-                home_list.setAdapter(adapter);
-                home_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        SelectCompanyModel selectCompanyModel = models.get(position);
-                        tvWorkCompany.setText(selectCompanyModel.getCompanyName());
-                        UserHelper.setCompany(selectCompanyModel.getCompanyID(),selectCompanyModel.getCompanyName());
-                        getP().kanbData();
-                        getP().judgeLevel();
-                        getP().quanxian2();
-                        popWindow.dismiss();
-                    }
-                });
-
-                popWindow.setOnClickDissmiss(new PopWindow.onClickDissmiss() {
-                    @Override
-                    public void myOnClickDissmiss() {
-                    }
-                });
+                    HomeListAdapter adapter = new HomeListAdapter(getActivity(), models, tvWorkCompany.getText().toString());
+                    home_list.setAdapter(adapter);
+                    home_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            SelectCompanyModel selectCompanyModel = models.get(position);
+                            tvWorkCompany.setText(selectCompanyModel.getCompanyName());
+                            UserHelper.setCompany(selectCompanyModel.getCompanyID(), selectCompanyModel.getCompanyName());
+                            getP().kanbData();
+                            getP().judgeLevel();
+                            getP().quanxian2();
+                            popWindow.dismiss();
+                        }
+                    });
+                }
                 break;
         }
     }
 
     public void lookQxSuccess(LookQuanxian2Model model) {
         int leftDays = model.getCompanyModule().getAfterSale().getLeftDays();
-        if (TextUtils.isEmpty(UserHelper.getLookqx())){
+        if (TextUtils.isEmpty(UserHelper.getLookqx())) {
             UserHelper.setLookqx(ObtainTime.endTime());
-            if(leftDays > 0) {
+            if (leftDays > 0) {
                 PhoneUtils.dialogPhone2(getActivity(), "提示",
                         "售后板块试用期还剩" + leftDays + "天，到期后\n" +
                                 "如需继续使用，请拨打客服电话\n" +
-                                "400-055-2011","4000552011");
-            }else {
+                                "400-055-2011", "4000552011");
+            } else {
 //                PhoneUtils.dialogPhone2(getActivity(), "提示",
 //                        "对不起,您的售后板块试用期已结束\n，如需继续使用，请拨打客服电话\n400-055-2011","4000552011");
             }
-        }else {
-            if(!ObtainTime.endTime().equals(UserHelper.getLookqx())) {
+        } else {
+            if (!ObtainTime.endTime().equals(UserHelper.getLookqx())) {
                 UserHelper.setLookqx(ObtainTime.endTime());
-                if(leftDays > 0) {
+                if (leftDays > 0) {
                     PhoneUtils.dialogPhone2(getActivity(), "提示",
                             "售后板块试用期还剩" + leftDays + "天，到期后\n" +
                                     "如需继续使用，请拨打客服电话\n" +
-                                    "400-055-2011","4000552011");
-                }else {
+                                    "400-055-2011", "4000552011");
+                } else {
 //                    PhoneUtils.dialogPhone2(getActivity(), "提示",
 //                            "对不起,您的售后板块试用期已结束\n，如需继续使用，请拨打客服电话\n400-055-2011","4000552011");
                 }
@@ -291,12 +297,12 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
     public void lookQxSuccess2(LookQuanxian2Model model) {
         int leftDays = model.getCompanyModule().getAfterSale().getLeftDays();
         UserHelper.setLookqx(ObtainTime.endTime());
-        if(leftDays > 0) {
+        if (leftDays > 0) {
             PhoneUtils.dialogPhone2(getActivity(), "提示",
                     "售后板块试用期还剩" + leftDays + "天，到期后\n" +
                             "如需继续使用，请拨打客服电话\n" +
-                            "400-055-2011","4000552011");
-        }else {
+                            "400-055-2011", "4000552011");
+        } else {
 //            PhoneUtils.dialogPhone2(getActivity(), "提示",
 //                    "对不起,您的售后板块试用期已结束\n，如需继续使用，请拨打客服电话\n400-055-2011","4000552011");
         }
@@ -336,7 +342,7 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
 
     //用户信息成功返回
     public void userInfoSuccess(UserResponse result) {
-        if (!TextUtils.isEmpty(result.getUserAvatar())){
+        if (!TextUtils.isEmpty(result.getUserAvatar())) {
             Glide.with(context).load(ApiHelper.BASE_URL + result.getUserAvatar()).into(ivWorkIcon);
         }
     }
@@ -355,12 +361,12 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
     private void setGlysz() {
         tdglModels.clear();
         //团队管理
-        HomeShowModel showModel6 = new HomeShowModel("组织架构","zzjg",R.mipmap.work_jiagou);
-        HomeShowModel showModel7 = new HomeShowModel("企业设置","qysz",R.mipmap.home_qysz);
-        HomeShowModel showModel15 = new HomeShowModel("企业二维码","qyewm",R.mipmap.pro_code);
-        HomeShowModel showModel14 = new HomeShowModel("管理员设置","glysz",R.mipmap.home_glysz);
-        HomeShowModel showModel8 = new HomeShowModel("创建团队","cjtd",R.mipmap.home_chuangjian2);
-        HomeShowModel showModel9 = new HomeShowModel("加入团队","jrtd",R.mipmap.home_jiaru);
+        HomeShowModel showModel6 = new HomeShowModel("组织架构", "zzjg", R.mipmap.work_jiagou);
+        HomeShowModel showModel7 = new HomeShowModel("企业设置", "qysz", R.mipmap.home_qysz);
+        HomeShowModel showModel15 = new HomeShowModel("企业二维码", "qyewm", R.mipmap.pro_code);
+        HomeShowModel showModel14 = new HomeShowModel("管理员设置", "glysz", R.mipmap.home_glysz);
+        HomeShowModel showModel8 = new HomeShowModel("创建团队", "cjtd", R.mipmap.home_chuangjian2);
+        HomeShowModel showModel9 = new HomeShowModel("加入团队", "jrtd", R.mipmap.home_jiaru);
         tdglModels.add(showModel6);
         tdglModels.add(showModel7);
         tdglModels.add(showModel15);
@@ -370,7 +376,7 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
         tdglModels.add(showModel8);
         tdglModels.add(showModel9);
 
-        HomeTdglAdapter tdglAdapter = new HomeTdglAdapter(getActivity(),tdglModels);
+        HomeTdglAdapter tdglAdapter = new HomeTdglAdapter(getActivity(), tdglModels);
         tdglRecyleview.setAdapter(tdglAdapter);
 
         tdglAdapter.setOnItemClickListener(new HomeTdglAdapter.OnItemClickListener() {
@@ -379,9 +385,9 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
                 String type = tdglModels.get(position).getType();
                 switch (type) {
                     case "zzjg":
-                        if(TextUtils.isEmpty(UserHelper.getCompanyId())) {
-                            ToastUtil.showToast(getActivity(),"请先选择公司");
-                        }else {
+                        if (TextUtils.isEmpty(UserHelper.getCompanyId())) {
+                            ToastUtil.showToast(getActivity(), "请先选择公司");
+                        } else {
 //                            if (roleID.equals("1") || roleID.equals("2")) {
                             if (authCreate.equals("1")) {
                                 startActivity(new Intent(context, ManageJiagouActivity.class));
@@ -391,31 +397,31 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
                         }
                         break;
                     case "qysz":
-                        if(TextUtils.isEmpty(UserHelper.getCompanyId())) {
-                            ToastUtil.showToast(getActivity(),"请先选择公司");
-                        }else {
-                            if(authCreate.equals("1")) {
+                        if (TextUtils.isEmpty(UserHelper.getCompanyId())) {
+                            ToastUtil.showToast(getActivity(), "请先选择公司");
+                        } else {
+                            if (authCreate.equals("1")) {
                                 startActivity(new Intent(context, TeamManageActivity.class));
-                            }else {
-                                ToastUtil.showToast(getActivity(),"您还没有该权限，请联系管理员");
+                            } else {
+                                ToastUtil.showToast(getActivity(), "您还没有该权限，请联系管理员");
                             }
                         }
                         break;
                     case "qyewm":
-                        if(TextUtils.isEmpty(UserHelper.getCompanyId())) {
-                            ToastUtil.showToast(getActivity(),"请先选择公司");
-                        }else {
+                        if (TextUtils.isEmpty(UserHelper.getCompanyId())) {
+                            ToastUtil.showToast(getActivity(), "请先选择公司");
+                        } else {
                             startActivity(new Intent(getActivity(), ShareCodeActivity.class));
                         }
                         break;
                     case "glysz":
-                        if(TextUtils.isEmpty(UserHelper.getCompanyId())) {
-                            ToastUtil.showToast(getActivity(),"请先选择公司");
-                        }else {
-                            if(authCreate.equals("1")) {
+                        if (TextUtils.isEmpty(UserHelper.getCompanyId())) {
+                            ToastUtil.showToast(getActivity(), "请先选择公司");
+                        } else {
+                            if (authCreate.equals("1")) {
                                 startActivity(new Intent(getActivity(), ManageSettingActivity.class));
-                            }else {
-                                ToastUtil.showToast(getActivity(),"您还没有该权限，请联系管理员");
+                            } else {
+                                ToastUtil.showToast(getActivity(), "您还没有该权限，请联系管理员");
                             }
                         }
                         break;
@@ -424,7 +430,7 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
                         break;
                     case "jrtd":
                         Intent intent = new Intent(getActivity(), EstablishJoinActivity.class);
-                        intent.putExtra("EstablishJoin",2);
+                        intent.putExtra("EstablishJoin", 2);
                         startActivity(intent);
                         break;
                 }
@@ -435,24 +441,24 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
     private void setKhgl() {
         khglModel.clear();
         //客户管理
-        HomeShowModel showMode20 = new HomeShowModel("客户管理","khgl",R.mipmap.home_khgl);
-        HomeShowModel showMode21 = new HomeShowModel("我的客户","wdkh",R.mipmap.home_wdkh);
-        HomeShowModel showMode22 = new HomeShowModel("添加客户","xjkh",R.mipmap.home_xjkh);
-        HomeShowModel showMode23 = new HomeShowModel("分享客户","fxkh",R.mipmap.home_wdgx);
-        HomeShowModel showMode24 = new HomeShowModel("新增跟进","gjjd",R.mipmap.home_gjjd);
-        HomeShowModel showMode25 = new HomeShowModel("我的任务","wdrw",R.mipmap.home_wdrw);
+        HomeShowModel showMode20 = new HomeShowModel("客户管理", "khgl", R.mipmap.home_khgl);
+        HomeShowModel showMode21 = new HomeShowModel("我的客户", "wdkh", R.mipmap.home_wdkh);
+        HomeShowModel showMode22 = new HomeShowModel("添加客户", "xjkh", R.mipmap.home_xjkh);
+        HomeShowModel showMode23 = new HomeShowModel("分享客户", "fxkh", R.mipmap.home_wdgx);
+        HomeShowModel showMode24 = new HomeShowModel("新增跟进", "gjjd", R.mipmap.home_gjjd);
+        HomeShowModel showMode25 = new HomeShowModel("我的任务", "wdrw", R.mipmap.home_wdrw);
 
-        if(authCreate.equals("1")) {// 1显示 0不显示
+        if (authCreate.equals("1")) {// 1显示 0不显示
             khglModel.add(showMode20);
         }
         khglModel.add(showMode21);
         khglModel.add(showMode22);
-        if(authCreate.equals("1")) {// 1显示 0不显示
+        if (authCreate.equals("1")) {// 1显示 0不显示
             khglModel.add(showMode23);
         }
         khglModel.add(showMode24);
         khglModel.add(showMode25);
-        HomeKehuglAdapter khglAdapter = new HomeKehuglAdapter(getActivity(),khglModel);
+        HomeKehuglAdapter khglAdapter = new HomeKehuglAdapter(getActivity(), khglModel);
         khglRecyleview.setAdapter(khglAdapter);
 
         khglAdapter.setOnItemClickListener(new HomeKehuglAdapter.OnItemClickListener() {
@@ -461,46 +467,46 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
                 String type = khglModel.get(position).getType();
                 switch (type) {
                     case "khgl":
-                        if(TextUtils.isEmpty(UserHelper.getCompanyId())) {
-                            ToastUtil.showToast(getActivity(),"请先选择公司");
-                        }else {
+                        if (TextUtils.isEmpty(UserHelper.getCompanyId())) {
+                            ToastUtil.showToast(getActivity(), "请先选择公司");
+                        } else {
                             startActivity(new Intent(getActivity(), CustomerMangerActivity.class));
                         }
                         break;
                     case "wdkh":
-                        if(TextUtils.isEmpty(UserHelper.getCompanyId())) {
-                            ToastUtil.showToast(getActivity(),"请先选择公司");
-                        }else {
+                        if (TextUtils.isEmpty(UserHelper.getCompanyId())) {
+                            ToastUtil.showToast(getActivity(), "请先选择公司");
+                        } else {
                             startActivity(new Intent(getActivity(), MyCustomerActivity.class));
                         }
                         break;
                     case "xjkh":
-                        if(TextUtils.isEmpty(UserHelper.getCompanyId())) {
-                            ToastUtil.showToast(getActivity(),"请先选择公司");
-                        }else {
+                        if (TextUtils.isEmpty(UserHelper.getCompanyId())) {
+                            ToastUtil.showToast(getActivity(), "请先选择公司");
+                        } else {
                             startActivity(new Intent(getActivity(), BulidCustomerActivity.class));
                         }
                         break;
                     case "fxkh":
-                        if(TextUtils.isEmpty(UserHelper.getCompanyId())) {
-                            ToastUtil.showToast(getActivity(),"请先选择公司");
-                        }else {
+                        if (TextUtils.isEmpty(UserHelper.getCompanyId())) {
+                            ToastUtil.showToast(getActivity(), "请先选择公司");
+                        } else {
                             startActivity(new Intent(getActivity(), MyShareActivity.class));
                         }
                         break;
                     case "gjjd":
-                        if(TextUtils.isEmpty(UserHelper.getCompanyId())) {
-                            ToastUtil.showToast(getActivity(),"请先选择公司");
-                        }else {
+                        if (TextUtils.isEmpty(UserHelper.getCompanyId())) {
+                            ToastUtil.showToast(getActivity(), "请先选择公司");
+                        } else {
                             Intent intent = new Intent(getActivity(), SelectCustomerActivity.class);
-                            intent.putExtra("add_aa",3);
+                            intent.putExtra("add_aa", 3);
                             startActivity(intent);
                         }
                         break;
                     case "wdrw":
-                        if(TextUtils.isEmpty(UserHelper.getCompanyId())) {
-                            ToastUtil.showToast(getActivity(),"请先选择公司");
-                        }else {
+                        if (TextUtils.isEmpty(UserHelper.getCompanyId())) {
+                            ToastUtil.showToast(getActivity(), "请先选择公司");
+                        } else {
                             startActivity(new Intent(getActivity(), MyTaskActivity.class));
                         }
                         break;
@@ -515,13 +521,13 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
             tv_home_czzx.setVisibility(View.VISIBLE);
             czzxModel.clear();
             //充值中心
-            HomeShowModel showModel17 = new HomeShowModel("公司会员","gshy",R.mipmap.home_huiyuan);
-            HomeShowModel showModel16 = new HomeShowModel("充值中心","czzx",R.mipmap.home_czzx);
-            HomeShowModel showModel18 = new HomeShowModel("用砖记录","yzjl",R.mipmap.home_jilu);
+            HomeShowModel showModel17 = new HomeShowModel("公司会员", "gshy", R.mipmap.home_huiyuan);
+            HomeShowModel showModel16 = new HomeShowModel("充值中心", "czzx", R.mipmap.home_czzx);
+            HomeShowModel showModel18 = new HomeShowModel("用砖记录", "yzjl", R.mipmap.home_jilu);
             czzxModel.add(showModel17);
             czzxModel.add(showModel16);
             czzxModel.add(showModel18);
-            HomeCzzxAdapter czzxAdapter = new HomeCzzxAdapter(getActivity(),czzxModel);
+            HomeCzzxAdapter czzxAdapter = new HomeCzzxAdapter(getActivity(), czzxModel);
             czzxRecyleview.setAdapter(czzxAdapter);
             czzxAdapter.setOnItemClickListener(new HomeCzzxAdapter.OnItemClickListener() {
                 @Override
@@ -529,23 +535,23 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
                     String type = czzxModel.get(position).getType();
                     switch (type) {
                         case "gshy":
-                            if(TextUtils.isEmpty(UserHelper.getCompanyId())) {
-                                ToastUtil.showToast(getActivity(),"请先选择公司");
-                            }else {
+                            if (TextUtils.isEmpty(UserHelper.getCompanyId())) {
+                                ToastUtil.showToast(getActivity(), "请先选择公司");
+                            } else {
                                 startActivity(new Intent(getActivity(), BrickActivity.class));
                             }
                             break;
                         case "czzx":
-                            if(TextUtils.isEmpty(UserHelper.getCompanyId())) {
-                                ToastUtil.showToast(getActivity(),"请先选择公司");
-                            }else {
+                            if (TextUtils.isEmpty(UserHelper.getCompanyId())) {
+                                ToastUtil.showToast(getActivity(), "请先选择公司");
+                            } else {
                                 startActivity(new Intent(getActivity(), RechargeActivity.class));
                             }
                             break;
                         case "yzjl":
-                            if(TextUtils.isEmpty(UserHelper.getCompanyId())) {
-                                ToastUtil.showToast(getActivity(),"请先选择公司");
-                            }else {
+                            if (TextUtils.isEmpty(UserHelper.getCompanyId())) {
+                                ToastUtil.showToast(getActivity(), "请先选择公司");
+                            } else {
                                 startActivity(new Intent(getActivity(), TransactionRecordActivity.class));
                             }
                             break;
@@ -568,15 +574,15 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
         this.models = models;
     }
 
-    private void setDatas(){
+    private void setDatas() {
         //项目管理
-        HomeShowModel showModel1 = new HomeShowModel("新建项目","xjxm",R.mipmap.home_chuangjian);
-        HomeShowModel showModel2 = new HomeShowModel("项目管理","xmgl",R.mipmap.home_guanli);
-        HomeShowModel showModel13 = new HomeShowModel("我的项目","wdxm",R.mipmap.home_wdxm);
+        HomeShowModel showModel1 = new HomeShowModel("新建项目", "xjxm", R.mipmap.home_chuangjian);
+        HomeShowModel showModel2 = new HomeShowModel("项目管理", "xmgl", R.mipmap.home_guanli);
+        HomeShowModel showModel13 = new HomeShowModel("我的项目", "wdxm", R.mipmap.home_wdxm);
         xmglModel.add(showModel1);
         xmglModel.add(showModel2);
         xmglModel.add(showModel13);
-        HomeWdxmAdapter wdxmAdapter = new HomeWdxmAdapter(getActivity(),xmglModel);
+        HomeWdxmAdapter wdxmAdapter = new HomeWdxmAdapter(getActivity(), xmglModel);
         xmglRecyleview.setAdapter(wdxmAdapter);
 
         wdxmAdapter.setOnItemClickListener(new HomeWdxmAdapter.OnItemClickListener() {
@@ -585,31 +591,31 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
                 String type = xmglModel.get(position).getType();
                 switch (type) {
                     case "xjxm":
-                        if(TextUtils.isEmpty(UserHelper.getCompanyId())) {
-                            ToastUtil.showToast(getActivity(),"请先选择公司");
-                        }else {
-                            if(authCreate.equals("1")) {// 1显示 0不显示
+                        if (TextUtils.isEmpty(UserHelper.getCompanyId())) {
+                            ToastUtil.showToast(getActivity(), "请先选择公司");
+                        } else {
+                            if (authCreate.equals("1")) {// 1显示 0不显示
                                 startActivity(new Intent(getActivity(), FoundProjectActivity.class));
-                            }else {
-                                ToastUtil.showToast(getActivity(),"您还没有该权限，请联系管理员");
+                            } else {
+                                ToastUtil.showToast(getActivity(), "您还没有该权限，请联系管理员");
                             }
                         }
                         break;
                     case "xmgl":
-                        if(TextUtils.isEmpty(UserHelper.getCompanyId())) {
-                            ToastUtil.showToast(getActivity(),"请先选择公司");
-                        }else {
-                            if(authManage.equals("1")) {// 1显示 0不显示
+                        if (TextUtils.isEmpty(UserHelper.getCompanyId())) {
+                            ToastUtil.showToast(getActivity(), "请先选择公司");
+                        } else {
+                            if (authManage.equals("1")) {// 1显示 0不显示
                                 startActivity(new Intent(getActivity(), ProjectManageActivity.class));
-                            }else {
-                                ToastUtil.showToast(getActivity(),"您还没有该权限，请联系管理员");
+                            } else {
+                                ToastUtil.showToast(getActivity(), "您还没有该权限，请联系管理员");
                             }
                         }
                         break;
                     case "wdxm":
-                        if(TextUtils.isEmpty(UserHelper.getCompanyId())) {
-                            ToastUtil.showToast(getActivity(),"请先选择公司");
-                        }else {
+                        if (TextUtils.isEmpty(UserHelper.getCompanyId())) {
+                            ToastUtil.showToast(getActivity(), "请先选择公司");
+                        } else {
                             startActivity(new Intent(getActivity(), MyProjectActivity.class));
                         }
                         break;
@@ -618,62 +624,58 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
         });
 
         //售后管理
-        HomeShowModel showModel10 = new HomeShowModel("新建工单","xjgd",R.mipmap.stag_xjgd);
-        HomeShowModel showModel11 = new HomeShowModel("售后工单","shgd",R.mipmap.stag_shgd);
-        HomeShowModel showModel12 = new HomeShowModel("售后设置","shsz",R.mipmap.stag_shsz);
-        HomeShowModel showModel3 = new HomeShowModel("客服管理","kfgl",R.mipmap.stag_shkf);
+        HomeShowModel showModel10 = new HomeShowModel("新建工单", "xjgd", R.mipmap.stag_xjgd);
+        HomeShowModel showModel11 = new HomeShowModel("售后工单", "shgd", R.mipmap.stag_shgd);
+        HomeShowModel showModel12 = new HomeShowModel("售后设置", "shsz", R.mipmap.stag_shsz);
+        HomeShowModel showModel3 = new HomeShowModel("客服管理", "kfgl", R.mipmap.stag_shkf);
         homeShowModels.add(showModel10);
         homeShowModels.add(showModel11);
         homeShowModels.add(showModel12);
         homeShowModels.add(showModel3);
 
-        HomeKhglAdapter homeKhglAdapter = new HomeKhglAdapter(getActivity(),homeShowModels);
+        HomeKhglAdapter homeKhglAdapter = new HomeKhglAdapter(getActivity(), homeShowModels);
         shglRecyleview.setAdapter(homeKhglAdapter);
 
         homeKhglAdapter.setOnItemClickListener(new HomeKhglAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
+                if (TextUtils.isEmpty(UserHelper.getCompanyId())) {
+                    ToastUtil.showToast(getActivity(), "请先选择公司");
+                    return;
+                }
                 String type = homeShowModels.get(position).getType();
                 switch (type) {
                     case "xjgd":
-                        if(TextUtils.isEmpty(UserHelper.getCompanyId())) {
-                            ToastUtil.showToast(getActivity(),"请先选择公司");
-                        }else {
-                            Intent intent = new Intent(getActivity(), SelectProjectActivity.class);
-                            intent.putExtra(Constants.SELECT_PROJECT,1);
-                            startActivity(intent);
-                        }
+
+                        Intent intent = new Intent(getActivity(), SelectProjectActivity.class);
+                        intent.putExtra(Constants.SELECT_PROJECT, 1);
+                        startActivity(intent);
+
                         break;
                     case "shgd":
                         startActivity(new Intent(getActivity(), MyOrderActivity.class));
                         break;
                     case "shsz":
-                        if(TextUtils.isEmpty(UserHelper.getCompanyId())) {
-                            ToastUtil.showToast(getActivity(),"请先选择公司");
-                        }else {
-                            Intent intent2 = new Intent(getActivity(), SelectProjectActivity.class);
-                            intent2.putExtra(Constants.SELECT_PROJECT,2);
-                            startActivity(intent2);
-                        }
+
+                        Intent intent2 = new Intent(getActivity(), SelectProjectActivity.class);
+                        intent2.putExtra(Constants.SELECT_PROJECT, 2);
+                        startActivity(intent2);
+
                         break;
                     case "kfgl":
-                        if(TextUtils.isEmpty(UserHelper.getCompanyId())) {
-                            ToastUtil.showToast(getActivity(),"请先选择公司");
-                        }else {
-                            startActivity(new Intent(getActivity(), CustomSettingActivity.class));
-                        }
+                        startActivity(new Intent(getActivity(), CustomSettingActivity.class));
                         break;
                 }
             }
         });
 
         //口碑品牌
-        HomeShowModel showModel4 = new HomeShowModel("口碑包装","kbbz",R.mipmap.work_koubei);
-        HomeShowModel showModel5 = new HomeShowModel("品牌传播","ppcb",R.mipmap.work_pinpai);
+        HomeShowModel showModel4 = new HomeShowModel("口碑包装", "kbbz", R.mipmap.work_koubei);
+        HomeShowModel showModel5 = new HomeShowModel("品牌传播", "ppcb", R.mipmap.work_pinpai);
         kbppModel.add(showModel4);
         kbppModel.add(showModel5);
 
-        HomeKbppAdapter kbppAdapter = new HomeKbppAdapter(getActivity(),kbppModel);
+        HomeKbppAdapter kbppAdapter = new HomeKbppAdapter(getActivity(), kbppModel);
         kbppRecyleview.setAdapter(kbppAdapter);
 
         kbppAdapter.setOnItemClickListener(new HomeKbppAdapter.OnItemClickListener() {

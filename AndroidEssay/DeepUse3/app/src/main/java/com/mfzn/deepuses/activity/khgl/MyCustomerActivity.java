@@ -81,7 +81,7 @@ public class MyCustomerActivity extends BaseMvpActivity<MyCustomerPresnet> {
             @Override
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent(MyCustomerActivity.this, MyCustomerDetailsActivity.class);
-                intent.putExtra(Constants.CUSTOMER_ID,String.valueOf(adapter.getDataSource().get(position).getData_id()));
+                intent.putExtra(Constants.CUSTOMER_ID,String.valueOf(adapter.getDataSource().get(position).getUid()));
                 intent.putExtra(Constants.CUSTOMER_NAME,adapter.getDataSource().get(position).getU_name());
                 startActivity(intent);
             }

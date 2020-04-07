@@ -1,6 +1,7 @@
 package com.mfzn.deepuses.present.customer;
 
 import com.mfzn.deepuses.activity.khgl.BulidCustomerActivity;
+import com.mfzn.deepuses.bean.request.AddCustomerRequest;
 import com.mfzn.deepuses.net.ApiHelper;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.utils.UserHelper;
@@ -15,8 +16,15 @@ public class BuildCustomerPresnet extends XPresent<BulidCustomerActivity> {
 
     public void buildCustomer(String customerName,String customerPhone,String followStatusID,String customerLevelID,String customerSourceID,
                               String remark) {
-        ApiHelper.getApiService().buildCustomer(UserHelper.getToken(), UserHelper.getUid(),UserHelper.getCompanyId(),customerName,customerPhone,
-                followStatusID,customerLevelID,customerSourceID,remark)
+        AddCustomerRequest request=new AddCustomerRequest();
+        request.setCompanyID(UserHelper.getCompanyId());
+        request.setCustomerName(customerName);
+        request.setCustomerPhone(customerPhone);
+        request.setFollowStatusID(followStatusID);
+        request.setCustomerLevelID(customerLevelID);
+        request.setCustomerSourceID(customerSourceID);
+        request.setRemark(remark);
+        ApiHelper.getApiService().buildCustomer(UserHelper.getToken(), UserHelper.getUid(),request)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

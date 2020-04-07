@@ -102,7 +102,7 @@ public class CompanyInfoActivity extends BaseMvpActivity<CompanyInfoPresent> {
     }
 
     @OnClick({R.id.iv_login_back, R.id.tv_bass_comlate, R.id.iv_com_name, R.id.iv_com_quancheng, R.id.tv_address,
-            R.id.iv_com_wangzhi, R.id.et_com_yewu, R.id.et_com_guimo,R.id.iv_com_address})
+            R.id.iv_com_wangzhi, R.id.yewu, R.id.im_com_guimo,R.id.iv_com_address})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_login_back:
@@ -138,10 +138,10 @@ public class CompanyInfoActivity extends BaseMvpActivity<CompanyInfoPresent> {
             case R.id.iv_com_wangzhi:
                 etComWangzhi.getText().clear();
                 break;
-            case R.id.et_com_yewu:
+            case R.id.yewu:
                 startActivityForResult(new Intent(this, SelectLableActivity.class), Constants.SELECT_LAVLE);
                 break;
-            case R.id.et_com_guimo:
+            case R.id.im_com_guimo:
                 startActivityForResult(new Intent(this, CompanyScaleActivity.class), Constants.COMPANY_SCALE);
                 break;
         }

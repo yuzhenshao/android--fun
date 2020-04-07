@@ -156,7 +156,9 @@ public class PopWindow implements PopWindowInterface,
         if (mIsShowControlViewAnim) {
             mControlView.startAnimation(mControlViewCloseAnimation);
         }
-        monClickDissmiss.myOnClickDissmiss();
+        if(monClickDissmiss!=null) {
+            monClickDissmiss.myOnClickDissmiss();
+        }
     }
 
     @Override

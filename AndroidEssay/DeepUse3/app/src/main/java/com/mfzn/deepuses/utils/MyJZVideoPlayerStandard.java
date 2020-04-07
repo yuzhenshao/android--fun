@@ -1,13 +1,17 @@
 package com.mfzn.deepuses.utils;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 
+import com.bumptech.glide.Glide;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.listener.VideoStateListener;
+import com.mfzn.deepuses.net.ApiHelper;
 
 import cn.jzvd.JzvdStd;
 
@@ -18,6 +22,7 @@ import cn.jzvd.JzvdStd;
  * @date 2018/5/2  10:43
  */
 public class MyJZVideoPlayerStandard extends JzvdStd {
+    private Context mContext;
 
     public MyJZVideoPlayerStandard(Context context) {
         super(context);
@@ -30,23 +35,30 @@ public class MyJZVideoPlayerStandard extends JzvdStd {
     @Override
     public void init(Context context) {
         super.init(context);
+        mContext = context;
     }
 
+    public void setThumb(String imageUrl) {
+        ImageView imageView = findViewById(R.id.thumb);
+        if (!TextUtils.isEmpty(imageUrl)) {
+            Glide.with(mContext).load(ApiHelper.BASE_URL + imageUrl).into(imageView);
+        }
+    }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case cn.jzvd.R.id.thumb:
-            case cn.jzvd.R.id.start:
-                if (currentState == CURRENT_STATE_IDLE || currentState == CURRENT_STATE_NORMAL){
+        switch (v.getId()) {
+            case R.id.thumb:
+            case R.id.start:
+                if (currentState == CURRENT_STATE_IDLE || currentState == CURRENT_STATE_NORMAL) {
                     //如果当前是闲置状态，点击后回调点击播放的事件
-                    if (mListener != null){
+                    if (mListener != null) {
                         mListener.onStartClick();
                         return;
                     }
                 }
                 break;
-            case cn.jzvd.R.id.fullscreen:
+            case R.id.fullscreen:
                 if (currentScreen == SCREEN_WINDOW_FULLSCREEN) {
                     //click quit fullscreen
                 } else {
@@ -64,7 +76,7 @@ public class MyJZVideoPlayerStandard extends JzvdStd {
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        if (mListener != null){
+        if (mListener != null) {
             mListener.onTouch();
         }
         return super.onTouch(v, event);
@@ -89,7 +101,7 @@ public class MyJZVideoPlayerStandard extends JzvdStd {
     @Override
     public void onStatePreparing() {
         super.onStatePreparing();
-        if (mListener != null){
+        if (mListener != null) {
             mListener.onPreparing();
         }
     }
@@ -97,7 +109,7 @@ public class MyJZVideoPlayerStandard extends JzvdStd {
     @Override
     public void onStatePlaying() {
         super.onStatePlaying();
-        if (mListener != null){
+        if (mListener != null) {
             mListener.onPlaying();
         }
     }
@@ -105,7 +117,7 @@ public class MyJZVideoPlayerStandard extends JzvdStd {
     @Override
     public void onStatePause() {
         super.onStatePause();
-        if (mListener != null){
+        if (mListener != null) {
             mListener.onPause();
         }
     }
@@ -113,7 +125,7 @@ public class MyJZVideoPlayerStandard extends JzvdStd {
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 //        super.onProgressChanged(seekBar, progress, fromUser);
-        if (mListener != null){
+        if (mListener != null) {
             mListener.onProgressChanged(progress);
         }
     }
@@ -126,7 +138,7 @@ public class MyJZVideoPlayerStandard extends JzvdStd {
     @Override
     public void onStateAutoComplete() {
         super.onStateAutoComplete();
-        if (mListener != null){
+        if (mListener != null) {
             mListener.onComplete();
         }
     }
@@ -154,7 +166,7 @@ public class MyJZVideoPlayerStandard extends JzvdStd {
     @Override
     public void startDismissControlViewTimer() {
         super.startDismissControlViewTimer();
-        if (mListener != null){
+        if (mListener != null) {
             mListener.onStartDismissControlViewTimer();
         }
     }

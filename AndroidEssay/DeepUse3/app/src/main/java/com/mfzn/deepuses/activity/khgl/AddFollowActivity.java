@@ -31,16 +31,20 @@ import com.bigkoo.pickerview.view.TimePickerView;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.adapter.khgl.FollowPhotoAdapter;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
+import com.mfzn.deepuses.bean.request.AddFollowRecordRequest;
+import com.mfzn.deepuses.net.ImageUploadManager;
 import com.mfzn.deepuses.present.customer.AddFollowPresnet;
 import com.mfzn.deepuses.qiniu.Auth;
 import com.mfzn.deepuses.qiniu.Config;
 import com.mfzn.deepuses.qiniu.QiNiuInitialize;
+import com.mfzn.deepuses.utils.BitmapFileSetting;
 import com.mfzn.deepuses.utils.Constants;
 import com.mfzn.deepuses.utils.DateUtils;
 import com.mfzn.deepuses.utils.ImageCompressUtil;
 import com.mfzn.deepuses.utils.ObtainTime;
 import com.mfzn.deepuses.utils.PhotographDialog;
 import com.mfzn.deepuses.utils.ToastUtil;
+import com.mfzn.deepuses.utils.UserHelper;
 import com.qiniu.android.http.ResponseInfo;
 import com.qiniu.android.storage.UpCancellationSignal;
 import com.qiniu.android.storage.UpCompletionHandler;
@@ -65,6 +69,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import me.nereo.multi_image_selector.MultiImageSelectorActivity;
+import retrofit2.http.Field;
 
 public class AddFollowActivity extends BaseMvpActivity<AddFollowPresnet> {
 
@@ -190,8 +195,16 @@ public class AddFollowActivity extends BaseMvpActivity<AddFollowPresnet> {
                     }
 
                 }
-                getP().addFollow(communicationTypeID,statusID,dataid,etFoXq.getText().toString().trim(),
-                        sss,DateUtils.getStringToDate2(etFoTime.getText().toString()));
+
+                AddFollowRecordRequest request=new AddFollowRecordRequest();
+                request.setCommunicationTypeID(communicationTypeID);
+                request.setFollowStatusID(statusID);
+                request.setCustomerID(dataid);
+                request.setContent(etFoXq.getText().toString().trim());
+                request.setImageUrls(sss);
+                request.setFollowTime(DateUtils.getStringToDate2(etFoTime.getText().toString()));
+                request.setCompanyID(UserHelper.getCompanyId());
+                getP().addFollow(request);
                 break;
         }
     }
@@ -202,14 +215,11 @@ public class AddFollowActivity extends BaseMvpActivity<AddFollowPresnet> {
 
         if (requestCode == Constants.REAL_NAME_PAIZHAO) {
             String cameraFile = PhotographDialog.mSp.getString("img", "");
-//            clipPhotoBySelf(PhotographDialog.Image_SAVEDIR + "/" + cameraFile);
             Bitmap bitmaps = BitmapFactory.decodeFile(PhotographDialog.Image_SAVEDIR + "/" + cameraFile);//根据路径转为bitmap
             if (bitmaps != null) {
                 bitmap = ImageCompressUtil.compressBySize(bitmaps, 800, 1000);
-
-                uploadImage();
-//                File file = BitmapFileSetting.saveBitmapFile(newbitmap, PhotographDialog.Image_SAVEDIR + "/" + cameraFile);
-//                getP().upLoadFile(file);
+                File file = BitmapFileSetting.saveBitmapFile(bitmap, PhotographDialog.Image_SAVEDIR + "/" + cameraFile);
+                uploadImage(file);
             }
         } else if (requestCode == Constants.REAL_NAME_XIANGCE) {
 
@@ -217,13 +227,11 @@ public class AddFollowActivity extends BaseMvpActivity<AddFollowPresnet> {
                 Uri uri = data.getData();
                 if (uri != null) {
                     String path = ImageCompressUtil.getRealPathFromURI(this, uri);//获取选中图片的路径
-//                    clipPhotoBySelf(path);
                     Bitmap bitmaps = BitmapFactory.decodeFile(path);
                     bitmap = ImageCompressUtil.compressBySize(bitmaps, 800, 1000);
-//                    String cameraFile = DateFormat.format("yy-MM-dd-hh-mm-ss", new Date()) + ".jpg";
-//                    File file = BitmapFileSetting.saveBitmapFile(newbitmap, PhotographDialog.Image_SAVEDIR + "/" + cameraFile);
-//                    getP().upLoadFile(file);
-                    uploadImage();
+                    String cameraFile = DateFormat.format("yy-MM-dd-hh-mm-ss", new Date()) + ".jpg";
+                    File file = BitmapFileSetting.saveBitmapFile(bitmap, PhotographDialog.Image_SAVEDIR + "/" + cameraFile);
+                    uploadImage(file);
                 }
             }
         }
@@ -237,56 +245,25 @@ public class AddFollowActivity extends BaseMvpActivity<AddFollowPresnet> {
         finish();
     }
 
-    //获取token(开发中放到业务服务器)
-    public String getUpToken() {
-        return Auth.create(Config.ACCESS_KEY, Config.SECRET_KEY).uploadToken(Config.BUCKET_NAME);
-    }
+    public void uploadImage(File file) {
+        showDialog();
+        ImageUploadManager.uploadImage(file,new ImageUploadManager.ImageUploadCallback(){
 
-    public void uploadImage() {
-        //上传到七牛后保存的文件名
-//    String key = "myjava.jpg";
-        String key = "prochange/files/" + ObtainTime.endDataTime() + ".jpg";
-
-        //定义数据上传结束后的处理动作
-        final UpCompletionHandler upCompletionHandler = new UpCompletionHandler() {
             @Override
-            public void complete(String key, ResponseInfo info, JSONObject response) {
+            public void uploadSuccess(String url) {
+                hideDialog();
                 bmp.add(bitmap);
-                drr.add(key);
-                gridviewInit();
+                drr.add(url);
+                recycleAdapter.notifyDataSetChanged();
             }
-        };
-        final UploadOptions uploadOptions = new UploadOptions(null, null, false, new UpProgressHandler() {
+
             @Override
-            public void progress(String key, final double percent) {
-                //百分数格式化
-                NumberFormat fmt = NumberFormat.getPercentInstance();
-                fmt.setMaximumFractionDigits(2);//最多两位百分小数，如25.23%
-//                tv.setText("图片已经上传:" + fmt.format(percent));
-            }
-        }, new UpCancellationSignal() {
-            @Override
-            public boolean isCancelled() {
-                return false;
+            public void uoloadFailed(String error) {
+                hideDialog();
+                ToastUtil.showToast(AddFollowActivity.this,"该图片上传失败，请稍后重试");
             }
         });
-        try {
-            //上传图片jjj
-            QiNiuInitialize.getSingleton().put(getByte(), key, getUpToken(), upCompletionHandler, uploadOptions);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
-
-    //获取资源文件中的图片
-    public byte[] getByte() {
-//        Resources res = getResources();
-//        Bitmap bm = BitmapFactory.decodeResource(res, R.mipmap.ic_launcher);
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, baos);
-        return baos.toByteArray();
-    }
-
     public void getSelectSuccess(SelectModel model) {
         this.model = model;
     }
@@ -301,7 +278,6 @@ public class AddFollowActivity extends BaseMvpActivity<AddFollowPresnet> {
             @Override
             public void onItemAddClick(View view, int position) {
                 if (position == 0 && bmp.size() != 9) {
-//                    PhotographDialog.photographDialog(AddFollowActivity.this,bmp);
                     PhotographDialog.photographDialog2(AddFollowActivity.this);
                 }
             }

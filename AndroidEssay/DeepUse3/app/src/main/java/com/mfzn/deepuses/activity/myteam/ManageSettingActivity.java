@@ -41,6 +41,9 @@ public class ManageSettingActivity extends BaseMvpActivity<ManageSettingPresent>
     @BindView(R.id.man_recycle)
     SlideRecyclerView manRecycle;
 
+    @BindView(R.id.tv_set_add)
+    TextView authorityAdd;
+
     private List<ManageSettingModel> models = new ArrayList<>();
     private int addType;
 
@@ -127,6 +130,7 @@ public class ManageSettingActivity extends BaseMvpActivity<ManageSettingPresent>
     }
 
     public void manageSetting(List<ManageSettingModel> models) {
+        authorityAdd.setVisibility(View.VISIBLE);
         this.models = models;
         ManageSettingAdapter adapter = new ManageSettingAdapter(this,models);
         manRecycle.setAdapter(adapter);

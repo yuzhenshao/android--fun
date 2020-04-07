@@ -16,9 +16,9 @@ import cn.droidlover.xdroidmvp.net.XApi;
 
 public class AuthoritySettingPresent extends XPresent<AuthoritySettingActivity> {
 
-    public void authoritySetting(String userID,String departIDs,String authCreate,String authData,String authManage,String rechargeAuth,String crmAuth) {
+    public void authoritySetting(String userID,ManageSettingModel model) {
         ApiHelper.getApiService().updateManager(UserHelper.getToken(), UserHelper.getUid(),UserHelper.getCompanyId(),
-                userID,departIDs,authCreate,authData,authManage,rechargeAuth,crmAuth)
+                userID,model.getProCreateAuth(),model.getAdminCreateAuth(),model.getRechargeAuth(),model.getCrmAuth())
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

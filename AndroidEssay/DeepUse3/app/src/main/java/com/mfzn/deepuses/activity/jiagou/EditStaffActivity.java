@@ -21,6 +21,7 @@ import com.mfzn.deepuses.bass.BaseMvpActivity;
 import com.mfzn.deepuses.model.jiagou.ZuzhiJiagouModel;
 import com.mfzn.deepuses.present.jiagou.EditStaffPresent;
 import com.mfzn.deepuses.utils.Constants;
+import com.mfzn.deepuses.utils.DateUtils;
 import com.mfzn.deepuses.utils.EventMsg;
 import com.mfzn.deepuses.utils.RxBus;
 import com.mfzn.deepuses.utils.ToastUtil;
@@ -67,45 +68,59 @@ public class EditStaffActivity extends BaseMvpActivity<EditStaffPresent> {
     @Override
     public void initData(Bundle savedInstanceState) {
         super.initData(savedInstanceState);
-        tvBassTitle.setText(getString(R.string.app_edit_staff));
-        tvBassComlate.setVisibility(View.VISIBLE);
+        try {
+            tvBassTitle.setText(getString(R.string.app_edit_staff));
+            tvBassComlate.setVisibility(View.VISIBLE);
 
-        Intent intent = getIntent();
-        String type = intent.getStringExtra(Constants.EDIT_STAFF_TYPE);
-        if(type.equals("1")){
+            Intent intent = getIntent();
+            String type = intent.getStringExtra(Constants.EDIT_STAFF_TYPE);
             ZuzhiJiagouModel model = (ZuzhiJiagouModel) intent.getSerializableExtra(Constants.EDIT_STAFF);
-            int extra = intent.getIntExtra(Constants.EDIT_STAFF_POSITION, 0);
-            etEditName.setText(model.getStaff().get(extra).getStaffName());
-            tvEditPhone.setText(model.getStaff().get(extra).getUserPhone());
-            tvEditBm.setText(model.getDepartmentName());
-            oldDepartmentID = model.getDepartmentID() + "";
-            uid = model.getStaff().get(extra).getUserID();
-            positionName = model.getStaff().get(extra).getPositionName();
-        }if(type.equals("2")){
-            ZuzhiJiagouModel model = (ZuzhiJiagouModel) intent.getSerializableExtra(Constants.EDIT_STAFF);
-            int extra = intent.getIntExtra(Constants.EDIT_STAFF_POSITION, 0);
-            int extra2 = intent.getIntExtra(Constants.EDIT_STAFF_POSITION2, 0);
-            ZuzhiJiagouModel.StaffBean staffBeanX = model.getSons().get(extra).getStaff().get(extra2);
-            etEditName.setText(staffBeanX.getStaffName());
-            tvEditPhone.setText(staffBeanX.getUserPhone());
-            tvEditBm.setText(model.getSons().get(extra).getDepartmentName());
-            oldDepartmentID = model.getSons().get(extra).getDepartmentID() + "";
-            uid = staffBeanX.getUserID();
-            positionName = staffBeanX.getPositionName();
-        }if(type.equals("3")){
-            ZuzhiJiagouModel model = (ZuzhiJiagouModel) intent.getSerializableExtra(Constants.EDIT_STAFF);
-            int extra = intent.getIntExtra(Constants.EDIT_STAFF_POSITION, 0);
-            int extra2 = intent.getIntExtra(Constants.EDIT_STAFF_POSITION2, 0);
-            int extra3 = intent.getIntExtra(Constants.EDIT_STAFF_POSITION3, 0);
-            ZuzhiJiagouModel.StaffBean staffBeanX = model.getSons().get(extra).getSons().get(extra2).getStaff().get(extra3);
-            etEditName.setText(staffBeanX.getStaffName());
-            tvEditPhone.setText(staffBeanX.getUserPhone());
-            tvEditBm.setText(model.getSons().get(extra).getSons().get(extra2).getDepartmentName());
-            oldDepartmentID = model.getSons().get(extra).getSons().get(extra2).getDepartmentID() + "";
-            uid = staffBeanX.getUserID();
-            positionName = staffBeanX.getPositionName();
+            if (model == null) {
+                return;
+            }
+            if (type.equals("1")) {
+                int extra = intent.getIntExtra(Constants.EDIT_STAFF_POSITION, 0);
+                if (model.getStaff() != null && model.getStaff().size() > extra) {
+                    ZuzhiJiagouModel.StaffBean staffBean = model.getStaff().get(extra);
+                    if (staffBean != null) {
+                        etEditName.setText(staffBean.getStaffName());
+                        tvEditPhone.setText(staffBean.getUserPhone());
+                        uid = staffBean.getUserID();
+                        positionName = staffBean.getPositionName();
+                        etEditTime.setText(DateUtils.longToDateStr(staffBean.getJoinTime()));
+                    }
+                }
+                tvEditBm.setText(model.getDepartmentName());
+                oldDepartmentID = model.getDepartmentID() + "";
+            }
+            if (type.equals("2")) {
+                int extra = intent.getIntExtra(Constants.EDIT_STAFF_POSITION, 0);
+                int extra2 = intent.getIntExtra(Constants.EDIT_STAFF_POSITION2, 0);
+                ZuzhiJiagouModel.StaffBean staffBeanX = model.getSons().get(extra).getStaff().get(extra2);
+                etEditName.setText(staffBeanX.getStaffName());
+                tvEditPhone.setText(staffBeanX.getUserPhone());
+                etEditTime.setText(DateUtils.longToDateStr(staffBeanX.getJoinTime()));
+                tvEditBm.setText(model.getSons().get(extra).getDepartmentName());
+                oldDepartmentID = model.getSons().get(extra).getDepartmentID() + "";
+                uid = staffBeanX.getUserID();
+                positionName = staffBeanX.getPositionName();
+            }
+            if (type.equals("3")) {
+                int extra = intent.getIntExtra(Constants.EDIT_STAFF_POSITION, 0);
+                int extra2 = intent.getIntExtra(Constants.EDIT_STAFF_POSITION2, 0);
+                int extra3 = intent.getIntExtra(Constants.EDIT_STAFF_POSITION3, 0);
+                ZuzhiJiagouModel.StaffBean staffBeanX = model.getSons().get(extra).getSons().get(extra2).getStaff().get(extra3);
+                etEditName.setText(staffBeanX.getStaffName());
+                tvEditPhone.setText(staffBeanX.getUserPhone());
+                etEditTime.setText(DateUtils.longToDateStr(staffBeanX.getJoinTime()));
+                tvEditBm.setText(model.getSons().get(extra).getSons().get(extra2).getDepartmentName());
+                oldDepartmentID = model.getSons().get(extra).getSons().get(extra2).getDepartmentID() + "";
+                uid = staffBeanX.getUserID();
+                positionName = staffBeanX.getPositionName();
+            }
+        } catch (Exception e) {
+            ToastUtil.showToast(this,"员工编辑失败");
         }
-
     }
 
     @OnClick({R.id.iv_login_back, R.id.tv_bass_comlate, R.id.iv_edit_name, R.id.tv_edit_bm, R.id.et_edit_time, R.id.tv_edit_delete})
@@ -116,27 +131,27 @@ public class EditStaffActivity extends BaseMvpActivity<EditStaffPresent> {
                 break;
             case R.id.tv_bass_comlate:
                 String name = etEditName.getText().toString().trim();
-                if(TextUtils.isEmpty(name)) {
-                    ToastUtil.showToast(this,"请输入姓名");
+                if (TextUtils.isEmpty(name)) {
+                    ToastUtil.showToast(this, "请输入姓名");
                     return;
                 }
                 String bm = tvEditBm.getText().toString().trim();
-                if(TextUtils.isEmpty(bm)) {
-                    ToastUtil.showToast(this,"请选择部门");
+                if (TextUtils.isEmpty(bm)) {
+                    ToastUtil.showToast(this, "请选择部门");
                     return;
                 }
                 String time = etEditTime.getText().toString().trim();
-                if(TextUtils.isEmpty(time)) {
-                    ToastUtil.showToast(this,"请选择入职时间");
+                if (TextUtils.isEmpty(time)) {
+                    ToastUtil.showToast(this, "请选择入职时间");
                     return;
                 }
-                getP().editStaff(uid,positionName,oldDepartmentID,newDepartmentID,time,name);
+                getP().editStaff(uid, positionName, oldDepartmentID, newDepartmentID, time, name);
                 break;
             case R.id.iv_edit_name:
                 etEditName.getText().clear();
                 break;
             case R.id.tv_edit_bm:
-                startActivityForResult(new Intent(this, DepartmentActivity.class),Constants.EDIT_STAFF_BM);
+                startActivityForResult(new Intent(this, DepartmentActivity.class), Constants.EDIT_STAFF_BM);
                 break;
             case R.id.et_edit_time:
                 initTimePicker();
@@ -151,8 +166,8 @@ public class EditStaffActivity extends BaseMvpActivity<EditStaffPresent> {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(Constants.EDIT_STAFF_BM == requestCode){
-            if(data != null) {
+        if (Constants.EDIT_STAFF_BM == requestCode) {
+            if (data != null) {
                 newDepartmentID = data.getStringExtra(Constants.EDIT_STAFF_ID);
                 String name = data.getStringExtra(Constants.EDIT_STAFF_NAME);
                 tvEditBm.setText(name);

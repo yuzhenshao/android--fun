@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_f5f7fa"
@@ -7,14 +8,22 @@
 
     <include layout="@layout/main_title" />
 
-    <ListView
+    <cn.droidlover.xrecyclerview.XRecyclerContentLayout
         android:id="@+id/en_listview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/app_10dp"
-        android:divider="@color/color_f5f7fa"
-        android:dividerHeight="@dimen/app_1dp"
         android:scrollbars="none"
+        android:layout_marginTop="@dimen/app_10dp"
         android:background="@color/color_ffffff"/>
+
+<!--    <ListView-->
+<!--        android:id="@+id/en_listview"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="@dimen/app_10dp"-->
+<!--        android:divider="@color/color_f5f7fa"-->
+<!--        android:dividerHeight="@dimen/app_1dp"-->
+<!--        android:scrollbars="none"-->
+<!--        android:background="@color/color_ffffff"/>-->
 
 </LinearLayout>

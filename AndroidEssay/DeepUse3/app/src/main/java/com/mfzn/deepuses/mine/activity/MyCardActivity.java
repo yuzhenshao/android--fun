@@ -112,8 +112,11 @@ public class MyCardActivity extends BaseActivity {
         Glide.with(context).load(ApiHelper.BASE_API_URL + "/" + businessCardResponse.getMyQrCode())
                 .into(ivCardCode);
         tvCardName.setText(businessCardResponse.getUserName());
-        tvCardCompany.setText(getString(R.string.company_position, businessCardResponse.getCompanyName(),
-                businessCardResponse.getUserPosition(), businessCardResponse.getProMemberLabels().get(0).getLabelName()));
+        String label = "";
+        if (businessCardResponse.getProMemberLabels() != null && businessCardResponse.getProMemberLabels().size() > 0) {
+            label = businessCardResponse.getProMemberLabels().get(0).getLabelName();
+        }
+        tvCardCompany.setText(businessCardResponse.getCompanyName() + "  " + businessCardResponse.getUserPosition() + "  " + label);
         tvWorkYear.setText(getString(R.string.card_word_year, businessCardResponse.getWorkYear()));
         tvCarddJZ.setText(getString(R.string.card_jz, businessCardResponse.getJzNum()));
         tvCardGZ.setText(getString(R.string.card_gz, businessCardResponse.getGzNum()));

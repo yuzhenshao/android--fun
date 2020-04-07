@@ -10,24 +10,24 @@ public class BrickRecordModel {
      * financialLog : {"total":9,"per_page":10,"current_page":1,"last_page":1,"data":[{"data_id":13,"userID":27,"toCompany":2,"type":2,"isZhuan":1,"money":"880.00","note":"砖自动转入公司","addTime":1576054887},{"data_id":12,"userID":27,"toCompany":2,"type":1,"isZhuan":1,"money":"880.00","note":"heihei","addTime":1576054887},{"data_id":11,"userID":27,"toCompany":2,"type":2,"isZhuan":2,"money":"88.00","note":"heihei","addTime":1576054887},{"data_id":8,"userID":27,"toCompany":1,"type":2,"isZhuan":1,"money":"1980.00","note":"砖自动转入公司","addTime":1576053585},{"data_id":7,"userID":27,"toCompany":1,"type":1,"isZhuan":1,"money":"1980.00","note":"heihei","addTime":1576053585},{"data_id":6,"userID":27,"toCompany":1,"type":2,"isZhuan":2,"money":"198.00","note":"hahah","addTime":1576053585},{"data_id":3,"userID":27,"toCompany":1,"type":2,"isZhuan":1,"money":"880.00","note":"砖自动转入公司","addTime":1576047542},{"data_id":2,"userID":27,"toCompany":1,"type":1,"isZhuan":1,"money":"880.00","note":"用户ID27的人买砖获得880砖","addTime":1576047542},{"data_id":1,"userID":27,"toCompany":1,"type":2,"isZhuan":2,"money":"88.00","note":"用户ID27的用户给消耗88元买砖","addTime":1576047542}]}
      */
 
-    private ForCompanyMoneyBean forCompanyMoney;
-    private ForCompanyZhuanBean forCompanyZhuan;
+    private ForCompanyBean forCompanyMoney;
+    private ForCompanyBean forCompanyBrick;
     private FinancialLogBean financialLog;
 
-    public ForCompanyMoneyBean getForCompanyMoney() {
+    public ForCompanyBean getForCompanyMoney() {
         return forCompanyMoney;
     }
 
-    public void setForCompanyMoney(ForCompanyMoneyBean forCompanyMoney) {
+    public void setForCompanyMoney(ForCompanyBean forCompanyMoney) {
         this.forCompanyMoney = forCompanyMoney;
     }
 
-    public ForCompanyZhuanBean getForCompanyZhuan() {
-        return forCompanyZhuan;
+    public ForCompanyBean getForCompanyZhuan() {
+        return forCompanyBrick;
     }
 
-    public void setForCompanyZhuan(ForCompanyZhuanBean forCompanyZhuan) {
-        this.forCompanyZhuan = forCompanyZhuan;
+    public void setForCompanyZhuan(ForCompanyBean forCompanyZhuan) {
+        this.forCompanyBrick = forCompanyZhuan;
     }
 
     public FinancialLogBean getFinancialLog() {
@@ -38,11 +38,22 @@ public class BrickRecordModel {
         this.financialLog = financialLog;
     }
 
-    public static class ForCompanyMoneyBean {
-        /**
-         * companyList : [{"toCompany":1,"sumMoney":"286.00","companyName":"常州冲浪网络科技有限公司"},{"toCompany":2,"sumMoney":"88.00","companyName":""}]
-         * sumMoney : 374
-         */
+    public String getBrickMoney(){
+        if(forCompanyBrick!=null){
+            forCompanyBrick.getSumMoney();
+        }
+        return "0";
+    }
+
+    public String getSumMoney(){
+        if(forCompanyMoney!=null){
+            forCompanyMoney.getSumMoney();
+        }
+        return "0";
+    }
+
+
+    public static class ForCompanyBean {
 
         private String sumMoney;
         private List<CompanyListBean> companyList;
@@ -67,68 +78,6 @@ public class BrickRecordModel {
             /**
              * toCompany : 1
              * sumMoney : 286.00
-             * companyName : 常州冲浪网络科技有限公司
-             */
-
-            private int toCompany;
-            private String sumMoney;
-            private String companyName;
-
-            public int getToCompany() {
-                return toCompany;
-            }
-
-            public void setToCompany(int toCompany) {
-                this.toCompany = toCompany;
-            }
-
-            public String getSumMoney() {
-                return sumMoney;
-            }
-
-            public void setSumMoney(String sumMoney) {
-                this.sumMoney = sumMoney;
-            }
-
-            public String getCompanyName() {
-                return companyName;
-            }
-
-            public void setCompanyName(String companyName) {
-                this.companyName = companyName;
-            }
-        }
-    }
-
-    public static class ForCompanyZhuanBean {
-        /**
-         * companyList : [{"toCompany":1,"sumMoney":"2860.00","companyName":"常州冲浪网络科技有限公司"},{"toCompany":2,"sumMoney":"880.00","companyName":""}]
-         * sumMoney : 3740
-         */
-
-        private String sumMoney;
-        private List<CompanyListBeanX> companyList;
-
-        public String getSumMoney() {
-            return sumMoney;
-        }
-
-        public void setSumMoney(String sumMoney) {
-            this.sumMoney = sumMoney;
-        }
-
-        public List<CompanyListBeanX> getCompanyList() {
-            return companyList;
-        }
-
-        public void setCompanyList(List<CompanyListBeanX> companyList) {
-            this.companyList = companyList;
-        }
-
-        public static class CompanyListBeanX {
-            /**
-             * toCompany : 1
-             * sumMoney : 2860.00
              * companyName : 常州冲浪网络科技有限公司
              */
 
@@ -233,7 +182,7 @@ public class BrickRecordModel {
             private int userID;
             private int toCompany;
             private int type;
-            private int isZhuan;
+            private int isBrick;
             private String money;
             private String note;
             private int addTime;
@@ -271,11 +220,11 @@ public class BrickRecordModel {
             }
 
             public int getIsZhuan() {
-                return isZhuan;
+                return isBrick;
             }
 
             public void setIsZhuan(int isZhuan) {
-                this.isZhuan = isZhuan;
+                this.isBrick = isZhuan;
             }
 
             public String getMoney() {

@@ -4,41 +4,20 @@ import java.util.List;
 
 public class CompanyInfoModel {
 
-    /**
-     * data_id : 14
-     * companyName : 啦啦啦
-     * shortName : 麦麸智能（常州）有限公司
-     * logo : /uploads/companyLogo/14/20191120/bc03afb5b61e9ab3c5f879e2c4130533.jpg
-     * zhuan : 1680.00
-     * giftZhuan : 188.00
-     * companyLevel : 1
-     * levelName : 普通会员
-     * levelRights : {"data_id":1,"name":"普通会员","min":0,"max":0,"discount":"1.00","modulePrice":[{"data_id":1,"moduleType":1,"buyPrice":200,"buyOutPrice":0}]}
-     * sumRecharge : 0.01
-     * nextLevel : 黄金会员
-     * leftMoney : 0.99
-     */
-
-    private int data_id;
+    private String companyID;
     private String companyName;
     private String shortName;
-    private String logo;
+    private String companyLogo;
+    private String companyTel;
+
     private String brick;
     private String giftBrick;
-    private int companyLevel;
+    private int companyLevelID;
     private String levelName;
     private LevelRightsBean levelRights;
     private double sumRecharge;
     private String nextLevel;
     private double leftMoney;
-
-    public int getData_id() {
-        return data_id;
-    }
-
-    public void setData_id(int data_id) {
-        this.data_id = data_id;
-    }
 
     public String getCompanyName() {
         return companyName;
@@ -57,11 +36,11 @@ public class CompanyInfoModel {
     }
 
     public String getLogo() {
-        return logo;
+        return companyLogo;
     }
 
     public void setLogo(String logo) {
-        this.logo = logo;
+        this.companyLogo = logo;
     }
 
     public String getZhuan() {
@@ -81,11 +60,11 @@ public class CompanyInfoModel {
     }
 
     public int getCompanyLevel() {
-        return companyLevel;
+        return companyLevelID;
     }
 
     public void setCompanyLevel(int companyLevel) {
-        this.companyLevel = companyLevel;
+        this.companyLevelID = companyLevel;
     }
 
     public String getLevelName() {
@@ -126,6 +105,22 @@ public class CompanyInfoModel {
 
     public void setLeftMoney(double leftMoney) {
         this.leftMoney = leftMoney;
+    }
+
+    public String getCompanyID() {
+        return companyID;
+    }
+
+    public void setCompanyID(String companyID) {
+        this.companyID = companyID;
+    }
+
+    public String getCompanyTel() {
+        return companyTel;
+    }
+
+    public void setCompanyTel(String companyTel) {
+        this.companyTel = companyTel;
     }
 
     public static class LevelRightsBean {
