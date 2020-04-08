@@ -98,9 +98,6 @@ public class MyCardEditActivity extends BaseActivity {
             if (!TextUtils.isEmpty(mBusinessCardResponse.getUserEmail())) {
                 etCardEmail.setSelection(mBusinessCardResponse.getUserEmail().length());
             }
-            if (!TextUtils.isEmpty(mBusinessCardResponse.getUserPosition())) {
-                etCardEmail.setSelection(mBusinessCardResponse.getUserPosition().length());
-            }
             etWorkYear.setText(mBusinessCardResponse.getWorkYear());
             etCarddJZ.setText(mBusinessCardResponse.getJzNum());
             etCardGZ.setText(mBusinessCardResponse.getGzNum());
@@ -120,6 +117,14 @@ public class MyCardEditActivity extends BaseActivity {
                 uploadEditCard();
                 break;
         }
+    }
+
+    @Override
+    public void finish(){
+        Intent intent = new Intent();
+        intent.putExtra(CARD_INFO, mBusinessCardResponse);
+        setResult(Activity.RESULT_OK, intent);
+        super.finish();
     }
 
     private void uploadEditCard() {
@@ -146,9 +151,6 @@ public class MyCardEditActivity extends BaseActivity {
                         mBusinessCardResponse.setGzNum(request.getGzNum());
                         mBusinessCardResponse.setShowCompany(request.getShowCompany());
                         mBusinessCardResponse.setShowProNum(request.getShowProNum());
-                        Intent intent = new Intent();
-                        intent.putExtra(CARD_INFO, mBusinessCardResponse);
-                        setResult(Activity.RESULT_OK, intent);
                         finish();
                     }
 

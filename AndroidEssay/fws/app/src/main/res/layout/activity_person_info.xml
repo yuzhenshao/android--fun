@@ -23,7 +23,7 @@
                 android:layout_weight="1"
                 android:text="头像"/>
 
-            <com.mfzn.deepusesSer.view.RoundImageView
+            <ImageView
                 android:id="@+id/iv_info_icon"
                 android:layout_width="@dimen/app_40dp"
                 android:layout_height="@dimen/app_40dp"
