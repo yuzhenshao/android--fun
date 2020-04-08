@@ -81,7 +81,6 @@ public class CustomerMangerActivity extends BaseMvpActivity<CustomerManagePresne
                     Intent intent = new Intent(CustomerMangerActivity.this, CustomerDetailsActivity.class);
                     intent.putExtra(Constants.CUSTOMER_ID, String.valueOf(dataBean.getData_id()));
                     intent.putExtra(Constants.USER_ID, String.valueOf(dataBean.getUid()));
-                    intent.putExtra(Constants.COMPANY_CODE, String.valueOf(dataBean.getCompanyID()));
                     intent.putExtra(Constants.CUSTOMER_NAME, dataBean.getU_name());
                     startActivity(intent);
                 }
