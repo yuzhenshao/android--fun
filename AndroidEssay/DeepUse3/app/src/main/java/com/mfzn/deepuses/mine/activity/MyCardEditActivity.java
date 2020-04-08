@@ -174,6 +174,14 @@ public class MyCardEditActivity extends BaseActivity {
         }
     }
 
+    @Override
+    public void finish(){
+        Intent intent = new Intent();
+        intent.putExtra(CARD_INFO, mBusinessCardResponse);
+        setResult(Activity.RESULT_OK, intent);
+        super.finish();
+    }
+
     private void uploadEditCard() {
         EditBusinessCardRequest request = new EditBusinessCardRequest();
         request.setUserEmail(etCardEmail.getText().toString());
@@ -201,9 +209,6 @@ public class MyCardEditActivity extends BaseActivity {
                         mBusinessCardResponse.setGzNum(request.getGzNum());
                         mBusinessCardResponse.setShowCompany(request.getShowCompany());
                         mBusinessCardResponse.setShowProNum(request.getShowProNum());
-                        Intent intent = new Intent();
-                        intent.putExtra(CARD_INFO, mBusinessCardResponse);
-                        setResult(Activity.RESULT_OK, intent);
                         finish();
                     }
 
