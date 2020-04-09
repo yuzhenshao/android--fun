@@ -1,5 +1,6 @@
 package com.mfzn.deepuses.activitymy.setting;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -112,6 +113,13 @@ public class SwitchCompanyActivity extends BaseMvpActivity<SwitchCompanyPresnet>
                 moreDialog();
                 break;
         }
+    }
+
+    @Override
+    public void finish(){
+        Intent intent = new Intent();
+        setResult(Activity.RESULT_OK, intent);
+        super.finish();
     }
 
     public void delCompanySuccess(String models) {
