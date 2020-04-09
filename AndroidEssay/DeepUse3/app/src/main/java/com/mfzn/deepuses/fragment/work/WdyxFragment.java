@@ -1,16 +1,14 @@
 package com.mfzn.deepuses.fragment.work;
 
-import android.content.ClipboardManager;
-import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BaseMvpFragment;
-import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.present.work.WdyxPresent;
-import com.mfzn.deepuses.utils.ToastUtil;
 import com.wevey.selector.dialog.NoTitleAndDialog;
 
 import butterknife.OnClick;
@@ -31,16 +29,6 @@ public class WdyxFragment extends BaseMvpFragment<WdyxPresent> {
     public void initData(Bundle savedInstanceState) {
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE |
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-    }
-
-    public void getMarketUrlSuccess(HttpResult result){
-        ToastUtil.showToast(getActivity(),result.getMsg());
-        if (result != null && result.getRes() != null && !"".equals(result.getRes().toString())){
-            String url = result.getRes().toString();
-            ClipboardManager cmb = (ClipboardManager)getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-            cmb.setText(url );
-
-        }
     }
 
     @OnClick({R.id.btn_commit})
@@ -67,7 +55,9 @@ public class WdyxFragment extends BaseMvpFragment<WdyxPresent> {
 
                             @Override
                             public void clickRightButton(NoTitleAndDialog dialog, View view) {
-                                getP().getMarketUrl();
+                                Uri uri = Uri.parse("https://mfzn.com.cn/business/login/index");
+                                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                                startActivity(intent);
                                 dialog.dismiss();
                             }
                         })

@@ -31,4 +31,24 @@ public class EnginerMaillistPresent extends XPresent<EnginerMaillistActivity> {
                     }
                 });
     }
+
+    public void delEngineer(String engineerUserID) {
+        ApiServiceManager.delEngineer(engineerUserID)
+                .compose(XApi.getApiTransformer())
+                .compose(XApi.getScheduler())
+                .compose(getV().bindToLifecycle())
+                .subscribe(new ApiSubscriber<HttpResult>() {
+                    @Override
+                    protected void onFail(NetError error) {
+                        getV().showError(error);
+                    }
+
+                    @Override
+                    public void onNext(HttpResult reuslt) {
+                        getV().enginerDelSuccess();
+
+                    }
+                });
+    }
+
 }

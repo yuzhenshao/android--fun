@@ -128,6 +128,7 @@ public class ZuzhiJiagouModel implements Serializable {
         private int roleID;
         private boolean selectType = false;
         private boolean moren = false;
+        private String joinTime;
 
         public boolean getMoren() {
             return moren;
@@ -193,5 +194,12 @@ public class ZuzhiJiagouModel implements Serializable {
             this.roleID = roleID;
         }
 
+        public String getJoinTime() {
+            return joinTime;
+        }
+
+        public void setJoinTime(String joinTime) {
+            this.joinTime = joinTime;
+        }
     }
 }

@@ -173,6 +173,7 @@ public class Constants {
     public static final String SELECT_ZTID = "select_ztid";
     public static final String SELECT_JV = "select_jv";
     public static final String CUSTOMER_ID = "customer_id";
+    public static final String USER_ID = "user_id";
     public static final String CUSTOMER_NAME = "customer_name";
     public static final String CUS_DETA_ID = "cus_deta_id";
     public static final String CUS_DETA_NAME = "cus_deta_name";

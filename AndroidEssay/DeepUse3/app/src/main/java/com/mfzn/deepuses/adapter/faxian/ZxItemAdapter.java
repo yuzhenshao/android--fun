@@ -52,7 +52,7 @@ public class ZxItemAdapter extends RecyclerAdapter<News.DataBean, ZxItemAdapter.
         }
         holder.tvDes.setText(model.getSummary());
         if (!TextUtils.isEmpty(model.getTitleImage())){
-            Glide.with(context).load(ApiHelper.BASE_URL + model.getTitleImage()).into(holder.ivImg);
+            Glide.with(context).load(model.getTitleImage()).into(holder.ivImg);
         }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

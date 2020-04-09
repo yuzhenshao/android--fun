@@ -43,7 +43,7 @@ public class CompanyLogoPresent extends XPresent<CompanyLogoActivity> {
 
             @Override
             public void uoloadFailed(String error) {
-                ToastUtil.showToast(BaseApplication.getContext(), "logo上传失败，请稍后重试");
+                getV().uploadIconSuccess(null);
             }
         });
     }
@@ -55,7 +55,7 @@ public class CompanyLogoPresent extends XPresent<CompanyLogoActivity> {
                 .subscribe(new ApiSubscriber<HttpResult>() {
                     @Override
                     protected void onFail(NetError error) {
-                        ToastUtil.showToast(BaseApplication.getContext(), "头像上传失败");
+                        getV().uploadIconSuccess(null);
                     }
 
                     @Override

@@ -17,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.request.RequestOptions;
 import com.mfzn.deepusesSer.R;
 import com.mfzn.deepusesSer.activity.myteam.ClipCircularActivity;
 import com.mfzn.deepusesSer.activitymy.ModifyCallActivity;
@@ -104,26 +106,49 @@ public class PersonInfoActivity extends BaseMvpActivity<UserInfoPresent> {
                 String nick = data.getStringExtra(Constants.MODIFU_NICK_RETURN);
                 tvInfoNic.setText(nick);
             }
-        } else if (requestCode == Constants.REAL_NAME_PAIZHAO) {
-            String cameraFile = PhotographDialog.mSp.getString("img", "");
-            clipPhotoBySelf(PhotographDialog.Image_SAVEDIR + "/" + cameraFile);
-        } else if (requestCode == Constants.REAL_NAME_XIANGCE) {
+        }
 
+        if (requestCode == Constants.REAL_NAME_PAIZHAO) {
+            String cameraFile = PhotographDialog.mSp.getString("img", "");
+            Bitmap bitmap = BitmapFactory.decodeFile(PhotographDialog.Image_SAVEDIR + "/" + cameraFile);//根据路径转为bitmap
+            if (bitmap != null) {
+                Bitmap newbitmap = ImageCompressUtil.compressBySize(bitmap, 800, 1000);
+                File file = BitmapFileSetting.saveBitmapFile(newbitmap, PhotographDialog.Image_SAVEDIR + "/" + cameraFile);
+                getP().upLoadFile(file);
+            }
+        } else if (requestCode == Constants.REAL_NAME_XIANGCE) {
             if (data != null) {
                 Uri uri = data.getData();
                 if (uri != null) {
                     String path = ImageCompressUtil.getRealPathFromURI(this, uri);//获取选中图片的路径
-                    clipPhotoBySelf(path);
+                    Bitmap bitmap = BitmapFactory.decodeFile(path);
+                    Bitmap newbitmap = ImageCompressUtil.compressBySize(bitmap, 800, 1000);
+                    String cameraFile = DateFormat.format("yy-MM-dd-hh-mm-ss", new Date()) + ".jpg";
+                    File file = BitmapFileSetting.saveBitmapFile(newbitmap, PhotographDialog.Image_SAVEDIR + "/" + cameraFile);
+                    getP().upLoadFile(file);
                 }
             }
-        } else if (requestCode == CLIP_PHOTO_BY_SELF_REQUEST_CODE) {
-            if (resultCode == RESULT_OK) {
-                Bitmap bm = BitmapFactory.decodeFile(headClipFile.getAbsolutePath());
-                String cameraFile = DateFormat.format("yy-MM-dd-hh-mm-ss", new Date()) + ".jpg";
-                File file = BitmapFileSetting.saveBitmapFile(bm, PhotographDialog.Image_SAVEDIR + "/" + cameraFile);
-                getP().upLoadFile(file);
-            }
         }
+//        } else if (requestCode == Constants.REAL_NAME_PAIZHAO) {
+//            String cameraFile = PhotographDialog.mSp.getString("img", "");
+//            clipPhotoBySelf(PhotographDialog.Image_SAVEDIR + "/" + cameraFile);
+//        } else if (requestCode == Constants.REAL_NAME_XIANGCE) {
+//
+//            if (data != null) {
+//                Uri uri = data.getData();
+//                if (uri != null) {
+//                    String path = ImageCompressUtil.getRealPathFromURI(this, uri);//获取选中图片的路径
+//                    clipPhotoBySelf(path);
+//                }
+//            }
+//        } else if (requestCode == CLIP_PHOTO_BY_SELF_REQUEST_CODE) {
+//            if (resultCode == RESULT_OK) {
+//                Bitmap bm = BitmapFactory.decodeFile(headClipFile.getAbsolutePath());
+//                String cameraFile = DateFormat.format("yy-MM-dd-hh-mm-ss", new Date()) + ".jpg";
+//                File file = BitmapFileSetting.saveBitmapFile(bm, PhotographDialog.Image_SAVEDIR + "/" + cameraFile);
+//                getP().upLoadFile(file);
+//            }
+//        }
     }
 
     /**
@@ -145,7 +170,7 @@ public class PersonInfoActivity extends BaseMvpActivity<UserInfoPresent> {
     //用户信息成功返回
     public void userInfoSuccess(UserModel result) {
         if (!TextUtils.isEmpty(result.getUserAvatar())) {
-            Glide.with(context).load(ApiHelper.BASE_URL + result.getUserAvatar()).into(ivInfoIcon);
+            Glide.with(context).load(ApiHelper.BASE_URL + result.getUserAvatar()).apply(RequestOptions.bitmapTransform(new CircleCrop())).into(ivInfoIcon);
         }
         tvInfoNic.setText(result.getUserName());
     }
@@ -153,7 +178,7 @@ public class PersonInfoActivity extends BaseMvpActivity<UserInfoPresent> {
     //上传头像成功返回
     public void uploadIconSuccess(String res) {
         ToastUtil.showToast(this, "图片上传成功");
-        Glide.with(this).load(ApiHelper.BASE_URL + res).into(ivInfoIcon);
+        Glide.with(this).load(ApiHelper.BASE_URL + res).apply(RequestOptions.bitmapTransform(new CircleCrop())).into(ivInfoIcon);
     }
 
     private void myRequetPermission() {

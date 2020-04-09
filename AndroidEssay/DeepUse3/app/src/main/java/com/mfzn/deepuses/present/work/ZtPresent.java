@@ -13,26 +13,4 @@ import cn.droidlover.xdroidmvp.net.XApi;
 
 public class ZtPresent extends XPresent<GjzztFragment> {
 
-    //获取营销的地址
-    public void getMarketUrl() {
-        ApiHelper.getApiService().getMarketUrl(UserHelper.getToken(), UserHelper.getUid(),"4")
-                .compose(XApi.getApiTransformer())
-                .compose(XApi.getScheduler())
-                .compose(getV().bindToLifecycle())
-                .subscribe(new ApiSubscriber<HttpResult>() {
-                    @Override
-                    protected void onFail(NetError error) {
-                        getV().showError(error);
-                    }
-
-                    @Override
-                    public void onNext(HttpResult result) {
-                        getV().getMarketUrlSuccess(result);
-                    }
-
-                    @Override
-                    public void onComplete() {
-                    }
-                });
-    }
 }

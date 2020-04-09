@@ -17,8 +17,8 @@ import cn.droidlover.xdroidmvp.net.XApi;
 
 public class FollowProgressPresnet extends XPresent<FollowProgressFragment> {
 
-    public void followPro(String companyCustomerID) {
-        ApiHelper.getApiService().followPro(UserHelper.getToken(), UserHelper.getUid(),UserHelper.getCompanyId(),companyCustomerID)
+    public void followPro(String customerID) {
+        ApiHelper.getApiService().followPro(UserHelper.getToken(), UserHelper.getUid(),UserHelper.getCompanyId(),customerID)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

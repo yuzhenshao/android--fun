@@ -62,7 +62,7 @@
                 android:layout_marginRight="@dimen/app_12dp"
                 android:background="@drawable/yuanjiao_ffffff_bg_shape"
                 android:orientation="vertical"
-                android:visibility="gone">
+                android:visibility="invisible">
 
                 <com.mfzn.deepuses.view.RoundImageView
                     android:id="@+id/riv_card_tx"
@@ -106,7 +106,6 @@
                         android:id="@+id/tv_card_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="潘泓言"
                         android:textColor="@color/color_303133"
                         android:textSize="20sp" />
 
@@ -115,7 +114,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/app_20dp"
-                        android:text="麦麸智能科技  工程师  项目经理"
                         android:textColor="@color/color_909399"
                         android:textSize="14sp" />
 
@@ -124,7 +122,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/app_5dp"
-                        android:text="从业 15 年"
                         android:textColor="@color/color_909399"
                         android:textSize="14sp" />
 
@@ -138,7 +135,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/app_5dp"
-                            android:text="家装 100 个"
                             android:textColor="@color/color_909399"
                             android:textSize="14sp" />
 
@@ -149,7 +145,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/app_29dp"
                             android:layout_marginTop="@dimen/app_5dp"
-                            android:text="工装 100 个"
                             android:textColor="@color/color_909399"
                             android:textSize="14sp" />
 
@@ -160,7 +155,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/app_5dp"
-                        android:text="进行中项目 100 个"
                         android:textColor="@color/color_909399"
                         android:textSize="14sp" />
 
@@ -169,7 +163,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/app_5dp"
-                        android:text="+86 18088888888"
                         android:textColor="@color/color_909399"
                         android:textSize="14sp" />
 
@@ -178,7 +171,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/app_5dp"
-                        android:text="1834448888@qq.com"
                         android:textColor="@color/color_909399"
                         android:textSize="14sp" />
 

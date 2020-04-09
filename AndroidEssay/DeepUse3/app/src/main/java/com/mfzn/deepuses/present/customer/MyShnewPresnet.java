@@ -1,12 +1,10 @@
 package com.mfzn.deepuses.present.customer;
 
-import com.mfzn.deepuses.activity.khgl.AddFollowActivity;
 import com.mfzn.deepuses.activity.khgl.MyShnewActivity;
 import com.mfzn.deepuses.model.khgl.MyShareModel;
 import com.mfzn.deepuses.net.ApiHelper;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.utils.UserHelper;
-import com.wevey.selector.dialog.bean.SelectModel;
 
 import cn.droidlover.xdroidmvp.mvp.XPresent;
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;

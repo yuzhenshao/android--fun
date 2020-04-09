@@ -72,6 +72,7 @@ public class ProjectDetailsActivity extends BaseMvpActivity<ProjectDetailsPresen
 
     private int sumZhuan;
     private int buyPrice;
+    private CompanyInfoModel company;
 
     @Override
     public int getLayoutId() {
@@ -148,6 +149,7 @@ public class ProjectDetailsActivity extends BaseMvpActivity<ProjectDetailsPresen
             case R.id.ll_pr_code:
                 Intent intent2 = new Intent(this, ProjectCodeActivity.class);
                 intent2.putExtra(Constants.FOUND_PROJECT_PROID, pro_uid);
+                intent2.putExtra(Constants.COMPANY_LOGO,company==null?"":company.getLogo());
                 intent2.putExtra(Constants.FOUND_PROJECT_NAME, dataBean.getProName());
                 startActivity(intent2);
                 break;
@@ -217,6 +219,7 @@ public class ProjectDetailsActivity extends BaseMvpActivity<ProjectDetailsPresen
     }
 
     public void getCompanySuccess(CompanyInfoModel model) {
+        company=model;
         int zhuan = (int) Double.parseDouble(model.getZhuan());
         int zhuan2 = (int) Double.parseDouble(model.getGiftZhuan());
         sumZhuan = zhuan + zhuan2;

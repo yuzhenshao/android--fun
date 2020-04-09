@@ -36,7 +36,8 @@
                 android:textColor="#3D7EFF"
                 android:gravity="center"
                 android:background="@color/color_ffffff"
-                android:text="+添加管理员"/>
+                android:text="+添加管理员"
+                android:visibility="gone"/>
 
         </LinearLayout>
 

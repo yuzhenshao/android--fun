@@ -116,8 +116,7 @@
                 android:text="我的名片"/>
 
             <ImageView
-                style="@style/bass_iv_you"
-                android:layout_marginRight="@dimen/app_20dp"/>
+                style="@style/bass_iv_you"/>
 
         </LinearLayout>
 
@@ -134,8 +133,7 @@
                 android:text="我的充值与用砖"/>
 
             <ImageView
-                style="@style/bass_iv_you"
-                android:layout_marginRight="@dimen/app_20dp"/>
+                style="@style/bass_iv_you"/>
 
         </LinearLayout>
 
@@ -152,8 +150,7 @@
                 android:text="设置"/>
 
             <ImageView
-                style="@style/bass_iv_you"
-                android:layout_marginRight="@dimen/app_20dp"/>
+                style="@style/bass_iv_you"/>
 
         </LinearLayout>
 
@@ -188,8 +185,7 @@
                 android:text="操作指南"/>
 
             <ImageView
-                style="@style/bass_iv_you"
-                android:layout_marginRight="@dimen/app_20dp"/>
+                style="@style/bass_iv_you"/>
 
         </LinearLayout>
 
@@ -206,8 +202,7 @@
                 android:text="我要吐槽"/>
 
             <ImageView
-                style="@style/bass_iv_you"
-                android:layout_marginRight="@dimen/app_20dp"/>
+                style="@style/bass_iv_you"/>
 
         </LinearLayout>
 
@@ -224,8 +219,7 @@
                 android:text="工程师通讯录"/>
 
             <ImageView
-                style="@style/bass_iv_you"
-                android:layout_marginRight="@dimen/app_20dp"/>
+                style="@style/bass_iv_you"/>
 
         </LinearLayout>
 
@@ -242,8 +236,7 @@
                 android:text="联系客服"/>
 
             <ImageView
-                style="@style/bass_iv_you"
-                android:layout_marginRight="@dimen/app_20dp"/>
+                style="@style/bass_iv_you"/>
 
         </LinearLayout>
 
