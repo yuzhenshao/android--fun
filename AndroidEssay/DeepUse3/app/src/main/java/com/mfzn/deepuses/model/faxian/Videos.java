@@ -62,6 +62,7 @@ public class Videos {
     public static class DataBean {
 
         private String Title;
+        private String titleImage;
         private String videoUrl;
         private String summary;
         private int addTime;
@@ -125,5 +126,12 @@ public class Videos {
             this.transmitCount = transNums;
         }
 
+        public String getTitleImage() {
+            return titleImage;
+        }
+
+        public void setTitleImage(String titleImage) {
+            this.titleImage = titleImage;
+        }
     }
 }

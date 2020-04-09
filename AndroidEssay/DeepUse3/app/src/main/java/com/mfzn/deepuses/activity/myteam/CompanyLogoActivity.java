@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.mfzn.deepuses.BaseApplication;
 import com.mfzn.deepuses.MainActivity;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.activity.login.LoginActivity;
@@ -98,7 +99,7 @@ public class CompanyLogoActivity extends BaseMvpActivity<CompanyLogoPresent> {
             if (bitmap != null) {
                 Bitmap newbitmap = ImageCompressUtil.compressBySize(bitmap, 800, 1000);
                 File file = BitmapFileSetting.saveBitmapFile(newbitmap, PhotographDialog.Image_SAVEDIR + "/" + cameraFile);
-                getP().upLoadFile(file);
+                uploadLogo(file);
             }
         } else if (requestCode == Constants.REAL_NAME_XIANGCE) {
             if (data != null) {
@@ -110,7 +111,7 @@ public class CompanyLogoActivity extends BaseMvpActivity<CompanyLogoPresent> {
                     Bitmap newbitmap = ImageCompressUtil.compressBySize(bitmap, 800, 1000);
                     String cameraFile = DateFormat.format("yy-MM-dd-hh-mm-ss", new Date()) + ".jpg";
                     File file = BitmapFileSetting.saveBitmapFile(newbitmap, PhotographDialog.Image_SAVEDIR + "/" + cameraFile);
-                    getP().upLoadFile(file);
+                    uploadLogo(file);
                 }
             }
         } else if (requestCode == CLIP_PHOTO_BY_SELF_REQUEST_CODE) {
@@ -118,9 +119,14 @@ public class CompanyLogoActivity extends BaseMvpActivity<CompanyLogoPresent> {
                 Bitmap bm = BitmapFactory.decodeFile(headClipFile.getAbsolutePath());
                 String cameraFile = DateFormat.format("yy-MM-dd-hh-mm-ss", new Date()) + ".jpg";
                 File file = BitmapFileSetting.saveBitmapFile(bm, PhotographDialog.Image_SAVEDIR + "/" + cameraFile);
-                getP().upLoadFile(file);
+                uploadLogo(file);
             }
         }
+    }
+
+    private void uploadLogo(File file){
+        showDialog();
+        getP().upLoadFile(file);
     }
 
     /**
@@ -141,34 +147,29 @@ public class CompanyLogoActivity extends BaseMvpActivity<CompanyLogoPresent> {
 
     //上传头像成功返回
     public void uploadIconSuccess(String res) {
+        hideDialog();
+        if(TextUtils.isEmpty(res)){
+            ToastUtil.showToast(BaseApplication.getContext(), "logo上传失败，请稍后重试");
+        }else {
             ToastUtil.showToast(this, "logo上传成功");
             Glide.with(this).load(ApiHelper.BASE_URL + res).into(iv_logo_icon);
             EventMsg eventMsg = new EventMsg();
             eventMsg.setMsg(Constants.COMLOGO);
             RxBus.getInstance().post(eventMsg);
+        }
     }
 
     private void getPerssion() {
         getRxPermissions()
                 .request(Manifest.permission.WRITE_EXTERNAL_STORAGE,
                         Manifest.permission.READ_EXTERNAL_STORAGE,
-//                        Manifest.permission.ACCESS_FINE_LOCATION,//定位
-//                        Manifest.permission.ACCESS_COARSE_LOCATION,//定位
-//                        Manifest.permission.READ_CONTACTS,//通讯录
-//                        Manifest.permission.WRITE_CONTACTS,//通讯录
                         Manifest.permission.CAMERA
-//                        Manifest.permission.READ_PHONE_STATE//打电话
                 )
                 .subscribe(new Consumer<Boolean>() {
                     @Override
                     public void accept(Boolean aBoolean) throws Exception {
                         if (aBoolean) {
-                            new Handler().postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
                                   PhotographDialog.photographDialog2(CompanyLogoActivity.this);
-                                }
-                            }, 2000);
                         } else {
                             getvDelegate().toastShort("亲，同意了权限才能更好的使用软件哦");
                         }

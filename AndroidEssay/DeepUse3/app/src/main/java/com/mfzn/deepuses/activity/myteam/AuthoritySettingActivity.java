@@ -34,8 +34,6 @@ public class AuthoritySettingActivity extends BaseMvpActivity<AuthoritySettingPr
     TextView tvBassTitle;
     @BindView(R.id.iv_auth_xmcj)
     ImageView ivAuthXmcj;
-//    @BindView(R.id.iv_auth_sjkb)
-//    ImageView ivAuthSjkb;
     @BindView(R.id.iv_auth_xmgl)
     ImageView ivAuthXmgl;
     @BindView(R.id.iv_auth_bmgl)
@@ -48,14 +46,8 @@ public class AuthoritySettingActivity extends BaseMvpActivity<AuthoritySettingPr
     TextView tvAuthGxbm;
     @BindView(R.id.ll_auth_gxbm)
     LinearLayout llAuthGxbm;
-
-    private int cjxm = 0;// 1 关 2 开
-    private int sjkb = 0;
-    private int xmgl = 0;
-    private int bmgl = 0;
-    private int hysz = 0;
-    private int khgl = 0;
     private String bmglID = "";
+    private boolean isBmglVisible = false;
 
     private ManageSettingModel model;
 
@@ -75,131 +67,52 @@ public class AuthoritySettingActivity extends BaseMvpActivity<AuthoritySettingPr
         tvBassTitle.setText(getString(R.string.app_authority_set));
 
         model = (ManageSettingModel) getIntent().getSerializableExtra(Constants.QX_SET_MODEL);
-        cjxm = model.getProCreateAuth();
-        if(cjxm == 0) {
-            ivAuthXmcj.setImageResource(R.mipmap.shou_close);
-        }else if(cjxm == 1){
-            ivAuthXmcj.setImageResource(R.mipmap.shou_open);
+        if (model == null) {
+            ToastUtil.showToast(this, "权限设置出错了，请稍后重试");
+            return;
         }
-//        sjkb = model.getAuthData();
-//        if(sjkb == 0) {
-//            ivAuthSjkb.setImageResource(R.mipmap.shou_close);
-//        }else if(sjkb == 1){
-//            ivAuthSjkb.setImageResource(R.mipmap.shou_open);
-//        }
-        xmgl = model.getAuthManage();
-        if(xmgl == 0) {
-            ivAuthXmgl.setImageResource(R.mipmap.shou_close);
-        }else if(xmgl == 1){
-            ivAuthXmgl.setImageResource(R.mipmap.shou_open);
-        }
-        hysz = model.getRechargeAuth();
-        if(hysz == 0) {
-            ivAuthHysz.setImageResource(R.mipmap.shou_close);
-        }else if(hysz == 1){
-            ivAuthHysz.setImageResource(R.mipmap.shou_open);
-        }
-        khgl = model.getCrmAuth();
-        if(khgl == 0) {
-            ivAuthKhgl.setImageResource(R.mipmap.shou_close);
-        }else if(khgl == 1){
-            ivAuthKhgl.setImageResource(R.mipmap.shou_open);
-        }
-
-
-        List<ManageSettingModel.DepartNameBean> departName = model.getDepartName();
-        if(departName != null && departName.size() != 0) {
-            bmgl = 1;
-            bmglID = model.getDepartIDs();
-            llAuthGxbm.setVisibility(View.VISIBLE);
-            ivAuthBmgl.setImageResource(R.mipmap.shou_open);
-            String ss = null;
-            for(int i = 0; i < departName.size(); i++) {
-                if(i == 0) {
-                    ss = departName.get(i).getDepartmentName();
-                }else {
-                    ss = ss + "，" + departName.get(i).getDepartmentName();
-                }
-            }
-            tvAuthGxbm.setText(ss);
-        }else {
-            bmgl = 0;
-            llAuthGxbm.setVisibility(View.GONE);
-            ivAuthBmgl.setImageResource(R.mipmap.shou_close);
-        }
+        ivAuthXmcj.setImageResource(model.getProCreateAuth() == 1 ? R.mipmap.shou_open : R.mipmap.shou_close);
+        ivAuthXmgl.setImageResource(model.getAdminCreateAuth() == 1 ? R.mipmap.shou_open : R.mipmap.shou_close);
+        ivAuthHysz.setImageResource(model.getRechargeAuth() == 1 ? R.mipmap.shou_open : R.mipmap.shou_close);
+        ivAuthKhgl.setImageResource(model.getCrmAuth() == 1 ? R.mipmap.shou_open : R.mipmap.shou_close);
+        ivAuthBmgl.setImageResource(R.mipmap.shou_close);
     }
 
     @OnClick({R.id.iv_login_back, R.id.iv_auth_xmcj, R.id.iv_auth_xmgl, R.id.iv_auth_bmgl,
-            R.id.ll_auth_gxbm, R.id.but_auth_qr,R.id.iv_auth_hysz,R.id.iv_auth_khgl})
+            R.id.ll_auth_gxbm, R.id.but_auth_qr, R.id.iv_auth_hysz, R.id.iv_auth_khgl})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_login_back:
                 finish();
                 break;
             case R.id.iv_auth_xmcj:
-                if(cjxm == 0) {
-                    ivAuthXmcj.setImageResource(R.mipmap.shou_open);
-                    cjxm = 1;
-                }else if(cjxm == 1){
-                    ivAuthXmcj.setImageResource(R.mipmap.shou_close);
-                    cjxm = 0;
-                }
+                model.setProCreateAuth(~(model.getProCreateAuth()));
+                ivAuthXmcj.setImageResource(model.getProCreateAuth() == 1 ? R.mipmap.shou_open : R.mipmap.shou_close);
                 break;
-//            case R.id.iv_auth_sjkb:
-//                if(sjkb == 0) {
-//                    ivAuthSjkb.setImageResource(R.mipmap.shou_open);
-//                    sjkb = 1;
-//                }else if(sjkb == 1){
-//                    ivAuthSjkb.setImageResource(R.mipmap.shou_close);
-//                    sjkb = 0;
-//                }
-//                break;
             case R.id.iv_auth_xmgl:
-                if(xmgl == 0) {
-                    ivAuthXmgl.setImageResource(R.mipmap.shou_open);
-                    xmgl = 1;
-                }else if(xmgl == 1){
-                    ivAuthXmgl.setImageResource(R.mipmap.shou_close);
-                    xmgl = 0;
-                }
+                model.setAdminCreateAuth(~(model.getAdminCreateAuth()));
+                ivAuthXmgl.setImageResource(model.getAdminCreateAuth() == 1 ? R.mipmap.shou_open : R.mipmap.shou_close);
                 break;
             case R.id.iv_auth_bmgl:
-                if(bmgl == 0) {
-                    ivAuthBmgl.setImageResource(R.mipmap.shou_open);
-                    bmgl = 1;
-                    llAuthGxbm.setVisibility(View.VISIBLE);
-                }else if(bmgl == 1){
-                    ivAuthBmgl.setImageResource(R.mipmap.shou_close);
-                    bmgl = 0;
-                    llAuthGxbm.setVisibility(View.GONE);
-                }
+                isBmglVisible = !isBmglVisible;
+                ivAuthBmgl.setImageResource(isBmglVisible ? R.mipmap.shou_open : R.mipmap.shou_close);
+                //llAuthGxbm.setVisibility(isBmglVisible?View.VISIBLE:View.GONE);
                 break;
             case R.id.iv_auth_hysz:
-                if(hysz == 0) {
-                    ivAuthHysz.setImageResource(R.mipmap.shou_open);
-                    hysz = 1;
-                }else if(hysz == 1){
-                    ivAuthHysz.setImageResource(R.mipmap.shou_close);
-                    hysz = 0;
-                }
+                model.setRechargeAuth(~(model.getRechargeAuth()));
+                ivAuthHysz.setImageResource(model.getRechargeAuth() == 1 ? R.mipmap.shou_open : R.mipmap.shou_close);
                 break;
             case R.id.iv_auth_khgl:
-                if(khgl == 0) {
-                    ivAuthKhgl.setImageResource(R.mipmap.shou_open);
-                    khgl = 1;
-                }else if(khgl == 1){
-                    ivAuthKhgl.setImageResource(R.mipmap.shou_close);
-                    khgl = 0;
-                }
+                model.setCrmAuth(~(model.getCrmAuth()));
+                ivAuthKhgl.setImageResource(model.getCrmAuth() == 1 ? R.mipmap.shou_open : R.mipmap.shou_close);
                 break;
             case R.id.ll_auth_gxbm:
                 Intent intent = new Intent(this, SelectBranchActivity.class);
-                intent.putExtra(Constants.QX_SET_TEXT,bmglID);
+                intent.putExtra(Constants.QX_SET_TEXT, bmglID);
                 startActivityForResult(intent, Constants.SELECT_BU);
                 break;
             case R.id.but_auth_qr:
-                getP().authoritySetting(model.getUserID() + "",
-                        bmglID,cjxm + "",sjkb + "",xmgl + "",hysz + "",khgl + "");
+                getP().authoritySetting(model.getUserID() + "", model);
                 break;
         }
     }
@@ -217,10 +130,10 @@ public class AuthoritySettingActivity extends BaseMvpActivity<AuthoritySettingPr
     }
 
     public void authoritySetting(String models) {
-        ToastUtil.showToast(this,models);
+        ToastUtil.showToast(this, models);
         Intent intent = new Intent();
         intent.putExtra("fda", "xvc");
-        setResult(Constants.QUANXIAN_SET,intent);
+        setResult(Constants.QUANXIAN_SET, intent);
         finish();
     }
 }

@@ -12,23 +12,23 @@ public class SelectCompanyModel {
     private String companyName;
     private int createUserID;
     private boolean type = false;
-    private String logo;
-    private int companyLevel;
+    private String companyLogo;
+    private int companyLevelID;
 
     public String getLogo() {
-        return logo;
+        return companyLogo;
     }
 
     public void setLogo(String logo) {
-        this.logo = logo;
+        this.companyLogo = logo;
     }
 
     public int getCompanyLevel() {
-        return companyLevel;
+        return companyLevelID;
     }
 
     public void setCompanyLevel(int companyLevel) {
-        this.companyLevel = companyLevel;
+        this.companyLevelID = companyLevel;
     }
 
     public boolean getType() {

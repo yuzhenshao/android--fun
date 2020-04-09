@@ -2,6 +2,8 @@ package com.mfzn.deepuses.fragment.work;
 
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -33,16 +35,6 @@ public class GjzztFragment extends BaseMvpFragment<ZtPresent> {
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
     }
 
-    public void getMarketUrlSuccess(HttpResult result){
-        ToastUtil.showToast(getActivity(),result.getMsg());
-        if (result != null && result.getRes() != null && !"".equals(result.getRes().toString())){
-            String url = result.getRes().toString();
-            ClipboardManager cmb = (ClipboardManager)getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-            cmb.setText(url );
-
-        }
-    }
-
     @OnClick({R.id.btn_commit})
     public void onViewClicked(View v) {
         switch (v.getId()) {
@@ -67,7 +59,9 @@ public class GjzztFragment extends BaseMvpFragment<ZtPresent> {
 
                             @Override
                             public void clickRightButton(NoTitleAndDialog dialog, View view) {
-                                getP().getMarketUrl();
+                                Uri uri = Uri.parse("https://mfzn.com.cn/business/login/index");
+                                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                                startActivity(intent);
                                 dialog.dismiss();
                             }
                         })

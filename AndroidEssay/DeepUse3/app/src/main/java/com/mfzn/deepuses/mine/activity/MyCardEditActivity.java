@@ -117,12 +117,12 @@ public class MyCardEditActivity extends BaseActivity {
             tvCardProjrct.setText(mBusinessCardResponse.getProNum());
             tvCompanySelect.setText(mBusinessCardResponse.getCompanyName());
             etCardEmail.setText(mBusinessCardResponse.getUserEmail());
-            if(!TextUtils.isEmpty(mBusinessCardResponse.getUserEmail())) {
+            if (!TextUtils.isEmpty(mBusinessCardResponse.getUserEmail())) {
                 etCardEmail.setSelection(mBusinessCardResponse.getUserEmail().length());
             }
             etCompanyPosition.setText(mBusinessCardResponse.getUserPosition());
-            if(!TextUtils.isEmpty(mBusinessCardResponse.getUserPosition())) {
-                etCardEmail.setSelection(mBusinessCardResponse.getUserPosition().length());
+            if (!TextUtils.isEmpty(mBusinessCardResponse.getUserPosition())) {
+                etCompanyPosition.setSelection(mBusinessCardResponse.getUserPosition().length());
             }
             etWorkYear.setText(mBusinessCardResponse.getWorkYear());
             etCarddJZ.setText(mBusinessCardResponse.getJzNum());
@@ -158,8 +158,7 @@ public class MyCardEditActivity extends BaseActivity {
                 PhotographDialog.photographDialog2(this);
                 break;
             case R.id.select_company_icon:
-                Intent intent = new Intent(this, SwitchCompanyActivity.class);
-                intent.putExtra(ONLY_SELECTED, true);
+                Intent intent = new Intent(this, CompanyListActivity.class);
                 startActivityForResult(intent, SELECTED);
                 break;
             case R.id.compelete:
@@ -174,6 +173,14 @@ public class MyCardEditActivity extends BaseActivity {
         }
     }
 
+    @Override
+    public void finish() {
+        Intent intent = new Intent();
+        intent.putExtra(CARD_INFO, mBusinessCardResponse);
+        setResult(Activity.RESULT_OK, intent);
+        super.finish();
+    }
+
     private void uploadEditCard() {
         EditBusinessCardRequest request = new EditBusinessCardRequest();
         request.setUserEmail(etCardEmail.getText().toString());
@@ -185,8 +192,8 @@ public class MyCardEditActivity extends BaseActivity {
         request.setShowProNum(mBusinessCardResponse.getShowProNum());
         request.setCardPhone(mBusinessCardResponse.getCardPhone());
         request.setCardCompanyID(mBusinessCardResponse.getCardCompanyID());
-        request.setShowCompany(isShowCompany ?1:0);
-        request.setShowProNum(isShowProNum?1:0);
+        request.setShowCompany(isShowCompany ? 1 : 0);
+        request.setShowProNum(isShowProNum ? 1 : 0);
         ApiHelper.getApiService().editBusinessCard(UserHelper.getToken(), UserHelper.getUid(), request)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
@@ -201,9 +208,6 @@ public class MyCardEditActivity extends BaseActivity {
                         mBusinessCardResponse.setGzNum(request.getGzNum());
                         mBusinessCardResponse.setShowCompany(request.getShowCompany());
                         mBusinessCardResponse.setShowProNum(request.getShowProNum());
-                        Intent intent = new Intent();
-                        intent.putExtra(CARD_INFO, mBusinessCardResponse);
-                        setResult(Activity.RESULT_OK, intent);
                         finish();
                     }
 
@@ -223,7 +227,12 @@ public class MyCardEditActivity extends BaseActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == SELECTED) {
-            tvCompanyName.setText(UserHelper.getCompanyName());
+            if (data != null) {
+                String name=data.getStringExtra("companyName");
+                if(!TextUtils.isEmpty(name)) {
+                    tvCompanySelect.setText(name);
+                }
+            }
         } else if (requestCode == Constants.REAL_NAME_PAIZHAO) {
             String cameraFile = PhotographDialog.mSp.getString("img", "");
             Bitmap bitmap = BitmapFactory.decodeFile(PhotographDialog.Image_SAVEDIR + "/" + cameraFile);//根据路径转为bitmap

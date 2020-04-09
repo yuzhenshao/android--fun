@@ -71,7 +71,8 @@ public class SelectCustomerActivity extends BaseMvpActivity<SelectCustomerPresne
                 WholeCustomerModel.DataBean dataBean = adapter.getDataSource().get(position);
                 if(add_aa == 3) {
                     Intent intent = new Intent(SelectCustomerActivity.this, AddFollowActivity.class);
-                    intent.putExtra(Constants.ADD_FOLL,String.valueOf(dataBean.getData_id()));
+                    intent.putExtra(Constants.ADD_FOLL,String.valueOf(dataBean.getUid()));
+                    intent.putExtra(Constants.COMPANY_CODE,String.valueOf(dataBean.getCompanyID()));
                     intent.putExtra(Constants.ADD_FOLL_NAME,dataBean.getU_name());
                     startActivity(intent);
                 }else {

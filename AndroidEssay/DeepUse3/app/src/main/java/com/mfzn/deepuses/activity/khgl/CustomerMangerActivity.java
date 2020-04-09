@@ -76,10 +76,14 @@ public class CustomerMangerActivity extends BaseMvpActivity<CustomerManagePresne
         adapter.setOnItemClickListener(new WholeCustomerAdapter.OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Intent intent = new Intent(CustomerMangerActivity.this, CustomerDetailsActivity.class);
-                intent.putExtra(Constants.CUSTOMER_ID,String.valueOf(adapter.getDataSource().get(position).getData_id()));
-                intent.putExtra(Constants.CUSTOMER_NAME,adapter.getDataSource().get(position).getU_name());
-                startActivity(intent);
+                WholeCustomerModel.DataBean dataBean=adapter.getDataSource().get(position);
+                if(dataBean!=null) {
+                    Intent intent = new Intent(CustomerMangerActivity.this, CustomerDetailsActivity.class);
+                    intent.putExtra(Constants.CUSTOMER_ID, String.valueOf(dataBean.getData_id()));
+                    intent.putExtra(Constants.USER_ID, String.valueOf(dataBean.getUid()));
+                    intent.putExtra(Constants.CUSTOMER_NAME, dataBean.getU_name());
+                    startActivity(intent);
+                }
             }
         });
         adapter.setOnPhoneItemClickListener(new WholeCustomerAdapter.OnPhoneItemClickListener() {

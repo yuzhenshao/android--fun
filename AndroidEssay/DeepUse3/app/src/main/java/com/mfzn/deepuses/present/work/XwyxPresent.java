@@ -13,26 +13,4 @@ import cn.droidlover.xdroidmvp.net.XApi;
 
 public class XwyxPresent extends XPresent<XwyxFragment> {
 
-    //获取营销的地址
-    public void getMarketUrl() {
-        ApiHelper.getApiService().getMarketUrl(UserHelper.getToken(), UserHelper.getUid(),"2")
-                .compose(XApi.getApiTransformer())
-                .compose(XApi.getScheduler())
-                .compose(getV().bindToLifecycle())
-                .subscribe(new ApiSubscriber<HttpResult>() {
-                    @Override
-                    protected void onFail(NetError error) {
-                        getV().showError(error);
-                    }
-
-                    @Override
-                    public void onNext(HttpResult result) {
-                        getV().getMarketUrlSuccess(result);
-                    }
-
-                    @Override
-                    public void onComplete() {
-                    }
-                });
-    }
 }

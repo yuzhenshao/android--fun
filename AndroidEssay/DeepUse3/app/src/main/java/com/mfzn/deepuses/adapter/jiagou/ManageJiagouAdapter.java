@@ -69,7 +69,7 @@ public class ManageJiagouAdapter extends BaseAdapter {
             viewHolder.ivZuItemIcon.setVisibility(View.GONE);
             viewHolder.tvZuItemIcon.setVisibility(View.VISIBLE);
             String staffName = staffBeanX.getStaffName();
-            if(staffName.length() > 2) {
+            if(!TextUtils.isEmpty(staffName)&&staffName.length() > 2) {
                 String substring = staffName.substring(staffName.length() - 2, staffName.length());
                 viewHolder.tvZuItemIcon.setText(substring);
             }else {

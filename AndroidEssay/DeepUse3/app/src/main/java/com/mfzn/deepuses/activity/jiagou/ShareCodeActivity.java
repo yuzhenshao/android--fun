@@ -22,6 +22,8 @@ import com.mfzn.deepuses.BaseApplication;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BaseActivity;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
+import com.mfzn.deepuses.model.company.CompanyRepository;
+import com.mfzn.deepuses.model.company.SelectCompanyModel;
 import com.mfzn.deepuses.model.jiagou.ShareCodeModel;
 import com.mfzn.deepuses.net.ApiHelper;
 import com.mfzn.deepuses.present.jiagou.ShareCodePresent;
@@ -75,7 +77,7 @@ public class ShareCodeActivity extends BaseMvpActivity<ShareCodePresent> {
     private final int SHIBAI = 2;
 
     //成功动画handler
-    private Handler handler = new Handler(){
+    private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
@@ -112,11 +114,11 @@ public class ShareCodeActivity extends BaseMvpActivity<ShareCodePresent> {
 
         tvCodeJiacu.setText(UserHelper.getU_name() + "诚邀您加入");
 
-        int stringExtra = getIntent().getIntExtra(Constants.COMPANY_CODE,0);
+        int stringExtra = getIntent().getIntExtra(Constants.COMPANY_CODE, 0);
         String company = getIntent().getStringExtra(Constants.COMPANY_CODE_TEXT);
-        if(stringExtra == 0) {
+        if (stringExtra == 0) {
             getP().shareCode();
-        }else if(stringExtra == 1) {
+        } else if (stringExtra == 1) {
             getP().shareCode(company);
         }
     }
@@ -141,8 +143,9 @@ public class ShareCodeActivity extends BaseMvpActivity<ShareCodePresent> {
     public void shareCodeSuccess(ShareCodeModel model) {
         tvCodeName.setText(model.getCompanyName());
         String userAvatar = model.getUserAvatar();
-        if(!TextUtils.isEmpty(userAvatar)) {
-            Glide.with(this).load(ApiHelper.BASE_URL + userAvatar).into(ivCodeIcon);
+        SelectCompanyModel companyModel = CompanyRepository.getInstance().getCurCompany();
+        if (companyModel != null && !TextUtils.isEmpty(companyModel.getLogo())) {
+            Glide.with(this).load(ApiHelper.BASE_URL + companyModel.getLogo()).into(ivCodeIcon);
         }
         Glide.with(this).load(ApiHelper.BASE_API_URL + model.getQrCodeUrl()).into(ivCode);
     }
@@ -207,7 +210,7 @@ public class ShareCodeActivity extends BaseMvpActivity<ShareCodePresent> {
                 this.runOnUiThread(new Runnable() {//成功
                     @Override
                     public void run() {
-                        if(types == 1){
+                        if (types == 1) {
                             String path = Constants.IMAGE_DIR + "/" + Constants.SCREEN_SHOT;
                             File file = new File(path);
                             if (!file.exists()) {
@@ -232,9 +235,9 @@ public class ShareCodeActivity extends BaseMvpActivity<ShareCodePresent> {
                             req.message = msg;
                             req.scene = mTargetScene;
                             BaseApplication.api.sendReq(req);
-                        }else {
+                        } else {
                             ivCodeSuccess.setVisibility(View.VISIBLE);
-                            handler.sendEmptyMessageDelayed(CHNEGGONG,1500);
+                            handler.sendEmptyMessageDelayed(CHNEGGONG, 1500);
                         }
                     }
                 });
@@ -246,11 +249,11 @@ public class ShareCodeActivity extends BaseMvpActivity<ShareCodePresent> {
             this.runOnUiThread(new Runnable() {//失败
                 @Override
                 public void run() {
-                    if(types == 1){
-                        ToastUtil.showToast(ShareCodeActivity.this,"请重新分享");
-                    }else {
+                    if (types == 1) {
+                        ToastUtil.showToast(ShareCodeActivity.this, "请重新分享");
+                    } else {
                         tvCodeFail.setVisibility(View.VISIBLE);
-                        handler.sendEmptyMessageDelayed(SHIBAI,1500);
+                        handler.sendEmptyMessageDelayed(SHIBAI, 1500);
                     }
                 }
             });

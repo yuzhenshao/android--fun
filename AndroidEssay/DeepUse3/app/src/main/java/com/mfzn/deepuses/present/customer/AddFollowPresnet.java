@@ -1,6 +1,7 @@
 package com.mfzn.deepuses.present.customer;
 
 import com.mfzn.deepuses.activity.khgl.AddFollowActivity;
+import com.mfzn.deepuses.bean.request.AddFollowRecordRequest;
 import com.mfzn.deepuses.fragment.khxq.BasicInfoFragment;
 import com.mfzn.deepuses.net.ApiHelper;
 import com.mfzn.deepuses.net.HttpResult;
@@ -15,10 +16,8 @@ import cn.droidlover.xdroidmvp.net.XApi;
 
 public class AddFollowPresnet extends XPresent<AddFollowActivity> {
 
-    public void addFollow(String communicationTypeID,String followStatusID,String customerID,
-                          String content,String imageUrls,String followTime) {
-        ApiHelper.getApiService().addFollow(UserHelper.getToken(), UserHelper.getUid(),UserHelper.getCompanyId(),communicationTypeID,followStatusID,
-                customerID,content,imageUrls,followTime)
+    public void addFollow(AddFollowRecordRequest request) {
+        ApiHelper.getApiService().addFollow(UserHelper.getToken(), UserHelper.getUid(),request)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

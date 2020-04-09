@@ -60,6 +60,7 @@ public class VideoListAdapter extends RecyclerAdapter<Videos.DataBean, VideoList
 
         holder.videoPlayer.setAllControlsVisiblity(GONE, GONE, VISIBLE, GONE, VISIBLE, GONE, GONE);
         holder.videoPlayer.tinyBackImageView.setVisibility(GONE);
+        holder.videoPlayer.setThumb(model.getTitleImage());
 
         holder.videoPlayer.titleTextView.setText("");//清除标题,防止复用的时候出现
         holder.videoPlayer.setVideoStateListener(new VideoStateListenerAdapter() {

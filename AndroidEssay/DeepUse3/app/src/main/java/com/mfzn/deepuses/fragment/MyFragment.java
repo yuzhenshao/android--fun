@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -46,6 +47,8 @@ public class MyFragment extends BaseMvpFragment<MyPresnet> {
     ImageView ivMyIcon;
     @BindView(R.id.tv_my_qx)
     TextView tv_my_qx;
+    @BindView(R.id.ll_my_qx)
+    LinearLayout ll_my_qx;
 
     private String u_phone;
     private int leftDays;
@@ -65,8 +68,7 @@ public class MyFragment extends BaseMvpFragment<MyPresnet> {
         tvMyName.getPaint().setFakeBoldText(true);
         getP().userInfo();
         getP().quanxian();
-
-        tvMyCompaly.setText(UserHelper.getCompanyName());
+        setCompany();
         getP().companyList();
         tvMyName.setText(UserHelper.getU_name());
 
@@ -84,7 +86,7 @@ public class MyFragment extends BaseMvpFragment<MyPresnet> {
                     }else if (eventMsg.getMsg().equals(Constants.MODIFY_NAME)) {
                         tvMyName.setText(UserHelper.getU_name());
                     }else if (eventMsg.getMsg().equals(Constants.COMPANY_NAME)) {
-                        tvMyCompaly.setText(UserHelper.getCompanyName());
+                        setCompany();
                         getP().companyList();
                     }
                 }
@@ -92,11 +94,17 @@ public class MyFragment extends BaseMvpFragment<MyPresnet> {
         });
     }
 
+    private void setCompany(){
+        String name=UserHelper.getCompanyName();
+        tvMyCompaly.setText(name);
+        ll_my_qx.setVisibility(TextUtils.isEmpty(name)?View.GONE:View.VISIBLE);
+    }
+
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if(!hidden){
-            tvMyCompaly.setText(UserHelper.getCompanyName());
+            setCompany();
             getP().companyList();
         }
     }

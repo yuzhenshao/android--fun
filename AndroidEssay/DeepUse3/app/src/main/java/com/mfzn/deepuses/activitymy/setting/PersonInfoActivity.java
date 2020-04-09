@@ -115,7 +115,7 @@ public class PersonInfoActivity extends BaseMvpActivity<UserInfoPresent> {
             if (bitmap != null) {
                 Bitmap newbitmap = ImageCompressUtil.compressBySize(bitmap, 800, 1000);
                 File file = BitmapFileSetting.saveBitmapFile(newbitmap, PhotographDialog.Image_SAVEDIR + "/" + cameraFile);
-                getP().upLoadFile(file);
+                uploadImage(file);
             }
         } else if (requestCode == Constants.REAL_NAME_XIANGCE) {
 
@@ -128,7 +128,7 @@ public class PersonInfoActivity extends BaseMvpActivity<UserInfoPresent> {
                     Bitmap newbitmap = ImageCompressUtil.compressBySize(bitmap, 800, 1000);
                     String cameraFile = DateFormat.format("yy-MM-dd-hh-mm-ss", new Date()) + ".jpg";
                     File file = BitmapFileSetting.saveBitmapFile(newbitmap, PhotographDialog.Image_SAVEDIR + "/" + cameraFile);
-                    getP().upLoadFile(file);
+                    uploadImage(file);
                 }
             }
         } else if (requestCode == CLIP_PHOTO_BY_SELF_REQUEST_CODE) {
@@ -136,25 +136,14 @@ public class PersonInfoActivity extends BaseMvpActivity<UserInfoPresent> {
                 Bitmap bm = BitmapFactory.decodeFile(headClipFile.getAbsolutePath());
                 String cameraFile = DateFormat.format("yy-MM-dd-hh-mm-ss", new Date()) + ".jpg";
                 File file = BitmapFileSetting.saveBitmapFile(bm, PhotographDialog.Image_SAVEDIR + "/" + cameraFile);
-                getP().upLoadFile(file);
+                uploadImage(file);
             }
         }
     }
 
-    /**
-     * 调用自定义切图方法
-     *
-     * @param filePath
-     */
-    protected void clipPhotoBySelf(String filePath) {
-//        Log.i(TAG, "通过自定义方式去剪辑这个照片");
-        headClipFile = new File(HEAD_ICON_DIC, clipFileNameStr);
-        //进入裁剪页面,此处用的是自定义的裁剪页面而不是调用系统裁剪
-        Intent intent = new Intent(this, ClipCircularActivity.class);
-        intent.putExtra(ClipCircularActivity.IMAGE_PATH_ORIGINAL, filePath);
-        intent.putExtra(ClipCircularActivity.IMAGE_PATH_AFTER_CROP,
-                headClipFile.getAbsolutePath());
-        startActivityForResult(intent, CLIP_PHOTO_BY_SELF_REQUEST_CODE);
+    private void uploadImage(File file ){
+        showDialog();
+        getP().upLoadFile(file);
     }
 
     //用户信息成功返回
@@ -171,6 +160,7 @@ public class PersonInfoActivity extends BaseMvpActivity<UserInfoPresent> {
         EventMsg eventMsg = new EventMsg();
         eventMsg.setMsg(Constants.MODIFY_ICON);
         RxBus.getInstance().post(eventMsg);
+        hideDialog();
     }
 
     private void myRequetPermission() {

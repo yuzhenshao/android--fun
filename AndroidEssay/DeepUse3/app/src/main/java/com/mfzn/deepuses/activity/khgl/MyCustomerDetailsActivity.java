@@ -74,6 +74,7 @@ public class MyCustomerDetailsActivity extends BaseMvpActivity<MyCustomerDetails
         tvBassTitle.setText(getString(R.string.app_customer_details));
 
         String dataid = getIntent().getStringExtra(Constants.CUSTOMER_ID);
+        String userId = getIntent().getStringExtra(Constants.USER_ID);
         String name = getIntent().getStringExtra(Constants.CUSTOMER_NAME);
         getP().customerDetails(dataid);
 
@@ -92,6 +93,7 @@ public class MyCustomerDetailsActivity extends BaseMvpActivity<MyCustomerDetails
 
         FollowProgressFragment followProgressFragment = new FollowProgressFragment();
         bundle.putString(Constants.CUS_DETA_ID, dataid);
+        bundle.putString(Constants.USER_ID,userId);
         bundle.putString(Constants.CUS_DETA_NAME, name);
         followProgressFragment.setArguments(bundle);//数据传递到fragment中
         list.add(followProgressFragment);

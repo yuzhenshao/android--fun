@@ -90,8 +90,8 @@ public class BrickRecordActivity extends BaseMvpActivity<BrickRecordPresnet> {
     }
 
     public void brickRecordSuccess(BrickRecordModel model){
-        tvBrSumz.setText(model.getForCompanyZhuan().getSumMoney());
-        tvBrSumq.setText(model.getForCompanyMoney().getSumMoney());
+        tvBrSumz.setText(model.getBrickMoney());
+        tvBrSumq.setText(model.getSumMoney());
     }
 
     private void initMagicIndicator(List<String> mDataList) {
