@@ -154,7 +154,8 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
         getP().kanbData();
         getP().userInfo();
         getCompanyList();
-
+        setRecyleview();
+        setDatas();
         RxBus.getInstance().toObservable().map(new Function<Object, EventMsg>() {
             @Override
             public EventMsg apply(Object o) throws Exception {
@@ -192,8 +193,6 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
         } else {
             tvWorkCompany.setText("请您创建或者加入公司");
         }
-        setRecyleview();
-        setDatas();
     }
 
     public void setTime() {

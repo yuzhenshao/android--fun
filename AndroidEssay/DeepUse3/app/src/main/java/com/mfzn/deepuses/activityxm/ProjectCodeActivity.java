@@ -120,13 +120,12 @@ public class ProjectCodeActivity extends BaseMvpActivity<ProjectCodePresnet> {
 
         String proid = getIntent().getStringExtra(Constants.FOUND_PROJECT_PROID);
         String proname = getIntent().getStringExtra(Constants.FOUND_PROJECT_NAME);
-
+        String companyIcon=getIntent().getStringExtra(Constants.COMPANY_LOGO);
         tvCodeName.setText("项目：" + proname);
 
         tvCodeJiacu.setText(UserHelper.getU_name() + "诚邀您加入");
-
+        Glide.with(this).load(ApiHelper.BASE_URL + companyIcon).into(ivCodeIcon);
         getP().projectCode(proid);
-        getP().userInfo();
     }
 
     @OnClick({R.id.iv_login_back, R.id.but_bc, R.id.but_fx})
@@ -150,14 +149,6 @@ public class ProjectCodeActivity extends BaseMvpActivity<ProjectCodePresnet> {
         String path = model.getPath();
         if(!TextUtils.isEmpty(path)){
             Glide.with(this).load(ApiHelper.BASE_API_URL + path).into(ivCode);
-        }
-    }
-
-    //用户信息成功返回
-    public void userInfoSuccess(UserResponse result) {
-        String u_head = result.getUserAvatar();
-        if(!TextUtils.isEmpty(u_head)){
-            Glide.with(this).load(ApiHelper.BASE_URL + u_head).into(ivCodeIcon);
         }
     }
 

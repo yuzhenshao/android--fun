@@ -35,22 +35,4 @@ public class ProjectCodePresnet extends XPresent<ProjectCodeActivity> {
                 });
     }
 
-    //用户信息
-    public void userInfo() {
-        ApiHelper.getApiService().appUserInfo(UserHelper.getToken(), UserHelper.getUid())
-                .compose(XApi.getApiTransformer())
-                .compose(XApi.getScheduler())
-                .compose(getV().bindToLifecycle())
-                .subscribe(new ApiSubscriber<HttpResult<UserResponse>>() {
-                    @Override
-                    protected void onFail(NetError error) {
-                        getV().showError(error);
-                    }
-
-                    @Override
-                    public void onNext(HttpResult<UserResponse> result) {
-                        getV().userInfoSuccess(result.getRes());
-                    }
-                });
-    }
 }
