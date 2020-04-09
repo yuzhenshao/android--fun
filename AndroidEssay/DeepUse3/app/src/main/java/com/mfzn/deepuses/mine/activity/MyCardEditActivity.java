@@ -228,7 +228,10 @@ public class MyCardEditActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == SELECTED) {
             if (data != null) {
-                tvCompanySelect.setText(data.getStringExtra("companyName"));
+                String name=data.getStringExtra("companyName");
+                if(!TextUtils.isEmpty(name)) {
+                    tvCompanySelect.setText(name);
+                }
             }
         } else if (requestCode == Constants.REAL_NAME_PAIZHAO) {
             String cameraFile = PhotographDialog.mSp.getString("img", "");
