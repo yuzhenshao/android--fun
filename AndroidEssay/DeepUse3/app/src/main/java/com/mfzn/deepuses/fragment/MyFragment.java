@@ -26,6 +26,7 @@ import com.mfzn.deepuses.model.my.UserInfoModel;
 import com.mfzn.deepuses.net.ApiHelper;
 import com.mfzn.deepuses.present.fragment.MyPresnet;
 import com.mfzn.deepuses.utils.Constants;
+import com.mfzn.deepuses.utils.DateUtils;
 import com.mfzn.deepuses.utils.EventMsg;
 import com.mfzn.deepuses.utils.PhoneUtils;
 import com.mfzn.deepuses.utils.RxBus;
@@ -84,9 +85,9 @@ public class MyFragment extends BaseMvpFragment<MyPresnet> {
                 if (eventMsg != null) {
                     if (eventMsg.getMsg().equals(Constants.MODIFY_ICON)) {
                         getP().userInfo();
-                    }else if (eventMsg.getMsg().equals(Constants.MODIFY_NAME)) {
+                    } else if (eventMsg.getMsg().equals(Constants.MODIFY_NAME)) {
                         tvMyName.setText(UserHelper.getU_name());
-                    }else if (eventMsg.getMsg().equals(Constants.COMPANY_NAME)) {
+                    } else if (eventMsg.getMsg().equals(Constants.COMPANY_NAME)) {
                         setCompany();
                         getP().companyList();
                     }
@@ -95,23 +96,22 @@ public class MyFragment extends BaseMvpFragment<MyPresnet> {
         });
     }
 
-    private void setCompany(){
-        String name=UserHelper.getCompanyName();
+    private void setCompany() {
+        String name = UserHelper.getCompanyName();
         tvMyCompaly.setText(name);
-        ll_my_qx.setVisibility(TextUtils.isEmpty(name)?View.GONE:View.VISIBLE);
     }
 
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if(!hidden){
+        if (!hidden) {
             setCompany();
             getP().companyList();
         }
     }
 
     @OnClick({R.id.ll_my_tg, R.id.ll_my_setting, R.id.ll_my_tc, R.id.ll_my_gcs, R.id.ll_my_kf, R.id.ll_my_czzn,
-                R.id.ll_my_qx, R.id.ll_my_zhuan,R.id.ll_my_card})
+            R.id.ll_my_qx, R.id.ll_my_zhuan, R.id.ll_my_card})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_my_card:
@@ -128,7 +128,7 @@ public class MyFragment extends BaseMvpFragment<MyPresnet> {
                 break;
             case R.id.ll_my_czzn:
                 Intent intent = new Intent(context, OperationGuideActivity.class);
-                intent.putExtra("czzn",2);
+                intent.putExtra("czzn", 2);
                 startActivity(intent);
                 break;
 //            case R.id.ll_my_help:
@@ -144,17 +144,17 @@ public class MyFragment extends BaseMvpFragment<MyPresnet> {
                 startActivity(new Intent(context, EnginerMaillistActivity.class));
                 break;
             case R.id.ll_my_kf:
-                PhoneUtils.dialogPhone2(getActivity(), "拨打","400-055-2011","4000552011");
+                PhoneUtils.dialogPhone2(getActivity(), "拨打", "400-055-2011", "4000552011");
                 break;
             case R.id.ll_my_qx:
-                if(leftDays > 0) {
+                if (leftDays > 0) {
                     PhoneUtils.dialogPhone2(getActivity(), "提示",
                             "售后板块试用期还剩" + leftDays + "天，到期后\n" +
                                     "如需继续使用，请拨打客服电话\n" +
-                                    "400-055-2011","4000552011");
-                }else {
+                                    "400-055-2011", "4000552011");
+                } else {
                     PhoneUtils.dialogPhone2(getActivity(), "提示",
-                            "对不起,您的售后板块试用期已结束\n，如需继续使用，请拨打客服电话\n400-055-2011","4000552011");
+                            "对不起,您的售后板块试用期已结束\n，如需继续使用，请拨打客服电话\n400-055-2011", "4000552011");
                 }
                 break;
         }
@@ -162,47 +162,62 @@ public class MyFragment extends BaseMvpFragment<MyPresnet> {
 
     //用户信息成功返回
     public void userInfoSuccess(UserResponse result) {
-        if (!TextUtils.isEmpty(result.getUserAvatar())){
+        if (!TextUtils.isEmpty(result.getUserAvatar())) {
             Glide.with(context).load(ApiHelper.BASE_URL + result.getUserAvatar()).into(ivMyIcon);
         }
         u_phone = result.getUserPhone();
     }
 
     public void lookQxSuccess(LookQuanxian2Model model) {
-        leftDays = model.getCompanyModule().getAfterSale().getLeftDays();
-        if(leftDays > 0) {
-            tv_my_qx.setText("售后试用期还剩" + leftDays + "天");
-        }else {
-            tv_my_qx.setText("已过期");
+        if (model != null && model.getCompanyModule() != null && model.getCompanyModule().getAfterSale() != null) {
+            LookQuanxian2Model.CompanyModuleBean.AfterSaleBean afterSale = model.getCompanyModule().getAfterSale();
+            if(afterSale.getCompanyID()!=0) {
+                ll_my_qx.setVisibility(View.VISIBLE);
+                leftDays = afterSale.getLeftDays();
+                String timen="";
+                try {
+                    timen = DateUtils.longToDateStr(afterSale.getStartTime()) + DateUtils.longToDateStr(afterSale.getEndTime());
+                }catch (Exception e){
+
+                }
+                if (leftDays > 0) {
+                    tv_my_qx.setText(timen + " 售后试用期还剩" + leftDays + "天");
+                } else {
+                    tv_my_qx.setText(timen + " 已过期");
+                }
+            }
+        } else {
+            ll_my_qx.setVisibility(View.GONE);
         }
+
     }
 
     public void companyListSuccess(List<SelectCompanyModel> models) {
-        for(int i = 0; i < models.size(); i++) {
-            if(UserHelper.getCompanyName().equals(models.get(i).getCompanyName())) {
+        for (int i = 0; i < models.size(); i++) {
+            if (UserHelper.getCompanyName().equals(models.get(i).getCompanyName())) {
                 int companyLevel = models.get(i).getCompanyLevel();
-                if(companyLevel == 1) {
+                if (companyLevel == 1) {
                     Drawable drawable = getResources().getDrawable(R.mipmap.vip1);
                     drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
 //                    tvMyCompaly.setCompoundDrawablePadding(5);// 设置喇叭与textview的距离
                     tvMyCompaly.setCompoundDrawables(null, null, drawable, null);
-                }else if(companyLevel == 2) {
+                } else if (companyLevel == 2) {
                     Drawable drawable = getResources().getDrawable(R.mipmap.vip2);
                     drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                     tvMyCompaly.setCompoundDrawables(null, null, drawable, null);
-                }else if(companyLevel == 3) {
+                } else if (companyLevel == 3) {
                     Drawable drawable = getResources().getDrawable(R.mipmap.vip3);
                     drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                     tvMyCompaly.setCompoundDrawables(null, null, drawable, null);
-                }else if(companyLevel == 4) {
+                } else if (companyLevel == 4) {
                     Drawable drawable = getResources().getDrawable(R.mipmap.vip4);
                     drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                     tvMyCompaly.setCompoundDrawables(null, null, drawable, null);
-                }else if(companyLevel == 5) {
+                } else if (companyLevel == 5) {
                     Drawable drawable = getResources().getDrawable(R.mipmap.vip5);
                     drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                     tvMyCompaly.setCompoundDrawables(null, null, drawable, null);
-                }else if(companyLevel == 6) {
+                } else if (companyLevel == 6) {
                     Drawable drawable = getResources().getDrawable(R.mipmap.vip6);
                     drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                     tvMyCompaly.setCompoundDrawables(null, null, drawable, null);

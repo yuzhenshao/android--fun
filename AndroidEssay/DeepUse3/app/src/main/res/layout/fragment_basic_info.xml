@@ -77,7 +77,7 @@
 
                 <EditText
                     android:id="@+id/et_ba_name"
-                    style="@style/newly_et_st"
+                    style="@style/customer_et_st"
                     android:focusableInTouchMode="false"
                     android:hint="@string/add_custom_shuru" />
 
@@ -99,7 +99,7 @@
 
                 <EditText
                     android:id="@+id/et_ba_phone"
-                    style="@style/newly_et_st"
+                    style="@style/customer_et_st"
                     android:inputType="number"
                     android:focusableInTouchMode="false"
                     android:hint="@string/add_custom_shuru" />
@@ -116,7 +116,7 @@
 
                 <EditText
                     android:id="@+id/et_ba_type"
-                    style="@style/newly_et_st2"
+                    style="@style/customer_et_st"
                     android:enabled="false"
                     android:paddingRight="0dp" />
 
@@ -146,7 +146,7 @@
 
                 <EditText
                     android:id="@+id/et_ba_level"
-                    style="@style/newly_et_st2"
+                    style="@style/customer_et_st"
                     android:enabled="false"
                     android:paddingRight="0dp" />
 
@@ -176,7 +176,7 @@
 
                 <EditText
                     android:id="@+id/et_ba_laiy"
-                    style="@style/newly_et_st2"
+                    style="@style/customer_et_st"
                     android:enabled="false"
                     android:paddingRight="0dp" />
 
@@ -237,7 +237,7 @@
 
                 <EditText
                     android:id="@+id/et_ba_gw"
-                    style="@style/newly_et_st2"
+                    style="@style/customer_et_st"
                     android:enabled="false"
                     android:paddingRight="0dp" />
 

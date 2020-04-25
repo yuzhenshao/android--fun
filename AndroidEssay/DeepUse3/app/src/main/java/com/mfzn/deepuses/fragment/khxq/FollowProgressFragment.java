@@ -27,7 +27,7 @@ public class FollowProgressFragment extends BaseMvpFragment<FollowProgressPresne
     @BindView(R.id.ll_pr_empty)
     LinearLayout ll_pr_empty;
 
-    private String dataid;
+    private int status;
     private String userId;
     private String name;
 
@@ -49,9 +49,9 @@ public class FollowProgressFragment extends BaseMvpFragment<FollowProgressPresne
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         flRecycleview.setLayoutManager(layoutManager);
 
-        dataid = getArguments().getString(Constants.CUS_DETA_ID);
         userId = getArguments().getString(Constants.USER_ID);
         name = getArguments().getString(Constants.CUS_DETA_NAME);
+        status = getArguments().getInt(Constants.ADD_FOLL_STATUS);
         getP().followPro(userId);
 
 
@@ -62,6 +62,7 @@ public class FollowProgressFragment extends BaseMvpFragment<FollowProgressPresne
         Intent intent = new Intent(getActivity(), AddFollowActivity.class);
         intent.putExtra(Constants.ADD_FOLL,userId);
         intent.putExtra(Constants.ADD_FOLL_NAME,name);
+        intent.putExtra(Constants.ADD_FOLL_STATUS,status);
         startActivityForResult(intent, Constants.ADD_FOLLOW);
     }
 

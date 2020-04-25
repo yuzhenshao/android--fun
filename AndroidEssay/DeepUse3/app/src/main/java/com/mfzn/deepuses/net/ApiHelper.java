@@ -13,6 +13,9 @@ public class ApiHelper {
     public static final String BASE_URL = "https://cdn.useyzs.com/";
     public static final String BASE_API_URL = "https://api.useyzs.com/";
 
+
+    public static final String B_LOGIN_URL = "https://b.useyzs.com/#/login";
+
     private static ApiService apiService;
 
     public static ApiService getApiService() {

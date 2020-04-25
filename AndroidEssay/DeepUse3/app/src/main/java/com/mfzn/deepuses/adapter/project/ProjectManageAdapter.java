@@ -39,7 +39,15 @@ public class ProjectManageAdapter extends RecyclerAdapter<XiangmuModel.DataBean,
 
         holder.tvXmItemTitle.getPaint().setFakeBoldText(true);
         holder.tvXmItemTitle.setText(bean.getProName());
-        holder.tvXmItemName.setText(bean.getCustomName());
+
+        StringBuffer customerNames=new StringBuffer();
+        if(bean!=null&&bean.getCustomersInfo()!=null&&bean.getCustomersInfo().size()>0){
+            for(XiangmuModel.DataBean.CustomersBean customers:bean.getCustomersInfo()){
+                customerNames.append(customers.getCustomerName()).append(" ");
+            }
+        }
+
+        holder.tvXmItemName.setText(customerNames.toString());
         String start_time = bean.getQualityBegin();
         String end_time = bean.getQualityEnd();
         if(!start_time.equals("0") && !end_time.equals("0")) {

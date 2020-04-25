@@ -130,8 +130,8 @@ public class EditProjectActivity extends BaseMvpActivity<EditProjectPresnet> {
         latitude = dataBean.getLatitude() + "";
         etEditDetail.setText(dataBean.getDetailAddress());
         levelID = dataBean.getCustomLevel() + "";
-        etEditGw.setText(dataBean.getProSalesPersonInfo().getSalesName());
-        gwID = dataBean.getProSalesPersonInfo().getSalesID();
+        etEditGw.setText(dataBean.getProSalesPersonInfo().getUserName());
+        gwID = dataBean.getProSalesPersonInfo().getUserID();
         etEditMoney.setText(dataBean.getContractMoney() + "");
         String qualityBegin = dataBean.getQualityBegin();
         if(!TextUtils.isEmpty(qualityBegin) && !qualityBegin.equals("0")) {

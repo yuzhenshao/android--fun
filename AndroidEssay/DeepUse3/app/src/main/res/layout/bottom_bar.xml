@@ -21,15 +21,15 @@
                 android:id="@+id/iv_main_gongzuo"
                 android:layout_width="48dp"
                 android:layout_height="31dp"
-                android:src="@mipmap/bass_work2"/>
+                android:src="@mipmap/bass_work2" />
 
             <TextView
                 android:id="@+id/tv_main_gongzuo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="10sp"
+                android:text="工作"
                 android:textColor="#3D7EFF"
-                android:text="工作"/>
+                android:textSize="10sp" />
 
         </LinearLayout>
 
@@ -45,15 +45,15 @@
                 android:id="@+id/iv_main_xiangmu"
                 android:layout_width="48dp"
                 android:layout_height="31dp"
-                android:src="@mipmap/bass_xiangmu"/>
+                android:src="@mipmap/bass_xiangmu" />
 
             <TextView
                 android:id="@+id/tv_main_xiangmu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="10sp"
+                android:text="项目"
                 android:textColor="#909399"
-                android:text="项目"/>
+                android:textSize="10sp" />
 
         </LinearLayout>
 
@@ -69,15 +69,15 @@
                 android:id="@+id/iv_main_baike"
                 android:layout_width="48dp"
                 android:layout_height="31dp"
-                android:src="@mipmap/bass_baike1"/>
+                android:src="@mipmap/bass_baike1" />
 
             <TextView
                 android:id="@+id/tv_main_baike"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="10sp"
+                android:text="发现"
                 android:textColor="#909399"
-                android:text="发现"/>
+                android:textSize="10sp" />
 
         </LinearLayout>
 
@@ -89,19 +89,39 @@
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/iv_main_xiaoxi"
-                android:layout_width="48dp"
-                android:layout_height="31dp"
-                android:src="@mipmap/bass_xiaoxi"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal">
+
+                <ImageView
+                    android:id="@+id/iv_main_xiaoxi"
+                    android:layout_width="48dp"
+                    android:layout_height="31dp"
+                    android:src="@mipmap/bass_xiaoxi" />
+
+                <TextView
+                    android:id="@+id/tv_tdxx_num"
+                    android:layout_width="@dimen/app_14dp"
+                    android:layout_height="@dimen/app_14dp"
+                    android:layout_marginLeft="@dimen/app_24dp"
+                    android:layout_marginTop="@dimen/app_3dp"
+                    android:background="@drawable/red_point_shape"
+                    android:gravity="center"
+                    android:text="111"
+                    android:textColor="#FFFFFF"
+                    android:textSize="10sp"
+                    android:visibility="gone"/>
+
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/tv_main_xiaoxi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="10sp"
+                android:text="消息"
                 android:textColor="#909399"
-                android:text="消息"/>
+                android:textSize="10sp" />
 
         </LinearLayout>
 
@@ -117,15 +137,15 @@
                 android:id="@+id/iv_main_me"
                 android:layout_width="48dp"
                 android:layout_height="31dp"
-                android:src="@mipmap/bass_me"/>
+                android:src="@mipmap/bass_me" />
 
             <TextView
                 android:id="@+id/tv_main_me"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="10sp"
+                android:text="我的"
                 android:textColor="#909399"
-                android:text="我的"/>
+                android:textSize="10sp" />
 
         </LinearLayout>
 

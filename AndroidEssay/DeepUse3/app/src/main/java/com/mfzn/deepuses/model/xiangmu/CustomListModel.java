@@ -20,17 +20,17 @@ public class CustomListModel implements Serializable {
      */
 
     private int companyID;
-    private int kfTypeID;
+    private int spTypeID;
     private String name;
     private String phone;
-    private int addTime;
-    private int addUserID;
-    private int updateTime;
-    private int updateUserID;
-    private int is_del;
+    //    private int addTime;
+//    private int addUserID;
+//    private int updateTime;
+//    private int updateUserID;
+    private int isDel;
     private String typeName;
     private int data_id;
-    private String data_en_id;
+    //private String data_en_id;
     private Boolean typeSelect = false;
 
     public Boolean getTypeSelect() {
@@ -50,11 +50,11 @@ public class CustomListModel implements Serializable {
     }
 
     public int getKfTypeID() {
-        return kfTypeID;
+        return spTypeID;
     }
 
     public void setKfTypeID(int kfTypeID) {
-        this.kfTypeID = kfTypeID;
+        this.spTypeID = kfTypeID;
     }
 
     public String getName() {
@@ -73,44 +73,12 @@ public class CustomListModel implements Serializable {
         this.phone = phone;
     }
 
-    public int getAddTime() {
-        return addTime;
-    }
-
-    public void setAddTime(int addTime) {
-        this.addTime = addTime;
-    }
-
-    public int getAddUserID() {
-        return addUserID;
-    }
-
-    public void setAddUserID(int addUserID) {
-        this.addUserID = addUserID;
-    }
-
-    public int getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(int updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public int getUpdateUserID() {
-        return updateUserID;
-    }
-
-    public void setUpdateUserID(int updateUserID) {
-        this.updateUserID = updateUserID;
-    }
-
     public int getIs_del() {
-        return is_del;
+        return isDel;
     }
 
     public void setIs_del(int is_del) {
-        this.is_del = is_del;
+        this.isDel = is_del;
     }
 
     public String getTypeName() {
@@ -127,13 +95,5 @@ public class CustomListModel implements Serializable {
 
     public void setData_id(int data_id) {
         this.data_id = data_id;
-    }
-
-    public String getData_en_id() {
-        return data_en_id;
-    }
-
-    public void setData_en_id(String data_en_id) {
-        this.data_en_id = data_en_id;
     }
 }

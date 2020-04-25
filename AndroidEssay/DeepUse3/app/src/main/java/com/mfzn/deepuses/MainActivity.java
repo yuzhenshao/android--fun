@@ -6,8 +6,11 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mfzn.deepuses.bass.BaseMvpActivity;
@@ -48,6 +51,10 @@ public class MainActivity extends BaseMvpActivity<MainPresent> {
     ImageView ivMainBaike;
     @BindView(R.id.tv_main_baike)
     TextView tvMainBaike;
+
+    @BindView(R.id.tv_tdxx_num)
+    TextView ivMainXiaoxiCount;
+
     @BindView(R.id.iv_main_xiaoxi)
     ImageView ivMainXiaoxi;
     @BindView(R.id.tv_main_xiaoxi)
@@ -105,11 +112,15 @@ public class MainActivity extends BaseMvpActivity<MainPresent> {
     }
 
     public void getMsgSuccess(MsgMainModel model) {
-//        if (model.getShowRedPoint() > 0){
-        Badge badge = new QBadgeView(this).bindTarget(ivMainXiaoxi).setBadgeNumber(model.getShowRedPoint());
-        badge.setShowShadow(false);
-//        }
+        if(model.getShowRedPoint()>0){
+            ivMainXiaoxiCount.setVisibility(View.VISIBLE);
+            ivMainXiaoxiCount.setText(model.getShowRedPoint()+"");
+        }else{
+            ivMainXiaoxiCount.setVisibility(View.GONE);
+        }
+
     }
+
     @OnClick({R.id.ll_main_gongzuo, R.id.ll_main_xiangmu, R.id.ll_main_baike, R.id.ll_main_xiaoxi, R.id.ll_main_me})
     public void onViewClicked(View view) {
         switch (view.getId()) {

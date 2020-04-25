@@ -190,6 +190,7 @@ public class Constants {
     public static final String MULTI_ID = "nulti_id";
     public static final String ADD_FOLL = "add_foll";
     public static final String ADD_FOLL_NAME = "add_foll_name";
+    public static final String ADD_FOLL_STATUS = "add_foll_status";
     public static final int SELECT_PRO = 1026;
     public static final int ADD_FOLLOW = 1027;
     public static final int ADD_TASK = 1028;

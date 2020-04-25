@@ -37,7 +37,7 @@
 
                         <EditText
                             android:id="@+id/et_bu_name"
-                            style="@style/newly_et_st"
+                            style="@style/customer_et_st"
                             android:hint="@string/add_custom_shuru" />
 
                     </LinearLayout>
@@ -58,7 +58,7 @@
 
                         <EditText
                             android:id="@+id/et_bu_phone"
-                            style="@style/newly_et_st"
+                            style="@style/customer_et_st"
                             android:inputType="number"
                             android:hint="@string/add_custom_shuru" />
 
@@ -79,8 +79,7 @@
                             android:paddingRight="0dp" />
 
                         <ImageView
-                            style="@style/bass_iv_you"
-                            android:layout_marginRight="@dimen/app_20dp" />
+                            style="@style/bass_iv_you" />
 
                     </LinearLayout>
 
@@ -99,8 +98,7 @@
                             android:paddingRight="0dp" />
 
                         <ImageView
-                            style="@style/bass_iv_you"
-                            android:layout_marginRight="@dimen/app_20dp" />
+                            style="@style/bass_iv_you"/>
 
                     </LinearLayout>
 
@@ -119,8 +117,7 @@
                             android:paddingRight="0dp" />
 
                         <ImageView
-                            style="@style/bass_iv_you"
-                            android:layout_marginRight="@dimen/app_20dp" />
+                            style="@style/bass_iv_you" />
 
                     </LinearLayout>
 

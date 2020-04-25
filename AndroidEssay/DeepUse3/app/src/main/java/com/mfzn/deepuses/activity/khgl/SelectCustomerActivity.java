@@ -74,6 +74,9 @@ public class SelectCustomerActivity extends BaseMvpActivity<SelectCustomerPresne
                     intent.putExtra(Constants.ADD_FOLL,String.valueOf(dataBean.getUid()));
                     intent.putExtra(Constants.COMPANY_CODE,String.valueOf(dataBean.getCompanyID()));
                     intent.putExtra(Constants.ADD_FOLL_NAME,dataBean.getU_name());
+
+                    intent.putExtra(Constants.ADD_FOLL_STATUS,dataBean.getFollowStatusID());
+
                     startActivity(intent);
                 }else {
                     Intent intent = new Intent();

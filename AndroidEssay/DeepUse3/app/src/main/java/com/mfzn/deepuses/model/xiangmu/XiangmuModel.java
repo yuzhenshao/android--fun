@@ -317,23 +317,41 @@ public class XiangmuModel implements Serializable {
         }
 
         public static class SalesPeopleBean implements Serializable {
-            private String salesID;
-            private String salesName;
+            private  String userID;
+            private  String userAvatar;
+            private  String userName;
+            private  String userPhone;
 
-            public String getSalesID() {
-                return salesID;
+            public String getUserID() {
+                return userID;
             }
 
-            public void setSalesID(String salesID) {
-                this.salesID = salesID;
+            public void setUserID(String userID) {
+                this.userID = userID;
             }
 
-            public String getSalesName() {
-                return salesName;
+            public String getUserAvatar() {
+                return userAvatar;
             }
 
-            public void setSalesName(String salesName) {
-                this.salesName = salesName;
+            public void setUserAvatar(String userAvatar) {
+                this.userAvatar = userAvatar;
+            }
+
+            public String getUserName() {
+                return userName;
+            }
+
+            public void setUserName(String userName) {
+                this.userName = userName;
+            }
+
+            public String getUserPhone() {
+                return userPhone;
+            }
+
+            public void setUserPhone(String userPhone) {
+                this.userPhone = userPhone;
             }
         }
 

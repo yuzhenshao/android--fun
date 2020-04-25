@@ -139,7 +139,6 @@ public class XiaoxiFragment extends BaseMvpFragment<XiaoxiPresnet> {
 
     public void getMsgSuccess(MsgMainModel model){
         List<MsgMainModel.DataBean> data = model.getData();
-        new QBadgeView(getActivity()).bindTarget(getActivity().findViewById(R.id.iv_main_xiaoxi)).setBadgeNumber(model.getShowRedPoint()).setShowShadow(false);
         for (int i = 0; i < data.size(); i++){
             MsgMainModel.DataBean msg = data.get(i);
             if (msg.getType() == 1){

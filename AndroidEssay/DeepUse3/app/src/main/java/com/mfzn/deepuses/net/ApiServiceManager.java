@@ -11,6 +11,7 @@ import com.mfzn.deepuses.bean.request.CompanyInfoRequest;
 import com.mfzn.deepuses.bean.request.CreateAfterSaleOrderRequest;
 import com.mfzn.deepuses.bean.request.EditAsServicePeopleRequest;
 import com.mfzn.deepuses.bean.request.EditProjectRequest;
+import com.mfzn.deepuses.bean.request.EditStaffRequest;
 import com.mfzn.deepuses.bean.request.ProMemberRequest;
 import com.mfzn.deepuses.bean.request.ForgetRequest;
 import com.mfzn.deepuses.bean.request.LoginRequest;
@@ -111,6 +112,11 @@ public class ApiServiceManager {
     public static Flowable<HttpResult> addDepartment(AddDepartmentRequest request) {
         return ApiHelper.getApiService().addDepartment(UserHelper.getToken(), UserHelper.getUid(), request);
     }
+
+    public static Flowable<HttpResult> editStaff(EditStaffRequest request) {
+        return ApiHelper.getApiService().editStaff(UserHelper.getToken(), UserHelper.getUid(),request);
+    }
+
 
     public static Flowable<HttpResult<List<ManageSettingModel>>> managerList(){
         return ApiHelper.getApiService().managerList(UserHelper.getToken(), UserHelper.getUid(),UserHelper.getCompanyId());

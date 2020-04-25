@@ -20,12 +20,12 @@ public class GenjinListviewAdapter extends BaseAdapter {
 
     private Context mContext;
     private List<SelectModel.FollowStatusBean> listModel;
-    private int positions;
+    private int selectedId;
 
-    public GenjinListviewAdapter(Context context, List<SelectModel.FollowStatusBean> listModel) {
+    public GenjinListviewAdapter(Context context, List<SelectModel.FollowStatusBean> listModel,int id) {
         this.mContext = context;
         this.listModel = listModel;
-//        this.positions = positions;
+        this.selectedId = id;
     }
 
     @Override
@@ -61,11 +61,11 @@ public class GenjinListviewAdapter extends BaseAdapter {
         
         viewHolder.tv_item_bo_name.setText(bottomListviewModel.getName());
         
-//        if(positions == position) {
-//            viewHolder.iv_gen_select.setImageResource(R.drawable.regi_xuanzhong);
-//        }else {
-//            viewHolder.iv_gen_select.setImageResource(R.drawable.regi_weixuan);
-//        }
+        if(bottomListviewModel.getData_id() == selectedId) {
+            viewHolder.iv_gen_select.setImageResource(R.drawable.regi_xuanzhong);
+        }else {
+            viewHolder.iv_gen_select.setImageResource(R.drawable.regi_weixuan);
+        }
 
         return convertView;
     }

@@ -69,8 +69,8 @@ public class LookQuanxian2Model {
             private int proID;
             private int moduleType;
             private int status;
-            private int startTime;
-            private int endTime;
+            private String startTime;
+            private String endTime;
             private int leftDays;
 
             public int getData_id() {
@@ -113,19 +113,19 @@ public class LookQuanxian2Model {
                 this.status = status;
             }
 
-            public int getStartTime() {
+            public String getStartTime() {
                 return startTime;
             }
 
-            public void setStartTime(int startTime) {
+            public void setStartTime(String startTime) {
                 this.startTime = startTime;
             }
 
-            public int getEndTime() {
+            public String getEndTime() {
                 return endTime;
             }
 
-            public void setEndTime(int endTime) {
+            public void setEndTime(String endTime) {
                 this.endTime = endTime;
             }
 

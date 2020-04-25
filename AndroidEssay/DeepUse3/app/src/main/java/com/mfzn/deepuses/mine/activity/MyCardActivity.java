@@ -9,6 +9,7 @@ import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -58,6 +59,10 @@ public class MyCardActivity extends BaseActivity {
     TextView tvCardCompany;
     @BindView(R.id.tv_card_work_year)
     TextView tvWorkYear;
+
+    @BindView(R.id.gz_jz_container)
+    LinearLayout gzjzContainer;
+
     @BindView(R.id.tv_card_jz)
     TextView tvCarddJZ;
     @BindView(R.id.tv_card_gz)
@@ -116,11 +121,25 @@ public class MyCardActivity extends BaseActivity {
         if (businessCardResponse.getProMemberLabels() != null && businessCardResponse.getProMemberLabels().size() > 0) {
             label = businessCardResponse.getProMemberLabels().get(0).getLabelName();
         }
-        tvCardCompany.setText(businessCardResponse.getCompanyName() + "  " + businessCardResponse.getUserPosition() + "  " + label);
+
+        if (businessCardResponse.isShowProNum()) {
+            gzjzContainer.setVisibility(View.VISIBLE);
+            tvCardProjrct.setVisibility(View.VISIBLE);
+            tvCarddJZ.setText(getString(R.string.card_jz, businessCardResponse.getJzNum()));
+            tvCardGZ.setText(getString(R.string.card_gz, businessCardResponse.getGzNum()));
+            tvCardProjrct.setText(getString(R.string.card_project, businessCardResponse.getProNum()));
+        } else {
+            gzjzContainer.setVisibility(View.GONE);
+            tvCardProjrct.setVisibility(View.GONE);
+        }
+
+        if (businessCardResponse.isShowCompany()) {
+            tvCardCompany.setVisibility(View.VISIBLE);
+            tvCardCompany.setText(businessCardResponse.getCompanyName() + "  " + businessCardResponse.getUserPosition() + "  " + label);
+        } else {
+            tvCardCompany.setVisibility(View.GONE);
+        }
         tvWorkYear.setText(getString(R.string.card_word_year, businessCardResponse.getWorkYear()));
-        tvCarddJZ.setText(getString(R.string.card_jz, businessCardResponse.getJzNum()));
-        tvCardGZ.setText(getString(R.string.card_gz, businessCardResponse.getGzNum()));
-        tvCardProjrct.setText(getString(R.string.card_project, businessCardResponse.getProNum()));
         tvCardPhone.setText(businessCardResponse.getCardPhone());
         tvCardEmail.setText(businessCardResponse.getUserEmail());
     }
@@ -170,7 +189,7 @@ public class MyCardActivity extends BaseActivity {
                 sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + file.getPath())));
                 finish();
             } else {
-                showToast("保存是阿碧");
+                showToast("保存失败");
             }
         } catch (IOException e) {
             e.printStackTrace();

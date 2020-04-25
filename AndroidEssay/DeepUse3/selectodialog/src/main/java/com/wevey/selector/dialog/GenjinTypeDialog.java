@@ -63,7 +63,7 @@ public class GenjinTypeDialog {
 
         List<SelectModel.FollowStatusBean> listModel = builder.getListModel();
 
-        GenjinListviewAdapter adapter = new GenjinListviewAdapter(builder.getContext(),listModel);
+        GenjinListviewAdapter adapter = new GenjinListviewAdapter(builder.getContext(),listModel,builder.getModelId());
         boListview.setAdapter(adapter);
 
         boListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -108,6 +108,7 @@ public class GenjinTypeDialog {
     public static class Builder {
 
         private List<SelectModel.FollowStatusBean> res;
+        private int id;
 
         private DialogInterface.OnItemClickListener<GenjinTypeDialog> onclickListener;
         private boolean isTouchOutside;
@@ -135,8 +136,17 @@ public class GenjinTypeDialog {
             return res;
         }
 
+        public int getModelId() {
+            return id;
+        }
+
         public Builder setListModel(List<SelectModel.FollowStatusBean> res) {
             this.res = res;
+            return this;
+        }
+
+        public Builder setCurItemId(int id) {
+            this.id=id;
             return this;
         }
 

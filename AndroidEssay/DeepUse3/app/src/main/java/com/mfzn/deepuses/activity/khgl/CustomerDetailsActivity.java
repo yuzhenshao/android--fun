@@ -80,6 +80,7 @@ public class CustomerDetailsActivity extends BaseMvpActivity<CustomerDetailsPres
         String dataid = getIntent().getStringExtra(Constants.CUSTOMER_ID);
         String userId = getIntent().getStringExtra(Constants.USER_ID);
         String name = getIntent().getStringExtra(Constants.CUSTOMER_NAME);
+        int status=  getIntent().getIntExtra(Constants.ADD_FOLL_STATUS,0);
         getP().customerDetails(dataid);
 
         List<String> mDataList = new ArrayList<>();
@@ -99,6 +100,7 @@ public class CustomerDetailsActivity extends BaseMvpActivity<CustomerDetailsPres
         bundle.putString(Constants.CUS_DETA_ID, dataid);
         bundle.putString(Constants.USER_ID,userId);
         bundle.putString(Constants.CUS_DETA_NAME, name);
+        bundle.putInt(Constants.ADD_FOLL_STATUS,status);
         followProgressFragment.setArguments(bundle);//数据传递到fragment中
         list.add(followProgressFragment);
 
