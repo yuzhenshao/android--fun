@@ -1,11 +1,13 @@
-package com.mfzn.deepuses.bean.response;
+package com.mfzn.deepuses.bean.response.settings;
 
 import com.libcommon.tree.NodeId;
+
+import java.io.Serializable;
 
 /**
  * @author yz @date 2020-03-30
  */
-public class StoreResponse {
+public class StoreResponse implements Serializable {
 
     /**
      * storeID : 1
@@ -17,6 +19,7 @@ public class StoreResponse {
      * userAvatar :
      * contactPhone :
      * storeAddress :
+     * remark:
      * addTime : 1583759887
      */
 
@@ -24,11 +27,12 @@ public class StoreResponse {
     private int isMain;
     private String storeNum;
     private String storeName;
-    private int chargePersonUserID;
+    private String chargePersonUserID;
     private String userName;
     private String userAvatar;
     private String contactPhone;
     private String storeAddress;
+    private String remark;
     private int addTime;
 
     public String getStoreID() {
@@ -63,11 +67,11 @@ public class StoreResponse {
         this.storeName = storeName;
     }
 
-    public int getChargePersonUserID() {
+    public String getChargePersonUserID() {
         return chargePersonUserID;
     }
 
-    public void setChargePersonUserID(int chargePersonUserID) {
+    public void setChargePersonUserID(String chargePersonUserID) {
         this.chargePersonUserID = chargePersonUserID;
     }
 
@@ -109,5 +113,13 @@ public class StoreResponse {
 
     public void setAddTime(int addTime) {
         this.addTime = addTime;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 }

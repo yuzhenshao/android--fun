@@ -17,7 +17,7 @@ import com.mfzn.deepuses.purchasesellsave.setting.view.AddImageView;
 import butterknife.BindView;
 
 /**
- * @author syz @date 2020-03-26
+ * @author yz @date 2020-03-26
  */
 public class CommodityPhotoCreateActivity extends BasicActivity implements View.OnClickListener {
 

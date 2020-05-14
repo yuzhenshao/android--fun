@@ -16,6 +16,7 @@ public class CommodityRequest extends BaseObservable {
     private String catName;
     private String goodsAttr;
     private String goodsNum;
+    private String unitName;
     private String goodsUnitID;
     private String goodsBrand;
     private String goodsPosition;
@@ -30,6 +31,8 @@ public class CommodityRequest extends BaseObservable {
     private int activeStoreWarning;
     private String storeWarningStockNum;
     private String remark;
+    private long addTime;
+    private int goodsSumStockNum;
     private boolean isCanSubmit;
 
     public String getGoodsID() {
@@ -238,5 +241,29 @@ public class CommodityRequest extends BaseObservable {
                 !TextUtils.isEmpty(goodsAttr) &&
                 !TextUtils.isEmpty(goodsUnitID) &&
                 !TextUtils.isEmpty(goodsPosition);
+    }
+
+    public long getAddTime() {
+        return addTime;
+    }
+
+    public void setAddTime(long addTime) {
+        this.addTime = addTime;
+    }
+
+    public int getGoodsSumStockNum() {
+        return goodsSumStockNum;
+    }
+
+    public void setGoodsSumStockNum(int goodsSumStockNum) {
+        this.goodsSumStockNum = goodsSumStockNum;
+    }
+
+    public String getUnitName() {
+        return unitName;
+    }
+
+    public void setUnitName(String unitName) {
+        this.unitName = unitName;
     }
 }

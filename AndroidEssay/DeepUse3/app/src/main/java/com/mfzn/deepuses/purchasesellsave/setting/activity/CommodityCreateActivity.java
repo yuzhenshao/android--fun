@@ -23,7 +23,7 @@ import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.XApi;
 
 /**
- * @author syz @date 2020-03-26
+ * @author yz @date 2020-03-26
  */
 public class CommodityCreateActivity extends BasicActivity implements View.OnClickListener {
 

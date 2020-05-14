@@ -380,6 +380,15 @@
         <activity
             android:name=".purchasesellsave.setting.activity.InventoryWarnSetActivity"
             android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.setting.activity.OtherCostActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.setting.activity.IncomeExpenseActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.setting.activity.GoodsListActivity"
+            android:screenOrientation="portrait"></activity>
 
     </application>
 

@@ -142,4 +142,11 @@
     <string name="card_gz">工装 %1$s 个</string>
     <string name="card_project">进行中项目 %1$s 个</string>
     <string name="please_install_wechat">请先安装微信</string>
+
+    <!--进销存设置-->>
+    <string name="goods_sale_price">零售价：%1$s 元 </string>
+    <string name="goods_sum_stock">库存：%1$d </string>
+    <string name="store_user_name">负责人：%1$s/%2$s</string>
+    <string name="store_address">地址：%1$s </string>
+    <string name="supplier_name_phone">%1$s/%2$s</string>
 </resources>

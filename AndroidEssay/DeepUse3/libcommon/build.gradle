@@ -21,4 +21,5 @@ dependencies {
     compile 'com.android.support:support-v4:26.1.0'
     compile 'com.android.support:design:26.1.0'
     implementation 'com.github.chaychan:MultipleItemRvAdapter:1.0.4'
+    implementation(name: 'magicindicator-release', ext: 'aar')
 }

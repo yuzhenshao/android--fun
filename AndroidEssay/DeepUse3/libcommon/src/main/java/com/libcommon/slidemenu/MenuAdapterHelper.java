@@ -72,7 +72,7 @@ class MenuAdapterHelper {
                     @Override
                     public void onClick(View v) {
                         if (listener != null) {
-                            listener.onClick(helper.getAdapterPosition());
+                            listener.onClick(helper.getAdapterPosition(),v);
                         }
                     }
                 });

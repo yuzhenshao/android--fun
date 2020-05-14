@@ -19,10 +19,19 @@ import com.mfzn.deepuses.bean.request.ProjectListRequest;
 import com.mfzn.deepuses.bean.request.ReSendAsOrderRequest;
 import com.mfzn.deepuses.bean.request.RegisterRequest;
 import com.mfzn.deepuses.bean.request.SendAsOrderRequest;
+import com.mfzn.deepuses.bean.request.SupplierRequest;
+import com.mfzn.deepuses.bean.request.store.OrderStockCheckAddResponse;
 import com.mfzn.deepuses.bean.response.GoodsCategoryResponse;
 import com.mfzn.deepuses.bean.response.GoodsUnitResponse;
-import com.mfzn.deepuses.bean.response.StoreResponse;
+import com.mfzn.deepuses.bean.response.settings.StoreResponse;
 import com.mfzn.deepuses.bean.response.UserResponse;
+import com.mfzn.deepuses.bean.response.settings.GoodsDetailResponse;
+import com.mfzn.deepuses.bean.response.settings.GoodsListResponse;
+import com.mfzn.deepuses.bean.response.settings.IncomeExpenseTypeResponse;
+import com.mfzn.deepuses.bean.response.settings.OtherCostResponse;
+import com.mfzn.deepuses.bean.response.settings.SupplierCustomerInfoResponse;
+import com.mfzn.deepuses.bean.response.settings.SupplierListResponse;
+import com.mfzn.deepuses.bean.response.store.StoreAllCheckListResponse;
 import com.mfzn.deepuses.model.faxian.News;
 import com.mfzn.deepuses.model.jiagou.ShareCodeModel;
 import com.mfzn.deepuses.model.jiagou.ZuzhiJiagouModel;
@@ -42,12 +51,14 @@ import com.mfzn.deepuses.model.xiangmu.StagingListModel;
 import com.mfzn.deepuses.model.xiangmu.WorkorderListModel;
 import com.mfzn.deepuses.model.xiangmu.XiangmuModel;
 import com.mfzn.deepuses.utils.UserHelper;
+
 import java.util.List;
+
 import io.reactivex.Flowable;
-import io.reactivex.Observable;
 import retrofit2.http.Body;
-import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 /**
@@ -96,12 +107,12 @@ public class ApiServiceManager {
         return ApiHelper.getApiService().uploadAvatar(UserHelper.getToken(), UserHelper.getUid(), userAvatar);
     }
 
-    public static Flowable<HttpResult> appModifyName( String userName){
+    public static Flowable<HttpResult> appModifyName(String userName) {
         return ApiHelper.getApiService().setNickname(UserHelper.getToken(), UserHelper.getUid(), userName);
     }
 
-    public static Flowable<HttpResult> appModifyPhone(String userPhone, String smscode){
-        return ApiHelper.getApiService().appModifyPhone(UserHelper.getToken(), UserHelper.getUid(), userPhone,smscode);
+    public static Flowable<HttpResult> appModifyPhone(String userPhone, String smscode) {
+        return ApiHelper.getApiService().appModifyPhone(UserHelper.getToken(), UserHelper.getUid(), userPhone, smscode);
     }
 
     //Company
@@ -121,8 +132,8 @@ public class ApiServiceManager {
         return ApiHelper.getApiService().addDepartment(UserHelper.getToken(), UserHelper.getUid(), request);
     }
 
-    public static Flowable<HttpResult<List<ManageSettingModel>>> managerList(){
-        return ApiHelper.getApiService().managerList(UserHelper.getToken(), UserHelper.getUid(),UserHelper.getCompanyId());
+    public static Flowable<HttpResult<List<ManageSettingModel>>> managerList() {
+        return ApiHelper.getApiService().managerList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getCompanyId());
     }
 
     //Project
@@ -147,18 +158,18 @@ public class ApiServiceManager {
                 status, checkRemark);
     }
 
-    public static Flowable<HttpResult<ProjectNewsModel>> appliesList(String companyID, String proID, int type,int per, int page) {
+    public static Flowable<HttpResult<ProjectNewsModel>> appliesList(String companyID, String proID, int type, int per, int page) {
         return ApiHelper.getApiService().appliesList(UserHelper.getToken(), UserHelper.getUid(), companyID,
-                proID,type, per, page);
+                proID, type, per, page);
     }
 
-    public static Flowable<HttpResult> editProject(EditProjectRequest request){
-        return ApiHelper.getApiService().editProject(UserHelper.getToken(), UserHelper.getUid(),UserHelper.getCompanyId(),request);
+    public static Flowable<HttpResult> editProject(EditProjectRequest request) {
+        return ApiHelper.getApiService().editProject(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getCompanyId(), request);
     }
 
     //TODO
-    public static Flowable<HttpResult> uploadLogo(String logoUrl){
-        return ApiHelper.getApiService().uploadLogo(UserHelper.getToken(), UserHelper.getUid(),UserHelper.getCompanyId(),logoUrl);
+    public static Flowable<HttpResult> uploadLogo(String logoUrl) {
+        return ApiHelper.getApiService().uploadLogo(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getCompanyId(), logoUrl);
     }
 
 
@@ -211,33 +222,33 @@ public class ApiServiceManager {
         return ApiHelper.getApiService().reSendAsOrder(UserHelper.getToken(), UserHelper.getUid(), request);
     }
 
-    public static Flowable<HttpResult<SettingInfoModel>> lookAsSet(String proId){
-        return ApiHelper.getApiService().lookAsSet(UserHelper.getToken(), UserHelper.getUid(),proId);
+    public static Flowable<HttpResult<SettingInfoModel>> lookAsSet(String proId) {
+        return ApiHelper.getApiService().lookAsSet(UserHelper.getToken(), UserHelper.getUid(), proId);
     }
 
-    public static Flowable<HttpResult> asSet(AsSetRequest request){
-        return ApiHelper.getApiService().asSet(UserHelper.getToken(), UserHelper.getUid(),request);
+    public static Flowable<HttpResult> asSet(AsSetRequest request) {
+        return ApiHelper.getApiService().asSet(UserHelper.getToken(), UserHelper.getUid(), request);
     }
 
     public static Flowable<HttpResult> addVisit(String proId, String title, String nowDate,
-                                                String content, String nextDate){
-        return ApiHelper.getApiService().addVisit(UserHelper.getToken(), UserHelper.getUid(),proId,title,nowDate,content,nextDate);
+                                                String content, String nextDate) {
+        return ApiHelper.getApiService().addVisit(UserHelper.getToken(), UserHelper.getUid(), proId, title, nowDate, content, nextDate);
     }
 
-    public static  Flowable<HttpResult<CheckAppraiseModel>> lookAsOrderComment(String orderNo){
-        return ApiHelper.getApiService().lookAsOrderComment(UserHelper.getToken(), UserHelper.getUid(),orderNo);
+    public static Flowable<HttpResult<CheckAppraiseModel>> lookAsOrderComment(String orderNo) {
+        return ApiHelper.getApiService().lookAsOrderComment(UserHelper.getToken(), UserHelper.getUid(), orderNo);
     }
 
-    public static  Flowable<HttpResult<ClzGongdanDetailModel>> lookReceipt(String receiptId){
-        return ApiHelper.getApiService().lookReceipt(UserHelper.getToken(), UserHelper.getUid(),receiptId);
+    public static Flowable<HttpResult<ClzGongdanDetailModel>> lookReceipt(String receiptId) {
+        return ApiHelper.getApiService().lookReceipt(UserHelper.getToken(), UserHelper.getUid(), receiptId);
     }
 
-    public static Flowable<HttpResult> delAsOrder(String orderNo, String delNote){
-        return ApiHelper.getApiService().delAsOrder(UserHelper.getToken(), UserHelper.getUid(),orderNo,delNote);
+    public static Flowable<HttpResult> delAsOrder(String orderNo, String delNote) {
+        return ApiHelper.getApiService().delAsOrder(UserHelper.getToken(), UserHelper.getUid(), orderNo, delNote);
     }
 
-    public static Flowable<HttpResult<News>> newsList(String per,int page,String kw) {
-        return ApiHelper.getApiService().newsList(UserHelper.getToken(), UserHelper.getUid(),per,page,kw);
+    public static Flowable<HttpResult<News>> newsList(String per, int page, String kw) {
+        return ApiHelper.getApiService().newsList(UserHelper.getToken(), UserHelper.getUid(), per, page, kw);
     }
 
     public static Flowable<HttpResult> buyModule(String proId, String moduleType, String brickNum) {
@@ -248,29 +259,125 @@ public class ApiServiceManager {
         return ApiHelper.getApiService().getGoodsCategoryList(UserHelper.getToken(), UserHelper.getUid(), shopID);
     }
 
-
-    public static Flowable<HttpResult> addGoods(String shopID,CommodityRequest request) {
-        return ApiHelper.getApiService().addGoods(UserHelper.getToken(), UserHelper.getUid(), shopID,request);
+    public static Flowable<HttpResult<GoodsListResponse>> goodsList(String shopID) {
+        return ApiHelper.getApiService().goodsList(UserHelper.getToken(), UserHelper.getUid(), shopID, null, null);
     }
 
-
-
-    public static Flowable<HttpResult<List<StoreResponse>>> getStoreList(String shopID){
-        return ApiHelper.getApiService().getStoreList(UserHelper.getToken(), UserHelper.getUid(), shopID);
+    public static Flowable<HttpResult<GoodsListResponse>> searchGoodsList(String shopID, String kw) {
+        return ApiHelper.getApiService().goodsList(UserHelper.getToken(), UserHelper.getUid(), shopID, kw, null);
     }
 
+    public static Flowable<HttpResult<GoodsDetailResponse>> getGoodsInfo(String shopID, String goodsID) {
+        return ApiHelper.getApiService().getGoodsInfo(UserHelper.getToken(), UserHelper.getUid(), shopID, goodsID);
+    }
 
-    public static Flowable<HttpResult<List<GoodsUnitResponse>>> getGoodsUnitList(String shopID){
+    public static Flowable<HttpResult> addGoods(String shopID, CommodityRequest request) {
+        return ApiHelper.getApiService().addGoods(UserHelper.getToken(), UserHelper.getUid(), shopID, request);
+    }
+
+    public static Flowable<HttpResult<List<GoodsUnitResponse>>> getGoodsUnitList(String shopID) {
         return ApiHelper.getApiService().getGoodsUnitList(UserHelper.getToken(), UserHelper.getUid(), shopID);
     }
 
-    public static Flowable<HttpResult> deleteGoodsUnit(String shopID,String goodsUnitID) {
-        return ApiHelper.getApiService().deleteGoodsUnit(UserHelper.getToken(), UserHelper.getUid(), shopID,goodsUnitID);
+    public static Flowable<HttpResult> deleteGoodsUnit(String shopID, String goodsUnitID) {
+        return ApiHelper.getApiService().deleteGoodsUnit(UserHelper.getToken(), UserHelper.getUid(), shopID, goodsUnitID);
     }
 
-    public static Flowable<HttpResult> addGoodsCategory(String shopID, String catName, String pID){
-        return ApiHelper.getApiService().addGoodsCategory(UserHelper.getToken(), UserHelper.getUid(), shopID,catName,pID);
+    public static Flowable<HttpResult> addGoodsCategory(String shopID, String catName, String pID) {
+        return ApiHelper.getApiService().addGoodsCategory(UserHelper.getToken(), UserHelper.getUid(), shopID, catName, pID);
     }
 
 
+    public static Flowable<HttpResult<List<OtherCostResponse>>> getOtherCostList(String shopID) {
+        return ApiHelper.getApiService().getOtherCostList(UserHelper.getToken(), UserHelper.getUid(), shopID);
+    }
+
+    public static Flowable<HttpResult> editOtherCost(String shopID, String name, String type) {
+        return ApiHelper.getApiService().editOtherCost(UserHelper.getToken(), UserHelper.getUid(), shopID, name, type);
+    }
+
+    public static Flowable<HttpResult> deleteOtherCost(String shopID, String type) {
+        return ApiHelper.getApiService().deleteOtherCost(UserHelper.getToken(), UserHelper.getUid(), shopID, type);
+    }
+
+    public static Flowable<HttpResult> addOtherCost(String shopID, String name) {
+        return ApiHelper.getApiService().addOtherCost(UserHelper.getToken(), UserHelper.getUid(), shopID, name);
+    }
+
+
+    public static Flowable<HttpResult<List<IncomeExpenseTypeResponse>>> getIncomeExpenseTypeListt(String shopID) {
+        return ApiHelper.getApiService().getIncomeExpenseTypeListt(UserHelper.getToken(), UserHelper.getUid(), shopID);
+    }
+
+    public static Flowable<HttpResult> editIncomeExpenseType(String shopID, IncomeExpenseTypeResponse response) {
+        return ApiHelper.getApiService().editIncomeExpenseType(UserHelper.getToken(), UserHelper.getUid(), shopID,
+                response.getTypeID(), response.getType(), response.getTypeName());
+    }
+
+    public static Flowable<HttpResult> delIncomeExpenseType(String shopID, String typeId) {
+        return ApiHelper.getApiService().delIncomeExpenseType(UserHelper.getToken(), UserHelper.getUid(), shopID, typeId);
+    }
+
+    public static Flowable<HttpResult> addIncomeExpenseType(String shopID, int type, String name) {
+        return ApiHelper.getApiService().addIncomeExpenseType(UserHelper.getToken(), UserHelper.getUid(), shopID, type, name);
+    }
+
+    public static Flowable<HttpResult<List<StoreResponse>>> getStoreList(String shopID) {
+        return ApiHelper.getApiService().getStoreList(UserHelper.getToken(), UserHelper.getUid(), shopID);
+    }
+
+    public static Flowable<HttpResult> editStore(String shopID, StoreResponse request) {
+        return ApiHelper.getApiService().editStore(UserHelper.getToken(), UserHelper.getUid(), shopID, request);
+    }
+
+    public static Flowable<HttpResult> delStore(String shopID, String storeID) {
+        return ApiHelper.getApiService().delStore(UserHelper.getToken(), UserHelper.getUid(), shopID, storeID);
+    }
+
+    public static Flowable<HttpResult> addStore(String shopID, StoreResponse request) {
+        return ApiHelper.getApiService().addStore(UserHelper.getToken(), UserHelper.getUid(), shopID,
+                request.getStoreName(), request.getChargePersonUserID(), request.getContactPhone(), request.getStoreAddress());
+    }
+
+    public static Flowable<HttpResult<SupplierListResponse>> getSupplierList(String shopID) {
+        return searchSupplierList(shopID, null);
+    }
+
+    public static Flowable<HttpResult<SupplierCustomerInfoResponse>> getSupplierCustomerInfo(String shopID, String companyCustomerID) {
+        return ApiHelper.getApiService().customerInfo(UserHelper.getToken(), UserHelper.getUid(), shopID, companyCustomerID);
+    }
+
+    public static Flowable<HttpResult<SupplierListResponse>> searchSupplierList(String shopID, String kw) {
+        return ApiHelper.getApiService().supplierList(UserHelper.getToken(), UserHelper.getUid(), shopID, kw);
+    }
+
+
+    public static Flowable<HttpResult> editSupplier(String shopID, SupplierRequest request) {
+        return ApiHelper.getApiService().editSupplier(UserHelper.getToken(), UserHelper.getUid(), shopID, request);
+    }
+
+    public static Flowable<HttpResult> delSupplier(String shopID, String supplierID) {
+        return ApiHelper.getApiService().delSupplier(UserHelper.getToken(), UserHelper.getUid(), shopID, supplierID);
+    }
+
+    public static Flowable<HttpResult> addSupplier(String shopID, SupplierRequest request) {
+        return ApiHelper.getApiService().addSupplier(UserHelper.getToken(), UserHelper.getUid(), shopID, request.getSupplierName(),
+                request.getChargePerson(), request.getChargePersonPhone(), request.getContactAddress());
+    }
+
+    public static Flowable<HttpResult<StoreAllCheckListResponse>> getOrderStockCheckList(String shopID, String kw, String storeID, int status) {
+        return ApiHelper.getApiService().orderStockCheckList(UserHelper.getToken(), UserHelper.getUid(), shopID, kw, storeID, status);
+    }
+
+    public static Flowable<HttpResult> editOrderStockCheck(String shopID, OrderStockCheckAddResponse request) {
+        return ApiHelper.getApiService().orderStockCheckEdit(UserHelper.getToken(), UserHelper.getUid(), shopID, request);
+    }
+
+    public static Flowable<HttpResult> delOrderStockCheck(String shopID, String orderIDs) {
+        return ApiHelper.getApiService().dorderStockCheckDelBatch(UserHelper.getToken(), UserHelper.getUid(), shopID, orderIDs);
+    }
+
+    public static Flowable<HttpResult> addOrderStockChec(String shopID, OrderStockCheckAddResponse request) {
+        return ApiHelper.getApiService().orderStockCheckAdd(UserHelper.getToken(), UserHelper.getUid(), shopID, request);
+    }
 }

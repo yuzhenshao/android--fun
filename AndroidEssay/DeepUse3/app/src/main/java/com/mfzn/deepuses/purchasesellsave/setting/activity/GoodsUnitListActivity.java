@@ -71,7 +71,7 @@ public class GoodsUnitListActivity extends BasicActivity {
     private void initEvent() {
         mAdapter.setOnMenuItemClickListener(new MenuItemClickListener() {
             @Override
-            public void onClick(int index) {
+            public void onClick(int index, View view) {
                 deleteCategoryUnit(index);
             }
         }, R.id.cancel);

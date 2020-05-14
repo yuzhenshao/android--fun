@@ -8,19 +8,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.libcommon.titlebar.TitleBar;
 import com.libcommon.tree.TreeNode;
 import com.libcommon.utils.ListUtil;
 import com.mfzn.deepuses.R;
-import com.mfzn.deepuses.bass.BaseActivity;
 import com.mfzn.deepuses.bass.BasicActivity;
 import com.mfzn.deepuses.bean.response.GoodsCategoryResponse;
-import com.mfzn.deepuses.bean.response.GoodsUnitResponse;
-import com.mfzn.deepuses.bean.response.StoreResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.purchasesellsave.setting.adapter.GoodsCategoryAdapter;
-import com.mfzn.deepuses.purchasesellsave.setting.adapter.GoodsUnitAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
