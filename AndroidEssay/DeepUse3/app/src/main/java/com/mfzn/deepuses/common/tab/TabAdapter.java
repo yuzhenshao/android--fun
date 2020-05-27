@@ -1,10 +1,12 @@
-package com.libcommon.table;
+package com.mfzn.deepuses.common.tab;
 
 import android.content.Context;
 import android.view.View;
 
 
 import com.libcommon.R;
+import com.libcommon.table.TabItem;
+import com.mfzn.deepuses.utils.CommonUtil;
 
 import net.lucode.hackware.magicindicator.buildins.UIUtil;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNavigatorAdapter;
@@ -22,7 +24,6 @@ public class TabAdapter<T extends TabItem> extends CommonNavigatorAdapter {
 
     protected final List<T> tabList;
 
-    protected boolean adjustItemSize;
 
     private static final int MAX_TAB_COUNT = 4;
 
@@ -33,10 +34,6 @@ public class TabAdapter<T extends TabItem> extends CommonNavigatorAdapter {
     @Override
     public int getCount() {
         return tabList.size();
-    }
-
-    public void enableAdjustSize(boolean adjustItemSize) {
-        this.adjustItemSize = adjustItemSize;
     }
 
     @Override
@@ -54,10 +51,8 @@ public class TabAdapter<T extends TabItem> extends CommonNavigatorAdapter {
                 setCurrentItem(i);
             }
         });
-//        if (adjustItemSize) {
-//            //非adjust模式下保证每个tab长度一样
-//            titleView.setWidth(DisplayUtil.getDeviceWidth(context) / MAX_TAB_COUNT);
-//        }
+        titleView.setWidth(CommonUtil.getDisplayMetrics(context).widthPixels / MAX_TAB_COUNT);
+
         return titleView;
     }
 

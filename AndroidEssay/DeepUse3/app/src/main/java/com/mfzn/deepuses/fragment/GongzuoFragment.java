@@ -45,7 +45,10 @@ import com.mfzn.deepuses.adapter.home.HomeListAdapter;
 import com.mfzn.deepuses.adapter.home.HomeTdglAdapter;
 import com.mfzn.deepuses.adapter.home.HomeWdxmAdapter;
 import com.mfzn.deepuses.bass.BaseMvpFragment;
+import com.mfzn.deepuses.bean.constants.ParameterConstant;
 import com.mfzn.deepuses.bean.response.UserResponse;
+import com.mfzn.deepuses.common.homecompany.HomeCompanyAdapter;
+import com.mfzn.deepuses.common.homecompany.HomeCompanyView;
 import com.mfzn.deepuses.model.LookQuanxian2Model;
 import com.mfzn.deepuses.model.LookQuanxianModel;
 import com.mfzn.deepuses.model.company.CompanyRepository;
@@ -53,9 +56,16 @@ import com.mfzn.deepuses.model.company.SelectCompanyModel;
 import com.mfzn.deepuses.model.home.HomeShowModel;
 import com.mfzn.deepuses.model.home.JudgeLevelModel;
 import com.mfzn.deepuses.model.home.KanbDataModel;
-import com.mfzn.deepuses.model.my.UserInfoModel;
 import com.mfzn.deepuses.net.ApiHelper;
 import com.mfzn.deepuses.present.fragment.GongzuoPresnet;
+import com.mfzn.deepuses.purchasesellsave.setting.activity.CommodityCreateActivity;
+import com.mfzn.deepuses.purchasesellsave.setting.activity.CommodityPhotoCreateActivity;
+import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsCategoryManagerActivity;
+import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsListActivity;
+import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsUnitListManagetActivity;
+import com.mfzn.deepuses.purchasesellsave.setting.activity.StoreListActivity;
+import com.mfzn.deepuses.purchasesellsave.setting.activity.SupplierListActivity;
+import com.mfzn.deepuses.purchasesellsave.setting.activity.SupplierListManagerActivity;
 import com.mfzn.deepuses.utils.Constants;
 import com.mfzn.deepuses.utils.EventMsg;
 import com.mfzn.deepuses.utils.ObtainTime;
@@ -95,6 +105,15 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
     TextView tvKanbanMoney;
     @BindView(R.id.tv_kanban_number)
     TextView tvKanbanNumber;
+    @BindView(R.id.spgl_recyleview)
+    MyRecyclerView spglRecyleview;
+    @BindView(R.id.xsgl_recyleview)
+    MyRecyclerView xsglRecyleview;
+    @BindView(R.id.ckgl_recyleview)
+    MyRecyclerView ckglRecyleview;
+    @BindView(R.id.mdgl_recyleview)
+    MyRecyclerView mdglRecyleview;
+
     @BindView(R.id.shgl_recyleview)
     MyRecyclerView shglRecyleview;
     @BindView(R.id.tdgl_recyleview)
@@ -116,6 +135,15 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
     private List<HomeShowModel> homeShowModels = new ArrayList<>();
 
     private List<HomeShowModel> tdglModels = new ArrayList<>();
+
+    //商品管理
+    private List<HomeShowModel> spglModel = new ArrayList<>();
+    //销售管理
+    private List<HomeShowModel> xsglModel = new ArrayList<>();
+    //仓库管理
+    private List<HomeShowModel> ckglModel = new ArrayList<>();
+    //门店管理
+    private List<HomeShowModel> mdglModel = new ArrayList<>();
 
     //项目管理
     private List<HomeShowModel> xmglModel = new ArrayList<>();
@@ -239,34 +267,32 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
                     intent.putExtra("EstablishJoin", 2);
                     startActivity(intent);
                 } else {
-                    View customView = View.inflate(getActivity(), R.layout.home_company_list, null);
-                    customView.setOnClickListener(new View.OnClickListener() {
+                    HomeCompanyView customView = new HomeCompanyView(getActivity(), new HomeCompanyAdapter.CompanyShopListener() {
+
                         @Override
-                        public void onClick(View v) {
-                            popWindow.dismiss();
-                        }
-                    });
-                    ListView home_list = customView.findViewById(R.id.home_list);
-                    popWindow = new PopWindow.Builder(getActivity())
-                            .setStyle(PopWindow.PopWindowStyle.PopDown)
-                            .setView(customView)
-                            .show(view);
-                    List<SelectCompanyModel> models = CompanyRepository.getInstance().getCompanyModels();
-                    HomeListAdapter adapter = new HomeListAdapter(getActivity(), models, tvWorkCompany.getText().toString());
-                    home_list.setAdapter(adapter);
-                    home_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            curCompany = models.get(position);
+                        public void companyShopSelected(SelectCompanyModel companyModel, SelectCompanyModel.ShopResponse shop) {
+                            curCompany = companyModel;
+                            CompanyRepository.getInstance().setCurCompany(companyModel);
+                            CompanyRepository.getInstance().setCurShopResponse(shop);
                             tvWorkCompany.setText(curCompany.getCompanyName());
-                            CompanyRepository.getInstance().setCurCompany(curCompany);
                             UserHelper.setCompany(curCompany.getCompanyID(), curCompany.getCompanyName());
+                            UserHelper.setShopId(shop.getShopID());
                             getP().kanbData();
                             getP().judgeLevel();
                             getP().quanxian2();
                             popWindow.dismiss();
                         }
                     });
+                    customView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            popWindow.dismiss();
+                        }
+                    });
+                    popWindow = new PopWindow.Builder(getActivity())
+                            .setStyle(PopWindow.PopWindowStyle.PopDown)
+                            .setView(customView)
+                            .show(view);
                 }
                 break;
         }
@@ -316,6 +342,24 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
     }
 
     private void setRecyleview() {
+
+        //商品管理
+        NoScrollGridLayoutManager spLayoutManager = new NoScrollGridLayoutManager(getActivity(),
+                4, GridLayoutManager.VERTICAL, false);
+        spglRecyleview.setLayoutManager(spLayoutManager);
+        //销售管理
+        NoScrollGridLayoutManager xsLayoutManager = new NoScrollGridLayoutManager(getActivity(),
+                4, GridLayoutManager.VERTICAL, false);
+        xsglRecyleview.setLayoutManager(xsLayoutManager);
+        //仓库管理
+        NoScrollGridLayoutManager ckLayoutManager = new NoScrollGridLayoutManager(getActivity(),
+                4, GridLayoutManager.VERTICAL, false);
+        ckglRecyleview.setLayoutManager(ckLayoutManager);
+        //门店管理
+        NoScrollGridLayoutManager mdLayoutManager = new NoScrollGridLayoutManager(getActivity(),
+                4, GridLayoutManager.VERTICAL, false);
+        mdglRecyleview.setLayoutManager(mdLayoutManager);
+
         //充值中心
         NoScrollGridLayoutManager czLayoutManager = new NoScrollGridLayoutManager(getActivity(),
                 4, GridLayoutManager.VERTICAL, false);
@@ -546,6 +590,216 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
     }
 
     private void setDatas() {
+        spglModel.add(new HomeShowModel("商品中心", "spzx", R.mipmap.icon_spzx));
+        spglModel.add(new HomeShowModel("新建商品", "xjsp", R.mipmap.icon_xjsp));
+        spglModel.add(new HomeShowModel("拍照创建商品", "pzcjsp", R.mipmap.icon_pzxjsp));
+        spglModel.add(new HomeShowModel("商品类别", "splb", R.mipmap.icon_flgl));
+        spglModel.add(new HomeShowModel("商品单位", "spdw", R.mipmap.icon_dwgl));
+        HomeWdxmAdapter spglAdapter = new HomeWdxmAdapter(getActivity(), spglModel);
+        spglRecyleview.setAdapter(spglAdapter);
+
+        spglAdapter.setOnItemClickListener(new HomeWdxmAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                if (curCompany == null) {
+                    ToastUtil.showToast(getActivity(), "请先选择公司");
+                    return;
+                }
+                SelectCompanyModel.ShopResponse shop = CompanyRepository.getInstance().getCurShopResponse();
+                if (shop == null) {
+                    shop = curCompany.getMainShop();
+                }
+                Intent intent = new Intent();
+                intent.putExtra(ParameterConstant.SHOP_ID, shop.getShopID());
+                String type = spglModel.get(position).getType();
+                switch (type) {
+                    case "spzx":
+                        intent.setClass(getActivity(), GoodsListActivity.class);
+                        startActivity(intent);
+                        break;
+                    case "xjsp":
+                        intent.setClass(getActivity(), CommodityCreateActivity.class);
+                        startActivity(intent);
+                        break;
+                    case "pzcjsp":
+                        intent.setClass(getActivity(), CommodityPhotoCreateActivity.class);
+                        startActivity(intent);
+                        break;
+                    case "splb":
+                        intent.setClass(getActivity(), GoodsCategoryManagerActivity.class);
+                        startActivity(intent);
+                        break;
+                    case "spdw":
+                        intent.setClass(getActivity(), GoodsUnitListManagetActivity.class);
+                        startActivity(intent);
+                        break;
+                }
+            }
+        });
+
+        //销售
+        xsglModel.add(new HomeShowModel("销售单据中心", R.mipmap.icon_xsdjzx));
+        xsglModel.add(new HomeShowModel("新建报价单", R.mipmap.icon_xjbjd));
+        xsglModel.add(new HomeShowModel("新建销售订单", R.mipmap.icon_xjxsdd));
+        xsglModel.add(new HomeShowModel("新建零售单", R.mipmap.icon_xjlsd));
+        xsglModel.add(new HomeShowModel("新建销售退货单", R.mipmap.icon_xjxsthd));
+        xsglModel.add(new HomeShowModel("新建零售退货单", R.mipmap.icon_xjlsthd));
+        xsglModel.add(new HomeShowModel("新建个人领货单", R.mipmap.icon_xjgrlhd));
+        xsglModel.add(new HomeShowModel("新建领货归还单", R.mipmap.icon_xjlhghd));
+        xsglModel.add(new HomeShowModel("其他费用管理", R.mipmap.icon_qtfygl));
+        xsglModel.add(new HomeShowModel("客户管理", R.mipmap.icon_khgl));
+        xsglModel.add(new HomeShowModel("个人仓库", R.mipmap.icon_khgl));//R.mipmap.icon_grck));
+        HomeWdxmAdapter xsglAdapter = new HomeWdxmAdapter(getActivity(), xsglModel);
+        xsglRecyleview.setAdapter(xsglAdapter);
+
+        xsglAdapter.setOnItemClickListener(new HomeWdxmAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                if (curCompany == null) {
+                    ToastUtil.showToast(getActivity(), "请先选择公司");
+                    return;
+                }
+                switch (position) {
+                    case 0:
+                        //TODO
+                        break;
+                    case 1:
+                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
+                        break;
+                    case 2:
+                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
+                        break;
+                    case 3:
+                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
+                        break;
+                    case 4:
+                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
+                        break;
+                    case 5:
+                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
+                        break;
+                    case 6:
+                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
+                        break;
+                    case 7:
+                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
+                        break;
+                    case 8:
+                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
+                        break;
+                    case 9:
+                        //TODO
+                        break;
+                    case 10:
+                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
+                        break;
+                }
+            }
+        });
+
+
+        ckglModel.add(new HomeShowModel("待出库入库", R.mipmap.icon_dckrk));
+        ckglModel.add(new HomeShowModel("其他出入库", R.mipmap.icon_qtcrk));
+        ckglModel.add(new HomeShowModel("新建其他出库单", R.mipmap.icon_xjqtckd));
+        ckglModel.add(new HomeShowModel("新建其他入库单", R.mipmap.icon_xjqtrkd));
+        ckglModel.add(new HomeShowModel("调拨单", R.mipmap.icon_dbd));
+        ckglModel.add(new HomeShowModel("新建调拨单", R.mipmap.icon_xjdbd));
+        ckglModel.add(new HomeShowModel("盘点单", R.mipmap.icon_pdd));
+        ckglModel.add(new HomeShowModel("新建盘点单", R.mipmap.icon_xjpdd));
+        ckglModel.add(new HomeShowModel("全库盘点管理", R.mipmap.icon_qkpdgl));
+        ckglModel.add(new HomeShowModel("库存流水", R.mipmap.icon_kcls));
+        ckglModel.add(new HomeShowModel("库存查询", R.mipmap.icon_kccx));
+        ckglModel.add(new HomeShowModel("库存预警", R.mipmap.icon_kcyj));
+        ckglModel.add(new HomeShowModel("供应商管理", R.mipmap.icon_gygls));
+        ckglModel.add(new HomeShowModel("仓库管理", R.mipmap.icon_ckgl));
+        HomeWdxmAdapter ckglAdapter = new HomeWdxmAdapter(getActivity(), ckglModel);
+        ckglRecyleview.setAdapter(ckglAdapter);
+
+        ckglAdapter.setOnItemClickListener(new HomeWdxmAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                if (curCompany == null) {
+                    ToastUtil.showToast(getActivity(), "请先选择公司");
+                    return;
+                }
+
+                SelectCompanyModel.ShopResponse shop = CompanyRepository.getInstance().getCurShopResponse();
+                if (shop == null) {
+                    shop = curCompany.getMainShop();
+                }
+                Intent intent = new Intent();
+                intent.putExtra(ParameterConstant.SHOP_ID, shop.getShopID());
+                switch (position) {
+                    case 0:
+                        //TODO
+                        break;
+                    case 1:
+                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
+                        break;
+                    case 2:
+                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
+                        break;
+                    case 3:
+                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
+                        break;
+                    case 4:
+                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
+                        break;
+                    case 5:
+                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
+                        break;
+                    case 6:
+                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
+                        break;
+                    case 7:
+                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
+                        break;
+                    case 8:
+                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
+                        break;
+                    case 9:
+                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
+                        break;
+                    case 10:
+                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
+                        break;
+                    case 11:
+                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
+                        break;
+                    case 12:
+                        intent.setClass(getActivity(), SupplierListManagerActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 13:
+                        intent.setClass(getActivity(), StoreListActivity.class);
+                        startActivity(intent);
+                        break;
+                }
+            }
+        });
+
+
+        mdglModel.add(new HomeShowModel("新建门店", R.mipmap.icon_xjmd));
+        mdglModel.add(new HomeShowModel("门店管理", R.mipmap.icon_mdgl));
+        HomeWdxmAdapter mdglAdapter = new HomeWdxmAdapter(getActivity(), mdglModel);
+        mdglRecyleview.setAdapter(mdglAdapter);
+        mdglAdapter.setOnItemClickListener(new HomeWdxmAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                if (curCompany == null) {
+                    ToastUtil.showToast(getActivity(), "请先选择公司");
+                    return;
+                }
+                switch (position) {
+                    case 0:
+                        break;
+                    case 1:
+                        break;
+                }
+            }
+        });
+
+
         //项目管理
         HomeShowModel showModel1 = new HomeShowModel("新建项目", "xjxm", R.mipmap.home_chuangjian);
         HomeShowModel showModel2 = new HomeShowModel("项目管理", "xmgl", R.mipmap.home_guanli);
@@ -604,7 +858,7 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
         homeKhglAdapter.setOnItemClickListener(new HomeKhglAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                if (curCompany==null) {
+                if (curCompany == null) {
                     ToastUtil.showToast(getActivity(), "请先选择公司");
                     return;
                 }

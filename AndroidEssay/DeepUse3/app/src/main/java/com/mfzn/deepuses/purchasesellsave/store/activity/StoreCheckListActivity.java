@@ -1,39 +1,20 @@
 package com.mfzn.deepuses.purchasesellsave.store.activity;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
-import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-
-import com.bigkoo.pickerview.builder.TimePickerBuilder;
-import com.bigkoo.pickerview.listener.OnTimeSelectListener;
-import com.bigkoo.pickerview.view.TimePickerView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.activity.khgl.SelectTypeActivity;
 import com.mfzn.deepuses.bass.BasicListActivity;
-import com.mfzn.deepuses.bean.constants.ParameterConstant;
 import com.mfzn.deepuses.bean.response.store.StoreAllCheckListResponse;
 import com.mfzn.deepuses.bean.response.store.StoreCheckResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
-import com.mfzn.deepuses.purchasesellsave.setting.adapter.SupplierAdapter;
 import com.mfzn.deepuses.purchasesellsave.store.adapter.StoreCheckAdapter;
 import com.mfzn.deepuses.utils.Constants;
-import com.mfzn.deepuses.utils.ObtainTime;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import butterknife.BindView;
 import butterknife.OnClick;
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
@@ -42,7 +23,6 @@ import cn.droidlover.xdroidmvp.net.XApi;
 import cn.droidlover.xdroidmvp.router.Router;
 
 public class StoreCheckListActivity extends BasicListActivity<StoreCheckResponse> {
-    private String shopId;
     private static int REQUESTCODE = 1001;
     @BindView(R.id.serach_edit)
     EditText serachEdit;
@@ -52,7 +32,6 @@ public class StoreCheckListActivity extends BasicListActivity<StoreCheckResponse
         super.onCreate(savedInstanceState);
         serachEdit.setHint("搜索单据编号、商品名称、货号、编码");
         mTitleBar.updateTitleBar("盘点", R.mipmap.icon_titlebar_add);
-        shopId = getIntent().getStringExtra(ParameterConstant.SHOP_ID);
     }
 
     @Override
@@ -64,7 +43,7 @@ public class StoreCheckListActivity extends BasicListActivity<StoreCheckResponse
     @Override
     protected void getResourceList() {
         showDialog();
-        ApiServiceManager.getOrderStockCheckList(shopId, "", "0", -1)
+        ApiServiceManager.getOrderStockCheckList("", "0", -1)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(bindToLifecycle())
@@ -91,12 +70,6 @@ public class StoreCheckListActivity extends BasicListActivity<StoreCheckResponse
     @Override
     protected BaseQuickAdapter getAdapter() {
         StoreCheckAdapter mAdapter = new StoreCheckAdapter(this, mSourceList);
-        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int i) {
-
-            }
-        });
         return mAdapter;
     }
 
@@ -114,7 +87,7 @@ public class StoreCheckListActivity extends BasicListActivity<StoreCheckResponse
         }
     }
 
-    protected void rightPressed() {
+    protected void rightPressedAction() {
 
     }
 

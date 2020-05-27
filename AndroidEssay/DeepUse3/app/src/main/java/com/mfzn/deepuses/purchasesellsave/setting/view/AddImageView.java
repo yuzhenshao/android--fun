@@ -22,6 +22,7 @@ import com.mfzn.deepuses.utils.Constants;
 import com.mfzn.deepuses.utils.ImageCompressUtil;
 import com.mfzn.deepuses.utils.PhotographDialog;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +51,7 @@ public class AddImageView extends LinearLayout {
     private ImageAdapter mAdapter;
 
     private List<Bitmap> mBitmaps = new ArrayList<>();
+    private List<File> mBitmapFiles = new ArrayList<>();
 
     private Activity mContext;
 
@@ -92,7 +94,7 @@ public class AddImageView extends LinearLayout {
             String cameraFile = PhotographDialog.mSp.getString("img", "");
             Bitmap bitmap = BitmapFactory.decodeFile(PhotographDialog.Image_SAVEDIR + "/" + cameraFile);//根据路径转为bitmap
             if (bitmap != null) {
-                addImage(ImageCompressUtil.compressBySize(bitmap, 480, 480));
+                addImage(cameraFile,ImageCompressUtil.compressBySize(bitmap, 480, 480));
             }
         } else if (requestCode == Constants.RESULT_LOAD_IMAGE) {
             if (mBitmaps.size() < 9 && resultCode == RESULT_OK && null != data) {
@@ -100,7 +102,7 @@ public class AddImageView extends LinearLayout {
                 try {
                     for (String path : mSelectPath) {
                         Bitmap bitmap = Bimp.revitionImageSize(path);
-                        addImage(Bimp.createFramedPhoto(480, 480, bitmap, 0));
+                        addImage(path,Bimp.createFramedPhoto(480, 480, bitmap, 0));
                     }
 
                 } catch (IOException e) {
@@ -110,8 +112,9 @@ public class AddImageView extends LinearLayout {
         }
     }
 
-    private void addImage(Bitmap bitmap) {
+    private void addImage(String filePath,Bitmap bitmap) {
         if (bitmap != null) {
+            mBitmapFiles.add(new File(filePath));
             mBitmaps.add(bitmap);
             mAdapter.notifyItemInserted(mBitmaps.size() - 1);
             mAddImage.setVisibility(mBitmaps.size() == 9 ? GONE : VISIBLE);
@@ -121,9 +124,13 @@ public class AddImageView extends LinearLayout {
     private void removeImage(int position) {
         if (mBitmaps != null && mBitmaps.size() > position) {
             mBitmaps.remove(position);
+            mBitmapFiles.remove(position);
             mAdapter.notifyItemRemoved(position);
             mAddImage.setVisibility(mBitmaps.size() == 9 ? GONE : VISIBLE);
         }
     }
 
+    public List<File> getBitmapFiles(){
+        return mBitmapFiles;
+    }
 }

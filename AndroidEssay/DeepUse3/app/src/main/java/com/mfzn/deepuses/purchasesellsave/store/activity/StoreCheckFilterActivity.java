@@ -3,6 +3,7 @@ package com.mfzn.deepuses.purchasesellsave.store.activity;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
@@ -17,15 +18,28 @@ import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BasicActivity;
+import com.mfzn.deepuses.bean.constants.ParameterConstant;
+import com.mfzn.deepuses.bean.response.settings.StoreResponse;
+import com.mfzn.deepuses.net.ApiServiceManager;
+import com.mfzn.deepuses.net.HttpResult;
+import com.mfzn.deepuses.purchasesellsave.store.adapter.StatusCheckFilterAdapter;
+import com.mfzn.deepuses.purchasesellsave.store.adapter.StoreCheckFilterAdapter;
+import com.mfzn.deepuses.purchasesellsave.store.model.StoreStatusFilter;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.droidlover.xdroidmvp.net.ApiSubscriber;
+import cn.droidlover.xdroidmvp.net.NetError;
+import cn.droidlover.xdroidmvp.net.XApi;
 
 public class StoreCheckFilterActivity extends BasicActivity {
 
+    private String shopId;
     @BindView(R.id.date_edit)
     EditText dateEdit;
     @BindView(R.id.filter_container)
@@ -35,6 +49,10 @@ public class StoreCheckFilterActivity extends BasicActivity {
     @BindView(R.id.status_recyleview)
     RecyclerView statusRecyleview;
     private TimePickerView pvTime;
+    private List<StoreResponse> mStoreList = new ArrayList<>();
+    private List<StoreStatusFilter> mStatusList = new ArrayList<>();
+    private StoreCheckFilterAdapter mStoreFilterAdapter;
+    private StatusCheckFilterAdapter mStatusFilterAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,8 +67,38 @@ public class StoreCheckFilterActivity extends BasicActivity {
 
     private void initData() {
         initTimePicker();
+        shopId = getIntent().getStringExtra(ParameterConstant.SHOP_ID);
+        mStoreFilterAdapter = new StoreCheckFilterAdapter(mStoreList);
+        storeRecyleview.setLayoutManager(new GridLayoutManager(this, 3));
+        storeRecyleview.setAdapter(mStoreFilterAdapter);
 
+        mStatusFilterAdapter = new StatusCheckFilterAdapter(mStatusList);
+        statusRecyleview.setLayoutManager(new GridLayoutManager(this, 3));
+        statusRecyleview.setAdapter(mStatusFilterAdapter);
+
+        for (int i = 0; i < 5; i++) {
+            mStatusList.add(new StoreStatusFilter(i));
+        }
+
+        ApiServiceManager.getStoreList()
+                .compose(XApi.getApiTransformer())
+                .compose(XApi.getScheduler())
+                .compose(bindToLifecycle())
+                .subscribe(new ApiSubscriber<HttpResult<List<StoreResponse>>>() {
+                    @Override
+                    protected void onFail(NetError error) {
+                        // showErrorView(error.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(HttpResult<List<StoreResponse>> reuslt) {
+                        mStoreList.clear();
+                        mStoreList.addAll(reuslt.getRes());
+                        mStoreFilterAdapter.notifyDataSetChanged();
+                    }
+                });
     }
+
 
     private void initTimePicker() {
         //时间选择器

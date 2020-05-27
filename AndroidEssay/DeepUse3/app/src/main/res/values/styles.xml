@@ -337,6 +337,13 @@
         <item name="android:src">@mipmap/join_you</item>
     </style>
 
+    <style name="btn_select">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:paddingRight">@dimen/app_20dp</item>
+        <item name="android:src">@mipmap/join_you</item>
+    </style>
+
     <style name="bass_iv_delete">
         <item name="android:layout_width">@dimen/app_24dp</item>
         <item name="android:layout_height">@dimen/app_24dp</item>

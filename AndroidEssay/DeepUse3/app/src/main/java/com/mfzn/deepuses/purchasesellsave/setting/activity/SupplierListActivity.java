@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BasicListActivity;
 import com.mfzn.deepuses.bean.constants.ParameterConstant;
+import com.mfzn.deepuses.bean.response.GoodsCategoryResponse;
 import com.mfzn.deepuses.bean.response.settings.GoodsListResponse;
 import com.mfzn.deepuses.bean.response.settings.StoreResponse;
 import com.mfzn.deepuses.bean.response.settings.SupplierListResponse;
@@ -28,17 +30,14 @@ import cn.droidlover.xdroidmvp.net.XApi;
 
 public class SupplierListActivity extends BasicListActivity<SupplierListResponse.SupplierResponse> {
 
-    private String shopId;
-    private static int REQUESTCODE = 1000;
-    @BindView(R.id.serach_edit)
-    EditText serachEdit;
+    @BindView(R.id.search_container)
+    LinearLayout searchContainer;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        serachEdit.setHint("搜索供应商编号、名称、联系人、电话");
-        mTitleBar.updateTitleBar("供应商", R.mipmap.icon_titlebar_add);
-        shopId = getIntent().getStringExtra(ParameterConstant.SHOP_ID);
+        mTitleBar.updateTitleBar("供应商");
+        searchContainer.setVisibility(View.GONE);
     }
 
     @Override
@@ -50,7 +49,7 @@ public class SupplierListActivity extends BasicListActivity<SupplierListResponse
     @Override
     protected void getResourceList() {
         showDialog();
-        ApiServiceManager.getSupplierList(shopId)
+        ApiServiceManager.getSupplierList()
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(bindToLifecycle())
@@ -80,28 +79,14 @@ public class SupplierListActivity extends BasicListActivity<SupplierListResponse
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int i) {
-                Intent intent=  new Intent(SupplierListActivity.this, SupplierCreateEditActivity.class);
-                intent.putExtra(ParameterConstant.SUPPLIER,mSourceList.get(i));
-                startActivityForResult(new Intent(SupplierListActivity.this, SupplierCreateEditActivity.class), REQUESTCODE);
+                SupplierListResponse.SupplierResponse supplierResponse=mSourceList.get(i);
+                Intent intent = new Intent();
+                intent.putExtra("Id", supplierResponse.getSupplierID());
+                intent.putExtra("Name", supplierResponse.getSupplierName());
+                setResult(RESULT_OK, intent);
+                finish();
             }
         });
         return mAdapter;
-    }
-
-    @OnClick(R.id.search_container)
-    public void turnToSearch() {
-
-    }
-
-    protected void rightPressed() {
-        startActivityForResult(new Intent(SupplierListActivity.this, SupplierCreateEditActivity.class), REQUESTCODE);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUESTCODE && requestCode == RESULT_OK) {
-            getResourceList();
-        }
     }
 }

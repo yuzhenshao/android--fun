@@ -115,7 +115,7 @@ public class IncomeExpenseActivity extends BasicListActivity<IncomeExpenseTypeRe
             }
         });
     }
-    protected void rightPressed() {
+    protected void rightPressedAction() {
 
         new CustomDialog.Builder().setLayoutRes(R.layout.income_expense_dialog)
                 .setHeight(WindowManager.LayoutParams.WRAP_CONTENT)

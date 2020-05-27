@@ -149,4 +149,7 @@
     <string name="store_user_name">负责人：%1$s/%2$s</string>
     <string name="store_address">地址：%1$s </string>
     <string name="supplier_name_phone">%1$s/%2$s</string>
+
+    <string name="system_sum_count">系统库存：%1$d </string>
+    <string name="check_sum_count">盘点库存：%1$d </string>
 </resources>

@@ -35,9 +35,12 @@ public class TitleBar extends RelativeLayout implements View.OnClickListener {
         super(context, attrs);
         LayoutInflater.from(context).inflate(R.layout.title_bar, this);
         mLeftIv = findViewById(R.id.back_container);
+        mLeftIv.setOnClickListener(this);
         rightContainer = findViewById(R.id.right_element_container);
         mRightIv = findViewById(R.id.right_img);
+        mRightIv.setOnClickListener(this);
         mRightTv = findViewById(R.id.right_text);
+        mRightTv.setOnClickListener(this);
         mCenterTv = findViewById(R.id.center_element);
     }
 

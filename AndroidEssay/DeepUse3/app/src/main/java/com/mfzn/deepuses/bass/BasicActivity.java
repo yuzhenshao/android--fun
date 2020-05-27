@@ -6,6 +6,8 @@ import android.support.annotation.Nullable;
 import com.libcommon.titlebar.TitleBar;
 import com.libcommon.titlebar.TitlebarPressedListener;
 import com.mfzn.deepuses.R;
+import com.mfzn.deepuses.purchasesellsave.store.activity.OrderStockCheckAddActivity;
+import com.mfzn.deepuses.utils.ToastUtil;
 import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
 
 /**
@@ -33,14 +35,14 @@ public abstract class BasicActivity extends BaseActivity {
 
                 @Override
                 public void rightPressed() {
-
+                    rightPressedAction();
                 }
             });
         }
 
     }
 
-    protected void rightPressed() {
+    protected void rightPressedAction() {
 
     }
 
@@ -64,6 +66,10 @@ public abstract class BasicActivity extends BaseActivity {
         } catch (Exception ignored) {
             ignored.printStackTrace();
         }
+    }
+
+    protected void showToast(String message){
+        ToastUtil.showToast(this, message);
     }
 
 }

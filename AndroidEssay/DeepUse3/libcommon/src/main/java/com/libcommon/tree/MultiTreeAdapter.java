@@ -46,14 +46,16 @@ public abstract class MultiTreeAdapter<T extends NodeId> extends BaseMultiItemQu
                         List<TreeNode<T>> removeNodes = MultiTreeAdapter.this.getRemoveNode(dataToBind, children, position);
                         if (!ListUtil.isEmpty(removeNodes)) {
                             dataToBind.removeAll(removeNodes);
-                            MultiTreeAdapter.this.notifyItemRangeRemoved(position + 1, removeNodes.size());
+                            //notifyItemRangeRemoved(position + 1, removeNodes.size());
+                            notifyDataSetChanged();
                         }
                     }
                 } else {
                     node.setExpand(true);
                     if (!ListUtil.isEmpty(children)) {
                         dataToBind.addAll(position + 1, children);
-                        MultiTreeAdapter.this.notifyItemRangeInserted(position + 1, children.size());
+                        //notifyItemRangeInserted(position + 1, children.size());
+                        notifyDataSetChanged();
                     }
                 }
                 if (onTreeClickedListener != null) {
@@ -104,9 +106,9 @@ public abstract class MultiTreeAdapter<T extends NodeId> extends BaseMultiItemQu
 
     @Override
     protected void convert(BaseViewHolder helper, TreeNode<T> item) {
-        View view = helper.itemView.findViewById(R.id.container);
+        View view = helper.itemView.findViewById(R.id.title);
         ViewGroup.MarginLayoutParams mp = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
-        mp.leftMargin = item.getLevel() * Utiles.dip2px(mContext, 10);
+        mp.leftMargin = item.getLevel() * Utiles.dip2px(mContext, 10)+Utiles.dip2px(mContext, 24);
     }
 
     public void setOnTreeClickedListener(OnTreeClickedListener onTreeClickedListener) {

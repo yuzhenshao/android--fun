@@ -38,6 +38,11 @@ public class DateUtils {
         return Integer.parseInt(String.valueOf(between_days));
     }
 
+    public static String longToString(long millSec) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
+        Date date = new Date(millSec * 1000);
+        return sdf.format(date);
+    }
 
     /**
      * 秒转换成时间

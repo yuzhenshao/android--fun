@@ -7,29 +7,18 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.libcommon.table.TabAdapter;
+import com.mfzn.deepuses.common.tab.TabAdapter;
 import com.libcommon.table.TabLabel;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BasicActivity;
 import com.mfzn.deepuses.bean.constants.ParameterConstant;
-import com.mfzn.deepuses.bean.response.settings.GoodsDetailResponse;
 import com.mfzn.deepuses.bean.response.settings.SupplierCustomerInfoResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
-import com.mfzn.deepuses.purchasesellsave.setting.fragment.BasicAttrFragment;
-import com.mfzn.deepuses.purchasesellsave.setting.fragment.SalesRecordFragment;
-import com.mfzn.deepuses.purchasesellsave.setting.fragment.StoresFragment;
 import com.mfzn.deepuses.purchasesellsave.setting.fragment.SupplierOrderFragment;
 import com.mfzn.deepuses.purchasesellsave.setting.fragment.SupplierPayLogFragment;
-import com.mfzn.deepuses.purchasesellsave.setting.view.BannerIndicator;
 import com.mfzn.deepuses.utils.ToastUtil;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
@@ -54,7 +43,7 @@ public class SupplierDetailActivity extends BasicActivity {
     @BindView(R.id.supplier_name)
     TextView supplierName;
 
-    @BindView(R.id.banner_indicator)
+    @BindView(R.id.magic_indicator)
     MagicIndicator mIndicator;
     @BindView(R.id.detail_view_pager)
     ViewPager detailPager;
@@ -159,7 +148,7 @@ public class SupplierDetailActivity extends BasicActivity {
         }
     }
 
-    protected void rightPressed() {
+    protected void rightPressedAction() {
         startActivityForResult(new Intent(this, SupplierCreateEditActivity.class), EDIT_CODE);
     }
 

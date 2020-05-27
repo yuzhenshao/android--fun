@@ -7,6 +7,7 @@ import android.media.ExifInterface;
 import android.os.Build;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.WindowManager;
 
@@ -104,5 +105,12 @@ public class CommonUtil {
             orientation = 0;
         }
         return orientation;
+    }
+
+    public static DisplayMetrics getDisplayMetrics(Context context) {
+        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics metrics = new DisplayMetrics();
+        windowManager.getDefaultDisplay().getMetrics(metrics);
+        return metrics;
     }
 }

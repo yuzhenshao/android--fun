@@ -10,6 +10,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bean.request.CommodityRequest;
+import com.mfzn.deepuses.net.ApiHelper;
 
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class GoodsAdapter extends BaseQuickAdapter<CommodityRequest, BaseViewHol
     @Override
     protected void convert(BaseViewHolder helper, CommodityRequest item) {
         if (!TextUtils.isEmpty(item.getGoodsMainImage())) {
-            Glide.with(context).load(item.getGoodsMainImage()).into((ImageView) helper.getView(R.id.icon_goods));
+            Glide.with(context).load(ApiHelper.BASE_URL +item.getGoodsMainImage()).into((ImageView) helper.getView(R.id.icon_goods));
         }
         helper.setText(R.id.name, item.getGoodsName())
                 .setText(R.id.price, context.getResources().getString(R.string.goods_sale_price, item.getSalePrice()))

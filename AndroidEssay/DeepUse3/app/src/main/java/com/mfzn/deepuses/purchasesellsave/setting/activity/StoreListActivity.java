@@ -1,7 +1,9 @@
 package com.mfzn.deepuses.purchasesellsave.setting.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
@@ -24,8 +26,7 @@ import cn.droidlover.xdroidmvp.net.XApi;
 
 public class StoreListActivity extends BasicListActivity<StoreResponse> {
 
-    private String shopId;
-
+    private static int REQUESTCODE = 2000;
     @BindView(R.id.serach_edit)
     EditText serachEdit;
 
@@ -34,7 +35,6 @@ public class StoreListActivity extends BasicListActivity<StoreResponse> {
         super.onCreate(savedInstanceState);
         serachEdit.setHint("搜索仓库名称、编码、联系人、电话");
         mTitleBar.updateTitleBar("仓库", R.mipmap.icon_titlebar_add);
-        shopId = getIntent().getStringExtra(ParameterConstant.SHOP_ID);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class StoreListActivity extends BasicListActivity<StoreResponse> {
     @Override
     protected void getResourceList() {
         showDialog();
-        ApiServiceManager.getStoreList(shopId)
+        ApiServiceManager.getStoreList()
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(bindToLifecycle())
@@ -66,6 +66,14 @@ public class StoreListActivity extends BasicListActivity<StoreResponse> {
     @Override
     protected BaseQuickAdapter getAdapter() {
         StoreAdapter mAdapter = new StoreAdapter(this, mSourceList);
+        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int i) {
+                Intent intent=  new Intent(StoreListActivity.this, StoreCreateEditActivity.class);
+                intent.putExtra(ParameterConstant.STORE,mSourceList.get(i));
+                startActivityForResult(intent,REQUESTCODE);
+            }
+        });
         return mAdapter;
     }
 
@@ -74,7 +82,15 @@ public class StoreListActivity extends BasicListActivity<StoreResponse> {
 
     }
 
-    protected void rightPressed() {
+    protected void rightPressedAction() {
+        startActivityForResult(new Intent(this, StoreCreateEditActivity.class), REQUESTCODE);
+    }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUESTCODE && requestCode == RESULT_OK) {
+            getResourceList();
+        }
     }
 }

@@ -103,7 +103,7 @@ public class OtherCostActivity extends BasicListActivity<OtherCostResponse> {
         });
     }
 
-    protected void rightPressed() {
+    protected void rightPressedAction() {
         DialogUtils.showEditDialog(this, "新增其他费用", "请输入费用名称", new
                 OnViewClickListener() {
                     @Override

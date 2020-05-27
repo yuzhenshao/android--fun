@@ -375,6 +375,9 @@
             android:name=".purchasesellsave.setting.activity.GoodsUnitListActivity"
             android:screenOrientation="portrait"></activity>
         <activity
+            android:name=".purchasesellsave.setting.activity.GoodsUnitListManagetActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
             android:name=".purchasesellsave.setting.activity.InventorySetActivity"
             android:screenOrientation="portrait"></activity>
         <activity
@@ -389,6 +392,29 @@
         <activity
             android:name=".purchasesellsave.setting.activity.GoodsListActivity"
             android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.setting.activity.GoodsDetailActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.setting.activity.GoodsCategoryManagerActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.setting.activity.SupplierListActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+        android:name=".purchasesellsave.setting.activity.SupplierListManagerActivity"
+        android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".purchasesellsave.setting.activity.SupplierCreateEditActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.setting.activity.StoreListActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.setting.activity.StoreCreateEditActivity"
+            android:screenOrientation="portrait"></activity>
+
 
     </application>
 

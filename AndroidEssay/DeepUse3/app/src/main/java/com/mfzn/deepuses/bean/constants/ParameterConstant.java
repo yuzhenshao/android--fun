@@ -10,6 +10,8 @@ public interface ParameterConstant {
     String BASIC_ATTR = "basicAttr";
     String STORES = "stores";
     String SALES_RECORD = "salesRecord";
+    String IS_SELECTED = "isSelected";
+    String CATEGORY_ID = "categoryId";
 
     String STORE = "store";
     String SUPPLIER = "supplier";
@@ -17,4 +19,8 @@ public interface ParameterConstant {
     String COMPANY_CUSTOMER_ID = "companyCustomerID";
     String SUPPLIER_PAY_LOG_LIST = "supplierPayLogList";
     String SUPPLIER_ORDER_LIST = "supplierOrderList";
+
+    //盘点单
+    String STORE_CHECK_RESPONSE = "StoreCheckResponse";
+
 }

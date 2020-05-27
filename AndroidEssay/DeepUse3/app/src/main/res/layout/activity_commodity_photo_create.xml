@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <data>
-
-        <variable
-            name="mCommodity"
-            type="com.mfzn.deepuses.bean.request.CommodityRequest" />
-
-        <variable
-            name="onClickListener"
-            type="android.view.View.OnClickListener" />
-    </data>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -44,6 +33,7 @@
                         android:layout_marginLeft="@dimen/app_24dp" />
 
                     <View style="@style/line_heng" />
+
                     <LinearLayout style="@style/newly_ll_st">
 
                         <TextView
@@ -56,9 +46,9 @@
                             android:textColor="@color/color_d0021b" />
 
                         <EditText
+                            android:id="@+id/goods_name"
                             style="@style/newly_et_st"
-                            android:hint="@string/add_custom_shuru"
-                            android:text="@={mCommodity.goodsName}" />
+                            android:hint="@string/add_custom_shuru" />
 
                     </LinearLayout>
 
@@ -66,8 +56,7 @@
 
                     <LinearLayout
                         android:id="@+id/unit_id_container"
-                        style="@style/newly_ll_st"
-                        android:onClick="@{onClickListener}">
+                        style="@style/newly_ll_st">
 
                         <TextView
                             style="@style/newly_tv_st"
@@ -79,10 +68,10 @@
                             android:textColor="@color/color_d0021b" />
 
                         <EditText
+                            android:id="@+id/goods_unit"
                             style="@style/newly_et_st2"
                             android:hint="@string/add_custom_select"
-                            android:paddingRight="0dp"
-                            android:text="@={mCommodity.goodsUnitID}" />
+                            android:paddingRight="0dp" />
 
                         <ImageView
                             style="@style/bass_iv_you"
@@ -95,8 +84,7 @@
 
                     <LinearLayout
                         android:id="@+id/position_container"
-                        style="@style/newly_ll_st"
-                        android:onClick="@{onClickListener}">
+                        style="@style/newly_ll_st">
 
                         <TextView
                             style="@style/newly_tv_st"
@@ -108,10 +96,10 @@
                             android:textColor="@color/color_d0021b" />
 
                         <EditText
+                            android:id="@+id/goods_position"
                             style="@style/newly_et_st2"
                             android:hint="@string/add_custom_select"
-                            android:paddingRight="0dp"
-                            android:text="@={mCommodity.goodsPosition}" />
+                            android:paddingRight="0dp" />
 
                         <ImageView
                             style="@style/bass_iv_you"
@@ -129,38 +117,14 @@
 
                     <View style="@style/line_heng" />
 
-                    <LinearLayout
-                        style="@style/newly_ll_st"
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/goods_shop_recyleview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/app_12dp"
-                        android:layout_marginRight="@dimen/app_20dp">
+                        android:background="#ffffff"
+                        android:paddingLeft="@dimen/app_24dp" />
 
-                        <TextView
-                            style="@style/newly_tv_st"
-                            android:text="仓库1" />
-
-                        <EditText
-                            style="@style/newly_et_st"
-                            android:hint="@string/add_custom_shuru"
-                            android:paddingRight="0dp" />
-                    </LinearLayout>
-
-                    <View style="@style/line_heng" />
-
-                    <LinearLayout
-                        style="@style/newly_ll_st"
-                        android:layout_marginLeft="@dimen/app_12dp"
-                        android:layout_marginRight="@dimen/app_20dp">
-
-                        <TextView
-                            style="@style/newly_tv_st"
-                            android:text="库存2" />
-
-                        <EditText
-                            android:id="@+id/et_bu_laiy"
-                            style="@style/newly_et_st"
-                            android:hint="@string/add_custom_shuru"
-                            android:paddingRight="0dp" />
-                    </LinearLayout>
                 </LinearLayout>
 
                 <Button
@@ -168,16 +132,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/app_45dp"
                     android:layout_marginLeft="@dimen/app_20dp"
-                    android:layout_marginRight="@dimen/app_20dp"
-                    android:textSize="18sp"
-                    android:textColor="@color/color_ffffff"
-
                     android:layout_marginTop="@dimen/app_30dp"
+                    android:layout_marginRight="@dimen/app_20dp"
                     android:layout_marginBottom="@dimen/app_11dp"
-                    android:enabled="@{mCommodity.isCanSubmit}"
+
                     android:background="@drawable/submit_btn_selector"
-                    android:onClick="@{onClickListener}"
-                    android:text="提交" />
+                    android:text="提交"
+                    android:textColor="@color/color_ffffff"
+                    android:textSize="18sp" />
 
             </LinearLayout>
 

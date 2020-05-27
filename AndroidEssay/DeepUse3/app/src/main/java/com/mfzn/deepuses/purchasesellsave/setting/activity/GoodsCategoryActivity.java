@@ -8,10 +8,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.libcommon.tree.MultiTreeAdapter;
 import com.libcommon.tree.TreeNode;
 import com.libcommon.utils.ListUtil;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BasicActivity;
+import com.mfzn.deepuses.bean.constants.ParameterConstant;
 import com.mfzn.deepuses.bean.response.GoodsCategoryResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
@@ -31,9 +33,9 @@ import cn.droidlover.xdroidmvp.net.XApi;
 public class GoodsCategoryActivity extends BasicActivity {
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
-
     private GoodsCategoryAdapter mAdapter;
     private List<TreeNode<GoodsCategoryResponse>> mSourceList = new ArrayList<>();
+    private String curCatId;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,8 +45,9 @@ public class GoodsCategoryActivity extends BasicActivity {
     }
 
     private void initData() {
-        mTitleBar.updateTitleBar("商品分类", "管理");
-        ApiServiceManager.getGoodsCategoryList("")
+        curCatId=getIntent().getStringExtra(ParameterConstant.CATEGORY_ID);
+        mTitleBar.updateTitleBar("选择商品分类");
+        ApiServiceManager.getGoodsCategoryList()
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(bindToLifecycle())
@@ -93,19 +96,21 @@ public class GoodsCategoryActivity extends BasicActivity {
     private void initView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new GoodsCategoryAdapter(mSourceList);
+        mAdapter.setCurCatId(curCatId);
         recyclerView.setAdapter(mAdapter);
-        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+        mAdapter.setOnTreeClickedListener(new MultiTreeAdapter.OnTreeClickedListener() {
 
             @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-
+            public void onNodeClicked(View view, TreeNode node) {
+                if (node.isLeaf()) {
+                    Intent intent = new Intent();
+                    intent.putExtra("Id", ((GoodsCategoryResponse) node.getData()).getCatID());
+                    intent.putExtra("Name", ((GoodsCategoryResponse) node.getData()).getCatName());
+                    setResult(RESULT_OK, intent);
+                    finish();
+                }
             }
         });
-    }
-
-    @Override
-    protected void rightPressed() {
-        startActivity(new Intent(this, GoodsCategoryManagerActivity.class));
     }
 
     @Override

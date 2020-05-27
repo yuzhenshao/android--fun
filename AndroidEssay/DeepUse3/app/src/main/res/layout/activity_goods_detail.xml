@@ -22,7 +22,7 @@
             android:layout_height="wrap_content" />
 
         <com.mfzn.deepuses.purchasesellsave.setting.view.BannerIndicator
-            android:id="@+id/banner_indicator"
+            android:id="@+id/indicator"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -41,7 +41,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/parameter"

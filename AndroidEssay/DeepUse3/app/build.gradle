@@ -116,4 +116,6 @@ dependencies {
     implementation(name: 'alipaySdk-15.6.2-20190416165036', ext: 'aar')
     //七牛sdk
     implementation 'com.qiniu:qiniu-android-sdk:7.3.3'
+
+    implementation(name: 'magicindicator-release', ext: 'aar')
 }

@@ -1,6 +1,12 @@
 package com.mfzn.deepuses.bean.response.settings;
 
+import android.net.Uri;
+import android.text.TextUtils;
+
+import com.mfzn.deepuses.net.ApiHelper;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -269,6 +275,24 @@ public class GoodsDetailResponse implements Serializable {
 
         public void setShopWaringPrice(List<ShopWaringPriceBean> shopWaringPrice) {
             this.shopWaringPrice = shopWaringPrice;
+        }
+
+
+        public ArrayList<Uri> getGoodsImgsUrl() {
+            ArrayList<Uri> urls = new ArrayList<>();
+            if (!TextUtils.isEmpty(goodsImages)) {
+                String[] files = goodsImages.split(",");
+                if (files.length > 0) {
+                    for (int i = 0; i < files.length; i++) {
+                        if (!TextUtils.isEmpty(files[i])) {
+                            urls.add(Uri.parse(ApiHelper.BASE_URL + files[i]));
+                        }
+                    }
+                } else {
+                    urls.add(Uri.parse(ApiHelper.BASE_URL + goodsImages));
+                }
+            }
+            return urls;
         }
 
         public static class SuppliersBean {

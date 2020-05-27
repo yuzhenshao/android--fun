@@ -33,6 +33,7 @@ import com.mfzn.deepuses.bean.response.settings.IncomeExpenseTypeResponse;
 import com.mfzn.deepuses.bean.response.settings.OtherCostResponse;
 import com.mfzn.deepuses.bean.response.settings.SupplierCustomerInfoResponse;
 import com.mfzn.deepuses.bean.response.settings.SupplierListResponse;
+import com.mfzn.deepuses.bean.response.shop.ShopListResponse;
 import com.mfzn.deepuses.bean.response.store.StoreAllCheckListResponse;
 import com.mfzn.deepuses.model.LookQuanxian2Model;
 import com.mfzn.deepuses.model.LookQuanxianModel;
@@ -589,6 +590,9 @@ public interface ApiService {
     Flowable<HttpResult> editBusinessCard(@Query("token") String token, @Query("uid") String uid, @Body EditBusinessCardRequest request);
 
 
+    @GET("pss/User/getCompanyList")
+    Flowable<HttpResult<List<SelectCompanyModel>>> userCompanyList(@Query("userPhone") String userPhone);
+
     /*project*/
     @GET("api/Project/proList")
     Flowable<HttpResult<XiangmuModel>> getProjectList(@QueryMap Map<String, Object> map);
@@ -786,37 +790,50 @@ public interface ApiService {
     Flowable<HttpResult> addGoods(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
                                   @Body CommodityRequest request);
 
+    @FormUrlEncoded
+    @POST("pss/Setting/addGoodsCategory")
+    Flowable<HttpResult> addGoodsCategory(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
+                                          @Field("catName") String catName, @Field("pID") String pID);
 
+    @FormUrlEncoded
     @POST("pss/Setting/editGoodsCategory")
     Flowable<HttpResult> editGoodsCategory(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
                                            @Field("catName") String catName, @Field("pID") String pID, @Field("catID") String catID);
 
+    @FormUrlEncoded
+    @POST("pss/Setting/delGoodsCategory")
+    Flowable<HttpResult> delGoodsCategory(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
+                                         @Field("catID") String catID);
 
-    @GET("pss/Setting/goodsUnitList")
+    @FormUrlEncoded
+    @POST("pss/Setting/goodsUnitList")
     Flowable<HttpResult<List<GoodsUnitResponse>>> getGoodsUnitList(@Query("token") String token,
                                                                    @Query("uid") String uid, @Query("shopID") String shopID);
 
-
+    @FormUrlEncoded
     @POST("pss/Setting/delGoodsUnit")
     Flowable<HttpResult> deleteGoodsUnit(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
                                          @Field("goodsUnitID") String goodsUnitID);
-
-    @POST("pss/Setting/addGoodsCategory")
-    Flowable<HttpResult> addGoodsCategory(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
-                                          @Field("catName") String catName, @Field("pID") String pID);
+    @FormUrlEncoded
+    @POST("pss/Setting/editGoodsUnit")
+    Flowable<HttpResult> editGoodsUnit(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
+                                         @Field("goodsUnitID") String goodsUnitID,@Field("unitName") String unitName);
 
     @GET("pss/Setting/otherCostTypeList")
     Flowable<HttpResult<List<OtherCostResponse>>> getOtherCostList(@Query("token") String token,
                                                                    @Query("uid") String uid, @Query("shopID") String shopID);
 
+    @FormUrlEncoded
     @POST("pss/Setting/editOtherCostType")
     Flowable<HttpResult> editOtherCost(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
                                        @Field("otherCostTypeName") String otherCostTypeName, @Field("otherCostTypeID") String otherCostTypeID);
 
+    @FormUrlEncoded
     @POST("pss/Setting/delOtherCostType")
     Flowable<HttpResult> deleteOtherCost(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
                                          @Field("otherCostTypeID") String otherCostTypeID);
 
+    @FormUrlEncoded
     @POST("pss/Setting/addOtherCostType")
     Flowable<HttpResult> addOtherCost(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
                                       @Field("otherCostTypeName") String otherCostTypeName);
@@ -826,14 +843,17 @@ public interface ApiService {
     Flowable<HttpResult<List<IncomeExpenseTypeResponse>>> getIncomeExpenseTypeListt(@Query("token") String token,
                                                                                     @Query("uid") String uid, @Query("shopID") String shopID);
 
+    @FormUrlEncoded
     @POST("pss/Setting/editIncomeExpenseType")
     Flowable<HttpResult> editIncomeExpenseType(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
                                                @Field("typeID") String typeID, @Field("type") int type, @Field("typeName") String typeName);
 
+    @FormUrlEncoded
     @POST("pss/Setting/delIncomeExpenseType")
     Flowable<HttpResult> delIncomeExpenseType(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
                                               @Field("typeID") String typeID);
 
+    @FormUrlEncoded
     @POST("pss/Setting/addIncomeExpenseType")
     Flowable<HttpResult> addIncomeExpenseType(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
                                               @Field("type") int type, @Field("typeName") String typeName);
@@ -846,10 +866,10 @@ public interface ApiService {
     Flowable<HttpResult<List<StoreResponse>>> getStoreList(@Query("token") String token,
                                                            @Query("uid") String uid, @Query("shopID") String shopID);
 
-
     @POST("pss/Setting/editStore")
     Flowable<HttpResult> editStore(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Body StoreResponse request);
 
+    @FormUrlEncoded
     @POST("pss/Setting/delStore")
     Flowable<HttpResult> delStore(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Query("storeID") String storeID);
 
@@ -872,6 +892,7 @@ public interface ApiService {
     Flowable<HttpResult> editSupplier(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
                                       @Body SupplierRequest request);
 
+    @FormUrlEncoded
     @POST("pss/Setting/delSupplier")
     Flowable<HttpResult> delSupplier(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Query("supplierID") String supplierID);
 
@@ -890,12 +911,16 @@ public interface ApiService {
     Flowable<HttpResult> orderStockCheckEdit(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
                                              @Body OrderStockCheckAddResponse request);
 
-    @POST("pss/Setting/dorderStockCheckDelBatch")
-    Flowable<HttpResult> dorderStockCheckDelBatch(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Query("orderIDs") String orderIDs);
+    @POST("pss/Store/orderStockCheckDelBatch")
+    Flowable<HttpResult> orderStockCheckDelBatch(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Query("orderIDs") String orderIDs);
 
     @POST("pss/Store/orderStockCheckAdd")
     Flowable<HttpResult> orderStockCheckAdd(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
                                             @Body OrderStockCheckAddResponse request);
 
+
+    //门店
+    @GET("pss/Shop/shopList")
+    Flowable<HttpResult<List<ShopListResponse>>> shopList(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID);
 
 }

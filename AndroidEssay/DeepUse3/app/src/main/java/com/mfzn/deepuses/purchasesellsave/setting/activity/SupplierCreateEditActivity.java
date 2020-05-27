@@ -71,7 +71,7 @@ public class SupplierCreateEditActivity extends BasicActivity {
         return R.layout.activity_store_create;
     }
 
-    protected void rightPressed() {
+    protected void rightPressedAction() {
         ApiServiceManager.delSupplier(shopId, mSupplier.getSupplierID())
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())

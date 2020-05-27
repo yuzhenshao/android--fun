@@ -1,5 +1,6 @@
 package com.mfzn.deepuses.bean.response.settings;
 
+import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.libcommon.tree.NodeId;
 
 import java.io.Serializable;

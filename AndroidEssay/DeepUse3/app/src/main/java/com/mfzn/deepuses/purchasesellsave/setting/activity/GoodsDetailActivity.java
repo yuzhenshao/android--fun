@@ -7,30 +7,22 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.libcommon.table.TabAdapter;
+import com.mfzn.deepuses.common.tab.TabAdapter;
 import com.libcommon.table.TabLabel;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BasicActivity;
-import com.mfzn.deepuses.bass.BasicListActivity;
 import com.mfzn.deepuses.bean.constants.ParameterConstant;
-import com.mfzn.deepuses.bean.request.CommodityRequest;
 import com.mfzn.deepuses.bean.response.settings.GoodsDetailResponse;
-import com.mfzn.deepuses.bean.response.settings.GoodsListResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
-import com.mfzn.deepuses.purchasesellsave.setting.adapter.GoodsAdapter;
-import com.mfzn.deepuses.purchasesellsave.setting.adapter.GoodsImageAdapter;
 import com.mfzn.deepuses.purchasesellsave.setting.fragment.BasicAttrFragment;
 import com.mfzn.deepuses.purchasesellsave.setting.fragment.SalesRecordFragment;
 import com.mfzn.deepuses.purchasesellsave.setting.fragment.StoresFragment;
@@ -46,7 +38,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.XApi;
@@ -61,7 +52,7 @@ public class GoodsDetailActivity extends BasicActivity {
 
     @BindView(R.id.image_view_pager)
     ViewPager imagePager;
-    @BindView(R.id.banner_indicator)
+    @BindView(R.id.indicator)
     BannerIndicator mImageIndicator;
     @BindView(R.id.name)
     TextView name;
@@ -71,7 +62,7 @@ public class GoodsDetailActivity extends BasicActivity {
     @BindView(R.id.icon_next)
     ImageView iconNext;
 
-    @BindView(R.id.banner_indicator)
+    @BindView(R.id.magic_indicator)
     MagicIndicator mIndicator;
     @BindView(R.id.detail_view_pager)
     ViewPager detailPager;
@@ -176,7 +167,7 @@ public class GoodsDetailActivity extends BasicActivity {
         }
     }
 
-    protected void rightPressed() {
+    protected void rightPressedAction() {
         View contentView = LayoutInflater.from(this).inflate(R.layout.goods_popupwindow, null, false);
         TextView goodsPhotoEntry = contentView.findViewById(R.id.goods_photo_entry);
         goodsPhotoEntry.setOnClickListener(new View.OnClickListener() {
