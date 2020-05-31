@@ -29,8 +29,6 @@ import cn.droidlover.xdroidmvp.net.XApi;
  */
 public class GoodsListActivity extends BasicListActivity<CommodityRequest> {
 
-    private String shopId;
-
     @BindView(R.id.search_container)
     LinearLayout searchContainer;
     @BindView(R.id.sum_stock)
@@ -40,7 +38,6 @@ public class GoodsListActivity extends BasicListActivity<CommodityRequest> {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        shopId = getIntent().getStringExtra(ParameterConstant.SHOP_ID);
         super.onCreate(savedInstanceState);
         serachEdit.setHint("搜索产品名称、条码、货号");
         mTitleBar.updateTitleBar("商品中心", R.mipmap.icon_titlebar_add);
@@ -55,7 +52,7 @@ public class GoodsListActivity extends BasicListActivity<CommodityRequest> {
     @Override
     protected void getResourceList() {
         showDialog();
-        ApiServiceManager.goodsList(shopId)
+        ApiServiceManager.goodsList()
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(bindToLifecycle())
@@ -90,7 +87,6 @@ public class GoodsListActivity extends BasicListActivity<CommodityRequest> {
                 CommodityRequest request = mSourceList.get(i);
                 if (request != null) {
                     Intent intent = new Intent(GoodsListActivity.this, GoodsDetailActivity.class);
-                    intent.putExtra(ParameterConstant.SHOP_ID, shopId);
                     intent.putExtra(ParameterConstant.GOODS_ID, request.getGoodsID());
                     startActivity(intent);
                 }
@@ -108,27 +104,5 @@ public class GoodsListActivity extends BasicListActivity<CommodityRequest> {
     @Override
     protected void rightPressedAction() {
         startActivity(new Intent(GoodsListActivity.this, CommodityPhotoCreateActivity.class));
-//        View contentView = LayoutInflater.from(this).inflate(R.layout.goods_popupwindow, null, false);
-//        TextView goodsPhotoEntry = contentView.findViewById(R.id.goods_photo_entry);
-//        goodsPhotoEntry.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(GoodsListActivity.this, CommodityPhotoCreateActivity.class));
-//            }
-//        });
-//        TextView goodsFormEntry = contentView.findViewById(R.id.goods_form_entry);
-//        goodsFormEntry.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(GoodsListActivity.this, CommodityCreateActivity.class));
-//            }
-//        });
-//
-//        PopupWindow popupWindow = new PopupWindow(contentView, ViewGroup.LayoutParams.WRAP_CONTENT,
-//                ViewGroup.LayoutParams.WRAP_CONTENT, true);
-//        popupWindow.setOutsideTouchable(true);
-//        popupWindow.setAnimationStyle(R.style.popup_window_anim_style);
-//        popupWindow.showAtLocation(mTitleBar, Gravity.TOP, 0,
-//                mTitleBar.getHeight());
     }
 }

@@ -58,14 +58,24 @@ import com.mfzn.deepuses.model.home.JudgeLevelModel;
 import com.mfzn.deepuses.model.home.KanbDataModel;
 import com.mfzn.deepuses.net.ApiHelper;
 import com.mfzn.deepuses.present.fragment.GongzuoPresnet;
+import com.mfzn.deepuses.purchasesellsave.sale.activity.AddOrderOfferActivity;
+import com.mfzn.deepuses.purchasesellsave.sale.activity.AddOrderSalesActivity;
+import com.mfzn.deepuses.purchasesellsave.sale.activity.AddOrderSalesBackActivity;
+import com.mfzn.deepuses.purchasesellsave.sale.activity.AddOrderTakeActivity;
+import com.mfzn.deepuses.purchasesellsave.sale.activity.AddOrderTakeBackActivity;
+import com.mfzn.deepuses.purchasesellsave.sale.activity.OrderSalesListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.CommodityCreateActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.CommodityPhotoCreateActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsCategoryManagerActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsUnitListManagetActivity;
+import com.mfzn.deepuses.purchasesellsave.setting.activity.OtherCostActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.StoreListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.SupplierListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.SupplierListManagerActivity;
+import com.mfzn.deepuses.purchasesellsave.store.activity.OrderStockCheckAddActivity;
+import com.mfzn.deepuses.purchasesellsave.store.activity.StockListActivity;
+import com.mfzn.deepuses.purchasesellsave.store.activity.StoreCheckListActivity;
 import com.mfzn.deepuses.utils.Constants;
 import com.mfzn.deepuses.utils.EventMsg;
 import com.mfzn.deepuses.utils.ObtainTime;
@@ -105,6 +115,8 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
     TextView tvKanbanMoney;
     @BindView(R.id.tv_kanban_number)
     TextView tvKanbanNumber;
+    @BindView(R.id.jcsz_recyleview)
+    MyRecyclerView jcszRecyleview;
     @BindView(R.id.spgl_recyleview)
     MyRecyclerView spglRecyleview;
     @BindView(R.id.xsgl_recyleview)
@@ -136,6 +148,9 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
 
     private List<HomeShowModel> tdglModels = new ArrayList<>();
 
+
+    //进销存基础设置
+    private List<HomeShowModel> jxcjcszModel = new ArrayList<>();
     //商品管理
     private List<HomeShowModel> spglModel = new ArrayList<>();
     //销售管理
@@ -342,7 +357,9 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
     }
 
     private void setRecyleview() {
-
+        NoScrollGridLayoutManager jcshLayoutManager = new NoScrollGridLayoutManager(getActivity(),
+                4, GridLayoutManager.VERTICAL, false);
+        jcszRecyleview.setLayoutManager(jcshLayoutManager);
         //商品管理
         NoScrollGridLayoutManager spLayoutManager = new NoScrollGridLayoutManager(getActivity(),
                 4, GridLayoutManager.VERTICAL, false);
@@ -590,11 +607,57 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
     }
 
     private void setDatas() {
+        jxcjcszModel.add(new HomeShowModel("客户管理", "khgl", R.mipmap.home_khgl));
+        jxcjcszModel.add(new HomeShowModel("供应商管理", "gysgl", R.mipmap.icon_gygls));
+        jxcjcszModel.add(new HomeShowModel("仓库管理", "ckgl", R.mipmap.icon_ckgl));
+        jxcjcszModel.add(new HomeShowModel("其他费用管理", "qtfygl", R.mipmap.icon_qtfygl));
+        jxcjcszModel.add(new HomeShowModel("商品类别", "splb", R.mipmap.icon_flgl));
+        jxcjcszModel.add(new HomeShowModel("商品单位", "spdw", R.mipmap.icon_dwgl));
+        HomeWdxmAdapter jcszAdapter = new HomeWdxmAdapter(getActivity(), jxcjcszModel);
+        jcszRecyleview.setAdapter(jcszAdapter);
+        jcszAdapter.setOnItemClickListener(new HomeWdxmAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                if (curCompany == null) {
+                    ToastUtil.showToast(getActivity(), "请先选择公司");
+                    return;
+                }
+                String type = jxcjcszModel.get(position).getType();
+                Intent intent = new Intent();
+                switch (type) {
+                    case "khgl":
+                        intent.setClass(getActivity(), CustomerMangerActivity.class);
+                        startActivity(intent);
+                        break;
+                    case "gysgl":
+                        intent.setClass(getActivity(), SupplierListManagerActivity.class);
+                        startActivity(intent);
+                        break;
+                    case "ckgl":
+                        intent.setClass(getActivity(), StoreListActivity.class);
+                        startActivity(intent);
+                        break;
+                    case "qtfygl":
+                        intent.setClass(getActivity(), OtherCostActivity.class);
+                        startActivity(intent);
+                        break;
+                    case "splb":
+                        intent.setClass(getActivity(), GoodsCategoryManagerActivity.class);
+                        startActivity(intent);
+                        break;
+                    case "spdw":
+                        intent.setClass(getActivity(), GoodsUnitListManagetActivity.class);
+                        startActivity(intent);
+                        break;
+                }
+
+
+            }
+        });
+
         spglModel.add(new HomeShowModel("商品中心", "spzx", R.mipmap.icon_spzx));
         spglModel.add(new HomeShowModel("新建商品", "xjsp", R.mipmap.icon_xjsp));
         spglModel.add(new HomeShowModel("拍照创建商品", "pzcjsp", R.mipmap.icon_pzxjsp));
-        spglModel.add(new HomeShowModel("商品类别", "splb", R.mipmap.icon_flgl));
-        spglModel.add(new HomeShowModel("商品单位", "spdw", R.mipmap.icon_dwgl));
         HomeWdxmAdapter spglAdapter = new HomeWdxmAdapter(getActivity(), spglModel);
         spglRecyleview.setAdapter(spglAdapter);
 
@@ -625,14 +688,6 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
                         intent.setClass(getActivity(), CommodityPhotoCreateActivity.class);
                         startActivity(intent);
                         break;
-                    case "splb":
-                        intent.setClass(getActivity(), GoodsCategoryManagerActivity.class);
-                        startActivity(intent);
-                        break;
-                    case "spdw":
-                        intent.setClass(getActivity(), GoodsUnitListManagetActivity.class);
-                        startActivity(intent);
-                        break;
                 }
             }
         });
@@ -646,8 +701,6 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
         xsglModel.add(new HomeShowModel("新建零售退货单", R.mipmap.icon_xjlsthd));
         xsglModel.add(new HomeShowModel("新建个人领货单", R.mipmap.icon_xjgrlhd));
         xsglModel.add(new HomeShowModel("新建领货归还单", R.mipmap.icon_xjlhghd));
-        xsglModel.add(new HomeShowModel("其他费用管理", R.mipmap.icon_qtfygl));
-        xsglModel.add(new HomeShowModel("客户管理", R.mipmap.icon_khgl));
         xsglModel.add(new HomeShowModel("个人仓库", R.mipmap.icon_khgl));//R.mipmap.icon_grck));
         HomeWdxmAdapter xsglAdapter = new HomeWdxmAdapter(getActivity(), xsglModel);
         xsglRecyleview.setAdapter(xsglAdapter);
@@ -659,41 +712,41 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
                     ToastUtil.showToast(getActivity(), "请先选择公司");
                     return;
                 }
+                Intent intent = new Intent();
                 switch (position) {
                     case 0:
-                        //TODO
+                        intent.setClass(getActivity(), OrderSalesListActivity.class);
                         break;
                     case 1:
-                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
+                        intent.setClass(getActivity(), AddOrderOfferActivity.class);
                         break;
                     case 2:
-                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
+                        intent.putExtra(ParameterConstant.IS_RETAIL_CREATE, false);
+                        intent.setClass(getActivity(), AddOrderSalesActivity.class);
                         break;
                     case 3:
-                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
+                        intent.putExtra(ParameterConstant.IS_RETAIL_CREATE, true);
+                        intent.setClass(getActivity(), AddOrderSalesActivity.class);
                         break;
                     case 4:
-                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
+                        intent.putExtra(ParameterConstant.IS_RETAIL_CREATE, false);
+                        intent.setClass(getActivity(), AddOrderSalesBackActivity.class);
                         break;
                     case 5:
-                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
+                        intent.putExtra(ParameterConstant.IS_RETAIL_CREATE, true);
+                        intent.setClass(getActivity(), AddOrderSalesBackActivity.class);
                         break;
                     case 6:
-                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
+                        intent.setClass(getActivity(), AddOrderTakeActivity.class);
                         break;
                     case 7:
-                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
+                        intent.setClass(getActivity(), AddOrderTakeBackActivity.class);
                         break;
                     case 8:
-                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
-                        break;
-                    case 9:
-                        //TODO
-                        break;
-                    case 10:
-                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
+                        startActivity(new Intent(getActivity(), StoreListActivity.class));
                         break;
                 }
+                startActivity(intent);
             }
         });
 
@@ -705,13 +758,13 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
         ckglModel.add(new HomeShowModel("调拨单", R.mipmap.icon_dbd));
         ckglModel.add(new HomeShowModel("新建调拨单", R.mipmap.icon_xjdbd));
         ckglModel.add(new HomeShowModel("盘点单", R.mipmap.icon_pdd));
+        //支持筛选，item没有点击
         ckglModel.add(new HomeShowModel("新建盘点单", R.mipmap.icon_xjpdd));
         ckglModel.add(new HomeShowModel("全库盘点管理", R.mipmap.icon_qkpdgl));
+        //只有列表和库存总量，item没有点击
         ckglModel.add(new HomeShowModel("库存流水", R.mipmap.icon_kcls));
         ckglModel.add(new HomeShowModel("库存查询", R.mipmap.icon_kccx));
-        ckglModel.add(new HomeShowModel("库存预警", R.mipmap.icon_kcyj));
-        ckglModel.add(new HomeShowModel("供应商管理", R.mipmap.icon_gygls));
-        ckglModel.add(new HomeShowModel("仓库管理", R.mipmap.icon_ckgl));
+
         HomeWdxmAdapter ckglAdapter = new HomeWdxmAdapter(getActivity(), ckglModel);
         ckglRecyleview.setAdapter(ckglAdapter);
 
@@ -731,7 +784,7 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
                 intent.putExtra(ParameterConstant.SHOP_ID, shop.getShopID());
                 switch (position) {
                     case 0:
-                        //TODO
+                        //TODO 暂时不做
                         break;
                     case 1:
                         startActivity(new Intent(getActivity(), MyProjectActivity.class));
@@ -749,10 +802,10 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
                         startActivity(new Intent(getActivity(), MyProjectActivity.class));
                         break;
                     case 6:
-                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
+                        startActivity(new Intent(getActivity(), StoreCheckListActivity.class));
                         break;
                     case 7:
-                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
+                        startActivity(new Intent(getActivity(), OrderStockCheckAddActivity.class));
                         break;
                     case 8:
                         startActivity(new Intent(getActivity(), MyProjectActivity.class));
@@ -761,18 +814,7 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
                         startActivity(new Intent(getActivity(), MyProjectActivity.class));
                         break;
                     case 10:
-                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
-                        break;
-                    case 11:
-                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
-                        break;
-                    case 12:
-                        intent.setClass(getActivity(), SupplierListManagerActivity.class);
-                        startActivity(intent);
-                        break;
-                    case 13:
-                        intent.setClass(getActivity(), StoreListActivity.class);
-                        startActivity(intent);
+                        startActivity(new Intent(getActivity(), StockListActivity.class));
                         break;
                 }
             }

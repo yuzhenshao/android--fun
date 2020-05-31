@@ -24,9 +24,6 @@ public class TabAdapter<T extends TabItem> extends CommonNavigatorAdapter {
 
     protected final List<T> tabList;
 
-
-    private static final int MAX_TAB_COUNT = 4;
-
     public TabAdapter(List<T> tabList) {
         this.tabList = tabList;
     }
@@ -51,8 +48,9 @@ public class TabAdapter<T extends TabItem> extends CommonNavigatorAdapter {
                 setCurrentItem(i);
             }
         });
-        titleView.setWidth(CommonUtil.getDisplayMetrics(context).widthPixels / MAX_TAB_COUNT);
-
+        if (tabList.size() > 0) {
+            titleView.setWidth(CommonUtil.getDisplayMetrics(context).widthPixels / tabList.size());
+        }
         return titleView;
     }
 

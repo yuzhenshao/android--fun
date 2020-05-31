@@ -32,6 +32,7 @@ public class StoreCheckGoodsAdapter extends BaseQuickAdapter<StoreCheckGoodsResp
         helper.setText(R.id.name, item.getGoodsName())
                 .setText(R.id.goods_num, item.getGoodsNum())
                 .setText(R.id.system_sum_count, context.getResources().getString(R.string.system_sum_count, item.getSystemStockNum()))
-                .setText(R.id.check_sum_count, context.getResources().getString(R.string.check_sum_count, item.getCheckStockNum()));
+                .setText(R.id.check_sum_count, context.getResources().getString(R.string.check_sum_count, item.getCheckStockNum()))
+                .setText(R.id.system_check_stock_num, context.getResources().getString(R.string.system_check_sum_count, item.getCheckStockNum() - item.getSystemStockNum()));
     }
 }

@@ -1,5 +1,7 @@
 package com.mfzn.deepuses.bean.response.store;
 
+import android.text.TextUtils;
+
 import java.io.Serializable;
 
 public class StoreCheckGoodsResponse implements Serializable {
@@ -37,6 +39,12 @@ public class StoreCheckGoodsResponse implements Serializable {
     private int checkStockNum;
     private int checkChangeNum;
     private String remark;
+
+    public StoreCheckGoodsResponse(String goodsID, int systemStockNum, int checkStockNum) {
+        this.goodsID = goodsID;
+        this.systemStockNum = systemStockNum;
+        this.checkChangeNum = checkStockNum;
+    }
 
     public String getGoodsID() {
         return goodsID;
@@ -156,5 +164,13 @@ public class StoreCheckGoodsResponse implements Serializable {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof StoreCheckGoodsResponse) {
+            return !TextUtils.isEmpty(getGoodsID()) && getGoodsID().equals(((StoreCheckGoodsResponse) obj).getGoodsID());
+        }
+        return false;
     }
 }

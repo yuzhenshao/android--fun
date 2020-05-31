@@ -193,6 +193,21 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="进销存基础设置"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginLeft="@dimen/app_24dp"
+                android:layout_marginTop="@dimen/app_30dp"
+                android:textColor="@color/color_303133"/>
+
+            <com.mfzn.deepuses.view.MyRecyclerView
+                android:id="@+id/jcsz_recyleview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="商品管理"
                 android:textSize="18sp"
                 android:textStyle="bold"

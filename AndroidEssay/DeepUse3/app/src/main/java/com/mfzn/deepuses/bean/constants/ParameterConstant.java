@@ -23,4 +23,9 @@ public interface ParameterConstant {
     //盘点单
     String STORE_CHECK_RESPONSE = "StoreCheckResponse";
 
+
+
+    //销售
+    String IS_RETAIL_CREATE = "isRetail";
+
 }

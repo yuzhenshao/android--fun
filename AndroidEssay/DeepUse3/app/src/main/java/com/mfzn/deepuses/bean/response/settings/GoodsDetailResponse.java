@@ -4,6 +4,7 @@ import android.net.Uri;
 import android.text.TextUtils;
 
 import com.mfzn.deepuses.net.ApiHelper;
+import com.mfzn.deepuses.purchasesellsave.store.model.GoodsImage;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -277,24 +278,6 @@ public class GoodsDetailResponse implements Serializable {
             this.shopWaringPrice = shopWaringPrice;
         }
 
-
-        public ArrayList<Uri> getGoodsImgsUrl() {
-            ArrayList<Uri> urls = new ArrayList<>();
-            if (!TextUtils.isEmpty(goodsImages)) {
-                String[] files = goodsImages.split(",");
-                if (files.length > 0) {
-                    for (int i = 0; i < files.length; i++) {
-                        if (!TextUtils.isEmpty(files[i])) {
-                            urls.add(Uri.parse(ApiHelper.BASE_URL + files[i]));
-                        }
-                    }
-                } else {
-                    urls.add(Uri.parse(ApiHelper.BASE_URL + goodsImages));
-                }
-            }
-            return urls;
-        }
-
         public static class SuppliersBean {
             /**
              * supplierID : 1
@@ -356,5 +339,23 @@ public class GoodsDetailResponse implements Serializable {
                 this.warningPrice = warningPrice;
             }
         }
+    }
+
+    public ArrayList<GoodsImage> getGoodsImgsUrl() {
+        ArrayList<GoodsImage> urls = new ArrayList<>();
+        String goodsImages=goodsInfo.getGoodsImages();
+        if (!TextUtils.isEmpty(goodsImages)) {
+            String[] files = goodsImages.split(",");
+            if (files.length > 0) {
+                for (int i = 0; i < files.length; i++) {
+                    if (!TextUtils.isEmpty(files[i])) {
+                        urls.add(new GoodsImage(ApiHelper.BASE_URL + files[i]));
+                    }
+                }
+            } else {
+                urls.add(new GoodsImage(ApiHelper.BASE_URL + goodsImages));
+            }
+        }
+        return urls;
     }
 }

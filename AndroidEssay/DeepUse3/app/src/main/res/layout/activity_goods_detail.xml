@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_f5f7fa"
+    android:background="@color/color_ffffff"
     android:orientation="vertical">
 
     <com.libcommon.titlebar.TitleBar
@@ -12,36 +13,35 @@
 
     <View style="@style/line_heng" />
 
-    <RelativeLayout
+    <com.stx.xhb.xbanner.XBanner
+        android:id="@+id/xbanner"
         android:layout_width="match_parent"
-        android:layout_height="210dp">
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/image_view_pager"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <com.mfzn.deepuses.purchasesellsave.setting.view.BannerIndicator
-            android:id="@+id/indicator"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="@dimen/dp_10" />
-
-    </RelativeLayout>
+        android:layout_height="210dip"
+        android:scaleType="centerCrop"
+        app:AutoPlayTime="3000"
+        app:isAutoPlay="false"
+        app:isHandLoop="true"
+        app:isShowIndicatorOnlyOne="true"
+        app:isShowTips="true"
+        app:pageChangeDuration="800"
+        app:pointsPosition="CENTER"
+        app:pointsVisibility="true"
+        app:tipTextSize="10sp" />
 
     <TextView
         android:id="@+id/name"
         android:layout_width="198dp"
         android:layout_height="22dp"
         android:layout_marginTop="@dimen/app_10dp"
+        android:layout_marginLeft="@dimen/app_24dp"
         android:text="小米开关  [QYJYJQL23LE]"
         android:textColor="#ff303133"
         android:textSize="16sp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/app_24dp">
 
         <TextView
             android:id="@+id/parameter"

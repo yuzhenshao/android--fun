@@ -90,11 +90,6 @@
                         style="@style/newly_tv_st"
                         android:text="品牌" />
 
-                    <TextView
-                        style="@style/newly_tv_st"
-                        android:text="*"
-                        android:textColor="@color/color_d0021b" />
-
                     <EditText
                         android:id="@+id/goods_brand"
                         style="@style/newly_et_st"
@@ -110,11 +105,6 @@
                     <TextView
                         style="@style/newly_tv_st"
                         android:text="分类" />
-
-                    <TextView
-                        style="@style/newly_tv_st"
-                        android:text="*"
-                        android:textColor="@color/color_d0021b" />
 
                     <EditText
                         android:id="@+id/category_et"
@@ -137,11 +127,6 @@
                     <TextView
                         style="@style/newly_tv_st"
                         android:text="规格" />
-
-                    <TextView
-                        style="@style/newly_tv_st"
-                        android:text="*"
-                        android:textColor="@color/color_d0021b" />
 
                     <EditText
                         android:id="@+id/goods_attr"
@@ -185,11 +170,6 @@
                     <TextView
                         style="@style/newly_tv_st"
                         android:text="定位" />
-
-                    <TextView
-                        style="@style/newly_tv_st"
-                        android:text="*"
-                        android:textColor="@color/color_d0021b" />
 
                     <EditText
                         android:id="@+id/goods_position"

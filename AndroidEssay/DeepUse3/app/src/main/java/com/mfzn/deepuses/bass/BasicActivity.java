@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import com.libcommon.titlebar.TitleBar;
 import com.libcommon.titlebar.TitlebarPressedListener;
 import com.mfzn.deepuses.R;
-import com.mfzn.deepuses.purchasesellsave.store.activity.OrderStockCheckAddActivity;
 import com.mfzn.deepuses.utils.ToastUtil;
 import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
 

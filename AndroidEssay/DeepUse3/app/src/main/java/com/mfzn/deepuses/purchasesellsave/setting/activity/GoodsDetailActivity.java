@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.mfzn.deepuses.common.tab.TabAdapter;
 import com.libcommon.table.TabLabel;
 import com.mfzn.deepuses.R;
@@ -27,7 +29,9 @@ import com.mfzn.deepuses.purchasesellsave.setting.fragment.BasicAttrFragment;
 import com.mfzn.deepuses.purchasesellsave.setting.fragment.SalesRecordFragment;
 import com.mfzn.deepuses.purchasesellsave.setting.fragment.StoresFragment;
 import com.mfzn.deepuses.purchasesellsave.setting.view.BannerIndicator;
+import com.mfzn.deepuses.purchasesellsave.store.model.GoodsImage;
 import com.mfzn.deepuses.utils.ToastUtil;
+import com.stx.xhb.xbanner.XBanner;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
 import net.lucode.hackware.magicindicator.ViewPagerHelper;
@@ -47,21 +51,14 @@ import cn.droidlover.xdroidmvp.net.XApi;
  */
 public class GoodsDetailActivity extends BasicActivity {
 
-    private String shopId;
-
-
-    @BindView(R.id.image_view_pager)
-    ViewPager imagePager;
-    @BindView(R.id.indicator)
-    BannerIndicator mImageIndicator;
+    @BindView(R.id.xbanner)
+    XBanner banner;
     @BindView(R.id.name)
     TextView name;
     @BindView(R.id.parameter_name)
     TextView parameterName;
-
     @BindView(R.id.icon_next)
     ImageView iconNext;
-
     @BindView(R.id.magic_indicator)
     MagicIndicator mIndicator;
     @BindView(R.id.detail_view_pager)
@@ -85,10 +82,9 @@ public class GoodsDetailActivity extends BasicActivity {
     }
 
     private void initData() {
-        mTitleBar.updateTitleBar("商品详情", R.mipmap.icon_titlebar_add);
-        shopId = getIntent().getStringExtra(ParameterConstant.SHOP_ID);
+        mTitleBar.updateTitleBar("商品详情", R.mipmap.icon_edit);
         showDialog();
-        ApiServiceManager.getGoodsInfo(shopId, getIntent().getStringExtra(ParameterConstant.GOODS_ID))
+        ApiServiceManager.getGoodsInfo(getIntent().getStringExtra(ParameterConstant.GOODS_ID))
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(bindToLifecycle())
@@ -103,25 +99,37 @@ public class GoodsDetailActivity extends BasicActivity {
                     public void onNext(HttpResult<GoodsDetailResponse> reuslt) {
                         hideDialog();
                         mGoodsDetailResponse = reuslt.getRes();
+                        initImagePager();
                         initDetailPager();
                     }
                 });
     }
 
     private void initImagePager() {
+        banner.loadImage(new XBanner.XBannerAdapter() {
+            @Override
+            public void loadBanner(XBanner banner, Object model, View view, int position) {
+                Glide.with(GoodsDetailActivity.this).load(((GoodsImage) model).getXBannerUrl())
+                        .into((ImageView) view);
+            }
+        });
 
+        banner.setBannerData(mGoodsDetailResponse.getGoodsImgsUrl());
     }
 
     private void initDetailPager() {
+        mTabLabelList.add(new TabLabel(1, "基础属性"));
+        mTabLabelList.add(new TabLabel(2, "库存流水"));
+        mTabLabelList.add(new TabLabel(3, "销售记录"));
         DetailAdapter detailAdapter = new DetailAdapter(getSupportFragmentManager());
         detailPager.setAdapter(detailAdapter);
         CommonNavigator commonNavigator = new CommonNavigator(this);
         commonNavigator.setScrollPivotX(0.25f);
-        mTabLabelList.add(new TabLabel(1, "基础属性"));
-        mTabLabelList.add(new TabLabel(2, "库存流水"));
-        mTabLabelList.add(new TabLabel(3, "销售记录"));
-
-        commonNavigator.setAdapter(new TabAdapter(mTabLabelList));
+        commonNavigator.setAdapter(new TabAdapter(mTabLabelList){
+            public void setCurrentItem(int index) {
+                detailPager.setCurrentItem(index);
+            }
+        });
         mIndicator.setNavigator(commonNavigator);
         ViewPagerHelper.bind(mIndicator, detailPager);
     }
@@ -168,27 +176,6 @@ public class GoodsDetailActivity extends BasicActivity {
     }
 
     protected void rightPressedAction() {
-        View contentView = LayoutInflater.from(this).inflate(R.layout.goods_popupwindow, null, false);
-        TextView goodsPhotoEntry = contentView.findViewById(R.id.goods_photo_entry);
-        goodsPhotoEntry.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(GoodsDetailActivity.this, CommodityPhotoCreateActivity.class));
-            }
-        });
-        TextView goodsFormEntry = contentView.findViewById(R.id.goods_form_entry);
-        goodsFormEntry.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(GoodsDetailActivity.this, CommodityCreateActivity.class));
-            }
-        });
-
-        PopupWindow popupWindow = new PopupWindow(contentView, ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT, true);
-        popupWindow.setOutsideTouchable(true);
-        popupWindow.setAnimationStyle(R.style.popup_window_anim_style);
-        popupWindow.showAtLocation(mTitleBar, Gravity.TOP, 0,
-                mTitleBar.getHeight());
+        startActivity(new Intent(GoodsDetailActivity.this, CommodityCreateActivity.class));
     }
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.EditText;
+
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.activity.khgl.SelectTypeActivity;
@@ -15,6 +16,7 @@ import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.purchasesellsave.store.adapter.StoreCheckAdapter;
 import com.mfzn.deepuses.utils.Constants;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
@@ -88,6 +90,7 @@ public class StoreCheckListActivity extends BasicListActivity<StoreCheckResponse
     }
 
     protected void rightPressedAction() {
+        startActivityForResult(new Intent(this, OrderStockCheckAddActivity.class), REQUESTCODE);
 
     }
 

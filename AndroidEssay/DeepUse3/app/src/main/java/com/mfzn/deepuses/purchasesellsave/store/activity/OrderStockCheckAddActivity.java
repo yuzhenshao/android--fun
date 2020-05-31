@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
+import com.libcommon.utils.ListUtil;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BasicActivity;
 import com.mfzn.deepuses.bean.constants.ParameterConstant;
@@ -24,6 +25,7 @@ import com.mfzn.deepuses.common.PickerDialogView;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsListActivity;
+import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsSelectListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.StoreListActivity;
 import com.mfzn.deepuses.purchasesellsave.store.adapter.StoreCheckGoodsAdapter;
 import com.mfzn.deepuses.utils.DateUtils;
@@ -47,14 +49,13 @@ public class OrderStockCheckAddActivity extends BasicActivity {
     ImageView selectStore;
     @BindView(R.id.select_goods)
     ImageView selectGoods;
-    @BindView(R.id.goods_container)
-    RelativeLayout goodsContainer;
+    //    @BindView(R.id.goods_container)
+//    RelativeLayout goodsContainer;
     @BindView(R.id.goods_recyleview)
     RecyclerView goodsRecyclerView;
-    @BindView(R.id.system_check_stock_num)
-    TextView number;
-    @BindView(R.id.price)
-    TextView price;
+    @BindView(R.id.line_space)
+    View lineSpace;
+
     @BindView(R.id.order_time)
     EditText orderTime;
     @BindView(R.id.out_num)
@@ -80,7 +81,7 @@ public class OrderStockCheckAddActivity extends BasicActivity {
     }
 
     private void initView() {
-
+        mTitleBar.updateTitleBar("新建盘点单");
     }
 
     private void initData() {
@@ -89,7 +90,6 @@ public class OrderStockCheckAddActivity extends BasicActivity {
         if (storeCheckResponse != null) {
             goodsInfo = storeCheckResponse.getGoodsInfo();
             storeName.setText(storeCheckResponse.getStoreName());
-            number.setText("不知道");
             orderTime.setText(DateUtils.longToString(storeCheckResponse.getAddTime()));
             outNum.setText(storeCheckResponse.getOutNum());
             orderMakerUserName.setText(storeCheckResponse.getOrderMakerUserName());
@@ -98,10 +98,15 @@ public class OrderStockCheckAddActivity extends BasicActivity {
             orderTime.setText(DateUtils.longToString(System.currentTimeMillis()));
             orderMakerUserName.setText(UserHelper.getU_name());
         }
+        setSpaceLineVisibility();
         storeCheckGoodsAdapter = new StoreCheckGoodsAdapter(OrderStockCheckAddActivity.this, goodsInfo);
         goodsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         goodsRecyclerView.setAdapter(storeCheckGoodsAdapter);
         storeCheckGoodsAdapter.notifyDataSetChanged();
+    }
+
+    private void setSpaceLineVisibility() {
+        lineSpace.setVisibility(ListUtil.isEmpty(goodsInfo) ? View.VISIBLE : View.GONE);
     }
 
     @Override
@@ -116,7 +121,7 @@ public class OrderStockCheckAddActivity extends BasicActivity {
         }
     }
 
-    @OnClick({R.id.btn_commit, R.id.select_store, R.id.select_goods,R.id.select_order_time})
+    @OnClick({R.id.btn_commit, R.id.select_store, R.id.select_goods, R.id.select_order_time})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_commit:
@@ -127,11 +132,11 @@ public class OrderStockCheckAddActivity extends BasicActivity {
                 }
                 break;
             case R.id.select_order_time:
-                PickerDialogView.showTimeSelect(this,new OnTimeSelectListener(){
+                PickerDialogView.showTimeSelect(this, new OnTimeSelectListener() {
 
                     @Override
                     public void onTimeSelect(Date date, View v) {
-                        orderTime.setText(DateUtils.dateFormat("yyyy/MM/dd",date));
+                        orderTime.setText(DateUtils.dateFormat("yyyy/MM/dd", date));
                     }
                 });
                 break;
@@ -142,7 +147,7 @@ public class OrderStockCheckAddActivity extends BasicActivity {
                 break;
             case R.id.select_goods:
                 Intent intent = new Intent();
-                intent.setClass(OrderStockCheckAddActivity.this, GoodsListActivity.class);
+                intent.setClass(OrderStockCheckAddActivity.this, GoodsSelectListActivity.class);
                 startActivityForResult(intent, GOODS_CODE);
                 break;
         }
