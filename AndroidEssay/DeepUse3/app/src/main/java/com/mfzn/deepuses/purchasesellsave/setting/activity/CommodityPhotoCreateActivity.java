@@ -2,19 +2,15 @@ package com.mfzn.deepuses.purchasesellsave.setting.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.EditText;
 
-import com.libcommon.titlebar.TitleBar;
 import com.mfzn.deepuses.R;
-import com.mfzn.deepuses.bass.BaseActivity;
 import com.mfzn.deepuses.bass.BasicActivity;
 import com.mfzn.deepuses.bean.constants.ParameterConstant;
 import com.mfzn.deepuses.bean.request.CommodityRequest;
-import com.mfzn.deepuses.databinding.ActivityCommodityPhotoCreateBinding;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.purchasesellsave.setting.view.AddImageView;

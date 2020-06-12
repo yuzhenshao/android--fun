@@ -113,5 +113,5 @@ dependencies {
     //七牛sdk
     implementation 'com.qiniu:qiniu-android-sdk:7.3.3'
 
-    implementation(name: 'magicindicator-release', ext: 'aar')
+   // implementation(name: 'magicindicator-release', ext: 'aar')
 }

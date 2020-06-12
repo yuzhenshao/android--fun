@@ -1,14 +1,11 @@
 package com.mfzn.deepuses.bean.request;
 
-
-import android.databinding.BaseObservable;
-import android.databinding.Bindable;
 import android.text.TextUtils;
 
 /**
  * @author yz @date 2020-03-26
  */
-public class CommodityRequest extends BaseObservable {
+public class CommodityRequest {
 
     private String goodsID;
     private String goodsCatID;
@@ -43,25 +40,21 @@ public class CommodityRequest extends BaseObservable {
         this.goodsID = goodsID;
     }
 
-    @Bindable
     public String getGoodsName() {
         return goodsName;
     }
 
     public void setGoodsName(String goodsName) {
         this.goodsName = goodsName;
-        notifyPropertyChanged(com.mfzn.deepuses.BR.goodsName);
         setCanSubmit(isRequiredParametersNotNull());
     }
 
-    @Bindable
     public String getGoodsCatID() {
         return goodsCatID;
     }
 
     public void setGoodsCatID(String goodsCatID) {
         this.goodsCatID = goodsCatID;
-        notifyPropertyChanged(com.mfzn.deepuses.BR.goodsCatID);
     }
 
 
@@ -73,38 +66,31 @@ public class CommodityRequest extends BaseObservable {
         this.catName = catName;
     }
 
-    @Bindable
     public String getGoodsAttr() {
         return goodsAttr;
     }
 
     public void setGoodsAttr(String goodsAttr) {
         this.goodsAttr = goodsAttr;
-        notifyPropertyChanged(com.mfzn.deepuses.BR.goodsAttr);
     }
 
-    @Bindable
     public String getGoodsNum() {
         return goodsNum;
     }
 
     public void setGoodsNum(String goodsNum) {
         this.goodsNum = goodsNum;
-        notifyPropertyChanged(com.mfzn.deepuses.BR.goodsNum);
         setCanSubmit(isRequiredParametersNotNull());
     }
 
-    @Bindable
     public String getGoodsUnitID() {
         return goodsUnitID;
     }
 
     public void setGoodsUnitID(String goodsUnitID) {
         this.goodsUnitID = goodsUnitID;
-        notifyPropertyChanged(com.mfzn.deepuses.BR.goodsUnitID);
     }
 
-    @Bindable
     public String getGoodsBrand() {
         return goodsBrand;
     }
@@ -112,10 +98,8 @@ public class CommodityRequest extends BaseObservable {
 
     public void setGoodsBrand(String goodsBrand) {
         this.goodsBrand = goodsBrand;
-        notifyPropertyChanged(com.mfzn.deepuses.BR.goodsBrand);
     }
 
-    @Bindable
     public String getGoodsPosition() {
         return goodsPosition;
 
@@ -123,28 +107,23 @@ public class CommodityRequest extends BaseObservable {
 
     public void setGoodsPosition(String goodsPosition) {
         this.goodsPosition = goodsPosition;
-        notifyPropertyChanged(com.mfzn.deepuses.BR.goodsPosition);
     }
 
-    @Bindable
     public String getCostPrice() {
         return costPrice;
     }
 
     public void setCostPrice(String costPrice) {
         this.costPrice = costPrice;
-        notifyPropertyChanged(com.mfzn.deepuses.BR.costPrice);
         setCanSubmit(isRequiredParametersNotNull());
     }
 
-    @Bindable
     public String getSalePrice() {
         return salePrice;
     }
 
     public void setSalePrice(String salePrice) {
         this.salePrice = salePrice;
-        notifyPropertyChanged(com.mfzn.deepuses.BR.costPrice);
     }
 
     public int getActiveStoreWarning() {
@@ -187,14 +166,12 @@ public class CommodityRequest extends BaseObservable {
         this.otherShopWaringPrice = otherShopWaringPrice;
     }
 
-    @Bindable
     public String getSupplierIDs() {
         return supplierIDs;
     }
 
     public void setSupplierIDs(String supplierIDs) {
         this.supplierIDs = supplierIDs;
-        notifyPropertyChanged(com.mfzn.deepuses.BR.costPrice);
     }
 
     public int getStoreStockNum() {
@@ -205,14 +182,12 @@ public class CommodityRequest extends BaseObservable {
         this.storeStockNum = storeStockNum;
     }
 
-    @Bindable
     public String getGoodsBarCode() {
         return goodsBarCode;
     }
 
     public void setGoodsBarCode(String goodsBarCode) {
         this.goodsBarCode = goodsBarCode;
-        notifyPropertyChanged(com.mfzn.deepuses.BR.goodsBarCode);
     }
 
     public String getStoreWarningStockNum() {
@@ -223,14 +198,12 @@ public class CommodityRequest extends BaseObservable {
         this.storeWarningStockNum = storeWarningStockNum;
     }
 
-    @Bindable
     public boolean isCanSubmit() {
         return isCanSubmit;
     }
 
     public void setCanSubmit(boolean canSubmit) {
         this.isCanSubmit = canSubmit;
-        notifyPropertyChanged(com.mfzn.deepuses.BR.canSubmit);
     }
 
     private boolean isRequiredParametersNotNull() {

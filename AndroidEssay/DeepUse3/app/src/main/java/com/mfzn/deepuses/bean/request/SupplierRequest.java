@@ -10,6 +10,7 @@ public class SupplierRequest implements Serializable {
     private String chargePersonPhone;
     private String contactAddress;
     private String supplierID;
+    private String remark;
 
     public String getSupplierName() {
         return supplierName;
@@ -49,5 +50,13 @@ public class SupplierRequest implements Serializable {
 
     public void setSupplierID(String supplierID) {
         this.supplierID = supplierID;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 }

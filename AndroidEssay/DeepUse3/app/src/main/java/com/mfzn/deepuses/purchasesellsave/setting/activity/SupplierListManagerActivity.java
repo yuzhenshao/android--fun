@@ -24,14 +24,12 @@ import cn.droidlover.xdroidmvp.net.XApi;
 public class SupplierListManagerActivity extends BasicListActivity<SupplierListResponse.SupplierResponse> {
 
     private static int REQUESTCODE = 1000;
-    @BindView(R.id.serach_edit)
-    EditText serachEdit;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        serachEdit.setHint("搜索供应商编号、名称、联系人、电话");
         mTitleBar.updateTitleBar("供应商", R.mipmap.icon_titlebar_add);
+        initSearch("搜索供应商编号、名称、联系人、电话");
     }
 
     @Override
@@ -73,18 +71,39 @@ public class SupplierListManagerActivity extends BasicListActivity<SupplierListR
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int i) {
-                Intent intent=  new Intent(SupplierListManagerActivity.this, SupplierCreateEditActivity.class);
-                intent.putExtra(ParameterConstant.SUPPLIER,mSourceList.get(i));
+                Intent intent = new Intent(SupplierListManagerActivity.this, SupplierCreateEditActivity.class);
+                intent.putExtra(ParameterConstant.SUPPLIER, mSourceList.get(i));
                 startActivityForResult(intent, REQUESTCODE);
             }
         });
         return mAdapter;
     }
 
-    @OnClick(R.id.search_container)
-    public void turnToSearch() {
+    protected void searchAction(String keyword) {
+        ApiServiceManager.searchSupplierList(keyword)
+                .compose(XApi.getApiTransformer())
+                .compose(XApi.getScheduler())
+                .compose(bindToLifecycle())
+                .subscribe(new ApiSubscriber<HttpResult<SupplierListResponse>>() {
+                    @Override
+                    protected void onFail(NetError error) {
+                        showErrorView(error.getMessage());
+                    }
 
+                    @Override
+                    public void onNext(HttpResult<SupplierListResponse> reuslt) {
+                        SupplierListResponse response = reuslt.getRes();
+                        if (response != null) {
+                            if (response.getData() != null) {
+                                refreshSearchSource(response.getData());
+                                return;
+                            }
+                        }
+                        showToast("搜索失败");
+                    }
+                });
     }
+
 
     protected void rightPressedAction() {
         startActivityForResult(new Intent(SupplierListManagerActivity.this, SupplierCreateEditActivity.class), REQUESTCODE);
@@ -93,7 +112,7 @@ public class SupplierListManagerActivity extends BasicListActivity<SupplierListR
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUESTCODE && requestCode == RESULT_OK) {
+        if (requestCode == REQUESTCODE && resultCode == RESULT_OK) {
             getResourceList();
         }
     }

@@ -17,6 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_49dp"
         android:layout_alignParentBottom="true"
+        android:visibility="gone"
         android:background="#EDEFF2">
 
         <TextView
@@ -61,6 +62,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/select_container"
+        android:visibility="gone"
         android:background="#4d000000">
 
         <android.support.v7.widget.RecyclerView

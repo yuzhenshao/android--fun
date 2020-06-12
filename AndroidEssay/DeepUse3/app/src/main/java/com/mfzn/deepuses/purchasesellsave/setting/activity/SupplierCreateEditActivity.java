@@ -2,6 +2,7 @@ package com.mfzn.deepuses.purchasesellsave.setting.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -22,7 +23,6 @@ import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.XApi;
 
 public class SupplierCreateEditActivity extends BasicActivity {
-    private String shopId;
 
     @BindView(R.id.supplier_name)
     EditText mSupplierName;
@@ -40,7 +40,7 @@ public class SupplierCreateEditActivity extends BasicActivity {
     TextView mSubmit;
     private boolean isCreate;
 
-    private SupplierRequest mSupplier;
+    private SupplierListResponse.SupplierResponse supplier;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,30 +49,28 @@ public class SupplierCreateEditActivity extends BasicActivity {
     }
 
     private void init() {
-        mSupplier = (SupplierRequest) getIntent().getSerializableExtra(ParameterConstant.SUPPLIER);
-        shopId = getIntent().getStringExtra(ParameterConstant.SHOP_ID);
-        isCreate = mSupplier == null;
-        if (mSupplier != null) {
+        supplier = (SupplierListResponse.SupplierResponse) getIntent().getSerializableExtra(ParameterConstant.SUPPLIER);
+        isCreate = supplier == null;
+        if (supplier != null) {
             mTitleBar.updateTitleBar("新增供应商", R.mipmap.work_delete2);
-            mSupplierName.setText(mSupplier.getSupplierName());
-            mContactName.setText(mSupplier.getChargePerson());
-            mContactPhone.setText(mSupplier.getChargePersonPhone());
-            mAddress.setText(mSupplier.getContactAddress());
-            //  mRemark.setText(mStoreResponse.getRemark());
+            mSupplierName.setText(supplier.getSupplierName());
+            mContactName.setText(supplier.getChargePerson());
+            mContactPhone.setText(supplier.getChargePersonPhone());
+            mAddress.setText(supplier.getContactAddress());
+            mRemark.setText(supplier.getRemark());
         } else {
             mTitleBar.updateTitleBar("新增供应商");
-            mSupplier = new SupplierRequest();
         }
 
     }
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_store_create;
+        return R.layout.activity_supplier_create;
     }
 
     protected void rightPressedAction() {
-        ApiServiceManager.delSupplier(shopId, mSupplier.getSupplierID())
+        ApiServiceManager.delSupplier(supplier.getSupplierID())
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(bindToLifecycle())
@@ -93,8 +91,18 @@ public class SupplierCreateEditActivity extends BasicActivity {
 
     @OnClick(R.id.submit)
     public void onClick(View v) {
+        SupplierRequest mSupplier = new SupplierRequest();
+        mSupplier.setSupplierName(mSupplierName.getText().toString());
+        if(TextUtils.isEmpty(mSupplier.getSupplierName())){
+            showToast("请输入供应商名称");
+            return;
+        }
+        mSupplier.setChargePerson(mContactName.getText().toString());
+        mSupplier.setChargePersonPhone(mContactPhone.getText().toString());
+        mSupplier.setContactAddress(mAddress.getText().toString());
+        mSupplier.setRemark(mRemark.getText().toString());
         if (isCreate) {
-            ApiServiceManager.addSupplier(shopId, mSupplier)
+            ApiServiceManager.addSupplier(mSupplier)
                     .compose(XApi.getApiTransformer())
                     .compose(XApi.getScheduler())
                     .compose(bindToLifecycle())
@@ -112,7 +120,8 @@ public class SupplierCreateEditActivity extends BasicActivity {
                         }
                     });
         } else {
-            ApiServiceManager.editSupplier(shopId, mSupplier)
+            mSupplier.setSupplierID(supplier.getSupplierID());
+            ApiServiceManager.editSupplier(mSupplier)
                     .compose(XApi.getApiTransformer())
                     .compose(XApi.getScheduler())
                     .compose(bindToLifecycle())

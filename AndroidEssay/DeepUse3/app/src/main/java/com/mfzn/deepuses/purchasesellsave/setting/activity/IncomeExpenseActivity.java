@@ -36,14 +36,12 @@ import cn.droidlover.xdroidmvp.net.XApi;
  * @author syz @date 2020-05-03
  */
 public class IncomeExpenseActivity extends BasicListActivity<IncomeExpenseTypeResponse> {
-    private String shopId;
     private boolean isAddIncome =true;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mTitleBar.updateTitleBar("收支类别", R.mipmap.icon_titlebar_add);
-        shopId = getIntent().getStringExtra(ParameterConstant.SHOP_ID);
     }
 
     @Override
@@ -54,7 +52,7 @@ public class IncomeExpenseActivity extends BasicListActivity<IncomeExpenseTypeRe
     @Override
     protected void getResourceList() {
         showDialog();
-        ApiServiceManager.getIncomeExpenseTypeListt(shopId)
+        ApiServiceManager.getIncomeExpenseTypeListt()
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(bindToLifecycle())
@@ -161,7 +159,7 @@ public class IncomeExpenseActivity extends BasicListActivity<IncomeExpenseTypeRe
     public void deleteIncomeExpenseType(int index) {
         IncomeExpenseTypeResponse incomeExpenseResponse = mSourceList.get(index);
         if (incomeExpenseResponse != null) {
-            ApiServiceManager.delIncomeExpenseType(shopId, incomeExpenseResponse.getTypeID())
+            ApiServiceManager.delIncomeExpenseType(incomeExpenseResponse.getTypeID())
                     .compose(XApi.getApiTransformer())
                     .compose(XApi.getScheduler())
                     .compose(bindToLifecycle())
@@ -182,7 +180,7 @@ public class IncomeExpenseActivity extends BasicListActivity<IncomeExpenseTypeRe
 
     public void editIncomeExpenseType(IncomeExpenseTypeResponse otherCostResponse) {
         if (otherCostResponse != null) {
-            ApiServiceManager.editIncomeExpenseType(shopId, otherCostResponse)
+            ApiServiceManager.editIncomeExpenseType( otherCostResponse)
                     .compose(XApi.getApiTransformer())
                     .compose(XApi.getScheduler())
                     .compose(bindToLifecycle())
@@ -202,7 +200,7 @@ public class IncomeExpenseActivity extends BasicListActivity<IncomeExpenseTypeRe
     }
 
     private void addIncomeExpenseType(String name){
-        ApiServiceManager.addIncomeExpenseType(shopId,isAddIncome?IncomeExpenseTypeResponse.INCOME:IncomeExpenseTypeResponse.EXPENSE, name)
+        ApiServiceManager.addIncomeExpenseType(isAddIncome?IncomeExpenseTypeResponse.INCOME:IncomeExpenseTypeResponse.EXPENSE, name)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(bindToLifecycle())

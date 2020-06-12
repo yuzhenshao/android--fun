@@ -51,14 +51,14 @@ public class AddOrderSalesBackActivity extends BasicActivity {
 
     @BindView(R.id.store)
     EditText store;
-    @BindView(R.id.rec_name)
-    EditText recName;
-    @BindView(R.id.rec_phone)
-    EditText recPhone;
-    @BindView(R.id.rec_area)
-    EditText recArea;
-    @BindView(R.id.rec_address)
-    EditText recAddress;
+//    @BindView(R.id.rec_name)
+//    EditText recName;
+//    @BindView(R.id.rec_phone)
+//    EditText recPhone;
+//    @BindView(R.id.rec_area)
+//    EditText recArea;
+//    @BindView(R.id.rec_address)
+//    EditText recAddress;
     @BindView(R.id.project)
     EditText project;
 
@@ -83,7 +83,7 @@ public class AddOrderSalesBackActivity extends BasicActivity {
     }
 
     @OnClick({R.id.customer_select, R.id.goods_select, R.id.other_cost_select, R.id.order_time_select,
-            R.id.store_select, R.id.rec_area_select, R.id.project_select, R.id.btn_commit})
+            R.id.store_select,  R.id.project_select, R.id.btn_commit})
     public void viewClick(View v) {
         Intent intent = new Intent();
         switch (v.getId()) {

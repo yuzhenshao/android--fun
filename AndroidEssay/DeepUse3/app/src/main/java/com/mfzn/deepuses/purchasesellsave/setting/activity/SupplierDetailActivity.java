@@ -69,7 +69,7 @@ public class SupplierDetailActivity extends BasicActivity {
 
     private void initData() {
         showDialog();
-        ApiServiceManager.getSupplierCustomerInfo(shopId, getIntent().getStringExtra(ParameterConstant.COMPANY_CUSTOMER_ID))
+        ApiServiceManager.getSupplierCustomerInfo(getIntent().getStringExtra(ParameterConstant.COMPANY_CUSTOMER_ID))
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(bindToLifecycle())

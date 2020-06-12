@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff5f7fa"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.libcommon.titlebar.TitleBar
+            android:id="@+id/titlebar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:background="@color/color_ffffff" />
+
+        <TextView
+            android:id="@+id/icon_add_other_cost"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_60dp"
+            android:layout_below="@+id/recycler_view"
+            android:background="@color/color_ffffff"
+            android:drawableLeft="@mipmap/icon_add_other_cost"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/app_20dp"
+            android:text="添加费用"
+            android:textColor="#ff3d7eff"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_commit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/app_20dp"
+        android:layout_marginTop="@dimen/app_20dp"
+        android:layout_marginRight="@dimen/app_20dp"
+        android:layout_marginBottom="@dimen/app_29dp"
+        android:background="@drawable/submit_btn_selector"
+        android:text="提交"
+        android:textColor="@color/color_ffffff"
+        android:textSize="18sp" />
+</RelativeLayout>

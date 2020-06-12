@@ -1,5 +1,11 @@
 package com.mfzn.deepuses.bean.response.sale;
 
+import android.text.TextUtils;
+
+import com.libcommon.utils.ListUtil;
+import com.mfzn.deepuses.bean.response.store.StoreCheckGoodsResponse;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrderOfferListResponse {
@@ -17,7 +23,7 @@ public class OrderOfferListResponse {
     private int per_page;
     private int current_page;
     private int last_page;
-    private List<DataBean> data;
+    private List<OrderOfferResponse> data;
 
     public int getTotal() {
         return total;
@@ -51,15 +57,15 @@ public class OrderOfferListResponse {
         this.last_page = last_page;
     }
 
-    public List<DataBean> getData() {
+    public List<OrderOfferResponse> getData() {
         return data;
     }
 
-    public void setData(List<DataBean> data) {
+    public void setData(List<OrderOfferResponse> data) {
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class OrderOfferResponse {
         /**
          * orderID : 1
          * companyID : 2
@@ -412,6 +418,18 @@ public class OrderOfferListResponse {
 
         public void setOtherCost(List<OtherCostBean> otherCost) {
             this.otherCost = otherCost;
+        }
+
+        public List<String> getGoodsMainImageList(){
+            List<String> images=new ArrayList<>();
+            if(!ListUtil.isEmpty(goodsInfo)){
+                for(GoodsInfoBean goodsResponse:goodsInfo){
+                    if(!TextUtils.isEmpty(goodsResponse.getGoodsMainImage())){
+                        images.add(goodsResponse.getGoodsMainImage());
+                    }
+                }
+            }
+            return images;
         }
 
         public static class GoodsInfoBean {

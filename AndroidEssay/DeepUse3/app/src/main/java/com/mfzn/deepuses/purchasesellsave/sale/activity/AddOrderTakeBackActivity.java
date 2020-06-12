@@ -65,8 +65,8 @@ public class AddOrderTakeBackActivity extends BasicActivity {
         mTitleBar.updateTitleBar("新建领货归还单");
     }
 
-    @OnClick({R.id.customer_select, R.id.goods_select, R.id.other_cost_select, R.id.order_time_select,
-            R.id.store_select, R.id.rec_area_select, R.id.project_select, R.id.btn_commit})
+    @OnClick({R.id.customer_select, R.id.goods_select, R.id.order_time_select,
+            R.id.store_select,  R.id.btn_commit})
     public void viewClick(View v) {
         Intent intent = new Intent();
         switch (v.getId()) {

@@ -10,6 +10,7 @@ import com.libcommon.dialog.DialogUtils;
 import com.libcommon.dialog.fragment.BaseDialogFragment;
 import com.libcommon.dialog.listener.OnViewClickListener;
 import com.libcommon.dialog.view.BindViewHolder;
+import com.libcommon.slidemenu.MenuHelper;
 import com.libcommon.slidemenu.MenuItemClickListener;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BasicListActivity;
@@ -31,19 +32,17 @@ import cn.droidlover.xdroidmvp.net.XApi;
  */
 public class OtherCostActivity extends BasicListActivity<OtherCostResponse> {
 
-    private String shopId;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mTitleBar.updateTitleBar("其他费用", R.mipmap.icon_titlebar_add);
-        shopId = getIntent().getStringExtra(ParameterConstant.SHOP_ID);
     }
 
     @Override
     protected void getResourceList() {
         showDialog();
-        ApiServiceManager.getOtherCostList(shopId)
+        ApiServiceManager.getOtherCostList()
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(bindToLifecycle())
@@ -63,6 +62,14 @@ public class OtherCostActivity extends BasicListActivity<OtherCostResponse> {
     @Override
     protected BaseQuickAdapter getAdapter() {
         OtherCostAdapter mAdapter = new OtherCostAdapter(mSourceList);
+
+        MenuHelper.attach(recyclerView, new MenuHelper.MenuEnableDecider() {
+            @Override
+            public boolean enable(int position) {
+                return true;
+            }
+        });
+
         mAdapter.setOnMenuItemClickListener(new MenuItemClickListener() {
             @Override
             public void onClick(int index, View view) {
@@ -117,7 +124,7 @@ public class OtherCostActivity extends BasicListActivity<OtherCostResponse> {
     public void deleteOtherCost(int index) {
         OtherCostResponse otherCostResponse = mSourceList.get(index);
         if (otherCostResponse != null) {
-            ApiServiceManager.deleteOtherCost(shopId, otherCostResponse.getOtherCostTypeID())
+            ApiServiceManager.deleteOtherCost(otherCostResponse.getOtherCostTypeID())
                     .compose(XApi.getApiTransformer())
                     .compose(XApi.getScheduler())
                     .compose(bindToLifecycle())
@@ -139,7 +146,7 @@ public class OtherCostActivity extends BasicListActivity<OtherCostResponse> {
     public void editOtherCost(int index, String name) {
         OtherCostResponse otherCostResponse = mSourceList.get(index);
         if (otherCostResponse != null) {
-            ApiServiceManager.editOtherCost(shopId, name, otherCostResponse.getOtherCostTypeID())
+            ApiServiceManager.editOtherCost(name, otherCostResponse.getOtherCostTypeID())
                     .compose(XApi.getApiTransformer())
                     .compose(XApi.getScheduler())
                     .compose(bindToLifecycle())
@@ -160,7 +167,7 @@ public class OtherCostActivity extends BasicListActivity<OtherCostResponse> {
     }
 
     private void addOtherCost(String name){
-        ApiServiceManager.addOtherCost(shopId, name)
+        ApiServiceManager.addOtherCost(name)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(bindToLifecycle())

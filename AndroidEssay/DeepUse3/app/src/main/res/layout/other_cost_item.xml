@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_ffffff"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/cost_num"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:background="#F5F7FA"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/app_24dp"
+        android:text="费用1"
+        android:textColor="#ff303133"
+        android:textSize="14sp" />
+
+    <LinearLayout style="@style/newly_ll_st">
+
+        <TextView
+            style="@style/newly_tv_st"
+            android:text="费用类型" />
+
+        <EditText
+            android:id="@+id/cost_type"
+            style="@style/newly_et_st2"
+            android:hint="@string/add_custom_select"
+            android:paddingRight="0dp" />
+
+        <ImageView
+            android:id="@+id/cost_type_select"
+            style="@style/bass_iv_you"
+            android:layout_marginRight="@dimen/app_20dp" />
+
+    </LinearLayout>
+
+    <View style="@style/line_heng" />
+
+    <LinearLayout style="@style/newly_ll_st">
+
+        <TextView
+            style="@style/newly_tv_st"
+            android:text="金额" />
+
+        <EditText
+            android:id="@+id/cost_price"
+            style="@style/newly_et_st"
+            android:hint="@string/add_custom_shuru"
+            android:inputType="number" />
+
+    </LinearLayout>
+
+    <View style="@style/line_heng" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_60dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/app_24dp"
+            android:gravity="center_vertical"
+            android:text="是否含税"
+            android:textColor="#ff606266"
+            android:textSize="16sp" />
+
+
+        <TextView
+            android:id="@+id/has_tax_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/app_60dp"
+            android:layout_toLeftOf="@+id/no_tax_rate"
+            android:drawableLeft="@mipmap/icon_other_cost_unselect"
+            android:drawablePadding="@dimen/app_5dp"
+            android:text="是"
+            android:textColor="#ff606266"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/no_tax_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/app_29dp"
+            android:drawableLeft="@mipmap/icon_other_cost_selected"
+            android:drawablePadding="@dimen/app_5dp"
+            android:text="否"
+            android:textColor="#ff606266"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+    <View style="@style/line_heng" />
+
+    <LinearLayout style="@style/newly_ll_st">
+
+        <TextView
+            style="@style/newly_tv_st"
+            android:text="税率" />
+
+        <EditText
+            android:id="@+id/tax_rate"
+            style="@style/newly_et_st2"
+            android:hint="@string/add_custom_select"
+            android:paddingRight="0dp" />
+
+        <ImageView
+            android:id="@+id/tax_rate_select"
+            style="@style/bass_iv_you"
+            android:layout_marginRight="@dimen/app_20dp" />
+
+    </LinearLayout>
+</LinearLayout>

@@ -16,6 +16,7 @@ import com.mfzn.deepuses.bass.BasicActivity;
 import com.mfzn.deepuses.bean.request.sale.OrderOfferRequest;
 import com.mfzn.deepuses.common.PickerDialogView;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsSelectListActivity;
+import com.mfzn.deepuses.purchasesellsave.setting.activity.OtherCostActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.SetCostActivity;
 import com.mfzn.deepuses.utils.DateUtils;
 
@@ -76,7 +77,7 @@ public class AddOrderOfferActivity extends BasicActivity {
                 startActivityForResult(intent, GOODS);
                 break;
             case R.id.other_cost_select:
-                intent.setClass(AddOrderOfferActivity.this, SetCostActivity.class);
+                intent.setClass(AddOrderOfferActivity.this, OtherCostActivity.class);
                 startActivityForResult(intent, COST);
                 break;
             case R.id.date_select:

@@ -71,7 +71,6 @@ import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsUnitListManagetActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.OtherCostActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.StoreListActivity;
-import com.mfzn.deepuses.purchasesellsave.setting.activity.SupplierListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.SupplierListManagerActivity;
 import com.mfzn.deepuses.purchasesellsave.store.activity.OrderStockCheckAddActivity;
 import com.mfzn.deepuses.purchasesellsave.store.activity.StockListActivity;
@@ -83,7 +82,6 @@ import com.mfzn.deepuses.utils.PhoneUtils;
 import com.mfzn.deepuses.utils.RxBus;
 import com.mfzn.deepuses.utils.ToastUtil;
 import com.mfzn.deepuses.utils.UserHelper;
-import com.mfzn.deepuses.view.MyListview;
 import com.mfzn.deepuses.view.MyRecyclerView;
 import com.mfzn.deepuses.view.NoScrollGridLayoutManager;
 import com.mfzn.deepuses.view.RoundImageView;
@@ -743,7 +741,7 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
                         intent.setClass(getActivity(), AddOrderTakeBackActivity.class);
                         break;
                     case 8:
-                        startActivity(new Intent(getActivity(), StoreListActivity.class));
+                        intent.setClass(getActivity(), StoreListActivity.class);
                         break;
                 }
                 startActivity(intent);

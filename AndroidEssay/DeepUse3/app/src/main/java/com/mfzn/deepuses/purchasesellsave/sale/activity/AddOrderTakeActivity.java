@@ -38,9 +38,9 @@ public class AddOrderTakeActivity extends BasicActivity {
     EditText customer;
     @BindView(R.id.goods)
     EditText goods;
-
     @BindView(R.id.store)
     EditText store;
+
     @BindView(R.id.rec_name)
     EditText recName;
     @BindView(R.id.rec_phone)
@@ -74,8 +74,8 @@ public class AddOrderTakeActivity extends BasicActivity {
         mTitleBar.updateTitleBar("新建个人领货单");
     }
 
-    @OnClick({R.id.customer_select, R.id.goods_select, R.id.other_cost_select, R.id.order_time_select,
-            R.id.store_select, R.id.rec_area_select, R.id.project_select, R.id.btn_commit})
+    @OnClick({R.id.customer_select, R.id.goods_select, R.id.order_time_select,
+            R.id.store_select, R.id.rec_area_select,R.id.btn_commit})
     public void viewClick(View v) {
         Intent intent = new Intent();
         switch (v.getId()) {

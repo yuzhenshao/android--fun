@@ -17,7 +17,9 @@ import com.libcommon.slidemenu.MenuItemClickListener;
 import com.libcommon.utils.ListUtil;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BasicActivity;
+import com.mfzn.deepuses.bass.BasicListActivity;
 import com.mfzn.deepuses.bean.constants.ParameterConstant;
+import com.mfzn.deepuses.bean.request.CommodityRequest;
 import com.mfzn.deepuses.bean.response.GoodsUnitResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
@@ -35,26 +37,16 @@ import cn.droidlover.xdroidmvp.net.XApi;
 /**
  * @author yz @date 2020-03-30
  */
-public class GoodsUnitListManagetActivity extends BasicActivity {
-
-    @BindView(R.id.recycler_view)
-    RecyclerView recyclerView;
-
-    private GoodsUnitAdapter mAdapter;
-    private List<GoodsUnitResponse> mSourceList = new ArrayList<>();
+public class GoodsUnitListManagetActivity extends BasicListActivity<GoodsUnitResponse> {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initData();
-        initEvent();
+        mTitleBar.updateTitleBar("商品单位", R.mipmap.icon_titlebar_add);
     }
 
-    private void initData() {
-        mTitleBar.updateTitleBar("商品单位", R.mipmap.icon_titlebar_add);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mAdapter = new GoodsUnitAdapter(mSourceList, true);
-        recyclerView.setAdapter(mAdapter);
+    @Override
+    protected void getResourceList() {
         ApiServiceManager.getGoodsUnitList()
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
@@ -62,20 +54,24 @@ public class GoodsUnitListManagetActivity extends BasicActivity {
                 .subscribe(new ApiSubscriber<HttpResult<List<GoodsUnitResponse>>>() {
                     @Override
                     protected void onFail(NetError error) {
+                        showErrorView(error.getMessage());
 
                     }
 
                     @Override
                     public void onNext(HttpResult<List<GoodsUnitResponse>> reuslt) {
                         if (reuslt != null && !ListUtil.isEmpty(reuslt.getRes())) {
-                            mSourceList.addAll(reuslt.getRes());
-                            mAdapter.notifyDataSetChanged();
+                            refreshSource(reuslt.getRes());
+                        } else {
+                            showErrorView(reuslt.getErrorMsg());
                         }
                     }
                 });
     }
 
-    private void initEvent() {
+    @Override
+    protected BaseQuickAdapter getAdapter() {
+        GoodsUnitAdapter mAdapter = new GoodsUnitAdapter(mSourceList, true);
         MenuHelper.attach(recyclerView, new MenuHelper.MenuEnableDecider() {
             @Override
             public boolean enable(int position) {
@@ -89,6 +85,7 @@ public class GoodsUnitListManagetActivity extends BasicActivity {
                 showDeleteDialog(index);
             }
         }, R.id.cancel);
+
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
 
             @Override
@@ -96,10 +93,23 @@ public class GoodsUnitListManagetActivity extends BasicActivity {
                 showEditDialog(position);
             }
         });
+        return mAdapter;
+    }
+
+    @Override
+    protected void rightPressedAction() {
+        DialogUtils.showEditDialog(this, "新增单位", "请输入单位名称", new
+                OnViewClickListener() {
+                    @Override
+                    public void onViewClick(BaseDialogFragment dialog, BindViewHolder viewHolder, View view) {
+                        EditText editText = viewHolder.getView(com.libcommon.R.id.message);
+                        addGoodsUnit(editText.getText().toString());
+                    }
+                });
     }
 
     private void showEditDialog(int index) {
-        DialogUtils.showEditDialog(this, "修改单位", "请输入单位名称", new
+        DialogUtils.showEditDialog(this, "修改单位", mSourceList.get(index).getUnitName(),"请输入单位名称", new
                 OnViewClickListener() {
                     @Override
                     public void onViewClick(BaseDialogFragment dialog, BindViewHolder viewHolder, View view) {
@@ -119,10 +129,23 @@ public class GoodsUnitListManagetActivity extends BasicActivity {
         });
     }
 
+    public void addGoodsUnit(String unitName) {
+        ApiServiceManager.addGoodsUnit(unitName)
+                .compose(XApi.getApiTransformer())
+                .compose(XApi.getScheduler())
+                .compose(bindToLifecycle())
+                .subscribe(new ApiSubscriber<HttpResult>() {
+                    @Override
+                    protected void onFail(NetError error) {
+                        ToastUtil.showToast(GoodsUnitListManagetActivity.this, "修改失败");
+                    }
 
-    @Override
-    public int getLayoutId() {
-        return R.layout.activity_base_list;
+                    @Override
+                    public void onNext(HttpResult reuslt) {
+                        ToastUtil.showToast(GoodsUnitListManagetActivity.this, "修改成功");
+                        getResourceList();
+                    }
+                });
     }
 
     public void editGoodsUnit(int index, String unitName) {
@@ -142,7 +165,7 @@ public class GoodsUnitListManagetActivity extends BasicActivity {
                         public void onNext(HttpResult reuslt) {
                             ToastUtil.showToast(GoodsUnitListManagetActivity.this, "修改成功");
                             goodsUnitResponse.setUnitName(unitName);
-                            mAdapter.notifyItemRemoved(index);
+                            adapter.notifyItemChanged(index);
                         }
                     });
         }
@@ -151,7 +174,7 @@ public class GoodsUnitListManagetActivity extends BasicActivity {
     public void deleteCategoryUnit(int index) {
         GoodsUnitResponse goodsUnitResponse = mSourceList.get(index);
         if (goodsUnitResponse != null) {
-            ApiServiceManager.deleteGoodsUnit("", goodsUnitResponse.getGoodsUnitID())
+            ApiServiceManager.deleteGoodsUnit(goodsUnitResponse.getGoodsUnitID())
                     .compose(XApi.getApiTransformer())
                     .compose(XApi.getScheduler())
                     .compose(bindToLifecycle())
@@ -164,13 +187,10 @@ public class GoodsUnitListManagetActivity extends BasicActivity {
                         @Override
                         public void onNext(HttpResult reuslt) {
                             ToastUtil.showToast(GoodsUnitListManagetActivity.this, "删除成功");
-                            mAdapter.notifyItemRemoved(index);
+                            mSourceList.remove(index);
+                            adapter.notifyItemRemoved(index);
                         }
                     });
         }
-    }
-
-    @Override
-    protected void rightPressedAction() {
     }
 }

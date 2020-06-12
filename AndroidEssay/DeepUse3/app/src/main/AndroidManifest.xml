@@ -425,16 +425,24 @@
         <activity
             android:name=".purchasesellsave.sale.activity.OrderSalesListActivity"
             android:screenOrientation="portrait"></activity>
-
-
+        <activity
+            android:name=".purchasesellsave.sale.activity.ActivityOtherCostSelect"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.sale.activity.AddOrderAllotActivity"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".purchasesellsave.sale.activity.AddOrderOfferActivity"
             android:screenOrientation="portrait"></activity>
-
+        <activity
+            android:name=".purchasesellsave.sale.activity.AddOrderOtherInActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.sale.activity.AddOrderOtherOutActivity"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".purchasesellsave.sale.activity.AddOrderTakeActivity"
             android:screenOrientation="portrait"></activity>
-
         <activity
             android:name=".purchasesellsave.sale.activity.AddOrderSalesActivity"
             android:screenOrientation="portrait"></activity>

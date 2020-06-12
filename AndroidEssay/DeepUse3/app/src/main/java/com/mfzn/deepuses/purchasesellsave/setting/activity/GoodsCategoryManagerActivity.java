@@ -240,7 +240,7 @@ public class GoodsCategoryManagerActivity extends BasicActivity {
                         @Override
                         public void onNext(HttpResult reuslt) {
                             ToastUtil.showToast(GoodsCategoryManagerActivity.this, "删除成功");
-                            mAdapter.notifyItemRemoved(index);
+                            initData();
                         }
                     });
         }

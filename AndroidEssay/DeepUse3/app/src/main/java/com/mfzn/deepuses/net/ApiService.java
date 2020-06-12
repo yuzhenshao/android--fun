@@ -43,6 +43,7 @@ import com.mfzn.deepuses.bean.response.settings.SupplierCustomerInfoResponse;
 import com.mfzn.deepuses.bean.response.settings.SupplierListResponse;
 import com.mfzn.deepuses.bean.response.shop.ShopListResponse;
 import com.mfzn.deepuses.bean.response.store.GoodsStockResponse;
+import com.mfzn.deepuses.bean.response.store.OrderOtherInOutListResponse;
 import com.mfzn.deepuses.bean.response.store.StockLogListResponse;
 import com.mfzn.deepuses.bean.response.store.StockWarningResponse;
 import com.mfzn.deepuses.bean.response.store.StoreAllCheckListResponse;
@@ -830,6 +831,12 @@ public interface ApiService {
                                          @Field("goodsUnitID") String goodsUnitID);
 
     @FormUrlEncoded
+    @POST("pss/Setting/addGoodsUnit")
+    Flowable<HttpResult> addGoodsUnit(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
+                                      @Field("unitName") String unitName);
+
+
+    @FormUrlEncoded
     @POST("pss/Setting/editGoodsUnit")
     Flowable<HttpResult> editGoodsUnit(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
                                        @Field("goodsUnitID") String goodsUnitID, @Field("unitName") String unitName);
@@ -886,13 +893,13 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST("pss/Setting/delStore")
-    Flowable<HttpResult> delStore(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Query("storeID") String storeID);
+    Flowable<HttpResult> delStore(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Field("storeID") String storeID);
 
     @FormUrlEncoded
     @POST("pss/Setting/addStore")
     Flowable<HttpResult> addStore(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
-                                  @Query("storeName") String storeName, @Query("chargePersonUserID") String chargePersonUserID,
-                                  @Query("contactPhone") String contactPhone, @Query("storeAddress") String storeAddress);
+                                  @Field("storeName") String storeName, @Field("chargePersonUserID") String chargePersonUserID,
+                                  @Field("contactPhone") String contactPhone, @Field("storeAddress") String storeAddress);
 
     @GET("pss/Setting/customerInfo")
     Flowable<HttpResult<SupplierCustomerInfoResponse>> customerInfo(@Query("token") String token, @Query("uid") String uid,
@@ -909,37 +916,13 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST("pss/Setting/delSupplier")
-    Flowable<HttpResult> delSupplier(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Query("supplierID") String supplierID);
+    Flowable<HttpResult> delSupplier(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Field("supplierID") String supplierID);
 
     @FormUrlEncoded
     @POST("pss/Setting/addSupplier")
     Flowable<HttpResult> addSupplier(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
-                                     @Query("supplierName") String supplierName, @Query("chargePerson") String chargePerson,
-                                     @Query("chargePersonPhone") String chargePersonPhone, @Query("contactAddress") String contactAddress);
-
-    @GET("pss/Store/stockWarning")
-    Flowable<HttpResult<StockWarningResponse>> stockWarning(@Query("token") String token, @Query("uid") String uid,
-                                                            @Query("shopID") String shopID, @Query("kw") String kw, @Query("storeID") String storeID);
-
-    @GET("pss/Store/goodsStock")
-    Flowable<HttpResult<GoodsStockResponse>> goodsStock(@Query("token") String token, @Query("uid") String uid,
-                                                        @Query("shopID") String shopID, @Query("kw") String kw);
-
-    @GET("pss/Store/orderStockCheckList")
-    Flowable<HttpResult<StoreAllCheckListResponse>> orderStockCheckList(@Query("token") String token, @Query("uid") String uid,
-                                                                        @Query("shopID") String shopID, @Query("keywords") String keywords, @Query("storeID") String storeID, @Query("status") int status);
-
-    @POST("pss/Store/orderStockCheckEdit")
-    Flowable<HttpResult> orderStockCheckEdit(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
-                                             @Body OrderStockCheckAddResponse request);
-
-    @POST("pss/Store/orderStockCheckDelBatch")
-    Flowable<HttpResult> orderStockCheckDelBatch(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Query("orderIDs") String orderIDs);
-
-    @POST("pss/Store/orderStockCheckAdd")
-    Flowable<HttpResult> orderStockCheckAdd(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
-                                            @Body OrderStockCheckAddResponse request);
-
+                                     @Field("supplierName") String supplierName, @Field("chargePerson") String chargePerson,
+                                     @Field("chargePersonPhone") String chargePersonPhone, @Field("contactAddress") String contactAddress);
 
     //门店
     @GET("pss/Shop/shopList")
@@ -947,6 +930,9 @@ public interface ApiService {
 
 
     //销售
+    @GET("pss/Sale/orderOfferList")
+    Flowable<HttpResult<OrderOfferListResponse>> orderOfferList(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID);
+
     @POST("pss/Sale/orderOfferAdd")
     Flowable<HttpResult> addOrderOffer(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Body OrderOfferRequest request);
 
@@ -969,9 +955,9 @@ public interface ApiService {
     Flowable<HttpResult> addOrderTakeGoodsBack(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Body OrderTakeGoodsBackRequest request);
 
 
+    //仓库
     @POST("pss/Store/orderOtherInAdd")
     Flowable<HttpResult> addOrderOtherIn(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Body OrderOtherInRequest request);
-
 
     @POST("pss/Store/orderOtherOutAdd")
     Flowable<HttpResult> addOrderOtherOut(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Body OrderSalesRequest request);
@@ -981,5 +967,35 @@ public interface ApiService {
 
     @GET("pss/Store/stockLogList")
     Flowable<HttpResult<StockLogListResponse>> stockLogList(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID);
+
+    @GET("pss/Store/stockWarning")
+    Flowable<HttpResult<StockWarningResponse>> stockWarning(@Query("token") String token, @Query("uid") String uid,
+                                                            @Query("shopID") String shopID, @Query("kw") String kw, @Query("storeID") String storeID);
+
+    @GET("pss/Store/goodsStock")
+    Flowable<HttpResult<GoodsStockResponse>> goodsStock(@Query("token") String token, @Query("uid") String uid,
+                                                        @Query("shopID") String shopID, @Query("kw") String kw);
+
+    @GET("pss/Store/orderStockCheckList")
+    Flowable<HttpResult<StoreAllCheckListResponse>> orderStockCheckList(@Query("token") String token, @Query("uid") String uid,
+                                                                        @Query("shopID") String shopID, @Query("keywords") String keywords, @Query("storeID") String storeID, @Query("status") int status);
+
+    @POST("pss/Store/orderStockCheckEdit")
+    Flowable<HttpResult> orderStockCheckEdit(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
+                                             @Body OrderStockCheckAddResponse request);
+
+    @FormUrlEncoded
+    @POST("pss/Store/orderStockCheckDelBatch")
+    Flowable<HttpResult> orderStockCheckDelBatch(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Field("orderIDs") String orderIDs);
+
+    @POST("pss/Store/orderStockCheckAdd")
+    Flowable<HttpResult> orderStockCheckAdd(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
+                                            @Body OrderStockCheckAddResponse request);
+
+    @GET("pss/Store/orderOtherInOutList")
+    Flowable<HttpResult<OrderOtherInOutListResponse>> orderOtherInOutList(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
+                                                                          @Query("keywords") String keywords, @Query("startTime") String startTime,
+                                                                          @Query("endTime") String endTime, @Query("orderType") int orderType);
+
 
 }

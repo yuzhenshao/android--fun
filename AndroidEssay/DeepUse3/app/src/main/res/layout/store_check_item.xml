@@ -64,6 +64,6 @@
         android:layout_marginTop="@dimen/app_13dp"
         android:layout_marginRight="-25dp"
         android:layout_marginBottom="-25dp"
-        android:src="@mipmap/pending_review" />
+        android:src="@mipmap/examine_pending" />
 
 </RelativeLayout>

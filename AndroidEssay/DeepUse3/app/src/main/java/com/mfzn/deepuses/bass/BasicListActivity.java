@@ -33,7 +33,7 @@ import io.reactivex.functions.Consumer;
 public abstract class BasicListActivity<T> extends BasicActivity {
 
     @BindView(R.id.recycler_view)
-    RecyclerView recyclerView;
+   public RecyclerView recyclerView;
     @BindView(R.id.empty_view_root)
     LinearLayout emptyView;
     @BindView(R.id.empty_img)
@@ -111,7 +111,6 @@ public abstract class BasicListActivity<T> extends BasicActivity {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     String searchWord = serachEdit.getText().toString().trim();
-                    //产品要求，不显示默认搜索条件且搜索词为空时不执行搜索
                     if (TextUtils.isEmpty(searchWord)) {
                         return true;
                     }
@@ -136,8 +135,8 @@ public abstract class BasicListActivity<T> extends BasicActivity {
 
     }
 
-    protected String getSearchKeyword(){
-        if(serachEdit!=null){
+    protected String getSearchKeyword() {
+        if (serachEdit != null) {
             return serachEdit.getText().toString();
         }
         return null;
@@ -172,7 +171,7 @@ public abstract class BasicListActivity<T> extends BasicActivity {
             return true;
         }
         if (keyCode == KeyEvent.KEYCODE_BACK && isSearching) {
-            refreshSource(sourceAllList);
+            serachEdit.setText(null);
             return true;
         }
         return super.onKeyDown(keyCode, event);

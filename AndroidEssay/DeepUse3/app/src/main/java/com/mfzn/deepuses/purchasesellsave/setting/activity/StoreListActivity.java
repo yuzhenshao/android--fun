@@ -27,13 +27,10 @@ import cn.droidlover.xdroidmvp.net.XApi;
 public class StoreListActivity extends BasicListActivity<StoreResponse> {
 
     private static int REQUESTCODE = 2000;
-    @BindView(R.id.serach_edit)
-    EditText serachEdit;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        serachEdit.setHint("搜索仓库名称、编码、联系人、电话");
         mTitleBar.updateTitleBar("仓库", R.mipmap.icon_titlebar_add);
     }
 
@@ -77,11 +74,6 @@ public class StoreListActivity extends BasicListActivity<StoreResponse> {
         return mAdapter;
     }
 
-    @OnClick(R.id.search_container)
-    public void turnToSearch() {
-
-    }
-
     protected void rightPressedAction() {
         startActivityForResult(new Intent(this, StoreCreateEditActivity.class), REQUESTCODE);
     }
@@ -89,7 +81,7 @@ public class StoreListActivity extends BasicListActivity<StoreResponse> {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUESTCODE && requestCode == RESULT_OK) {
+        if (requestCode == REQUESTCODE && resultCode == RESULT_OK) {
             getResourceList();
         }
     }

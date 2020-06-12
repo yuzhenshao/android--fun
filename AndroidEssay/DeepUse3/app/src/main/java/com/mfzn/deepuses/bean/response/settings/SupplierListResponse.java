@@ -79,6 +79,7 @@ public class SupplierListResponse {
         private String chargePersonPhone;
         private String contactAddress;
         private long addTime;
+        private String remark;
         private List<OrderList> orderList;
         private List<PayOrGatheringLog> payOrGatheringLogList;
 
@@ -152,6 +153,14 @@ public class SupplierListResponse {
 
         public void setPayOrGatheringLogList(List<PayOrGatheringLog> payOrGatheringLogList) {
             this.payOrGatheringLogList = payOrGatheringLogList;
+        }
+
+        public String getRemark() {
+            return remark;
+        }
+
+        public void setRemark(String remark) {
+            this.remark = remark;
         }
 
         public static class OrderList implements Serializable{

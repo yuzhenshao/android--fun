@@ -23,7 +23,6 @@ import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.XApi;
 
 public class StoreCreateEditActivity extends BasicActivity {
-    private String shopId;
     @BindView(R.id.edit_container)
     LinearLayout editBtnContainer;
     @BindView(R.id.edit_btn)
@@ -58,7 +57,6 @@ public class StoreCreateEditActivity extends BasicActivity {
 
     private void init() {
         mStoreResponse = (StoreResponse) getIntent().getSerializableExtra(ParameterConstant.STORE);
-        shopId = getIntent().getStringExtra(ParameterConstant.SHOP_ID);
         mTitleBar.updateTitleBar(mStoreResponse == null ? "新增仓库" : "编辑仓库");
         editBtnContainer.setVisibility(mStoreResponse == null ? View.GONE : View.VISIBLE);
         mSubmit.setVisibility(mStoreResponse == null ? View.VISIBLE : View.GONE);
@@ -69,10 +67,7 @@ public class StoreCreateEditActivity extends BasicActivity {
             mContactPhone.setText(mStoreResponse.getContactPhone());
             mAddress.setText(mStoreResponse.getStoreAddress());
             mRemark.setText(mStoreResponse.getRemark());
-        } else {
-            mStoreResponse = new StoreResponse();
         }
-
     }
 
     @Override
@@ -97,7 +92,7 @@ public class StoreCreateEditActivity extends BasicActivity {
                 // startActivity(new Intent(this, GoodsUnitListActivity.class));
                 break;
             case R.id.submit:
-                ApiServiceManager.addStore(shopId, mStoreResponse)
+                ApiServiceManager.addStore(mStoreResponse)
                         .compose(XApi.getApiTransformer())
                         .compose(XApi.getScheduler())
                         .compose(bindToLifecycle())
@@ -116,7 +111,8 @@ public class StoreCreateEditActivity extends BasicActivity {
                         });
                 break;
             case R.id.edit_btn:
-                ApiServiceManager.editStore(shopId, mStoreResponse)
+                updateStore();
+                ApiServiceManager.editStore(mStoreResponse)
                         .compose(XApi.getApiTransformer())
                         .compose(XApi.getScheduler())
                         .compose(bindToLifecycle())
@@ -135,7 +131,8 @@ public class StoreCreateEditActivity extends BasicActivity {
                         });
                 break;
             case R.id.delete_btn:
-                ApiServiceManager.delStore(shopId, mStoreResponse.getStoreID())
+                updateStore();
+                ApiServiceManager.delStore(mStoreResponse.getStoreID())
                         .compose(XApi.getApiTransformer())
                         .compose(XApi.getScheduler())
                         .compose(bindToLifecycle())
@@ -154,5 +151,13 @@ public class StoreCreateEditActivity extends BasicActivity {
                         });
                 break;
         }
+    }
+
+    private void updateStore(){
+        mStoreResponse.setStoreName(mStoreName.getText().toString());
+        //mStoreResponse.setChargePersonUserID("");//TODO
+        mStoreResponse.setContactPhone(mContactPhone.getText().toString());
+        mStoreResponse.setStoreAddress(mAddress.getText().toString());
+        mStoreResponse.setRemark(mRemark.getText().toString());
     }
 }

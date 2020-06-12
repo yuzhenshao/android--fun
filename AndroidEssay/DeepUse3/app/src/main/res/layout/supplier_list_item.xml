@@ -1,61 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/app_89dp"
-    android:layout_marginTop="@dimen/app_5dp"
-    android:paddingLeft="@dimen/app_24dp"
-    android:paddingRight="@dimen/app_24dp"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/store_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="@dimen/app_15dp"
-        android:src="@mipmap/icon_jxc_supplier" />
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="@dimen/app_15dp"
-        android:layout_toRightOf="@+id/store_icon"
-        android:orientation="vertical">
+        android:layout_height="@dimen/app_89dp"
+        android:layout_marginTop="@dimen/app_5dp"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/app_24dp"
+        android:paddingRight="@dimen/app_24dp">
 
-        <TextView
-            android:id="@+id/supplier_name"
+        <ImageView
+            android:id="@+id/store_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="大王建材有限公司"
-            android:textColor="#ff303133"
-            android:textSize="16sp" />
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="@dimen/app_15dp"
+            android:src="@mipmap/icon_jxc_supplier" />
 
-        <RelativeLayout
+        <LinearLayout
+            android:id="@+id/container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/app_15dp">
-
-            <ImageView
-                android:id="@+id/phone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:src="@mipmap/icon_phone" />
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="@dimen/app_15dp"
+            android:layout_toRightOf="@+id/store_icon"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/user_name"
+                android:id="@+id/supplier_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/photo"
-                android:singleLine="true"
-                android:ellipsize="end"
-                android:text="负责人：张三/13912345678"
-                android:gravity="center_vertical"
-                android:layout_alignParentLeft="true"
-                android:textColor="#ff606266"
+                android:text="大王建材有限公司"
+                android:textColor="#ff303133"
                 android:textSize="16sp" />
-        </RelativeLayout>
 
-    </LinearLayout>
-</RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/app_15dp">
+
+                <ImageView
+                    android:id="@+id/phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:src="@mipmap/icon_phone" />
+
+                <TextView
+                    android:id="@+id/user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_toLeftOf="@+id/photo"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="负责人：张三/13912345678"
+                    android:textColor="#ff606266"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <View style="@style/line_heng" />
+</LinearLayout>

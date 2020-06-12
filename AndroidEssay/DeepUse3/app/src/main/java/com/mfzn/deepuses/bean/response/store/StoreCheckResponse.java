@@ -11,12 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StoreCheckResponse implements Serializable {
-//0.待审核；1.盈亏处理中；2.审核被拒；3盈亏处理完成；4.无盈亏
-    private final static int PENDING_REVIEW=0;
-    private final static int PROFIT_LOSS_ING=1;
-    private final static int PROFIT_LOSS_FAILED=2;
-    private final static int PROFIT_LOSS_SUCCEED=3;
-    private final static int NO_PROFIT_LOSS=4;
+    //0.待审核；1.盈亏处理中；2.审核被拒；3盈亏处理完成；4.无盈亏
+    private final static int PENDING_REVIEW = 0;
+    private final static int PROFIT_LOSS_ING = 1;
+    private final static int PROFIT_LOSS_FAILED = 2;
+    private final static int PROFIT_LOSS_SUCCEED = 3;
+    private final static int NO_PROFIT_LOSS = 4;
 
     /**
      * orderID : 3
@@ -241,11 +241,11 @@ public class StoreCheckResponse implements Serializable {
         this.goodsInfo = goodsInfo;
     }
 
-    public List<String> getGoodsMainImageList(){
-        List<String> images=new ArrayList<>();
-        if(!ListUtil.isEmpty(goodsInfo)){
-            for(StoreCheckGoodsResponse goodsResponse:goodsInfo){
-                if(!TextUtils.isEmpty(goodsResponse.getGoodsMainImage())){
+    public List<String> getGoodsMainImageList() {
+        List<String> images = new ArrayList<>();
+        if (!ListUtil.isEmpty(goodsInfo)) {
+            for (StoreCheckGoodsResponse goodsResponse : goodsInfo) {
+                if (!TextUtils.isEmpty(goodsResponse.getGoodsMainImage())) {
                     images.add(goodsResponse.getGoodsMainImage());
                 }
             }
@@ -253,19 +253,19 @@ public class StoreCheckResponse implements Serializable {
         return images;
     }
 
-    public int getStatusResId(){
-        switch (status){
-           case PENDING_REVIEW:
-               return R.mipmap.pending_review;
-           case PROFIT_LOSS_ING:
-               return R.mipmap.profit_loss_successed;
-           case PROFIT_LOSS_FAILED:
-               return R.mipmap.profit_loss_failed;
-           case PROFIT_LOSS_SUCCEED:
-               return R.mipmap.profit_loss_successed;
-           case NO_PROFIT_LOSS:
-               return R.mipmap.profit_loss_successed;
+    public int getStatusResId() {
+        switch (status) {
+            case PENDING_REVIEW:
+                return R.mipmap.examine_pending;
+            case PROFIT_LOSS_ING:
+                return R.mipmap.icon_ongoing;
+            case PROFIT_LOSS_FAILED:
+                return R.mipmap.examine_unpass;
+            case PROFIT_LOSS_SUCCEED:
+                return R.mipmap.profit_loss_successed;
+            case NO_PROFIT_LOSS:
+                return R.mipmap.no_profit_loss;
         }
-        return R.mipmap.pending_review;
+        return R.mipmap.examine_pending;
     }
 }

@@ -9,12 +9,11 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.activity.khgl.SelectTypeActivity;
 import com.mfzn.deepuses.bass.BasicListActivity;
-import com.mfzn.deepuses.bean.response.store.StoreAllCheckListResponse;
-import com.mfzn.deepuses.bean.response.store.StoreCheckResponse;
+import com.mfzn.deepuses.bean.response.sale.OrderOfferListResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
+import com.mfzn.deepuses.purchasesellsave.sale.adapter.OrderSalesAdapter;
 import com.mfzn.deepuses.purchasesellsave.store.activity.OrderStockCheckAddActivity;
-import com.mfzn.deepuses.purchasesellsave.store.adapter.StoreCheckAdapter;
 import com.mfzn.deepuses.utils.Constants;
 
 import butterknife.OnClick;
@@ -23,7 +22,7 @@ import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.XApi;
 import cn.droidlover.xdroidmvp.router.Router;
 
-public class OrderSalesListActivity extends BasicListActivity<StoreCheckResponse> {
+public class OrderSalesListActivity extends BasicListActivity<OrderOfferListResponse.OrderOfferResponse> {
     private static int REQUESTCODE = 1001;
 
     @Override
@@ -42,19 +41,19 @@ public class OrderSalesListActivity extends BasicListActivity<StoreCheckResponse
     @Override
     protected void getResourceList() {
         showDialog();
-        ApiServiceManager.getOrderStockCheckList("", "0", -1)
+        ApiServiceManager.getOrderOfferList()
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(bindToLifecycle())
-                .subscribe(new ApiSubscriber<HttpResult<StoreAllCheckListResponse>>() {
+                .subscribe(new ApiSubscriber<HttpResult<OrderOfferListResponse>>() {
                     @Override
                     protected void onFail(NetError error) {
                         showErrorView(error.getMessage());
                     }
 
                     @Override
-                    public void onNext(HttpResult<StoreAllCheckListResponse> reuslt) {
-                        StoreAllCheckListResponse response = reuslt.getRes();
+                    public void onNext(HttpResult<OrderOfferListResponse> reuslt) {
+                        OrderOfferListResponse response = reuslt.getRes();
                         if (response != null) {
                             if (response.getData() != null) {
                                 refreshSource(response.getData());
@@ -68,7 +67,7 @@ public class OrderSalesListActivity extends BasicListActivity<StoreCheckResponse
 
     @Override
     protected BaseQuickAdapter getAdapter() {
-        StoreCheckAdapter mAdapter = new StoreCheckAdapter(this, mSourceList);
+        OrderSalesAdapter mAdapter = new OrderSalesAdapter(this, mSourceList);
         return mAdapter;
     }
 

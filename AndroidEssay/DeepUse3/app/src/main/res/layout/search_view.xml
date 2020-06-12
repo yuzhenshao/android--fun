@@ -3,8 +3,8 @@
     android:id="@+id/search_container"
     android:layout_width="match_parent"
     android:layout_height="@dimen/app_53dp"
-    android:layout_marginLeft="12dp"
-    android:layout_marginRight="@dimen/app_12dp"
+    android:paddingLeft="12dp"
+    android:paddingRight="@dimen/app_12dp"
     android:background="@color/color_ffffff"
     android:gravity="center_vertical">
 
@@ -31,6 +31,8 @@
             android:paddingLeft="10dp"
             android:textColor="#303133"
             android:textColorHint="#909399"
+            android:singleLine="true"
+            android:imeOptions="actionSearch"
             android:textSize="14sp" />
 
     </LinearLayout>

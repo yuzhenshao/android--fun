@@ -1,416 +1,417 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
+<com.qmuiteam.qmui.widget.QMUIWindowInsetLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#fff5f7fa"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <com.libcommon.titlebar.TitleBar
-        android:id="@+id/titlebar"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:background="#fff5f7fa"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_commit"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/app_45dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="@dimen/app_20dp"
-        android:layout_marginRight="@dimen/app_20dp"
-        android:layout_marginBottom="@dimen/app_11dp"
-        android:background="@drawable/submit_btn_selector"
-        android:text="提交"
-        android:textColor="@color/color_ffffff"
-        android:textSize="18sp" />
+        <com.libcommon.titlebar.TitleBar
+            android:id="@+id/titlebar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/btn_commit"
-        android:layout_below="@+id/titlebar"
-        android:layout_marginTop="@dimen/dp_10">
+        <Button
+            android:id="@+id/btn_commit"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_45dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/app_20dp"
+            android:layout_marginTop="@dimen/app_20dp"
+            android:layout_marginRight="@dimen/app_20dp"
+            android:layout_marginBottom="@dimen/app_11dp"
+            android:background="@drawable/submit_btn_selector"
+            android:text="提交"
+            android:textColor="@color/color_ffffff"
+            android:textSize="18sp" />
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout style="@style/newly_ll_st">
-
-                <TextView
-                    style="@style/newly_tv_st"
-                    android:text="客户" />
-
-                <EditText
-                    android:id="@+id/customer"
-                    style="@style/newly_et_st2"
-                    android:hint="@string/add_custom_select"
-                    android:paddingRight="0dp" />
-
-                <ImageView
-                    android:id="@+id/customer_select"
-                    style="@style/bass_iv_you"
-                    android:layout_marginRight="@dimen/app_20dp" />
-
-            </LinearLayout>
-
-            <View style="@style/line_heng" />
-
-            <LinearLayout style="@style/newly_ll_st">
-
-                <TextView
-                    style="@style/newly_tv_st"
-                    android:text="商品" />
-
-                <EditText
-                    android:id="@+id/goods"
-                    style="@style/newly_et_st2"
-                    android:hint="@string/add_custom_select"
-                    android:paddingRight="0dp" />
-
-                <ImageView
-                    android:id="@+id/goods_select"
-                    style="@style/bass_iv_you"
-                    android:layout_marginRight="@dimen/app_20dp" />
-
-            </LinearLayout>
-
-            <View style="@style/line_heng" />
-
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/goods_recyleview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ffffff"
-                android:paddingLeft="@dimen/app_24dp" />
-
-            <RelativeLayout
-                android:id="@+id/goods_price_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/app_20dp"
-                android:layout_marginTop="@dimen/dp_10"
-                android:layout_marginRight="@dimen/app_20dp"
-                android:layout_marginBottom="@dimen/dp_10"
-                android:visibility="gone">
-
-                <TextView
-                    android:id="@+id/number"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_gravity="center"
-                    android:ellipsize="end"
-                    android:singleLine="true"
-                    android:text="数量：1"
-                    android:textColor="#ff606266"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:ellipsize="end"
-                    android:singleLine="true"
-                    android:text="价格：725.00"
-                    android:textColor="#ff606266"
-                    android:textSize="16sp" />
-
-            </RelativeLayout>
-
-            <LinearLayout style="@style/newly_ll_st">
-
-                <TextView
-                    style="@style/newly_tv_st"
-                    android:text="其他费用" />
-
-                <EditText
-                    android:id="@+id/other_cost"
-                    style="@style/newly_et_st2"
-                    android:hint="@string/add_custom_select"
-                    android:paddingRight="0dp" />
-
-                <ImageView
-                    android:id="@+id/other_cost_select"
-                    style="@style/bass_iv_you"
-                    android:layout_marginRight="@dimen/app_20dp" />
-
-            </LinearLayout>
-
-            <View style="@style/line_heng" />
-
-            <LinearLayout style="@style/newly_ll_st">
-
-                <TextView
-                    style="@style/newly_tv_st"
-                    android:text="整单优惠金额" />
-
-                <EditText
-                    android:id="@+id/discount_price"
-                    style="@style/newly_et_st"
-                    android:hint="@string/add_custom_shuru"
-                    android:paddingRight="0dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="@dimen/app_20dp"
-                    android:text="元"
-                    android:textColor="#303133"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-            <View style="@style/line_heng" />
-
-            <LinearLayout style="@style/newly_ll_st">
-
-                <TextView
-                    style="@style/newly_tv_st"
-                    android:text="总金额" />
-
-                <EditText
-                    android:id="@+id/total_price"
-                    style="@style/newly_et_st"
-                    android:hint="@string/add_custom_shuru"
-                    android:paddingRight="0dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="@dimen/app_20dp"
-                    android:text="元"
-                    android:textColor="#303133"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-            <View style="@style/line_space" />
-
-            <LinearLayout style="@style/newly_ll_st">
-
-                <TextView
-                    style="@style/newly_tv_st"
-                    android:text="出货仓库" />
-
-                <TextView
-                    style="@style/newly_tv_st"
-                    android:text="*"
-                    android:textColor="@color/color_d0021b" />
-
-                <EditText
-                    android:id="@+id/store"
-                    style="@style/newly_et_st2"
-                    android:hint="@string/add_custom_select"
-                    android:paddingRight="0dp" />
-
-                <ImageView
-                    android:id="@+id/store_select"
-                    style="@style/bass_iv_you"
-                    android:layout_marginRight="@dimen/app_20dp" />
-
-            </LinearLayout>
-
-            <View style="@style/line_heng" />
-
-            <LinearLayout style="@style/newly_ll_st">
-
-                <TextView
-                    style="@style/newly_tv_st"
-                    android:text="收货人姓名" />
-
-                <TextView
-                    style="@style/newly_tv_st"
-                    android:text="*"
-                    android:textColor="@color/color_d0021b" />
-
-                <EditText
-                    android:id="@+id/rec_name"
-                    style="@style/newly_et_st"
-                    android:hint="@string/add_custom_shuru" />
-
-            </LinearLayout>
-
-            <LinearLayout style="@style/newly_ll_st">
-
-                <TextView
-                    style="@style/newly_tv_st"
-                    android:text="联系方式" />
-
-                <TextView
-                    style="@style/newly_tv_st"
-                    android:text="*"
-                    android:textColor="@color/color_d0021b" />
-
-                <EditText
-                    android:id="@+id/rec_phone"
-                    style="@style/newly_et_st"
-                    android:hint="@string/add_custom_shuru" />
-
-            </LinearLayout>
-
-            <LinearLayout style="@style/newly_ll_st">
-
-                <TextView
-                    style="@style/newly_tv_st"
-                    android:text="区域地址" />
-
-                <TextView
-                    style="@style/newly_tv_st"
-                    android:text="*"
-                    android:textColor="@color/color_d0021b" />
-
-                <EditText
-                    android:id="@+id/rec_area"
-                    style="@style/newly_et_st2"
-                    android:hint="@string/add_custom_select"
-                    android:paddingRight="0dp" />
-
-                <ImageView
-                    android:id="@+id/rec_area_select"
-                    style="@style/bass_iv_you"
-                    android:layout_marginRight="@dimen/app_20dp" />
-
-            </LinearLayout>
-
-            <View style="@style/line_heng" />
-
-            <LinearLayout style="@style/newly_ll_st">
-
-                <TextView
-                    style="@style/newly_tv_st"
-                    android:text="详细地址" />
-
-                <TextView
-                    style="@style/newly_tv_st"
-                    android:text="*"
-                    android:textColor="@color/color_d0021b" />
-
-                <EditText
-                    android:id="@+id/rec_address"
-                    style="@style/newly_et_st"
-                    android:hint="@string/add_custom_shuru"
-                    android:inputType="number" />
-
-            </LinearLayout>
-
-            <View style="@style/line_space" />
-
-            <LinearLayout style="@style/newly_ll_st">
-
-                <TextView
-                    style="@style/newly_tv_st"
-                    android:text="所属项目" />
-
-                <EditText
-                    android:id="@+id/project"
-                    style="@style/newly_et_st2"
-                    android:hint="@string/add_custom_select"
-                    android:paddingRight="0dp" />
-
-                <ImageView
-                    android:id="@+id/project_select"
-                    style="@style/bass_iv_you"
-                    android:layout_marginRight="@dimen/app_20dp" />
-
-            </LinearLayout>
-
-            <View style="@style/line_space" />
-
-            <LinearLayout style="@style/newly_ll_st">
-
-                <TextView
-                    style="@style/newly_tv_st"
-                    android:text="单据日期" />
-
-                <TextView
-                    style="@style/newly_tv_st"
-                    android:text="*"
-                    android:textColor="@color/color_d0021b" />
-
-                <EditText
-                    android:id="@+id/order_time"
-                    style="@style/newly_et_st2"
-                    android:hint="@string/add_custom_select"
-                    android:paddingRight="0dp" />
-
-                <ImageView
-                    android:id="@+id/order_time_select"
-                    style="@style/bass_iv_you"
-                    android:layout_marginRight="@dimen/app_20dp" />
-
-            </LinearLayout>
-
-            <LinearLayout style="@style/newly_ll_st">
-
-                <TextView
-                    style="@style/newly_tv_st"
-                    android:text="外部单号" />
-
-                <EditText
-                    android:id="@+id/out_num"
-                    style="@style/newly_et_st"
-                    android:hint="@string/add_custom_shuru"
-                    android:inputType="number" />
-
-            </LinearLayout>
-
-            <View style="@style/line_heng" />
-
-            <RelativeLayout style="@style/newly_ll_st">
-
-                <TextView
-                    style="@style/newly_tv_st"
-                    android:layout_alignParentLeft="true"
-                    android:text="制单人" />
-
-                <TextView
-                    android:id="@+id/user_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="@dimen/app_20dp"
-                    android:textColor="#303133"
-                    android:textSize="16sp" />
-            </RelativeLayout>
+            android:layout_above="@+id/btn_commit"
+            android:layout_below="@+id/titlebar"
+            android:layout_marginTop="@dimen/dp_10">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_10"
-                android:background="#ffffff"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/app_24dp"
-                android:paddingTop="@dimen/app_22dp"
-                android:paddingRight="@dimen/app_24dp"
-                android:paddingBottom="@dimen/app_22dp">
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout style="@style/newly_ll_st">
+
+                    <TextView
+                        style="@style/newly_tv_st"
+                        android:text="客户" />
+
+                    <EditText
+                        android:id="@+id/customer"
+                        style="@style/newly_et_st2"
+                        android:hint="@string/add_custom_select"
+                        android:paddingRight="0dp" />
+
+                    <ImageView
+                        android:id="@+id/customer_select"
+                        style="@style/bass_iv_you"
+                        android:layout_marginRight="@dimen/app_20dp" />
+
+                </LinearLayout>
+
+                <View style="@style/line_heng" />
+
+                <LinearLayout style="@style/newly_ll_st">
+
+                    <TextView
+                        style="@style/newly_tv_st"
+                        android:text="商品" />
+
+                    <EditText
+                        android:id="@+id/goods"
+                        style="@style/newly_et_st2"
+                        android:hint="@string/add_custom_select"
+                        android:paddingRight="0dp" />
+
+                    <ImageView
+                        android:id="@+id/goods_select"
+                        style="@style/bass_iv_you"
+                        android:layout_marginRight="@dimen/app_20dp" />
+
+                </LinearLayout>
+
+                <View style="@style/line_heng" />
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/goods_recyleview"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="备注"
-                    android:textColor="#ff606266"
-                    android:textSize="16sp" />
+                    android:background="#ffffff"
+                    android:paddingLeft="@dimen/app_24dp" />
 
-                <EditText
-                    android:id="@+id/remark"
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:id="@+id/goods_price_container"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/app_10dp"
-                    android:background="@null"
-                    android:hint="请输入盘点单备注（0/200）"
-                    android:textColor="#ff909399"
-                    android:textSize="16sp" />
+                    android:layout_marginLeft="@dimen/app_20dp"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_marginRight="@dimen/app_20dp"
+                    android:layout_marginBottom="@dimen/dp_10"
+                    android:visibility="gone">
 
+                    <TextView
+                        android:id="@+id/number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_gravity="center"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="数量：1"
+                        android:textColor="#ff606266"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="价格：725.00"
+                        android:textColor="#ff606266"
+                        android:textSize="16sp" />
+
+                </RelativeLayout>
+
+                <LinearLayout style="@style/newly_ll_st">
+
+                    <TextView
+                        style="@style/newly_tv_st"
+                        android:text="其他费用" />
+
+                    <EditText
+                        android:id="@+id/other_cost"
+                        style="@style/newly_et_st2"
+                        android:hint="@string/add_custom_select"
+                        android:paddingRight="0dp" />
+
+                    <ImageView
+                        android:id="@+id/other_cost_select"
+                        style="@style/bass_iv_you"
+                        android:layout_marginRight="@dimen/app_20dp" />
+
+                </LinearLayout>
+
+                <View style="@style/line_heng" />
+
+                <LinearLayout style="@style/newly_ll_st">
+
+                    <TextView
+                        style="@style/newly_tv_st"
+                        android:text="整单优惠金额" />
+
+                    <EditText
+                        android:id="@+id/discount_price"
+                        style="@style/newly_et_st"
+                        android:hint="@string/add_custom_shuru"
+                        android:paddingRight="0dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="@dimen/app_20dp"
+                        android:text="元"
+                        android:textColor="#303133"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <View style="@style/line_heng" />
+
+                <LinearLayout style="@style/newly_ll_st">
+
+                    <TextView
+                        style="@style/newly_tv_st"
+                        android:text="总金额" />
+
+                    <EditText
+                        android:id="@+id/total_price"
+                        style="@style/newly_et_st"
+                        android:hint="@string/add_custom_shuru"
+                        android:paddingRight="0dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="@dimen/app_20dp"
+                        android:text="元"
+                        android:textColor="#303133"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <View style="@style/line_space" />
+
+                <LinearLayout style="@style/newly_ll_st">
+
+                    <TextView
+                        style="@style/newly_tv_st"
+                        android:text="出货仓库" />
+
+                    <TextView
+                        style="@style/newly_tv_st"
+                        android:text="*"
+                        android:textColor="@color/color_d0021b" />
+
+                    <EditText
+                        android:id="@+id/store"
+                        style="@style/newly_et_st2"
+                        android:hint="@string/add_custom_select"
+                        android:paddingRight="0dp" />
+
+                    <ImageView
+                        android:id="@+id/store_select"
+                        style="@style/bass_iv_you"
+                        android:layout_marginRight="@dimen/app_20dp" />
+
+                </LinearLayout>
+
+                <View style="@style/line_heng" />
+
+                <LinearLayout style="@style/newly_ll_st">
+
+                    <TextView
+                        style="@style/newly_tv_st"
+                        android:text="收货人姓名" />
+
+                    <TextView
+                        style="@style/newly_tv_st"
+                        android:text="*"
+                        android:textColor="@color/color_d0021b" />
+
+                    <EditText
+                        android:id="@+id/rec_name"
+                        style="@style/newly_et_st"
+                        android:hint="@string/add_custom_shuru" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/newly_ll_st">
+
+                    <TextView
+                        style="@style/newly_tv_st"
+                        android:text="联系方式" />
+
+                    <TextView
+                        style="@style/newly_tv_st"
+                        android:text="*"
+                        android:textColor="@color/color_d0021b" />
+
+                    <EditText
+                        android:id="@+id/rec_phone"
+                        style="@style/newly_et_st"
+                        android:hint="@string/add_custom_shuru" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/newly_ll_st">
+
+                    <TextView
+                        style="@style/newly_tv_st"
+                        android:text="区域地址" />
+
+                    <TextView
+                        style="@style/newly_tv_st"
+                        android:text="*"
+                        android:textColor="@color/color_d0021b" />
+
+                    <EditText
+                        android:id="@+id/rec_area"
+                        style="@style/newly_et_st2"
+                        android:hint="@string/add_custom_select"
+                        android:paddingRight="0dp" />
+
+                    <ImageView
+                        android:id="@+id/rec_area_select"
+                        style="@style/bass_iv_you"
+                        android:layout_marginRight="@dimen/app_20dp" />
+
+                </LinearLayout>
+
+                <View style="@style/line_heng" />
+
+                <LinearLayout style="@style/newly_ll_st">
+
+                    <TextView
+                        style="@style/newly_tv_st"
+                        android:text="详细地址" />
+
+                    <TextView
+                        style="@style/newly_tv_st"
+                        android:text="*"
+                        android:textColor="@color/color_d0021b" />
+
+                    <EditText
+                        android:id="@+id/rec_address"
+                        style="@style/newly_et_st"
+                        android:hint="@string/add_custom_shuru"
+                        android:inputType="number" />
+
+                </LinearLayout>
+
+                <View style="@style/line_space" />
+
+                <LinearLayout style="@style/newly_ll_st">
+
+                    <TextView
+                        style="@style/newly_tv_st"
+                        android:text="所属项目" />
+
+                    <EditText
+                        android:id="@+id/project"
+                        style="@style/newly_et_st2"
+                        android:hint="@string/add_custom_select"
+                        android:paddingRight="0dp" />
+
+                    <ImageView
+                        android:id="@+id/project_select"
+                        style="@style/bass_iv_you"
+                        android:layout_marginRight="@dimen/app_20dp" />
+
+                </LinearLayout>
+
+                <View style="@style/line_space" />
+
+                <LinearLayout style="@style/newly_ll_st">
+
+                    <TextView
+                        style="@style/newly_tv_st"
+                        android:text="单据日期" />
+
+                    <TextView
+                        style="@style/newly_tv_st"
+                        android:text="*"
+                        android:textColor="@color/color_d0021b" />
+
+                    <EditText
+                        android:id="@+id/order_time"
+                        style="@style/newly_et_st2"
+                        android:hint="@string/add_custom_select"
+                        android:paddingRight="0dp" />
+
+                    <ImageView
+                        android:id="@+id/order_time_select"
+                        style="@style/bass_iv_you"
+                        android:layout_marginRight="@dimen/app_20dp" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/newly_ll_st">
+
+                    <TextView
+                        style="@style/newly_tv_st"
+                        android:text="外部单号" />
+
+                    <EditText
+                        android:id="@+id/out_num"
+                        style="@style/newly_et_st"
+                        android:hint="@string/add_custom_shuru"
+                        android:inputType="number" />
+
+                </LinearLayout>
+
+                <View style="@style/line_heng" />
+
+                <RelativeLayout style="@style/newly_ll_st">
+
+                    <TextView
+                        style="@style/newly_tv_st"
+                        android:layout_alignParentLeft="true"
+                        android:text="制单人" />
+
+                    <TextView
+                        android:id="@+id/user_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="@dimen/app_20dp"
+                        android:textColor="#303133"
+                        android:textSize="16sp" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:background="#ffffff"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/app_24dp"
+                    android:paddingTop="@dimen/app_22dp"
+                    android:paddingRight="@dimen/app_24dp"
+                    android:paddingBottom="@dimen/app_22dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="备注"
+                        android:textColor="#ff606266"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/remark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/app_10dp"
+                        android:background="@null"
+                        android:hint="请输入盘点单备注（0/200）"
+                        android:textColor="#ff909399"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
-
-
-    </ScrollView>
-
-
-</RelativeLayout>
+        </ScrollView>
+    </RelativeLayout>
+</com.qmuiteam.qmui.widget.QMUIWindowInsetLayout>

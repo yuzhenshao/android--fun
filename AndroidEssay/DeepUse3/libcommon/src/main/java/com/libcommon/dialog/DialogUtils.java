@@ -26,7 +26,11 @@ public class DialogUtils {
         return metrics;
     }
 
-    public static void showEditDialog(final FragmentActivity activity, final String title, final String message, final OnViewClickListener listener) {
+    public static void showEditDialog(final FragmentActivity activity, final String title, final String hint, final OnViewClickListener listener) {
+        showEditDialog(activity,title,null,hint,listener);
+    }
+
+    public static void showEditDialog(final FragmentActivity activity, final String title, final String message,final String hint, final OnViewClickListener listener) {
         new CustomDialog.Builder().setLayoutRes(R.layout.dialog_edit)
                 .setHeight(WindowManager.LayoutParams.WRAP_CONTENT)
                 .setWidth((int) (0.8 * getDisplayMetrics(activity).widthPixels))
@@ -35,7 +39,8 @@ public class DialogUtils {
                     public void bindView(BindViewHolder bindViewHolder) {
                         bindViewHolder.setText(R.id.title, title);
                         EditText editText = bindViewHolder.getView(R.id.message);
-                        editText.setHint(message);
+                        editText.setHint(hint);
+                        editText.setText(message);
                     }
                 })
                 .addOnClickListener(R.id.cancel_btn, R.id.confirm_btn)
