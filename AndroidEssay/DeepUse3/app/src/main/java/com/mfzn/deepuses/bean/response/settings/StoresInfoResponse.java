@@ -87,6 +87,7 @@ public class StoresInfoResponse implements Serializable {
         private int num;
         private int inOrOut;
         private int inOrOutType;
+        private String inOrOutTypeName;
         private int storeID;
         private int orderType;
         private int orderID;
@@ -154,6 +155,14 @@ public class StoresInfoResponse implements Serializable {
 
         public void setAddTime(long addTime) {
             this.addTime = addTime;
+        }
+
+        public String getInOrOutTypeName() {
+            return inOrOutTypeName;
+        }
+
+        public void setInOrOutTypeName(String inOrOutTypeName) {
+            this.inOrOutTypeName = inOrOutTypeName;
         }
     }
 }

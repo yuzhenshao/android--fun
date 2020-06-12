@@ -278,7 +278,11 @@ public class GoodsDetailResponse implements Serializable {
             this.shopWaringPrice = shopWaringPrice;
         }
 
-        public static class SuppliersBean {
+        public String getPositionName(){
+            return getGoodsPosition()==1?"高端产品":"中低端产品";
+        }
+
+        public static class SuppliersBean implements Serializable{
             /**
              * supplierID : 1
              * supplierName : 供应商1
@@ -304,7 +308,7 @@ public class GoodsDetailResponse implements Serializable {
             }
         }
 
-        public static class ShopWaringPriceBean {
+        public static class ShopWaringPriceBean implements Serializable{
             /**
              * shopID : 1
              * shopName : 总门店

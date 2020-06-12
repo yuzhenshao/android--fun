@@ -17,7 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class BaseFragment extends RxFragment {
+public abstract class BaseFragment extends RxFragment {
 
     private boolean isPaused;
 
@@ -91,9 +91,7 @@ public class BaseFragment extends RxFragment {
         super.onDestroy();
     }
 
-    protected int getLayoutId() {
-        return -1;
-    }
+    protected abstract int getLayoutId();
 
     public boolean isPaused() {
         return isPaused;

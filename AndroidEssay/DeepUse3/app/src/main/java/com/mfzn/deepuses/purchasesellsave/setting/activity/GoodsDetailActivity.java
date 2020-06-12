@@ -12,11 +12,19 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.libcommon.dialog.DialogUtils;
+import com.libcommon.dialog.fragment.BaseDialogFragment;
+import com.libcommon.dialog.fragment.CustomDialog;
+import com.libcommon.dialog.listener.OnBindViewListener;
+import com.libcommon.dialog.listener.OnViewClickListener;
+import com.libcommon.dialog.view.BindViewHolder;
 import com.mfzn.deepuses.common.tab.TabAdapter;
 import com.libcommon.table.TabLabel;
 import com.mfzn.deepuses.R;
@@ -42,6 +50,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.XApi;
@@ -125,7 +134,7 @@ public class GoodsDetailActivity extends BasicActivity {
         detailPager.setAdapter(detailAdapter);
         CommonNavigator commonNavigator = new CommonNavigator(this);
         commonNavigator.setScrollPivotX(0.25f);
-        commonNavigator.setAdapter(new TabAdapter(mTabLabelList){
+        commonNavigator.setAdapter(new TabAdapter(mTabLabelList) {
             public void setCurrentItem(int index) {
                 detailPager.setCurrentItem(index);
             }
@@ -177,5 +186,38 @@ public class GoodsDetailActivity extends BasicActivity {
 
     protected void rightPressedAction() {
         startActivity(new Intent(GoodsDetailActivity.this, CommodityCreateActivity.class));
+    }
+
+
+    @OnClick(R.id.icon_next)
+    public void showGoodsParam() {
+        new CustomDialog.Builder().setLayoutRes(R.layout.dialog_goods_info)
+                .setHeight((int) (0.8 * DialogUtils.getDisplayMetrics(this).heightPixels))
+                .setWidth(WindowManager.LayoutParams.MATCH_PARENT)
+                .setGravity(Gravity.BOTTOM)
+                .setOnBindViewListener(new OnBindViewListener() {
+                    @Override
+                    public void bindView(BindViewHolder holder) {
+                        GoodsDetailResponse.GoodsInfoResponse goods = mGoodsDetailResponse.getGoodsInfo();
+                        holder.setText(R.id.goods_name, goods.getGoodsName());
+                        holder.setText(R.id.sale_price, goods.getSalePrice());
+                        holder.setText(R.id.store_container, goods.getGoodsSumStockNum() + "");
+                        holder.setText(R.id.goods_bar_code, goods.getGoodsBarCode());
+                        holder.setText(R.id.goods_brand, goods.getGoodsBrand());
+                        holder.setText(R.id.goods_attr, goods.getGoodsAttr());
+                        holder.setText(R.id.goods_unit, goods.getUnitName());
+                        holder.setText(R.id.goods_category, goods.getCatName());
+                        holder.setText(R.id.goods_position, goods.getPositionName());
+                    }
+                })
+                .addOnClickListener(com.libcommon.R.id.confirm_btn)
+                .setOnViewClickListener(new OnViewClickListener() {
+                    @Override
+                    public void onViewClick(BaseDialogFragment customDialog, BindViewHolder bindViewHolder, View view) {
+                        if (customDialog != null) {
+                            customDialog.dismiss();
+                        }
+                    }
+                }).create().show(getSupportFragmentManager(), getClass().getName());
     }
 }

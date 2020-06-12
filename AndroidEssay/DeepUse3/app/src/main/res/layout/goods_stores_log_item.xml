@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/app_60dp"
+    android:orientation="horizontal">
+
+
+    <TextView
+        android:id="@+id/store_name"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="仓库"
+        android:textColor="#ff909399"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/store_size"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="库存"
+        android:textColor="#ff909399"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/log_btn"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="查看流水"
+        android:textColor="#3D7EFF"
+        android:textSize="16sp" />
+</LinearLayout>

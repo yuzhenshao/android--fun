@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout style="@style/newly_ll_st">
+
+                <TextView
+                    style="@style/newly_tv_st"
+                    android:text="供应商" />
+
+                <TextView
+                    android:id="@+id/goods_supplier"
+                    style="@style/newly_tx" />
+
+            </LinearLayout>
+
+
+            <View style="@style/line_heng" />
+
+            <LinearLayout style="@style/newly_ll_st">
+
+                <TextView
+                    style="@style/newly_tv_st"
+                    android:text="成本价" />
+
+                <TextView
+                    android:id="@+id/cost_price"
+                    style="@style/newly_tx"
+                    android:text="90" />
+
+            </LinearLayout>
+
+            <View style="@style/line_heng" />
+
+            <LinearLayout style="@style/newly_ll_st">
+
+                <TextView
+                    style="@style/newly_tv_st"
+                    android:text="分店预警价" />
+
+                <TextView
+                    android:id="@+id/shop_warning"
+                    style="@style/newly_tx"
+                    android:text="查看"
+                    android:textColor="#3D7EFF" />
+
+            </LinearLayout>
+
+            <View style="@style/line_heng" />
+
+            <LinearLayout style="@style/newly_ll_st">
+
+                <TextView
+                    style="@style/newly_tv_st"
+                    android:text="库存预警" />
+
+                <TextView
+                    android:id="@+id/store_warning"
+                    style="@style/newly_tx"
+                    android:text="查看"
+                    android:textColor="#3D7EFF" />
+
+            </LinearLayout>
+
+            <View style="@style/line_heng" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/app_24dp"
+                android:paddingTop="@dimen/app_22dp"
+                android:paddingRight="@dimen/app_24dp"
+                android:paddingBottom="@dimen/app_22dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="备注"
+                    android:textColor="#ff606266"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/remark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/app_10dp"
+                    android:textColor="#303133"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <include layout="@layout/empty_view" />
+</RelativeLayout>

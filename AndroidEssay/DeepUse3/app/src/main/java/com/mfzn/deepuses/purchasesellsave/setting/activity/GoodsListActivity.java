@@ -3,12 +3,20 @@ package com.mfzn.deepuses.purchasesellsave.setting.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.libcommon.dialog.DialogUtils;
+import com.libcommon.dialog.fragment.BaseDialogFragment;
+import com.libcommon.dialog.fragment.CustomDialog;
+import com.libcommon.dialog.listener.OnBindViewListener;
+import com.libcommon.dialog.listener.OnViewClickListener;
+import com.libcommon.dialog.view.BindViewHolder;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BasicListActivity;
 import com.mfzn.deepuses.bean.constants.ParameterConstant;
@@ -33,14 +41,12 @@ public class GoodsListActivity extends BasicListActivity<CommodityRequest> {
     LinearLayout searchContainer;
     @BindView(R.id.sum_stock)
     TextView sumStock;
-    @BindView(R.id.serach_edit)
-    EditText serachEdit;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        serachEdit.setHint("搜索产品名称、条码、货号");
         mTitleBar.updateTitleBar("商品中心", R.mipmap.icon_titlebar_add);
+        initSearch("搜索产品名称、条码、货号");
     }
 
     @Override
@@ -96,10 +102,33 @@ public class GoodsListActivity extends BasicListActivity<CommodityRequest> {
         return mAdapter;
     }
 
-    @OnClick(R.id.search_container)
-    public void turnToSearch() {
+    protected void searchAction(String keyword) {
+        showDialog();
+        ApiServiceManager.searchGoodsList(keyword)
+                .compose(XApi.getApiTransformer())
+                .compose(XApi.getScheduler())
+                .compose(bindToLifecycle())
+                .subscribe(new ApiSubscriber<HttpResult<GoodsListResponse>>() {
+                    @Override
+                    protected void onFail(NetError error) {
+                        showErrorView(error.getMessage());
+                    }
 
+                    @Override
+                    public void onNext(HttpResult<GoodsListResponse> reuslt) {
+                        GoodsListResponse goodsListResponse = reuslt.getRes();
+                        if (goodsListResponse != null) {
+                            sumStock.setText("库存总数量：" + goodsListResponse.getSumStockNum());
+                            if (goodsListResponse.getList() != null) {
+                                refreshSearchSource(goodsListResponse.getList().getData());
+                                return;
+                            }
+                        }
+                        showNoDataView();
+                    }
+                });
     }
+
 
     @Override
     protected void rightPressedAction() {
