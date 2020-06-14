@@ -3,17 +3,21 @@ package com.mfzn.deepuses.purchasesellsave.setting.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mfzn.deepuses.R;
+import com.mfzn.deepuses.activity.myteam.SelectManageActivity;
 import com.mfzn.deepuses.bass.BasicActivity;
 import com.mfzn.deepuses.bean.constants.ParameterConstant;
 import com.mfzn.deepuses.bean.response.settings.StoreResponse;
+import com.mfzn.deepuses.model.jiagou.ZuzhiJiagouModel;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
+import com.mfzn.deepuses.utils.Constants;
 import com.mfzn.deepuses.utils.ToastUtil;
 
 import butterknife.BindView;
@@ -67,13 +71,23 @@ public class StoreCreateEditActivity extends BasicActivity {
             mContactPhone.setText(mStoreResponse.getContactPhone());
             mAddress.setText(mStoreResponse.getStoreAddress());
             mRemark.setText(mStoreResponse.getRemark());
+        } else {
+            mStoreResponse = new StoreResponse();
         }
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        //TODO 获得选择姓名和手机
+        if (Constants.ADD_MANAGE == requestCode) {
+            if (data != null) {
+                ZuzhiJiagouModel.StaffBean staffBean = (ZuzhiJiagouModel.StaffBean) data.getSerializableExtra(Constants.STAFFBEAN);
+                mStoreResponse.setChargePersonUserID(staffBean.getUserID());
+                mStoreResponse.setContactPhone(staffBean.getUserPhone());
+                mContactName.setText(staffBean.getStaffName());
+                mContactPhone.setText(staffBean.getUserPhone());
+            }
+        }
     }
 
     @Override
@@ -81,17 +95,21 @@ public class StoreCreateEditActivity extends BasicActivity {
         return R.layout.activity_store_create;
     }
 
-    //TODO
     @OnClick({R.id.contact_name_select, R.id.contact_phone_select, R.id.submit, R.id.edit_btn, R.id.delete_btn})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.contact_name_select:
-                //startActivity(new Intent(this, GoodsCategoryActivity.class));
-                break;
             case R.id.contact_phone_select:
-                // startActivity(new Intent(this, GoodsUnitListActivity.class));
+                Intent intent = new Intent(this, SelectManageActivity.class);
+                intent.putExtra(Constants.SINGLE, true);
+                startActivityForResult(intent, Constants.ADD_MANAGE);
                 break;
             case R.id.submit:
+                updateStore();
+                if (TextUtils.isEmpty(mStoreResponse.getStoreName())) {
+                    showToast("请输入仓库名称");
+                    return;
+                }
                 ApiServiceManager.addStore(mStoreResponse)
                         .compose(XApi.getApiTransformer())
                         .compose(XApi.getScheduler())
@@ -112,6 +130,10 @@ public class StoreCreateEditActivity extends BasicActivity {
                 break;
             case R.id.edit_btn:
                 updateStore();
+                if (TextUtils.isEmpty(mStoreResponse.getStoreName())) {
+                    showToast("请输入仓库名称");
+                    return;
+                }
                 ApiServiceManager.editStore(mStoreResponse)
                         .compose(XApi.getApiTransformer())
                         .compose(XApi.getScheduler())
@@ -132,6 +154,10 @@ public class StoreCreateEditActivity extends BasicActivity {
                 break;
             case R.id.delete_btn:
                 updateStore();
+                if (TextUtils.isEmpty(mStoreResponse.getStoreName())) {
+                    showToast("请输入仓库名称");
+                    return;
+                }
                 ApiServiceManager.delStore(mStoreResponse.getStoreID())
                         .compose(XApi.getApiTransformer())
                         .compose(XApi.getScheduler())
@@ -153,7 +179,7 @@ public class StoreCreateEditActivity extends BasicActivity {
         }
     }
 
-    private void updateStore(){
+    private void updateStore() {
         mStoreResponse.setStoreName(mStoreName.getText().toString());
         //mStoreResponse.setChargePersonUserID("");//TODO
         mStoreResponse.setContactPhone(mContactPhone.getText().toString());

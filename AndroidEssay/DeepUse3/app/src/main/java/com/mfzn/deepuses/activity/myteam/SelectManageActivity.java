@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.libcommon.utils.ListUtil;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.adapter.company.SelectManageAdapter;
 import com.mfzn.deepuses.adapter.jiagou.MoveStaffAdapter;
@@ -42,6 +43,7 @@ public class SelectManageActivity extends BaseMvpActivity<SelectManagePresent> {
 
     private String stringExtra;
     private List<ZuzhiJiagouModel.StaffBean> modelStaff = new ArrayList<>();
+    private boolean isSingle = false;
 
     @Override
     public int getLayoutId() {
@@ -57,7 +59,7 @@ public class SelectManageActivity extends BaseMvpActivity<SelectManagePresent> {
     public void initData(Bundle savedInstanceState) {
         super.initData(savedInstanceState);
         tvBassTitle.setText(getString(R.string.app_select_manage));
-
+        isSingle = getIntent().getBooleanExtra(Constants.SINGLE, false);
         LinearLayoutManager layoutManager2 = new LinearLayoutManager(this);
         layoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL);
         recycleview.setLayoutManager(layoutManager2);
@@ -75,21 +77,24 @@ public class SelectManageActivity extends BaseMvpActivity<SelectManagePresent> {
                 break;
             case R.id.tv_se_move:
                 String sss = null;
-                for(int i = 0; i < modelStaff.size(); i++) {
-                    if(modelStaff.get(i).getSelectType()) {
-                        if(TextUtils.isEmpty(sss)) {
+                ZuzhiJiagouModel.StaffBean staffBean = null;
+                for (int i = 0; i < modelStaff.size(); i++) {
+                    if (modelStaff.get(i).getSelectType()) {
+                        staffBean = modelStaff.get(i);
+                        if (TextUtils.isEmpty(sss)) {
                             sss = modelStaff.get(i).getUserID();
-                        }else {
+                        } else {
                             sss = sss + "," + modelStaff.get(i).getUserID();
                         }
                     }
                 }
-                if(TextUtils.isEmpty(sss)) {
-                    ToastUtil.showToast(this,"请选择管理员");
-                }else {
+                if (TextUtils.isEmpty(sss)) {
+                    ToastUtil.showToast(this, "请选择管理员");
+                } else {
                     Intent intent = new Intent();
                     intent.putExtra(Constants.ADD_MANAGE_ID, sss);
-                    setResult(Constants.ADD_MANAGE,intent);
+                    intent.putExtra(Constants.STAFFBEAN, staffBean);
+                    setResult(Constants.ADD_MANAGE, intent);
                     finish();
                 }
                 break;
@@ -98,19 +103,21 @@ public class SelectManageActivity extends BaseMvpActivity<SelectManagePresent> {
 
     public void jiagouListSuccess(ZuzhiJiagouModel model) {
 
-        if(model.getStaff().size() == 0 && model.getSons().size() == 0) {
+        if (model.getStaff().size() == 0 && model.getSons().size() == 0) {
             llManEmpty.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             llManEmpty.setVisibility(View.GONE);
         }
 
         modelStaff = model.getStaff();
 
-        String[]  strs = stringExtra.split(",");
-        for(int i = 0; i < modelStaff.size(); i++) {
-            for(int i1 = 0; i1 < strs.length; i1++) {
-                if(strs[i1].equals(modelStaff.get(i).getUserID())) {
-                    modelStaff.get(i).setMoren(true);
+        if (!TextUtils.isEmpty(stringExtra)) {
+            String[] strs = stringExtra.split(",");
+            for (int i = 0; i < modelStaff.size(); i++) {
+                for (int i1 = 0; i1 < strs.length; i1++) {
+                    if (strs[i1].equals(modelStaff.get(i).getUserID())) {
+                        modelStaff.get(i).setMoren(true);
+                    }
                 }
             }
         }
@@ -121,15 +128,22 @@ public class SelectManageActivity extends BaseMvpActivity<SelectManagePresent> {
         listview1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ZuzhiJiagouModel.StaffBean beanXX = model.getStaff().get(position);
-                if(!beanXX.getMoren()) {
-                    if(beanXX.getSelectType()) {
+                List<ZuzhiJiagouModel.StaffBean> staffBeanList = model.getStaff();
+                if (isSingle && !ListUtil.isEmpty(staffBeanList)) {
+                    for (ZuzhiJiagouModel.StaffBean staffBean : staffBeanList) {
+                        staffBean.setSelectType(false);
+                    }
+                }
+
+                ZuzhiJiagouModel.StaffBean beanXX = staffBeanList.get(position);
+                if (!beanXX.getMoren()) {
+                    if (beanXX.getSelectType()) {
                         beanXX.setSelectType(false);
-                    }else {
+                    } else {
                         beanXX.setSelectType(true);
                     }
                     zuzhiPersonalAdapter.notifyDataSetChanged();
-                    MoveStaffAdapter recycleAdapter = new MoveStaffAdapter(SelectManageActivity.this,model,"1",0,0);
+                    MoveStaffAdapter recycleAdapter = new MoveStaffAdapter(SelectManageActivity.this, model, "1", 0, 0);
                     recycleview.setAdapter(recycleAdapter);
                 }
             }
@@ -142,8 +156,9 @@ public class SelectManageActivity extends BaseMvpActivity<SelectManagePresent> {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(SelectManageActivity.this, SelectManage2Activity.class);
+                intent.putExtra(Constants.SINGLE, isSingle);
                 intent.putExtra(Constants.EDIT_STAFF_BM_POSI, position);
-                intent.putExtra(Constants.ADD_MANAGE_TEXT,stringExtra);
+                intent.putExtra(Constants.ADD_MANAGE_TEXT, stringExtra);
                 startActivityForResult(intent, Constants.ADD_MANAGE2);
 
             }
@@ -158,7 +173,8 @@ public class SelectManageActivity extends BaseMvpActivity<SelectManagePresent> {
                 String uid = data.getStringExtra(Constants.ADD_MANAGE_ID);
                 Intent intent = new Intent();
                 intent.putExtra(Constants.ADD_MANAGE_ID, uid);
-                setResult(Constants.ADD_MANAGE,intent);
+                intent.putExtra(Constants.STAFFBEAN,( ZuzhiJiagouModel.StaffBean)data.getSerializableExtra(Constants.STAFFBEAN));
+                setResult(Constants.ADD_MANAGE, intent);
                 finish();
             }
         }
