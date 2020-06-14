@@ -45,10 +45,10 @@ public class AddWorkorderPresent extends XPresent<AddWorkorderActivity> {
 
                         @Override
                         public void uploadSuccess(String url) {
-                            uploadImageIndex++;
                             if (uploadImageIndex > 0) {
                                 fileUrls.append(",");
                             }
+                            uploadImageIndex++;
                             fileUrls.append(url);
                             if (uploadImageIndex == files.size()) {
                                 getV().uploadIconSuccess(fileUrls.toString());

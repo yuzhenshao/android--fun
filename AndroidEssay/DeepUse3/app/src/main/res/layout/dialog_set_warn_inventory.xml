@@ -65,7 +65,8 @@
         <EditText
             android:id="@+id/store_min_edit"
             style="@style/newly_et_st"
-            android:hint="@string/add_custom_shuru" />
+            android:hint="@string/add_custom_shuru"
+            android:inputType="number" />
 
     </LinearLayout>
 
@@ -81,7 +82,8 @@
         <EditText
             android:id="@+id/store_max_edit"
             style="@style/newly_et_st"
-            android:hint="@string/add_custom_shuru" />
+            android:hint="@string/add_custom_shuru"
+            android:inputType="number" />
 
     </LinearLayout>
 

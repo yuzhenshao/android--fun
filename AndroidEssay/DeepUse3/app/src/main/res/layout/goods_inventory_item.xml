@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#F5F7FA"
+    android:orientation="vertical">
+
+
+    <RelativeLayout style="@style/newly_ll_st">
+
+        <TextView
+            android:id="@+id/shop_name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:gravity="center_vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="@dimen/app_20dp"
+            android:text="库存"
+            android:textColor="#606266"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/store"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@null"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:hint="请输入"
+            android:inputType="number"
+            android:paddingLeft="5dp"
+            android:paddingRight="@dimen/app_20dp"
+            android:textColor="#909399"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <View style="@style/line_heng" />
+
+</LinearLayout>

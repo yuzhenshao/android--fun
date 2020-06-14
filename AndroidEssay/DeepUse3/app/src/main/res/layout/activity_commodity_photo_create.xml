@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff5f7fa"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <com.libcommon.titlebar.TitleBar
@@ -10,136 +11,127 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_10">
+        android:layout_marginTop="@dimen/dp_10"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            style="@style/found_pro_ll"
+            android:layout_marginTop="@dimen/app_10dp">
 
-            <LinearLayout
-                style="@style/found_pro_ll"
-                android:layout_marginTop="@dimen/app_10dp">
+            <com.mfzn.deepuses.purchasesellsave.setting.view.AddImageView
+                android:id="@+id/add_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/app_24dp" />
 
-                <com.mfzn.deepuses.purchasesellsave.setting.view.AddImageView
-                    android:id="@+id/add_image_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/app_24dp" />
+            <View style="@style/line_heng" />
 
-                <View style="@style/line_heng" />
-
-                <LinearLayout style="@style/newly_ll_st">
-
-                    <TextView
-                        style="@style/newly_tv_st"
-                        android:text="商品名称" />
-
-                    <TextView
-                        style="@style/newly_tv_st"
-                        android:text="*"
-                        android:textColor="@color/color_d0021b" />
-
-                    <EditText
-                        android:id="@+id/goods_name"
-                        style="@style/newly_et_st"
-                        android:hint="@string/add_custom_shuru" />
-
-                </LinearLayout>
-
-                <View style="@style/line_heng" />
-
-                <LinearLayout
-                    android:id="@+id/unit_id_container"
-                    style="@style/newly_ll_st">
-
-                    <TextView
-                        style="@style/newly_tv_st"
-                        android:text="单位" />
-
-                    <TextView
-                        style="@style/newly_tv_st"
-                        android:text="*"
-                        android:textColor="@color/color_d0021b" />
-
-                    <EditText
-                        android:id="@+id/goods_unit"
-                        style="@style/newly_et_st2"
-                        android:hint="@string/add_custom_select"
-                        android:paddingRight="0dp" />
-
-                    <ImageView
-                        style="@style/bass_iv_you"
-                        android:layout_marginRight="@dimen/app_20dp" />
-
-                </LinearLayout>
-
-
-                <View style="@style/line_heng" />
-
-                <LinearLayout
-                    android:id="@+id/position_container"
-                    style="@style/newly_ll_st">
-
-                    <TextView
-                        style="@style/newly_tv_st"
-                        android:text="定位" />
-
-                    <TextView
-                        style="@style/newly_tv_st"
-                        android:text="*"
-                        android:textColor="@color/color_d0021b" />
-
-                    <EditText
-                        android:id="@+id/goods_position"
-                        style="@style/newly_et_st2"
-                        android:hint="@string/add_custom_select"
-                        android:paddingRight="0dp" />
-
-                    <ImageView
-                        style="@style/bass_iv_you"
-                        android:layout_marginRight="@dimen/app_20dp" />
-
-                </LinearLayout>
-
-
-                <View style="@style/line_space" />
-
+            <LinearLayout style="@style/newly_ll_st">
 
                 <TextView
-                    style="@style/newly_ll_st"
-                    android:text="库存" />
+                    style="@style/newly_tv_st"
+                    android:text="商品名称" />
 
-                <View style="@style/line_heng" />
+                <TextView
+                    style="@style/newly_tv_st"
+                    android:text="*"
+                    android:textColor="@color/color_d0021b" />
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/goods_shop_recyleview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/app_12dp"
-                    android:background="#ffffff"
-                    android:paddingLeft="@dimen/app_24dp" />
+                <EditText
+                    android:id="@+id/goods_name"
+                    style="@style/newly_et_st"
+                    android:hint="@string/add_custom_shuru" />
 
             </LinearLayout>
 
-            <Button
-                android:id="@+id/but_bu_commit"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/app_45dp"
-                android:layout_marginLeft="@dimen/app_20dp"
-                android:layout_marginTop="@dimen/app_30dp"
-                android:layout_marginRight="@dimen/app_20dp"
-                android:layout_marginBottom="@dimen/app_11dp"
+            <View style="@style/line_heng" />
 
-                android:background="@drawable/submit_btn_selector"
-                android:text="提交"
-                android:textColor="@color/color_ffffff"
-                android:textSize="18sp" />
+            <LinearLayout style="@style/newly_ll_st">
+
+                <TextView
+                    style="@style/newly_tv_st"
+                    android:text="货号" />
+
+                <TextView
+                    style="@style/newly_tv_st"
+                    android:text="*"
+                    android:textColor="@color/color_d0021b" />
+
+                <EditText
+                    android:id="@+id/goods_num"
+                    style="@style/newly_et_st"
+                    android:hint="@string/add_custom_shuru" />
+
+            </LinearLayout>
+
+            <View style="@style/line_heng" />
+
+            <LinearLayout style="@style/newly_ll_st">
+
+                <TextView
+                    style="@style/newly_tv_st"
+                    android:text="单位" />
+
+                <TextView
+                    style="@style/newly_tv_st"
+                    android:text="*"
+                    android:textColor="@color/color_d0021b" />
+
+                <EditText
+                    android:id="@+id/goods_unit"
+                    style="@style/newly_et_st2"
+                    android:hint="@string/add_custom_select"
+                    android:paddingRight="0dp" />
+
+                <ImageView
+                    android:id="@+id/unit_container"
+                    style="@style/bass_iv_you"
+                    android:layout_marginRight="@dimen/app_20dp" />
+
+            </LinearLayout>
+
+
+            <View style="@style/line_space" />
+
+
+            <RelativeLayout style="@style/newly_ll_st">
+
+                <TextView
+                    style="@style/newly_tv_st"
+                    android:layout_alignParentLeft="true"
+                    android:text="库存" />
+
+                <TextView
+                    android:id="@+id/store_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="@dimen/app_20dp"
+                    android:onClick="@{onClickListener}"
+                    android:text="去设置"
+                    android:textColor="#909399"
+                    android:textSize="16sp" />
+            </RelativeLayout>
 
         </LinearLayout>
 
-    </ScrollView>
+        <Button
+            android:id="@+id/btn_commit"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_45dp"
+            android:layout_marginLeft="@dimen/app_20dp"
+            android:layout_marginTop="@dimen/app_30dp"
+            android:layout_marginRight="@dimen/app_20dp"
+            android:layout_marginBottom="@dimen/app_11dp"
+
+            android:background="@drawable/submit_btn_selector"
+            android:text="提交"
+            android:textColor="@color/color_ffffff"
+            android:textSize="18sp" />
+
+    </LinearLayout>
 </LinearLayout>

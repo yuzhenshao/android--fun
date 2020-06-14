@@ -1,5 +1,6 @@
 package com.mfzn.deepuses.purchasesellsave.setting.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -38,6 +39,7 @@ import com.mfzn.deepuses.purchasesellsave.setting.fragment.SalesRecordFragment;
 import com.mfzn.deepuses.purchasesellsave.setting.fragment.StoresFragment;
 import com.mfzn.deepuses.purchasesellsave.setting.view.BannerIndicator;
 import com.mfzn.deepuses.purchasesellsave.store.model.GoodsImage;
+import com.mfzn.deepuses.utils.Constants;
 import com.mfzn.deepuses.utils.ToastUtil;
 import com.stx.xhb.xbanner.XBanner;
 
@@ -77,11 +79,13 @@ public class GoodsDetailActivity extends BasicActivity {
     private final static int BASIC_ATTR = 1;
     private final static int STORES = 2;
     private final static int SALES_RECORD = 3;
+    private final static int EDITE_CODE = 100;
     private GoodsDetailResponse mGoodsDetailResponse;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mTitleBar.updateTitleBar("商品详情", R.mipmap.icon_edit);
         initData();
     }
 
@@ -91,7 +95,6 @@ public class GoodsDetailActivity extends BasicActivity {
     }
 
     private void initData() {
-        mTitleBar.updateTitleBar("商品详情", R.mipmap.icon_edit);
         showDialog();
         ApiServiceManager.getGoodsInfo(getIntent().getStringExtra(ParameterConstant.GOODS_ID))
                 .compose(XApi.getApiTransformer())
@@ -185,7 +188,9 @@ public class GoodsDetailActivity extends BasicActivity {
     }
 
     protected void rightPressedAction() {
-        startActivity(new Intent(GoodsDetailActivity.this, CommodityCreateActivity.class));
+        Intent intent = new Intent(GoodsDetailActivity.this, CommodityCreateActivity.class);
+        intent.putExtra(Constants.GOODS, mGoodsDetailResponse.getGoodsInfo());
+        startActivityForResult(intent, EDITE_CODE);
     }
 
 
@@ -219,5 +224,15 @@ public class GoodsDetailActivity extends BasicActivity {
                         }
                     }
                 }).create().show(getSupportFragmentManager(), getClass().getName());
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == EDITE_CODE) {
+                initData();
+            }
+        }
     }
 }

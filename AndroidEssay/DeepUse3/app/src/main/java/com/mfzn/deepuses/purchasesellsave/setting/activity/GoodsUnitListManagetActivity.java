@@ -47,6 +47,7 @@ public class GoodsUnitListManagetActivity extends BasicListActivity<GoodsUnitRes
 
     @Override
     protected void getResourceList() {
+        showDialog();
         ApiServiceManager.getGoodsUnitList()
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
@@ -63,7 +64,7 @@ public class GoodsUnitListManagetActivity extends BasicListActivity<GoodsUnitRes
                         if (reuslt != null && !ListUtil.isEmpty(reuslt.getRes())) {
                             refreshSource(reuslt.getRes());
                         } else {
-                            showErrorView(reuslt.getErrorMsg());
+                            showErrorView("暂无数据");
                         }
                     }
                 });

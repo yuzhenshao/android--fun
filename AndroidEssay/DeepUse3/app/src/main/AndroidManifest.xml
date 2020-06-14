@@ -367,7 +367,10 @@
 
         <activity
             android:name=".purchasesellsave.setting.activity.CommodityPhotoCreateActivity"
-            android:screenOrientation="portrait"></activity>
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.White"
+            android:windowSoftInputMode="adjustResize"></activity>
         <activity
             android:name=".purchasesellsave.setting.activity.GoodsCategoryActivity"
             android:screenOrientation="portrait"></activity>
@@ -379,7 +382,10 @@
             android:screenOrientation="portrait"></activity>
         <activity
             android:name=".purchasesellsave.setting.activity.InventorySetActivity"
-            android:screenOrientation="portrait"></activity>
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.White"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".purchasesellsave.setting.activity.InventoryWarnSetActivity"
             android:screenOrientation="portrait"></activity>

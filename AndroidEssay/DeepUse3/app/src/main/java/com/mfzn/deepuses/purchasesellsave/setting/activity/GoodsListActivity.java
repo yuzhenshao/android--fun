@@ -132,6 +132,6 @@ public class GoodsListActivity extends BasicListActivity<CommodityRequest> {
 
     @Override
     protected void rightPressedAction() {
-        startActivity(new Intent(GoodsListActivity.this, CommodityPhotoCreateActivity.class));
+        startActivity(new Intent(GoodsListActivity.this, CommodityCreateActivity.class));
     }
 }

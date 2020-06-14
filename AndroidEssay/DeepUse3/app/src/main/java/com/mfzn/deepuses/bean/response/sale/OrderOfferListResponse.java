@@ -130,7 +130,7 @@ public class OrderOfferListResponse {
         private String recAddress;
         private String recCode;
         private String recTelephone;
-        private int isCheck;
+        private int isCheck;//0.待审核1通过2拒绝
         private long checkTime;
         private String checkNote;
         private String checkUserID;

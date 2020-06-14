@@ -2,9 +2,11 @@ package com.mfzn.deepuses.purchasesellsave.store.adapter;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.mfzn.deepuses.R;
@@ -23,6 +25,8 @@ public class ImageAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
 
     @Override
     protected void convert(BaseViewHolder holder, String bitmap) {
-        Glide.with(context).load(ApiHelper.BASE_URL + bitmap).into((ImageView) holder.getView(R.id.image));
+            Glide.with(context).load(ApiHelper.BASE_URL + bitmap)
+                    .apply(new RequestOptions().placeholder(R.mipmap.icon_no_data))
+                    .into((ImageView) holder.getView(R.id.image));
     }
 }

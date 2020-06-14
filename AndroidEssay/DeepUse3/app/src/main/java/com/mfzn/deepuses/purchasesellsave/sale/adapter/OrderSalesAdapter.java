@@ -26,6 +26,7 @@ public class OrderSalesAdapter extends BaseQuickAdapter<OrderOfferResponse, Base
     @Override
     protected void convert(BaseViewHolder helper, OrderOfferResponse item) {
         List<String> images = item.getGoodsMainImageList();
+
         if (!ListUtil.isEmpty(images)) {
             RecyclerView recyclerView = helper.getView(R.id.recycler_view);
             recyclerView.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
@@ -34,19 +35,20 @@ public class OrderSalesAdapter extends BaseQuickAdapter<OrderOfferResponse, Base
 
         helper.setText(R.id.name, item.getCustomerName())
                 .setText(R.id.order_num, item.getOrderNum())
-                .setText(R.id.goods_size, "共" + images.size() + "件")
-                .setImageResource(R.id.store_check_icon, getStatusResId(item.getIsCheck()));
+                .setText(R.id.goods_size, "共计" + images.size() + "件")
+                .setImageResource(R.id.store_check_icon, getStatusResId(item.getIsCheck()))
+                .setVisible(R.id.defaule_image, ListUtil.isEmpty(images));
     }
 
 
-    public int getStatusResId(int status) {
+    public int getStatusResId(int status) {//0.待审核1通过2拒绝
         switch (status) {
             case 0:
                 return R.mipmap.examine_pending;
             case 1:
-                return R.mipmap.profit_loss_successed;
+                return R.mipmap.examine_pass;
             case 2:
-                return R.mipmap.profit_loss_failed;
+                return R.mipmap.examine_unpass;
         }
         return R.mipmap.examine_pending;
     }

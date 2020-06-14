@@ -26,9 +26,8 @@ public class InventorySetAdapter extends BaseQuickAdapter<StoreResponse, BaseVie
     protected void convert(BaseViewHolder helper, StoreResponse item) {
         helper.setText(R.id.shop_name, item.getStoreName());
         StoreWarnModel storeModel = StoreWarnManager.getInstance().getStoreModel(item.getStoreID());
-
         helper.setText(R.id.setting_store, storeModel == null ? "去设置" : storeModel.getNumber())
                 .setTextColor(R.id.setting_store, context.getResources().getColor(
-                        TextUtils.isEmpty(item.getStoreNum()) ? R.color.color_909399 : R.color.color_303133));
+                        storeModel==null ? R.color.color_909399 : R.color.color_303133));
     }
 }

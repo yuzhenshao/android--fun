@@ -1,5 +1,6 @@
 package com.mfzn.deepuses.purchasesellsave.setting.manager;
 
+import com.libcommon.utils.ListUtil;
 import com.mfzn.deepuses.purchasesellsave.setting.model.StoreWarnModel;
 
 import java.util.ArrayList;
@@ -63,4 +64,34 @@ public class StoreWarnManager {
         return storeModels;
     }
 
+    public String getStoreStockNum() {
+        if (!ListUtil.isEmpty(storeModels)) {
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int i = 0; i < storeModels.size(); i++) {
+                StoreWarnModel store = storeModels.get(i);
+                stringBuilder.append(store.getId()).append("-").append(store.getNumber());
+                if (i != storeModels.size() - 1) {
+                    stringBuilder.append(";");
+                }
+            }
+            return stringBuilder.toString();
+        }
+        return null;
+    }
+
+    public String getStoreWarningStockNum() {
+        if (!ListUtil.isEmpty(storeWarnModels)) {
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int i = 0; i < storeWarnModels.size(); i++) {
+                StoreWarnModel store = storeWarnModels.get(i);
+                stringBuilder.append(store.getId()).append("-").append(store.getMin())
+                .append(",").append(store.getMax());
+                if (i != storeWarnModels.size() - 1) {
+                    stringBuilder.append(";");
+                }
+            }
+            return stringBuilder.toString();
+        }
+        return null;
+    }
 }

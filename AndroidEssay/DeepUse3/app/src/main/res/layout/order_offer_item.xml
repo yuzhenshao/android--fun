@@ -6,6 +6,7 @@
     android:background="@color/white">
 
     <LinearLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/app_12dp"
@@ -37,14 +38,25 @@
                 android:textSize="16sp" />
         </RelativeLayout>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/app_75dp"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:scaleType="fitXY" />
+            android:layout_marginTop="10dp">
 
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <ImageView
+                android:id="@+id/defaule_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_no_data"
+                android:visibility="gone"/>
+
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/goods_size"
@@ -64,7 +76,11 @@
         android:layout_alignParentBottom="true"
         android:layout_marginTop="@dimen/app_13dp"
         android:layout_marginRight="-25dp"
-        android:layout_marginBottom="-25dp"
+        android:layout_marginBottom="-15dp"
+        android:alpha="0.2"
         android:src="@mipmap/no_profit_loss" />
 
+    <View
+        style="@style/line_space"
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>

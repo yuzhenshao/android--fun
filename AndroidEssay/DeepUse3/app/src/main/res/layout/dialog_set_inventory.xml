@@ -65,7 +65,8 @@
         <EditText
             android:id="@+id/store_number_edit"
             style="@style/newly_et_st"
-            android:hint="@string/add_custom_shuru"/>
+            android:hint="@string/add_custom_shuru"
+            android:inputType="number"/>
 
     </LinearLayout>
 

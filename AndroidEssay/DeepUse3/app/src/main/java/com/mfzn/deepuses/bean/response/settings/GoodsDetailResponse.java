@@ -43,7 +43,7 @@ public class GoodsDetailResponse implements Serializable {
         this.salesRecord = salesRecord;
     }
 
-    public static class GoodsInfoResponse implements Serializable{
+    public static class GoodsInfoResponse implements Serializable {
         /**
          * goodsID : 1
          * companyID : 2
@@ -70,15 +70,15 @@ public class GoodsDetailResponse implements Serializable {
          * shopWaringPrice : [{"shopID":1,"shopName":"总门店","warningPrice":"10000.00"}]
          */
 
-        private int goodsID;
-        private int companyID;
-        private int shopID;
+        private String goodsID;
+        private String companyID;
+        private String shopID;
         private String goodsName;
-        private int goodsCatID;
+        private String goodsCatID;
         private String catName;
         private String goodsAttr;
         private String goodsNum;
-        private int goodsUnitID;
+        private String goodsUnitID;
         private String unitName;
         private String goodsBarCode;
         private String goodsBrand;
@@ -94,27 +94,27 @@ public class GoodsDetailResponse implements Serializable {
         private List<SuppliersBean> suppliers;
         private List<ShopWaringPriceBean> shopWaringPrice;
 
-        public int getGoodsID() {
+        public String getGoodsID() {
             return goodsID;
         }
 
-        public void setGoodsID(int goodsID) {
+        public void setGoodsID(String goodsID) {
             this.goodsID = goodsID;
         }
 
-        public int getCompanyID() {
+        public String getCompanyID() {
             return companyID;
         }
 
-        public void setCompanyID(int companyID) {
+        public void setCompanyID(String companyID) {
             this.companyID = companyID;
         }
 
-        public int getShopID() {
+        public String getShopID() {
             return shopID;
         }
 
-        public void setShopID(int shopID) {
+        public void setShopID(String shopID) {
             this.shopID = shopID;
         }
 
@@ -126,11 +126,11 @@ public class GoodsDetailResponse implements Serializable {
             this.goodsName = goodsName;
         }
 
-        public int getGoodsCatID() {
+        public String getGoodsCatID() {
             return goodsCatID;
         }
 
-        public void setGoodsCatID(int goodsCatID) {
+        public void setGoodsCatID(String goodsCatID) {
             this.goodsCatID = goodsCatID;
         }
 
@@ -158,11 +158,11 @@ public class GoodsDetailResponse implements Serializable {
             this.goodsNum = goodsNum;
         }
 
-        public int getGoodsUnitID() {
+        public String getGoodsUnitID() {
             return goodsUnitID;
         }
 
-        public void setGoodsUnitID(int goodsUnitID) {
+        public void setGoodsUnitID(String goodsUnitID) {
             this.goodsUnitID = goodsUnitID;
         }
 
@@ -278,24 +278,24 @@ public class GoodsDetailResponse implements Serializable {
             this.shopWaringPrice = shopWaringPrice;
         }
 
-        public String getPositionName(){
-            return getGoodsPosition()==1?"高端产品":"中低端产品";
+        public String getPositionName() {
+            return getGoodsPosition() == 1 ? "高端产品" : (getGoodsPosition() == 2 ? "中低端产品" : "暂无");
         }
 
-        public static class SuppliersBean implements Serializable{
+        public static class SuppliersBean implements Serializable {
             /**
              * supplierID : 1
              * supplierName : 供应商1
              */
 
-            private int supplierID;
+            private String supplierID;
             private String supplierName;
 
-            public int getSupplierID() {
+            public String getSupplierID() {
                 return supplierID;
             }
 
-            public void setSupplierID(int supplierID) {
+            public void setSupplierID(String supplierID) {
                 this.supplierID = supplierID;
             }
 
@@ -308,7 +308,7 @@ public class GoodsDetailResponse implements Serializable {
             }
         }
 
-        public static class ShopWaringPriceBean implements Serializable{
+        public static class ShopWaringPriceBean implements Serializable {
             /**
              * shopID : 1
              * shopName : 总门店
@@ -347,7 +347,7 @@ public class GoodsDetailResponse implements Serializable {
 
     public ArrayList<GoodsImage> getGoodsImgsUrl() {
         ArrayList<GoodsImage> urls = new ArrayList<>();
-        String goodsImages=goodsInfo.getGoodsImages();
+        String goodsImages = goodsInfo.getGoodsImages();
         if (!TextUtils.isEmpty(goodsImages)) {
             String[] files = goodsImages.split(",");
             if (files.length > 0) {

@@ -29,7 +29,9 @@ public class GoodsAdapter extends BaseQuickAdapter<CommodityRequest, BaseViewHol
     @Override
     protected void convert(BaseViewHolder helper, CommodityRequest item) {
         if (!TextUtils.isEmpty(item.getGoodsMainImage())) {
-            Glide.with(context).load(ApiHelper.BASE_URL +item.getGoodsMainImage()).into((ImageView) helper.getView(R.id.icon_goods));
+            Glide.with(context).load(ApiHelper.BASE_URL + item.getGoodsMainImage()).into((ImageView) helper.getView(R.id.icon_goods));
+        } else {
+            helper.setImageResource(R.id.icon_goods, R.mipmap.icon_no_data);
         }
         helper.setText(R.id.name, item.getGoodsName())
                 .setText(R.id.price, context.getResources().getString(R.string.goods_sale_price, item.getSalePrice()))

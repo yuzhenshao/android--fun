@@ -24,7 +24,7 @@ public class CommodityRequest {
     private String salePrice;
     private String otherShopWaringPrice;
     private String supplierIDs;
-    private int storeStockNum;
+    private String storeStockNum;
     private int activeStoreWarning;
     private String storeWarningStockNum;
     private String remark;
@@ -174,11 +174,11 @@ public class CommodityRequest {
         this.supplierIDs = supplierIDs;
     }
 
-    public int getStoreStockNum() {
+    public String getStoreStockNum() {
         return storeStockNum;
     }
 
-    public void setStoreStockNum(int storeStockNum) {
+    public void setStoreStockNum(String storeStockNum) {
         this.storeStockNum = storeStockNum;
     }
 

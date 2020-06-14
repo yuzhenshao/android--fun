@@ -20,6 +20,7 @@ import com.libcommon.tree.TreeNode;
 import com.libcommon.utils.ListUtil;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BasicActivity;
+import com.mfzn.deepuses.bass.BasicListActivity;
 import com.mfzn.deepuses.bean.response.GoodsCategoryResponse;
 import com.mfzn.deepuses.bean.response.GoodsUnitResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
@@ -36,24 +37,19 @@ import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.XApi;
 
-public class GoodsCategoryManagerActivity extends BasicActivity {
+public class GoodsCategoryManagerActivity extends BasicListActivity<TreeNode<GoodsCategoryResponse>> {
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
-
-    private GoodsCategoryManagerAdapter mAdapter;
-    private List<TreeNode<GoodsCategoryResponse>> mSourceList = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mTitleBar.updateTitleBar("管理商品分类", R.mipmap.icon_titlebar_add);
-        initData();
-        initView();
     }
 
-    private void initData() {
+    @Override
+    protected void getResourceList() {
         showDialog();
-        mSourceList.clear();
         ApiServiceManager.getGoodsCategoryList()
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
@@ -61,7 +57,7 @@ public class GoodsCategoryManagerActivity extends BasicActivity {
                 .subscribe(new ApiSubscriber<HttpResult<List<GoodsCategoryResponse>>>() {
                     @Override
                     protected void onFail(NetError error) {
-                        hideDialog();
+                        showErrorView(error.getMessage());
                     }
 
                     @Override
@@ -69,9 +65,26 @@ public class GoodsCategoryManagerActivity extends BasicActivity {
                         hideDialog();
                         if (reuslt != null && !ListUtil.isEmpty(reuslt.getRes())) {
                             initGoodsCategoryList(reuslt.getRes());
+                        } else {
+                            showErrorView("暂无数据");
                         }
                     }
                 });
+    }
+
+    @Override
+    protected BaseQuickAdapter getAdapter() {
+        GoodsCategoryManagerAdapter mAdapter = new GoodsCategoryManagerAdapter(mSourceList);
+        recyclerView.setAdapter(mAdapter);
+        mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int i) {
+                if (view.getId() == R.id.icon_more) {
+                    showCategoryActionDialog(i);
+                }
+            }
+        });
+        return mAdapter;
     }
 
     private void initGoodsCategoryList(List<GoodsCategoryResponse> storeResponseList) {
@@ -82,8 +95,7 @@ public class GoodsCategoryManagerActivity extends BasicActivity {
             result.add(node);
             resolveChildren(node, 1);
         }
-        mSourceList.addAll(result);
-        mAdapter.notifyDataSetChanged();
+        refreshSource(result);
     }
 
     private static void resolveChildren(TreeNode<GoodsCategoryResponse> node, int level) {
@@ -98,21 +110,6 @@ public class GoodsCategoryManagerActivity extends BasicActivity {
                 resolveChildren(n, level + 1);
             }
         }
-    }
-
-
-    private void initView() {
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mAdapter = new GoodsCategoryManagerAdapter(mSourceList);
-        recyclerView.setAdapter(mAdapter);
-        mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
-            @Override
-            public void onItemChildClick(BaseQuickAdapter adapter, View view, int i) {
-                if (view.getId() == R.id.icon_more) {
-                    showCategoryActionDialog(i);
-                }
-            }
-        });
     }
 
     private void showCategoryActionDialog(int index) {
@@ -147,7 +144,7 @@ public class GoodsCategoryManagerActivity extends BasicActivity {
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_base_list;
+        return R.layout.activity_list_view;
     }
 
     @Override
@@ -200,7 +197,7 @@ public class GoodsCategoryManagerActivity extends BasicActivity {
                     @Override
                     public void onNext(HttpResult reuslt) {
                         ToastUtil.showToast(GoodsCategoryManagerActivity.this, "添加成功");
-                        initData();
+                        getResourceList();
                     }
                 });
     }
@@ -219,7 +216,7 @@ public class GoodsCategoryManagerActivity extends BasicActivity {
                     @Override
                     public void onNext(HttpResult reuslt) {
                         ToastUtil.showToast(GoodsCategoryManagerActivity.this, "添加成功");
-                        initData();
+                        getResourceList();
                     }
                 });
     }
@@ -240,7 +237,7 @@ public class GoodsCategoryManagerActivity extends BasicActivity {
                         @Override
                         public void onNext(HttpResult reuslt) {
                             ToastUtil.showToast(GoodsCategoryManagerActivity.this, "删除成功");
-                            initData();
+                            getResourceList();
                         }
                     });
         }

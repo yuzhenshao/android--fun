@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import com.libcommon.R;
 
 /**
@@ -22,6 +23,7 @@ public class TitleBar extends RelativeLayout implements View.OnClickListener {
     private ImageView mRightIv;
     private TextView mRightTv;
     private TextView mCenterTv;
+    private View statusBar;
 
     public void setElementPressedListener(ElementPressedListener elementListener) {
         this.elementListener = elementListener;
@@ -34,6 +36,7 @@ public class TitleBar extends RelativeLayout implements View.OnClickListener {
     public TitleBar(Context context, AttributeSet attrs) {
         super(context, attrs);
         LayoutInflater.from(context).inflate(R.layout.title_bar, this);
+        statusBar = findViewById(R.id.status_bar);
         mLeftIv = findViewById(R.id.back_container);
         mLeftIv.setOnClickListener(this);
         rightContainer = findViewById(R.id.right_element_container);
@@ -72,5 +75,9 @@ public class TitleBar extends RelativeLayout implements View.OnClickListener {
         } else if (v == mRightIv || v == mRightTv) {
             elementListener.rightPressed();
         }
+    }
+
+    public void setStatusBarHide() {
+        statusBar.setVisibility(GONE);
     }
 }

@@ -2,6 +2,7 @@ package com.mfzn.deepuses.purchasesellsave.setting.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
@@ -47,8 +48,10 @@ public class BasicAttrFragment extends BaseFragment {
                     supplierName.append(suppler.getSupplierName()).append(",");
                 }
             }
-            supplierEdit.setText(supplierName.substring(0, supplierName.length() - 1));
-            costPrice.setText(goodsInfoResponse.getCostPrice()+"元");
+            if (!TextUtils.isEmpty(supplierName)) {
+                supplierEdit.setText(supplierName.substring(0, supplierName.length() - 1));
+            }
+            costPrice.setText(goodsInfoResponse.getCostPrice() + "元");
             remark.setText(goodsInfoResponse.getRemark());
         }
     }

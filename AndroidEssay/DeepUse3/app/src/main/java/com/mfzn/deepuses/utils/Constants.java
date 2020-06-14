@@ -230,4 +230,5 @@ public class Constants {
     //store
     public static final String SINGLE = "single";
     public static final String STAFFBEAN = "StaffBean";
+    public static final String GOODS = "goods";
 }

@@ -71,7 +71,7 @@ public class StoresInfoResponse implements Serializable {
         this.stockLog = stockLog;
     }
 
-    public static class StockLog {
+    public static class StockLog implements Serializable{
         /**
          * logID : 34
          * num : 10

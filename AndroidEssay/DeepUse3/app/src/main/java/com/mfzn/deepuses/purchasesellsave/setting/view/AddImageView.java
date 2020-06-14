@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.mfzn.deepuses.R;
+import com.mfzn.deepuses.net.ImageUploadManager;
 import com.mfzn.deepuses.purchasesellsave.setting.adapter.ImageAdapter;
 import com.mfzn.deepuses.utils.Bimp;
 import com.mfzn.deepuses.utils.Constants;
@@ -132,5 +133,38 @@ public class AddImageView extends LinearLayout {
 
     public List<File> getBitmapFiles(){
         return mBitmapFiles;
+    }
+
+    private int uploadImageIndex = 0;
+
+    public void upLoadFile(ImageUploadManager.ImageUploadCallback callback) {
+        uploadImageIndex=0;
+        StringBuffer fileUrls = new StringBuffer();
+        for (int i = 0; i < mBitmapFiles.size(); i++) {
+            if (mBitmapFiles.get(i).exists()) {
+                ImageUploadManager.uploadImage(mBitmapFiles.get(i), new ImageUploadManager.ImageUploadCallback() {
+
+                    @Override
+                    public void uploadSuccess(String url) {
+                        if (uploadImageIndex > 0) {
+                            fileUrls.append(",");
+                        }
+                        uploadImageIndex++;
+                        fileUrls.append(url);
+                        if (uploadImageIndex == mBitmapFiles.size()) {
+                            callback.uploadSuccess(fileUrls.toString());
+                        }
+                    }
+
+                    @Override
+                    public void uoloadFailed(String error) {
+                        uploadImageIndex++;
+                        if (uploadImageIndex == mBitmapFiles.size() - 1) {
+                            callback.uploadSuccess(fileUrls.toString());
+                        }
+                    }
+                });
+            }
+        }
     }
 }
