@@ -46,7 +46,7 @@ public class GoodsListResponse {
         private int per_page;
         private int current_page;
         private int last_page;
-        private List<CommodityRequest> data;
+        private List<GoodsInfoResponse> data;
 
         public int getTotal() {
             return total;
@@ -80,11 +80,11 @@ public class GoodsListResponse {
             this.last_page = last_page;
         }
 
-        public List<CommodityRequest> getData() {
+        public List<GoodsInfoResponse> getData() {
             return data;
         }
 
-        public void setData(List<CommodityRequest> data) {
+        public void setData(List<GoodsInfoResponse> data) {
             this.data = data;
         }
     }

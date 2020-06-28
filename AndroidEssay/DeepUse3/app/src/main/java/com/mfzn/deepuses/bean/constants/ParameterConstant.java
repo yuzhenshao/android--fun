@@ -22,6 +22,7 @@ public interface ParameterConstant {
 
     //盘点单
     String STORE_CHECK_RESPONSE = "StoreCheckResponse";
+    String COST_TYPE_SELECTED = "costTypeSelected";
 
 
 

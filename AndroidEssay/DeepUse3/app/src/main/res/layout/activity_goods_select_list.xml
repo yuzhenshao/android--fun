@@ -62,14 +62,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/select_container"
-        android:visibility="gone"
-        android:background="#4d000000">
+        android:background="#4d000000"
+        android:visibility="gone">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/select_goods_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:background="#ffffff" />
+            android:background="#ffffff"
+            android:maxHeight="400dp" />
     </RelativeLayout>
 </RelativeLayout>

@@ -432,7 +432,13 @@
             android:name=".purchasesellsave.sale.activity.OrderSalesListActivity"
             android:screenOrientation="portrait"></activity>
         <activity
-            android:name=".purchasesellsave.sale.activity.ActivityOtherCostSelect"
+            android:name=".purchasesellsave.sale.activity.MyCustomerSelectActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".purchasesellsave.store.activity.OrderStockCheckAddActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.sale.activity.OtherCostSelectActivity"
             android:screenOrientation="portrait"></activity>
         <activity
             android:name=".purchasesellsave.sale.activity.AddOrderAllotActivity"

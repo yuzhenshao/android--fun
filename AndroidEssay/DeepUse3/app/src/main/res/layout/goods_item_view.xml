@@ -44,11 +44,12 @@
             android:layout_marginLeft="@dimen/dp_10"
             android:layout_marginTop="@dimen/app_20dp"
             android:layout_toRightOf="@+id/icon_goods"
+            android:layout_toLeftOf="@+id/goods_stock_num"
             android:ellipsize="end"
             android:singleLine="true"
-            android:text="零售价：350 元"
+            android:text="零售价：35000.00 元(含税率25%)"
             android:textColor="#ff606266"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/goods_stock_num"
@@ -59,7 +60,7 @@
             android:layout_marginTop="@dimen/app_20dp"
             android:text="库存：5"
             android:textColor="#ffe02020"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
     </RelativeLayout>
 
     <View style="@style/line_heng" />

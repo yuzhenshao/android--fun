@@ -409,7 +409,6 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
     //用户信息成功返回
     public void userInfoSuccess(UserResponse result) {
         if (!TextUtils.isEmpty(result.getUserAvatar())) {
-            Glide.with(context).load(ApiHelper.BASE_URL + result.getUserAvatar()).into(ivWorkIcon);
         }
     }
 

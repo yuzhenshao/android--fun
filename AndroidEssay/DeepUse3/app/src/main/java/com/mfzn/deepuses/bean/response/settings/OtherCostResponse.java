@@ -1,9 +1,11 @@
 package com.mfzn.deepuses.bean.response.settings;
 
+import java.io.Serializable;
+
 /**
  * @author yz @date 2020-05-03
  */
-public class OtherCostResponse {
+public class OtherCostResponse implements Serializable {
 
     /**
      * otherCostTypeID : 1

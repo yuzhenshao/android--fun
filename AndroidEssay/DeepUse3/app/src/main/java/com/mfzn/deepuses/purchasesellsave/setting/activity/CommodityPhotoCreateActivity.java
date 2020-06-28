@@ -5,31 +5,21 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.libcommon.utils.ListUtil;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BasicActivity;
-import com.mfzn.deepuses.bean.constants.ParameterConstant;
 import com.mfzn.deepuses.bean.request.CommodityRequest;
-import com.mfzn.deepuses.bean.response.settings.StoreResponse;
-import com.mfzn.deepuses.common.PickerDialogView;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.net.ImageUploadManager;
-import com.mfzn.deepuses.purchasesellsave.setting.adapter.GoodsStoreAdapter;
-import com.mfzn.deepuses.purchasesellsave.setting.manager.StoreWarnManager;
+import com.mfzn.deepuses.purchasesellsave.manager.JXCDataManager;
 import com.mfzn.deepuses.purchasesellsave.setting.view.AddImageView;
 import com.mfzn.deepuses.utils.ToastUtil;
-
-import java.util.Arrays;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -76,7 +66,7 @@ public class CommodityPhotoCreateActivity extends BasicActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        storeSet.setText(ListUtil.isEmpty(StoreWarnManager.getInstance().getStoreModels()) ? "去设置" : "已设置");
+        storeSet.setText(ListUtil.isEmpty(JXCDataManager.getInstance().getStoreModels()) ? "去设置" : "已设置");
     }
 
     @Override
@@ -145,7 +135,7 @@ public class CommodityPhotoCreateActivity extends BasicActivity {
 
     protected void initGoodsRequest() {
         mRequest.setGoodsName(goodsName.getText().toString());
-        mRequest.setStoreStockNum(StoreWarnManager.getInstance().getStoreStockNum());
+        mRequest.setStoreStockNum(JXCDataManager.getInstance().getStoreStockNum());
     }
 
 
@@ -166,6 +156,12 @@ public class CommodityPhotoCreateActivity extends BasicActivity {
                         finish();
                     }
                 });
+    }
+
+    @Override
+    public void finish() {
+       super.finish();
+       JXCDataManager.getInstance().clearStore();
     }
 
 }

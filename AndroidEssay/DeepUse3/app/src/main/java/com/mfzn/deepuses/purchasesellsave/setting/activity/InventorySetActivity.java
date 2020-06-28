@@ -16,7 +16,7 @@ import com.mfzn.deepuses.bean.response.settings.StoreResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.purchasesellsave.setting.adapter.InventorySetAdapter;
-import com.mfzn.deepuses.purchasesellsave.setting.manager.StoreWarnManager;
+import com.mfzn.deepuses.purchasesellsave.manager.JXCDataManager;
 import com.mfzn.deepuses.utils.ToastUtil;
 
 import java.util.List;
@@ -80,7 +80,7 @@ public class InventorySetActivity extends BasicListActivity<StoreResponse> {
                     if (TextUtils.isEmpty(editText.getText())) {
                         ToastUtil.showToast(InventorySetActivity.this, "请输入库存");
                     } else {
-                        StoreWarnManager.getInstance().addStoreSet(storeResponse.getStoreID(), editText.getText().toString());
+                        JXCDataManager.getInstance().addStoreSet(storeResponse.getStoreID(), editText.getText().toString());
                         if (customDialog != null) {
                             customDialog.dismiss();
                         }

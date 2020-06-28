@@ -3,6 +3,7 @@ package com.mfzn.deepuses.bean.response.sale;
 import android.text.TextUtils;
 
 import com.libcommon.utils.ListUtil;
+import com.mfzn.deepuses.bean.response.settings.GoodsInfoResponse;
 import com.mfzn.deepuses.bean.response.store.StoreCheckGoodsResponse;
 
 import java.util.ArrayList;
@@ -137,7 +138,7 @@ public class OrderOfferListResponse {
         private String checkUserName;
         private long addTime;
         private int goodsAllCount;
-        private List<GoodsInfoBean> goodsInfo;
+        private List<GoodsInfoResponse> goodsInfo;
         private List<OtherCostBean> otherCost;
 
         public String getOrderID() {
@@ -404,11 +405,11 @@ public class OrderOfferListResponse {
             this.goodsAllCount = goodsAllCount;
         }
 
-        public List<GoodsInfoBean> getGoodsInfo() {
+        public List<GoodsInfoResponse> getGoodsInfo() {
             return goodsInfo;
         }
 
-        public void setGoodsInfo(List<GoodsInfoBean> goodsInfo) {
+        public void setGoodsInfo(List<GoodsInfoResponse> goodsInfo) {
             this.goodsInfo = goodsInfo;
         }
 
@@ -423,189 +424,13 @@ public class OrderOfferListResponse {
         public List<String> getGoodsMainImageList(){
             List<String> images=new ArrayList<>();
             if(!ListUtil.isEmpty(goodsInfo)){
-                for(GoodsInfoBean goodsResponse:goodsInfo){
+                for(GoodsInfoResponse goodsResponse:goodsInfo){
                     if(!TextUtils.isEmpty(goodsResponse.getGoodsMainImage())){
                         images.add(goodsResponse.getGoodsMainImage());
                     }
                 }
             }
             return images;
-        }
-
-        public static class GoodsInfoBean {
-            /**
-             * goodsID : 1
-             * goodsCount : 1
-             * goodsName : MacBook Pro
-             * goodsCatName : Apple
-             * goodsAttr : 最新的
-             * goodsNum : SP0001
-             * goodsUnitName : 台
-             * goodsBarCode : 111111
-             * goodsBrand : Apple
-             * goodsPosition : 1
-             * goodsMainImage : 1.jpg
-             * uniformSalePrice : 9999.00
-             * salePrice : 9999.00
-             * salePriceWithTax : 10998.90
-             * costPrice : 0.00
-             * taxRate : 0.10
-             * money : 10998.90
-             */
-
-            private String goodsID;
-            private int goodsCount;
-            private String goodsName;
-            private String goodsCatName;
-            private String goodsAttr;
-            private String goodsNum;
-            private String goodsUnitName;
-            private String goodsBarCode;
-            private String goodsBrand;
-            private String goodsPosition;
-            private String goodsMainImage;
-            private String uniformSalePrice;
-            private String salePrice;
-            private String salePriceWithTax;
-            private String costPrice;
-            private String taxRate;
-            private String money;
-
-            public String getGoodsID() {
-                return goodsID;
-            }
-
-            public void setGoodsID(String goodsID) {
-                this.goodsID = goodsID;
-            }
-
-            public int getGoodsCount() {
-                return goodsCount;
-            }
-
-            public void setGoodsCount(int goodsCount) {
-                this.goodsCount = goodsCount;
-            }
-
-            public String getGoodsName() {
-                return goodsName;
-            }
-
-            public void setGoodsName(String goodsName) {
-                this.goodsName = goodsName;
-            }
-
-            public String getGoodsCatName() {
-                return goodsCatName;
-            }
-
-            public void setGoodsCatName(String goodsCatName) {
-                this.goodsCatName = goodsCatName;
-            }
-
-            public String getGoodsAttr() {
-                return goodsAttr;
-            }
-
-            public void setGoodsAttr(String goodsAttr) {
-                this.goodsAttr = goodsAttr;
-            }
-
-            public String getGoodsNum() {
-                return goodsNum;
-            }
-
-            public void setGoodsNum(String goodsNum) {
-                this.goodsNum = goodsNum;
-            }
-
-            public String getGoodsUnitName() {
-                return goodsUnitName;
-            }
-
-            public void setGoodsUnitName(String goodsUnitName) {
-                this.goodsUnitName = goodsUnitName;
-            }
-
-            public String getGoodsBarCode() {
-                return goodsBarCode;
-            }
-
-            public void setGoodsBarCode(String goodsBarCode) {
-                this.goodsBarCode = goodsBarCode;
-            }
-
-            public String getGoodsBrand() {
-                return goodsBrand;
-            }
-
-            public void setGoodsBrand(String goodsBrand) {
-                this.goodsBrand = goodsBrand;
-            }
-
-            public String getGoodsPosition() {
-                return goodsPosition;
-            }
-
-            public void setGoodsPosition(String goodsPosition) {
-                this.goodsPosition = goodsPosition;
-            }
-
-            public String getGoodsMainImage() {
-                return goodsMainImage;
-            }
-
-            public void setGoodsMainImage(String goodsMainImage) {
-                this.goodsMainImage = goodsMainImage;
-            }
-
-            public String getUniformSalePrice() {
-                return uniformSalePrice;
-            }
-
-            public void setUniformSalePrice(String uniformSalePrice) {
-                this.uniformSalePrice = uniformSalePrice;
-            }
-
-            public String getSalePrice() {
-                return salePrice;
-            }
-
-            public void setSalePrice(String salePrice) {
-                this.salePrice = salePrice;
-            }
-
-            public String getSalePriceWithTax() {
-                return salePriceWithTax;
-            }
-
-            public void setSalePriceWithTax(String salePriceWithTax) {
-                this.salePriceWithTax = salePriceWithTax;
-            }
-
-            public String getCostPrice() {
-                return costPrice;
-            }
-
-            public void setCostPrice(String costPrice) {
-                this.costPrice = costPrice;
-            }
-
-            public String getTaxRate() {
-                return taxRate;
-            }
-
-            public void setTaxRate(String taxRate) {
-                this.taxRate = taxRate;
-            }
-
-            public String getMoney() {
-                return money;
-            }
-
-            public void setMoney(String money) {
-                this.money = money;
-            }
         }
 
         public static class OtherCostBean {

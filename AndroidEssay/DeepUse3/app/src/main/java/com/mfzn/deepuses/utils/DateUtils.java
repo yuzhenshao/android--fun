@@ -38,6 +38,12 @@ public class DateUtils {
         return Integer.parseInt(String.valueOf(between_days));
     }
 
+    public static String getDateFromMillsec(long millSec) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
+        Date date = new Date(millSec);
+        return sdf.format(date);
+    }
+
     public static String longToString(long millSec) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
         Date date = new Date(millSec * 1000);

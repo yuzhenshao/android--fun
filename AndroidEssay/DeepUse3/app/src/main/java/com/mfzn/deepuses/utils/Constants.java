@@ -231,4 +231,5 @@ public class Constants {
     public static final String SINGLE = "single";
     public static final String STAFFBEAN = "StaffBean";
     public static final String GOODS = "goods";
+    public static final String MY_CUSTOMER = "myCustomer";
 }

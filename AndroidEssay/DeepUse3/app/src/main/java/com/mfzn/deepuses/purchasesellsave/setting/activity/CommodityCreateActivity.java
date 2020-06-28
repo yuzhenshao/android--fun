@@ -15,16 +15,13 @@ import android.widget.TextView;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.libcommon.utils.ListUtil;
 import com.mfzn.deepuses.R;
-import com.mfzn.deepuses.bass.BasicActivity;
-import com.mfzn.deepuses.bean.request.CommodityRequest;
 import com.mfzn.deepuses.bean.response.settings.GoodsDetailResponse;
 import com.mfzn.deepuses.bean.response.shop.ShopListResponse;
 import com.mfzn.deepuses.common.PickerDialogView;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.purchasesellsave.setting.adapter.GoodsShopAdapter;
-import com.mfzn.deepuses.purchasesellsave.setting.manager.StoreWarnManager;
-import com.mfzn.deepuses.purchasesellsave.setting.view.AddImageView;
+import com.mfzn.deepuses.purchasesellsave.manager.JXCDataManager;
 import com.mfzn.deepuses.utils.Constants;
 import com.mfzn.deepuses.utils.ToastUtil;
 
@@ -104,7 +101,11 @@ public class CommodityCreateActivity extends CommodityPhotoCreateActivity {
             mRequest.setGoodsPosition(mGoodsInfoResponse.getGoodsPosition() + "");
             mRequest.setGoodsCatID(mGoodsInfoResponse.getGoodsCatID());
             mRequest.setGoodsUnitID(mGoodsInfoResponse.getGoodsUnitID());
-            mRequest.setStoreStockNum(mGoodsInfoResponse.getGoodsSumStockNum() + "");
+            if (!ListUtil.isEmpty(mGoodsInfoResponse.getGoodsStoreStockNum())) {
+                for (GoodsDetailResponse.GoodsInfoResponse.StoreBean storeBean : mGoodsInfoResponse.getGoodsStoreStockNum()) {
+                    JXCDataManager.getInstance().addStoreSet(storeBean.getStoreID(), storeBean.getStockNum());
+                }
+            }
         }
         ApiServiceManager.getShopList()
                 .compose(XApi.getApiTransformer())
@@ -135,7 +136,7 @@ public class CommodityCreateActivity extends CommodityPhotoCreateActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        storeWarnSet.setText(ListUtil.isEmpty(StoreWarnManager.getInstance().getStoreWarnModels()) ? "去设置" : "已设置");
+        storeWarnSet.setText(ListUtil.isEmpty(JXCDataManager.getInstance().getStoreWarnModels()) ? "去设置" : "已设置");
     }
 
     @Override
@@ -210,11 +211,11 @@ public class CommodityCreateActivity extends CommodityPhotoCreateActivity {
                 mRequest.setOtherShopWaringPrice(wringPrice.substring(0, wringPrice.length() - 1));
             }
         }
-        if (!ListUtil.isEmpty(StoreWarnManager.getInstance().getStoreModels())) {
-            mRequest.setStoreStockNum(StoreWarnManager.getInstance().getStoreStockNum());
+        if (!ListUtil.isEmpty(JXCDataManager.getInstance().getStoreModels())) {
+            mRequest.setStoreStockNum(JXCDataManager.getInstance().getStoreStockNum());
         }
-        if (!ListUtil.isEmpty(StoreWarnManager.getInstance().getStoreWarnModels())) {
-            mRequest.setStoreWarningStockNum(StoreWarnManager.getInstance().getStoreWarningStockNum());
+        if (!ListUtil.isEmpty(JXCDataManager.getInstance().getStoreWarnModels())) {
+            mRequest.setStoreWarningStockNum(JXCDataManager.getInstance().getStoreWarningStockNum());
         }
     }
 
@@ -255,5 +256,10 @@ public class CommodityCreateActivity extends CommodityPhotoCreateActivity {
                         }
                     });
         }
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
     }
 }

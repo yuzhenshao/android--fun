@@ -9,12 +9,14 @@ import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.libcommon.dialog.fragment.CustomDialog;
@@ -23,22 +25,24 @@ import com.libcommon.dialog.view.BindViewHolder;
 import com.libcommon.utils.ListUtil;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BasicListActivity;
-import com.mfzn.deepuses.bean.constants.ParameterConstant;
-import com.mfzn.deepuses.bean.request.CommodityRequest;
+import com.mfzn.deepuses.bean.response.settings.GoodsInfoResponse;
 import com.mfzn.deepuses.bean.response.settings.GoodsListResponse;
+import com.mfzn.deepuses.bean.response.settings.RateResponse;
 import com.mfzn.deepuses.bean.response.store.StoreCheckGoodsResponse;
+import com.mfzn.deepuses.common.PickerDialogView;
 import com.mfzn.deepuses.net.ApiHelper;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.purchasesellsave.setting.adapter.GoodsAdapter;
 import com.mfzn.deepuses.purchasesellsave.setting.adapter.GoodsSelectedAdapter;
-import com.mfzn.deepuses.purchasesellsave.setting.manager.StoreWarnManager;
 import com.mfzn.deepuses.utils.ToastUtil;
 
+import org.w3c.dom.Text;
+
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -46,13 +50,13 @@ import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.XApi;
 
-public class GoodsSelectListActivity extends BasicListActivity<CommodityRequest> {
+public class GoodsSelectListActivity extends BasicListActivity<GoodsInfoResponse> {
 
     @BindView(R.id.search_container)
     LinearLayout searchContainer;
     @BindView(R.id.sum_stock)
     TextView sumStock;
-    @BindView(R.id.recycler_view)
+    @BindView(R.id.select_goods_recycler_view)
     RecyclerView goodsRecyclerView;
     @BindView(R.id.select_goods_container)
     RelativeLayout selectGoodsContainer;
@@ -60,10 +64,12 @@ public class GoodsSelectListActivity extends BasicListActivity<CommodityRequest>
     TextView goodsSize;
     @BindView(R.id.goods_price)
     TextView goodsPrice;
+    @BindView(R.id.select_container)
+    RelativeLayout selectContainer;
 
-    private List<CommodityRequest> goodsSelectedList = new ArrayList<>();
-    private List<StoreCheckGoodsResponse> storeCheckGoodsResponseList = new ArrayList<>();
+    private List<GoodsInfoResponse> goodsSelectedList = new ArrayList<>();
     private GoodsSelectedAdapter goodsSelectedAdapter;
+    private List<RateResponse> mRateResponseList = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -71,7 +77,7 @@ public class GoodsSelectListActivity extends BasicListActivity<CommodityRequest>
         mTitleBar.updateTitleBar("商品中心");
         goodsSelectedAdapter = new GoodsSelectedAdapter(this, goodsSelectedList);
         goodsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        goodsRecyclerView.setAdapter(adapter);
+        goodsRecyclerView.setAdapter(goodsSelectedAdapter);
         initSearch("搜索产品名称、条码、货号");
         getResourceList();
     }
@@ -146,72 +152,136 @@ public class GoodsSelectListActivity extends BasicListActivity<CommodityRequest>
         return mAdapter;
     }
 
-    private void showGoodsStoreSetDialog(CommodityRequest item) {
-        new CustomDialog.Builder().setLayoutRes(R.layout.dialog_goods_store_set)
+    private void showGoodsStoreSetDialog(GoodsInfoResponse item) {
+        new CustomDialog.Builder().setLayoutRes(R.layout.dialog_goods_price)
                 .setWidth(WindowManager.LayoutParams.MATCH_PARENT)
                 .setHeight(WindowManager.LayoutParams.WRAP_CONTENT)
                 .setGravity(Gravity.BOTTOM)
                 .setDialogAnimationRes(R.style.ActionSheetDialogAnimation)
-                .addOnClickListener(R.id.btn_commit)
+                .addOnClickListener(R.id.switch_button, R.id.tax_rate_select, R.id.btn_commit)
                 .setOnBindViewListener(new OnBindViewListener() {
                     @Override
                     public void bindView(BindViewHolder helper) {
-
                         if (!TextUtils.isEmpty(item.getGoodsMainImage())) {
-                            Glide.with(context).load(ApiHelper.BASE_URL + item.getGoodsMainImage()).into((ImageView) helper.getView(R.id.icon_goods));
+                            Glide.with(context).load(ApiHelper.BASE_URL + item.getGoodsMainImage()).into((ImageView) helper.getView(R.id.goods_image));
                         }
-                        helper.setText(R.id.name, item.getGoodsName())
-                                .setText(R.id.price, context.getResources().getString(R.string.goods_sale_price, item.getSalePrice()))
-                                .setText(R.id.goods_stock_num, context.getResources().getString(R.string.goods_sum_stock, item.getGoodsSumStockNum()));
+                        helper.setText(R.id.name, item.getGoodsName() + "  [" + item.getGoodsNum() + "]")
+                                .setText(R.id.goods_stock_num, context.getResources().getString(R.string.goods_sum_stock, item.getGoodsSumStockNum()))
+                                .setText(R.id.cost_price, item.getSalePrice())
+                                .setText(R.id.tax_rate_price, item.getSalePrice())
+                                .setChecked(R.id.switch_button, item.getTaxRate() != 0);
                     }
                 })
                 .setOnViewClickListener((customDialog, bindViewHolder, view) -> {
-                    EditText sEditText = bindViewHolder.getView(R.id.system_stock_num);
-                    EditText cEditText = bindViewHolder.getView(R.id.check_stock_num);
-                    if (TextUtils.isEmpty(sEditText.getText()) || TextUtils.isEmpty(cEditText.getText())) {
-                        ToastUtil.showToast(GoodsSelectListActivity.this, "请设置库存");
-                    } else {
-                        StoreCheckGoodsResponse store = new StoreCheckGoodsResponse(item.getGoodsID(), Integer.parseInt(sEditText.getText().toString()), Integer.parseInt(cEditText.getText().toString()));
-                        int index = storeCheckGoodsResponseList.indexOf(store);
-                        if (index > -1) {
-                            storeCheckGoodsResponseList.remove(index);
-                        } else {
+
+                    switch (view.getId()) {
+                        case R.id.switch_button:
+                            item.setHasTaxRate(!item.isHasTaxRate());
+                            bindViewHolder.setChecked(R.id.switch_button, item.isHasTaxRate());
+                            break;
+                        case R.id.tax_rate_select:
+                            if (item.isHasTaxRate()) {
+                                showTaxDialog(item, bindViewHolder);
+                            }
+                            break;
+                        case R.id.btn_commit:
+                            int index = goodsSelectedList.indexOf(item);
+                            if (index != -1) {
+                                goodsSelectedList.remove(index);
+                            }
                             goodsSelectedList.add(item);
-                        }
-                        storeCheckGoodsResponseList.add(store);
-                        setGoodsSelected();
-                        if (customDialog != null) {
-                            customDialog.dismiss();
-                        }
+                            setGoodsSelected();
+                            if (customDialog != null) {
+                                customDialog.dismiss();
+                            }
+                            break;
                     }
 
                 }).create().show(getSupportFragmentManager(), getClass().getName());
     }
 
+    private void showTaxDialog(GoodsInfoResponse item, BindViewHolder bindViewHolder) {
+        ApiServiceManager.getTaxRateList()
+                .compose(XApi.getApiTransformer())
+                .compose(XApi.getScheduler())
+                .compose(bindToLifecycle())
+                .subscribe(new ApiSubscriber<HttpResult<List<RateResponse>>>() {
+                    @Override
+                    protected void onFail(NetError error) {
+                        showToast(error.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(HttpResult<List<RateResponse>> reuslt) {
+                        mRateResponseList = reuslt.getRes();
+                        if (ListUtil.isEmpty(mRateResponseList)) {
+                            showToast("没有相关税率");
+                        } else {
+                            List<String> rateList = new ArrayList<>();
+                            for (RateResponse rateResponse : mRateResponseList) {
+                                rateList.add(rateResponse.getRate());
+                            }
+                            PickerDialogView.showGoodSPosition(GoodsSelectListActivity.this,
+                                    rateList, new OnOptionsSelectListener() {
+                                        @Override
+                                        public void onOptionsSelect(int options1, int options2, int options3, View v1) {
+                                            double rate = getPrice(rateList.get(options1)) / 100;
+                                            double price = (1 + rate) * getPrice(item.getSalePrice());
+                                            ((TextView) bindViewHolder.getView(R.id.tax_rate)).setText(rate + "");
+                                            ((TextView) bindViewHolder.getView(R.id.tax_rate_price)).setText(price + "");
+                                            item.setTaxRate(rate);
+                                            item.setSalePriceWithTax(price + "");
+                                        }
+                                    });
+                        }
+                    }
+                });
+
+
+    }
 
     private void setGoodsSelected() {
         int totalPrice = 0;
+        selectContainer.setVisibility(View.VISIBLE);
         goodsSize.setText("数量：" + goodsSelectedList.size());
         if (!ListUtil.isEmpty(goodsSelectedList)) {
-            for (CommodityRequest store : goodsSelectedList) {
-                totalPrice += Integer.parseInt(store.getCostPrice());
+            for (GoodsInfoResponse store : goodsSelectedList) {
+                if (store.isHasTaxRate()) {
+                    totalPrice += getPrice(store.getSalePriceWithTax());
+                } else {
+                    totalPrice += getPrice(store.getSalePrice());
+                }
             }
         }
         goodsPrice.setText("总价：" + totalPrice);
     }
 
-    @OnClick({R.id.search_container, R.id.select_btn, R.id.goods_size})
+    private double getPrice(String salePrice) {
+        try {
+            if (!TextUtils.isEmpty(salePrice)) {
+                return Double.parseDouble(salePrice);
+            }
+            return 0;
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
+    @OnClick({R.id.select_goods_container, R.id.select_btn, R.id.goods_size})
     public void viewClick(View v) {
         switch (v.getId()) {
-            case R.id.search_container:
-
+            case R.id.select_goods_container:
+                selectGoodsContainer.setVisibility(View.GONE);
                 break;
             case R.id.select_btn:
-                if (ListUtil.isEmpty(storeCheckGoodsResponseList)) {
+                if (ListUtil.isEmpty(goodsSelectedList)) {
                     showToast("您还没有选择商品");
                 } else {
                     Intent intent = new Intent();
-                    intent.putExtra("data", getData());
+                    intent.putExtra("data", (Serializable) goodsSelectedList);
+                    intent.putExtra("totalPrice", goodsPrice.getText());
+                    intent.putExtra("goodsSize", goodsSize.getText());
+                    intent.putExtra("orderGoodsStr", getData());
                     setResult(RESULT_OK, intent);
                     finish();
                 }
@@ -227,13 +297,22 @@ public class GoodsSelectListActivity extends BasicListActivity<CommodityRequest>
         }
     }
 
+
+    /*
+     * goodsID1（商品ID）,goodsNum1（商品数量）,uniformSalePrice1（零售价）
+     * ,$salePrice1（销售单价不含税）,$taxRate1（税率）,$salePriceWithTax1（销售价含税）,
+     * $money1（金额：数量*销售单价）;*/
     private String getData() {
         StringBuffer stringBuffer = new StringBuffer();
-        if (!ListUtil.isEmpty(storeCheckGoodsResponseList)) {
-            for (StoreCheckGoodsResponse store : storeCheckGoodsResponseList) {
-                stringBuffer.append(store.getGoodsID()).append(",")
-                        .append(store.getSystemStockNum()).append(",")
-                        .append(store.getCheckStockNum()).append(";");
+        if (!ListUtil.isEmpty(goodsSelectedList)) {
+            for (GoodsInfoResponse goods : goodsSelectedList) {
+                stringBuffer.append(goods.getGoodsID()).append(",")
+                        .append(goods.getGoodsCount()).append(",")
+                        .append(goods.getSalePrice()).append(",")
+                        .append(goods.getSalePrice()).append(",")
+                        .append(goods.getTaxRate()).append(",")
+                        .append(goods.getSalePriceWithTax()).append(",")
+                        .append(goods.getGoodsCount() * getPrice(goods.getSalePrice())).append(";");
             }
         }
         return stringBuffer.toString();

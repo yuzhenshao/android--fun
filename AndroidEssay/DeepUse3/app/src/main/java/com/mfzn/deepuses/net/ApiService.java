@@ -33,6 +33,7 @@ import com.mfzn.deepuses.bean.response.GoodsCategoryResponse;
 import com.mfzn.deepuses.bean.response.GoodsUnitResponse;
 import com.mfzn.deepuses.bean.response.sale.OrderOfferListResponse;
 import com.mfzn.deepuses.bean.response.settings.MyStoreResponse;
+import com.mfzn.deepuses.bean.response.settings.RateResponse;
 import com.mfzn.deepuses.bean.response.settings.StoreResponse;
 import com.mfzn.deepuses.bean.response.UserResponse;
 import com.mfzn.deepuses.bean.response.settings.GoodsDetailResponse;
@@ -923,6 +924,10 @@ public interface ApiService {
     Flowable<HttpResult> addSupplier(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
                                      @Field("supplierName") String supplierName, @Field("chargePerson") String chargePerson,
                                      @Field("chargePersonPhone") String chargePersonPhone, @Field("contactAddress") String contactAddress);
+
+    @GET("pss/Setting/taxRateList")
+    Flowable<HttpResult<List<RateResponse>>> taxRateList(@Query("token") String token, @Query("uid") String uid,
+                                                         @Query("shopID") String shopID);
 
     //门店
     @GET("pss/Shop/shopList")

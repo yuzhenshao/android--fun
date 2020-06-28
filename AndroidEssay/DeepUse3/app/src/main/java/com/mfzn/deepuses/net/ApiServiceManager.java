@@ -31,6 +31,7 @@ import com.mfzn.deepuses.bean.request.store.OrderStockCheckAddResponse;
 import com.mfzn.deepuses.bean.response.GoodsCategoryResponse;
 import com.mfzn.deepuses.bean.response.GoodsUnitResponse;
 import com.mfzn.deepuses.bean.response.sale.OrderOfferListResponse;
+import com.mfzn.deepuses.bean.response.settings.RateResponse;
 import com.mfzn.deepuses.bean.response.settings.StoreResponse;
 import com.mfzn.deepuses.bean.response.UserResponse;
 import com.mfzn.deepuses.bean.response.settings.GoodsDetailResponse;
@@ -49,6 +50,7 @@ import com.mfzn.deepuses.model.company.SelectCompanyModel;
 import com.mfzn.deepuses.model.faxian.News;
 import com.mfzn.deepuses.model.jiagou.ShareCodeModel;
 import com.mfzn.deepuses.model.jiagou.ZuzhiJiagouModel;
+import com.mfzn.deepuses.model.khgl.WholeCustomerModel;
 import com.mfzn.deepuses.model.myTeam.ManageSettingModel;
 import com.mfzn.deepuses.model.myTeam.TeamManageModel;
 import com.mfzn.deepuses.model.xiangmu.CheckAppraiseModel;
@@ -192,6 +194,10 @@ public class ApiServiceManager {
         return ApiHelper.getApiService().uploadLogo(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getCompanyId(), logoUrl);
     }
 
+    public static Flowable<HttpResult<WholeCustomerModel>> getMyCustomer() {
+        return ApiHelper.getApiService().myCustomer(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getCompanyId(), "100", 0,
+                null, null, null, null);
+    }
 
     //售后
     public static Flowable<HttpResult<WorkorderListModel>> afterSaleOrderList(AfterSaleOrderListRequest request) {
@@ -305,7 +311,7 @@ public class ApiServiceManager {
     }
 
     public static Flowable<HttpResult> addGoodsUnit(String unitName) {
-        return ApiHelper.getApiService().addGoodsUnit(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(),unitName);
+        return ApiHelper.getApiService().addGoodsUnit(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), unitName);
     }
 
     public static Flowable<HttpResult> editGoodsUnit(String goodsUnitID, String unitName) {
@@ -340,7 +346,7 @@ public class ApiServiceManager {
         return ApiHelper.getApiService().deleteOtherCost(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), type);
     }
 
-    public static Flowable<HttpResult> addOtherCost( String name) {
+    public static Flowable<HttpResult> addOtherCost(String name) {
         return ApiHelper.getApiService().addOtherCost(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), name);
     }
 
@@ -359,7 +365,7 @@ public class ApiServiceManager {
     }
 
     public static Flowable<HttpResult> addIncomeExpenseType(int type, String name) {
-        return ApiHelper.getApiService().addIncomeExpenseType(UserHelper.getToken(), UserHelper.getUid(),  UserHelper.getShopId(), type, name);
+        return ApiHelper.getApiService().addIncomeExpenseType(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), type, name);
     }
 
     public static Flowable<HttpResult<List<StoreResponse>>> getStoreList() {
@@ -370,8 +376,8 @@ public class ApiServiceManager {
         return ApiHelper.getApiService().editStore(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), request);
     }
 
-    public static Flowable<HttpResult> delStore( String storeID) {
-        return ApiHelper.getApiService().delStore(UserHelper.getToken(), UserHelper.getUid(),  UserHelper.getShopId(), storeID);
+    public static Flowable<HttpResult> delStore(String storeID) {
+        return ApiHelper.getApiService().delStore(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), storeID);
     }
 
     public static Flowable<HttpResult> addStore(StoreResponse request) {
@@ -404,6 +410,11 @@ public class ApiServiceManager {
         return ApiHelper.getApiService().addSupplier(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), request.getSupplierName(),
                 request.getChargePerson(), request.getChargePersonPhone(), request.getContactAddress());
     }
+
+    public static Flowable<HttpResult<List<RateResponse>>> getTaxRateList() {
+        return ApiHelper.getApiService().taxRateList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId());
+    }
+
 
     public static Flowable<HttpResult<StockWarningResponse>> getStockWarningList(String kw, String storeID) {
         return ApiHelper.getApiService().stockWarning(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), kw, storeID);

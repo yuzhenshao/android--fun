@@ -1,20 +1,22 @@
-package com.mfzn.deepuses.purchasesellsave.setting.manager;
+package com.mfzn.deepuses.purchasesellsave.manager;
 
 import com.libcommon.utils.ListUtil;
+import com.mfzn.deepuses.purchasesellsave.sale.Module.OtherCostModule;
 import com.mfzn.deepuses.purchasesellsave.setting.model.StoreWarnModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class StoreWarnManager {
+public class JXCDataManager {
 
-    public static StoreWarnManager INSTANCE;
+    public static JXCDataManager INSTANCE;
     protected List<StoreWarnModel> storeWarnModels = new ArrayList<>();
     protected List<StoreWarnModel> storeModels = new ArrayList<>();
+    private List<OtherCostModule> otherCostList = new ArrayList<>();
 
-    public static StoreWarnManager getInstance() {
+    public static JXCDataManager getInstance() {
         if (INSTANCE == null) {
-            INSTANCE = new StoreWarnManager();
+            INSTANCE = new JXCDataManager();
         }
         return INSTANCE;
     }
@@ -85,13 +87,24 @@ public class StoreWarnManager {
             for (int i = 0; i < storeWarnModels.size(); i++) {
                 StoreWarnModel store = storeWarnModels.get(i);
                 stringBuilder.append(store.getId()).append("-").append(store.getMin())
-                .append(",").append(store.getMax());
-                if (i != storeWarnModels.size() - 1) {
-                    stringBuilder.append(";");
-                }
+                        .append(",").append(store.getMax()).append(";");
             }
             return stringBuilder.toString();
         }
         return null;
+    }
+
+    public void clearStore() {
+        storeWarnModels.clear();
+        storeModels.clear();
+    }
+
+
+    public List<OtherCostModule> getOtherCostList() {
+        return otherCostList;
+    }
+
+    public void addOtherCostModule(List<OtherCostModule> costList) {
+        otherCostList = costList;
     }
 }

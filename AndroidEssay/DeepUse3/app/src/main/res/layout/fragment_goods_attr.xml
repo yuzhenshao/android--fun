@@ -42,7 +42,9 @@
 
             <View style="@style/line_heng" />
 
-            <LinearLayout style="@style/newly_ll_st">
+            <LinearLayout
+                style="@style/newly_ll_st"
+                android:visibility="gone">
 
                 <TextView
                     style="@style/newly_tv_st"
@@ -58,7 +60,9 @@
 
             <View style="@style/line_heng" />
 
-            <LinearLayout style="@style/newly_ll_st">
+            <LinearLayout
+                style="@style/newly_ll_st"
+                android:visibility="gone">
 
                 <TextView
                     style="@style/newly_tv_st"

@@ -21,6 +21,7 @@ import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BasicListActivity;
 import com.mfzn.deepuses.bean.constants.ParameterConstant;
 import com.mfzn.deepuses.bean.request.CommodityRequest;
+import com.mfzn.deepuses.bean.response.settings.GoodsInfoResponse;
 import com.mfzn.deepuses.bean.response.settings.GoodsListResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
@@ -35,7 +36,7 @@ import cn.droidlover.xdroidmvp.net.XApi;
 /**
  * @author yz @date 2020-05-03
  */
-public class GoodsListActivity extends BasicListActivity<CommodityRequest> {
+public class GoodsListActivity extends BasicListActivity<GoodsInfoResponse> {
 
     @BindView(R.id.search_container)
     LinearLayout searchContainer;
@@ -90,7 +91,7 @@ public class GoodsListActivity extends BasicListActivity<CommodityRequest> {
 
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int i) {
-                CommodityRequest request = mSourceList.get(i);
+                GoodsInfoResponse request = mSourceList.get(i);
                 if (request != null) {
                     Intent intent = new Intent(GoodsListActivity.this, GoodsDetailActivity.class);
                     intent.putExtra(ParameterConstant.GOODS_ID, request.getGoodsID());

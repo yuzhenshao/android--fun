@@ -90,7 +90,7 @@ public class OrderStockCheckAddActivity extends BasicActivity {
         if (storeCheckResponse != null) {
             goodsInfo = storeCheckResponse.getGoodsInfo();
             storeName.setText(storeCheckResponse.getStoreName());
-            orderTime.setText(DateUtils.longToString(storeCheckResponse.getAddTime()));
+            orderTime.setText(DateUtils.getDateFromMillsec(storeCheckResponse.getAddTime()));
             outNum.setText(storeCheckResponse.getOutNum());
             orderMakerUserName.setText(storeCheckResponse.getOrderMakerUserName());
             remark.setText(storeCheckResponse.getRemark());

@@ -86,6 +86,9 @@ public class GoodsDetailActivity extends BasicActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mTitleBar.updateTitleBar("商品详情", R.mipmap.icon_edit);
+        mTabLabelList.add(new TabLabel(1, "基础属性"));
+        mTabLabelList.add(new TabLabel(2, "库存流水"));
+        mTabLabelList.add(new TabLabel(3, "销售记录"));
         initData();
     }
 
@@ -130,9 +133,6 @@ public class GoodsDetailActivity extends BasicActivity {
     }
 
     private void initDetailPager() {
-        mTabLabelList.add(new TabLabel(1, "基础属性"));
-        mTabLabelList.add(new TabLabel(2, "库存流水"));
-        mTabLabelList.add(new TabLabel(3, "销售记录"));
         DetailAdapter detailAdapter = new DetailAdapter(getSupportFragmentManager());
         detailPager.setAdapter(detailAdapter);
         CommonNavigator commonNavigator = new CommonNavigator(this);
@@ -144,6 +144,7 @@ public class GoodsDetailActivity extends BasicActivity {
         });
         mIndicator.setNavigator(commonNavigator);
         ViewPagerHelper.bind(mIndicator, detailPager);
+        detailAdapter.notifyDataSetChanged();
     }
 
     public class DetailAdapter extends FragmentPagerAdapter {

@@ -16,7 +16,7 @@ import com.mfzn.deepuses.bean.response.settings.StoreResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.purchasesellsave.setting.adapter.InventorySetWarnAdapter;
-import com.mfzn.deepuses.purchasesellsave.setting.manager.StoreWarnManager;
+import com.mfzn.deepuses.purchasesellsave.manager.JXCDataManager;
 import com.mfzn.deepuses.utils.ToastUtil;
 
 import java.util.List;
@@ -83,7 +83,7 @@ public class InventoryWarnSetActivity extends BasicListActivity<StoreResponse> {
                     if (TextUtils.isEmpty(minEditText.getText()) || TextUtils.isEmpty(maxEditText.getText())) {
                         ToastUtil.showToast(InventoryWarnSetActivity.this, "请设置库存量");
                     } else {
-                        StoreWarnManager.getInstance().addStoreSet(storeId, maxEditText.getText().toString(),
+                        JXCDataManager.getInstance().addStoreSet(storeId, maxEditText.getText().toString(),
                                 minEditText.getText().toString());
                         if (customDialog != null) {
                             customDialog.dismiss();

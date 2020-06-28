@@ -61,36 +61,24 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/app_24dp"
             android:gravity="center_vertical"
             android:text="是否含税"
             android:textColor="#ff606266"
             android:textSize="16sp" />
 
-
-        <TextView
-            android:id="@+id/has_tax_rate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/app_60dp"
-            android:layout_toLeftOf="@+id/no_tax_rate"
-            android:drawableLeft="@mipmap/icon_other_cost_unselect"
-            android:drawablePadding="@dimen/app_5dp"
-            android:text="是"
-            android:textColor="#ff606266"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/no_tax_rate"
+        <CheckBox
+            android:id="@+id/switch_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/app_29dp"
-            android:drawableLeft="@mipmap/icon_other_cost_selected"
-            android:drawablePadding="@dimen/app_5dp"
-            android:text="否"
-            android:textColor="#ff606266"
-            android:textSize="16sp" />
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/check_box_selector"
+            android:button="@null"
+            android:focusable="false"
+            android:gravity="center_vertical" />
 
     </RelativeLayout>
 

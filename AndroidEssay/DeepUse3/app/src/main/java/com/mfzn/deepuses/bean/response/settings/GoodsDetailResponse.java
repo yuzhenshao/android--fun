@@ -91,6 +91,7 @@ public class GoodsDetailResponse implements Serializable {
         private String remark;
         private int addTime;
         private int goodsSumStockNum;
+        private List<StoreBean> goodsStoreStockNum;
         private List<SuppliersBean> suppliers;
         private List<ShopWaringPriceBean> shopWaringPrice;
 
@@ -280,6 +281,46 @@ public class GoodsDetailResponse implements Serializable {
 
         public String getPositionName() {
             return getGoodsPosition() == 1 ? "高端产品" : (getGoodsPosition() == 2 ? "中低端产品" : "暂无");
+        }
+
+        public List<StoreBean> getGoodsStoreStockNum() {
+            return goodsStoreStockNum;
+        }
+
+        public void setGoodsStoreStockNum(List<StoreBean> goodsStoreStockNum) {
+            this.goodsStoreStockNum = goodsStoreStockNum;
+        }
+
+        public static class StoreBean implements Serializable {
+
+            private String storeID;
+            private String storeName;
+            private String stockNum;
+
+
+            public String getStoreID() {
+                return storeID;
+            }
+
+            public void setStoreID(String storeID) {
+                this.storeID = storeID;
+            }
+
+            public String getStoreName() {
+                return storeName;
+            }
+
+            public void setStoreName(String storeName) {
+                this.storeName = storeName;
+            }
+
+            public String getStockNum() {
+                return stockNum;
+            }
+
+            public void setStockNum(String stockNum) {
+                this.stockNum = stockNum;
+            }
         }
 
         public static class SuppliersBean implements Serializable {

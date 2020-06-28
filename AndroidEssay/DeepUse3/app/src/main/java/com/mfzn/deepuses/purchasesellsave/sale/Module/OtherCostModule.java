@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class OtherCostModule implements Serializable {
 
+    private String costName;
     private String costType;
     private String costMoney;
     private double taxRate;
@@ -39,5 +40,13 @@ public class OtherCostModule implements Serializable {
 
     public void setTaxRate(boolean taxRate) {
         isTaxRate = taxRate;
+    }
+
+    public String getCostName() {
+        return costName;
+    }
+
+    public void setCostName(String costName) {
+        this.costName = costName;
     }
 }

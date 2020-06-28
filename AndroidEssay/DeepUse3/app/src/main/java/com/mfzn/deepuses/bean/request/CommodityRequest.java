@@ -30,7 +30,6 @@ public class CommodityRequest {
     private String remark;
     private long addTime;
     private int goodsSumStockNum;
-    private boolean isCanSubmit;
 
     public String getGoodsID() {
         return goodsID;
@@ -46,7 +45,6 @@ public class CommodityRequest {
 
     public void setGoodsName(String goodsName) {
         this.goodsName = goodsName;
-        setCanSubmit(isRequiredParametersNotNull());
     }
 
     public String getGoodsCatID() {
@@ -80,7 +78,6 @@ public class CommodityRequest {
 
     public void setGoodsNum(String goodsNum) {
         this.goodsNum = goodsNum;
-        setCanSubmit(isRequiredParametersNotNull());
     }
 
     public String getGoodsUnitID() {
@@ -115,7 +112,6 @@ public class CommodityRequest {
 
     public void setCostPrice(String costPrice) {
         this.costPrice = costPrice;
-        setCanSubmit(isRequiredParametersNotNull());
     }
 
     public String getSalePrice() {
@@ -196,24 +192,6 @@ public class CommodityRequest {
 
     public void setStoreWarningStockNum(String storeWarningStockNum) {
         this.storeWarningStockNum = storeWarningStockNum;
-    }
-
-    public boolean isCanSubmit() {
-        return isCanSubmit;
-    }
-
-    public void setCanSubmit(boolean canSubmit) {
-        this.isCanSubmit = canSubmit;
-    }
-
-    private boolean isRequiredParametersNotNull() {
-        return !TextUtils.isEmpty(goodsName) &&
-                !TextUtils.isEmpty(goodsNum) &&
-                !TextUtils.isEmpty(goodsBrand) &&
-                !TextUtils.isEmpty(goodsCatID) &&
-                !TextUtils.isEmpty(goodsAttr) &&
-                !TextUtils.isEmpty(goodsUnitID) &&
-                !TextUtils.isEmpty(goodsPosition);
     }
 
     public long getAddTime() {
