@@ -248,11 +248,6 @@ public interface ApiService {
 
 
     //--------------------------------------------------------项目--------------------------------------------------------
-    @GET("api/Project/proList")
-    //项目列表
-    Flowable<HttpResult<XiangmuModel>> xiangmuList(@Query("token") String token, @Query("uid") String uid, @Query("companyID") String companyID,
-                                                   @Query("per") String per, @Query("page") Integer page, @Query("keyword") String keyword);
-
     @GET("api/Project/proDetail")
         //项目详情
     Flowable<HttpResult<ProjectDetailsModel>> xmDetails(@Query("token") String token, @Query("uid") String uid, @Query("proID") String proID);

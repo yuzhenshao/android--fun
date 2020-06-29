@@ -4,28 +4,37 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.activity.khgl.MyCustomerActivity;
+import com.mfzn.deepuses.activity.project.ProjectManageActivity;
 import com.mfzn.deepuses.bass.BasicActivity;
 import com.mfzn.deepuses.bean.constants.ParameterConstant;
 import com.mfzn.deepuses.bean.request.sale.OrderOfferRequest;
 import com.mfzn.deepuses.bean.request.sale.OrderSalesRequest;
+import com.mfzn.deepuses.bean.response.settings.GoodsInfoResponse;
+import com.mfzn.deepuses.bean.response.settings.StoreResponse;
 import com.mfzn.deepuses.bean.response.store.StoreAllCheckListResponse;
 import com.mfzn.deepuses.common.PickerDialogView;
+import com.mfzn.deepuses.model.company.CityModel;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsSelectListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.SetCostActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.StoreListActivity;
 import com.mfzn.deepuses.utils.DateUtils;
+import com.mfzn.deepuses.utils.UserHelper;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -33,111 +42,148 @@ import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.XApi;
 
-public class AddOrderSalesActivity extends BasicActivity {
+public class AddOrderSalesActivity extends BaseAddCustomerAndGoodsActivity {
 
-    private final static int USER = 1;
-    private final static int GOODS = 2;
-    private final static int COST = 3;
+    private final static int STORE = 4;
+    private final static int PROJECT = 5;//非必填
 
-    @BindView(R.id.customer)
-    EditText customer;
-    @BindView(R.id.goods)
-    EditText goods;
-    @BindView(R.id.other_cost)
-    EditText otherCost;
     @BindView(R.id.discount_price)
     EditText discountPrice;
     @BindView(R.id.total_price)
     EditText totalPrice;
 
     @BindView(R.id.store)
-    EditText store;
+    EditText storeEdit;
     @BindView(R.id.rec_name)
-    EditText recName;
+    EditText recNameEdit;
     @BindView(R.id.rec_phone)
-    EditText recPhone;
+    EditText recPhoneEdit;
     @BindView(R.id.rec_area)
-    EditText recArea;
+    EditText recAreaEdit;
     @BindView(R.id.rec_address)
-    EditText recAddress;
+    EditText recAddressEdit;
     @BindView(R.id.project)
-    EditText project;
+    EditText projectEdit;
 
     @BindView(R.id.order_time)
-    EditText orderTime;
+    TextView orderTimeView;
     @BindView(R.id.out_num)
-    EditText outNum;
+    EditText outNumEdit;
     @BindView(R.id.remark)
-    EditText remark;
+    EditText remarkEdit;
     @BindView(R.id.user_name)
-    TextView userName;
-
-    @BindView(R.id.goods_price_container)
-    RelativeLayout goodsPriceContainer;
-    @BindView(R.id.number)
-    TextView number;
-    @BindView(R.id.price)
-    TextView price;
+    TextView userNameView;
     private boolean isRetail;
-
-    private OrderOfferRequest orderOfferRequest = new OrderOfferRequest();
+    private OrderSalesRequest request = new OrderSalesRequest();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         isRetail = getIntent().getBooleanExtra(ParameterConstant.IS_RETAIL_CREATE, false);
         mTitleBar.updateTitleBar(isRetail ? "新建零售订单" : "新建销售订单");
+        userNameView.setText(UserHelper.getU_name());
+        orderTimeView.setText(DateUtils.getDateFromMillsec(System.currentTimeMillis()));
     }
 
-    @OnClick({R.id.customer_select, R.id.goods_select, R.id.other_cost_select, R.id.order_time_select,
-            R.id.store_select, R.id.rec_area_select, R.id.project_select, R.id.btn_commit})
+    @OnClick({R.id.store_select, R.id.rec_area_select, R.id.project_select, R.id.btn_commit})
     public void viewClick(View v) {
+        super.viewClick(v);
         Intent intent = new Intent();
         switch (v.getId()) {
-            case R.id.customer_select:
-                intent.setClass(AddOrderSalesActivity.this, MyCustomerActivity.class);
-                startActivityForResult(intent, USER);
-                break;
-            case R.id.goods_select:
-                intent.setClass(AddOrderSalesActivity.this, GoodsSelectListActivity.class);
-                startActivityForResult(intent, GOODS);
-                break;
-            case R.id.other_cost_select:
-                intent.setClass(AddOrderSalesActivity.this, SetCostActivity.class);
-                startActivityForResult(intent, COST);
-                break;
-            case R.id.date_select:
-                PickerDialogView.showTimeSelect(this, new OnTimeSelectListener() {
-
-                    @Override
-                    public void onTimeSelect(Date date, View v) {
-                        orderTime.setText(DateUtils.dateFormat("yyyy/MM/dd", date));
-                    }
-                });
-                break;
             case R.id.store_select:
                 intent.setClass(AddOrderSalesActivity.this, StoreListActivity.class);
-                startActivityForResult(intent, USER);
+                intent.putExtra(ParameterConstant.IS_SELECTED, true);
+                startActivityForResult(intent, STORE);
                 break;
             case R.id.rec_area_select:
-                intent.setClass(AddOrderSalesActivity.this, GoodsSelectListActivity.class);
-                startActivityForResult(intent, GOODS);
+                PickerDialogView.showAddress(this, new onCityCallBack() {
+                    @Override
+                    public void cityModelSelected(CityModel citySelected) {
+                        if (citySelected != null) {
+                            recAreaEdit.setText(citySelected.getProvincename() + " " + citySelected.getCityname() + " " + citySelected.getAreaname());
+                            request.setRecAreaID(citySelected.getAreaid());
+                        }
+                    }
+
+                });
                 break;
             case R.id.project_select:
-                intent.setClass(AddOrderSalesActivity.this, SetCostActivity.class);
-                startActivityForResult(intent, COST);
-                break;
-            case R.id.btn_commit:
-                if (isRetail) {
-                    addOrderRetail();
-                } else {
-                    addOrderSales();
-                }
+                intent.setClass(AddOrderSalesActivity.this, ProjectManageActivity.class);
+                intent.putExtra(ParameterConstant.IS_SELECTED, true);
+                startActivityForResult(intent, PROJECT);
                 break;
         }
     }
 
-    private OrderSalesRequest request;
+    @Override
+    protected void commitAction() {
+        String mTotalPrice = totalPrice.getText().toString();
+        String mdiscountPrice = discountPrice.getText().toString();
+        if (TextUtils.isEmpty(mTotalPrice)) {
+            showToast("请输入单据总价格");
+            return;
+        }
+        if (TextUtils.isEmpty(mdiscountPrice)) {
+            showToast("请输入优惠金额");
+            return;
+        }
+        request.setCompanyCustomerID(companyCustomerID);
+        request.setOrderGoodsStr(orderGoodsStr);
+        request.setOtherCostStr(otherCostStr);
+        request.setDiscountAmount(mdiscountPrice);
+        request.setTotalMoney(mTotalPrice);
+        request.setRealMoney(Integer.parseInt(mTotalPrice) - Integer.parseInt(mdiscountPrice) + "");
+        request.setOrderTime(System.currentTimeMillis());
+        request.setOutNum(outNumEdit.getText().toString());
+        request.setOrderMakerUserID(UserHelper.getUid());
+        request.setRemark(remarkEdit.getText().toString());
+
+        request.setRecName(recNameEdit.getText().toString());
+        request.setRecPhone(recPhoneEdit.getText().toString());
+        request.setRecAddress(recAddressEdit.getText().toString());
+
+        if (TextUtils.isEmpty(outNumEdit.getText().toString())) {
+            showToast("请输入外部报价单号");
+            return;
+        }
+
+        if (TextUtils.isEmpty(request.getOrderMakerUserID())) {
+            showToast("请输入公司客户");
+            return;
+        }
+        if (TextUtils.isEmpty(request.getOtherCostStr())) {
+            showToast("请输入其他费用信息");
+            return;
+        }
+        if (TextUtils.isEmpty(request.getOrderGoodsStr())) {
+            showToast("请输入商品信息");
+            return;
+        }
+
+        if (TextUtils.isEmpty(request.getRecName())) {
+            showToast("请输入收货人姓名");
+            return;
+        }
+
+        if (TextUtils.isEmpty(request.getRecPhone())) {
+            showToast("请输入联系方式");
+            return;
+        }
+
+        if (TextUtils.isEmpty(request.getRecAreaID())) {
+            showToast("请输入区域地址");
+            return;
+        }
+        if (TextUtils.isEmpty(request.getRecAddress())) {
+            showToast("请输入详细地址");
+            return;
+        }
+        if (isRetail) {
+            addOrderRetail();
+        } else {
+            addOrderSales();
+        }
+    }
 
     private void addOrderRetail() {
         ApiServiceManager.addOrderRetail(request)
@@ -180,14 +226,14 @@ public class AddOrderSalesActivity extends BasicActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == USER) {
-                orderOfferRequest.setCompanyCustomerID(data.getStringExtra("Id"));
-                customer.setText(data.getStringExtra("Name"));
-            } else if (requestCode == GOODS) {
-                orderOfferRequest.setOrderGoodsStr(data.getStringExtra("Name"));
-            } else if (requestCode == COST) {
-                orderOfferRequest.setOtherCostStr(data.getStringExtra("Name"));
+        if (resultCode == Activity.RESULT_OK && data != null) {
+            if (requestCode == STORE) {
+                StoreResponse storeResponse = (StoreResponse) data.getSerializableExtra(ParameterConstant.STORE);
+                request.setStoreID(storeResponse.getStoreID());
+                storeEdit.setText(storeResponse.getStoreName());
+            } else if (requestCode == PROJECT) {
+                request.setProID(data.getStringExtra("Id"));
+                projectEdit.setText(data.getStringExtra("Name"));
             }
         }
     }
@@ -197,4 +243,8 @@ public class AddOrderSalesActivity extends BasicActivity {
         return R.layout.activity_order_sales_create;
     }
 
+
+    public interface onCityCallBack {
+        void cityModelSelected(CityModel citySelected);
+    }
 }
