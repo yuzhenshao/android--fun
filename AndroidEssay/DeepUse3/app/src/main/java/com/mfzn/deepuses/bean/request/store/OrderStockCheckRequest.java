@@ -1,6 +1,6 @@
 package com.mfzn.deepuses.bean.request.store;
 
-public class OrderStockCheckAddResponse {
+public class OrderStockCheckRequest {
     private String orderID;
     private long orderTime;
     private String outNum;

@@ -27,7 +27,7 @@ import com.mfzn.deepuses.bean.request.sale.OrderSalesRequest;
 import com.mfzn.deepuses.bean.request.sale.OrderTakeGoodsBackRequest;
 import com.mfzn.deepuses.bean.request.sale.OrderTakeGoodsRequest;
 import com.mfzn.deepuses.bean.request.store.OrderAllotAddRequest;
-import com.mfzn.deepuses.bean.request.store.OrderStockCheckAddResponse;
+import com.mfzn.deepuses.bean.request.store.OrderStockCheckRequest;
 import com.mfzn.deepuses.bean.response.BusinessCardResponse;
 import com.mfzn.deepuses.bean.response.GoodsCategoryResponse;
 import com.mfzn.deepuses.bean.response.GoodsUnitResponse;
@@ -982,7 +982,7 @@ public interface ApiService {
 
     @POST("pss/Store/orderStockCheckEdit")
     Flowable<HttpResult> orderStockCheckEdit(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
-                                             @Body OrderStockCheckAddResponse request);
+                                             @Body OrderStockCheckRequest request);
 
     @FormUrlEncoded
     @POST("pss/Store/orderStockCheckDelBatch")
@@ -990,7 +990,7 @@ public interface ApiService {
 
     @POST("pss/Store/orderStockCheckAdd")
     Flowable<HttpResult> orderStockCheckAdd(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
-                                            @Body OrderStockCheckAddResponse request);
+                                            @Body OrderStockCheckRequest request);
 
     @GET("pss/Store/orderOtherInOutList")
     Flowable<HttpResult<OrderOtherInOutListResponse>> orderOtherInOutList(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,

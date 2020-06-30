@@ -72,6 +72,10 @@ import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsUnitListManagetA
 import com.mfzn.deepuses.purchasesellsave.setting.activity.OtherCostActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.StoreListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.SupplierListManagerActivity;
+import com.mfzn.deepuses.purchasesellsave.store.activity.AddOrderAllotActivity;
+import com.mfzn.deepuses.purchasesellsave.store.activity.AddOrderOtherInActivity;
+import com.mfzn.deepuses.purchasesellsave.store.activity.AddOrderOtherOutActivity;
+import com.mfzn.deepuses.purchasesellsave.store.activity.OrderOtherInOutListActivity;
 import com.mfzn.deepuses.purchasesellsave.store.activity.OrderStockCheckAddActivity;
 import com.mfzn.deepuses.purchasesellsave.store.activity.StockListActivity;
 import com.mfzn.deepuses.purchasesellsave.store.activity.StoreCheckListActivity;
@@ -784,19 +788,19 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
                         //TODO 暂时不做
                         break;
                     case 1:
-                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
+                        startActivity(new Intent(getActivity(), OrderOtherInOutListActivity.class));
                         break;
                     case 2:
-                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
+                        startActivity(new Intent(getActivity(), AddOrderOtherOutActivity.class));
                         break;
                     case 3:
-                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
+                        startActivity(new Intent(getActivity(), AddOrderOtherInActivity.class));
                         break;
                     case 4:
                         startActivity(new Intent(getActivity(), MyProjectActivity.class));
                         break;
                     case 5:
-                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
+                        startActivity(new Intent(getActivity(), AddOrderAllotActivity.class));
                         break;
                     case 6:
                         startActivity(new Intent(getActivity(), StoreCheckListActivity.class));

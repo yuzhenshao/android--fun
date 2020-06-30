@@ -126,27 +126,6 @@
 
                 <View style="@style/line_space" />
 
-                <LinearLayout
-                    style="@style/newly_ll_st"
-                    android:visibility="gone">
-
-                    <TextView
-                        style="@style/newly_tv_st"
-                        android:text="其他费用" />
-
-                    <EditText
-                        android:id="@+id/other_cost"
-                        style="@style/newly_et_st2"
-                        android:hint="@string/add_custom_select"
-                        android:paddingRight="0dp" />
-
-                    <ImageView
-                        android:id="@+id/other_cost_select"
-                        style="@style/bass_iv_you"
-                        android:layout_marginRight="@dimen/app_20dp" />
-
-                </LinearLayout>
-
                 <LinearLayout style="@style/newly_ll_st">
 
                     <TextView

@@ -47,13 +47,13 @@
                         android:text="供应商" />
 
                     <EditText
-                        android:id="@+id/customer"
+                        android:id="@+id/supplier"
                         style="@style/newly_et_st2"
                         android:hint="@string/add_custom_select"
                         android:paddingRight="0dp" />
 
                     <ImageView
-                        android:id="@+id/customer_select"
+                        android:id="@+id/supplier_select"
                         style="@style/bass_iv_you"
                         android:layout_marginRight="@dimen/app_20dp" />
 

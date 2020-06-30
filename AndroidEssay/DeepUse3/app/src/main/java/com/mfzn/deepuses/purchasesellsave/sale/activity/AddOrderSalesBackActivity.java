@@ -30,6 +30,10 @@ public class AddOrderSalesBackActivity extends BaseAddCustomerAndGoodsActivity {
 
     private final static int STORE = 4;
     private final static int PROJECT = 5;//非必填
+    @BindView(R.id.customer)
+    EditText customerEdit;
+    @BindView(R.id.other_cost)
+    EditText otherCostEdit;
     @BindView(R.id.discount_price)
     EditText discountPrice;
     @BindView(R.id.total_price)
@@ -39,14 +43,10 @@ public class AddOrderSalesBackActivity extends BaseAddCustomerAndGoodsActivity {
     EditText storeEdit;
     @BindView(R.id.project)
     EditText projectEdit;
-    @BindView(R.id.order_time)
-    TextView orderTimeView;
     @BindView(R.id.out_num)
     EditText outNumEdit;
     @BindView(R.id.remark)
     EditText remarkEdit;
-    @BindView(R.id.user_name)
-    TextView userNameView;
 
     private boolean isRetail;
     private OrderSalesBackRequest request = new OrderSalesBackRequest();
@@ -54,17 +54,20 @@ public class AddOrderSalesBackActivity extends BaseAddCustomerAndGoodsActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        userNameView.setText(UserHelper.getU_name());
-        orderTimeView.setText(DateUtils.getDateFromMillsec(System.currentTimeMillis()));
         isRetail = getIntent().getBooleanExtra(ParameterConstant.IS_RETAIL_CREATE, false);
         mTitleBar.updateTitleBar(isRetail ? "新建零售退货单" : "新建销售退货单");
     }
 
-    @OnClick({R.id.store_select, R.id.project_select})
+    @OnClick({R.id.customer_select, R.id.other_cost_select,R.id.store_select, R.id.project_select})
     public void viewClick(View v) {
-        super.viewClick(v);
         Intent intent = new Intent();
         switch (v.getId()) {
+            case R.id.customer_select:
+                turnToCustomer();
+                break;
+            case R.id.other_cost_select:
+                turnToCostSelect();
+                break;
             case R.id.store_select:
                 intent.setClass(this, StoreListActivity.class);
                 intent.putExtra(ParameterConstant.IS_SELECTED, true);
@@ -91,7 +94,7 @@ public class AddOrderSalesBackActivity extends BaseAddCustomerAndGoodsActivity {
             return;
         }
         request.setCompanyCustomerID(companyCustomerID);
-        request.setOrderGoodsStr(orderGoodsStr);
+        request.setOrderGoodsStr(getOrderGoodsStr());
         request.setOtherCostStr(otherCostStr);
         request.setDiscountAmount(mdiscountPrice);
         request.setTotalMoney(mTotalPrice);
@@ -174,6 +177,13 @@ public class AddOrderSalesBackActivity extends BaseAddCustomerAndGoodsActivity {
             } else if (requestCode == PROJECT) {
                 request.setProID(data.getStringExtra("Id"));
                 projectEdit.setText(data.getStringExtra("Name"));
+            } else if (requestCode == USER) {
+                request.setCompanyCustomerID(data.getStringExtra("Id"));
+                customerEdit.setText(data.getStringExtra("Name"));
+            } else if (requestCode == COST) {
+                String otherCostStr = data.getStringExtra("data");
+                request.setOtherCostStr(otherCostStr);
+                otherCostEdit.setText(TextUtils.isEmpty(otherCostStr) ? "" : "已填写");
             }
         }
     }

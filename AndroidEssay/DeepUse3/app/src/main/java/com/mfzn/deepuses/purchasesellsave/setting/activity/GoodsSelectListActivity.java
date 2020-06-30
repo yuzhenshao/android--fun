@@ -281,7 +281,6 @@ public class GoodsSelectListActivity extends BasicListActivity<GoodsInfoResponse
                     intent.putExtra("data", (Serializable) goodsSelectedList);
                     intent.putExtra("totalPrice", goodsPrice.getText());
                     intent.putExtra("goodsSize", goodsSize.getText());
-                    intent.putExtra("orderGoodsStr", getData());
                     setResult(RESULT_OK, intent);
                     finish();
                 }
@@ -298,23 +297,23 @@ public class GoodsSelectListActivity extends BasicListActivity<GoodsInfoResponse
     }
 
 
-    /*
-     * goodsID1（商品ID）,goodsNum1（商品数量）,uniformSalePrice1（零售价）
-     * ,$salePrice1（销售单价不含税）,$taxRate1（税率）,$salePriceWithTax1（销售价含税）,
-     * $money1（金额：数量*销售单价）;*/
-    private String getData() {
-        StringBuffer stringBuffer = new StringBuffer();
-        if (!ListUtil.isEmpty(goodsSelectedList)) {
-            for (GoodsInfoResponse goods : goodsSelectedList) {
-                stringBuffer.append(goods.getGoodsID()).append(",")
-                        .append(goods.getGoodsCount()).append(",")
-                        .append(goods.getSalePrice()).append(",")
-                        .append(goods.getSalePrice()).append(",")
-                        .append(goods.getTaxRate()).append(",")
-                        .append(goods.getSalePriceWithTax()).append(",")
-                        .append(goods.getGoodsCount() * getPrice(goods.getSalePrice())).append(";");
-            }
-        }
-        return stringBuffer.toString();
-    }
+//    /*
+//     * goodsID1（商品ID）,goodsNum1（商品数量）,uniformSalePrice1（零售价）
+//     * ,$salePrice1（销售单价不含税）,$taxRate1（税率）,$salePriceWithTax1（销售价含税）,
+//     * $money1（金额：数量*销售单价）;*/
+//    private String getData() {
+//        StringBuffer stringBuffer = new StringBuffer();
+//        if (!ListUtil.isEmpty(goodsSelectedList)) {
+//            for (GoodsInfoResponse goods : goodsSelectedList) {
+//                stringBuffer.append(goods.getGoodsID()).append(",")
+//                        .append(goods.getGoodsCount()).append(",")
+//                        .append(goods.getSalePrice()).append(",")
+//                        .append(goods.getSalePrice()).append(",")
+//                        .append(goods.getTaxRate()).append(",")
+//                        .append(goods.getSalePriceWithTax()).append(",")
+//                        .append(goods.getGoodsCount() * getPrice(goods.getSalePrice())).append(";");
+//            }
+//        }
+//        return stringBuffer.toString();
+//    }
 }

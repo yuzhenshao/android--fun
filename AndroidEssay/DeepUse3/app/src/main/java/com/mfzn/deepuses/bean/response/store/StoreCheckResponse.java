@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import com.libcommon.utils.ListUtil;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bean.request.CommodityRequest;
+import com.mfzn.deepuses.bean.response.settings.GoodsInfoResponse;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -63,7 +64,7 @@ public class StoreCheckResponse implements Serializable {
     private String statusText;
     private int systemSumCount;
     private int checkSumCount;
-    private List<StoreCheckGoodsResponse> goodsInfo;
+    private List<GoodsInfoResponse> goodsInfo;
 
     public String getOrderID() {
         return orderID;
@@ -233,18 +234,18 @@ public class StoreCheckResponse implements Serializable {
         this.checkSumCount = checkSumCount;
     }
 
-    public List<StoreCheckGoodsResponse> getGoodsInfo() {
+    public List<GoodsInfoResponse> getGoodsInfo() {
         return goodsInfo;
     }
 
-    public void setGoodsInfo(List<StoreCheckGoodsResponse> goodsInfo) {
+    public void setGoodsInfo(List<GoodsInfoResponse> goodsInfo) {
         this.goodsInfo = goodsInfo;
     }
 
     public List<String> getGoodsMainImageList() {
         List<String> images = new ArrayList<>();
         if (!ListUtil.isEmpty(goodsInfo)) {
-            for (StoreCheckGoodsResponse goodsResponse : goodsInfo) {
+            for (GoodsInfoResponse goodsResponse : goodsInfo) {
                 if (!TextUtils.isEmpty(goodsResponse.getGoodsMainImage())) {
                     images.add(goodsResponse.getGoodsMainImage());
                 }

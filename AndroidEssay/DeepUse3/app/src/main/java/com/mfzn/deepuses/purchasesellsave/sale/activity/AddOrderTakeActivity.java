@@ -37,10 +37,10 @@ import cn.droidlover.xdroidmvp.net.XApi;
 
 public class AddOrderTakeActivity extends BaseAddCustomerAndGoodsActivity {
 
-
+    @BindView(R.id.customer)
+    EditText customerEdit;
     @BindView(R.id.store)
     EditText storeEdit;
-
     @BindView(R.id.rec_name)
     EditText recNameEdit;
     @BindView(R.id.rec_phone)
@@ -50,12 +50,8 @@ public class AddOrderTakeActivity extends BaseAddCustomerAndGoodsActivity {
     @BindView(R.id.rec_address)
     EditText recAddressEdit;
 
-    @BindView(R.id.order_time)
-    TextView orderTimeView;
     @BindView(R.id.out_num)
     EditText outNumEdit;
-    @BindView(R.id.user_name)
-    TextView userNameView;
     @BindView(R.id.remark)
     EditText remarkEdit;
     private final static int STORE = 4;
@@ -64,16 +60,16 @@ public class AddOrderTakeActivity extends BaseAddCustomerAndGoodsActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        userNameView.setText(UserHelper.getU_name());
-        orderTimeView.setText(DateUtils.getDateFromMillsec(System.currentTimeMillis()));
         mTitleBar.updateTitleBar("新建个人领货单");
     }
 
-    @OnClick({R.id.store_select, R.id.rec_area_select})
+    @OnClick({R.id.customer_select,R.id.store_select, R.id.rec_area_select})
     public void viewClick(View v) {
-        super.viewClick(v);
         Intent intent = new Intent();
         switch (v.getId()) {
+            case R.id.customer_select:
+                turnToCustomer();
+                break;
             case R.id.store_select:
                 intent.setClass(this, StoreListActivity.class);
                 intent.putExtra(ParameterConstant.IS_SELECTED, true);
@@ -97,7 +93,7 @@ public class AddOrderTakeActivity extends BaseAddCustomerAndGoodsActivity {
     @Override
     protected void commitAction() {
         request.setTakerUserID(companyCustomerID);
-        request.setOrderGoodsStr(orderGoodsStr);
+        request.setOrderGoodsStr(getOrderGoodsStr());
         request.setOrderTime(System.currentTimeMillis());
         request.setOutNum(outNumEdit.getText().toString());
         request.setOrderMakerUserID(UserHelper.getUid());
@@ -170,6 +166,9 @@ public class AddOrderTakeActivity extends BaseAddCustomerAndGoodsActivity {
                 StoreResponse storeResponse = (StoreResponse) data.getSerializableExtra(ParameterConstant.STORE);
                 request.setStoreID(storeResponse.getStoreID());
                 storeEdit.setText(storeResponse.getStoreName());
+            } else if (requestCode == USER) {
+                request.setTakerUserID(data.getStringExtra("Id"));
+                customerEdit.setText(data.getStringExtra("Name"));
             }
         }
     }

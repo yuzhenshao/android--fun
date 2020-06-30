@@ -43,13 +43,15 @@
                 android:text="产品" />
 
             <EditText
+                android:id="@+id/goods"
                 style="@style/newly_et_st2"
                 android:hint="@string/add_custom_select"
                 android:paddingRight="0dp" />
 
             <ImageView
-                android:id="@+id/select_goods"
-                style="@style/btn_select" />
+                android:id="@+id/goods_select"
+                style="@style/bass_iv_you"
+                android:layout_marginRight="@dimen/app_20dp" />
 
         </LinearLayout>
 
@@ -60,9 +62,42 @@
             android:background="#ffffff"
             android:paddingLeft="@dimen/app_24dp" />
 
-        <View
-            android:id="@+id/line_space"
-            style="@style/line_space" />
+        <RelativeLayout
+            android:id="@+id/goods_price_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/app_20dp"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginRight="@dimen/app_20dp"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_gravity="center"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="数量：1"
+                android:textColor="#ff606266"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="价格：725.00"
+                android:textColor="#ff606266"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+
+        <View style="@style/line_space" />
 
         <LinearLayout style="@style/newly_ll_st">
 
@@ -77,7 +112,7 @@
                 android:paddingRight="0dp" />
 
             <ImageView
-                android:id="@+id/select_order_time"
+                android:id="@+id/order_time_select"
                 style="@style/btn_select" />
 
         </LinearLayout>
@@ -98,9 +133,7 @@
 
         <View style="@style/line_heng" />
 
-        <RelativeLayout
-            style="@style/newly_ll_st"
-            android:paddingRight="@dimen/app_24dp">
+        <RelativeLayout style="@style/newly_ll_st">
 
             <TextView
                 style="@style/newly_tv_st"
@@ -108,10 +141,14 @@
                 android:text="制单人" />
 
             <TextView
-                android:id="@+id/order_maker_user_name"
-                style="@style/edit_staff_tv"
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="销售张" />
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="@dimen/app_20dp"
+                android:textColor="#303133"
+                android:textSize="16sp" />
         </RelativeLayout>
 
 

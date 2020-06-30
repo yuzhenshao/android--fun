@@ -27,7 +27,7 @@ import com.mfzn.deepuses.bean.request.sale.OrderSalesRequest;
 import com.mfzn.deepuses.bean.request.sale.OrderTakeGoodsBackRequest;
 import com.mfzn.deepuses.bean.request.sale.OrderTakeGoodsRequest;
 import com.mfzn.deepuses.bean.request.store.OrderAllotAddRequest;
-import com.mfzn.deepuses.bean.request.store.OrderStockCheckAddResponse;
+import com.mfzn.deepuses.bean.request.store.OrderStockCheckRequest;
 import com.mfzn.deepuses.bean.response.GoodsCategoryResponse;
 import com.mfzn.deepuses.bean.response.GoodsUnitResponse;
 import com.mfzn.deepuses.bean.response.sale.OrderOfferListResponse;
@@ -71,12 +71,6 @@ import com.mfzn.deepuses.utils.UserHelper;
 import java.util.List;
 
 import io.reactivex.Flowable;
-import retrofit2.http.Body;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
-import retrofit2.http.POST;
-import retrofit2.http.Query;
 
 /**
  * @author yz @date 2020-02-27
@@ -428,7 +422,7 @@ public class ApiServiceManager {
         return ApiHelper.getApiService().orderStockCheckList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), kw, storeID, status);
     }
 
-    public static Flowable<HttpResult> editOrderStockCheck(OrderStockCheckAddResponse request) {
+    public static Flowable<HttpResult> editOrderStockCheck(OrderStockCheckRequest request) {
         return ApiHelper.getApiService().orderStockCheckEdit(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), request);
     }
 
@@ -436,7 +430,7 @@ public class ApiServiceManager {
         return ApiHelper.getApiService().orderStockCheckDelBatch(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), orderIDs);
     }
 
-    public static Flowable<HttpResult> addOrderStockChec(OrderStockCheckAddResponse request) {
+    public static Flowable<HttpResult> addOrderStockCheck(OrderStockCheckRequest request) {
         return ApiHelper.getApiService().orderStockCheckAdd(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), request);
     }
 

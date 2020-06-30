@@ -425,33 +425,19 @@
             android:screenOrientation="portrait"></activity>
 
         <activity
-            android:name=".purchasesellsave.store.activity.StockListActivity"
-            android:screenOrientation="portrait"></activity>
-
-        <activity
             android:name=".purchasesellsave.sale.activity.OrderSalesListActivity"
             android:screenOrientation="portrait"></activity>
         <activity
             android:name=".purchasesellsave.sale.activity.MyCustomerSelectActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".purchasesellsave.store.activity.OrderStockCheckAddActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity
             android:name=".purchasesellsave.sale.activity.OtherCostSelectActivity"
             android:screenOrientation="portrait"></activity>
-        <activity
-            android:name=".purchasesellsave.sale.activity.AddOrderAllotActivity"
-            android:screenOrientation="portrait"></activity>
+
         <activity
             android:name=".purchasesellsave.sale.activity.AddOrderOfferActivity"
             android:screenOrientation="portrait"></activity>
-        <activity
-            android:name=".purchasesellsave.sale.activity.AddOrderOtherInActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name=".purchasesellsave.sale.activity.AddOrderOtherOutActivity"
-            android:screenOrientation="portrait"></activity>
+
         <activity
             android:name=".purchasesellsave.sale.activity.AddOrderTakeActivity"
             android:screenOrientation="portrait"></activity>
@@ -463,6 +449,29 @@
             android:screenOrientation="portrait"></activity>
         <activity
             android:name=".purchasesellsave.sale.activity.AddOrderTakeBackActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".purchasesellsave.store.activity.StoreCheckListActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".purchasesellsave.store.activity.StockListActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".purchasesellsave.store.activity.OrderStockCheckAddActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".purchasesellsave.store.activity.AddOrderAllotActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".purchasesellsave.store.activity.AddOrderOtherInActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.store.activity.AddOrderOtherOutActivity"
             android:screenOrientation="portrait"></activity>
     </application>
 

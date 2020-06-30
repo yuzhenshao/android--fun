@@ -26,13 +26,11 @@ import cn.droidlover.xdroidmvp.router.Router;
 
 public class StoreCheckListActivity extends BasicListActivity<StoreCheckResponse> {
     private static int REQUESTCODE = 1001;
-    @BindView(R.id.serach_edit)
-    EditText serachEdit;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        serachEdit.setHint("搜索单据编号、商品名称、货号、编码");
+        initSearch("搜索单据编号、商品名称、货号、编码");
         mTitleBar.updateTitleBar("盘点", R.mipmap.icon_titlebar_add);
     }
 
@@ -75,19 +73,19 @@ public class StoreCheckListActivity extends BasicListActivity<StoreCheckResponse
         return mAdapter;
     }
 
-    @OnClick({R.id.filter, R.id.search_container})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.filter:
-                Router.newIntent(this).to(SelectTypeActivity.class)
-                        .requestCode(Constants.SELECT_BC)
-                        .anim(R.anim.pay_dialog_enter, R.anim.pay_dialog_exit)
-                        .launch();
-                break;
-            case R.id.search_container:
-                break;
-        }
-    }
+//    @OnClick({R.id.filter, R.id.search_container})
+//    public void onViewClicked(View view) {
+//        switch (view.getId()) {
+//            case R.id.filter:
+//                Router.newIntent(this).to(SelectTypeActivity.class)
+//                        .requestCode(Constants.SELECT_BC)
+//                        .anim(R.anim.pay_dialog_enter, R.anim.pay_dialog_exit)
+//                        .launch();
+//                break;
+//            case R.id.search_container:
+//                break;
+//        }
+//    }
 
     protected void rightPressedAction() {
         startActivityForResult(new Intent(this, OrderStockCheckAddActivity.class), REQUESTCODE);
