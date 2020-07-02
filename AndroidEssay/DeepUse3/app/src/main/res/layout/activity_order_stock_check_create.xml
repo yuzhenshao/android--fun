@@ -127,7 +127,7 @@
 
             <EditText
                 android:id="@+id/out_num"
-                style="@style/newly_et_st2"
+                style="@style/newly_et_st"
                 android:hint="@string/add_custom_shuru" />
         </LinearLayout>
 

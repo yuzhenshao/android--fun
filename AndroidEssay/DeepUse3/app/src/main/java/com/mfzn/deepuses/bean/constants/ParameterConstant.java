@@ -29,4 +29,7 @@ public interface ParameterConstant {
     //销售
     String IS_RETAIL_CREATE = "isRetail";
 
+
+    String MAP_SHOP_ID="mapShopID";
+
 }

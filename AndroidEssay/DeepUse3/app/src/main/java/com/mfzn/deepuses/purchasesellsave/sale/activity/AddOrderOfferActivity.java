@@ -80,9 +80,9 @@ public class AddOrderOfferActivity extends BaseAddCustomerAndGoodsActivity {
         orderOfferRequest.setDiscountAmount(mdiscountPrice);
         orderOfferRequest.setTotalMoney(mTotalPrice);
         orderOfferRequest.setRealMoney(Integer.parseInt(mTotalPrice) - Integer.parseInt(mdiscountPrice) + "");
-        orderOfferRequest.setOrderTime(System.currentTimeMillis());
+        orderOfferRequest.setOrderTime(orderTime);
         orderOfferRequest.setOutNum(outNum.getText().toString());
-        orderOfferRequest.setOrderMakerUserID(UserHelper.getUid());
+        orderOfferRequest.setOrderMakerUserID(UserHelper.getUserId());
         orderOfferRequest.setRemark(remark.getText().toString());
         if (TextUtils.isEmpty(outNum.getText().toString())) {
             showToast("请输入外部报价单号");

@@ -44,8 +44,8 @@ import cn.droidlover.xdroidmvp.net.XApi;
 
 public class AddOrderAllotActivity extends BaseAddCustomerAndGoodsActivity {
 
-    private final static int STORE_IN = 2;
-    private final static int STORE_OUT = 3;
+    private final static int STORE_IN = 4;
+    private final static int STORE_OUT = 5;
 
     @BindView(R.id.store_out)
     EditText storeOutEdit;
@@ -62,13 +62,10 @@ public class AddOrderAllotActivity extends BaseAddCustomerAndGoodsActivity {
         mTitleBar.updateTitleBar("新建调拨单");
     }
 
-    @OnClick({R.id.goods_select, R.id.store_out_select, R.id.store_in_select})
+    @OnClick({R.id.store_out_select, R.id.store_in_select})
     public void viewClick(View v) {
         Intent intent = new Intent();
         switch (v.getId()) {
-            case R.id.goods_select:
-                turnToGoodsSelected();
-                break;
             case R.id.store_out_select:
                 intent.setClass(this, StoreListActivity.class);
                 intent.putExtra(ParameterConstant.IS_SELECTED, true);
@@ -84,9 +81,9 @@ public class AddOrderAllotActivity extends BaseAddCustomerAndGoodsActivity {
 
     @Override
     protected void commitAction() {
-        orderAllotAddRequest.setOrderTime(System.currentTimeMillis());
+        orderAllotAddRequest.setOrderTime(orderTime);
         orderAllotAddRequest.setOutNum(outNumEdit.getText().toString());
-        orderAllotAddRequest.setOrderMakerUserID(UserHelper.getUid());
+        orderAllotAddRequest.setOrderMakerUserID(UserHelper.getUserId());
 
         if (TextUtils.isEmpty(orderAllotAddRequest.getOrderGoodsStr())) {
             showToast("请输入商品信息");

@@ -7,10 +7,9 @@ import android.support.v7.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.libcommon.utils.ListUtil;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bean.response.store.OrderOtherInOutListResponse;
-import com.mfzn.deepuses.bean.response.store.StoreCheckResponse;
-import com.mfzn.deepuses.utils.DateUtils;
 
 import java.util.List;
 

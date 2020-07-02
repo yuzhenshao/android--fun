@@ -35,10 +35,7 @@ public abstract class BaseAddCustomerAndGoodsActivity extends BasicActivity {
     protected final static int USER = 1;
     protected final static int GOODS = 2;
     protected final static int COST = 3;
-    protected String otherCostStr;
-    protected String orderGoodsStr;
-    protected String companyCustomerID;
-    protected long orderTime;
+    protected int orderTime;
 
     protected List<GoodsInfoResponse> goodsSelectedList = new ArrayList<>();
     protected GoodsAdapter adapter;
@@ -84,7 +81,7 @@ public abstract class BaseAddCustomerAndGoodsActivity extends BasicActivity {
 
             @Override
             public void onTimeSelect(Date date, View v) {
-                orderTime = date.getTime();
+                orderTime = (int) (date.getTime() / 1000);
                 orderTimeEdit.setText(DateUtils.dateFormat("yyyy/MM/dd", date));
             }
         });
@@ -132,7 +129,20 @@ public abstract class BaseAddCustomerAndGoodsActivity extends BasicActivity {
                         .append(goods.getSalePrice()).append(",")
                         .append(goods.getTaxRate()).append(",")
                         .append(goods.getSalePriceWithTax()).append(",")
-                        .append(goods.getGoodsCount() * getPrice(goods.getSalePrice())).append(";");
+                        .append(goods.getGoodsCount() * getPrice(goods.getSalePrice())).append(",")
+                        .append(goods.getCostPrice()).append(";");
+            }
+        }
+        return stringBuffer.toString();
+    }
+
+    //goodsID1（商品ID）,goodsNum1（商品数量）
+    protected String getOrderGoodsIdAndNum() {
+        StringBuffer stringBuffer = new StringBuffer();
+        if (!ListUtil.isEmpty(goodsSelectedList)) {
+            for (GoodsInfoResponse goods : goodsSelectedList) {
+                stringBuffer.append(goods.getGoodsID()).append(",")
+                        .append(goods.getGoodsCount()).append(";");
             }
         }
         return stringBuffer.toString();

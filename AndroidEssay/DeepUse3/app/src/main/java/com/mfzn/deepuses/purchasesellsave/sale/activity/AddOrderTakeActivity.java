@@ -92,11 +92,10 @@ public class AddOrderTakeActivity extends BaseAddCustomerAndGoodsActivity {
 
     @Override
     protected void commitAction() {
-        request.setTakerUserID(companyCustomerID);
         request.setOrderGoodsStr(getOrderGoodsStr());
-        request.setOrderTime(System.currentTimeMillis());
+        request.setOrderTime(orderTime);
         request.setOutNum(outNumEdit.getText().toString());
-        request.setOrderMakerUserID(UserHelper.getUid());
+        request.setOrderMakerUserID(UserHelper.getUserId());
         request.setRemark(remarkEdit.getText().toString());
         request.setRecName(recNameEdit.getText().toString());
         request.setRecPhone(recPhoneEdit.getText().toString());

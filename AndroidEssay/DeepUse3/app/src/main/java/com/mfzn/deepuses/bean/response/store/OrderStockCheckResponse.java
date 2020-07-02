@@ -1,7 +1,21 @@
 package com.mfzn.deepuses.bean.response.store;
 
-public class OrderStockCheckResponse {
+import android.text.TextUtils;
 
+import com.libcommon.utils.ListUtil;
+import com.mfzn.deepuses.R;
+import com.mfzn.deepuses.bean.response.settings.GoodsInfoResponse;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class OrderStockCheckResponse {
+    //0.待审核；1.盈亏处理中；2.审核被拒；3盈亏处理完成；4.无盈亏
+    private final static int PENDING_REVIEW = 0;
+    private final static int PROFIT_LOSS_ING = 1;
+    private final static int PROFIT_LOSS_FAILED = 2;
+    private final static int PROFIT_LOSS_SUCCEED = 3;
+    private final static int NO_PROFIT_LOSS = 4;
 
     /**
      * orderID : 1
@@ -27,6 +41,7 @@ public class OrderStockCheckResponse {
      * checkSumCount : 99
      */
 
+
     private String orderID;
     private String companyID;
     private String shopID;
@@ -41,13 +56,15 @@ public class OrderStockCheckResponse {
     private int isCheck;
     private long checkTime;
     private String checkUserID;
-    private int status;
+    private int status;// 4,状态：0.待审核；1.盈亏处理中；2.审核被拒；3盈亏处理完成；4.无盈亏
     private String checkUserName;
     private String checkNote;
     private long addTime;
     private String statusText;
     private int systemSumCount;
     private int checkSumCount;
+
+    private List<GoodsInfoResponse> goodsInfo;
 
     public String getOrderID() {
         return orderID;
@@ -215,6 +232,42 @@ public class OrderStockCheckResponse {
 
     public void setCheckSumCount(int checkSumCount) {
         this.checkSumCount = checkSumCount;
+    }
+
+    public List<GoodsInfoResponse> getGoodsInfo() {
+        return goodsInfo;
+    }
+
+    public void setGoodsInfo(List<GoodsInfoResponse> goodsInfo) {
+        this.goodsInfo = goodsInfo;
+    }
+
+    public List<String> getGoodsMainImageList() {
+        List<String> images = new ArrayList<>();
+        if (!ListUtil.isEmpty(goodsInfo)) {
+            for (GoodsInfoResponse goodsResponse : goodsInfo) {
+                if (!TextUtils.isEmpty(goodsResponse.getGoodsMainImage())) {
+                    images.add(goodsResponse.getGoodsMainImage());
+                }
+            }
+        }
+        return images;
+    }
+
+    public int getStatusResId() {
+        switch (status) {
+            case PENDING_REVIEW:
+                return R.mipmap.examine_pending;
+            case PROFIT_LOSS_ING:
+                return R.mipmap.icon_ongoing;
+            case PROFIT_LOSS_FAILED:
+                return R.mipmap.examine_unpass;
+            case PROFIT_LOSS_SUCCEED:
+                return R.mipmap.profit_loss_successed;
+            case NO_PROFIT_LOSS:
+                return R.mipmap.no_profit_loss;
+        }
+        return R.mipmap.examine_pending;
     }
 }
 

@@ -3,28 +3,21 @@ package com.mfzn.deepuses.purchasesellsave.store.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.View;
-import android.widget.EditText;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.mfzn.deepuses.R;
-import com.mfzn.deepuses.activity.khgl.SelectTypeActivity;
 import com.mfzn.deepuses.bass.BasicListActivity;
-import com.mfzn.deepuses.bean.response.store.StoreAllCheckListResponse;
-import com.mfzn.deepuses.bean.response.store.StoreCheckResponse;
+import com.mfzn.deepuses.bean.response.store.OrderStockCheckListResponse;
+import com.mfzn.deepuses.bean.response.store.OrderStockCheckResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.purchasesellsave.store.adapter.StoreCheckAdapter;
-import com.mfzn.deepuses.utils.Constants;
 
-import butterknife.BindView;
-import butterknife.OnClick;
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.XApi;
-import cn.droidlover.xdroidmvp.router.Router;
 
-public class StoreCheckListActivity extends BasicListActivity<StoreCheckResponse> {
+public class StoreCheckListActivity extends BasicListActivity<OrderStockCheckResponse> {
     private static int REQUESTCODE = 1001;
 
     @Override
@@ -47,15 +40,15 @@ public class StoreCheckListActivity extends BasicListActivity<StoreCheckResponse
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(bindToLifecycle())
-                .subscribe(new ApiSubscriber<HttpResult<StoreAllCheckListResponse>>() {
+                .subscribe(new ApiSubscriber<HttpResult<OrderStockCheckListResponse>>() {
                     @Override
                     protected void onFail(NetError error) {
                         showErrorView(error.getMessage());
                     }
 
                     @Override
-                    public void onNext(HttpResult<StoreAllCheckListResponse> reuslt) {
-                        StoreAllCheckListResponse response = reuslt.getRes();
+                    public void onNext(HttpResult<OrderStockCheckListResponse> reuslt) {
+                        OrderStockCheckListResponse response = reuslt.getRes();
                         if (response != null) {
                             if (response.getData() != null) {
                                 refreshSource(response.getData());
@@ -88,7 +81,7 @@ public class StoreCheckListActivity extends BasicListActivity<StoreCheckResponse
 //    }
 
     protected void rightPressedAction() {
-        startActivityForResult(new Intent(this, OrderStockCheckAddActivity.class), REQUESTCODE);
+        startActivityForResult(new Intent(this, AddOrderStockCheckActivity.class), REQUESTCODE);
 
     }
 

@@ -26,7 +26,7 @@ public class StoreAdapter extends BaseQuickAdapter<StoreResponse, BaseViewHolder
     @Override
     protected void convert(BaseViewHolder helper, StoreResponse item) {
         helper.setText(R.id.store_name, item.getStoreName())
-                .setText(R.id.user_name, context.getResources().getString(R.string.store_user_name, item.getUserName(), item.getContactPhone()))
+                .setText(R.id.user_name, context.getResources().getString(R.string.store_user_name_phone, item.getUserName(), item.getContactPhone()))
                 .setText(R.id.store_address, context.getResources().getString(R.string.store_address,
                         TextUtils.isEmpty(item.getStoreAddress()) ? "暂无" : item.getStoreAddress()));
     }

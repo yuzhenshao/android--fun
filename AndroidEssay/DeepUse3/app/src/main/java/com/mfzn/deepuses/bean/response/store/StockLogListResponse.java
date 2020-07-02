@@ -41,7 +41,7 @@ public class StockLogListResponse {
         private int per_page;
         private int current_page;
         private int last_page;
-        private List<DataBean> data;
+        private List<StockLogResponse> data;
 
         public int getTotal() {
             return total;
@@ -75,15 +75,15 @@ public class StockLogListResponse {
             this.last_page = last_page;
         }
 
-        public List<DataBean> getData() {
+        public List<StockLogResponse> getData() {
             return data;
         }
 
-        public void setData(List<DataBean> data) {
+        public void setData(List<StockLogResponse> data) {
             this.data = data;
         }
 
-        public static class DataBean {
+        public static class StockLogResponse {
             /**
              * dataID : 41
              * goodsID : 9

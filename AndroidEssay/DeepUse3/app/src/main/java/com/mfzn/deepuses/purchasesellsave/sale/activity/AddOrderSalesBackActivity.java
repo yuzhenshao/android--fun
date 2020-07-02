@@ -93,15 +93,13 @@ public class AddOrderSalesBackActivity extends BaseAddCustomerAndGoodsActivity {
             showToast("请输入优惠金额");
             return;
         }
-        request.setCompanyCustomerID(companyCustomerID);
         request.setOrderGoodsStr(getOrderGoodsStr());
-        request.setOtherCostStr(otherCostStr);
         request.setDiscountAmount(mdiscountPrice);
         request.setTotalMoney(mTotalPrice);
         request.setRealMoney(Integer.parseInt(mTotalPrice) - Integer.parseInt(mdiscountPrice) + "");
-        request.setOrderTime(System.currentTimeMillis());
+        request.setOrderTime(orderTime);
         request.setOutNum(outNumEdit.getText().toString());
-        request.setOrderMakerUserID(UserHelper.getUid());
+        request.setOrderMakerUserID(UserHelper.getUserId());
         request.setRemark(remarkEdit.getText().toString());
 
         if (TextUtils.isEmpty(outNumEdit.getText().toString())) {

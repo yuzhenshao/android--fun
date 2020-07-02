@@ -68,7 +68,7 @@ public class AddOrderOtherInActivity extends BaseAddCustomerAndGoodsActivity {
         mTitleBar.updateTitleBar("新建其他入库单");
     }
 
-    @OnClick({R.id.supplier_select, R.id.store_in_select, R.id.goods_select, R.id.order_time_select, R.id.btn_commit})
+    @OnClick({R.id.supplier_select, R.id.store_in_select, R.id.order_time_select, R.id.btn_commit})
     public void viewClick(View v) {
         Intent intent = new Intent();
         switch (v.getId()) {
@@ -97,7 +97,7 @@ public class AddOrderOtherInActivity extends BaseAddCustomerAndGoodsActivity {
             return;
         }
         orderOtherInRequest.setOrderTime(orderTime);
-        orderOtherInRequest.setOrderMakerUserID(UserHelper.getUid());
+        orderOtherInRequest.setOrderMakerUserID(UserHelper.getUserId());
         orderOtherInRequest.setOrderGoodsStr(getOrderGoodsStr());
         orderOtherInRequest.setDiscountAmount(mdiscountPrice);
         orderOtherInRequest.setTotalMoney(mTotalPrice);

@@ -71,11 +71,10 @@ public class AddOrderTakeBackActivity extends BaseAddCustomerAndGoodsActivity {
 
     @Override
     protected void commitAction() {
-        request.setTakerUserID(companyCustomerID);
-        request.setOrderGoodsStr(getOrderGoodsStr());
-        request.setOrderTime(System.currentTimeMillis());
+        request.setOrderGoodsStr(getOrderGoodsIdAndNum());
+        request.setOrderTime(orderTime);
         request.setOutNum(outNumEdit.getText().toString());
-        request.setOrderMakerUserID(UserHelper.getUid());
+        request.setOrderMakerUserID(UserHelper.getUserId());
         request.setRemark(remarkEdit.getText().toString());
 
         if (TextUtils.isEmpty(request.getOrderMakerUserID())) {

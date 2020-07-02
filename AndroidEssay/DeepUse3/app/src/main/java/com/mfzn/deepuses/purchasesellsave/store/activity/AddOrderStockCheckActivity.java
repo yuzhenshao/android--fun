@@ -13,7 +13,7 @@ import com.mfzn.deepuses.bean.constants.ParameterConstant;
 import com.mfzn.deepuses.bean.request.store.OrderStockCheckRequest;
 import com.mfzn.deepuses.bean.response.settings.GoodsInfoResponse;
 import com.mfzn.deepuses.bean.response.settings.StoreResponse;
-import com.mfzn.deepuses.bean.response.store.StoreCheckResponse;
+import com.mfzn.deepuses.bean.response.store.OrderStockCheckResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.purchasesellsave.sale.activity.BaseAddCustomerAndGoodsActivity;
@@ -29,7 +29,7 @@ import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.XApi;
 
-public class OrderStockCheckAddActivity extends BaseAddCustomerAndGoodsActivity {
+public class AddOrderStockCheckActivity extends BaseAddCustomerAndGoodsActivity {
 
     @BindView(R.id.store_name)
     EditText storeEdit;
@@ -41,7 +41,7 @@ public class OrderStockCheckAddActivity extends BaseAddCustomerAndGoodsActivity 
 
     private static int STORE_CODE = 100;
 
-    private StoreCheckResponse storeCheckResponse;
+    private OrderStockCheckResponse storeCheckResponse;
     private OrderStockCheckRequest request = new OrderStockCheckRequest();
 
     @Override
@@ -56,7 +56,7 @@ public class OrderStockCheckAddActivity extends BaseAddCustomerAndGoodsActivity 
     }
 
     private void initData() {
-        storeCheckResponse = (StoreCheckResponse) getIntent().getSerializableExtra(ParameterConstant.STORE);
+        storeCheckResponse = (OrderStockCheckResponse) getIntent().getSerializableExtra(ParameterConstant.STORE);
         mTitleBar.updateTitleBar(storeCheckResponse == null ? "新建盘点单" : "编辑盘点单");
         if (storeCheckResponse != null) {
             List<GoodsInfoResponse> goods = storeCheckResponse.getGoodsInfo();
@@ -102,7 +102,8 @@ public class OrderStockCheckAddActivity extends BaseAddCustomerAndGoodsActivity 
         switch (v.getId()) {
             case R.id.select_store:
                 Intent storeIntent = new Intent();
-                storeIntent.setClass(OrderStockCheckAddActivity.this, StoreListActivity.class);
+                storeIntent.setClass(AddOrderStockCheckActivity.this, StoreListActivity.class);
+                storeIntent.putExtra(ParameterConstant.IS_SELECTED,true);
                 startActivityForResult(storeIntent, STORE_CODE);
                 break;
 

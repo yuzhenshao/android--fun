@@ -40,10 +40,10 @@ import cn.droidlover.xdroidmvp.net.XApi;
 
 public class AddOrderOtherOutActivity extends BaseAddCustomerAndGoodsActivity {
 
-    private final static int STORE = 1;
+    private final static int STORE = 4;
 
     @BindView(R.id.customer)
-    EditText customer;
+    EditText customerEdit;
     @BindView(R.id.discount_price)
     EditText discountPrice;
     @BindView(R.id.total_price)
@@ -70,7 +70,6 @@ public class AddOrderOtherOutActivity extends BaseAddCustomerAndGoodsActivity {
 
     @OnClick({R.id.customer_select, R.id.store_select, R.id.rec_area_select,})
     public void viewClick(View v) {
-
         switch (v.getId()) {
             case R.id.customer_select:
                 turnToCustomer();
@@ -98,10 +97,9 @@ public class AddOrderOtherOutActivity extends BaseAddCustomerAndGoodsActivity {
 
     @Override
     protected void commitAction() {
-        request.setCompanyCustomerID(companyCustomerID);
         request.setOrderGoodsStr(getOrderGoodsStr());
-        request.setOrderTime(System.currentTimeMillis());
-        request.setOrderMakerUserID(UserHelper.getUid());
+        request.setOrderTime(orderTime);
+        request.setOrderMakerUserID(UserHelper.getUserId());
         request.setRecName(recNameEdit.getText().toString());
         request.setRecPhone(recPhoneEdit.getText().toString());
         request.setRecAddress(recAddressEdit.getText().toString());
@@ -166,6 +164,9 @@ public class AddOrderOtherOutActivity extends BaseAddCustomerAndGoodsActivity {
                 StoreResponse inStore = (StoreResponse) data.getSerializableExtra(ParameterConstant.STORE);
                 request.setStoreID(inStore.getStoreID());
                 storeEdit.setText(inStore.getStoreName());
+            }else if (requestCode == USER) {
+                request.setCompanyCustomerID(data.getStringExtra("Id"));
+                customerEdit.setText(data.getStringExtra("Name"));
             }
         }
     }

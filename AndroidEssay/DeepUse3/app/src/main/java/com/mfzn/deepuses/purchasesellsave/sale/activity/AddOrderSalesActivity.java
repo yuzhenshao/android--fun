@@ -7,34 +7,17 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-
-import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
-import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.mfzn.deepuses.R;
-import com.mfzn.deepuses.activity.khgl.MyCustomerActivity;
 import com.mfzn.deepuses.activity.project.ProjectManageActivity;
-import com.mfzn.deepuses.bass.BasicActivity;
 import com.mfzn.deepuses.bean.constants.ParameterConstant;
-import com.mfzn.deepuses.bean.request.sale.OrderOfferRequest;
 import com.mfzn.deepuses.bean.request.sale.OrderSalesRequest;
-import com.mfzn.deepuses.bean.response.settings.GoodsInfoResponse;
 import com.mfzn.deepuses.bean.response.settings.StoreResponse;
-import com.mfzn.deepuses.bean.response.store.StoreAllCheckListResponse;
 import com.mfzn.deepuses.common.PickerDialogView;
 import com.mfzn.deepuses.model.company.CityModel;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
-import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsSelectListActivity;
-import com.mfzn.deepuses.purchasesellsave.setting.activity.SetCostActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.StoreListActivity;
-import com.mfzn.deepuses.utils.DateUtils;
 import com.mfzn.deepuses.utils.UserHelper;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -83,7 +66,7 @@ public class AddOrderSalesActivity extends BaseAddCustomerAndGoodsActivity {
         mTitleBar.updateTitleBar(isRetail ? "新建零售订单" : "新建销售订单");
     }
 
-    @OnClick({R.id.customer_select, R.id.other_cost_select,R.id.store_select, R.id.rec_area_select, R.id.project_select, R.id.btn_commit})
+    @OnClick({R.id.customer_select, R.id.other_cost_select,R.id.store_select, R.id.rec_area_select, R.id.project_select})
     public void viewClick(View v) {
         Intent intent = new Intent();
         switch (v.getId()) {
@@ -107,7 +90,6 @@ public class AddOrderSalesActivity extends BaseAddCustomerAndGoodsActivity {
                             request.setRecAreaID(citySelected.getAreaid());
                         }
                     }
-
                 });
                 break;
             case R.id.project_select:
@@ -130,15 +112,13 @@ public class AddOrderSalesActivity extends BaseAddCustomerAndGoodsActivity {
             showToast("请输入优惠金额");
             return;
         }
-        request.setCompanyCustomerID(companyCustomerID);
         request.setOrderGoodsStr(getOrderGoodsStr());
-        request.setOtherCostStr(otherCostStr);
         request.setDiscountAmount(mdiscountPrice);
         request.setTotalMoney(mTotalPrice);
         request.setRealMoney(Integer.parseInt(mTotalPrice) - Integer.parseInt(mdiscountPrice) + "");
-        request.setOrderTime(System.currentTimeMillis());
+        request.setOrderTime(orderTime);
         request.setOutNum(outNumEdit.getText().toString());
-        request.setOrderMakerUserID(UserHelper.getUid());
+        request.setOrderMakerUserID(UserHelper.getUserId());
         request.setRemark(remarkEdit.getText().toString());
 
         request.setRecName(recNameEdit.getText().toString());
@@ -242,7 +222,7 @@ public class AddOrderSalesActivity extends BaseAddCustomerAndGoodsActivity {
                 customerEdit.setText(data.getStringExtra("Name"));
             } else if (requestCode == COST) {
                 String otherCostStr = data.getStringExtra("data");
-                request.setOtherCostStr(otherCostStr);
+               // request.setOtherCostStr(otherCostStr);
                 otherCostEdit.setText(TextUtils.isEmpty(otherCostStr) ? "" : "已填写");
             }
         }

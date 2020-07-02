@@ -5,12 +5,8 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.hmy.popwindow.PopWindow;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.activity.KbbzActivity;
@@ -41,7 +37,6 @@ import com.mfzn.deepuses.adapter.home.HomeCzzxAdapter;
 import com.mfzn.deepuses.adapter.home.HomeKbppAdapter;
 import com.mfzn.deepuses.adapter.home.HomeKehuglAdapter;
 import com.mfzn.deepuses.adapter.home.HomeKhglAdapter;
-import com.mfzn.deepuses.adapter.home.HomeListAdapter;
 import com.mfzn.deepuses.adapter.home.HomeTdglAdapter;
 import com.mfzn.deepuses.adapter.home.HomeWdxmAdapter;
 import com.mfzn.deepuses.bass.BaseMvpFragment;
@@ -50,13 +45,11 @@ import com.mfzn.deepuses.bean.response.UserResponse;
 import com.mfzn.deepuses.common.homecompany.HomeCompanyAdapter;
 import com.mfzn.deepuses.common.homecompany.HomeCompanyView;
 import com.mfzn.deepuses.model.LookQuanxian2Model;
-import com.mfzn.deepuses.model.LookQuanxianModel;
 import com.mfzn.deepuses.model.company.CompanyRepository;
 import com.mfzn.deepuses.model.company.SelectCompanyModel;
 import com.mfzn.deepuses.model.home.HomeShowModel;
 import com.mfzn.deepuses.model.home.JudgeLevelModel;
 import com.mfzn.deepuses.model.home.KanbDataModel;
-import com.mfzn.deepuses.net.ApiHelper;
 import com.mfzn.deepuses.present.fragment.GongzuoPresnet;
 import com.mfzn.deepuses.purchasesellsave.sale.activity.AddOrderOfferActivity;
 import com.mfzn.deepuses.purchasesellsave.sale.activity.AddOrderSalesActivity;
@@ -72,12 +65,17 @@ import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsUnitListManagetA
 import com.mfzn.deepuses.purchasesellsave.setting.activity.OtherCostActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.StoreListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.SupplierListManagerActivity;
+import com.mfzn.deepuses.purchasesellsave.shop.activity.AddShopActivity;
+import com.mfzn.deepuses.purchasesellsave.shop.activity.ShopListManagerActivity;
 import com.mfzn.deepuses.purchasesellsave.store.activity.AddOrderAllotActivity;
 import com.mfzn.deepuses.purchasesellsave.store.activity.AddOrderOtherInActivity;
 import com.mfzn.deepuses.purchasesellsave.store.activity.AddOrderOtherOutActivity;
+import com.mfzn.deepuses.purchasesellsave.store.activity.OrderAllotListActivity;
 import com.mfzn.deepuses.purchasesellsave.store.activity.OrderOtherInOutListActivity;
-import com.mfzn.deepuses.purchasesellsave.store.activity.OrderStockCheckAddActivity;
+import com.mfzn.deepuses.purchasesellsave.store.activity.AddOrderStockCheckActivity;
 import com.mfzn.deepuses.purchasesellsave.store.activity.StockListActivity;
+import com.mfzn.deepuses.purchasesellsave.store.activity.StockLogListActivity;
+import com.mfzn.deepuses.purchasesellsave.store.activity.StoreAllCheckListActivity;
 import com.mfzn.deepuses.purchasesellsave.store.activity.StoreCheckListActivity;
 import com.mfzn.deepuses.utils.Constants;
 import com.mfzn.deepuses.utils.EventMsg;
@@ -797,7 +795,7 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
                         startActivity(new Intent(getActivity(), AddOrderOtherInActivity.class));
                         break;
                     case 4:
-                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
+                        startActivity(new Intent(getActivity(), OrderAllotListActivity.class));
                         break;
                     case 5:
                         startActivity(new Intent(getActivity(), AddOrderAllotActivity.class));
@@ -806,13 +804,13 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
                         startActivity(new Intent(getActivity(), StoreCheckListActivity.class));
                         break;
                     case 7:
-                        startActivity(new Intent(getActivity(), OrderStockCheckAddActivity.class));
+                        startActivity(new Intent(getActivity(), AddOrderStockCheckActivity.class));
                         break;
                     case 8:
-                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
+                        startActivity(new Intent(getActivity(), StoreAllCheckListActivity.class));
                         break;
                     case 9:
-                        startActivity(new Intent(getActivity(), MyProjectActivity.class));
+                        startActivity(new Intent(getActivity(), StockLogListActivity.class));
                         break;
                     case 10:
                         startActivity(new Intent(getActivity(), StockListActivity.class));
@@ -835,8 +833,10 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
                 }
                 switch (position) {
                     case 0:
+                        startActivity(new Intent(getActivity(), AddShopActivity.class));
                         break;
                     case 1:
+                        startActivity(new Intent(getActivity(), ShopListManagerActivity.class));
                         break;
                 }
             }

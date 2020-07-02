@@ -114,8 +114,8 @@ public class UserHelper {
         return SharedPref.getInstance(BaseApplication.getContext()).getString("uid", "");
     }
 
-    public static int getUserId() {
-        return SharedPref.getInstance(BaseApplication.getContext()).getInt("userId", 0);
+    public static String getUserId() {
+        return SharedPref.getInstance(BaseApplication.getContext()).getInt("userId", 0)+"";
     }
 
     public static String getU_phone() {

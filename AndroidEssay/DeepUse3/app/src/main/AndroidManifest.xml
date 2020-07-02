@@ -460,11 +460,20 @@
             android:screenOrientation="portrait"></activity>
 
         <activity
-            android:name=".purchasesellsave.store.activity.OrderStockCheckAddActivity"
+            android:name=".purchasesellsave.store.activity.AddOrderStockCheckActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.store.activity.StoreAllCheckListActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.store.activity.StockLogListActivity"
             android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".purchasesellsave.store.activity.AddOrderAllotActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.store.activity.OrderAllotListActivity"
             android:screenOrientation="portrait"></activity>
 
         <activity
@@ -472,6 +481,18 @@
             android:screenOrientation="portrait"></activity>
         <activity
             android:name=".purchasesellsave.store.activity.AddOrderOtherOutActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.store.activity.OrderOtherInOutListActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.shop.activity.AddShopActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.shop.activity.ShopListManagerActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.shop.activity.ShopDetailActivity"
             android:screenOrientation="portrait"></activity>
     </application>
 

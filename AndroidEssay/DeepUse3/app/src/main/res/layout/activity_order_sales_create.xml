@@ -155,7 +155,8 @@
                         android:id="@+id/discount_price"
                         style="@style/newly_et_st"
                         android:hint="@string/add_custom_shuru"
-                        android:paddingRight="0dp" />
+                        android:paddingRight="0dp"
+                        android:inputType="number"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -179,7 +180,8 @@
                         android:id="@+id/total_price"
                         style="@style/newly_et_st"
                         android:hint="@string/add_custom_shuru"
-                        android:paddingRight="0dp" />
+                        android:paddingRight="0dp"
+                        android:inputType="number"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -251,7 +253,8 @@
                     <EditText
                         android:id="@+id/rec_phone"
                         style="@style/newly_et_st"
-                        android:hint="@string/add_custom_shuru" />
+                        android:hint="@string/add_custom_shuru"
+                        android:inputType="number"/>
 
                 </LinearLayout>
 
@@ -295,8 +298,7 @@
                     <EditText
                         android:id="@+id/rec_address"
                         style="@style/newly_et_st"
-                        android:hint="@string/add_custom_shuru"
-                        android:inputType="number" />
+                        android:hint="@string/add_custom_shuru" />
 
                 </LinearLayout>
 
@@ -351,8 +353,7 @@
                     <EditText
                         android:id="@+id/out_num"
                         style="@style/newly_et_st"
-                        android:hint="@string/add_custom_shuru"
-                        android:inputType="number" />
+                        android:hint="@string/add_custom_shuru" />
 
                 </LinearLayout>
 
