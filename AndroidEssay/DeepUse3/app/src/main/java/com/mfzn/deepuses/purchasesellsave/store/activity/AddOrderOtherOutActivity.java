@@ -97,7 +97,11 @@ public class AddOrderOtherOutActivity extends BaseAddCustomerAndGoodsActivity {
 
     @Override
     protected void commitAction() {
-        request.setOrderGoodsStr(getOrderGoodsStr());
+         /* 商品信息：goodsID1（商品ID）,goodsNum1（商品数量），uniformSalePrice1（零售价）,
+   $outStorePrice（出库单价不含税）,$taxRate1（税率）,$outStorePriceWithTax（出库单价含税）,
+   $money1（金额：数量*销售单价）;$goodsID2,....
+    */
+        request.setOrderGoodsStr(getOrderGoodsStr7());
         request.setOrderTime(orderTime);
         request.setOrderMakerUserID(UserHelper.getUserId());
         request.setRecName(recNameEdit.getText().toString());

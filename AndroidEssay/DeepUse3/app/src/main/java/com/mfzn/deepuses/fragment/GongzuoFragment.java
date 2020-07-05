@@ -28,6 +28,8 @@ import com.mfzn.deepuses.activity.project.ProjectManageActivity;
 import com.mfzn.deepuses.activity.xmgl.MyOrderActivity;
 import com.mfzn.deepuses.activity.xmgl.MyProjectActivity;
 import com.mfzn.deepuses.activity.xmgl.SelectProjectActivity;
+import com.mfzn.deepuses.activityfx.ChangjingListActivity;
+import com.mfzn.deepuses.activityfx.ZixunListActivity;
 import com.mfzn.deepuses.activitymy.brick.BrickActivity;
 import com.mfzn.deepuses.activitymy.brick.RechargeActivity;
 import com.mfzn.deepuses.activitymy.brick.TransactionRecordActivity;
@@ -134,6 +136,8 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
     MyRecyclerView xmglRecyleview;
     @BindView(R.id.kbpp_recyleview)
     MyRecyclerView kbppRecyleview;
+    @BindView(R.id.fxzx_recyleview)
+    MyRecyclerView fxzxRecyleview;
     @BindView(R.id.czzx_recyleview)
     MyRecyclerView czzxRecyleview;
     @BindView(R.id.khgl_recyleview)
@@ -164,6 +168,8 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
     private List<HomeShowModel> xmglModel = new ArrayList<>();
     //客户管理
     private List<HomeShowModel> khglModel = new ArrayList<>();
+    //发现咨询
+    private List<HomeShowModel> fxzxModel = new ArrayList<>();
     //口碑品牌
     private List<HomeShowModel> kbppModel = new ArrayList<>();
     //充值中心
@@ -403,6 +409,10 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
         tdglRecyleview.setLayoutManager(appLayoutManagerw);
 
         //口碑品牌
+        NoScrollGridLayoutManager fxzxLayoutManagerw = new NoScrollGridLayoutManager(getActivity(),
+                4, GridLayoutManager.VERTICAL, false);
+        fxzxRecyleview.setLayoutManager(fxzxLayoutManagerw);
+
         NoScrollGridLayoutManager kbppLayoutManagerw = new NoScrollGridLayoutManager(getActivity(),
                 4, GridLayoutManager.VERTICAL, false);
         kbppRecyleview.setLayoutManager(kbppLayoutManagerw);
@@ -931,11 +941,35 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
             }
         });
 
+        HomeShowModel showModel4 = new HomeShowModel("咨询", "zx", R.mipmap.work_koubei);
+        HomeShowModel showModel5 = new HomeShowModel("场景", "cj", R.mipmap.work_pinpai);
+        fxzxModel.add(showModel4);
+        fxzxModel.add(showModel5);
+
+        HomeKbppAdapter fxzxAdapter = new HomeKbppAdapter(getActivity(), fxzxModel);
+        fxzxRecyleview.setAdapter(fxzxAdapter);
+
+        fxzxAdapter.setOnItemClickListener(new HomeKbppAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                String type = fxzxModel.get(position).getType();
+                switch (type) {
+                    case "zx":
+                        startActivity(new Intent(getActivity(), ZixunListActivity.class));
+                        break;
+                    case "cj":
+                        startActivity(new Intent(getActivity(), ChangjingListActivity.class));
+                        break;
+                }
+            }
+        });
+
+
         //口碑品牌
-        HomeShowModel showModel4 = new HomeShowModel("口碑包装", "kbbz", R.mipmap.work_koubei);
-        HomeShowModel showModel5 = new HomeShowModel("品牌传播", "ppcb", R.mipmap.work_pinpai);
-        kbppModel.add(showModel4);
-        kbppModel.add(showModel5);
+        HomeShowModel showModel6 = new HomeShowModel("口碑包装", "kbbz", R.mipmap.work_koubei);
+        HomeShowModel showModel7 = new HomeShowModel("品牌传播", "ppcb", R.mipmap.work_pinpai);
+        kbppModel.add(showModel6);
+        kbppModel.add(showModel7);
 
         HomeKbppAdapter kbppAdapter = new HomeKbppAdapter(getActivity(), kbppModel);
         kbppRecyleview.setAdapter(kbppAdapter);

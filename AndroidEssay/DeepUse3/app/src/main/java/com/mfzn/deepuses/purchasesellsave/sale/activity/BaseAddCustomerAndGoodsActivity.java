@@ -115,21 +115,56 @@ public abstract class BaseAddCustomerAndGoodsActivity extends BasicActivity {
         }
     }
 
-    /*
-     * goodsID1（商品ID）,goodsNum1（商品数量）,uniformSalePrice1（零售价）
-     * ,$salePrice1（销售单价不含税）,$taxRate1（税率）,$salePriceWithTax1（销售价含税）,
-     * $money1（金额：数量*销售单价）;*/
+
+    /* 商品信息：goodsID1（商品ID）,goodsNum1（商品数量）,uniformSalePrice1（零售价）,
+    $salePrice1（销售单价不含税）,$taxRate1（税率）,$salePriceWithTax1（销售价含税）,
+    $money1（金额：数量*销售单价）*/
+    protected String getOrderGoodsStr7() {
+        StringBuffer stringBuffer = new StringBuffer();
+        if (!ListUtil.isEmpty(goodsSelectedList)) {
+            for (GoodsInfoResponse goods : goodsSelectedList) {
+                stringBuffer.append(goods.getGoodsID()).append(",")
+                        .append(goods.getGoodsSumStockNum()).append(",")
+                        .append(goods.getSalePrice()).append(",")
+                        .append(goods.getSalePrice()).append(",")
+                        .append(goods.getTaxRate()).append(",")
+                        .append(goods.getSalePriceWithTax()).append(",")
+                        .append(goods.getGoodsSumStockNum() * getPrice(goods.getSalePriceWithTax())).append(";");
+            }
+        }
+        return stringBuffer.toString();
+    }
+
+    /*   商品信息：goodsID1（商品ID）,goodsNum1（商品数量）,
+    $inStorePrice（入库单价不含税）,$taxRate1（税率）,
+    $inStorePriceWithTax（入库单价含税）,$money1（金额：数量*销售单价）;$goodsID2,....*/
+    protected String getOrderGoodsStr6() {
+        StringBuffer stringBuffer = new StringBuffer();
+        if (!ListUtil.isEmpty(goodsSelectedList)) {
+            for (GoodsInfoResponse goods : goodsSelectedList) {
+                stringBuffer.append(goods.getGoodsID()).append(",")
+                        .append(goods.getGoodsSumStockNum()).append(",")
+                        .append(goods.getSalePrice()).append(",")
+                        .append(goods.getTaxRate()).append(",")
+                        .append(goods.getSalePriceWithTax()).append(",")
+                        .append(goods.getGoodsSumStockNum() * getPrice(goods.getSalePriceWithTax())).append(";");
+            }
+        }
+        return stringBuffer.toString();
+    }
+
+
     protected String getOrderGoodsStr() {
         StringBuffer stringBuffer = new StringBuffer();
         if (!ListUtil.isEmpty(goodsSelectedList)) {
             for (GoodsInfoResponse goods : goodsSelectedList) {
                 stringBuffer.append(goods.getGoodsID()).append(",")
-                        .append(goods.getGoodsCount()).append(",")
+                        .append(goods.getGoodsSumStockNum()).append(",")
                         .append(goods.getSalePrice()).append(",")
                         .append(goods.getSalePrice()).append(",")
                         .append(goods.getTaxRate()).append(",")
                         .append(goods.getSalePriceWithTax()).append(",")
-                        .append(goods.getGoodsCount() * getPrice(goods.getSalePrice())).append(",")
+                        .append(goods.getGoodsSumStockNum() * getPrice(goods.getSalePrice())).append(",")
                         .append(goods.getCostPrice()).append(";");
             }
         }
@@ -142,7 +177,7 @@ public abstract class BaseAddCustomerAndGoodsActivity extends BasicActivity {
         if (!ListUtil.isEmpty(goodsSelectedList)) {
             for (GoodsInfoResponse goods : goodsSelectedList) {
                 stringBuffer.append(goods.getGoodsID()).append(",")
-                        .append(goods.getGoodsCount()).append(";");
+                        .append(goods.getGoodsSumStockNum()).append(";");
             }
         }
         return stringBuffer.toString();

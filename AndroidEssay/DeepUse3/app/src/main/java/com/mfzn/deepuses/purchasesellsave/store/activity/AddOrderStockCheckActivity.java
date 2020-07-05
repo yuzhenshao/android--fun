@@ -103,7 +103,7 @@ public class AddOrderStockCheckActivity extends BaseAddCustomerAndGoodsActivity 
             case R.id.select_store:
                 Intent storeIntent = new Intent();
                 storeIntent.setClass(AddOrderStockCheckActivity.this, StoreListActivity.class);
-                storeIntent.putExtra(ParameterConstant.IS_SELECTED,true);
+                storeIntent.putExtra(ParameterConstant.IS_SELECTED, true);
                 startActivityForResult(storeIntent, STORE_CODE);
                 break;
 
@@ -115,7 +115,10 @@ public class AddOrderStockCheckActivity extends BaseAddCustomerAndGoodsActivity 
     protected void commitAction() {
         request.setOutNum(outNum.getText().toString());
         request.setRemark(remark.getText().toString());
-        request.setOrderGoodsStr(getOrderGoodsStr());
+        /*
+         * 商品信息：goodsID1（商品ID）,systemStockNum1（系统库存）,checkStockNum（盘点库存）;$goodsID2,....
+         * */
+        request.setOrderGoodsStr(getOrderGoodsIdAndNum());
         if (storeCheckResponse == null) {
             addOrderStockChec();
         } else {

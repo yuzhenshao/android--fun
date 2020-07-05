@@ -93,7 +93,7 @@ public class AddOrderSalesBackActivity extends BaseAddCustomerAndGoodsActivity {
             showToast("请输入优惠金额");
             return;
         }
-        request.setOrderGoodsStr(getOrderGoodsStr());
+        request.setOrderGoodsStr(getOrderGoodsStr7());
         request.setDiscountAmount(mdiscountPrice);
         request.setTotalMoney(mTotalPrice);
         request.setRealMoney(Integer.parseInt(mTotalPrice) - Integer.parseInt(mdiscountPrice) + "");

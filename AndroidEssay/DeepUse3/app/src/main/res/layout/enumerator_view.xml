@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="20dp"
+    android:background="@drawable/general_shape_000000">
+
+        <TextView
+            android:id="@+id/subtraction"
+            android:layout_width="@dimen/app_20dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="-"
+            android:textColor="#303133"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:id="@+id/line1"
+            android:layout_toRightOf="@+id/subtraction"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#000000"
+            android:orientation="vertical" />
+
+        <EditText
+            android:id="@+id/number"
+            android:layout_width="40dip"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/line1"
+            android:background="@null"
+            android:focusableInTouchMode="false"
+            android:gravity="center"
+            android:inputType="number"
+            android:text="111"
+            android:textColor="#3D7EFF"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:id="@+id/line2"
+            android:layout_toRightOf="@+id/number"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#000000"
+            android:orientation="vertical" />
+
+        <TextView
+            android:id="@+id/plus"
+            android:layout_width="@dimen/app_20dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/line2"
+            android:gravity="center"
+            android:text="+"
+            android:textColor="#303133"
+            android:textSize="@dimen/sp_16" />
+
+</RelativeLayout>

@@ -1,5 +1,6 @@
 package com.mfzn.deepuses;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -8,9 +9,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.mfzn.deepuses.activity.khgl.BulidCustomerActivity;
+import com.mfzn.deepuses.activityxm.FoundProjectActivity;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
+import com.mfzn.deepuses.bean.constants.ParameterConstant;
 import com.mfzn.deepuses.fragment.BaikeFragment;
 import com.mfzn.deepuses.fragment.GongzuoFragment;
 import com.mfzn.deepuses.fragment.MyFragment;
@@ -19,6 +24,10 @@ import com.mfzn.deepuses.fragment.XiaoxiFragment;
 import com.mfzn.deepuses.model.xx.MsgMainModel;
 import com.mfzn.deepuses.present.login.LoginPresent;
 import com.mfzn.deepuses.present.login.MainPresent;
+import com.mfzn.deepuses.purchasesellsave.sale.activity.AddOrderOfferActivity;
+import com.mfzn.deepuses.purchasesellsave.sale.activity.AddOrderSalesActivity;
+import com.mfzn.deepuses.purchasesellsave.sale.activity.OrderSalesListActivity;
+import com.mfzn.deepuses.purchasesellsave.setting.activity.CommodityPhotoCreateActivity;
 import com.mfzn.deepuses.utils.FullScreen;
 import com.mfzn.deepuses.utils.ToastUtil;
 import com.mfzn.deepuses.utils.UserHelper;
@@ -44,10 +53,8 @@ public class MainActivity extends BaseMvpActivity<MainPresent> {
     ImageView ivMainXiangmu;
     @BindView(R.id.tv_main_xiangmu)
     TextView tvMainXiangmu;
-    @BindView(R.id.iv_main_baike)
-    ImageView ivMainBaike;
-    @BindView(R.id.tv_main_baike)
-    TextView tvMainBaike;
+    @BindView(R.id.icon_main_add)
+    ImageView ivMainAdd;
     @BindView(R.id.iv_main_xiaoxi)
     ImageView ivMainXiaoxi;
     @BindView(R.id.tv_main_xiaoxi)
@@ -56,12 +63,14 @@ public class MainActivity extends BaseMvpActivity<MainPresent> {
     ImageView ivMainMe;
     @BindView(R.id.tv_main_me)
     TextView tvMainMe;
+    @BindView(R.id.add_container)
+    RelativeLayout mainAddView;
 
     private GongzuoFragment mTab01;
     private XiangmuFragment mTab02;
-    private BaikeFragment mTab03;
-    private XiaoxiFragment mTab04;
-    private MyFragment mTab05;
+    //private BaikeFragment mTab03;
+    private XiaoxiFragment mTab03;
+    private MyFragment mTab04;
 
     /**
      * 用于对Fragment进行管理
@@ -110,7 +119,9 @@ public class MainActivity extends BaseMvpActivity<MainPresent> {
         badge.setShowShadow(false);
 //        }
     }
-    @OnClick({R.id.ll_main_gongzuo, R.id.ll_main_xiangmu, R.id.ll_main_baike, R.id.ll_main_xiaoxi, R.id.ll_main_me})
+
+    @OnClick({R.id.ll_main_gongzuo, R.id.ll_main_xiangmu, R.id.icon_main_add, R.id.ll_main_xiaoxi, R.id.ll_main_me, R.id.add_container,
+            R.id.new_bjd, R.id.new_xsdd, R.id.new_ckd, R.id.add_lsd, R.id.new_goods, R.id.new_project, R.id.new_customer, R.id.new_jz})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_main_gongzuo:
@@ -119,17 +130,69 @@ public class MainActivity extends BaseMvpActivity<MainPresent> {
             case R.id.ll_main_xiangmu:
                 setTabSelection(1);
                 break;
-            case R.id.ll_main_baike:
-                setTabSelection(2);
-                break;
+
             case R.id.ll_main_xiaoxi:
                 getP().getMSg();
-                setTabSelection(3);
+                setTabSelection(2);
                 break;
             case R.id.ll_main_me:
-                setTabSelection(4);
+                setTabSelection(3);
+                break;
+            case R.id.add_container:
+                mainAddView.setVisibility(View.GONE);
+                ivMainAdd.setImageResource(R.mipmap.icon_main_add);
+                break;
+            case R.id.icon_main_add:
+                if (mainAddView.getVisibility() == View.VISIBLE) {
+                    mainAddView.setVisibility(View.GONE);
+                    ivMainAdd.setImageResource(R.mipmap.icon_main_add);
+                } else {
+                    mainAddView.setVisibility(View.VISIBLE);
+                    ivMainAdd.setImageResource(R.mipmap.icon_main_close);
+                }
+                break;
+            case R.id.new_bjd:
+                turnToActivity(AddOrderOfferActivity.class);
+                break;
+            case R.id.new_xsdd:
+                turnToSalesActivity(false);
+                break;
+            case R.id.new_ckd:
+            case R.id.new_jz:
+                mainAddView.setVisibility(View.GONE);
+                ivMainAdd.setImageResource(R.mipmap.icon_main_add);
+                ToastUtil.showToast(this,"敬请期待");
+                break;
+            case R.id.add_lsd:
+                turnToSalesActivity(true);
+                break;
+            case R.id.new_goods:
+                turnToActivity(CommodityPhotoCreateActivity.class);
+                break;
+            case R.id.new_project:
+                turnToActivity(FoundProjectActivity.class);
+                break;
+            case R.id.new_customer:
+                turnToActivity(BulidCustomerActivity.class);
                 break;
         }
+    }
+
+    private void turnToActivity(Class<?> turnActivity) {
+        mainAddView.setVisibility(View.GONE);
+        ivMainAdd.setImageResource(R.mipmap.icon_main_add);
+        Intent intent = new Intent();
+        intent.setClass(this, turnActivity);
+        startActivity(intent);
+    }
+
+    private void turnToSalesActivity(boolean isRetail) {
+        mainAddView.setVisibility(View.GONE);
+        ivMainAdd.setImageResource(R.mipmap.icon_main_add);
+        Intent intent = new Intent();
+        intent.putExtra(ParameterConstant.IS_RETAIL_CREATE, isRetail);
+        intent.setClass(this, AddOrderSalesActivity.class);
+        startActivity(intent);
     }
 
     /**
@@ -165,34 +228,34 @@ public class MainActivity extends BaseMvpActivity<MainPresent> {
                     transaction.show(mTab02);
                 }
                 break;
+//            case 2:
+//                ivMainBaike.setImageResource(R.mipmap.bass_xiangmu2);
+//                tvMainBaike.setTextColor(getResources().getColor(R.color.color_3D7EFF));
+//                if (mTab03 == null) {
+//                    mTab03 = new BaikeFragment();
+//                    transaction.add(R.id.fl_content, mTab03);
+//                } else {
+//                    transaction.show(mTab03);
+//                }
+//                break;
             case 2:
-                ivMainBaike.setImageResource(R.mipmap.bass_xiangmu2);
-                tvMainBaike.setTextColor(getResources().getColor(R.color.color_3D7EFF));
+                ivMainXiaoxi.setImageResource(R.mipmap.bass_faxian2);
+                tvMainXiaoxi.setTextColor(getResources().getColor(R.color.color_3D7EFF));
                 if (mTab03 == null) {
-                    mTab03 = new BaikeFragment();
+                    mTab03 = new XiaoxiFragment();
                     transaction.add(R.id.fl_content, mTab03);
                 } else {
                     transaction.show(mTab03);
                 }
                 break;
             case 3:
-                ivMainXiaoxi.setImageResource(R.mipmap.bass_faxian2);
-                tvMainXiaoxi.setTextColor(getResources().getColor(R.color.color_3D7EFF));
+                ivMainMe.setImageResource(R.mipmap.bass_me2);
+                tvMainMe.setTextColor(getResources().getColor(R.color.color_3D7EFF));
                 if (mTab04 == null) {
-                    mTab04 = new XiaoxiFragment();
+                    mTab04 = new MyFragment();
                     transaction.add(R.id.fl_content, mTab04);
                 } else {
                     transaction.show(mTab04);
-                }
-                break;
-            case 4:
-                ivMainMe.setImageResource(R.mipmap.bass_me2);
-                tvMainMe.setTextColor(getResources().getColor(R.color.color_3D7EFF));
-                if (mTab05 == null) {
-                    mTab05 = new MyFragment();
-                    transaction.add(R.id.fl_content, mTab05);
-                } else {
-                    transaction.show(mTab05);
                 }
                 break;
         }
@@ -207,8 +270,8 @@ public class MainActivity extends BaseMvpActivity<MainPresent> {
         tvMainGongzuo.setTextColor(getResources().getColor(R.color.color_909399));
         ivMainXiangmu.setImageResource(R.mipmap.bass_xiangmu);
         tvMainXiangmu.setTextColor(getResources().getColor(R.color.color_909399));
-        ivMainBaike.setImageResource(R.mipmap.bass_baike1);
-        tvMainBaike.setTextColor(getResources().getColor(R.color.color_909399));
+        //  ivMainBaike.setImageResource(R.mipmap.bass_baike1);
+        //  tvMainBaike.setTextColor(getResources().getColor(R.color.color_909399));
         ivMainXiaoxi.setImageResource(R.mipmap.bass_xiaoxi);
         tvMainXiaoxi.setTextColor(getResources().getColor(R.color.color_909399));
         ivMainMe.setImageResource(R.mipmap.bass_me);
@@ -233,9 +296,6 @@ public class MainActivity extends BaseMvpActivity<MainPresent> {
         }
         if (mTab04 != null) {
             transaction.hide(mTab04);
-        }
-        if (mTab05 != null) {
-            transaction.hide(mTab05);
         }
     }
 

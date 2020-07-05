@@ -158,7 +158,7 @@ public class GoodsSelectListActivity extends BasicListActivity<GoodsInfoResponse
                 .setHeight(WindowManager.LayoutParams.WRAP_CONTENT)
                 .setGravity(Gravity.BOTTOM)
                 .setDialogAnimationRes(R.style.ActionSheetDialogAnimation)
-                .addOnClickListener(R.id.switch_button, R.id.tax_rate_select, R.id.btn_commit)
+                .addOnClickListener(R.id.switch_button, R.id.tax_rate_select, R.id.btn_commit, R.id.plus, R.id.subtraction)
                 .setOnBindViewListener(new OnBindViewListener() {
                     @Override
                     public void bindView(BindViewHolder helper) {
@@ -169,12 +169,26 @@ public class GoodsSelectListActivity extends BasicListActivity<GoodsInfoResponse
                                 .setText(R.id.goods_stock_num, context.getResources().getString(R.string.goods_sum_stock, item.getGoodsSumStockNum()))
                                 .setText(R.id.cost_price, item.getSalePrice())
                                 .setText(R.id.tax_rate_price, item.getSalePrice())
+                                .setText(R.id.number, 1 + "")
                                 .setChecked(R.id.switch_button, item.getTaxRate() != 0);
                     }
                 })
                 .setOnViewClickListener((customDialog, bindViewHolder, view) -> {
 
                     switch (view.getId()) {
+                        case R.id.plus:
+                        case R.id.subtraction:
+                            TextView numberView = bindViewHolder.getView(R.id.number);
+                            int value = Integer.valueOf(numberView.getText().toString());
+                            value += view.getId() == R.id.plus ? 1 : -1;
+                            numberView.setText(value + "");
+                            item.setGoodsSize(value);
+
+                            TextView subtraction = bindViewHolder.getView(R.id.subtraction);
+                            TextView plus = bindViewHolder.getView(R.id.plus);
+                            subtraction.setClickable(value > 1 ? true : false);
+                            plus.setClickable(value > item.getGoodsSumStockNum() ? true : false);
+                            break;
                         case R.id.switch_button:
                             item.setHasTaxRate(!item.isHasTaxRate());
                             bindViewHolder.setChecked(R.id.switch_button, item.isHasTaxRate());
@@ -242,17 +256,19 @@ public class GoodsSelectListActivity extends BasicListActivity<GoodsInfoResponse
 
     private void setGoodsSelected() {
         int totalPrice = 0;
+        int size = 0;
         selectContainer.setVisibility(View.VISIBLE);
-        goodsSize.setText("数量：" + goodsSelectedList.size());
         if (!ListUtil.isEmpty(goodsSelectedList)) {
             for (GoodsInfoResponse store : goodsSelectedList) {
+                size += store.getGoodsSize();
                 if (store.isHasTaxRate()) {
-                    totalPrice += getPrice(store.getSalePriceWithTax());
+                    totalPrice += getPrice(store.getSalePriceWithTax()) * store.getGoodsSize();
                 } else {
-                    totalPrice += getPrice(store.getSalePrice());
+                    totalPrice += getPrice(store.getSalePrice()) * store.getGoodsSize();
                 }
             }
         }
+        goodsSize.setText("数量：" + size);
         goodsPrice.setText("总价：" + totalPrice);
     }
 

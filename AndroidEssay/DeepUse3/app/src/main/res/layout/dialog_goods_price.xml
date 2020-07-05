@@ -44,6 +44,13 @@
             android:textColor="#606266"
             android:textSize="16sp" />
 
+
+        <include
+            layout="@layout/enumerator_view"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/app_20dp"
+            android:layout_alignBottom="@+id/goods_stock_num"
+            android:layout_alignParentRight="true" />
     </RelativeLayout>
 
     <LinearLayout style="@style/newly_ll_st">

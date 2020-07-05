@@ -98,7 +98,7 @@ public class AddOrderOtherInActivity extends BaseAddCustomerAndGoodsActivity {
         }
         orderOtherInRequest.setOrderTime(orderTime);
         orderOtherInRequest.setOrderMakerUserID(UserHelper.getUserId());
-        orderOtherInRequest.setOrderGoodsStr(getOrderGoodsStr());
+        orderOtherInRequest.setOrderGoodsStr(getOrderGoodsStr6());
         orderOtherInRequest.setDiscountAmount(mdiscountPrice);
         orderOtherInRequest.setTotalMoney(mTotalPrice);
         orderOtherInRequest.setRealMoney(Integer.parseInt(mTotalPrice) - Integer.parseInt(mdiscountPrice) + "");

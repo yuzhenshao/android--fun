@@ -81,6 +81,7 @@ public class AddOrderAllotActivity extends BaseAddCustomerAndGoodsActivity {
 
     @Override
     protected void commitAction() {
+        orderAllotAddRequest.setOrderGoodsStr(getOrderGoodsIdAndNum());
         orderAllotAddRequest.setOrderTime(orderTime);
         orderAllotAddRequest.setOutNum(outNumEdit.getText().toString());
         orderAllotAddRequest.setOrderMakerUserID(UserHelper.getUserId());

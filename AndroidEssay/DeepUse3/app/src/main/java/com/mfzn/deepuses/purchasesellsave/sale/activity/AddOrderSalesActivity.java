@@ -112,7 +112,7 @@ public class AddOrderSalesActivity extends BaseAddCustomerAndGoodsActivity {
             showToast("请输入优惠金额");
             return;
         }
-        request.setOrderGoodsStr(getOrderGoodsStr());
+        request.setOrderGoodsStr(getOrderGoodsStr7());
         request.setDiscountAmount(mdiscountPrice);
         request.setTotalMoney(mTotalPrice);
         request.setRealMoney(Integer.parseInt(mTotalPrice) - Integer.parseInt(mdiscountPrice) + "");
@@ -222,7 +222,7 @@ public class AddOrderSalesActivity extends BaseAddCustomerAndGoodsActivity {
                 customerEdit.setText(data.getStringExtra("Name"));
             } else if (requestCode == COST) {
                 String otherCostStr = data.getStringExtra("data");
-               // request.setOtherCostStr(otherCostStr);
+                request.setOtherCostStr(otherCostStr);
                 otherCostEdit.setText(TextUtils.isEmpty(otherCostStr) ? "" : "已填写");
             }
         }

@@ -41,6 +41,7 @@ public class GoodsInfoResponse implements Serializable {
     private String remark;
     private long addTime;
     private int goodsSumStockNum;
+    private int goodsSize=1;
 
     public String getGoodsID() {
         return goodsID;
@@ -288,5 +289,13 @@ public class GoodsInfoResponse implements Serializable {
             return !TextUtils.isEmpty(getGoodsID()) && getGoodsID().equals(((GoodsInfoResponse) obj).getGoodsID());
         }
         return false;
+    }
+
+    public int getGoodsSize() {
+        return goodsSize;
+    }
+
+    public void setGoodsSize(int goodsSize) {
+        this.goodsSize = goodsSize;
     }
 }

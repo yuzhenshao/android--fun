@@ -21,15 +21,15 @@
                 android:id="@+id/iv_main_gongzuo"
                 android:layout_width="48dp"
                 android:layout_height="31dp"
-                android:src="@mipmap/bass_work2"/>
+                android:src="@mipmap/bass_work2" />
 
             <TextView
                 android:id="@+id/tv_main_gongzuo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="10sp"
+                android:text="工作"
                 android:textColor="#3D7EFF"
-                android:text="工作"/>
+                android:textSize="10sp" />
 
         </LinearLayout>
 
@@ -45,20 +45,19 @@
                 android:id="@+id/iv_main_xiangmu"
                 android:layout_width="48dp"
                 android:layout_height="31dp"
-                android:src="@mipmap/bass_xiangmu"/>
+                android:src="@mipmap/bass_xiangmu" />
 
             <TextView
                 android:id="@+id/tv_main_xiangmu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="10sp"
+                android:text="项目"
                 android:textColor="#909399"
-                android:text="项目"/>
+                android:textSize="10sp" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/ll_main_baike"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -66,18 +65,10 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/iv_main_baike"
-                android:layout_width="48dp"
-                android:layout_height="31dp"
-                android:src="@mipmap/bass_baike1"/>
-
-            <TextView
-                android:id="@+id/tv_main_baike"
-                android:layout_width="wrap_content"
+                android:id="@+id/icon_main_add"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="10sp"
-                android:textColor="#909399"
-                android:text="发现"/>
+                android:src="@mipmap/icon_main_add" />
 
         </LinearLayout>
 
@@ -93,15 +84,15 @@
                 android:id="@+id/iv_main_xiaoxi"
                 android:layout_width="48dp"
                 android:layout_height="31dp"
-                android:src="@mipmap/bass_xiaoxi"/>
+                android:src="@mipmap/bass_xiaoxi" />
 
             <TextView
                 android:id="@+id/tv_main_xiaoxi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="10sp"
+                android:text="消息"
                 android:textColor="#909399"
-                android:text="消息"/>
+                android:textSize="10sp" />
 
         </LinearLayout>
 
@@ -117,15 +108,15 @@
                 android:id="@+id/iv_main_me"
                 android:layout_width="48dp"
                 android:layout_height="31dp"
-                android:src="@mipmap/bass_me"/>
+                android:src="@mipmap/bass_me" />
 
             <TextView
                 android:id="@+id/tv_main_me"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="10sp"
+                android:text="我的"
                 android:textColor="#909399"
-                android:text="我的"/>
+                android:textSize="10sp" />
 
         </LinearLayout>
 
