@@ -56,9 +56,10 @@ public class ShopListManagerActivity extends BasicListActivity<ShopListResponse>
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int i) {
-                Intent intent = new Intent(ShopListManagerActivity.this, ShopDetailActivity.class);
-                intent.putExtra(ParameterConstant.MAP_SHOP_ID, mSourceList.get(i).getShopID());
-                startActivityForResult(intent, REQUESTCODE);
+//                Intent intent = new Intent(ShopListManagerActivity.this, ShopDetailActivity.class);
+//                intent.putExtra(ParameterConstant.MAP_SHOP_ID, mSourceList.get(i).getShopID());
+//                startActivityForResult(intent, REQUESTCODE);
+                //TODO 先跳转到编辑 编辑页右上角删除
             }
         });
         return mAdapter;

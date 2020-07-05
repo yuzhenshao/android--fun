@@ -180,14 +180,17 @@ public class GoodsSelectListActivity extends BasicListActivity<GoodsInfoResponse
                         case R.id.subtraction:
                             TextView numberView = bindViewHolder.getView(R.id.number);
                             int value = Integer.valueOf(numberView.getText().toString());
-                            value += view.getId() == R.id.plus ? 1 : -1;
+                            if (view.getId() == R.id.plus) {
+                                if (value < item.getGoodsSize()) {
+                                    value += 1;
+                                }
+                            } else {
+                                if (value > 0) {
+                                    value += -1;
+                                }
+                            }
                             numberView.setText(value + "");
                             item.setGoodsSize(value);
-
-                            TextView subtraction = bindViewHolder.getView(R.id.subtraction);
-                            TextView plus = bindViewHolder.getView(R.id.plus);
-                            subtraction.setClickable(value > 1 ? true : false);
-                            plus.setClickable(value > item.getGoodsSumStockNum() ? true : false);
                             break;
                         case R.id.switch_button:
                             item.setHasTaxRate(!item.isHasTaxRate());
@@ -203,7 +206,9 @@ public class GoodsSelectListActivity extends BasicListActivity<GoodsInfoResponse
                             if (index != -1) {
                                 goodsSelectedList.remove(index);
                             }
-                            goodsSelectedList.add(item);
+                            if (item.getGoodsSize() > 0) {
+                                goodsSelectedList.add(item);
+                            }
                             setGoodsSelected();
                             if (customDialog != null) {
                                 customDialog.dismiss();
