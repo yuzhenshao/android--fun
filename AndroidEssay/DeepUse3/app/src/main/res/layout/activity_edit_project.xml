@@ -66,8 +66,9 @@
                             android:gravity="center_vertical"
                             android:orientation="vertical">
 
-                            <LinearLayout style="@style/newly_ll_st">
-
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/app_60dp">
                                 <EditText
                                     android:id="@+id/et_edit_address"
                                     style="@style/newly_et_st2"
@@ -76,7 +77,7 @@
 
                                 <ImageView
                                     style="@style/bass_iv_you"
-                                    android:layout_marginRight="@dimen/app_20dp" />
+                                    android:layout_gravity="center_vertical"/>
 
                             </LinearLayout>
 
@@ -84,7 +85,9 @@
                                 style="@style/line_heng"
                                 android:layout_marginLeft="@dimen/app_18dp" />
 
-                            <LinearLayout style="@style/newly_ll_st">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/app_60dp">
 
                                 <EditText
                                     android:id="@+id/et_edit_detail"
@@ -138,8 +141,7 @@
                             android:paddingRight="@dimen/app_10dp" />
 
                         <ImageView
-                            style="@style/bass_iv_you"
-                            android:layout_marginRight="@dimen/app_20dp" />
+                            style="@style/bass_iv_you"/>
 
                     </LinearLayout>
 
@@ -158,8 +160,7 @@
                             android:paddingRight="@dimen/app_10dp" />
 
                         <ImageView
-                            style="@style/bass_iv_you"
-                            android:layout_marginRight="@dimen/app_20dp" />
+                            style="@style/bass_iv_you"/>
 
                     </LinearLayout>
 
@@ -195,7 +196,6 @@
                             android:id="@+id/ib_edit_zbyj"
                             android:layout_width="@dimen/app_52dp"
                             android:layout_height="@dimen/app_23dp"
-                            android:layout_marginRight="@dimen/app_24dp"
                             android:src="@mipmap/shou_close" />
 
                     </LinearLayout>
@@ -222,8 +222,7 @@
                             android:paddingRight="0dp" />
 
                         <ImageView
-                            style="@style/bass_iv_you"
-                            android:layout_marginRight="@dimen/app_20dp" />
+                            style="@style/bass_iv_you"/>
 
                     </LinearLayout>
 
@@ -248,7 +247,6 @@
                             android:layout_height="wrap_content"
                             android:textSize="16sp"
                             android:textColor="@color/color_303133"
-                            android:layout_marginRight="@dimen/app_24dp"
                             android:text="元"/>
 
                     </LinearLayout>

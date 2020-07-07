@@ -192,6 +192,15 @@ public class BusinessCardResponse implements Serializable {
         this.proMemberLabels = proMemberLabels;
     }
 
+    public boolean isShowCompany() {
+        return showCompany!=0;
+    }
+
+    public boolean isShowProNum() {
+        return showProNum!=0;
+    }
+
+
     public static class ProMemberLabelsBean implements Serializable{
         /**
          * labelID : 2

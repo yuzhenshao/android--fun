@@ -7,6 +7,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -55,6 +57,10 @@ public class MainActivity extends BaseMvpActivity<MainPresent> {
     TextView tvMainXiangmu;
     @BindView(R.id.icon_main_add)
     ImageView ivMainAdd;
+
+    @BindView(R.id.tv_tdxx_num)
+    TextView ivMainXiaoxiCount;
+
     @BindView(R.id.iv_main_xiaoxi)
     ImageView ivMainXiaoxi;
     @BindView(R.id.tv_main_xiaoxi)
@@ -114,15 +120,25 @@ public class MainActivity extends BaseMvpActivity<MainPresent> {
     }
 
     public void getMsgSuccess(MsgMainModel model) {
-//        if (model.getShowRedPoint() > 0){
-        Badge badge = new QBadgeView(this).bindTarget(ivMainXiaoxi).setBadgeNumber(model.getShowRedPoint());
-        badge.setShowShadow(false);
-//        }
+        if(model.getShowRedPoint()>0){
+            ivMainXiaoxiCount.setVisibility(View.VISIBLE);
+            ivMainXiaoxiCount.setText(model.getShowRedPoint()+"");
+        }else{
+            ivMainXiaoxiCount.setVisibility(View.GONE);
+        }
+
     }
 
     @OnClick({R.id.ll_main_gongzuo, R.id.ll_main_xiangmu, R.id.icon_main_add, R.id.ll_main_xiaoxi, R.id.ll_main_me, R.id.add_container,
             R.id.new_bjd, R.id.new_xsdd, R.id.new_ckd, R.id.add_lsd, R.id.new_goods, R.id.new_project, R.id.new_customer, R.id.new_jz})
     public void onViewClicked(View view) {
+        if(view.getId()==R.id.icon_main_add){
+            if(mainAddView.getVisibility()==View.GONE) {
+                mainAddView.setVisibility(View.VISIBLE);
+                ivMainAdd.setImageResource(R.mipmap.icon_main_close);
+                return;
+            }
+        }
         mainAddView.setVisibility(View.GONE);
         ivMainAdd.setImageResource(R.mipmap.icon_main_add);
         switch (view.getId()) {
@@ -139,10 +155,6 @@ public class MainActivity extends BaseMvpActivity<MainPresent> {
                 break;
             case R.id.ll_main_me:
                 setTabSelection(3);
-                break;
-            case R.id.icon_main_add:
-                mainAddView.setVisibility(View.VISIBLE);
-                ivMainAdd.setImageResource(R.mipmap.icon_main_close);
                 break;
             case R.id.new_bjd:
                 turnToActivity(AddOrderOfferActivity.class);

@@ -12,6 +12,7 @@ import com.mfzn.deepuses.bean.request.CommodityRequest;
 import com.mfzn.deepuses.bean.request.CreateAfterSaleOrderRequest;
 import com.mfzn.deepuses.bean.request.EditAsServicePeopleRequest;
 import com.mfzn.deepuses.bean.request.EditProjectRequest;
+import com.mfzn.deepuses.bean.request.EditStaffRequest;
 import com.mfzn.deepuses.bean.request.ProMemberRequest;
 import com.mfzn.deepuses.bean.request.EditBusinessCardRequest;
 import com.mfzn.deepuses.bean.request.ForgetRequest;
@@ -199,12 +200,9 @@ public interface ApiService {
     Flowable<HttpResult<List<SearchKeywordModel>>> jiagouList(@Query("token") String token, @Query("uid") String uid,
                                                               @Query("companyID") String companyID, @Query("keywords") String keywords);
 
-    @FormUrlEncoded  //编辑员工信息
+     //编辑员工信息
     @POST("api/Company/editStaff")
-    Flowable<HttpResult> editStaff(@Query("token") String token, @Query("uid") String uid, @Field("companyID") String companyID,
-                                   @Field("staffUID") String staffUID, @Field("positionName") String positionName,
-                                   @Field("oldDepartmentID") String oldDepartmentID, @Field("newDepartmentID") String newDepartmentID,
-                                   @Field("joinTime") String joinTime, @Field("staffName") String staffName);
+    Flowable<HttpResult> editStaff(@Query("token") String token, @Query("uid") String uid, @Body EditStaffRequest request);
 
     @FormUrlEncoded  //删除员工
     @POST("api/Company/delStaff")

@@ -20,6 +20,7 @@ public class ChangjingListActivity extends BasicActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.add(R.id.fl_content, new VideoFragmentNew());
+        transaction.commit();
     }
 
     @Override

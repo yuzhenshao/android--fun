@@ -42,15 +42,15 @@ public class SelectCustomerAdapter extends RecyclerAdapter<WholeCustomerModel.Da
 //        holder.tv_cus_item_phone.setText(model.getCustomerPhone());
 
         int customerLevelID = model.getCustomerLevelID();
-        if (customerLevelID == 1) {
+        if(customerLevelID == 1) {
             holder.ivCusItemLevel.setImageResource(R.mipmap.cus_level1);
-        } else if (customerLevelID == 2) {
+        }else if(customerLevelID == 2) {
             holder.ivCusItemLevel.setImageResource(R.mipmap.cus_level2);
-        } else if (customerLevelID == 3) {
+        }else if(customerLevelID == 3) {
             holder.ivCusItemLevel.setImageResource(R.mipmap.cus_level3);
-        } else if (customerLevelID == 4) {
+        }else if(customerLevelID == 4) {
             holder.ivCusItemLevel.setImageResource(R.mipmap.cus_level4);
-        } else if (customerLevelID == 5) {
+        }else if(customerLevelID == 5) {
             holder.ivCusItemLevel.setImageResource(R.mipmap.cus_level5);
         } else {
             holder.ivCusItemLevel.setImageResource(0);

@@ -74,7 +74,7 @@ public class SearchZixunAdapter extends BaseAdapter {
         }
         holder.tvDes.setText(model.getSummary());
         if (!TextUtils.isEmpty(model.getTitleImage())){
-            Glide.with(mContext).load(ApiHelper.BASE_URL + model.getTitleImage()).into(holder.ivImg);
+            Glide.with(mContext).load(model.getTitleImage()).into(holder.ivImg);
         }
 
         return convertView;

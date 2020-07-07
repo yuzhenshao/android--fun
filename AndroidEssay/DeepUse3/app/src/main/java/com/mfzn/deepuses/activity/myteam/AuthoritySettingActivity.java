@@ -86,11 +86,11 @@ public class AuthoritySettingActivity extends BaseMvpActivity<AuthoritySettingPr
                 finish();
                 break;
             case R.id.iv_auth_xmcj:
-                model.setProCreateAuth(~(model.getProCreateAuth()));
+                model.setProCreateAuth(model.getProCreateAuth()==0?1:0);
                 ivAuthXmcj.setImageResource(model.getProCreateAuth() == 1 ? R.mipmap.shou_open : R.mipmap.shou_close);
                 break;
             case R.id.iv_auth_xmgl:
-                model.setAdminCreateAuth(~(model.getAdminCreateAuth()));
+                model.setAdminCreateAuth(model.getAdminCreateAuth()==0?1:0);
                 ivAuthXmgl.setImageResource(model.getAdminCreateAuth() == 1 ? R.mipmap.shou_open : R.mipmap.shou_close);
                 break;
             case R.id.iv_auth_bmgl:
@@ -99,11 +99,11 @@ public class AuthoritySettingActivity extends BaseMvpActivity<AuthoritySettingPr
                 //llAuthGxbm.setVisibility(isBmglVisible?View.VISIBLE:View.GONE);
                 break;
             case R.id.iv_auth_hysz:
-                model.setRechargeAuth(~(model.getRechargeAuth()));
+                model.setRechargeAuth(model.getRechargeAuth()==0?1:0);
                 ivAuthHysz.setImageResource(model.getRechargeAuth() == 1 ? R.mipmap.shou_open : R.mipmap.shou_close);
                 break;
             case R.id.iv_auth_khgl:
-                model.setCrmAuth(~(model.getCrmAuth()));
+                model.setCrmAuth(model.getCrmAuth()==0?1:0);
                 ivAuthKhgl.setImageResource(model.getCrmAuth() == 1 ? R.mipmap.shou_open : R.mipmap.shou_close);
                 break;
             case R.id.ll_auth_gxbm:

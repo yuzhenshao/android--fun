@@ -122,8 +122,13 @@
 
                 <TextView
                     android:id="@+id/select_company"
-                    style="@style/card_edit_style"
-                    android:hint="请选择所在公司" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxWidth="@dimen/app_152dp"
+                    android:hint="请选择所在公司"
+                    android:singleLine="true"
+                    android:gravity="right"
+                    android:ellipsize="end"/>
 
                 <ImageView
                     android:id="@+id/select_company_icon"
@@ -249,7 +254,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="28dp"
                     android:background="@drawable/flowing_type_tv_bule_shape"
-                    android:text="项目数量"
+                    android:text="项目信息"
                     android:textColor="#3D7EFF"
                     android:textSize="16sp" />
 

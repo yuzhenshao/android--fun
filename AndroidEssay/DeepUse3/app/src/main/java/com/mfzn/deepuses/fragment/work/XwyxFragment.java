@@ -8,6 +8,7 @@ import android.view.WindowManager;
 
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BaseMvpFragment;
+import com.mfzn.deepuses.net.ApiHelper;
 import com.mfzn.deepuses.present.work.XwyxPresent;
 import com.wevey.selector.dialog.DialogInterface;
 import com.wevey.selector.dialog.NoTitleAndDialog;
@@ -57,7 +58,7 @@ public class XwyxFragment extends BaseMvpFragment<XwyxPresent> {
 
                             @Override
                             public void clickRightButton(NoTitleAndDialog dialog, View view) {
-                                Uri uri = Uri.parse("https://mfzn.com.cn/business/login/index");
+                                Uri uri = Uri.parse(ApiHelper.B_LOGIN_URL);
                                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                                 startActivity(intent);
                                 dialog.dismiss();

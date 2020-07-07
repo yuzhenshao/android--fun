@@ -37,6 +37,8 @@ public class ProjectInfoFragment extends BaseMvpFragment<ProjectInfoPresnet> {
     private String customerName;
     private String customerPhone;
     private String cusID;
+    private String customerID;
+
 
     @Override
     public int getLayoutId() {
@@ -99,7 +101,7 @@ public class ProjectInfoFragment extends BaseMvpFragment<ProjectInfoPresnet> {
         if (Constants.SELECT_PRO == requestCode) {
             if (data != null) {
                 String proid = data.getStringExtra(Constants.SHOUHOU_PROID);
-                getP().guanliPro(proid,dataid);
+                getP().guanliPro(proid,customerID);
             }
         }
     }
@@ -108,6 +110,7 @@ public class ProjectInfoFragment extends BaseMvpFragment<ProjectInfoPresnet> {
         customerName = models.getCustomerName();
         customerPhone = models.getCustomerPhone();
         cusID = String.valueOf(models.getData_id());
+        customerID=String.valueOf(models.getCustomerUserID());
         List<DetailsModel.ProsBean> pros = models.getPros();
         if(pros != null && pros.size() != 0) {
             ll_pr_empty.setVisibility(View.GONE);

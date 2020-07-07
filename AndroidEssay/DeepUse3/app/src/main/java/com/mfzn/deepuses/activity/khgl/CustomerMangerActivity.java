@@ -82,6 +82,7 @@ public class CustomerMangerActivity extends BaseMvpActivity<CustomerManagePresne
                     intent.putExtra(Constants.CUSTOMER_ID, String.valueOf(dataBean.getData_id()));
                     intent.putExtra(Constants.USER_ID, String.valueOf(dataBean.getUid()));
                     intent.putExtra(Constants.CUSTOMER_NAME, dataBean.getU_name());
+                    intent.putExtra(Constants.ADD_FOLL_STATUS,dataBean.getFollowStatusID());
                     startActivity(intent);
                 }
             }

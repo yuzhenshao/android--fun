@@ -108,6 +108,7 @@ public class AddFollowActivity extends BaseMvpActivity<AddFollowPresnet> {
 
     private String dataid;
     private Bitmap bitmap;
+    private int followStatusID;
 
     @Override
     public int getLayoutId() {
@@ -127,6 +128,7 @@ public class AddFollowActivity extends BaseMvpActivity<AddFollowPresnet> {
         tvBassTitle.setText("新增跟进记录");
 
         dataid = getIntent().getStringExtra(Constants.ADD_FOLL);
+        followStatusID = getIntent().getIntExtra(Constants.ADD_FOLL_STATUS,-1);
         String name = getIntent().getStringExtra(Constants.ADD_FOLL_NAME);
         tv_name.setText(name);
 
@@ -156,6 +158,7 @@ public class AddFollowActivity extends BaseMvpActivity<AddFollowPresnet> {
                             .setHeight(1f)  //屏幕高度*0.23
                             .setWidth(1f)  //屏幕宽度*0.65
                             .setListModel(model.getFollowStatus())
+                            .setCurItemId(followStatusID)
                             .setCanceledOnTouchOutside(true)
                             .setOnclickListener(new DialogInterface.OnItemClickListener<GenjinTypeDialog>() {
                                 @Override
@@ -266,6 +269,15 @@ public class AddFollowActivity extends BaseMvpActivity<AddFollowPresnet> {
     }
     public void getSelectSuccess(SelectModel model) {
         this.model = model;
+        if(model!=null&&model.getFollowStatus()!=null&&model.getFollowStatus().size()>0){
+            for(SelectModel.FollowStatusBean statusBean:model.getFollowStatus()){
+                if(statusBean.getData_id()==followStatusID){
+                    statusID=String.valueOf(followStatusID);
+                    etFoType.setText(statusBean.getName());
+                    break;
+                }
+            }
+        }
     }
 
     public void gridviewInit() {
