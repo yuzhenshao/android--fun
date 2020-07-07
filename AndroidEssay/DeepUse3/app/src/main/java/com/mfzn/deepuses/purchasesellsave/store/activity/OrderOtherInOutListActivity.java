@@ -28,7 +28,6 @@ public class OrderOtherInOutListActivity extends BasicListActivity<OrderOtherInO
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mTitleBar.updateTitleBar("其他出入库");
-        initSearch("搜索单据编号、客户供应商、联系人、电话");
     }
 
     @Override

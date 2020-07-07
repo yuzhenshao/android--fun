@@ -136,10 +136,12 @@ public class CommodityPhotoCreateActivity extends BasicActivity {
     protected void initGoodsRequest() {
         mRequest.setGoodsName(goodsName.getText().toString());
         mRequest.setStoreStockNum(JXCDataManager.getInstance().getStoreStockNum());
+        mRequest.setGoodsNum(goodsNum.getText().toString());
     }
 
 
     protected void submit() {
+        showDialog();
         ApiServiceManager.addGoods(mRequest)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
@@ -147,11 +149,13 @@ public class CommodityPhotoCreateActivity extends BasicActivity {
                 .subscribe(new ApiSubscriber<HttpResult>() {
                     @Override
                     protected void onFail(NetError error) {
+                        hideDialog();
                         ToastUtil.showToast(CommodityPhotoCreateActivity.this, error.getMessage());
                     }
 
                     @Override
                     public void onNext(HttpResult reuslt) {
+                        hideDialog();
                         ToastUtil.showToast(CommodityPhotoCreateActivity.this, "成功");
                         finish();
                     }
@@ -160,8 +164,8 @@ public class CommodityPhotoCreateActivity extends BasicActivity {
 
     @Override
     public void finish() {
-       super.finish();
-       JXCDataManager.getInstance().clearStore();
+        super.finish();
+        JXCDataManager.getInstance().clearStore();
     }
 
 }

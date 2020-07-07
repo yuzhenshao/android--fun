@@ -466,6 +466,9 @@
             android:name=".purchasesellsave.store.activity.StoreAllCheckListActivity"
             android:screenOrientation="portrait"></activity>
         <activity
+            android:name=".purchasesellsave.store.activity.StoreAllCheckSponsorActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
             android:name=".purchasesellsave.store.activity.StockLogListActivity"
             android:screenOrientation="portrait"></activity>
 

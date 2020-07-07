@@ -289,16 +289,33 @@ public class OrderAllotListResponse {
             this.goodsInfo = goodsInfo;
         }
 
-        public List<String> getGoodsMainImageList(){
-            List<String> images=new ArrayList<>();
-            if(!ListUtil.isEmpty(goodsInfo)){
-                for(GoodsInfoResponse goodsResponse:goodsInfo){
-                    if(!TextUtils.isEmpty(goodsResponse.getGoodsMainImage())){
+        public List<String> getGoodsMainImageList() {
+            List<String> images = new ArrayList<>();
+            if (!ListUtil.isEmpty(goodsInfo)) {
+                for (GoodsInfoResponse goodsResponse : goodsInfo) {
+                    if (!TextUtils.isEmpty(goodsResponse.getGoodsMainImage())) {
                         images.add(goodsResponse.getGoodsMainImage());
                     }
                 }
             }
             return images;
+        }
+
+        public int getTotalMoney() {
+            int total = 0;
+            try {
+                if (!ListUtil.isEmpty(goodsInfo)) {
+                    for (GoodsInfoResponse goodsResponse : goodsInfo) {
+                        if (!TextUtils.isEmpty(goodsResponse.getSalePrice())) {
+
+                            total += Integer.parseInt(goodsResponse.getSalePrice());
+                        }
+                    }
+                }
+            }catch (Exception e){
+
+            }
+            return total;
         }
     }
 }

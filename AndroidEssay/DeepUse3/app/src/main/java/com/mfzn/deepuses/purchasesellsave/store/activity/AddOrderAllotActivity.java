@@ -133,7 +133,7 @@ public class AddOrderAllotActivity extends BaseAddCustomerAndGoodsActivity {
                 storeInEdit.setText(inStore.getStoreName());
             } else if (requestCode == STORE_OUT) {
                 StoreResponse outStore = (StoreResponse) data.getSerializableExtra(ParameterConstant.STORE);
-                orderAllotAddRequest.setToStoreID(outStore.getStoreID());
+                orderAllotAddRequest.setFromStoreID(outStore.getStoreID());
                 storeOutEdit.setText(outStore.getStoreName());
             }
         }

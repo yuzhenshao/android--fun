@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -32,6 +33,7 @@ import com.mfzn.deepuses.purchasesellsave.setting.activity.StoreListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.SupplierListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.adapter.GoodsAdapter;
 import com.mfzn.deepuses.utils.DateUtils;
+import com.mfzn.deepuses.utils.OnInputChangeListener;
 import com.mfzn.deepuses.utils.UserHelper;
 
 import java.util.ArrayList;
@@ -66,9 +68,16 @@ public class AddOrderOtherInActivity extends BaseAddCustomerAndGoodsActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mTitleBar.updateTitleBar("新建其他入库单");
+        discountPrice.addTextChangedListener(new OnInputChangeListener() {
+            @Override
+            public void afterTextChanged(Editable s) {
+                super.afterTextChanged(s);
+                setTotalPriceView();
+            }
+        });
     }
 
-    @OnClick({R.id.supplier_select, R.id.store_in_select, R.id.order_time_select, R.id.btn_commit})
+    @OnClick({R.id.supplier_select, R.id.store_in_select})
     public void viewClick(View v) {
         Intent intent = new Intent();
         switch (v.getId()) {
@@ -147,8 +156,19 @@ public class AddOrderOtherInActivity extends BaseAddCustomerAndGoodsActivity {
                 StoreResponse inStore = (StoreResponse) data.getSerializableExtra(ParameterConstant.STORE);
                 orderOtherInRequest.setStoreID(inStore.getStoreID());
                 storeInEdit.setText(inStore.getStoreName());
+            }else if (requestCode == GOODS) {
+                setTotalPriceView();
             }
         }
+    }
+
+    private void setTotalPriceView(){
+        String disconunt = discountPrice.getText().toString();
+        int disPtice = 0;
+        if (!TextUtils.isEmpty(disconunt)) {
+            disPtice = Integer.parseInt(disconunt);
+        }
+        totalPrice.setText((totalMoney - disPtice) + "");
     }
 
     @Override

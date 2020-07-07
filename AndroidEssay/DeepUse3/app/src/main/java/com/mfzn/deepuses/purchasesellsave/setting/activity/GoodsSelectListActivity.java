@@ -25,6 +25,7 @@ import com.libcommon.dialog.view.BindViewHolder;
 import com.libcommon.utils.ListUtil;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BasicListActivity;
+import com.mfzn.deepuses.bean.constants.ParameterConstant;
 import com.mfzn.deepuses.bean.response.settings.GoodsInfoResponse;
 import com.mfzn.deepuses.bean.response.settings.GoodsListResponse;
 import com.mfzn.deepuses.bean.response.settings.RateResponse;
@@ -70,11 +71,13 @@ public class GoodsSelectListActivity extends BasicListActivity<GoodsInfoResponse
     private List<GoodsInfoResponse> goodsSelectedList = new ArrayList<>();
     private GoodsSelectedAdapter goodsSelectedAdapter;
     private List<RateResponse> mRateResponseList = new ArrayList<>();
+    private boolean isNumberSet;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mTitleBar.updateTitleBar("商品中心");
+        isNumberSet = getIntent().getBooleanExtra(ParameterConstant.COST_TYPE_NUMBER_SET, false);
         goodsSelectedAdapter = new GoodsSelectedAdapter(this, goodsSelectedList);
         goodsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         goodsRecyclerView.setAdapter(goodsSelectedAdapter);
@@ -146,10 +149,64 @@ public class GoodsSelectListActivity extends BasicListActivity<GoodsInfoResponse
 
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int i) {
-                showGoodsStoreSetDialog(mSourceList.get(i));
+                if (isNumberSet) {
+                    showNumberSetDialog(mSourceList.get(i));
+                } else {
+                    showGoodsStoreSetDialog(mSourceList.get(i));
+                }
             }
         });
         return mAdapter;
+    }
+
+    private void showNumberSetDialog(GoodsInfoResponse item) {
+        new CustomDialog.Builder().setLayoutRes(R.layout.dialog_goods_store_set)
+                .setWidth(WindowManager.LayoutParams.MATCH_PARENT)
+                .setHeight(WindowManager.LayoutParams.WRAP_CONTENT)
+                .setGravity(Gravity.BOTTOM)
+                .setDialogAnimationRes(R.style.ActionSheetDialogAnimation)
+                .addOnClickListener(R.id.btn_commit)
+                .setOnBindViewListener(new OnBindViewListener() {
+                    @Override
+                    public void bindView(BindViewHolder helper) {//无线路由器（WXLYQ221）
+                        if (!TextUtils.isEmpty(item.getGoodsMainImage())) {
+                            Glide.with(context).load(ApiHelper.BASE_URL + item.getGoodsMainImage()).into((ImageView) helper.getView(R.id.goods_image));
+                        }
+                        helper.setText(R.id.name, item.getGoodsName() + "（" + item.getGoodsNum() + ")")
+                                .setText(R.id.goods_stock_num, context.getResources().getString(R.string.goods_sum_stock, item.getGoodsSumStockNum()));
+                    }
+                })
+                .setOnViewClickListener((customDialog, bindViewHolder, view) -> {
+
+                    switch (view.getId()) {
+                        case R.id.btn_commit:
+                            TextView systemStockNum = bindViewHolder.getView(R.id.system_stock_num);
+                            TextView checkStockNum = bindViewHolder.getView(R.id.check_stock_num);
+                            if (TextUtils.isEmpty(systemStockNum.getText())) {
+                                showToast("请输入系统库存");
+                                return;
+                            }
+                            if (TextUtils.isEmpty(checkStockNum.getText())) {
+                                showToast("请输入盘点库存");
+                                return;
+                            }
+                            item.setSystemStockNum(Integer.parseInt(systemStockNum.getText().toString()));
+                            item.setCheckStockNum(Integer.parseInt(checkStockNum.getText().toString()));
+                            int index = goodsSelectedList.indexOf(item);
+                            if (index != -1) {
+                                goodsSelectedList.remove(index);
+                            }
+                            if (item.getGoodsSize() > 0) {
+                                goodsSelectedList.add(item);
+                            }
+                            setGoodsSelected();
+                            if (customDialog != null) {
+                                customDialog.dismiss();
+                            }
+                            break;
+                    }
+
+                }).create().show(getSupportFragmentManager(), getClass().getName());
     }
 
     private void showGoodsStoreSetDialog(GoodsInfoResponse item) {
@@ -181,7 +238,7 @@ public class GoodsSelectListActivity extends BasicListActivity<GoodsInfoResponse
                             TextView numberView = bindViewHolder.getView(R.id.number);
                             int value = Integer.valueOf(numberView.getText().toString());
                             if (view.getId() == R.id.plus) {
-                                if (value < item.getGoodsSize()) {
+                                if (value < item.getGoodsSumStockNum()) {
                                     value += 1;
                                 }
                             } else {
@@ -260,21 +317,26 @@ public class GoodsSelectListActivity extends BasicListActivity<GoodsInfoResponse
     }
 
     private void setGoodsSelected() {
-        int totalPrice = 0;
-        int size = 0;
         selectContainer.setVisibility(View.VISIBLE);
-        if (!ListUtil.isEmpty(goodsSelectedList)) {
-            for (GoodsInfoResponse store : goodsSelectedList) {
-                size += store.getGoodsSize();
-                if (store.isHasTaxRate()) {
-                    totalPrice += getPrice(store.getSalePriceWithTax()) * store.getGoodsSize();
-                } else {
-                    totalPrice += getPrice(store.getSalePrice()) * store.getGoodsSize();
+        if (isNumberSet) {
+            goodsPrice.setVisibility(View.GONE);
+            goodsSize.setText("数量：" + goodsSelectedList.size());
+        } else {
+            int totalPrice = 0;
+            int size = 0;
+            if (!ListUtil.isEmpty(goodsSelectedList)) {
+                for (GoodsInfoResponse store : goodsSelectedList) {
+                    size += store.getGoodsSize();
+                    if (store.isHasTaxRate()) {
+                        totalPrice += getPrice(store.getSalePriceWithTax()) * store.getGoodsSize();
+                    } else {
+                        totalPrice += getPrice(store.getSalePrice()) * store.getGoodsSize();
+                    }
                 }
             }
+            goodsSize.setText("数量：" + size);
+            goodsPrice.setText("总价：" + totalPrice);
         }
-        goodsSize.setText("数量：" + size);
-        goodsPrice.setText("总价：" + totalPrice);
     }
 
     private double getPrice(String salePrice) {

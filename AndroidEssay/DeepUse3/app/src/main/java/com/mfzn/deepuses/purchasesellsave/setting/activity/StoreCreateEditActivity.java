@@ -66,7 +66,6 @@ public class StoreCreateEditActivity extends BasicActivity {
         mSubmit.setVisibility(mStoreResponse == null ? View.VISIBLE : View.GONE);
         if (mStoreResponse != null) {
             mStoreName.setText(mStoreResponse.getStoreName());
-            mStoreName.setEnabled(false);
             mContactName.setText(mStoreResponse.getUserName());
             mContactPhone.setText(mStoreResponse.getContactPhone());
             mAddress.setText(mStoreResponse.getStoreAddress());

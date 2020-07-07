@@ -172,7 +172,8 @@
                     <EditText
                         android:id="@+id/rec_phone"
                         style="@style/newly_et_st"
-                        android:hint="@string/add_custom_shuru" />
+                        android:hint="@string/add_custom_shuru"
+                        android:inputType="number"/>
 
                 </LinearLayout>
 
@@ -208,8 +209,7 @@
                     <EditText
                         android:id="@+id/rec_address"
                         style="@style/newly_et_st"
-                        android:hint="@string/add_custom_shuru"
-                        android:inputType="number" />
+                        android:hint="@string/add_custom_shuru" />
 
                 </LinearLayout>
 
@@ -245,8 +245,7 @@
                     <EditText
                         android:id="@+id/out_num"
                         style="@style/newly_et_st"
-                        android:hint="@string/add_custom_shuru"
-                        android:inputType="number" />
+                        android:hint="@string/add_custom_shuru" />
 
                 </LinearLayout>
 

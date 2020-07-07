@@ -1,9 +1,10 @@
 package com.mfzn.deepuses.purchasesellsave.sale.Module;
 
+import android.text.TextUtils;
+
 import java.io.Serializable;
 
 public class OtherCostModule implements Serializable {
-
     private String costName;
     private String costType;
     private String costMoney;

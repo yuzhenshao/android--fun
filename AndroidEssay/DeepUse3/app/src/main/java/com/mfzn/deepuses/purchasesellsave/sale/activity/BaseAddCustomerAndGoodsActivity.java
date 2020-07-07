@@ -18,6 +18,7 @@ import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BasicActivity;
 import com.mfzn.deepuses.bean.response.settings.GoodsInfoResponse;
 import com.mfzn.deepuses.common.PickerDialogView;
+import com.mfzn.deepuses.purchasesellsave.manager.JXCDataManager;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsSelectListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.adapter.GoodsAdapter;
 import com.mfzn.deepuses.utils.DateUtils;
@@ -36,7 +37,7 @@ public abstract class BaseAddCustomerAndGoodsActivity extends BasicActivity {
     protected final static int GOODS = 2;
     protected final static int COST = 3;
     protected int orderTime;
-
+    protected int totalMoney;
     protected List<GoodsInfoResponse> goodsSelectedList = new ArrayList<>();
     protected GoodsAdapter adapter;
 
@@ -109,7 +110,11 @@ public abstract class BaseAddCustomerAndGoodsActivity extends BasicActivity {
                 goodsSelectedList.addAll((List<GoodsInfoResponse>) data.getSerializableExtra("data"));
                 adapter.notifyDataSetChanged();
                 number.setText(data.getStringExtra("goodsSize"));
-                price.setText(data.getStringExtra("totalPrice"));
+                String totalPrice=data.getStringExtra("totalPrice");
+                if(!TextUtils.isEmpty(totalPrice)) {
+                    price.setText(totalPrice);
+                    totalMoney = Integer.parseInt(totalPrice.replace("总价：", ""));
+                }
 
             }
         }
@@ -124,12 +129,12 @@ public abstract class BaseAddCustomerAndGoodsActivity extends BasicActivity {
         if (!ListUtil.isEmpty(goodsSelectedList)) {
             for (GoodsInfoResponse goods : goodsSelectedList) {
                 stringBuffer.append(goods.getGoodsID()).append(",")
-                        .append(goods.getGoodsSumStockNum()).append(",")
+                        .append(goods.getGoodsSize()).append(",")
                         .append(goods.getSalePrice()).append(",")
                         .append(goods.getSalePrice()).append(",")
                         .append(goods.getTaxRate()).append(",")
                         .append(goods.getSalePriceWithTax()).append(",")
-                        .append(goods.getGoodsSumStockNum() * getPrice(goods.getSalePriceWithTax())).append(";");
+                        .append(goods.getGoodsSize() * getPrice(goods.getSalePriceWithTax())).append(";");
             }
         }
         return stringBuffer.toString();
@@ -143,11 +148,11 @@ public abstract class BaseAddCustomerAndGoodsActivity extends BasicActivity {
         if (!ListUtil.isEmpty(goodsSelectedList)) {
             for (GoodsInfoResponse goods : goodsSelectedList) {
                 stringBuffer.append(goods.getGoodsID()).append(",")
-                        .append(goods.getGoodsSumStockNum()).append(",")
+                        .append(goods.getGoodsSize()).append(",")
                         .append(goods.getSalePrice()).append(",")
                         .append(goods.getTaxRate()).append(",")
                         .append(goods.getSalePriceWithTax()).append(",")
-                        .append(goods.getGoodsSumStockNum() * getPrice(goods.getSalePriceWithTax())).append(";");
+                        .append(goods.getGoodsSize() * getPrice(goods.getSalePriceWithTax())).append(";");
             }
         }
         return stringBuffer.toString();
@@ -159,12 +164,12 @@ public abstract class BaseAddCustomerAndGoodsActivity extends BasicActivity {
         if (!ListUtil.isEmpty(goodsSelectedList)) {
             for (GoodsInfoResponse goods : goodsSelectedList) {
                 stringBuffer.append(goods.getGoodsID()).append(",")
-                        .append(goods.getGoodsSumStockNum()).append(",")
+                        .append(goods.getGoodsSize()).append(",")
                         .append(goods.getSalePrice()).append(",")
                         .append(goods.getSalePrice()).append(",")
                         .append(goods.getTaxRate()).append(",")
                         .append(goods.getSalePriceWithTax()).append(",")
-                        .append(goods.getGoodsSumStockNum() * getPrice(goods.getSalePrice())).append(",")
+                        .append(goods.getGoodsSize() * getPrice(goods.getSalePrice())).append(",")
                         .append(goods.getCostPrice()).append(";");
             }
         }
@@ -177,7 +182,7 @@ public abstract class BaseAddCustomerAndGoodsActivity extends BasicActivity {
         if (!ListUtil.isEmpty(goodsSelectedList)) {
             for (GoodsInfoResponse goods : goodsSelectedList) {
                 stringBuffer.append(goods.getGoodsID()).append(",")
-                        .append(goods.getGoodsSumStockNum()).append(";");
+                        .append(goods.getGoodsSize()).append(";");
             }
         }
         return stringBuffer.toString();
@@ -195,4 +200,9 @@ public abstract class BaseAddCustomerAndGoodsActivity extends BasicActivity {
         }
     }
 
+    @Override
+    public void finish() {
+        super.finish();
+        JXCDataManager.getInstance().clearCost();
+    }
 }

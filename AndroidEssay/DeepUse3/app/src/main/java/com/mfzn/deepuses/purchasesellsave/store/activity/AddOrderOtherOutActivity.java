@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.Editable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -28,6 +29,7 @@ import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsSelectListActivi
 import com.mfzn.deepuses.purchasesellsave.setting.activity.SetCostActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.StoreListActivity;
 import com.mfzn.deepuses.utils.DateUtils;
+import com.mfzn.deepuses.utils.OnInputChangeListener;
 import com.mfzn.deepuses.utils.UserHelper;
 
 import java.util.Date;
@@ -65,7 +67,14 @@ public class AddOrderOtherOutActivity extends BaseAddCustomerAndGoodsActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mTitleBar.updateTitleBar("新建其他出货单");
+        mTitleBar.updateTitleBar("新建其他出库单");
+        discountPrice.addTextChangedListener(new OnInputChangeListener() {
+            @Override
+            public void afterTextChanged(Editable s) {
+                super.afterTextChanged(s);
+                setTotalPriceView();
+            }
+        });
     }
 
     @OnClick({R.id.customer_select, R.id.store_select, R.id.rec_area_select,})
@@ -101,12 +110,25 @@ public class AddOrderOtherOutActivity extends BaseAddCustomerAndGoodsActivity {
    $outStorePrice（出库单价不含税）,$taxRate1（税率）,$outStorePriceWithTax（出库单价含税）,
    $money1（金额：数量*销售单价）;$goodsID2,....
     */
+        String mTotalPrice = totalPrice.getText().toString();
+        String mdiscountPrice = discountPrice.getText().toString();
+        if (TextUtils.isEmpty(mTotalPrice)) {
+            showToast("请输入单据总价格");
+            return;
+        }
+        if (TextUtils.isEmpty(mdiscountPrice)) {
+            showToast("请输入优惠金额");
+            return;
+        }
         request.setOrderGoodsStr(getOrderGoodsStr7());
         request.setOrderTime(orderTime);
         request.setOrderMakerUserID(UserHelper.getUserId());
         request.setRecName(recNameEdit.getText().toString());
         request.setRecPhone(recPhoneEdit.getText().toString());
         request.setRecAddress(recAddressEdit.getText().toString());
+        request.setDiscountAmount(mdiscountPrice);
+        request.setTotalMoney(mTotalPrice);
+        request.setRealMoney(Integer.parseInt(mTotalPrice) - Integer.parseInt(mdiscountPrice) + "");
 
         if (TextUtils.isEmpty(request.getOrderMakerUserID())) {
             showToast("请输入客户");
@@ -168,11 +190,23 @@ public class AddOrderOtherOutActivity extends BaseAddCustomerAndGoodsActivity {
                 StoreResponse inStore = (StoreResponse) data.getSerializableExtra(ParameterConstant.STORE);
                 request.setStoreID(inStore.getStoreID());
                 storeEdit.setText(inStore.getStoreName());
-            }else if (requestCode == USER) {
+            } else if (requestCode == USER) {
                 request.setCompanyCustomerID(data.getStringExtra("Id"));
                 customerEdit.setText(data.getStringExtra("Name"));
+            } else if (requestCode == GOODS) {
+                setTotalPriceView();
             }
         }
+    }
+
+
+    private void setTotalPriceView() {
+        String disconunt = discountPrice.getText().toString();
+        int disPtice = 0;
+        if (!TextUtils.isEmpty(disconunt)) {
+            disPtice = Integer.parseInt(disconunt);
+        }
+        totalPrice.setText((totalMoney - disPtice) + "");
     }
 
     @Override

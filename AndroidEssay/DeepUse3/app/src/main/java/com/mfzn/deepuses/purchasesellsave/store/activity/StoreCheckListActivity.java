@@ -60,6 +60,31 @@ public class StoreCheckListActivity extends BasicListActivity<OrderStockCheckRes
                 });
     }
 
+    protected void searchAction(String keyword) {
+        ApiServiceManager.getOrderStockCheckList(keyword, "0", -1)
+                .compose(XApi.getApiTransformer())
+                .compose(XApi.getScheduler())
+                .compose(bindToLifecycle())
+                .subscribe(new ApiSubscriber<HttpResult<OrderStockCheckListResponse>>() {
+                    @Override
+                    protected void onFail(NetError error) {
+                        showToast("没有相关搜索数据");
+                    }
+
+                    @Override
+                    public void onNext(HttpResult<OrderStockCheckListResponse> reuslt) {
+                        OrderStockCheckListResponse response = reuslt.getRes();
+                        if (response != null) {
+                            if (response.getData() != null) {
+                                refreshSearchSource(response.getData());
+                                return;
+                            }
+                        }
+                        showToast("没有相关搜索数据");
+                    }
+                });
+    }
+
     @Override
     protected BaseQuickAdapter getAdapter() {
         StoreCheckAdapter mAdapter = new StoreCheckAdapter(this, mSourceList);

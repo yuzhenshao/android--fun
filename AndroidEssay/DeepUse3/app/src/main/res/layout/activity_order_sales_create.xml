@@ -155,8 +155,8 @@
                         android:id="@+id/discount_price"
                         style="@style/newly_et_st"
                         android:hint="@string/add_custom_shuru"
-                        android:paddingRight="0dp"
-                        android:inputType="number"/>
+                        android:inputType="number"
+                        android:paddingRight="0dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -180,8 +180,8 @@
                         android:id="@+id/total_price"
                         style="@style/newly_et_st"
                         android:hint="@string/add_custom_shuru"
-                        android:paddingRight="0dp"
-                        android:inputType="number"/>
+                        android:inputType="number"
+                        android:paddingRight="0dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -254,7 +254,7 @@
                         android:id="@+id/rec_phone"
                         style="@style/newly_et_st"
                         android:hint="@string/add_custom_shuru"
-                        android:inputType="number"/>
+                        android:inputType="number" />
 
                 </LinearLayout>
 
@@ -325,6 +325,29 @@
 
                 <View style="@style/line_space" />
 
+                <LinearLayout
+                    android:id="@+id/account_container"
+                    style="@style/newly_ll_st">
+
+                    <TextView
+                        style="@style/newly_tv_st"
+                        android:text="账户" />
+
+                    <EditText
+                        android:id="@+id/money_account"
+                        style="@style/newly_et_st2"
+                        android:hint="@string/add_custom_select"
+                        android:paddingRight="0dp" />
+
+                    <ImageView
+                        android:id="@+id/money_account_select"
+                        style="@style/bass_iv_you"
+                        android:layout_marginRight="@dimen/app_20dp" />
+
+                </LinearLayout>
+
+                <View style="@style/line_heng" />
+
                 <LinearLayout style="@style/newly_ll_st">
 
                     <TextView
@@ -343,6 +366,8 @@
                         android:layout_marginRight="@dimen/app_20dp" />
 
                 </LinearLayout>
+
+                <View style="@style/line_heng" />
 
                 <LinearLayout style="@style/newly_ll_st">
 

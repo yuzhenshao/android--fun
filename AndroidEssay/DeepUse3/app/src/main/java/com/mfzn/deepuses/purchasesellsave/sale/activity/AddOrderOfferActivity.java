@@ -5,7 +5,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.view.TextureView;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -16,6 +18,7 @@ import com.mfzn.deepuses.bean.response.settings.GoodsInfoResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.utils.DateUtils;
+import com.mfzn.deepuses.utils.OnInputChangeListener;
 import com.mfzn.deepuses.utils.UserHelper;
 
 import java.util.List;
@@ -33,15 +36,14 @@ public class AddOrderOfferActivity extends BaseAddCustomerAndGoodsActivity {
     @BindView(R.id.other_cost)
     EditText otherCostEdit;
     @BindView(R.id.discount_price)
-    EditText discountPrice;
+    EditText discountPriceEdit;
     @BindView(R.id.total_price)
-    EditText totalPrice;
+    EditText totalPriceEdit;
 
     @BindView(R.id.out_num)
     EditText outNum;
     @BindView(R.id.remark)
     EditText remark;
-
 
     private OrderOfferRequest orderOfferRequest = new OrderOfferRequest();
 
@@ -50,6 +52,13 @@ public class AddOrderOfferActivity extends BaseAddCustomerAndGoodsActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mTitleBar.updateTitleBar("新建报价单");
+        discountPriceEdit.addTextChangedListener(new OnInputChangeListener() {
+            @Override
+            public void afterTextChanged(Editable s) {
+                super.afterTextChanged(s);
+                setTotalPriceView();
+            }
+        });
     }
 
     @OnClick({R.id.customer_select, R.id.other_cost_select})
@@ -66,8 +75,8 @@ public class AddOrderOfferActivity extends BaseAddCustomerAndGoodsActivity {
 
     @Override
     protected void commitAction() {
-        String mTotalPrice = totalPrice.getText().toString();
-        String mdiscountPrice = discountPrice.getText().toString();
+        String mTotalPrice = totalPriceEdit.getText().toString();
+        String mdiscountPrice = discountPriceEdit.getText().toString();
         if (TextUtils.isEmpty(mTotalPrice)) {
             showToast("请输入单据总价格");
             return;
@@ -130,10 +139,20 @@ public class AddOrderOfferActivity extends BaseAddCustomerAndGoodsActivity {
                 String otherCostStr = data.getStringExtra("data");
                 orderOfferRequest.setOtherCostStr(otherCostStr);
                 otherCostEdit.setText(TextUtils.isEmpty(otherCostStr) ? "" : "已填写");
+            } else if (requestCode == GOODS) {
+                setTotalPriceView();
             }
         }
     }
 
+    private void setTotalPriceView(){
+            String disconunt = discountPriceEdit.getText().toString();
+            int disPtice = 0;
+            if (!TextUtils.isEmpty(disconunt)) {
+                disPtice = Integer.parseInt(disconunt);
+            }
+        totalPriceEdit.setText((totalMoney - disPtice) + "");
+    }
     @Override
     public int getLayoutId() {
         return R.layout.activity_order_offer_create;

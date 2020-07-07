@@ -31,7 +31,8 @@ public class OtherCostSelectAdapter extends BaseQuickAdapter<OtherCostModule, Ba
                 .setChecked(R.id.switch_button, item.isTaxRate())
                 .addOnClickListener(R.id.cost_type_select)
                 .addOnClickListener(R.id.switch_button)
-                .addOnClickListener(R.id.tax_rate_select);
+                .addOnClickListener(R.id.tax_rate_select)
+        .addOnClickListener(R.id.delete);
 
 
 //        EditText costType = helper.getView(R.id.cost_type);

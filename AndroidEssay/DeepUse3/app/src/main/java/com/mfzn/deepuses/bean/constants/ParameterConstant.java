@@ -23,12 +23,13 @@ public interface ParameterConstant {
     //盘点单
     String STORE_CHECK_RESPONSE = "StoreCheckResponse";
     String COST_TYPE_SELECTED = "costTypeSelected";
+    String COST_TYPE_NUMBER_SET = "numberSet";
 
 
 
     //销售
     String IS_RETAIL_CREATE = "isRetail";
-
+    String SHOP = "shop";
 
     String MAP_SHOP_ID="mapShopID";
 

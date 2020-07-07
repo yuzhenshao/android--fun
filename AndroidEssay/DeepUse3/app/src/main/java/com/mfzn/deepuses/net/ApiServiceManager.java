@@ -74,6 +74,8 @@ import com.mfzn.deepuses.utils.UserHelper;
 import java.util.List;
 
 import io.reactivex.Flowable;
+import retrofit2.http.Field;
+import retrofit2.http.Query;
 
 /**
  * @author yz @date 2020-02-27
@@ -391,7 +393,7 @@ public class ApiServiceManager {
     }
 
     public static Flowable<HttpResult<SupplierListResponse>> searchSupplierList(String kw) {
-        return ApiHelper.getApiService().supplierList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), kw);
+        return ApiHelper.getApiService().supplierList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), kw, Integer.MAX_VALUE + "", 0);
     }
 
 
@@ -464,7 +466,7 @@ public class ApiServiceManager {
 
     //门店
     public static Flowable<HttpResult<ShopDataResponse>> getShopData(String mapShopID) {
-        return ApiHelper.getApiService().getShopData(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(),mapShopID);
+        return ApiHelper.getApiService().getShopData(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), mapShopID);
     }
 
     public static Flowable<HttpResult<List<ShopListResponse>>> getShopList() {
@@ -525,4 +527,9 @@ public class ApiServiceManager {
     public static Flowable<HttpResult<StockLogListResponse>> getStockLogList() {
         return ApiHelper.getApiService().stockLogList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), "", "", "", "", "", "", 0, "");
     }
+
+    public static Flowable<HttpResult> storeAllCheckSponsor(String shopID, String storeID, String beginDate, String endDate) {
+        return ApiHelper.getApiService().storeAllCheckSponsor(UserHelper.getToken(), UserHelper.getUid(), shopID, storeID, beginDate, endDate);
+    }
+
 }

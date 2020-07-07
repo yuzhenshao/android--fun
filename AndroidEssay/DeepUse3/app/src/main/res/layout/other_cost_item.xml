@@ -4,17 +4,30 @@
     android:layout_height="wrap_content"
     android:background="@color/color_ffffff"
     android:orientation="vertical">
-
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_40"
+    android:background="#F5F7FA">
     <TextView
         android:id="@+id/cost_num"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_40"
-        android:background="#F5F7FA"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+
         android:gravity="center_vertical"
         android:paddingLeft="@dimen/app_24dp"
         android:text="费用1"
         android:textColor="#ff303133"
         android:textSize="14sp" />
+
+    <ImageView
+        android:id="@+id/delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:paddingRight="@dimen/app_20dp"
+        android:src="@mipmap/work_delete2"/>
+</RelativeLayout>
 
     <LinearLayout style="@style/newly_ll_st">
 

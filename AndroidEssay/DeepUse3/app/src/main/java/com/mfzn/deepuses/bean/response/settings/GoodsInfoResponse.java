@@ -42,6 +42,8 @@ public class GoodsInfoResponse implements Serializable {
     private long addTime;
     private int goodsSumStockNum;
     private int goodsSize=1;
+    private int systemStockNum;
+    private int checkStockNum;
 
     public String getGoodsID() {
         return goodsID;
@@ -297,5 +299,21 @@ public class GoodsInfoResponse implements Serializable {
 
     public void setGoodsSize(int goodsSize) {
         this.goodsSize = goodsSize;
+    }
+
+    public int getSystemStockNum() {
+        return systemStockNum;
+    }
+
+    public void setSystemStockNum(int systemStockNum) {
+        this.systemStockNum = systemStockNum;
+    }
+
+    public int getCheckStockNum() {
+        return checkStockNum;
+    }
+
+    public void setCheckStockNum(int checkStockNum) {
+        this.checkStockNum = checkStockNum;
     }
 }

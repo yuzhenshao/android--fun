@@ -123,6 +123,8 @@ public class MainActivity extends BaseMvpActivity<MainPresent> {
     @OnClick({R.id.ll_main_gongzuo, R.id.ll_main_xiangmu, R.id.icon_main_add, R.id.ll_main_xiaoxi, R.id.ll_main_me, R.id.add_container,
             R.id.new_bjd, R.id.new_xsdd, R.id.new_ckd, R.id.add_lsd, R.id.new_goods, R.id.new_project, R.id.new_customer, R.id.new_jz})
     public void onViewClicked(View view) {
+        mainAddView.setVisibility(View.GONE);
+        ivMainAdd.setImageResource(R.mipmap.icon_main_add);
         switch (view.getId()) {
             case R.id.ll_main_gongzuo:
                 setTabSelection(0);
@@ -138,18 +140,9 @@ public class MainActivity extends BaseMvpActivity<MainPresent> {
             case R.id.ll_main_me:
                 setTabSelection(3);
                 break;
-            case R.id.add_container:
-                mainAddView.setVisibility(View.GONE);
-                ivMainAdd.setImageResource(R.mipmap.icon_main_add);
-                break;
             case R.id.icon_main_add:
-                if (mainAddView.getVisibility() == View.VISIBLE) {
-                    mainAddView.setVisibility(View.GONE);
-                    ivMainAdd.setImageResource(R.mipmap.icon_main_add);
-                } else {
-                    mainAddView.setVisibility(View.VISIBLE);
-                    ivMainAdd.setImageResource(R.mipmap.icon_main_close);
-                }
+                mainAddView.setVisibility(View.VISIBLE);
+                ivMainAdd.setImageResource(R.mipmap.icon_main_close);
                 break;
             case R.id.new_bjd:
                 turnToActivity(AddOrderOfferActivity.class);
@@ -159,9 +152,7 @@ public class MainActivity extends BaseMvpActivity<MainPresent> {
                 break;
             case R.id.new_ckd:
             case R.id.new_jz:
-                mainAddView.setVisibility(View.GONE);
-                ivMainAdd.setImageResource(R.mipmap.icon_main_add);
-                ToastUtil.showToast(this,"敬请期待");
+                ToastUtil.showToast(this, "敬请期待");
                 break;
             case R.id.add_lsd:
                 turnToSalesActivity(true);
@@ -187,8 +178,6 @@ public class MainActivity extends BaseMvpActivity<MainPresent> {
     }
 
     private void turnToSalesActivity(boolean isRetail) {
-        mainAddView.setVisibility(View.GONE);
-        ivMainAdd.setImageResource(R.mipmap.icon_main_add);
         Intent intent = new Intent();
         intent.putExtra(ParameterConstant.IS_RETAIL_CREATE, isRetail);
         intent.setClass(this, AddOrderSalesActivity.class);
@@ -228,16 +217,6 @@ public class MainActivity extends BaseMvpActivity<MainPresent> {
                     transaction.show(mTab02);
                 }
                 break;
-//            case 2:
-//                ivMainBaike.setImageResource(R.mipmap.bass_xiangmu2);
-//                tvMainBaike.setTextColor(getResources().getColor(R.color.color_3D7EFF));
-//                if (mTab03 == null) {
-//                    mTab03 = new BaikeFragment();
-//                    transaction.add(R.id.fl_content, mTab03);
-//                } else {
-//                    transaction.show(mTab03);
-//                }
-//                break;
             case 2:
                 ivMainXiaoxi.setImageResource(R.mipmap.bass_faxian2);
                 tvMainXiaoxi.setTextColor(getResources().getColor(R.color.color_3D7EFF));

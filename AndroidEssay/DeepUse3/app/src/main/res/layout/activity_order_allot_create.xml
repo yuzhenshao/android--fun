@@ -179,8 +179,7 @@
                     <EditText
                         android:id="@+id/out_num"
                         style="@style/newly_et_st"
-                        android:hint="@string/add_custom_shuru"
-                        android:inputType="number" />
+                        android:hint="@string/add_custom_shuru" />
 
                 </LinearLayout>
 

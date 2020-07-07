@@ -1,5 +1,11 @@
 package com.mfzn.deepuses.bean.response.store;
 
+import android.text.TextUtils;
+
+import com.libcommon.utils.ListUtil;
+import com.mfzn.deepuses.bean.response.settings.GoodsInfoResponse;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrderOtherInOutListResponse {
@@ -107,6 +113,7 @@ public class OrderOtherInOutListResponse {
         private long addTime;
         private ReceiverInfoBean receiverInfo;
         private String statusText;
+        private List<GoodsInfoResponse> goodsInfo;
 
         public String getOrderID() {
             return orderID;
@@ -292,6 +299,14 @@ public class OrderOtherInOutListResponse {
             this.statusText = statusText;
         }
 
+        public List<GoodsInfoResponse> getGoodsInfo() {
+            return goodsInfo;
+        }
+
+        public void setGoodsInfo(List<GoodsInfoResponse> goodsInfo) {
+            this.goodsInfo = goodsInfo;
+        }
+
         public static class ReceiverInfoBean {
             /**
              * receiverID : 1
@@ -326,6 +341,18 @@ public class OrderOtherInOutListResponse {
             public void setReceiverType(int receiverType) {
                 this.receiverType = receiverType;
             }
+        }
+
+        public List<String> getGoodsMainImageList(){
+            List<String> images=new ArrayList<>();
+            if(!ListUtil.isEmpty(goodsInfo)){
+                for(GoodsInfoResponse goodsResponse:goodsInfo){
+                    if(!TextUtils.isEmpty(goodsResponse.getGoodsMainImage())){
+                        images.add(goodsResponse.getGoodsMainImage());
+                    }
+                }
+            }
+            return images;
         }
     }
 

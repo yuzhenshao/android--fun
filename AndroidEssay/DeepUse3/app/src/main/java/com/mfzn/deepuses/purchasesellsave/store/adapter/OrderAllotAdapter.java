@@ -33,7 +33,7 @@ public class OrderAllotAdapter extends BaseQuickAdapter<OrderAllotListResponse.O
             recyclerView.setAdapter(new ImageAdapter(context, images));
         }
 
-        helper.setText(R.id.name, item.getFromStoreName())//todo
+        helper.setText(R.id.name, item.getCheckUserName())
                 .setText(R.id.order_num, item.getOrderNum())
                 .setText(R.id.goods_size, "共计" + images.size() + "件")
                 .setImageResource(R.id.store_check_icon, getStatusResId(item.getIsCheck()))

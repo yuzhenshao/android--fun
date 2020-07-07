@@ -32,7 +32,7 @@ public class StockLogsAdapter extends BaseQuickAdapter<StockLogListResponse.List
             helper.setImageResource(R.id.icon_goods, R.mipmap.icon_no_data);
         }
 
-        helper.setText(R.id.name, item.getGoodsName())
+        helper.setText(R.id.name, item.getGoodsName()+"  ["+item.getGoodsNum()+"]")
                 .setText(R.id.in_or_out_store, item.getInOrOutText() + ":" + item.getNum())
                 .setText(R.id.time, DateUtils.longToString(item.getAddTime()));
     }

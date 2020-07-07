@@ -907,7 +907,8 @@ public interface ApiService {
 
     @GET("pss/Setting/supplierList")
     Flowable<HttpResult<SupplierListResponse>> supplierList(@Query("token") String token, @Query("uid") String uid,
-                                                            @Query("shopID") String shopID, @Query("kw") String kw);
+                                                            @Query("shopID") String shopID, @Query("kw") String kw,
+                                                            @Query("per") String per, @Query("page") Integer page);
 
     @POST("pss/Setting/editSupplier")
     Flowable<HttpResult> editSupplier(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
@@ -1023,6 +1024,15 @@ public interface ApiService {
     @GET("pss/Store/storeAllCheckList")
     Flowable<HttpResult<StoreAllCheckListResponse>> storeAllCheckList(@Query("token") String token, @Query("uid") String uid,
                                                                       @Query("shopID") String shopID, @Query("exportExcel") int exportExcel);
+
+    @FormUrlEncoded
+    @POST("pss/Store/storeAllCheckSponsor")
+    Flowable<HttpResult> storeAllCheckSponsor(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Field("storeID") String storeID,
+                                                                         @Field("beginDate") String beginDate, @Field("endDate") String endDate);
+   @FormUrlEncoded
+    @POST("pss/Store/storeAllCheckDone")
+    Flowable<HttpResult> storeAllCheckDone(@Query("token") String token, @Query("uid") String uid,
+                                                                         @Query("shopID") String shopID, @Field("orderID") int storeID);
 
 
 }

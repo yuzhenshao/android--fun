@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.hmy.popwindow.PopWindow;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.activity.KbbzActivity;
@@ -52,6 +53,7 @@ import com.mfzn.deepuses.model.company.SelectCompanyModel;
 import com.mfzn.deepuses.model.home.HomeShowModel;
 import com.mfzn.deepuses.model.home.JudgeLevelModel;
 import com.mfzn.deepuses.model.home.KanbDataModel;
+import com.mfzn.deepuses.net.ApiHelper;
 import com.mfzn.deepuses.present.fragment.GongzuoPresnet;
 import com.mfzn.deepuses.purchasesellsave.sale.activity.AddOrderOfferActivity;
 import com.mfzn.deepuses.purchasesellsave.sale.activity.AddOrderSalesActivity;
@@ -421,6 +423,7 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
     //用户信息成功返回
     public void userInfoSuccess(UserResponse result) {
         if (!TextUtils.isEmpty(result.getUserAvatar())) {
+            Glide.with(context).load(ApiHelper.BASE_URL + result.getUserAvatar()).into(ivWorkIcon);
         }
     }
 
@@ -941,8 +944,8 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
             }
         });
 
-        HomeShowModel showModel4 = new HomeShowModel("咨询", "zx", R.mipmap.work_koubei);
-        HomeShowModel showModel5 = new HomeShowModel("场景", "cj", R.mipmap.work_pinpai);
+        HomeShowModel showModel4 = new HomeShowModel("咨询", "zx", R.mipmap.icon_zixun);
+        HomeShowModel showModel5 = new HomeShowModel("场景", "cj", R.mipmap.icon_changjing);
         fxzxModel.add(showModel4);
         fxzxModel.add(showModel5);
 

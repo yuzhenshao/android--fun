@@ -89,6 +89,10 @@ public class OtherCostSelectActivity extends BasicActivity {
                             showTaxDialog(otherCostModule);
                         }
                         break;
+                    case R.id.delete:
+                        otherCostList.remove(curIndex);
+                        adapter.notifyItemRemoved(curIndex);
+                        break;
                 }
             }
         });

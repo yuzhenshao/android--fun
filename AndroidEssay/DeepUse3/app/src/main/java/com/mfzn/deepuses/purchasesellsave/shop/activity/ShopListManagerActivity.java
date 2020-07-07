@@ -1,5 +1,6 @@
 package com.mfzn.deepuses.purchasesellsave.shop.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -23,11 +24,12 @@ import cn.droidlover.xdroidmvp.net.XApi;
 public class ShopListManagerActivity extends BasicListActivity<ShopListResponse> {
 
     private static int REQUESTCODE = 2000;
-
+private boolean isSelected;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mTitleBar.updateTitleBar("门店管理", R.mipmap.icon_titlebar_add);
+        isSelected=getIntent().getBooleanExtra(ParameterConstant.IS_SELECTED,false);
     }
 
     @Override
@@ -60,6 +62,12 @@ public class ShopListManagerActivity extends BasicListActivity<ShopListResponse>
 //                intent.putExtra(ParameterConstant.MAP_SHOP_ID, mSourceList.get(i).getShopID());
 //                startActivityForResult(intent, REQUESTCODE);
                 //TODO 先跳转到编辑 编辑页右上角删除
+                if(isSelected){
+                    Intent storeIntent = new Intent();
+                    storeIntent.putExtra(ParameterConstant.SHOP, mSourceList.get(i));
+                    setResult(Activity.RESULT_OK, storeIntent);
+                    finish();
+                }
             }
         });
         return mAdapter;

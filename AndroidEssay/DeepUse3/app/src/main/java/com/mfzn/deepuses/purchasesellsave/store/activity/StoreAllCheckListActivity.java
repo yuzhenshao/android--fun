@@ -74,7 +74,7 @@ public class StoreAllCheckListActivity extends BasicListActivity<StoreCheckRespo
 //    }
 
     protected void rightPressedAction() {
-        startActivityForResult(new Intent(this, AddOrderStockCheckActivity.class), REQUESTCODE);
+        startActivityForResult(new Intent(this, StoreAllCheckSponsorActivity.class), REQUESTCODE);
     }
 
     @Override

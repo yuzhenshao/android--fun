@@ -107,4 +107,8 @@ public class JXCDataManager {
     public void addOtherCostModule(List<OtherCostModule> costList) {
         otherCostList = costList;
     }
+
+    public void clearCost(){
+        otherCostList.clear();
+    }
 }

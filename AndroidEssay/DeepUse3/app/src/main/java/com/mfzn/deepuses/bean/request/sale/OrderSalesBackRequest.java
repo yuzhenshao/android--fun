@@ -3,6 +3,7 @@ package com.mfzn.deepuses.bean.request.sale;
 
 public class OrderSalesBackRequest {
 
+    private String moneyAccountID;
     private String companyCustomerID;
     private String outNum;
     private long orderTime;
@@ -112,5 +113,13 @@ public class OrderSalesBackRequest {
 
     public void setProID(String proID) {
         this.proID = proID;
+    }
+
+    public String getMoneyAccountID() {
+        return moneyAccountID;
+    }
+
+    public void setMoneyAccountID(String moneyAccountID) {
+        this.moneyAccountID = moneyAccountID;
     }
 }
