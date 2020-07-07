@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/goosd_container"
+        layout="@layout/activity_goods_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/select_container" />
+
+
+    <RelativeLayout
+        android:id="@+id/select_container"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_49dp"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"
+        android:background="#EDEFF2">
+
+        <TextView
+            android:id="@+id/goods_size"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/app_24dp"
+            android:gravity="center"
+            android:text="数量：2"
+            android:textColor="#ff303133"
+            android:textSize="14sp" />
+
+
+        <TextView
+            android:id="@+id/goods_price"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/app_45dp"
+            android:layout_toRightOf="@+id/goods_size"
+            android:gravity="center"
+            android:text="总价：1450.00"
+            android:textColor="#ff303133"
+            android:textSize="14sp" />
+
+
+        <TextView
+            android:id="@+id/select_btn"
+            android:layout_width="@dimen/app_100dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="#4A90E2"
+            android:gravity="center"
+            android:text="选好了"
+            android:textColor="#ffffffff"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/select_goods_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/select_container"
+        android:background="#4d000000"
+        android:visibility="gone">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/select_goods_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="#ffffff"
+            android:maxHeight="400dp" />
+    </RelativeLayout>
+</RelativeLayout>

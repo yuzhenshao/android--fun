@@ -42,6 +42,7 @@ public class UserHelper {
         SharedPref.getInstance(BaseApplication.getContext()).remove("u_name");
         SharedPref.getInstance(BaseApplication.getContext()).remove("userId");
         SharedPref.getInstance(BaseApplication.getContext()).putString("companyId", "");
+        SharedPref.getInstance(BaseApplication.getContext()).putString("shopId", "");
         SharedPref.getInstance(BaseApplication.getContext()).putString("companyName", "");
 
         SharedPref.getInstance(BaseApplication.getContext()).putBoolean("regist", false);
@@ -113,8 +114,8 @@ public class UserHelper {
         return SharedPref.getInstance(BaseApplication.getContext()).getString("uid", "");
     }
 
-    public static int getUserId() {
-        return SharedPref.getInstance(BaseApplication.getContext()).getInt("userId", 0);
+    public static String getUserId() {
+        return SharedPref.getInstance(BaseApplication.getContext()).getInt("userId", 0)+"";
     }
 
     public static String getU_phone() {
@@ -128,6 +129,10 @@ public class UserHelper {
     public static void setCompany(String companyId, String companyName) {
         SharedPref.getInstance(BaseApplication.getContext()).putString("companyId", companyId);
         SharedPref.getInstance(BaseApplication.getContext()).putString("companyName", companyName);
+    }
+
+    public static void setShopId(String shopId){
+        SharedPref.getInstance(BaseApplication.getContext()).putString("shopId", shopId);
     }
 
     public static void setCompanyNmae(String companyName) {
@@ -150,6 +155,10 @@ public class UserHelper {
     public static String getCompanyId() {
         return SharedPref.getInstance(BaseApplication.getContext()).getString("companyId", "");
 //        return "13";
+    }
+
+    public static String getShopId() {
+        return SharedPref.getInstance(BaseApplication.getContext()).getString("shopId", "");
     }
 
     public static String getCompanyName() {

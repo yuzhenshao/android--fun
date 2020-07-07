@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/dialog_shape"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="24dp"
+        android:textColor="#303133"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:text="新增收支类别"/>
+    <EditText
+        android:id="@+id/message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:layout_marginLeft="11dp"
+        android:layout_marginRight="11dp"
+        android:background="@drawable/general_shape"
+        android:hint="请输入收支类别"
+        android:textColorHint="#909399"
+        android:textColor="#FF030303"
+        android:textSize="16sp"
+        android:padding="10dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/app_30dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/app_19dp"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/income"
+            android:layout_width="@dimen/app_90dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/general_shape"
+            android:clickable="true"
+            android:gravity="center"
+            android:textColor="#BFC2CC"
+            android:textSize="16sp"
+            android:focusable="true"
+            android:text="收入"/>
+
+        <TextView
+            android:id="@+id/expense"
+            android:layout_width="@dimen/app_90dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/app_30dp"
+            android:background="@drawable/general_shape"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="支出"
+            android:textColor="#4A90E2"
+            android:textSize="16sp"
+            android:focusable="true"/>
+    </LinearLayout>
+
+
+
+    <View
+        android:id="@+id/separated_horizontal_line"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="24dp"
+        android:background="#EDEFF2" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="49dp"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/cancel_btn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:gravity="center"
+            android:textColor="#4A90E2"
+            android:textSize="18sp"
+            android:focusable="true"
+            android:text="取消"/>
+        <View
+            android:id="@+id/separated_vertical_line"
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="#EDEFF2" />
+        <TextView
+            android:id="@+id/confirm_btn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="确认"
+            android:textColor="#4A90E2"
+            android:textSize="18sp"
+            android:focusable="true"/>
+    </LinearLayout>
+</LinearLayout>

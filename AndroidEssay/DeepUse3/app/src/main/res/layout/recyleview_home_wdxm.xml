@@ -6,21 +6,24 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_height="wrap_content">
+        android:orientation="vertical">
 
         <ImageView
             android:id="@+id/iv_home_item_icon"
             style="@style/shenpi_iv"
-            android:src="@mipmap/work_pinpai"/>
+            android:src="@mipmap/work_pinpai" />
 
         <TextView
             android:id="@+id/tv_home_item_name"
             style="@style/shenpi_tv"
-            android:textSize="13sp"
+            android:layout_width="@dimen/app_56dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/app_5dp"
-            android:text="品牌传播"/>
+            android:gravity="center"
+            android:text="品牌传播牌传播牌传播"
+            android:textSize="13sp" />
 
     </LinearLayout>
 

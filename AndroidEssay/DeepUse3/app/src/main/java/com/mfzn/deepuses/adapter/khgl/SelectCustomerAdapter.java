@@ -52,7 +52,7 @@ public class SelectCustomerAdapter extends RecyclerAdapter<WholeCustomerModel.Da
             holder.ivCusItemLevel.setImageResource(R.mipmap.cus_level4);
         }else if(customerLevelID == 5) {
             holder.ivCusItemLevel.setImageResource(R.mipmap.cus_level5);
-        }else {
+        } else {
             holder.ivCusItemLevel.setImageResource(0);
         }
 
@@ -63,23 +63,23 @@ public class SelectCustomerAdapter extends RecyclerAdapter<WholeCustomerModel.Da
 //
 //        }
         List<WholeCustomerModel.DataBean.ProsBean> pros = model.getPros();
-        if(pros != null && pros.size() != 0) {
+        if (pros != null && pros.size() != 0) {
             String sss = null;
-            for(int i = 0; i < pros.size(); i++) {
-                if(TextUtils.isEmpty(sss)) {
+            for (int i = 0; i < pros.size(); i++) {
+                if (TextUtils.isEmpty(sss)) {
                     sss = pros.get(i).getPro_name();
-                }else {
+                } else {
                     sss = sss + "，" + pros.get(i).getPro_name();
                 }
             }
             holder.tvCusItemPro.setText(sss);
-        }else {
+        } else {
             holder.tvCusItemPro.setText("暂无分配项目");
         }
 
-        if(model.getSelectType()) {
+        if (model.getSelectType()) {
             holder.iv_cus_sel.setImageResource(R.mipmap.regi_xuanzhong);
-        }else {
+        } else {
             holder.iv_cus_sel.setImageResource(R.mipmap.regi_weixuan);
         }
 

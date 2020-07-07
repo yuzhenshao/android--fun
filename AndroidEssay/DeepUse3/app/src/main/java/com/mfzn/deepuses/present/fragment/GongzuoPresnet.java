@@ -11,6 +11,7 @@ import com.mfzn.deepuses.model.home.KanbDataModel;
 import com.mfzn.deepuses.model.jiagou.ZuzhiJiagouModel;
 import com.mfzn.deepuses.model.my.UserInfoModel;
 import com.mfzn.deepuses.net.ApiHelper;
+import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.utils.UserHelper;
 
@@ -60,7 +61,7 @@ public class GongzuoPresnet extends XPresent<GongzuoFragment> {
     }
 
     public void companyList() {
-        ApiHelper.getApiService().companyList(UserHelper.getToken(), UserHelper.getUid())
+        ApiServiceManager.getUserCompanyList(UserHelper.getU_phone())
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

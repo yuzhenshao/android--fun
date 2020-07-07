@@ -12,6 +12,7 @@ public class BrickRecordModel {
 
     private ForCompanyBean forCompanyMoney;
     private ForCompanyBean forCompanyBrick;
+
     private FinancialLogBean financialLog;
 
     public ForCompanyBean getForCompanyMoney() {
@@ -21,6 +22,7 @@ public class BrickRecordModel {
     public void setForCompanyMoney(ForCompanyBean forCompanyMoney) {
         this.forCompanyMoney = forCompanyMoney;
     }
+
 
     public ForCompanyBean getForCompanyZhuan() {
         return forCompanyBrick;

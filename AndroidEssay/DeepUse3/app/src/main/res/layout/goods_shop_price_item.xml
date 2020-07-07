@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:ignore="MissingDefaultResource">
+
+    <LinearLayout style="@style/newly_ll_st">
+
+        <TextView
+            android:id="@+id/store_name_tab"
+            style="@style/newly_tv_st"
+            android:text="常州武进店" />
+
+        <EditText
+            android:id="@+id/store_name"
+            style="@style/newly_et_st"
+            android:hint="@string/add_custom_shuru"
+            android:paddingRight="0dp"
+            android:inputType="number"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="@dimen/app_20dp"
+            android:text="元"
+            android:textColor="#303133"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <View style="@style/line_heng" />
+</LinearLayout>

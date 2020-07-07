@@ -40,8 +40,8 @@
         android:allowBackup="true"
         android:icon="@mipmap/logo"
         android:label="@string/app_name"
-        android:supportsRtl="true"
         android:networkSecurityConfig="@xml/network_security_config"
+        android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.khgl.AddProActivity" />
         <activity android:name=".activity.khgl.MyShnewActivity" />
@@ -358,6 +358,151 @@
         <activity android:name=".activitynews.TeamMsgActivity" />
         <activity android:name=".activityxm.shgd.FwzHuizhiDetailActivity" />
         <activity android:name=".activity.fx.ZixunDetailActivity" />
+        <activity
+            android:name=".purchasesellsave.setting.activity.BaseArchivesActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.setting.activity.CommodityCreateActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".purchasesellsave.setting.activity.CommodityPhotoCreateActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.White"
+            android:windowSoftInputMode="adjustResize"></activity>
+        <activity
+            android:name=".purchasesellsave.setting.activity.GoodsCategoryActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.setting.activity.GoodsUnitListActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.setting.activity.GoodsUnitListManagetActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.setting.activity.InventorySetActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.White"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".purchasesellsave.setting.activity.InventoryWarnSetActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.setting.activity.OtherCostActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.setting.activity.IncomeExpenseActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.setting.activity.GoodsListActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.setting.activity.GoodsSelectListActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.setting.activity.GoodsDetailActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.setting.activity.GoodsCategoryManagerActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.setting.activity.SupplierListActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.setting.activity.SupplierListManagerActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".purchasesellsave.setting.activity.SupplierCreateEditActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.setting.activity.StoreListActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.setting.activity.StoreCreateEditActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".purchasesellsave.sale.activity.OrderSalesListActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.sale.activity.MyCustomerSelectActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".purchasesellsave.sale.activity.OtherCostSelectActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".purchasesellsave.sale.activity.AddOrderOfferActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".purchasesellsave.sale.activity.AddOrderTakeActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.sale.activity.AddOrderSalesActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.sale.activity.AddOrderSalesBackActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.sale.activity.AddOrderTakeBackActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".purchasesellsave.store.activity.StoreCheckListActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".purchasesellsave.store.activity.StockListActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".purchasesellsave.store.activity.AddOrderStockCheckActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.store.activity.StoreAllCheckListActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.store.activity.StoreAllCheckSponsorActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.store.activity.StockLogListActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".purchasesellsave.store.activity.AddOrderAllotActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.store.activity.OrderAllotListActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".purchasesellsave.store.activity.AddOrderOtherInActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.store.activity.AddOrderOtherOutActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.store.activity.OrderOtherInOutListActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.shop.activity.AddShopActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.shop.activity.ShopListManagerActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.shop.activity.ShopDetailActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".activityfx.ChangjingListActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".activityfx.ZixunListActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

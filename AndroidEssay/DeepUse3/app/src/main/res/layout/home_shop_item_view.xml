@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_60dp"
+        android:gravity="center_vertical">
+
+        <RelativeLayout
+            android:layout_width="36dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/app_22dp">
+
+            <View
+                android:id="@+id/icon_line"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:background="#EDEFF2" />
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="1dp"
+                android:layout_alignLeft="@+id/icon_line"
+                android:layout_centerInParent="true"
+                android:background="#EDEFF2" />
+
+        </RelativeLayout>
+
+        <com.mfzn.deepuses.view.RoundImageView
+            android:id="@+id/icon_shop_photo"
+            android:layout_width="36dp"
+            android:layout_height="@dimen/app_36dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/icon_home_shop" />
+
+        <TextView
+            android:id="@+id/shop_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/app_12dp"
+            android:layout_marginRight="@dimen/app_5dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="总门店"
+            android:textColor="@color/color_303133"
+            android:textSize="14sp" />
+
+        <View style="@style/weight_heng" />
+
+        <ImageView
+            android:id="@+id/icon_selected"
+            android:layout_width="@dimen/app_24dp"
+            android:layout_height="@dimen/app_24dp"
+            android:layout_marginRight="@dimen/app_20dp"
+            android:src="@mipmap/home_duihao"
+            android:visibility="gone" />
+
+    </LinearLayout>
+</LinearLayout>

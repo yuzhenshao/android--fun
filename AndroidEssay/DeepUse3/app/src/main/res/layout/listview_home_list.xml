@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/app_60dp">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
     
     <LinearLayout
+        android:id="@+id/company_container"
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_60dp"
         android:gravity="center_vertical">
@@ -41,4 +43,10 @@
         
     </LinearLayout>
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:visibility="gone"/>
 </LinearLayout>

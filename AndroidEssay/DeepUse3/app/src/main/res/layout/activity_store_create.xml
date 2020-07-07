@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff5f7fa"
+    android:orientation="vertical">
+
+    <com.libcommon.titlebar.TitleBar
+        android:id="@+id/titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/edit_container"
+        android:layout_below="@+id/titlebar"
+        android:layout_marginTop="@dimen/dp_10">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout style="@style/newly_ll_st">
+
+                <TextView
+                    style="@style/newly_tv_st"
+                    android:text="仓库名称" />
+
+                <TextView
+                    style="@style/newly_tv_st"
+                    android:text="*"
+                    android:textColor="@color/color_d0021b" />
+
+                <EditText
+                    android:id="@+id/store_name"
+                    style="@style/newly_et_st"
+                    android:hint="@string/add_custom_shuru" />
+
+            </LinearLayout>
+
+
+            <View style="@style/line_heng" />
+
+
+            <LinearLayout
+                android:id="@+id/contact_name_select"
+                style="@style/newly_ll_st">
+
+                <TextView
+                    style="@style/newly_tv_st"
+                    android:text="联系人" />
+
+                <EditText
+                    android:id="@+id/contact_name"
+                    style="@style/newly_et_st2"
+                    android:hint="@string/add_custom_select"
+                    android:paddingRight="0dp" />
+
+                <ImageView
+                    style="@style/bass_iv_you"
+                    android:layout_marginRight="@dimen/app_20dp" />
+
+            </LinearLayout>
+
+            <View style="@style/line_heng" />
+
+            <LinearLayout
+                android:id="@+id/contact_phone_select"
+                style="@style/newly_ll_st">
+
+                <TextView
+                    style="@style/newly_tv_st"
+                    android:text="联系电话" />
+
+                <EditText
+                    android:id="@+id/contact_phone"
+                    style="@style/newly_et_st2"
+                    android:hint="@string/add_custom_select"
+                    android:paddingRight="0dp" />
+
+                <ImageView
+
+                    style="@style/bass_iv_you"
+                    android:layout_marginRight="@dimen/app_20dp" />
+
+            </LinearLayout>
+
+            <View style="@style/line_heng" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/app_24dp"
+                android:paddingTop="@dimen/app_22dp"
+                android:paddingRight="@dimen/app_24dp"
+                android:paddingBottom="@dimen/app_22dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="地址"
+                    android:textColor="#ff606266"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/app_10dp"
+                    android:background="@null"
+                    android:hint="请输入仓库地址"
+                    android:textColor="#ff909399"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <View style="@style/line_space" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/app_24dp"
+                android:paddingTop="@dimen/app_22dp"
+                android:paddingRight="@dimen/app_24dp"
+                android:paddingBottom="@dimen/app_22dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="备注"
+                    android:textColor="#ff606266"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/remark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/app_10dp"
+                    android:background="@null"
+                    android:hint="请输入仓库备注（0/200）"
+                    android:textColor="#ff909399"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/submit"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="@dimen/app_24dp"
+                android:layout_marginTop="@dimen/app_30dp"
+                android:layout_marginRight="@dimen/app_24dp"
+                android:layout_marginBottom="28dp"
+                android:background="@drawable/radius2_4a90e2_shape"
+                android:gravity="center"
+                android:text="提交"
+                android:textColor="#ffffff"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </ScrollView>
+
+
+    <LinearLayout
+        android:id="@+id/edit_container"
+        android:layout_width="fill_parent"
+        android:layout_height="49dp"
+        android:layout_alignParentBottom="true"
+        android:background="#ffedeff2"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/edit_btn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="编辑"
+            android:textColor="#007AFF"
+            android:textSize="16sp" />
+
+        <View
+            android:id="@+id/separated_vertical_line"
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="#ffffff" />
+
+        <TextView
+            android:id="@+id/delete_btn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="删除"
+            android:textColor="#E02020"
+            android:textSize="16sp" />
+    </LinearLayout>
+</RelativeLayout>

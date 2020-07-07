@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_100dp"
+        android:paddingLeft="@dimen/app_24dp"
+        android:paddingRight="@dimen/app_24dp">
+
+
+        <ImageView
+            android:id="@+id/goods_image"
+            android:layout_width="@dimen/app_75dp"
+            android:layout_height="@dimen/app_75dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:scaleType="fitXY"
+            android:src="@mipmap/logo" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/app_25dp"
+            android:text="无线路由器"
+            android:textColor="#303133"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/goods_stock_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/app_5dp"
+            android:text="库存：0"
+            android:textColor="#E02020"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+    <LinearLayout style="@style/newly_ll_st">
+
+        <TextView
+            style="@style/newly_tv_st"
+            android:text="系统库存" />
+
+        <EditText
+            android:id="@+id/system_stock_num"
+            style="@style/newly_et_st"
+            android:inputType="number"
+            android:hint="@string/add_custom_shuru" />
+
+    </LinearLayout>
+
+    <View style="@style/line_heng" />
+
+
+    <LinearLayout style="@style/newly_ll_st">
+
+        <TextView
+            style="@style/newly_tv_st"
+            android:text="盘点库存" />
+
+        <EditText
+            android:id="@+id/check_stock_num"
+            style="@style/newly_et_st"
+            android:inputType="number"
+            android:hint="@string/add_custom_shuru" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_commit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_45dp"
+        android:layout_marginLeft="@dimen/app_20dp"
+        android:layout_marginTop="@dimen/app_30dp"
+        android:layout_marginRight="@dimen/app_20dp"
+        android:layout_marginBottom="@dimen/app_36dp"
+        android:background="@drawable/submit_btn_selector"
+        android:text="确认"
+        android:textColor="@color/color_ffffff"
+        android:textSize="18sp" />
+</LinearLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/app_50dp"
+    android:layout_marginLeft="@dimen/app_24dp"
+    android:layout_marginRight="@dimen/app_24dp"
+    android:background="#F5F7FA">
+
+    <TextView
+        android:id="@+id/store_num"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="5"
+        android:textColor="#ff303133"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/store_name"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="@dimen/app_20dp"
+        android:layout_toRightOf="@+id/store_num"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="仓库1仓库1仓库1仓库1仓库1仓库1仓库1仓库1仓库1仓库1"
+        android:textColor="#ff606266"
+        android:textSize="16sp" />
+
+
+</RelativeLayout>

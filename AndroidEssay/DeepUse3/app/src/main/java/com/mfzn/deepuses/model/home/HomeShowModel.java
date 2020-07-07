@@ -6,6 +6,12 @@ public class HomeShowModel {
     private String type;
     private int photo;
 
+    public HomeShowModel(String name,int photo){
+        this.name = name;
+        this.photo = photo;
+    }
+
+
     public HomeShowModel(String name, String type, int photo) {
         this.name = name;
         this.type = type;

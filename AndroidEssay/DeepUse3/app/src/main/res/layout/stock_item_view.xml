@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/app_24dp"
+        android:layout_marginTop="@dimen/app_13dp"
+        android:layout_marginBottom="@dimen/app_12dp">
+
+        <ImageView
+            android:id="@+id/icon_goods"
+            android:layout_width="@dimen/app_75dp"
+            android:layout_height="@dimen/app_75dp"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
+            android:src="@mipmap/icon_no_data" />
+
+        <ImageView
+            android:id="@+id/icon_store_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/app_24dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/icon_tree_down" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginTop="5dp"
+            android:layout_toLeftOf="@+id/icon_store_container"
+            android:layout_toRightOf="@+id/icon_goods"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="云"
+            android:textColor="#303133"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/goods_stock_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginTop="@dimen/app_20dp"
+            android:layout_toLeftOf="@+id/icon_store_container"
+            android:layout_toRightOf="@+id/icon_goods"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="库存：5"
+            android:textColor="#ffe02020"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#fff5f7fa"
+        android:visibility="gone"/>
+    <View style="@style/line_heng"/>
+</LinearLayout>

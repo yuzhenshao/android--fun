@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_ffffff"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/app_24dp"
+        android:layout_marginRight="@dimen/app_24dp"
+        android:layout_marginTop="@dimen/dp_10"
+        android:gravity="center"
+        android:text="产品参数"
+        android:textColor="#303133"
+        android:textSize="@dimen/app_18dp"
+        android:textStyle="bold" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/app_20dp"
+        android:layout_above="@+id/confirm_btn"
+        android:layout_below="@+id/title"
+        android:layout_marginBottom="@dimen/app_20dp" />
+
+    <Button
+        android:id="@+id/confirm_btn"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_45dp"
+        android:layout_marginLeft="@dimen/app_24dp"
+        android:layout_marginRight="@dimen/app_24dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/app_40dp"
+        android:background="@drawable/submit_btn_selector"
+        android:text="确定"
+        android:textColor="@color/color_ffffff"
+        android:textSize="18sp" />
+
+</RelativeLayout>

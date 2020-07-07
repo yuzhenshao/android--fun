@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/add_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f2ffffff"
+    android:orientation="vertical"
+    android:visibility="gone">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_80dp"
+        android:layout_above="@+id/first_line">
+
+        <LinearLayout
+            android:id="@+id/new_bjd"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/app_36dp"
+                android:layout_height="@dimen/app_36dp"
+                android:src="@mipmap/icon_xjbjd" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="新建报价单"
+                android:gravity="center"
+                android:textColor="#606266"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/new_xsdd"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/app_36dp"
+                android:layout_height="@dimen/app_36dp"
+                android:src="@mipmap/icon_xjxsdd" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="新建销售订单"
+                android:gravity="center"
+                android:textColor="#606266"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/new_ckd"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/app_36dp"
+                android:layout_height="@dimen/app_36dp"
+                android:src="@mipmap/icon_purchase" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="新建采购单"
+                android:gravity="center"
+                android:textColor="#606266"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/add_lsd"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/app_36dp"
+                android:layout_height="@dimen/app_36dp"
+                android:src="@mipmap/icon_xjlsd" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="新建零售单"
+                android:textColor="#606266"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/first_line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="@dimen/app_30dp">
+
+        <LinearLayout
+            android:id="@+id/new_goods"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/app_36dp"
+                android:layout_height="@dimen/app_36dp"
+                android:src="@mipmap/icon_xjsp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="新建产品"
+                android:gravity="center"
+                android:textColor="#606266"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/new_project"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/app_36dp"
+                android:layout_height="@dimen/app_36dp"
+                android:src="@mipmap/home_chuangjian" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="新建项目"
+                android:gravity="center"
+                android:textColor="#606266"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/new_customer"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/app_36dp"
+                android:layout_height="@dimen/app_36dp"
+                android:src="@mipmap/home_xjkh" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="新建客户"
+                android:gravity="center"
+                android:textColor="#606266"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/new_jz"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/app_36dp"
+                android:layout_height="@dimen/app_36dp"
+                android:src="@mipmap/icon_jz" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="记账"
+                android:gravity="center"
+                android:textColor="#606266"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

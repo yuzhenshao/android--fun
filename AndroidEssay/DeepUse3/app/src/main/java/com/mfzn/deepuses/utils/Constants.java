@@ -227,4 +227,10 @@ public class Constants {
 
     public static final String IMAGE_DIR = Environment.getExternalStorageDirectory() + File.separator + "Android截屏";
     public static final String SCREEN_SHOT ="code_me_s.png";
+
+    //store
+    public static final String SINGLE = "single";
+    public static final String STAFFBEAN = "StaffBean";
+    public static final String GOODS = "goods";
+    public static final String MY_CUSTOMER = "myCustomer";
 }

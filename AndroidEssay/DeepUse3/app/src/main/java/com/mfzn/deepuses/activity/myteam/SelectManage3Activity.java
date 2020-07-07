@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.libcommon.utils.ListUtil;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.adapter.company.SelectManage3Adapter;
 import com.mfzn.deepuses.adapter.jiagou.MoveStaffAdapter;
@@ -41,6 +42,7 @@ public class SelectManage3Activity extends BaseMvpActivity<SelectManage3Present>
     private int positions;
     private int positions2;
     private List<ZuzhiJiagouModel.StaffBean> staff = new ArrayList<>();
+    private boolean isSingle=false;
 
     @Override
     public int getLayoutId() {
@@ -56,7 +58,7 @@ public class SelectManage3Activity extends BaseMvpActivity<SelectManage3Present>
     public void initData(Bundle savedInstanceState) {
         super.initData(savedInstanceState);
         tvBassTitle.setText(getString(R.string.app_select_manage));
-
+        isSingle=getIntent().getBooleanExtra(Constants.SINGLE,false);
         listview1.setEmptyView(llManEmpty);
 
         LinearLayoutManager layoutManager2 = new LinearLayoutManager(this);
@@ -78,8 +80,10 @@ public class SelectManage3Activity extends BaseMvpActivity<SelectManage3Present>
                 break;
             case R.id.tv_se_move:
                 String sss = null;
+                ZuzhiJiagouModel.StaffBean staffBean=null;
                 for(int i = 0; i < staff.size(); i++) {
                     if(staff.get(i).getSelectType()) {
+                        staffBean=staff.get(i);
                         if(TextUtils.isEmpty(sss)) {
                             sss = staff.get(i).getUserID();
                         }else {
@@ -92,6 +96,7 @@ public class SelectManage3Activity extends BaseMvpActivity<SelectManage3Present>
                 }else {
                     Intent intent = new Intent();
                     intent.putExtra(Constants.ADD_MANAGE_ID, sss);
+                    intent.putExtra(Constants.STAFFBEAN, staffBean);
                     setResult(Constants.ADD_MANAGE3,intent);
                     finish();
                 }
@@ -103,11 +108,13 @@ public class SelectManage3Activity extends BaseMvpActivity<SelectManage3Present>
 
         this.staff = model.getSons().get(positions).getSons().get(positions2).getStaff();
 
-        String[]  strs = stringExtra.split(",");
-        for(int i = 0; i < this.staff.size(); i++) {
-            for(int i1 = 0; i1 < strs.length; i1++) {
-                if(strs[i1].equals(this.staff.get(i).getUserID())) {
-                    this.staff.get(i).setMoren(true);
+        if(!TextUtils.isEmpty(stringExtra)) {
+            String[] strs = stringExtra.split(",");
+            for (int i = 0; i < this.staff.size(); i++) {
+                for (int i1 = 0; i1 < strs.length; i1++) {
+                    if (strs[i1].equals(this.staff.get(i).getUserID())) {
+                        this.staff.get(i).setMoren(true);
+                    }
                 }
             }
         }
@@ -118,7 +125,14 @@ public class SelectManage3Activity extends BaseMvpActivity<SelectManage3Present>
         listview1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ZuzhiJiagouModel.StaffBean beanXX = model.getSons().get(positions).getSons().get(positions2).getStaff().get(position);
+                List<ZuzhiJiagouModel.StaffBean> staffBeanList = model.getSons().get(positions).getSons().get(positions2).getStaff();
+                if (isSingle && !ListUtil.isEmpty(staffBeanList)) {
+                    for (ZuzhiJiagouModel.StaffBean staffBean : staffBeanList) {
+                        staffBean.setSelectType(false);
+                    }
+                }
+
+                ZuzhiJiagouModel.StaffBean beanXX = staffBeanList.get(position);
                 if(!beanXX.getMoren()) {
                     if(beanXX.getSelectType()) {
                         beanXX.setSelectType(false);
