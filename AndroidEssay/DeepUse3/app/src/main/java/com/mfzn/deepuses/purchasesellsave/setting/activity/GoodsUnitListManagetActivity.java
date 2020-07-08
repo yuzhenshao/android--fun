@@ -182,7 +182,7 @@ public class GoodsUnitListManagetActivity extends BasicListActivity<GoodsUnitRes
                     .subscribe(new ApiSubscriber<HttpResult>() {
                         @Override
                         protected void onFail(NetError error) {
-                            ToastUtil.showToast(GoodsUnitListManagetActivity.this, "删除失败");
+                            ToastUtil.showToast(GoodsUnitListManagetActivity.this, error.getMessage());
                         }
 
                         @Override
