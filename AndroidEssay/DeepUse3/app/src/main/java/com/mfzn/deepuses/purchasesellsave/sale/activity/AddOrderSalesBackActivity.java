@@ -193,6 +193,9 @@ public class AddOrderSalesBackActivity extends BaseAddCustomerAndGoodsActivity {
             if (requestCode == STORE) {
                 StoreResponse storeResponse = (StoreResponse) data.getSerializableExtra(ParameterConstant.STORE);
                 request.setStoreID(storeResponse.getStoreID());
+                if (isRetail) {
+                    request.setStoreType(1);
+                }
                 storeEdit.setText(storeResponse.getStoreName());
             } else if (requestCode == PROJECT) {
                 request.setProID(data.getStringExtra("Id"));

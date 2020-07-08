@@ -5,7 +5,6 @@
     android:background="@color/color_f5f7fa"
     android:orientation="vertical">
 
-
     <com.libcommon.titlebar.TitleBar
         android:id="@+id/titlebar"
         android:layout_width="match_parent"
@@ -18,9 +17,8 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp" />
+            android:layout_height="wrap_content" />
 
-        <include layout="@layout/empty_view"/>
+        <include layout="@layout/empty_view" />
     </RelativeLayout>
 </LinearLayout>

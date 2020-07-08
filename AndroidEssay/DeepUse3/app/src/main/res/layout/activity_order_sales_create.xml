@@ -238,7 +238,7 @@
                         android:hint="@string/add_custom_shuru" />
 
                 </LinearLayout>
-
+                <View style="@style/line_heng" />
                 <LinearLayout style="@style/newly_ll_st">
 
                     <TextView
@@ -257,7 +257,7 @@
                         android:inputType="number" />
 
                 </LinearLayout>
-
+                <View style="@style/line_heng" />
                 <LinearLayout style="@style/newly_ll_st">
 
                     <TextView

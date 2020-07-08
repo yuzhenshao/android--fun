@@ -9,6 +9,7 @@ public class OrderSalesBackRequest {
     private long orderTime;
     private String orderMakerUserID;
     private String storeID;
+    private int storeType;
     private String proID;
     private String orderGoodsStr;
     private String totalMoney;
@@ -121,5 +122,13 @@ public class OrderSalesBackRequest {
 
     public void setMoneyAccountID(String moneyAccountID) {
         this.moneyAccountID = moneyAccountID;
+    }
+
+    public int getStoreType() {
+        return storeType;
+    }
+
+    public void setStoreType(int storeType) {
+        this.storeType = storeType;
     }
 }

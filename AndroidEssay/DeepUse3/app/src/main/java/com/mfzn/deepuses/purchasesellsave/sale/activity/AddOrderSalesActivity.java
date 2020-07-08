@@ -241,6 +241,9 @@ public class AddOrderSalesActivity extends BaseAddCustomerAndGoodsActivity {
             if (requestCode == STORE) {
                 StoreResponse storeResponse = (StoreResponse) data.getSerializableExtra(ParameterConstant.STORE);
                 request.setStoreID(storeResponse.getStoreID());
+                if (isRetail) {
+                    request.setStoreType(1);
+                }
                 storeEdit.setText(storeResponse.getStoreName());
             } else if (requestCode == PROJECT) {
                 request.setProID(data.getStringExtra("Id"));
@@ -261,7 +264,7 @@ public class AddOrderSalesActivity extends BaseAddCustomerAndGoodsActivity {
         }
     }
 
-    private void setTotalPriceView(){
+    private void setTotalPriceView() {
         String disconunt = discountPrice.getText().toString();
         int disPtice = 0;
         if (!TextUtils.isEmpty(disconunt)) {
