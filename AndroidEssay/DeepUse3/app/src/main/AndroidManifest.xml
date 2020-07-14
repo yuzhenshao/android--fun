@@ -423,6 +423,9 @@
         <activity
             android:name=".purchasesellsave.setting.activity.StoreCreateEditActivity"
             android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.setting.activity.MoneyAccountListActivity"
+            android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".purchasesellsave.sale.activity.OrderSalesListActivity"

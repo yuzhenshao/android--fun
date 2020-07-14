@@ -32,6 +32,7 @@ import com.mfzn.deepuses.bean.request.store.OrderStockCheckRequest;
 import com.mfzn.deepuses.bean.response.GoodsCategoryResponse;
 import com.mfzn.deepuses.bean.response.GoodsUnitResponse;
 import com.mfzn.deepuses.bean.response.sale.OrderOfferListResponse;
+import com.mfzn.deepuses.bean.response.settings.MoneyAccountListResponse;
 import com.mfzn.deepuses.bean.response.settings.RateResponse;
 import com.mfzn.deepuses.bean.response.settings.StoreResponse;
 import com.mfzn.deepuses.bean.response.UserResponse;
@@ -417,6 +418,10 @@ public class ApiServiceManager {
 
     public static Flowable<HttpResult<List<RateResponse>>> getTaxRateList() {
         return ApiHelper.getApiService().taxRateList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId());
+    }
+
+    public static Flowable<HttpResult<MoneyAccountListResponse>> getMoneyAccountList(String mapShopID) {
+        return ApiHelper.getApiService().moneyAccountList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(),mapShopID);
     }
 
 

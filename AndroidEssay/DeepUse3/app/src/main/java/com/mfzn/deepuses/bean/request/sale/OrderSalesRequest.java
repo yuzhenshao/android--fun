@@ -9,6 +9,8 @@ public class OrderSalesRequest {
     private long orderTime;
     private String orderMakerUserID;
     private String storeID;
+    private int storeType;//仓库类型：1.门店仓库；2.个人仓库；
+
     private String proID;
     private String orderGoodsStr;
     private String totalMoney;
@@ -177,5 +179,13 @@ public class OrderSalesRequest {
 
     public void setMoneyAccountID(String moneyAccountID) {
         this.moneyAccountID = moneyAccountID;
+    }
+
+    public int getStoreType() {
+        return storeType;
+    }
+
+    public void setStoreType(int storeType) {
+        this.storeType = storeType;
     }
 }

@@ -152,6 +152,7 @@ public class OtherCostActivity extends BasicListActivity<OtherCostResponse> {
                         @Override
                         public void onNext(HttpResult reuslt) {
                             ToastUtil.showToast(OtherCostActivity.this, "删除成功");
+                            mSourceList.remove(index);
                             adapter.notifyItemRemoved(index);
                         }
                     });

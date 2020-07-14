@@ -33,6 +33,7 @@ import com.mfzn.deepuses.bean.response.BusinessCardResponse;
 import com.mfzn.deepuses.bean.response.GoodsCategoryResponse;
 import com.mfzn.deepuses.bean.response.GoodsUnitResponse;
 import com.mfzn.deepuses.bean.response.sale.OrderOfferListResponse;
+import com.mfzn.deepuses.bean.response.settings.MoneyAccountListResponse;
 import com.mfzn.deepuses.bean.response.settings.MyStoreResponse;
 import com.mfzn.deepuses.bean.response.settings.RateResponse;
 import com.mfzn.deepuses.bean.response.settings.StoreResponse;
@@ -925,6 +926,13 @@ public interface ApiService {
     @GET("pss/Setting/taxRateList")
     Flowable<HttpResult<List<RateResponse>>> taxRateList(@Query("token") String token, @Query("uid") String uid,
                                                          @Query("shopID") String shopID);
+
+        @GET("pss/Setting/moneyAccountList")
+    Flowable<HttpResult<MoneyAccountListResponse>> moneyAccountList(@Query("token") String token, @Query("uid") String uid,
+                                                                    @Query("shopID") String shopID, @Query("mapShopID") String mapShopID);
+
+
+
 
     //门店
     @GET("pss/Statistics/getShopData")

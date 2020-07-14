@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="22dp"
+    android:layout_marginRight="22dp"
+    android:layout_marginBottom="@dimen/app_7dp"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/money_account_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/app_17dp"
+        android:src="@mipmap/bg_account" />
+
+    <TextView
+        android:id="@+id/account_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="40dp"
+        android:layout_toLeftOf="@+id/account_type"
+        android:layout_marginRight="@dimen/dp_10"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:text="建行1123"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/account_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="24dp"
+        android:gravity="center"
+        android:text="银行账户"
+        android:textColor="#ffffff"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/account_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/account_type"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:text="余额：11800.00 元"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/sp_16" />
+
+    <View
+        android:id="@+id/separated_horizontal_line"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/account_money"
+        android:background="#ffffff" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/separated_horizontal_line"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/cancel_btn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="查看流水"
+            android:textColor="#ffffff"
+            android:textSize="16sp" />
+
+        <View
+            android:id="@+id/separated_vertical_line"
+            android:layout_width="0.5dp"
+            android:layout_height="@dimen/app_45dp"
+            android:background="#ffffff" />
+
+        <TextView
+            android:id="@+id/confirm_btn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="转账"
+            android:textColor="#ffffff"
+            android:textSize="16sp" />
+    </LinearLayout>
+</RelativeLayout>

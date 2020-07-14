@@ -19,6 +19,7 @@ import com.mfzn.deepuses.common.PickerDialogView;
 import com.mfzn.deepuses.model.company.CityModel;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
+import com.mfzn.deepuses.purchasesellsave.setting.activity.MoneyAccountListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.StoreListActivity;
 import com.mfzn.deepuses.utils.OnInputChangeListener;
 import com.mfzn.deepuses.utils.UserHelper;
@@ -240,6 +241,9 @@ public class AddOrderSalesActivity extends BaseAddCustomerAndGoodsActivity {
             if (requestCode == STORE) {
                 StoreResponse storeResponse = (StoreResponse) data.getSerializableExtra(ParameterConstant.STORE);
                 request.setStoreID(storeResponse.getStoreID());
+                if (isRetail) {
+                    request.setStoreType(1);
+                }
                 storeEdit.setText(storeResponse.getStoreName());
             } else if (requestCode == PROJECT) {
                 request.setProID(data.getStringExtra("Id"));
@@ -260,7 +264,7 @@ public class AddOrderSalesActivity extends BaseAddCustomerAndGoodsActivity {
         }
     }
 
-    private void setTotalPriceView(){
+    private void setTotalPriceView() {
         String disconunt = discountPrice.getText().toString();
         int disPtice = 0;
         if (!TextUtils.isEmpty(disconunt)) {
