@@ -40,8 +40,7 @@
                         android:hint=""/>
 
                     <ImageView
-                        style="@style/bass_iv_you"
-                        android:layout_marginRight="@dimen/app_12dp"/>
+                        style="@style/bass_iv_you"/>
 
                 </LinearLayout>
 
@@ -62,8 +61,7 @@
                         android:hint="@string/add_custom_select"/>
 
                     <ImageView
-                        style="@style/bass_iv_you"
-                        android:layout_marginRight="@dimen/app_12dp"/>
+                        style="@style/bass_iv_you"/>
 
                 </LinearLayout>
 
@@ -108,8 +106,7 @@
                         android:hint="@string/add_custom_select"/>
 
                     <ImageView
-                        style="@style/bass_iv_you"
-                        android:layout_marginRight="@dimen/app_12dp"/>
+                        style="@style/bass_iv_you"/>
 
                 </LinearLayout>
 

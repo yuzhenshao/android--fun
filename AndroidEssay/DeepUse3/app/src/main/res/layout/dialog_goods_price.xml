@@ -70,7 +70,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:layout_marginRight="@dimen/app_20dp"
             android:text="元"
             android:textColor="#303133"
             android:textSize="16sp" />
@@ -123,8 +122,7 @@
 
         <ImageView
             android:id="@+id/tax_rate_select"
-            style="@style/bass_iv_you"
-            android:layout_marginRight="@dimen/app_20dp" />
+            style="@style/bass_iv_you"/>
     </LinearLayout>
 
     <RelativeLayout style="@style/newly_ll_st">
@@ -140,7 +138,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginLeft="5dp"
-            android:layout_marginRight="@dimen/app_20dp"
             android:text="99元"
             android:textColor="#909399"
             android:textSize="16sp" />

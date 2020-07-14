@@ -54,8 +54,7 @@
 
                     <ImageView
                         android:id="@+id/customer_select"
-                        style="@style/bass_iv_you"
-                        android:layout_marginRight="@dimen/app_20dp" />
+                        style="@style/bass_iv_you"/>
 
                 </LinearLayout>
 
@@ -75,8 +74,7 @@
 
                     <ImageView
                         android:id="@+id/goods_select"
-                        style="@style/bass_iv_you"
-                        android:layout_marginRight="@dimen/app_20dp" />
+                        style="@style/bass_iv_you"/>
 
                 </LinearLayout>
 
@@ -144,7 +142,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:layout_marginRight="@dimen/app_20dp"
                         android:text="元"
                         android:textColor="#303133"
                         android:textSize="16sp" />
@@ -169,7 +166,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:layout_marginRight="@dimen/app_20dp"
                         android:text="元"
                         android:textColor="#303133"
                         android:textSize="16sp" />
@@ -191,8 +187,7 @@
 
                     <ImageView
                         android:id="@+id/store_select"
-                        style="@style/bass_iv_you"
-                        android:layout_marginRight="@dimen/app_20dp" />
+                        style="@style/bass_iv_you"/>
 
                 </LinearLayout>
 
@@ -239,8 +234,7 @@
 
                     <ImageView
                         android:id="@+id/rec_area_select"
-                        style="@style/bass_iv_you"
-                        android:layout_marginRight="@dimen/app_20dp" />
+                        style="@style/bass_iv_you" />
 
                 </LinearLayout>
 
@@ -276,8 +270,7 @@
 
                     <ImageView
                         android:id="@+id/order_time_select"
-                        style="@style/bass_iv_you"
-                        android:layout_marginRight="@dimen/app_20dp" />
+                        style="@style/bass_iv_you"/>
 
                 </LinearLayout>
 
@@ -296,7 +289,6 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_marginLeft="5dp"
-                        android:layout_marginRight="@dimen/app_20dp"
                         android:textColor="#303133"
                         android:textSize="16sp" />
                 </RelativeLayout>

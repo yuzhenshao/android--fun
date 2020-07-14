@@ -43,8 +43,7 @@
 
         <ImageView
             android:id="@+id/cost_type_select"
-            style="@style/bass_iv_you"
-            android:layout_marginRight="@dimen/app_20dp" />
+            style="@style/bass_iv_you"/>
 
     </LinearLayout>
 
@@ -111,8 +110,7 @@
 
         <ImageView
             android:id="@+id/tax_rate_select"
-            style="@style/bass_iv_you"
-            android:layout_marginRight="@dimen/app_20dp" />
+            style="@style/bass_iv_you" />
 
     </LinearLayout>
 </LinearLayout>

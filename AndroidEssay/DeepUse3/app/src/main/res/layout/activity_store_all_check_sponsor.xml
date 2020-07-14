@@ -23,8 +23,7 @@
 
         <ImageView
             android:id="@+id/shop_select"
-            style="@style/bass_iv_you"
-            android:layout_marginRight="@dimen/app_20dp" />
+            style="@style/bass_iv_you"/>
 
     </LinearLayout>
 
@@ -44,8 +43,7 @@
 
         <ImageView
             android:id="@+id/store_check_select"
-            style="@style/bass_iv_you"
-            android:layout_marginRight="@dimen/app_20dp" />
+            style="@style/bass_iv_you"/>
 
     </LinearLayout>
 
@@ -65,8 +63,7 @@
 
         <ImageView
             android:id="@+id/start_time_select"
-            style="@style/bass_iv_you"
-            android:layout_marginRight="@dimen/app_20dp" />
+            style="@style/bass_iv_you" />
 
     </LinearLayout>
 
@@ -86,8 +83,7 @@
 
         <ImageView
             android:id="@+id/endtime_select"
-            style="@style/bass_iv_you"
-            android:layout_marginRight="@dimen/app_20dp" />
+            style="@style/bass_iv_you" />
 
     </LinearLayout>
 

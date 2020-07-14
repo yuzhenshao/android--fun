@@ -26,8 +26,7 @@
             android:hint="请选择智能影音的时间"/>
 
         <ImageView
-            style="@style/bass_iv_you"
-            android:layout_marginRight="@dimen/app_10dp"/>
+            style="@style/bass_iv_you"/>
 
     </LinearLayout>
 
@@ -48,8 +47,7 @@
             android:hint="请选择红外报警的时间"/>
 
         <ImageView
-            style="@style/bass_iv_you"
-            android:layout_marginRight="@dimen/app_10dp"/>
+            style="@style/bass_iv_you"/>
 
     </LinearLayout>
 

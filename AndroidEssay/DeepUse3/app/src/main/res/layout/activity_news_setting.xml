@@ -21,7 +21,6 @@
         <TextView
             android:id="@+id/tv_news_type"
             style="@style/newly_tv_st"
-            android:layout_marginRight="@dimen/app_24dp"
             android:textColor="@color/color_303133"
             android:text=""/>
 
