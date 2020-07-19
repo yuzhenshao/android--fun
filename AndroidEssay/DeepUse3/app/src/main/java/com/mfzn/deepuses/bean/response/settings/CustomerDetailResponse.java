@@ -1,8 +1,10 @@
 package com.mfzn.deepuses.bean.response.settings;
 
+import com.chad.library.adapter.base.entity.MultiItemEntity;
+
 import java.util.List;
 
-public class SupplierCustomerInfoResponse {
+public class CustomerDetailResponse {
 
 
     /**
@@ -135,7 +137,7 @@ public class SupplierCustomerInfoResponse {
         }
     }
 
-    public static class OrderListBean {
+    public static class OrderListBean implements MultiItemEntity {
         /**
          * dataID : 90
          * dataType : 2
@@ -157,7 +159,7 @@ public class SupplierCustomerInfoResponse {
          */
 
         private String dataID;
-        private int dataType;
+        private int dataType;//收付款类型：1.应收；2.应付；
         private String orderID;
         private int orderType;
         private String money;
@@ -308,6 +310,11 @@ public class SupplierCustomerInfoResponse {
 
         public void setOrderMakerUserName(String orderMakerUserName) {
             this.orderMakerUserName = orderMakerUserName;
+        }
+
+        @Override
+        public int getItemType() {
+            return dataType;
         }
     }
 

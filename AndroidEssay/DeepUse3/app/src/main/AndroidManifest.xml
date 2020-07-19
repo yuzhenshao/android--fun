@@ -413,6 +413,14 @@
         <activity
             android:name=".purchasesellsave.setting.activity.SupplierListManagerActivity"
             android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.setting.activity.SettingCustomerMangerActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.setting.activity.CustomerDetailActivity"
+            android:screenOrientation="portrait"></activity>  <activity
+            android:name=".purchasesellsave.setting.activity.CreateSetCustomerActivity"
+            android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".purchasesellsave.setting.activity.SupplierCreateEditActivity"

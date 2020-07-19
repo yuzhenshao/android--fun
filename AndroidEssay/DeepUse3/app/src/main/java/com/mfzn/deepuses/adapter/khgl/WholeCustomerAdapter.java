@@ -47,15 +47,15 @@ public class WholeCustomerAdapter extends RecyclerAdapter<WholeCustomerModel.Dat
         holder.tvCusItemName.setText(model.getU_name());
 
         int customerLevelID = model.getCustomerLevelID();
-        if(customerLevelID == 4) {
+        if(customerLevelID == 1) {
             holder.ivCusItemLevel.setImageResource(R.mipmap.cus_level1);
-        }else if(customerLevelID == 5) {
+        }else if(customerLevelID == 2) {
             holder.ivCusItemLevel.setImageResource(R.mipmap.cus_level2);
-        }else if(customerLevelID == 6) {
+        }else if(customerLevelID == 3) {
             holder.ivCusItemLevel.setImageResource(R.mipmap.cus_level3);
-        }else if(customerLevelID == 7) {
+        }else if(customerLevelID == 4) {
             holder.ivCusItemLevel.setImageResource(R.mipmap.cus_level4);
-        }else if(customerLevelID == 8) {
+        }else if(customerLevelID == 5) {
             holder.ivCusItemLevel.setImageResource(R.mipmap.cus_level5);
         }else {
             holder.ivCusItemLevel.setImageResource(0);
