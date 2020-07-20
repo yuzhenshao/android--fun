@@ -25,7 +25,7 @@
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:orientation="vertical"
-            android:src="@mipmap/upload_moren"
+            android:src="@mipmap/icon_six_image"
             android:layout_marginTop="@dimen/app_20dp"/>
 
         <android.support.v7.widget.RecyclerView

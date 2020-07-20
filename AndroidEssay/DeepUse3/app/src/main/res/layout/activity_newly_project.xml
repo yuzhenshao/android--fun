@@ -92,7 +92,6 @@
 
                         <ImageView
                             style="@style/tips_iv"
-                            android:layout_marginRight="@dimen/app_20dp"
                             android:src="@mipmap/join_you"/>
 
                     </LinearLayout>
@@ -151,7 +150,6 @@
 
                         <ImageView
                             style="@style/tips_iv"
-                            android:layout_marginRight="@dimen/app_20dp"
                             android:src="@mipmap/join_you"/>
 
                     </LinearLayout>
@@ -204,7 +202,6 @@
 
                         <TextView
                             style="@style/newly_tv_st"
-                            android:layout_marginRight="@dimen/app_24dp"
                             android:text="元"/>
 
                     </LinearLayout>
@@ -227,7 +224,6 @@
 
                         <ImageView
                             style="@style/tips_iv"
-                            android:layout_marginRight="@dimen/app_20dp"
                             android:src="@mipmap/join_you"/>
 
                     </LinearLayout>

@@ -27,11 +27,14 @@ import com.mfzn.deepuses.bean.request.sale.OrderSalesBackRequest;
 import com.mfzn.deepuses.bean.request.sale.OrderSalesRequest;
 import com.mfzn.deepuses.bean.request.sale.OrderTakeGoodsBackRequest;
 import com.mfzn.deepuses.bean.request.sale.OrderTakeGoodsRequest;
+import com.mfzn.deepuses.bean.request.setting.AddSetCustomerRequest;
 import com.mfzn.deepuses.bean.request.store.OrderAllotAddRequest;
 import com.mfzn.deepuses.bean.request.store.OrderStockCheckRequest;
 import com.mfzn.deepuses.bean.response.GoodsCategoryResponse;
 import com.mfzn.deepuses.bean.response.GoodsUnitResponse;
 import com.mfzn.deepuses.bean.response.sale.OrderOfferListResponse;
+import com.mfzn.deepuses.bean.response.settings.CustomerDetailResponse;
+import com.mfzn.deepuses.bean.response.settings.CustomerListResponse;
 import com.mfzn.deepuses.bean.response.settings.MoneyAccountListResponse;
 import com.mfzn.deepuses.bean.response.settings.RateResponse;
 import com.mfzn.deepuses.bean.response.settings.StoreResponse;
@@ -394,7 +397,7 @@ public class ApiServiceManager {
         return searchSupplierList(null);
     }
 
-    public static Flowable<HttpResult<SupplierCustomerInfoResponse>> getSupplierCustomerInfo(String companyCustomerID) {
+    public static Flowable<HttpResult<CustomerDetailResponse>> getCustomerInfo(String companyCustomerID) {
         return ApiHelper.getApiService().customerInfo(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), companyCustomerID);
     }
 
@@ -421,7 +424,23 @@ public class ApiServiceManager {
     }
 
     public static Flowable<HttpResult<MoneyAccountListResponse>> getMoneyAccountList(String mapShopID) {
-        return ApiHelper.getApiService().moneyAccountList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(),mapShopID);
+        return ApiHelper.getApiService().moneyAccountList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), mapShopID);
+    }
+
+    public static Flowable<HttpResult<CustomerListResponse>> getCustomerList(String keywords) {
+        return ApiHelper.getApiService().getSetCustomerList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), keywords,Integer.MAX_VALUE+"",0);
+    }
+
+    public static Flowable<HttpResult> addSetCustomer(AddSetCustomerRequest request) {
+        return ApiHelper.getApiService().addSetCustomer(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), request);
+    }
+
+    public static Flowable<HttpResult> editSetCustomer(AddSetCustomerRequest request) {
+        return ApiHelper.getApiService().editSetCustomer(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), request);
+    }
+
+    public static Flowable<HttpResult> delSetCustomer(String companyCustomerID) {
+        return ApiHelper.getApiService().delSetCustomer(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), companyCustomerID);
     }
 
 

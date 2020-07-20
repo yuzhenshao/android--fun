@@ -128,7 +128,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="16sp"
-                            android:layout_marginRight="@dimen/app_24dp"
                             android:textColor="@color/color_303133"
                             android:text=""/>
 
@@ -154,7 +153,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="16sp"
-                            android:layout_marginRight="@dimen/app_24dp"
                             android:textColor="@color/color_303133"
                             android:text=""/>
 
@@ -257,7 +255,6 @@
                             android:id="@+id/ib_shou_zbyj"
                             android:layout_width="@dimen/app_52dp"
                             android:layout_height="@dimen/app_23dp"
-                            android:layout_marginRight="@dimen/app_24dp"
                             android:src="@mipmap/shou_close" />
 
                     </LinearLayout>
@@ -307,7 +304,6 @@
                             android:id="@+id/tv_fou_money"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="@dimen/app_24dp"
                             android:text="元"
                             android:textColor="@color/color_303133"
                             android:textSize="16sp" />

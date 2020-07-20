@@ -6,15 +6,12 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.mfzn.deepuses.R;
-import com.mfzn.deepuses.adapter.project.ProjectNewsAdapter;
-import com.mfzn.deepuses.model.xiangmu.ProjectNewsModel;
 import com.mfzn.deepuses.model.xx.TeamApplyModel;
 import com.mfzn.deepuses.net.ApiHelper;
 import com.mfzn.deepuses.utils.DateUtils;
@@ -48,7 +45,7 @@ public class TeamApplyAdapter extends RecyclerAdapter<TeamApplyModel.DataBean, T
 
         TeamApplyModel.DataBean bean = data.get(position);
 
-        String u_head = bean.getU_head();
+        String u_head = bean.getUserAvatar();
         if(!TextUtils.isEmpty(u_head)) {
             Glide.with(context).load(ApiHelper.BASE_URL + u_head).into(holder.ivPrItemIcon);
         }

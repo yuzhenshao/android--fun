@@ -51,8 +51,7 @@
             android:text="已是最新"/>
 
         <ImageView
-            style="@style/bass_iv_you"
-            android:layout_marginRight="@dimen/app_20dp"/>
+            style="@style/bass_iv_you"/>
 
     </LinearLayout>
 
@@ -69,8 +68,7 @@
             android:text="云知枢平台注册协议"/>
 
         <ImageView
-            style="@style/bass_iv_you"
-            android:layout_marginRight="@dimen/app_20dp"/>
+            style="@style/bass_iv_you"/>
 
     </LinearLayout>
 
@@ -87,8 +85,7 @@
             android:text="云知枢隐私政策"/>
 
         <ImageView
-            style="@style/bass_iv_you"
-            android:layout_marginRight="@dimen/app_20dp"/>
+            style="@style/bass_iv_you"/>
 
     </LinearLayout>
 

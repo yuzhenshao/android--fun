@@ -24,8 +24,7 @@
             android:text="更换手机号"/>
 
         <ImageView
-            style="@style/bass_iv_you"
-            android:layout_marginRight="@dimen/app_20dp"/>
+            style="@style/bass_iv_you"/>
 
     </LinearLayout>
 

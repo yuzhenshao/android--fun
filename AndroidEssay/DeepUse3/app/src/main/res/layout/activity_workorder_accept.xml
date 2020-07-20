@@ -32,7 +32,6 @@
 
         <ImageView
             style="@style/bass_iv_you"
-            android:layout_marginRight="@dimen/app_20dp"
             android:layout_marginLeft="@dimen/app_10dp"/>
 
     </LinearLayout>
@@ -62,7 +61,6 @@
         <ImageView
             android:layout_width="@dimen/app_24dp"
             android:layout_height="@dimen/app_24dp"
-            android:layout_marginRight="@dimen/app_20dp"
             android:layout_marginLeft="@dimen/app_10dp"
             android:src="@mipmap/pro_add"/>
 

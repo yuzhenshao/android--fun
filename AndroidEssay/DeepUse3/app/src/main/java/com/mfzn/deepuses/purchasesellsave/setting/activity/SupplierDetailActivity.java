@@ -37,7 +37,6 @@ import cn.droidlover.xdroidmvp.net.XApi;
 
 public class SupplierDetailActivity extends BasicActivity {
 
-    private String shopId;
     private static int EDIT_CODE = 1001;
 
     @BindView(R.id.supplier_name)
@@ -58,7 +57,6 @@ public class SupplierDetailActivity extends BasicActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mTitleBar.updateTitleBar("供应商详情", R.mipmap.work_xie);
-        shopId = getIntent().getStringExtra(ParameterConstant.SHOP_ID);
         initData();
     }
 
@@ -69,34 +67,11 @@ public class SupplierDetailActivity extends BasicActivity {
 
     private void initData() {
         showDialog();
-        ApiServiceManager.getSupplierCustomerInfo(getIntent().getStringExtra(ParameterConstant.COMPANY_CUSTOMER_ID))
-                .compose(XApi.getApiTransformer())
-                .compose(XApi.getScheduler())
-                .compose(bindToLifecycle())
-                .subscribe(new ApiSubscriber<HttpResult<SupplierCustomerInfoResponse>>() {
-                    @Override
-                    protected void onFail(NetError error) {
-                        hideDialog();
-                        ToastUtil.showToast(SupplierDetailActivity.this, error.getMessage());
-                    }
 
-                    @Override
-                    public void onNext(HttpResult<SupplierCustomerInfoResponse> reuslt) {
-                        hideDialog();
-                        mSupplierCustomerInfoResponse = reuslt.getRes();
-                        initSupplier();
-                        if (!isRefresh) {
-                            initDetailPager();
-                        }
-                    }
-                });
     }
 
     private void initSupplier() {
-        SupplierCustomerInfoResponse.SupplierBaseInfo supplierBaseInfo = mSupplierCustomerInfoResponse.getBaseInfo();
-        if (supplierBaseInfo != null) {
-            supplierName.setText(supplierBaseInfo.getChargePerson());
-        }
+
 
     }
 

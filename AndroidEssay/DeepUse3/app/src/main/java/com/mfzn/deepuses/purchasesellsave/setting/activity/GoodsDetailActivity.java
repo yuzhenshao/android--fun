@@ -65,9 +65,9 @@ public class GoodsDetailActivity extends BasicActivity {
     @BindView(R.id.xbanner)
     XBanner banner;
     @BindView(R.id.name)
-    TextView name;
+    TextView nameView;
     @BindView(R.id.parameter_name)
-    TextView parameterName;
+    TextView parameterNameView;
     @BindView(R.id.icon_next)
     ImageView iconNext;
     @BindView(R.id.magic_indicator)
@@ -130,6 +130,10 @@ public class GoodsDetailActivity extends BasicActivity {
         });
 
         banner.setBannerData(mGoodsDetailResponse.getGoodsImgsUrl());
+        GoodsDetailResponse.GoodsInfoResponse goodsInfoResponse=mGoodsDetailResponse.getGoodsInfo();
+        if(goodsInfoResponse!=null){
+            nameView.setText(goodsInfoResponse.getGoodsName()+"["+goodsInfoResponse.getGoodsNum()+"]");
+        }
     }
 
     private void initDetailPager() {

@@ -15,6 +15,7 @@ public interface ParameterConstant {
 
     String STORE = "store";
     String SUPPLIER = "supplier";
+    String CUSTOMER = "customer";
 
     String COMPANY_CUSTOMER_ID = "companyCustomerID";
     String SUPPLIER_PAY_LOG_LIST = "supplierPayLogList";

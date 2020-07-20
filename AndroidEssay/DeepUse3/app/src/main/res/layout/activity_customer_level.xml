@@ -24,7 +24,6 @@
             <ImageView
                 android:id="@+id/iv_cus_pt"
                 style="@style/tips_iv"
-                android:layout_marginRight="@dimen/app_20dp"
                 android:src="@mipmap/regi_weixuan"/>
 
         </LinearLayout>
@@ -41,7 +40,6 @@
             <ImageView
                 android:id="@+id/iv_cus_bj"
                 style="@style/tips_iv"
-                android:layout_marginRight="@dimen/app_20dp"
                 android:src="@mipmap/regi_weixuan"/>
 
         </LinearLayout>
@@ -58,7 +56,6 @@
             <ImageView
                 android:id="@+id/iv_cus_hj"
                 style="@style/tips_iv"
-                android:layout_marginRight="@dimen/app_20dp"
                 android:src="@mipmap/regi_weixuan"/>
 
         </LinearLayout>

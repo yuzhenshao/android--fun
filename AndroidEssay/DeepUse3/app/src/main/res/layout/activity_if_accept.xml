@@ -43,7 +43,6 @@
                 android:id="@+id/iv_if_sl"
                 android:layout_width="@dimen/app_18dp"
                 android:layout_height="@dimen/app_18dp"
-                android:layout_marginRight="@dimen/app_24dp"
                 android:src="@mipmap/work_xuanzhong"/>
 
         </LinearLayout>
@@ -64,7 +63,6 @@
                 android:id="@+id/iv_if_nosl"
                 android:layout_width="@dimen/app_18dp"
                 android:layout_height="@dimen/app_18dp"
-                android:layout_marginRight="@dimen/app_24dp"
                 android:src="@mipmap/work_weixuan"/>
 
         </LinearLayout>

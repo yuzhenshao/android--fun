@@ -1,5 +1,6 @@
 package com.mfzn.deepuses.purchasesellsave.setting.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -42,6 +43,7 @@ public class GoodsListActivity extends BasicListActivity<GoodsInfoResponse> {
     LinearLayout searchContainer;
     @BindView(R.id.sum_stock)
     TextView sumStock;
+    private final static int CREATE_CODE = 101;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -133,6 +135,14 @@ public class GoodsListActivity extends BasicListActivity<GoodsInfoResponse> {
 
     @Override
     protected void rightPressedAction() {
-        startActivity(new Intent(GoodsListActivity.this, CommodityCreateActivity.class));
+        startActivityForResult(new Intent(GoodsListActivity.this, CommodityPhotoCreateActivity.class),CREATE_CODE);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK&&requestCode==CREATE_CODE) {
+            getResourceList();
+        }
     }
 }

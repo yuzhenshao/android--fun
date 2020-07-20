@@ -15,7 +15,7 @@ public class ZixunListActivity extends BasicActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mTitleBar.updateTitleBar("咨询");
+        mTitleBar.updateTitleBar("资讯");
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.add(R.id.fl_content, new ZixunFragmentNew());

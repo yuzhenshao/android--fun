@@ -21,7 +21,6 @@ public class SupplierOrderFragment extends BaseFragment {
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
 
-    private List<SupplierCustomerInfoResponse.OrderListBean> mOrderListBeanList;
 
     private SupplierOrderAdapter mAdapter;
 
@@ -32,12 +31,7 @@ public class SupplierOrderFragment extends BaseFragment {
     }
 
     private void initData() {
-        mOrderListBeanList = (List<SupplierCustomerInfoResponse.OrderListBean>) getArguments().getSerializable(ParameterConstant.SUPPLIER_ORDER_LIST);
-        if (ListUtil.isEmpty(mOrderListBeanList)) {
-            showNoDataView();
-        } else {
-            mAdapter = new SupplierOrderAdapter(mOrderListBeanList);
-        }
+
     }
 
     protected int getLayoutId() {

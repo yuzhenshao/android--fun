@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
+import com.libcommon.utils.ListUtil;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.activitymy.WebviewX5Activity;
 import com.mfzn.deepuses.adapter.xiangmu.AddPhotoAdapter;
@@ -124,7 +125,7 @@ public class AddWorkorderActivity extends BaseMvpActivity<AddWorkorderPresent> {
         etOrLxr.setText(dataBean.getContacter());
         etOrLxrphone.setText(dataBean.getContacterPhone());
 
-        tv_bao_type.setText(setbx(zhib,yanb));
+        tv_bao_type.setText(setbx(zhib, yanb));
 
         //售后类型
         listType = new ArrayList<>();
@@ -174,44 +175,46 @@ public class AddWorkorderActivity extends BaseMvpActivity<AddWorkorderPresent> {
 
     private void commitData() {
         String type = etOrType.getText().toString().trim();
-        if(TextUtils.isEmpty(type)) {
-            ToastUtil.showToast(this,"请选择售后类型");
+        if (TextUtils.isEmpty(type)) {
+            ToastUtil.showToast(this, "请选择售后类型");
             return;
         }
         String lxr = etOrLxr.getText().toString().trim();
-        if(TextUtils.isEmpty(lxr)) {
-            ToastUtil.showToast(this,"请输入联系人");
+        if (TextUtils.isEmpty(lxr)) {
+            ToastUtil.showToast(this, "请输入联系人");
             return;
         }
         String phone = etOrLxrphone.getText().toString().trim();
-        if(TextUtils.isEmpty(phone)) {
-            ToastUtil.showToast(this,"请输入联系电话");
+        if (TextUtils.isEmpty(phone)) {
+            ToastUtil.showToast(this, "请输入联系电话");
             return;
         }
         String startTime = etOrTime.getText().toString().trim();
-        if(TextUtils.isEmpty(startTime)) {
-            ToastUtil.showToast(this,"请选择时间");
+        if (TextUtils.isEmpty(startTime)) {
+            ToastUtil.showToast(this, "请选择时间");
             return;
         }
         String ms = etOrMs.getText().toString().trim();
-        if(TextUtils.isEmpty(ms)) {
-            ToastUtil.showToast(this,"请输入故障描述");
+        if (TextUtils.isEmpty(ms)) {
+            ToastUtil.showToast(this, "请输入故障描述");
             return;
         }
-//        if(bmp.size() == 0) {
-//            ToastUtil.showToast(this,"请添加相关图片");
-//            return;
-//        }
         files.clear();
-        for (int i = 0 ; i < bmp.size() ; i++){
-            String cameraFile = DateFormat.format("yy-MM-dd-hh-mm-ss-" + i, new Date()) + ".jpg";
-            files.add(BitmapFileSetting.saveBitmapFile(bmp.get(i), PhotographDialog.Image_SAVEDIR + "/" + cameraFile));
+        if (!ListUtil.isEmpty(bmp)) {
+            for (int i = 0; i < bmp.size(); i++) {
+                String cameraFile = DateFormat.format("yy-MM-dd-hh-mm-ss-" + i, new Date()) + ".jpg";
+                files.add(BitmapFileSetting.saveBitmapFile(bmp.get(i), PhotographDialog.Image_SAVEDIR + "/" + cameraFile));
+            }
         }
-        getP().upLoadFile(files);
+        if (ListUtil.isEmpty(files)) {
+            uploadIconSuccess(null);
+        } else {
+            getP().upLoadFile(files);
+        }
     }
 
     public void addWorkorderSuccess() {
-        ToastUtil.showToast(this,"创建成功");
+        ToastUtil.showToast(this, "创建成功");
         EventMsg eventMsg = new EventMsg();
         eventMsg.setMsg(Constants.GONGDAN);
         RxBus.getInstance().post(eventMsg);
@@ -225,14 +228,14 @@ public class AddWorkorderActivity extends BaseMvpActivity<AddWorkorderPresent> {
         if (requestCode == Constants.REAL_NAME_PAIZHAO) {
             String cameraFile = PhotographDialog.mSp.getString("img", "");
             Bitmap bitmap = BitmapFactory.decodeFile(PhotographDialog.Image_SAVEDIR + "/" + cameraFile);//根据路径转为bitmap
-            if(bitmap != null){
-                Bitmap newbitmap = ImageCompressUtil.compressBySize(bitmap, 480,480);
+            if (bitmap != null) {
+                Bitmap newbitmap = ImageCompressUtil.compressBySize(bitmap, 480, 480);
                 bmp.add(newbitmap);
                 //把图片数量添加进集合,方便删除，统计数量
                 drr.add(FileUtils.SDPATH + ".JPEG");
                 gridviewInit();
             }
-        } else if(requestCode == Constants.RESULT_LOAD_IMAGE){
+        } else if (requestCode == Constants.RESULT_LOAD_IMAGE) {
             if (drr.size() < 9 && resultCode == RESULT_OK && null != data) {
                 mSelectPath = data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
                 Bitmap bitmap;
@@ -265,25 +268,25 @@ public class AddWorkorderActivity extends BaseMvpActivity<AddWorkorderPresent> {
     public void gridviewInit() {
         getResources().getDimension(R.dimen.app_10dp);
 
-        recycleAdapter = new AddPhotoAdapter(this,bmp);
+        recycleAdapter = new AddPhotoAdapter(this, bmp);
         orRecycleview.setAdapter(recycleAdapter);
 
         recycleAdapter.setOnAddClickListener(new AddPhotoAdapter.OnAddItemClickListener() {
             @Override
             public void onItemAddClick(View view, int position) {
                 if (position == 0 && bmp.size() != 9) {
-                    PhotographDialog.photographDialog(AddWorkorderActivity.this,bmp);
+                    PhotographDialog.photographDialog(AddWorkorderActivity.this, bmp);
                 }
             }
         });
         recycleAdapter.setOnDeleteClickListener(new AddPhotoAdapter.OnDeleteClickListener() {
             @Override
             public void onDeleteClick(View view, int position) {
-                if(bmp.size() == 9) {
+                if (bmp.size() == 9) {
                     bmp.get(position).recycle();
                     bmp.remove(position);
                     drr.remove(position);
-                }else {
+                } else {
                     bmp.get(position - 1).recycle();
                     bmp.remove(position - 1);
                     drr.remove(position - 1);
@@ -295,37 +298,30 @@ public class AddWorkorderActivity extends BaseMvpActivity<AddWorkorderPresent> {
 
     //上传头像成功返回
     public void uploadIconSuccess(String urls) {
-        if(!TextUtils.isEmpty(urls)){
-            String lxr = etOrLxr.getText().toString().trim();
-            String phone = etOrLxrphone.getText().toString().trim();
-            String startTime = etOrTime.getText().toString().trim();
-            String ms = etOrMs.getText().toString().trim();
+        String lxr = etOrLxr.getText().toString().trim();
+        String phone = etOrLxrphone.getText().toString().trim();
+        String startTime = etOrTime.getText().toString().trim();
+        String ms = etOrMs.getText().toString().trim();
 
-            CreateAfterSaleOrderRequest request=new CreateAfterSaleOrderRequest();
-            request.setProID(pro_id);
-            request.setAsType(shType);
-            request.setContactName(lxr);
-            request.setContactPhone(phone);
-            request.setWishTime(startTime);
-            request.setContent(ms);
-            request.setFileUrls(urls);
-            getP().addWorkorder(request);
-//            recycleAdapter.notifyDataSetChanged();
-//
-//            ToastUtil.showToast(this,"图片上传成功");
-        }else {
-            ToastUtil.showToast(this,"图片上传失败，请稍后重试");
-        }
+        CreateAfterSaleOrderRequest request = new CreateAfterSaleOrderRequest();
+        request.setProID(pro_id);
+        request.setAsType(shType);
+        request.setContactName(lxr);
+        request.setContactPhone(phone);
+        request.setWishTime(startTime);
+        request.setContent(ms);
+        request.setFileUrls(urls);
+        getP().addWorkorder(request);
     }
 
     //售后类型
-    private void initPartmentPicker(){
+    private void initPartmentPicker() {
         pickerView = new OptionsPickerBuilder(this, new OnOptionsSelectListener() {
             @Override
-            public void onOptionsSelect(int options1, int option2, int options3 ,View v) {
-                if(options1 == 0) {
+            public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                if (options1 == 0) {
                     shType = "1";
-                }else {
+                } else {
                     shType = "2";
                 }
                 etOrType.setText(listType.get(options1));
@@ -334,9 +330,9 @@ public class AddWorkorderActivity extends BaseMvpActivity<AddWorkorderPresent> {
                 .setCancelColor(R.color.color_606266)//取消按钮文字颜色
                 .setOutSideCancelable(true)//点击屏幕，点在控件外部范围时，是否取消显示
                 .isDialog(true) //默认设置false ，内部实现将DecorView 作为它的父控件。
-                .setCyclic(false,false,false)//设置是否循环
+                .setCyclic(false, false, false)//设置是否循环
                 .build();
-        pickerView.setPicker(listType, null,null);
+        pickerView.setPicker(listType, null, null);
         Dialog mDialog = pickerView.getDialog();
         if (mDialog != null) {
             FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
@@ -363,7 +359,7 @@ public class AddWorkorderActivity extends BaseMvpActivity<AddWorkorderPresent> {
 
         pickerView2 = new OptionsPickerBuilder(this, new OnOptionsSelectListener() {
             @Override
-            public void onOptionsSelect(int options1, int option2, int options3 ,View v) {
+            public void onOptionsSelect(int options1, int option2, int options3, View v) {
                 //返回的分别是三个级别的选中位置
                 etOrTime.setText(strings.get(options1) + " " + lists.get(options1).get(option2));
             }
@@ -371,9 +367,9 @@ public class AddWorkorderActivity extends BaseMvpActivity<AddWorkorderPresent> {
                 .setCancelColor(R.color.color_606266)//取消按钮文字颜色
                 .setOutSideCancelable(true)//点击屏幕，点在控件外部范围时，是否取消显示
                 .isDialog(true) //默认设置false ，内部实现将DecorView 作为它的父控件。
-                .setCyclic(false,false,false)//设置是否循环
+                .setCyclic(false, false, false)//设置是否循环
                 .build();
-        pickerView2.setPicker(strings, lists,null);
+        pickerView2.setPicker(strings, lists, null);
         Dialog mDialog = pickerView2.getDialog();
         if (mDialog != null) {
 
@@ -395,17 +391,17 @@ public class AddWorkorderActivity extends BaseMvpActivity<AddWorkorderPresent> {
         }
     }
 
-    public String setbx(int zhib, int yanb){
+    public String setbx(int zhib, int yanb) {
         if (zhib == 1) {
             return "质保期内";
         }
         if (zhib == 2 && yanb == 0) {
             return "已过质保期";
         }
-        if (zhib == 2 && yanb == 1){
+        if (zhib == 2 && yanb == 1) {
             return "延保期内";
         }
-        if (yanb == 2){
+        if (yanb == 2) {
             return "已过延保期";
         }
         return "未设置";

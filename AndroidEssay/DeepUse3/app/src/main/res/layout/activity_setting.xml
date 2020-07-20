@@ -19,8 +19,7 @@
             android:text="个人信息"/>
 
         <ImageView
-            style="@style/bass_iv_you"
-            android:layout_marginRight="@dimen/app_20dp"/>
+            style="@style/bass_iv_you"/>
 
     </LinearLayout>
 
@@ -41,8 +40,7 @@
                 android:text="账号和绑定设置"/>
 
             <ImageView
-                style="@style/bass_iv_you"
-                android:layout_marginRight="@dimen/app_20dp"/>
+                style="@style/bass_iv_you"/>
 
         </LinearLayout>
 
@@ -58,8 +56,7 @@
                 android:text="修改密码"/>
 
             <ImageView
-                style="@style/bass_iv_you"
-                android:layout_marginRight="@dimen/app_20dp"/>
+                style="@style/bass_iv_you"/>
 
         </LinearLayout>
 
@@ -75,8 +72,7 @@
                 android:text="消息设置"/>
 
             <ImageView
-                style="@style/bass_iv_you"
-                android:layout_marginRight="@dimen/app_20dp"/>
+                style="@style/bass_iv_you"/>
 
         </LinearLayout>
 
@@ -105,8 +101,7 @@
                 android:text=""/>
 
             <ImageView
-                style="@style/bass_iv_you"
-                android:layout_marginRight="@dimen/app_20dp"/>
+                style="@style/bass_iv_you"/>
 
         </LinearLayout>
 
@@ -129,7 +124,6 @@
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:textColor="@color/color_303133"
-            android:layout_marginRight="@dimen/app_24dp"
             android:text=""/>
 
     </LinearLayout>
@@ -153,8 +147,7 @@
             android:text="16M"/>
 
         <ImageView
-            style="@style/bass_iv_you"
-            android:layout_marginRight="@dimen/app_20dp"/>
+            style="@style/bass_iv_you"/>
 
     </LinearLayout>
 

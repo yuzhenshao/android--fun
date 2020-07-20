@@ -79,7 +79,7 @@ public class AddImageView extends LinearLayout {
         });
         mAddImage.setOnClickListener(v -> {
             if(mContext!=null&&!mContext.isDestroyed()) {
-                PhotographDialog.photographDialog(mContext, mBitmaps);
+                PhotographDialog.photographDialog(mContext, mBitmaps,6);
             }
         });
     }
@@ -98,7 +98,7 @@ public class AddImageView extends LinearLayout {
                 addImage(cameraFile,ImageCompressUtil.compressBySize(bitmap, 480, 480));
             }
         } else if (requestCode == Constants.RESULT_LOAD_IMAGE) {
-            if (mBitmaps.size() < 9 && resultCode == RESULT_OK && null != data) {
+            if (mBitmaps.size() < 6 && resultCode == RESULT_OK && null != data) {
                 ArrayList<String> mSelectPath = data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
                 try {
                     for (String path : mSelectPath) {
@@ -118,7 +118,7 @@ public class AddImageView extends LinearLayout {
             mBitmapFiles.add(new File(filePath));
             mBitmaps.add(bitmap);
             mAdapter.notifyItemInserted(mBitmaps.size() - 1);
-            mAddImage.setVisibility(mBitmaps.size() == 9 ? GONE : VISIBLE);
+            mAddImage.setVisibility(mBitmaps.size() == 6 ? GONE : VISIBLE);
         }
     }
 
@@ -127,7 +127,7 @@ public class AddImageView extends LinearLayout {
             mBitmaps.remove(position);
             mBitmapFiles.remove(position);
             mAdapter.notifyItemRemoved(position);
-            mAddImage.setVisibility(mBitmaps.size() == 9 ? GONE : VISIBLE);
+            mAddImage.setVisibility(mBitmaps.size() == 6 ? GONE : VISIBLE);
         }
     }
 

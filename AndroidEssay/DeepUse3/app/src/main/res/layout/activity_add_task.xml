@@ -38,8 +38,7 @@
                             android:paddingRight="0dp" />
 
                         <ImageView
-                            style="@style/bass_iv_you"
-                            android:layout_marginRight="@dimen/app_20dp" />
+                            style="@style/bass_iv_you"/>
 
                     </LinearLayout>
 
@@ -76,8 +75,7 @@
                             android:paddingRight="0dp" />
 
                         <ImageView
-                            style="@style/bass_iv_you"
-                            android:layout_marginRight="@dimen/app_20dp" />
+                            style="@style/bass_iv_you"/>
 
                     </LinearLayout>
 

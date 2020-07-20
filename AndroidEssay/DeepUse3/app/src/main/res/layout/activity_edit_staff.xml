@@ -36,8 +36,7 @@
 
             <ImageView
                 android:id="@+id/iv_edit_name"
-                style="@style/bass_iv_delete"
-                android:layout_marginRight="@dimen/app_20dp"/>
+                style="@style/bass_iv_delete"/>
 
         </LinearLayout>
 
@@ -54,7 +53,6 @@
             <TextView
                 android:id="@+id/tv_edit_phone"
                 style="@style/edit_staff_tv"
-                android:layout_marginRight="@dimen/app_50dp"
                 android:text="" />
 
         </LinearLayout>
@@ -84,8 +82,7 @@
                 android:layout_height="match_parent" />
 
             <ImageView
-                style="@style/bass_iv_you"
-                android:layout_marginRight="@dimen/app_20dp"/>
+                style="@style/bass_iv_you" />
 
         </LinearLayout>
 
@@ -116,8 +113,7 @@
             android:layout_height="match_parent" />
 
         <ImageView
-            style="@style/bass_iv_you"
-            android:layout_marginRight="@dimen/app_20dp"/>
+            style="@style/bass_iv_you"/>
 
     </LinearLayout>
 

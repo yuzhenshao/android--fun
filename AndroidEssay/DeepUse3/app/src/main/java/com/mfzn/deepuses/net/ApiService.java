@@ -27,12 +27,15 @@ import com.mfzn.deepuses.bean.request.sale.OrderSalesBackRequest;
 import com.mfzn.deepuses.bean.request.sale.OrderSalesRequest;
 import com.mfzn.deepuses.bean.request.sale.OrderTakeGoodsBackRequest;
 import com.mfzn.deepuses.bean.request.sale.OrderTakeGoodsRequest;
+import com.mfzn.deepuses.bean.request.setting.AddSetCustomerRequest;
 import com.mfzn.deepuses.bean.request.store.OrderAllotAddRequest;
 import com.mfzn.deepuses.bean.request.store.OrderStockCheckRequest;
 import com.mfzn.deepuses.bean.response.BusinessCardResponse;
 import com.mfzn.deepuses.bean.response.GoodsCategoryResponse;
 import com.mfzn.deepuses.bean.response.GoodsUnitResponse;
 import com.mfzn.deepuses.bean.response.sale.OrderOfferListResponse;
+import com.mfzn.deepuses.bean.response.settings.CustomerDetailResponse;
+import com.mfzn.deepuses.bean.response.settings.CustomerListResponse;
 import com.mfzn.deepuses.bean.response.settings.MoneyAccountListResponse;
 import com.mfzn.deepuses.bean.response.settings.MyStoreResponse;
 import com.mfzn.deepuses.bean.response.settings.RateResponse;
@@ -201,7 +204,7 @@ public interface ApiService {
     Flowable<HttpResult<List<SearchKeywordModel>>> jiagouList(@Query("token") String token, @Query("uid") String uid,
                                                               @Query("companyID") String companyID, @Query("keywords") String keywords);
 
-     //编辑员工信息
+    //编辑员工信息
     @POST("api/Company/editStaff")
     Flowable<HttpResult> editStaff(@Query("token") String token, @Query("uid") String uid, @Body EditStaffRequest request);
 
@@ -621,10 +624,10 @@ public interface ApiService {
     Flowable<HttpResult> doApplyCheck(@Query("token") String token, @Query("uid") String uid, @Query("applyID") String applyID,
                                       @Query("status") String status, @Query("checkRemark") String checkRemark);
 
-    @GET("api/Project/appliesList")
+    @GET("api/Company/appliesList")
         //员工申请列表
     Flowable<HttpResult<TeamApplyModel>> teamApply(@Query("token") String token, @Query("uid") String uid,
-                                                   @Query("type") int tyep, @Query("per") String per, @Query("page") Integer page);
+                                                   @Query("per") String per, @Query("page") Integer page);
 
 
     @GET("api/Project/appliesList")
@@ -900,8 +903,8 @@ public interface ApiService {
                                   @Field("contactPhone") String contactPhone, @Field("storeAddress") String storeAddress);
 
     @GET("pss/Setting/customerInfo")
-    Flowable<HttpResult<SupplierCustomerInfoResponse>> customerInfo(@Query("token") String token, @Query("uid") String uid,
-                                                                    @Query("shopID") String shopID, @Query("companyCustomerID") String companyCustomerID);
+    Flowable<HttpResult<CustomerDetailResponse>> customerInfo(@Query("token") String token, @Query("uid") String uid,
+                                                              @Query("shopID") String shopID, @Query("companyCustomerID") String companyCustomerID);
 
 
     @GET("pss/Setting/supplierList")
@@ -927,11 +930,28 @@ public interface ApiService {
     Flowable<HttpResult<List<RateResponse>>> taxRateList(@Query("token") String token, @Query("uid") String uid,
                                                          @Query("shopID") String shopID);
 
-        @GET("pss/Setting/moneyAccountList")
+    @GET("pss/Setting/moneyAccountList")
     Flowable<HttpResult<MoneyAccountListResponse>> moneyAccountList(@Query("token") String token, @Query("uid") String uid,
                                                                     @Query("shopID") String shopID, @Query("mapShopID") String mapShopID);
 
 
+    @GET("pss/Setting/customerList")
+    Flowable<HttpResult<CustomerListResponse>> getSetCustomerList(@Query("token") String token, @Query("uid") String uid,
+                                                            @Query("shopID") String shopID, @Query("keywords") String keywords,
+                                                                  @Query("per") String per, @Query("page") Integer page);
+
+    @POST("pss/Setting/addCustomer")
+    Flowable<HttpResult> addSetCustomer(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
+                                     @Body AddSetCustomerRequest request);
+
+    @POST("pss/Setting/editCustomer")
+    Flowable<HttpResult> editSetCustomer(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
+                                     @Body AddSetCustomerRequest request);
+
+    @FormUrlEncoded
+    @POST("pss/Setting/delCustomer")
+    Flowable<HttpResult> delSetCustomer(@Query("token") String token, @Query("uid") String uid,
+                                        @Query("shopID") String shopID, @Field("companyCustomerID") String companyCustomerID);
 
 
     //门店
@@ -1034,11 +1054,12 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("pss/Store/storeAllCheckSponsor")
     Flowable<HttpResult> storeAllCheckSponsor(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Field("storeID") String storeID,
-                                                                         @Field("beginDate") String beginDate, @Field("endDate") String endDate);
-   @FormUrlEncoded
+                                              @Field("beginDate") String beginDate, @Field("endDate") String endDate);
+
+    @FormUrlEncoded
     @POST("pss/Store/storeAllCheckDone")
     Flowable<HttpResult> storeAllCheckDone(@Query("token") String token, @Query("uid") String uid,
-                                                                         @Query("shopID") String shopID, @Field("orderID") int storeID);
+                                           @Query("shopID") String shopID, @Field("orderID") int storeID);
 
 
 }

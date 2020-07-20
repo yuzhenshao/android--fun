@@ -35,6 +35,12 @@ public class PhotographDialog {
     public static String Image_SAVEDIR = Environment
             .getExternalStorageDirectory().getAbsolutePath();
 
+
+
+    public static void photographDialog(final Activity activity, List<Bitmap> bmp) {
+        photographDialog(activity,bmp,9);
+    }
+
     /**
      * 选择相机或相册上传照片
      *
@@ -42,7 +48,7 @@ public class PhotographDialog {
      * @param activity
      * @param bmp
      */
-    public static void photographDialog(final Activity activity, List<Bitmap> bmp) {
+    public static void photographDialog(final Activity activity, List<Bitmap> bmp,int size) {
 
         mSp = activity.getSharedPreferences("cam", activity.MODE_PRIVATE);//初始化相机拍照
 
@@ -88,7 +94,7 @@ public class PhotographDialog {
                         if (Environment.MEDIA_MOUNTED.equals(sdcardState)) {
                             int selectedMode;
                             selectedMode = MultiImageSelectorActivity.MODE_MULTI;
-                            int maxNum = 9 - bmp.size();
+                            int maxNum = size - bmp.size();
                             Intent intent2 = new Intent(activity, MultiImageSelectorActivity.class);
                             // 是否显示拍摄图片
                             intent2.putExtra(MultiImageSelectorActivity.EXTRA_SHOW_CAMERA, false);
@@ -114,7 +120,6 @@ public class PhotographDialog {
                 .build();
         dialog1.show();
     }
-
     /**
      * 选择相机或相册上传照片
      * @param activity
