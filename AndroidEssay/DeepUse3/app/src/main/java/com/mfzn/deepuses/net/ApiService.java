@@ -624,10 +624,10 @@ public interface ApiService {
     Flowable<HttpResult> doApplyCheck(@Query("token") String token, @Query("uid") String uid, @Query("applyID") String applyID,
                                       @Query("status") String status, @Query("checkRemark") String checkRemark);
 
-    @GET("api/Project/appliesList")
+    @GET("api/Company/appliesList")
         //员工申请列表
     Flowable<HttpResult<TeamApplyModel>> teamApply(@Query("token") String token, @Query("uid") String uid,
-                                                   @Query("type") int tyep, @Query("per") String per, @Query("page") Integer page);
+                                                   @Query("per") String per, @Query("page") Integer page);
 
 
     @GET("api/Project/appliesList")

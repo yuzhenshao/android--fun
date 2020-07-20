@@ -24,11 +24,11 @@ public class SupplierOrderAdapter extends BaseMultiItemQuickAdapter<CustomerDeta
 
     @Override
     protected void convert(BaseViewHolder helper, CustomerDetailResponse.OrderListBean item) {
-        helper.setText(R.id.supplier_order_id, item.getOrderID())
+        helper.setText(R.id.supplier_order_id, item.getOrderNum())
         .setText(R.id.supplier_order_name, item.getOrderName())
-        .setText(R.id.supplier_order_num, item.getOrderNum())
-        .setText(R.id.total_money, item.getMoney())
-        .setText(R.id.store_name, item.getStatus()+"")
+        .setText(R.id.supplier_order_num, "数量："+2)
+        .setText(R.id.total_money, "金额:"+item.getMoney())
+        .setText(R.id.store_name, item.getStoreName()+"/"+item.getInOrOutStoreName())
         .setText(R.id.time, DateUtils.longToString("yyyy/MM/dd",item.getOrderTime()));
     }
 }

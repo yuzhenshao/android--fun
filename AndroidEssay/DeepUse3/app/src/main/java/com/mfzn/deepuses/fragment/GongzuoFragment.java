@@ -945,7 +945,7 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
             }
         });
 
-        HomeShowModel showModel4 = new HomeShowModel("咨询", "zx", R.mipmap.icon_zixun);
+        HomeShowModel showModel4 = new HomeShowModel("资讯", "zx", R.mipmap.icon_zixun);
         HomeShowModel showModel5 = new HomeShowModel("场景", "cj", R.mipmap.icon_changjing);
         fxzxModel.add(showModel4);
         fxzxModel.add(showModel5);

@@ -146,7 +146,7 @@ public class ForgotNewPwdActivity extends BaseMvpActivity<ForgotPwdPresent> {
                 String pwd = etForPwd.getText().toString().trim();
                 String pwd2 = etForPwd2.getText().toString().trim();
                 if(pwd.equals(pwd2)) {
-                    getP().forgetPwd(new ForgetRequest(phone,code,pwd));
+                    getP().forgetPwd(new ForgetRequest(code,phone,pwd));
                 }else {
                     ToastUtil.showToast(this,"两次密码不一致");
                 }

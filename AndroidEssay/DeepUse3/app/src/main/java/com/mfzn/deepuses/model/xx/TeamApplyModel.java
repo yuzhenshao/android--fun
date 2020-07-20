@@ -86,12 +86,12 @@ public class TeamApplyModel {
         private int addtime;
         private int isPass;
         private int checkTime;
-        private int workmateUID;
+        private int workmateUserID;
         private String staffName;
-        private String workmateUName;
-        private String u_name;
-        private String u_head;
-        private String u_phone;
+        private String workmateUserName;
+        private String userName;
+        private String userAvatar;
+        private String userPhone;
         private String companyName;
         private String from;
 
@@ -159,13 +159,6 @@ public class TeamApplyModel {
             this.checkTime = checkTime;
         }
 
-        public int getWorkmateUID() {
-            return workmateUID;
-        }
-
-        public void setWorkmateUID(int workmateUID) {
-            this.workmateUID = workmateUID;
-        }
 
         public String getStaffName() {
             return staffName;
@@ -175,37 +168,7 @@ public class TeamApplyModel {
             this.staffName = staffName;
         }
 
-        public String getWorkmateUName() {
-            return workmateUName;
-        }
 
-        public void setWorkmateUName(String workmateUName) {
-            this.workmateUName = workmateUName;
-        }
-
-        public String getU_name() {
-            return u_name;
-        }
-
-        public void setU_name(String u_name) {
-            this.u_name = u_name;
-        }
-
-        public String getU_head() {
-            return u_head;
-        }
-
-        public void setU_head(String u_head) {
-            this.u_head = u_head;
-        }
-
-        public String getU_phone() {
-            return u_phone;
-        }
-
-        public void setU_phone(String u_phone) {
-            this.u_phone = u_phone;
-        }
 
         public String getCompanyName() {
             return companyName;
@@ -221,6 +184,46 @@ public class TeamApplyModel {
 
         public void setFrom(String from) {
             this.from = from;
+        }
+
+        public int getWorkmateUserID() {
+            return workmateUserID;
+        }
+
+        public void setWorkmateUserID(int workmateUserID) {
+            this.workmateUserID = workmateUserID;
+        }
+
+        public String getWorkmateUserName() {
+            return workmateUserName;
+        }
+
+        public void setWorkmateUserName(String workmateUserName) {
+            this.workmateUserName = workmateUserName;
+        }
+
+        public String getUserName() {
+            return userName;
+        }
+
+        public void setUserName(String userName) {
+            this.userName = userName;
+        }
+
+        public String getUserAvatar() {
+            return userAvatar;
+        }
+
+        public void setUserAvatar(String userAvatar) {
+            this.userAvatar = userAvatar;
+        }
+
+        public String getUserPhone() {
+            return userPhone;
+        }
+
+        public void setUserPhone(String userPhone) {
+            this.userPhone = userPhone;
         }
     }
 }

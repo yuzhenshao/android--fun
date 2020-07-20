@@ -157,6 +157,7 @@ public class CommodityPhotoCreateActivity extends BasicActivity {
                     public void onNext(HttpResult reuslt) {
                         hideDialog();
                         ToastUtil.showToast(CommodityPhotoCreateActivity.this, "成功");
+                        setResult(Activity.RESULT_OK);
                         finish();
                     }
                 });

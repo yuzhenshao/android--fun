@@ -2,6 +2,7 @@ package com.mfzn.deepuses.bean.response.settings;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class CustomerDetailResponse {
@@ -137,7 +138,7 @@ public class CustomerDetailResponse {
         }
     }
 
-    public static class OrderListBean implements MultiItemEntity {
+    public static class OrderListBean implements MultiItemEntity, Serializable {
         /**
          * dataID : 90
          * dataType : 2
@@ -172,7 +173,7 @@ public class CustomerDetailResponse {
         private String orderMakerUserID;
         private int inOrOutStoreStatus;
         private String storeID;
-        private int inOrOutStore;
+        private int inOrOutStore;//出入库类型：1.入库；2.出库；
         private String storeName;
         private String orderMakerUserName;
 
@@ -316,9 +317,13 @@ public class CustomerDetailResponse {
         public int getItemType() {
             return dataType;
         }
+
+        public String getInOrOutStoreName() {
+            return inOrOutStore==1?"入库":"出库";
+        }
     }
 
-    public static class PayLogListBean {
+    public static class PayLogListBean implements Serializable{
         /**
          * logID : 179
          * moneyAccountID : 8

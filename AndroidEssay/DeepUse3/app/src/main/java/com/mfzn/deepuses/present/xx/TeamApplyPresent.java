@@ -1,8 +1,6 @@
 package com.mfzn.deepuses.present.xx;
 
-import com.mfzn.deepuses.activitynews.ProjectApplyActivity;
 import com.mfzn.deepuses.activitynews.TeamApplyActivity;
-import com.mfzn.deepuses.model.xiangmu.ProjectNewsModel;
 import com.mfzn.deepuses.model.xx.TeamApplyModel;
 import com.mfzn.deepuses.net.ApiHelper;
 import com.mfzn.deepuses.net.HttpResult;
@@ -16,7 +14,7 @@ import cn.droidlover.xdroidmvp.net.XApi;
 public class TeamApplyPresent extends XPresent<TeamApplyActivity> {
 
     public void teamApply(Integer page) {
-        ApiHelper.getApiService().teamApply(UserHelper.getToken(), UserHelper.getUid(),2,"10",page)
+        ApiHelper.getApiService().teamApply(UserHelper.getToken(), UserHelper.getUid(),"20",page)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

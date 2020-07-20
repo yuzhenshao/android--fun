@@ -126,10 +126,6 @@
                     style="@style/bass_iv_you" />
 
                 <View
-                    android:layout_width="@dimen/app_20dp"
-                    android:layout_height="wrap_content"/>
-
-                <View
                     android:id="@+id/iv_ba_type2"
                     android:layout_width="@dimen/app_4dp"
                     android:layout_height="wrap_content"/>
@@ -156,10 +152,6 @@
                     style="@style/bass_iv_you"/>
 
                 <View
-                    android:layout_width="@dimen/app_20dp"
-                    android:layout_height="wrap_content"/>
-
-                <View
                     android:id="@+id/iv_ba_level2"
                     android:layout_width="@dimen/app_4dp"
                     android:layout_height="wrap_content"/>
@@ -184,10 +176,6 @@
                     android:id="@+id/iv_ba_laiy1"
                     android:visibility="gone"
                     style="@style/bass_iv_you" />
-
-                <View
-                    android:layout_width="@dimen/app_20dp"
-                    android:layout_height="wrap_content"/>
 
                 <View
                     android:id="@+id/iv_ba_laiy2"
@@ -245,11 +233,6 @@
                     android:id="@+id/iv_ba_gw1"
                     android:visibility="gone"
                     style="@style/bass_iv_you"/>
-
-                <View
-                    android:layout_width="@dimen/app_20dp"
-                    android:layout_height="wrap_content"/>
-
                 <View
                     android:id="@+id/iv_ba_gw2"
                     android:layout_width="@dimen/app_4dp"
