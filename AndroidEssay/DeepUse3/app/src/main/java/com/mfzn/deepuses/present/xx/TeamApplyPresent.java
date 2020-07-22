@@ -31,8 +31,8 @@ public class TeamApplyPresent extends XPresent<TeamApplyActivity> {
                 });
     }
 
-    public void joinTeam(String applyID,String type) {
-        ApiHelper.getApiService().joinTeam(UserHelper.getToken(), UserHelper.getUid(),UserHelper.getCompanyId(),applyID,type,"0")
+    public void joinTeam(String applyID,String companyID,String type) {
+        ApiHelper.getApiService().joinTeam(UserHelper.getToken(), UserHelper.getUid(),companyID,applyID,type,"0")
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(getV().bindToLifecycle())

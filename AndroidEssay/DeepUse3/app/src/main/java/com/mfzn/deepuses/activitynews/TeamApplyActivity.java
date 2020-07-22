@@ -66,13 +66,15 @@ public class TeamApplyActivity extends BaseMvpActivity<TeamApplyPresent> {
         adapter.setOnYesItemClickListener(new TeamApplyAdapter.OnYesItemClickListener() {
             @Override
             public void onYesItemClick(View view, int position) {
-                getP().joinTeam(adapter.getDataSource().get(position).getApplyID() + "","1");
+                TeamApplyModel.DataBean dataBean=  adapter.getDataSource().get(position);
+                getP().joinTeam(dataBean.getApplyID() + "",dataBean.getCompanyID()+"","1");
             }
         });
         adapter.setOnNoItemClickListener(new TeamApplyAdapter.OnNoItemClickListener() {
             @Override
             public void onNoItemClick(View view, int position) {
-                getP().joinTeam(adapter.getDataSource().get(position).getApplyID() + "","2");
+                TeamApplyModel.DataBean dataBean=  adapter.getDataSource().get(position);
+                getP().joinTeam(dataBean.getApplyID() + "",dataBean.getCompanyID()+"","2");
             }
         });
 
