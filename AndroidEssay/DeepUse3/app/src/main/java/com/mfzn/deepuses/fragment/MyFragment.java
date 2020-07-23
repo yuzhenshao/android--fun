@@ -19,6 +19,7 @@ import com.mfzn.deepuses.activitymy.brick.BrickRecordActivity;
 import com.mfzn.deepuses.activitymy.setting.SettingActivity;
 import com.mfzn.deepuses.bass.BaseMvpFragment;
 import com.mfzn.deepuses.bean.response.UserResponse;
+import com.mfzn.deepuses.mine.activity.MyCardActivity;
 import com.mfzn.deepuses.model.LookQuanxian2Model;
 import com.mfzn.deepuses.model.company.SelectCompanyModel;
 import com.mfzn.deepuses.net.ApiHelper;
@@ -114,7 +115,7 @@ public class MyFragment extends BaseMvpFragment<MyPresnet> {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_my_card:
-                startActivity(new Intent(context, BaseArchivesActivity.class));
+                startActivity(new Intent(context, MyCardActivity.class));
                 break;
             case R.id.ll_my_tg:
                 startActivity(new Intent(context, MyPromotionActivity.class));
