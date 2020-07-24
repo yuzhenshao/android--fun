@@ -16,19 +16,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.jakewharton.rxbinding2.widget.RxTextView;
 import com.mfzn.deepuses.BaseApplication;
 import com.mfzn.deepuses.R;
-import com.mfzn.deepuses.activitymy.setting.SwitchCompanyActivity;
 import com.mfzn.deepuses.bass.BaseActivity;
 import com.mfzn.deepuses.bean.request.EditBusinessCardRequest;
 import com.mfzn.deepuses.bean.response.BusinessCardResponse;
-import com.mfzn.deepuses.model.my.UserUploadModel;
 import com.mfzn.deepuses.net.ApiHelper;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.net.ImageUploadManager;
-import com.mfzn.deepuses.net.UploadApi;
 import com.mfzn.deepuses.utils.BitmapFileSetting;
 import com.mfzn.deepuses.utils.Constants;
 import com.mfzn.deepuses.utils.EventMsg;
@@ -40,21 +36,13 @@ import com.mfzn.deepuses.utils.UserHelper;
 import com.mfzn.deepuses.view.RoundImageView;
 
 import java.io.File;
-import java.net.FileNameMap;
-import java.net.URLConnection;
 import java.util.Date;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.XApi;
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
-import retrofit2.Call;
-import retrofit2.Response;
 
 import static com.mfzn.deepuses.utils.UIUtils.showToast;
 

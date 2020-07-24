@@ -206,7 +206,7 @@ public class AddOrderOtherOutActivity extends BaseAddCustomerAndGoodsActivity {
         if (!TextUtils.isEmpty(disconunt)) {
             disPtice = Integer.parseInt(disconunt);
         }
-        totalPrice.setText((totalMoney - disPtice) + "");
+        totalPrice.setText((totalMoney - disPtice+getOtherCost()) + "");
     }
 
     @Override

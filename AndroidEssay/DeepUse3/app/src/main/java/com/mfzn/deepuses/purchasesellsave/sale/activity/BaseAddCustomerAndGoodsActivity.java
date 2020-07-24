@@ -16,11 +16,14 @@ import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.libcommon.utils.ListUtil;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BasicActivity;
+import com.mfzn.deepuses.bean.constants.ParameterConstant;
 import com.mfzn.deepuses.bean.response.settings.GoodsInfoResponse;
 import com.mfzn.deepuses.common.PickerDialogView;
 import com.mfzn.deepuses.purchasesellsave.manager.JXCDataManager;
+import com.mfzn.deepuses.purchasesellsave.sale.Module.OtherCostModule;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsSelectListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.adapter.GoodsAdapter;
+import com.mfzn.deepuses.purchasesellsave.setting.adapter.GoodsAddedAdapter;
 import com.mfzn.deepuses.utils.DateUtils;
 import com.mfzn.deepuses.utils.UserHelper;
 
@@ -39,7 +42,8 @@ public abstract class BaseAddCustomerAndGoodsActivity extends BasicActivity {
     protected int orderTime;
     protected int totalMoney;
     protected List<GoodsInfoResponse> goodsSelectedList = new ArrayList<>();
-    protected GoodsAdapter adapter;
+    protected GoodsAddedAdapter adapter;
+    protected int isPersonalStoreGoods=0;
 
     @BindView(R.id.goods_price_container)
     public RelativeLayout goodsPriceContainer;
@@ -60,7 +64,7 @@ public abstract class BaseAddCustomerAndGoodsActivity extends BasicActivity {
         super.onCreate(savedInstanceState);
         userNameView.setText(UserHelper.getU_name());
         goodsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new GoodsAdapter(this, goodsSelectedList);
+        adapter = new GoodsAddedAdapter(this, goodsSelectedList);
         goodsRecyclerView.setAdapter(adapter);
     }
 
@@ -93,6 +97,7 @@ public abstract class BaseAddCustomerAndGoodsActivity extends BasicActivity {
     protected void turnToGoodsSelected() {
         Intent intent = new Intent();
         intent.setClass(this, GoodsSelectListActivity.class);
+        intent.putExtra(ParameterConstant.IS_PERSONAL_STORE_GOODS,isPersonalStoreGoods);
         startActivityForResult(intent, GOODS);
     }
 
@@ -110,16 +115,35 @@ public abstract class BaseAddCustomerAndGoodsActivity extends BasicActivity {
                 goodsSelectedList.addAll((List<GoodsInfoResponse>) data.getSerializableExtra("data"));
                 adapter.notifyDataSetChanged();
                 number.setText(data.getStringExtra("goodsSize"));
-                String totalPrice=data.getStringExtra("totalPrice");
-                if(!TextUtils.isEmpty(totalPrice)) {
+                String totalPrice = data.getStringExtra("totalPrice");
+                if (!TextUtils.isEmpty(totalPrice)) {
                     price.setText(totalPrice);
                     totalMoney = Integer.parseInt(totalPrice.replace("总价：", ""));
                 }
-
             }
         }
     }
 
+    protected void setGoodsPriceContainer(List<GoodsInfoResponse> goods) {
+        if (!ListUtil.isEmpty(goods)) {
+            int size = 0;
+            totalMoney = 0;
+            goodsPriceContainer.setVisibility(View.VISIBLE);
+            goodsSelectedList.clear();
+            goodsSelectedList.addAll(goods);
+            adapter.notifyDataSetChanged();
+            for (GoodsInfoResponse goodsInfoResponse : goods) {
+                size += goodsInfoResponse.getGoodsCount();
+                if (goodsInfoResponse.isHasTaxRate()) {
+                    totalMoney += getPrice(goodsInfoResponse.getSalePriceWithTax()) * goodsInfoResponse.getGoodsCount();
+                } else {
+                    totalMoney += getPrice(goodsInfoResponse.getSalePrice()) * goodsInfoResponse.getGoodsCount();
+                }
+            }
+            number.setText("数量：" + size);
+            price.setText("总价：" + totalMoney);
+        }
+    }
 
     /* 商品信息：goodsID1（商品ID）,goodsNum1（商品数量）,uniformSalePrice1（零售价）,
     $salePrice1（销售单价不含税）,$taxRate1（税率）,$salePriceWithTax1（销售价含税）,
@@ -129,12 +153,12 @@ public abstract class BaseAddCustomerAndGoodsActivity extends BasicActivity {
         if (!ListUtil.isEmpty(goodsSelectedList)) {
             for (GoodsInfoResponse goods : goodsSelectedList) {
                 stringBuffer.append(goods.getGoodsID()).append(",")
-                        .append(goods.getGoodsSize()).append(",")
+                        .append(goods.getGoodsCount()).append(",")
                         .append(goods.getSalePrice()).append(",")
                         .append(goods.getSalePrice()).append(",")
                         .append(goods.getTaxRate()).append(",")
                         .append(goods.getSalePriceWithTax()).append(",")
-                        .append(goods.getGoodsSize() * getPrice(goods.getSalePriceWithTax())).append(";");
+                        .append(goods.getGoodsCount() * getPrice(goods.getSalePriceWithTax())).append(";");
             }
         }
         return stringBuffer.toString();
@@ -148,11 +172,11 @@ public abstract class BaseAddCustomerAndGoodsActivity extends BasicActivity {
         if (!ListUtil.isEmpty(goodsSelectedList)) {
             for (GoodsInfoResponse goods : goodsSelectedList) {
                 stringBuffer.append(goods.getGoodsID()).append(",")
-                        .append(goods.getGoodsSize()).append(",")
+                        .append(goods.getGoodsCount()).append(",")
                         .append(goods.getSalePrice()).append(",")
                         .append(goods.getTaxRate()).append(",")
                         .append(goods.getSalePriceWithTax()).append(",")
-                        .append(goods.getGoodsSize() * getPrice(goods.getSalePriceWithTax())).append(";");
+                        .append(goods.getGoodsCount() * getPrice(goods.getSalePriceWithTax())).append(";");
             }
         }
         return stringBuffer.toString();
@@ -164,12 +188,12 @@ public abstract class BaseAddCustomerAndGoodsActivity extends BasicActivity {
         if (!ListUtil.isEmpty(goodsSelectedList)) {
             for (GoodsInfoResponse goods : goodsSelectedList) {
                 stringBuffer.append(goods.getGoodsID()).append(",")
-                        .append(goods.getGoodsSize()).append(",")
+                        .append(goods.getGoodsCount()).append(",")
                         .append(goods.getSalePrice()).append(",")
                         .append(goods.getSalePrice()).append(",")
                         .append(goods.getTaxRate()).append(",")
                         .append(goods.getSalePriceWithTax()).append(",")
-                        .append(goods.getGoodsSize() * getPrice(goods.getSalePrice())).append(",")
+                        .append(goods.getGoodsCount() * getPrice(goods.getSalePrice())).append(",")
                         .append(goods.getCostPrice()).append(";");
             }
         }
@@ -182,7 +206,7 @@ public abstract class BaseAddCustomerAndGoodsActivity extends BasicActivity {
         if (!ListUtil.isEmpty(goodsSelectedList)) {
             for (GoodsInfoResponse goods : goodsSelectedList) {
                 stringBuffer.append(goods.getGoodsID()).append(",")
-                        .append(goods.getGoodsSize()).append(";");
+                        .append(goods.getGoodsCount()).append(";");
             }
         }
         return stringBuffer.toString();
@@ -198,6 +222,17 @@ public abstract class BaseAddCustomerAndGoodsActivity extends BasicActivity {
         } catch (Exception e) {
             return 0;
         }
+    }
+
+    protected double getOtherCost() {
+        List<OtherCostModule> costModules = JXCDataManager.getInstance().getOtherCostList();
+        int cost = 0;
+        if (!ListUtil.isEmpty(costModules)) {
+            for (OtherCostModule costModule : costModules) {
+                cost += costModule.getCost();
+            }
+        }
+        return cost;
     }
 
     @Override

@@ -44,9 +44,9 @@ public class DateUtils {
         return sdf.format(date);
     }
 
-    public static String longToString(long millSec) {
+    public static String longToString(long sec) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
-        Date date = new Date(millSec * 1000);
+        Date date = new Date(sec * 1000);
         return sdf.format(date);
     }
 

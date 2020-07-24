@@ -418,7 +418,8 @@
             android:screenOrientation="portrait"></activity>
         <activity
             android:name=".purchasesellsave.setting.activity.CustomerDetailActivity"
-            android:screenOrientation="portrait"></activity>  <activity
+            android:screenOrientation="portrait"></activity>
+        <activity
             android:name=".purchasesellsave.setting.activity.CreateSetCustomerActivity"
             android:screenOrientation="portrait"></activity>
 
@@ -436,7 +437,10 @@
             android:screenOrientation="portrait"></activity>
 
         <activity
-            android:name=".purchasesellsave.sale.activity.OrderSalesListActivity"
+            android:name=".purchasesellsave.sale.activity.OrderOfferListActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.sale.activity.OrderInputListActivity"
             android:screenOrientation="portrait"></activity>
         <activity
             android:name=".purchasesellsave.sale.activity.MyCustomerSelectActivity"

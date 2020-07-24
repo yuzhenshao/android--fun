@@ -1,27 +1,32 @@
 package com.mfzn.deepuses.purchasesellsave.sale.activity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BasicListActivity;
+import com.mfzn.deepuses.bean.constants.ParameterConstant;
 import com.mfzn.deepuses.bean.response.sale.OrderOfferListResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
-import com.mfzn.deepuses.purchasesellsave.sale.adapter.OrderSalesAdapter;
+import com.mfzn.deepuses.purchasesellsave.sale.adapter.OrderOfferAdapter;
+
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.XApi;
 
-public class OrderSalesListActivity extends BasicListActivity<OrderOfferListResponse.OrderOfferResponse> {
-    private static int REQUESTCODE = 1001;
+public class OrderOfferListActivity extends BasicListActivity<OrderOfferListResponse.OrderOfferResponse> {
+    private boolean isSelected;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mTitleBar.updateTitleBar("单据中心");
-        //initSearch("搜索单据编号、客户名称、联系人、电话");
+        isSelected = getIntent().getBooleanExtra(ParameterConstant.IS_SELECTED, false);
+        mTitleBar.updateTitleBar(isSelected ? "选择导入数据" : "单据中心");
     }
 
     @Override
@@ -59,19 +64,18 @@ public class OrderSalesListActivity extends BasicListActivity<OrderOfferListResp
 
     @Override
     protected BaseQuickAdapter getAdapter() {
-        OrderSalesAdapter mAdapter = new OrderSalesAdapter(this, mSourceList);
+        OrderOfferAdapter mAdapter = new OrderOfferAdapter(this, mSourceList);
+        mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int i) {
+                if (isSelected) {
+                    Intent intent = new Intent();
+                    intent.putExtra(ParameterConstant.INPUT_DATA, mSourceList.get(i));
+                    setResult(Activity.RESULT_OK, intent);
+                    finish();
+                }
+            }
+        });
         return mAdapter;
     }
-
-//    @OnClick(R.id.search_container)
-//    public void onViewClicked(View view) {
-//        switch (view.getId()) {
-//            case R.id.filter:
-//                Router.newIntent(this).to(SelectTypeActivity.class)
-//                        .requestCode(Constants.SELECT_BC)
-//                        .anim(R.anim.pay_dialog_enter, R.anim.pay_dialog_exit)
-//                        .launch();
-//                break;
-//        }
-//    }
 }

@@ -145,70 +145,6 @@
 
                 <View style="@style/line_heng" />
 
-                <LinearLayout style="@style/newly_ll_st">
-
-                    <TextView
-                        style="@style/newly_tv_st"
-                        android:text="收货人姓名" />
-
-                    <EditText
-                        android:id="@+id/rec_name"
-                        style="@style/newly_et_st"
-                        android:hint="@string/add_custom_shuru" />
-
-                </LinearLayout>
-
-                <View style="@style/line_heng" />
-
-                <LinearLayout style="@style/newly_ll_st">
-
-                    <TextView
-                        style="@style/newly_tv_st"
-                        android:text="联系方式" />
-
-                    <EditText
-                        android:id="@+id/rec_phone"
-                        style="@style/newly_et_st"
-                        android:hint="@string/add_custom_shuru"
-                        android:inputType="number"/>
-
-                </LinearLayout>
-
-                <View style="@style/line_heng" />
-
-                <LinearLayout style="@style/newly_ll_st">
-
-                    <TextView
-                        style="@style/newly_tv_st"
-                        android:text="区域地址" />
-
-                    <EditText
-                        android:id="@+id/rec_area"
-                        style="@style/newly_et_st2"
-                        android:hint="@string/add_custom_select"
-                        android:paddingRight="0dp" />
-
-                    <ImageView
-                        android:id="@+id/rec_area_select"
-                        style="@style/bass_iv_you" />
-
-                </LinearLayout>
-
-                <View style="@style/line_heng" />
-
-                <LinearLayout style="@style/newly_ll_st">
-
-                    <TextView
-                        style="@style/newly_tv_st"
-                        android:text="详细地址" />
-
-                    <EditText
-                        android:id="@+id/rec_address"
-                        style="@style/newly_et_st"
-                        android:hint="@string/add_custom_shuru" />
-
-                </LinearLayout>
-
                 <View style="@style/line_space" />
 
                 <LinearLayout style="@style/newly_ll_st">
@@ -287,7 +223,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/app_10dp"
                         android:background="@null"
-                        android:hint="请输入盘点单备注（0/200）"
+                        android:hint="请输入备注信息"
                         android:textColor="#ff909399"
                         android:textSize="16sp" />
 

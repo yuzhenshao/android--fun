@@ -60,7 +60,7 @@ import com.mfzn.deepuses.purchasesellsave.sale.activity.AddOrderSalesActivity;
 import com.mfzn.deepuses.purchasesellsave.sale.activity.AddOrderSalesBackActivity;
 import com.mfzn.deepuses.purchasesellsave.sale.activity.AddOrderTakeActivity;
 import com.mfzn.deepuses.purchasesellsave.sale.activity.AddOrderTakeBackActivity;
-import com.mfzn.deepuses.purchasesellsave.sale.activity.OrderSalesListActivity;
+import com.mfzn.deepuses.purchasesellsave.sale.activity.OrderOfferListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.CommodityCreateActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.CommodityPhotoCreateActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsCategoryManagerActivity;
@@ -728,7 +728,7 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
                 Intent intent = new Intent();
                 switch (position) {
                     case 0:
-                        intent.setClass(getActivity(), OrderSalesListActivity.class);
+                        intent.setClass(getActivity(), OrderOfferListActivity.class);
                         break;
                     case 1:
                         intent.setClass(getActivity(), AddOrderOfferActivity.class);

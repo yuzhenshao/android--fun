@@ -1,8 +1,6 @@
 package com.mfzn.deepuses.present.customer;
 
 import com.mfzn.deepuses.activity.khgl.SelectComActivity;
-import com.mfzn.deepuses.activitymy.setting.SwitchCompanyActivity;
-import com.mfzn.deepuses.model.company.SelectCompanyModel;
 import com.mfzn.deepuses.model.khgl.SearchComModel;
 import com.mfzn.deepuses.net.ApiHelper;
 import com.mfzn.deepuses.net.HttpResult;

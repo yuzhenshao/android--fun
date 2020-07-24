@@ -14,13 +14,17 @@ import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.activity.project.ProjectManageActivity;
 import com.mfzn.deepuses.bean.constants.ParameterConstant;
 import com.mfzn.deepuses.bean.request.sale.OrderSalesRequest;
+import com.mfzn.deepuses.bean.response.sale.OrderOfferListResponse;
+import com.mfzn.deepuses.bean.response.sale.OrderSalesListResponse;
 import com.mfzn.deepuses.bean.response.settings.StoreResponse;
 import com.mfzn.deepuses.common.PickerDialogView;
 import com.mfzn.deepuses.model.company.CityModel;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
+import com.mfzn.deepuses.purchasesellsave.manager.JXCDataManager;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.MoneyAccountListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.StoreListActivity;
+import com.mfzn.deepuses.utils.DateUtils;
 import com.mfzn.deepuses.utils.OnInputChangeListener;
 import com.mfzn.deepuses.utils.UserHelper;
 
@@ -35,14 +39,14 @@ public class AddOrderSalesActivity extends BaseAddCustomerAndGoodsActivity {
     private final static int STORE = 4;
     private final static int PROJECT = 5;//非必填
     private final static int ACCOUNT = 6;
-
+    private final static int INPUT = 101;
 
     @BindView(R.id.customer)
     EditText customerEdit;
     @BindView(R.id.other_cost)
     EditText otherCostEdit;
     @BindView(R.id.discount_price)
-    EditText discountPrice;
+    EditText discountPriceEdit;
     @BindView(R.id.total_price)
     EditText totalPrice;
 
@@ -75,9 +79,9 @@ public class AddOrderSalesActivity extends BaseAddCustomerAndGoodsActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         isRetail = getIntent().getBooleanExtra(ParameterConstant.IS_RETAIL_CREATE, false);
-        mTitleBar.updateTitleBar(isRetail ? "新建零售订单" : "新建销售订单");
+        mTitleBar.updateTitleBar(isRetail ? "新建零售订单" : "新建销售订单", "导入");
         accountContainer.setVisibility(isRetail ? View.VISIBLE : View.GONE);
-        discountPrice.addTextChangedListener(new OnInputChangeListener() {
+        discountPriceEdit.addTextChangedListener(new OnInputChangeListener() {
             @Override
             public void afterTextChanged(Editable s) {
                 super.afterTextChanged(s);
@@ -127,7 +131,7 @@ public class AddOrderSalesActivity extends BaseAddCustomerAndGoodsActivity {
     @Override
     protected void commitAction() {
         String mTotalPrice = totalPrice.getText().toString();
-        String mdiscountPrice = discountPrice.getText().toString();
+        String mdiscountPrice = discountPriceEdit.getText().toString();
         if (TextUtils.isEmpty(mTotalPrice)) {
             showToast("请输入单据总价格");
             return;
@@ -139,7 +143,7 @@ public class AddOrderSalesActivity extends BaseAddCustomerAndGoodsActivity {
         request.setOrderGoodsStr(getOrderGoodsStr7());
         request.setDiscountAmount(mdiscountPrice);
         request.setTotalMoney(mTotalPrice);
-        request.setRealMoney(Integer.parseInt(mTotalPrice) - Integer.parseInt(mdiscountPrice) + "");
+        request.setRealMoney(Double.parseDouble(mTotalPrice) - Double.parseDouble(mdiscountPrice) + "");
         request.setOrderTime(orderTime);
         request.setOutNum(outNumEdit.getText().toString());
         request.setOrderMakerUserID(UserHelper.getUserId());
@@ -149,17 +153,8 @@ public class AddOrderSalesActivity extends BaseAddCustomerAndGoodsActivity {
         request.setRecPhone(recPhoneEdit.getText().toString());
         request.setRecAddress(recAddressEdit.getText().toString());
 
-        if (TextUtils.isEmpty(outNumEdit.getText().toString())) {
-            showToast("请输入外部报价单号");
-            return;
-        }
-
         if (TextUtils.isEmpty(request.getOrderMakerUserID())) {
             showToast("请输入公司客户");
-            return;
-        }
-        if (TextUtils.isEmpty(request.getOtherCostStr())) {
-            showToast("请输入其他费用信息");
             return;
         }
         if (TextUtils.isEmpty(request.getOrderGoodsStr())) {
@@ -255,22 +250,46 @@ public class AddOrderSalesActivity extends BaseAddCustomerAndGoodsActivity {
                 String otherCostStr = data.getStringExtra("data");
                 request.setOtherCostStr(otherCostStr);
                 otherCostEdit.setText(TextUtils.isEmpty(otherCostStr) ? "" : "已填写");
+                setTotalPriceView();
             } else if (requestCode == GOODS) {
                 setTotalPriceView();
             } else if (requestCode == ACCOUNT) {
                 request.setMoneyAccountID(data.getStringExtra("Id"));
                 moneyAccountEdit.setText(data.getStringExtra("Name"));
+            } else if (requestCode == INPUT) {
+                OrderSalesListResponse.OrderSalesResponse orderSalesResponse =
+                        (OrderSalesListResponse.OrderSalesResponse) data.getSerializableExtra(ParameterConstant.INPUT_DATA);
+                if (orderSalesResponse != null) {
+                    request.setCompanyCustomerID(orderSalesResponse.getCustomerID());
+                    customerEdit.setText(orderSalesResponse.getCustomerName());
+                    setGoodsPriceContainer(orderSalesResponse.getGoodsInfo());
+                    discountPriceEdit.setText(orderSalesResponse.getOrderMakerDiscount());
+
+                    request.setStoreID(orderSalesResponse.getStoreID());
+                    if (isRetail) {
+                        request.setStoreType(1);
+                    }
+                    storeEdit.setText(orderSalesResponse.getStoreName());
+
+                    orderTime = (int) orderSalesResponse.getOrderTime();
+                    orderTimeEdit.setText(DateUtils.longToString("yyyy/MM/dd", orderSalesResponse.getOrderTime()));
+
+                    outNumEdit.setText(orderSalesResponse.getOutNum());
+                    userNameView.setText(orderSalesResponse.getOrderMakerUserName());
+                    remarkEdit.setText(orderSalesResponse.getRemark());
+                    setTotalPriceView();
+                }
             }
         }
     }
 
     private void setTotalPriceView() {
-        String disconunt = discountPrice.getText().toString();
-        int disPtice = 0;
+        String disconunt = discountPriceEdit.getText().toString();
+        double disPtice = 0;
         if (!TextUtils.isEmpty(disconunt)) {
-            disPtice = Integer.parseInt(disconunt);
+            disPtice = Double.parseDouble(disconunt);
         }
-        totalPrice.setText((totalMoney - disPtice) + "");
+        totalPrice.setText((totalMoney - disPtice + getOtherCost()) + "");
     }
 
     @Override
@@ -281,5 +300,12 @@ public class AddOrderSalesActivity extends BaseAddCustomerAndGoodsActivity {
 
     public interface onCityCallBack {
         void cityModelSelected(CityModel citySelected);
+    }
+
+    @Override
+    protected void rightPressedAction() {
+        Intent intent = new Intent(this, OrderInputListActivity.class);
+        intent.putExtra(ParameterConstant.INPUT_TYPE, isRetail ? 1 : 2);//1 零售 2销售
+        startActivityForResult(intent, INPUT);
     }
 }

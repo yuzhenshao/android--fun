@@ -1,15 +1,10 @@
 package com.mfzn.deepuses;
 
 import android.content.Intent;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -18,32 +13,25 @@ import com.mfzn.deepuses.activity.khgl.BulidCustomerActivity;
 import com.mfzn.deepuses.activityxm.FoundProjectActivity;
 import com.mfzn.deepuses.bass.BaseMvpActivity;
 import com.mfzn.deepuses.bean.constants.ParameterConstant;
-import com.mfzn.deepuses.fragment.BaikeFragment;
 import com.mfzn.deepuses.fragment.GongzuoFragment;
 import com.mfzn.deepuses.fragment.MyFragment;
 import com.mfzn.deepuses.fragment.XiangmuFragment;
 import com.mfzn.deepuses.fragment.XiaoxiFragment;
 import com.mfzn.deepuses.model.xx.MsgMainModel;
-import com.mfzn.deepuses.present.login.LoginPresent;
 import com.mfzn.deepuses.present.login.MainPresent;
 import com.mfzn.deepuses.purchasesellsave.sale.activity.AddOrderOfferActivity;
 import com.mfzn.deepuses.purchasesellsave.sale.activity.AddOrderSalesActivity;
-import com.mfzn.deepuses.purchasesellsave.sale.activity.OrderSalesListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.CommodityPhotoCreateActivity;
 import com.mfzn.deepuses.utils.FullScreen;
 import com.mfzn.deepuses.utils.ToastUtil;
 import com.mfzn.deepuses.utils.UserHelper;
 
-import java.util.List;
 import java.util.Set;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.jpush.android.api.JPushInterface;
 import cn.jpush.android.api.TagAliasCallback;
-import q.rorbin.badgeview.Badge;
-import q.rorbin.badgeview.QBadgeView;
 
 public class MainActivity extends BaseMvpActivity<MainPresent> {
 

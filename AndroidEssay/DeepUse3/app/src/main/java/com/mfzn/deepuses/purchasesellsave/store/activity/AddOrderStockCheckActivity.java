@@ -24,7 +24,6 @@ import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsSelectListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.StoreListActivity;
-import com.mfzn.deepuses.purchasesellsave.setting.adapter.GoodsAdapter;
 import com.mfzn.deepuses.purchasesellsave.store.adapter.StoreCheckGoodsAdapter;
 import com.mfzn.deepuses.utils.DateUtils;
 import com.mfzn.deepuses.utils.UserHelper;

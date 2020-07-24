@@ -9,37 +9,17 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-
-import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.mfzn.deepuses.R;
-import com.mfzn.deepuses.activity.khgl.MyCustomerActivity;
-import com.mfzn.deepuses.bass.BasicActivity;
 import com.mfzn.deepuses.bean.constants.ParameterConstant;
 import com.mfzn.deepuses.bean.request.sale.OrderOtherInRequest;
-import com.mfzn.deepuses.bean.request.sale.OrderSalesRequest;
-import com.mfzn.deepuses.bean.request.store.OrderAllotAddRequest;
-import com.mfzn.deepuses.bean.response.settings.GoodsInfoResponse;
 import com.mfzn.deepuses.bean.response.settings.StoreResponse;
-import com.mfzn.deepuses.common.PickerDialogView;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.purchasesellsave.sale.activity.BaseAddCustomerAndGoodsActivity;
-import com.mfzn.deepuses.purchasesellsave.setting.activity.CommodityCreateActivity;
-import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsSelectListActivity;
-import com.mfzn.deepuses.purchasesellsave.setting.activity.SetCostActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.StoreListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.SupplierListActivity;
-import com.mfzn.deepuses.purchasesellsave.setting.adapter.GoodsAdapter;
-import com.mfzn.deepuses.utils.DateUtils;
 import com.mfzn.deepuses.utils.OnInputChangeListener;
 import com.mfzn.deepuses.utils.UserHelper;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.OnClick;
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
@@ -168,7 +148,7 @@ public class AddOrderOtherInActivity extends BaseAddCustomerAndGoodsActivity {
         if (!TextUtils.isEmpty(disconunt)) {
             disPtice = Integer.parseInt(disconunt);
         }
-        totalPrice.setText((totalMoney - disPtice) + "");
+        totalPrice.setText((totalMoney - disPtice+getOtherCost()) + "");
     }
 
     @Override

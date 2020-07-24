@@ -61,7 +61,7 @@ public class GoodsListActivity extends BasicListActivity<GoodsInfoResponse> {
     @Override
     protected void getResourceList() {
         showDialog();
-        ApiServiceManager.goodsList()
+        ApiServiceManager.goodsList(0)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(bindToLifecycle())
