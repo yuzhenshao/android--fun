@@ -35,6 +35,7 @@ import com.mfzn.deepuses.bean.response.GoodsCategoryResponse;
 import com.mfzn.deepuses.bean.response.GoodsUnitResponse;
 import com.mfzn.deepuses.bean.response.sale.OrderOfferListResponse;
 import com.mfzn.deepuses.bean.response.sale.OrderSalesListResponse;
+import com.mfzn.deepuses.bean.response.sale.PersonalStoreListResponse;
 import com.mfzn.deepuses.bean.response.settings.CustomerDetailResponse;
 import com.mfzn.deepuses.bean.response.settings.CustomerListResponse;
 import com.mfzn.deepuses.bean.response.settings.MoneyAccountListResponse;
@@ -1005,6 +1006,9 @@ public interface ApiService {
     @GET("pss/Sale/orderTakeGoodsList")
     Flowable<HttpResult<OrderSalesListResponse>> orderTakeGoodsList(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
                                                                     @Query("isCheck") int isCheck, @Query("isOutStore") int isOutStore,@Query("isCanceled") int isCanceled);
+
+    @GET("pss/Sale/personalStoreList")
+    Flowable<HttpResult<PersonalStoreListResponse>> personalStoreList(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID);
 
     //仓库
     @POST("pss/Store/orderOtherInAdd")

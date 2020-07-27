@@ -110,14 +110,10 @@ public class AddOrderSalesBackActivity extends BaseAddCustomerAndGoodsActivity {
             showToast("请输入单据总价格");
             return;
         }
-        if (TextUtils.isEmpty(mdiscountPrice)) {
-            showToast("请输入优惠金额");
-            return;
-        }
         request.setOrderGoodsStr(getOrderGoodsStr7());
         request.setDiscountAmount(mdiscountPrice);
         request.setTotalMoney(mTotalPrice);
-        request.setRealMoney(Double.parseDouble(mTotalPrice) - Double.parseDouble(mdiscountPrice) + "");
+        request.setRealMoney(Double.parseDouble(mTotalPrice) - (TextUtils.isEmpty(mdiscountPrice)?0:Double.parseDouble(mdiscountPrice)) + "");
         request.setOrderTime(orderTime);
         request.setOutNum(outNumEdit.getText().toString());
         request.setOrderMakerUserID(UserHelper.getUserId());
@@ -201,6 +197,7 @@ public class AddOrderSalesBackActivity extends BaseAddCustomerAndGoodsActivity {
                 String otherCostStr = data.getStringExtra("data");
                 request.setOtherCostStr(otherCostStr);
                 otherCostEdit.setText(TextUtils.isEmpty(otherCostStr) ? "" : "已填写");
+                setTotalPriceView();
             } else if (requestCode == GOODS) {
                 setTotalPriceView();
             }else if (requestCode == ACCOUNT) {
@@ -214,7 +211,6 @@ public class AddOrderSalesBackActivity extends BaseAddCustomerAndGoodsActivity {
                     customerEdit.setText(orderSalesResponse.getCustomerName());
                     setGoodsPriceContainer(orderSalesResponse.getGoodsInfo());
                     discountPrice.setText(orderSalesResponse.getOrderMakerDiscount());
-
                     request.setStoreID(orderSalesResponse.getStoreID());
                     if (isRetail) {
                         request.setStoreType(1);

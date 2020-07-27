@@ -34,6 +34,7 @@ import com.mfzn.deepuses.bean.response.GoodsCategoryResponse;
 import com.mfzn.deepuses.bean.response.GoodsUnitResponse;
 import com.mfzn.deepuses.bean.response.sale.OrderOfferListResponse;
 import com.mfzn.deepuses.bean.response.sale.OrderSalesListResponse;
+import com.mfzn.deepuses.bean.response.sale.PersonalStoreListResponse;
 import com.mfzn.deepuses.bean.response.settings.CustomerDetailResponse;
 import com.mfzn.deepuses.bean.response.settings.CustomerListResponse;
 import com.mfzn.deepuses.bean.response.settings.MoneyAccountListResponse;
@@ -555,6 +556,10 @@ public class ApiServiceManager {
 
     public static Flowable<HttpResult<OrderSalesListResponse>> getOrderTakeGoodsList() {
         return ApiHelper.getApiService().orderTakeGoodsList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), -1, -1, -1);
+    }
+
+    public static Flowable<HttpResult<PersonalStoreListResponse>> getPersonalStoreList() {
+        return ApiHelper.getApiService().personalStoreList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId());
     }
 
 

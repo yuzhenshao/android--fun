@@ -67,6 +67,7 @@ import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsCategoryManagerA
 import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsUnitListManagetActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.OtherCostActivity;
+import com.mfzn.deepuses.purchasesellsave.setting.activity.PersonStoreListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.SettingCustomerMangerActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.StoreListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.SupplierListManagerActivity;
@@ -756,7 +757,7 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
                         intent.setClass(getActivity(), AddOrderTakeBackActivity.class);
                         break;
                     case 8:
-                        intent.setClass(getActivity(), StoreListActivity.class);
+                        intent.setClass(getActivity(), PersonStoreListActivity.class);
                         break;
                 }
                 startActivity(intent);

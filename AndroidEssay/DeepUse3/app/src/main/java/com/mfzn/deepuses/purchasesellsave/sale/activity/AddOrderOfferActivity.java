@@ -79,14 +79,10 @@ public class AddOrderOfferActivity extends BaseAddCustomerAndGoodsActivity {
             showToast("请输入单据总价格");
             return;
         }
-        if (TextUtils.isEmpty(mdiscountPrice)) {
-            showToast("请输入优惠金额");
-            return;
-        }
         orderOfferRequest.setOrderGoodsStr(getOrderGoodsStr7());
         orderOfferRequest.setDiscountAmount(mdiscountPrice);
         orderOfferRequest.setTotalMoney(mTotalPrice);
-        orderOfferRequest.setRealMoney(Double.parseDouble(mTotalPrice) - Double.parseDouble(mdiscountPrice) + "");
+        orderOfferRequest.setRealMoney(Double.parseDouble(mTotalPrice) - (TextUtils.isEmpty(mdiscountPrice)?0:Double.parseDouble(mdiscountPrice)) + "");
         orderOfferRequest.setOrderTime(orderTime);
         orderOfferRequest.setOutNum(outNum.getText().toString());
         orderOfferRequest.setOrderMakerUserID(UserHelper.getUserId());
