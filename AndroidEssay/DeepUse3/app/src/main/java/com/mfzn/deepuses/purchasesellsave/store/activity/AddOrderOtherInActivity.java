@@ -133,9 +133,8 @@ public class AddOrderOtherInActivity extends BaseAddCustomerAndGoodsActivity {
                 orderOtherInRequest.setSupplierID(data.getStringExtra("Id"));
                 supplierEdit.setText(data.getStringExtra("Name"));
             } else if (requestCode == STORE_IN) {
-                StoreResponse inStore = (StoreResponse) data.getSerializableExtra(ParameterConstant.STORE);
-                orderOtherInRequest.setStoreID(inStore.getStoreID());
-                storeInEdit.setText(inStore.getStoreName());
+                orderOtherInRequest.setStoreID(data.getStringExtra("Id"));
+                storeInEdit.setText(data.getStringExtra("Name"));
             }else if (requestCode == GOODS) {
                 setTotalPriceView();
             }

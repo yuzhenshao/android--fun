@@ -19,6 +19,7 @@ import com.mfzn.deepuses.bean.response.settings.StoreResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.MoneyAccountListActivity;
+import com.mfzn.deepuses.purchasesellsave.setting.activity.PersonStoreListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.StoreListActivity;
 import com.mfzn.deepuses.utils.DateUtils;
 import com.mfzn.deepuses.utils.OnInputChangeListener;
@@ -64,7 +65,7 @@ public class AddOrderSalesBackActivity extends BaseAddCustomerAndGoodsActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         isRetail = getIntent().getBooleanExtra(ParameterConstant.IS_RETAIL_CREATE, false);
-        mTitleBar.updateTitleBar(isRetail ? "新建零售退货单" : "新建销售退货单","导入");
+        mTitleBar.updateTitleBar(isRetail ? "新建零售退货单" : "新建销售退货单", "导入");
         accountContainer.setVisibility(isRetail ? View.VISIBLE : View.GONE);
         discountPrice.addTextChangedListener(new OnInputChangeListener() {
             @Override
@@ -75,7 +76,7 @@ public class AddOrderSalesBackActivity extends BaseAddCustomerAndGoodsActivity {
         });
     }
 
-    @OnClick({R.id.customer_select, R.id.other_cost_select, R.id.store_select, R.id.project_select,R.id.money_account_select})
+    @OnClick({R.id.customer_select, R.id.other_cost_select, R.id.store_select, R.id.project_select, R.id.money_account_select})
     public void viewClick(View v) {
         Intent intent = new Intent();
         switch (v.getId()) {
@@ -86,7 +87,7 @@ public class AddOrderSalesBackActivity extends BaseAddCustomerAndGoodsActivity {
                 turnToCostSelect();
                 break;
             case R.id.store_select:
-                intent.setClass(this, StoreListActivity.class);
+                intent.setClass(this, isRetail ? PersonStoreListActivity.class : StoreListActivity.class);
                 intent.putExtra(ParameterConstant.IS_SELECTED, true);
                 startActivityForResult(intent, STORE);
                 break;
@@ -113,7 +114,7 @@ public class AddOrderSalesBackActivity extends BaseAddCustomerAndGoodsActivity {
         request.setOrderGoodsStr(getOrderGoodsStr7());
         request.setDiscountAmount(mdiscountPrice);
         request.setTotalMoney(mTotalPrice);
-        request.setRealMoney(Double.parseDouble(mTotalPrice) - (TextUtils.isEmpty(mdiscountPrice)?0:Double.parseDouble(mdiscountPrice)) + "");
+        request.setRealMoney(Double.parseDouble(mTotalPrice) - (TextUtils.isEmpty(mdiscountPrice) ? 0 : Double.parseDouble(mdiscountPrice)) + "");
         request.setOrderTime(orderTime);
         request.setOutNum(outNumEdit.getText().toString());
         request.setOrderMakerUserID(UserHelper.getUserId());
@@ -181,12 +182,11 @@ public class AddOrderSalesBackActivity extends BaseAddCustomerAndGoodsActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK && data != null) {
             if (requestCode == STORE) {
-                StoreResponse storeResponse = (StoreResponse) data.getSerializableExtra(ParameterConstant.STORE);
-                request.setStoreID(storeResponse.getStoreID());
+                request.setStoreID(data.getStringExtra("Id"));
                 if (isRetail) {
                     request.setStoreType(1);
                 }
-                storeEdit.setText(storeResponse.getStoreName());
+                storeEdit.setText(data.getStringExtra("Name"));
             } else if (requestCode == PROJECT) {
                 request.setProID(data.getStringExtra("Id"));
                 projectEdit.setText(data.getStringExtra("Name"));
@@ -200,10 +200,10 @@ public class AddOrderSalesBackActivity extends BaseAddCustomerAndGoodsActivity {
                 setTotalPriceView();
             } else if (requestCode == GOODS) {
                 setTotalPriceView();
-            }else if (requestCode == ACCOUNT) {
+            } else if (requestCode == ACCOUNT) {
                 request.setMoneyAccountID(data.getStringExtra("Id"));
                 moneyAccountEdit.setText(data.getStringExtra("Name"));
-            }else if (requestCode == INPUT) {
+            } else if (requestCode == INPUT) {
                 OrderSalesListResponse.OrderSalesResponse orderSalesResponse =
                         (OrderSalesListResponse.OrderSalesResponse) data.getSerializableExtra(ParameterConstant.INPUT_DATA);
                 if (orderSalesResponse != null) {
@@ -229,13 +229,13 @@ public class AddOrderSalesBackActivity extends BaseAddCustomerAndGoodsActivity {
         }
     }
 
-    private void setTotalPriceView(){
+    private void setTotalPriceView() {
         String disconunt = discountPrice.getText().toString();
         double disPtice = 0;
         if (!TextUtils.isEmpty(disconunt)) {
             disPtice = Double.parseDouble(disconunt);
         }
-        totalPrice.setText((totalMoney - disPtice+ getOtherCost()) + "");
+        totalPrice.setText((totalMoney - disPtice + getOtherCost()) + "");
     }
 
     @Override

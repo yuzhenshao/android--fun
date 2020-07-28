@@ -31,7 +31,7 @@ public class PersonStoreAdapter extends BaseQuickAdapter<PersonalStoreListRespon
             helper.setImageResource(R.id.icon_goods, R.mipmap.icon_no_data);
         }
         helper.setText(R.id.name, item.getGoodsName())
-                .setText(R.id.price, "领取总量："+item.getTakeSumNum())
-                .setText(R.id.goods_stock_num, "剩余量："+(item.getStockNum()-item.getTakeSumNum()));
+                .setText(R.id.price, "领取总量：" + item.getTakeSumNum())
+                .setText(R.id.goods_stock_num, "剩余量：" + item.getStockNum());
     }
 }

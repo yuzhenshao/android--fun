@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bean.constants.ParameterConstant;
 import com.mfzn.deepuses.bean.request.store.OrderAllotAddRequest;
@@ -105,13 +106,11 @@ public class AddOrderAllotActivity extends BaseAddCustomerAndGoodsActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK && data != null) {
             if (requestCode == STORE_IN) {
-                StoreResponse inStore = (StoreResponse) data.getSerializableExtra(ParameterConstant.STORE);
-                orderAllotAddRequest.setToStoreID(inStore.getStoreID());
-                storeInEdit.setText(inStore.getStoreName());
+                orderAllotAddRequest.setToStoreID(data.getStringExtra("Id"));
+                storeInEdit.setText(data.getStringExtra("Name"));
             } else if (requestCode == STORE_OUT) {
-                StoreResponse outStore = (StoreResponse) data.getSerializableExtra(ParameterConstant.STORE);
-                orderAllotAddRequest.setFromStoreID(outStore.getStoreID());
-                storeOutEdit.setText(outStore.getStoreName());
+                orderAllotAddRequest.setFromStoreID(data.getStringExtra("Id"));
+                storeOutEdit.setText(data.getStringExtra("Name"));
             }
         }
     }

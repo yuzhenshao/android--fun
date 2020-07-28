@@ -71,7 +71,9 @@ public class StoreListActivity extends BasicListActivity<StoreResponse> {
             public void onItemClick(BaseQuickAdapter adapter, View view, int i) {
                 if (isSelected) {
                     Intent storeIntent = new Intent();
-                    storeIntent.putExtra(ParameterConstant.STORE, mSourceList.get(i));
+                    StoreResponse storeResponse=mSourceList.get(i);
+                    storeIntent.putExtra("Id", storeResponse.getStoreID());
+                    storeIntent.putExtra("Name", storeResponse.getStoreName());
                     setResult(Activity.RESULT_OK, storeIntent);
                     finish();
                 } else {

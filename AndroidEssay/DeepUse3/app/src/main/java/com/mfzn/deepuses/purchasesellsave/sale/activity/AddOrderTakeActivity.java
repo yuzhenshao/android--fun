@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.activity.myteam.SelectManageActivity;
 import com.mfzn.deepuses.bean.constants.ParameterConstant;
@@ -17,6 +18,7 @@ import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.StoreListActivity;
 import com.mfzn.deepuses.utils.Constants;
 import com.mfzn.deepuses.utils.UserHelper;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
@@ -106,9 +108,8 @@ public class AddOrderTakeActivity extends BaseAddCustomerAndGoodsActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (data != null) {
             if (requestCode == STORE) {
-                StoreResponse storeResponse = (StoreResponse) data.getSerializableExtra(ParameterConstant.STORE);
-                request.setStoreID(storeResponse.getStoreID());
-                storeEdit.setText(storeResponse.getStoreName());
+                request.setStoreID(data.getStringExtra("Id"));
+                storeEdit.setText(data.getStringExtra("Name"));
             } else if (requestCode == USER) {
                 ZuzhiJiagouModel.StaffBean staffBean = (ZuzhiJiagouModel.StaffBean) data.getSerializableExtra(Constants.STAFFBEAN);
                 if (staffBean != null) {

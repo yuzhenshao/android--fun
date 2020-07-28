@@ -209,9 +209,9 @@ public class AddOrderStockCheckActivity extends BasicActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == STORE_CODE) {
-                StoreResponse store = (StoreResponse) data.getSerializableExtra(ParameterConstant.STORE);
-                request.setStoreID(store.getStoreID());
-                storeEdit.setText(store.getStoreName());
+                request.setStoreID(data.getStringExtra("Id"));
+                storeEdit.setText(data.getStringExtra("Name"));
+
             } else if (requestCode == GOODS) {
                 goodsSelectedList.clear();
                 goodsSelectedList.addAll((List<GoodsInfoResponse>) data.getSerializableExtra("data"));

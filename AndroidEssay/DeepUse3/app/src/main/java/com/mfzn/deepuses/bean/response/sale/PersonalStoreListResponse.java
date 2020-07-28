@@ -1,5 +1,6 @@
 package com.mfzn.deepuses.bean.response.sale;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class PersonalStoreListResponse {
@@ -58,7 +59,7 @@ public class PersonalStoreListResponse {
         this.data = data;
     }
 
-    public static class PersonalStoreResponse {
+    public static class PersonalStoreResponse implements Serializable {
         /**
          * personalStoreID : 1
          * goodsID : 1

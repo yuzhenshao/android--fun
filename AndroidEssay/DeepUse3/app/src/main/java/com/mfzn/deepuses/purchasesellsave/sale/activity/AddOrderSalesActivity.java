@@ -23,6 +23,7 @@ import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.purchasesellsave.manager.JXCDataManager;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.MoneyAccountListActivity;
+import com.mfzn.deepuses.purchasesellsave.setting.activity.PersonStoreListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.StoreListActivity;
 import com.mfzn.deepuses.utils.DateUtils;
 import com.mfzn.deepuses.utils.OnInputChangeListener;
@@ -101,7 +102,7 @@ public class AddOrderSalesActivity extends BaseAddCustomerAndGoodsActivity {
                 turnToCostSelect();
                 break;
             case R.id.store_select:
-                intent.setClass(AddOrderSalesActivity.this, StoreListActivity.class);
+                intent.setClass(AddOrderSalesActivity.this, isRetail? PersonStoreListActivity.class:StoreListActivity.class);
                 intent.putExtra(ParameterConstant.IS_SELECTED, true);
                 startActivityForResult(intent, STORE);
                 break;
@@ -230,12 +231,11 @@ public class AddOrderSalesActivity extends BaseAddCustomerAndGoodsActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK && data != null) {
             if (requestCode == STORE) {
-                StoreResponse storeResponse = (StoreResponse) data.getSerializableExtra(ParameterConstant.STORE);
-                request.setStoreID(storeResponse.getStoreID());
+                request.setStoreID(data.getStringExtra("Id"));
                 if (isRetail) {
                     request.setStoreType(1);
                 }
-                storeEdit.setText(storeResponse.getStoreName());
+                storeEdit.setText(data.getStringExtra("Name"));
             } else if (requestCode == PROJECT) {
                 request.setProID(data.getStringExtra("Id"));
                 projectEdit.setText(data.getStringExtra("Name"));

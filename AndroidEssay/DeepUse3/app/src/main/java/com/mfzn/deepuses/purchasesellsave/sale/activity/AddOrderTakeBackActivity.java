@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.activity.myteam.SelectManageActivity;
 import com.mfzn.deepuses.bean.constants.ParameterConstant;
@@ -15,7 +16,7 @@ import com.mfzn.deepuses.bean.response.settings.StoreResponse;
 import com.mfzn.deepuses.model.jiagou.ZuzhiJiagouModel;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
-import com.mfzn.deepuses.purchasesellsave.setting.activity.StoreListActivity;
+import com.mfzn.deepuses.purchasesellsave.setting.activity.PersonStoreListActivity;
 import com.mfzn.deepuses.utils.Constants;
 import com.mfzn.deepuses.utils.DateUtils;
 import com.mfzn.deepuses.utils.UserHelper;
@@ -45,7 +46,7 @@ public class AddOrderTakeBackActivity extends BaseAddCustomerAndGoodsActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        isPersonalStoreGoods=1;
+        isPersonalStoreGoods = 1;
         mTitleBar.updateTitleBar("新建领货归还单", "导入");
     }
 
@@ -59,7 +60,7 @@ public class AddOrderTakeBackActivity extends BaseAddCustomerAndGoodsActivity {
                 startActivityForResult(intent, USER);
                 break;
             case R.id.store_select:
-                intent.setClass(this, StoreListActivity.class);
+                intent.setClass(this, PersonStoreListActivity.class);
                 intent.putExtra(ParameterConstant.IS_SELECTED, true);
                 startActivityForResult(intent, STORE);
                 break;
@@ -113,12 +114,11 @@ public class AddOrderTakeBackActivity extends BaseAddCustomerAndGoodsActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (data != null) {
             if (requestCode == STORE) {
-                StoreResponse storeResponse = (StoreResponse) data.getSerializableExtra(ParameterConstant.STORE);
-                request.setStoreID(storeResponse.getStoreID());
-                storeEdit.setText(storeResponse.getStoreName());
+                request.setStoreID(data.getStringExtra("Id"));
+                storeEdit.setText(data.getStringExtra("Name"));
             } else if (requestCode == USER) {
                 ZuzhiJiagouModel.StaffBean staffBean = (ZuzhiJiagouModel.StaffBean) data.getSerializableExtra(Constants.STAFFBEAN);
-                if(staffBean!=null) {
+                if (staffBean != null) {
                     request.setTakerUserID(staffBean.getUserID());
                     customerEdit.setText(staffBean.getStaffName());
                 }
