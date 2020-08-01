@@ -5,18 +5,26 @@ import android.text.TextUtils;
 import java.io.Serializable;
 
 public class OtherCostModule implements Serializable {
-    private String costName;
-    private String costType;
+    //private String costName;
+   // private String costType;
+   // private String costMoney;
+  //  private double taxRate;
+   // private boolean isTaxRate;
+
+
+    private String otherCostID;
+    private String otherCostTypeName;
     private String costMoney;
+    private int hasTax;//0,是否含税：1是0否 <number>
     private double taxRate;
-    private boolean isTaxRate;
+
 
     public String getCostType() {
-        return costType;
+        return otherCostID;
     }
 
     public void setCostType(String costType) {
-        this.costType = costType;
+        this.otherCostID = costType;
     }
 
     public String getCostMoney() {
@@ -36,18 +44,32 @@ public class OtherCostModule implements Serializable {
     }
 
     public boolean isTaxRate() {
-        return isTaxRate;
+        return hasTax==1;
     }
 
     public void setTaxRate(boolean taxRate) {
-        isTaxRate = taxRate;
+        hasTax=taxRate?1:0;
     }
 
     public String getCostName() {
-        return costName;
+        return otherCostTypeName;
     }
 
     public void setCostName(String costName) {
-        this.costName = costName;
+        this.otherCostTypeName = costName;
+    }
+
+    public double getCost() {
+        if (TextUtils.isEmpty(costMoney)) {
+            return 0;
+        }
+        try {
+            double costPrice = Double.parseDouble(costMoney);
+            if (costPrice > 0) {
+                return taxRate > 0 ? costPrice * (1 + taxRate) : costPrice;
+            }
+        } catch (Exception e) {
+        }
+        return 0;
     }
 }

@@ -60,13 +60,14 @@ import com.mfzn.deepuses.purchasesellsave.sale.activity.AddOrderSalesActivity;
 import com.mfzn.deepuses.purchasesellsave.sale.activity.AddOrderSalesBackActivity;
 import com.mfzn.deepuses.purchasesellsave.sale.activity.AddOrderTakeActivity;
 import com.mfzn.deepuses.purchasesellsave.sale.activity.AddOrderTakeBackActivity;
-import com.mfzn.deepuses.purchasesellsave.sale.activity.OrderSalesListActivity;
+import com.mfzn.deepuses.purchasesellsave.sale.activity.OrderOfferListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.CommodityCreateActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.CommodityPhotoCreateActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsCategoryManagerActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsUnitListManagetActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.OtherCostActivity;
+import com.mfzn.deepuses.purchasesellsave.setting.activity.PersonStoreListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.SettingCustomerMangerActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.StoreListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.SupplierListManagerActivity;
@@ -728,7 +729,7 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
                 Intent intent = new Intent();
                 switch (position) {
                     case 0:
-                        intent.setClass(getActivity(), OrderSalesListActivity.class);
+                        intent.setClass(getActivity(), OrderOfferListActivity.class);
                         break;
                     case 1:
                         intent.setClass(getActivity(), AddOrderOfferActivity.class);
@@ -756,7 +757,7 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
                         intent.setClass(getActivity(), AddOrderTakeBackActivity.class);
                         break;
                     case 8:
-                        intent.setClass(getActivity(), StoreListActivity.class);
+                        intent.setClass(getActivity(), PersonStoreListActivity.class);
                         break;
                 }
                 startActivity(intent);

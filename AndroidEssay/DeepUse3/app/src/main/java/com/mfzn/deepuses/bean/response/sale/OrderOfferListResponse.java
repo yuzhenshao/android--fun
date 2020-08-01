@@ -5,7 +5,9 @@ import android.text.TextUtils;
 import com.libcommon.utils.ListUtil;
 import com.mfzn.deepuses.bean.response.settings.GoodsInfoResponse;
 import com.mfzn.deepuses.bean.response.store.StoreCheckGoodsResponse;
+import com.mfzn.deepuses.purchasesellsave.sale.Module.OtherCostModule;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,7 +68,7 @@ public class OrderOfferListResponse {
         this.data = data;
     }
 
-    public static class OrderOfferResponse {
+    public static class OrderOfferResponse implements Serializable {
         /**
          * orderID : 1
          * companyID : 2
@@ -139,7 +141,7 @@ public class OrderOfferListResponse {
         private long addTime;
         private int goodsAllCount;
         private List<GoodsInfoResponse> goodsInfo;
-        private List<OtherCostBean> otherCost;
+        private List<OtherCostModule> otherCost;
 
         public String getOrderID() {
             return orderID;
@@ -413,80 +415,24 @@ public class OrderOfferListResponse {
             this.goodsInfo = goodsInfo;
         }
 
-        public List<OtherCostBean> getOtherCost() {
+        public List<OtherCostModule> getOtherCost() {
             return otherCost;
         }
 
-        public void setOtherCost(List<OtherCostBean> otherCost) {
+        public void setOtherCost(List<OtherCostModule> otherCost) {
             this.otherCost = otherCost;
         }
 
-        public List<String> getGoodsMainImageList(){
-            List<String> images=new ArrayList<>();
-            if(!ListUtil.isEmpty(goodsInfo)){
-                for(GoodsInfoResponse goodsResponse:goodsInfo){
-                    if(!TextUtils.isEmpty(goodsResponse.getGoodsMainImage())){
+        public List<String> getGoodsMainImageList() {
+            List<String> images = new ArrayList<>();
+            if (!ListUtil.isEmpty(goodsInfo)) {
+                for (GoodsInfoResponse goodsResponse : goodsInfo) {
+                    if (!TextUtils.isEmpty(goodsResponse.getGoodsMainImage())) {
                         images.add(goodsResponse.getGoodsMainImage());
                     }
                 }
             }
             return images;
-        }
-
-        public static class OtherCostBean {
-            /**
-             * otherCostID : 11
-             * otherCostTypeName : 运费
-             * costMoney : 100.00
-             * hasTax : 0
-             * taxRate : 0.00
-             */
-
-            private String otherCostID;
-            private String otherCostTypeName;
-            private String costMoney;
-            private int hasTax;
-            private double taxRate;
-
-            public String getOtherCostID() {
-                return otherCostID;
-            }
-
-            public void setOtherCostID(String otherCostID) {
-                this.otherCostID = otherCostID;
-            }
-
-            public String getOtherCostTypeName() {
-                return otherCostTypeName;
-            }
-
-            public void setOtherCostTypeName(String otherCostTypeName) {
-                this.otherCostTypeName = otherCostTypeName;
-            }
-
-            public String getCostMoney() {
-                return costMoney;
-            }
-
-            public void setCostMoney(String costMoney) {
-                this.costMoney = costMoney;
-            }
-
-            public int getHasTax() {
-                return hasTax;
-            }
-
-            public void setHasTax(int hasTax) {
-                this.hasTax = hasTax;
-            }
-
-            public double getTaxRate() {
-                return taxRate;
-            }
-
-            public void setTaxRate(double taxRate) {
-                this.taxRate = taxRate;
-            }
         }
     }
 }

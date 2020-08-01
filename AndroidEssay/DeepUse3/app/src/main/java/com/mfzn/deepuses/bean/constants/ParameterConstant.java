@@ -9,7 +9,7 @@ public interface ParameterConstant {
     String GOODS_ID = "goodsId";
     String BASIC_ATTR = "basicAttr";
     String STORES = "stores";
-    String SALES_RECORD = "salesRecord";
+    String IS_PERSONAL_STORE_GOODS = "isPersonalStoreGoods";
     String IS_SELECTED = "isSelected";
     String CATEGORY_ID = "categoryId";
 
@@ -31,7 +31,8 @@ public interface ParameterConstant {
     //销售
     String IS_RETAIL_CREATE = "isRetail";
     String SHOP = "shop";
-
     String MAP_SHOP_ID="mapShopID";
-
+    String INPUT_TYPE="inputType";
+    String INPUT_DATA="inputData";
+    String OTHER_COST_MODULE="OtherCostModule";
 }

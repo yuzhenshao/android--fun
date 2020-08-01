@@ -1,31 +1,25 @@
 package com.mfzn.deepuses.purchasesellsave.sale.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.mfzn.deepuses.R;
-import com.mfzn.deepuses.activity.khgl.MyCustomerActivity;
-import com.mfzn.deepuses.bass.BasicActivity;
+import com.mfzn.deepuses.activity.myteam.SelectManageActivity;
 import com.mfzn.deepuses.bean.constants.ParameterConstant;
 import com.mfzn.deepuses.bean.request.sale.OrderTakeGoodsBackRequest;
+import com.mfzn.deepuses.bean.response.sale.OrderSalesListResponse;
 import com.mfzn.deepuses.bean.response.settings.StoreResponse;
-import com.mfzn.deepuses.common.PickerDialogView;
+import com.mfzn.deepuses.model.jiagou.ZuzhiJiagouModel;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
-import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsSelectListActivity;
-import com.mfzn.deepuses.purchasesellsave.setting.activity.StoreListActivity;
+import com.mfzn.deepuses.purchasesellsave.setting.activity.PersonStoreListActivity;
+import com.mfzn.deepuses.utils.Constants;
 import com.mfzn.deepuses.utils.DateUtils;
 import com.mfzn.deepuses.utils.UserHelper;
-
-import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -45,24 +39,28 @@ public class AddOrderTakeBackActivity extends BaseAddCustomerAndGoodsActivity {
     @BindView(R.id.remark)
     EditText remarkEdit;
     private final static int STORE = 4;
+    private final static int INPUT = 101;
+
     private OrderTakeGoodsBackRequest request = new OrderTakeGoodsBackRequest();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mTitleBar.updateTitleBar("新建领货归还单");
+        isPersonalStoreGoods = 1;
+        mTitleBar.updateTitleBar("新建领货归还单", "导入");
     }
 
     @OnClick({R.id.customer_select, R.id.store_select})
     public void viewClick(View v) {
-
+        Intent intent = new Intent();
         switch (v.getId()) {
             case R.id.customer_select:
-                turnToCustomer();
+                intent.setClass(this, SelectManageActivity.class);
+                intent.putExtra(Constants.SINGLE, true);
+                startActivityForResult(intent, USER);
                 break;
             case R.id.store_select:
-                Intent intent = new Intent();
-                intent.setClass(this, StoreListActivity.class);
+                intent.setClass(this, PersonStoreListActivity.class);
                 intent.putExtra(ParameterConstant.IS_SELECTED, true);
                 startActivityForResult(intent, STORE);
                 break;
@@ -92,11 +90,6 @@ public class AddOrderTakeBackActivity extends BaseAddCustomerAndGoodsActivity {
             return;
         }
 
-        if (TextUtils.isEmpty(outNumEdit.getText().toString())) {
-            showToast("请输入外部单号");
-            return;
-        }
-
         ApiServiceManager.addOrderTakeGoodsBack(request)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
@@ -119,14 +112,35 @@ public class AddOrderTakeBackActivity extends BaseAddCustomerAndGoodsActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK && data != null) {
+        if (data != null) {
             if (requestCode == STORE) {
-                StoreResponse storeResponse = (StoreResponse) data.getSerializableExtra(ParameterConstant.STORE);
-                request.setStoreID(storeResponse.getStoreID());
-                storeEdit.setText(storeResponse.getStoreName());
+                request.setStoreID(data.getStringExtra("Id"));
+                storeEdit.setText(data.getStringExtra("Name"));
             } else if (requestCode == USER) {
-                request.setTakerUserID(data.getStringExtra("Id"));
-                customerEdit.setText(data.getStringExtra("Name"));
+                ZuzhiJiagouModel.StaffBean staffBean = (ZuzhiJiagouModel.StaffBean) data.getSerializableExtra(Constants.STAFFBEAN);
+                if (staffBean != null) {
+                    request.setTakerUserID(staffBean.getUserID());
+                    customerEdit.setText(staffBean.getStaffName());
+                }
+            } else if (requestCode == INPUT) {
+                OrderSalesListResponse.OrderSalesResponse orderSalesResponse =
+                        (OrderSalesListResponse.OrderSalesResponse) data.getSerializableExtra(ParameterConstant.INPUT_DATA);
+                if (orderSalesResponse != null) {
+                    request.setTakerUserID(orderSalesResponse.getCustomerID());//TODO
+                    customerEdit.setText(orderSalesResponse.getCustomerName());//TODO
+
+                    setGoodsPriceContainer(orderSalesResponse.getGoodsInfo());
+
+                    request.setStoreID(orderSalesResponse.getStoreID());//TODO
+                    storeEdit.setText(orderSalesResponse.getStoreName());//TODO
+
+                    orderTime = (int) orderSalesResponse.getOrderTime();
+                    orderTimeEdit.setText(DateUtils.longToString("yyyy/MM/dd", orderSalesResponse.getOrderTime()));
+
+                    outNumEdit.setText(orderSalesResponse.getOutNum());
+                    userNameView.setText(orderSalesResponse.getOrderMakerUserName());
+                    remarkEdit.setText(orderSalesResponse.getRemark());
+                }
             }
         }
     }
@@ -136,4 +150,11 @@ public class AddOrderTakeBackActivity extends BaseAddCustomerAndGoodsActivity {
         return R.layout.activity_order_take_back_create;
     }
 
+
+    @Override
+    protected void rightPressedAction() {
+        Intent intent = new Intent(this, OrderInputListActivity.class);
+        intent.putExtra(ParameterConstant.INPUT_TYPE, 3);
+        startActivityForResult(intent, INPUT);
+    }
 }

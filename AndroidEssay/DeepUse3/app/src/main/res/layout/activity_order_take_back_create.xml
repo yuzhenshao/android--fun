@@ -218,7 +218,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/app_10dp"
                         android:background="@null"
-                        android:hint="请输入盘点单备注（0/200）"
+                        android:hint="请输入备注信息"
                         android:textColor="#ff909399"
                         android:textSize="16sp" />
 

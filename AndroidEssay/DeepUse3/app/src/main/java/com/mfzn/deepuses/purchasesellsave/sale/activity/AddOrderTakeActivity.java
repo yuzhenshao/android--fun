@@ -1,33 +1,23 @@
 package com.mfzn.deepuses.purchasesellsave.sale.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.mfzn.deepuses.R;
-import com.mfzn.deepuses.activity.khgl.MyCustomerActivity;
-import com.mfzn.deepuses.bass.BasicActivity;
+import com.mfzn.deepuses.activity.myteam.SelectManageActivity;
 import com.mfzn.deepuses.bean.constants.ParameterConstant;
 import com.mfzn.deepuses.bean.request.sale.OrderTakeGoodsRequest;
 import com.mfzn.deepuses.bean.response.settings.StoreResponse;
-import com.mfzn.deepuses.common.PickerDialogView;
-import com.mfzn.deepuses.model.company.CityModel;
+import com.mfzn.deepuses.model.jiagou.ZuzhiJiagouModel;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
-import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsSelectListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.StoreListActivity;
-import com.mfzn.deepuses.utils.DateUtils;
+import com.mfzn.deepuses.utils.Constants;
 import com.mfzn.deepuses.utils.UserHelper;
-
-import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -41,14 +31,6 @@ public class AddOrderTakeActivity extends BaseAddCustomerAndGoodsActivity {
     EditText customerEdit;
     @BindView(R.id.store)
     EditText storeEdit;
-    @BindView(R.id.rec_name)
-    EditText recNameEdit;
-    @BindView(R.id.rec_phone)
-    EditText recPhoneEdit;
-    @BindView(R.id.rec_area)
-    EditText recAreaEdit;
-    @BindView(R.id.rec_address)
-    EditText recAddressEdit;
 
     @BindView(R.id.out_num)
     EditText outNumEdit;
@@ -63,29 +45,19 @@ public class AddOrderTakeActivity extends BaseAddCustomerAndGoodsActivity {
         mTitleBar.updateTitleBar("新建个人领货单");
     }
 
-    @OnClick({R.id.customer_select,R.id.store_select, R.id.rec_area_select})
+    @OnClick({R.id.customer_select, R.id.store_select})
     public void viewClick(View v) {
         Intent intent = new Intent();
         switch (v.getId()) {
             case R.id.customer_select:
-                turnToCustomer();
+                intent.setClass(this, SelectManageActivity.class);
+                intent.putExtra(Constants.SINGLE, true);
+                startActivityForResult(intent, USER);
                 break;
             case R.id.store_select:
                 intent.setClass(this, StoreListActivity.class);
                 intent.putExtra(ParameterConstant.IS_SELECTED, true);
                 startActivityForResult(intent, STORE);
-                break;
-            case R.id.rec_area_select:
-                PickerDialogView.showAddress(this, new AddOrderSalesActivity.onCityCallBack() {
-                    @Override
-                    public void cityModelSelected(CityModel citySelected) {
-                        if (citySelected != null) {
-                            recAreaEdit.setText(citySelected.getProvincename() + " " + citySelected.getCityname() + " " + citySelected.getAreaname());
-                            request.setRecAreaID(citySelected.getAreaid());
-                        }
-                    }
-
-                });
                 break;
         }
     }
@@ -97,9 +69,6 @@ public class AddOrderTakeActivity extends BaseAddCustomerAndGoodsActivity {
         request.setOutNum(outNumEdit.getText().toString());
         request.setOrderMakerUserID(UserHelper.getUserId());
         request.setRemark(remarkEdit.getText().toString());
-        request.setRecName(recNameEdit.getText().toString());
-        request.setRecPhone(recPhoneEdit.getText().toString());
-        request.setRecAddress(recAddressEdit.getText().toString());
 
         if (TextUtils.isEmpty(request.getOrderMakerUserID())) {
             showToast("请输入领货人");
@@ -113,29 +82,6 @@ public class AddOrderTakeActivity extends BaseAddCustomerAndGoodsActivity {
 
         if (TextUtils.isEmpty(request.getStoreID())) {
             showToast("请输入出货仓库");
-            return;
-        }
-
-        if (TextUtils.isEmpty(request.getRecName())) {
-            showToast("请输入收货人姓名");
-            return;
-        }
-
-        if (TextUtils.isEmpty(request.getRecPhone())) {
-            showToast("请输入联系方式");
-            return;
-        }
-
-        if (TextUtils.isEmpty(request.getRecAreaID())) {
-            showToast("请输入区域地址");
-            return;
-        }
-        if (TextUtils.isEmpty(request.getRecAddress())) {
-            showToast("请输入详细地址");
-            return;
-        }
-        if (TextUtils.isEmpty(outNumEdit.getText().toString())) {
-            showToast("请输入外部单号");
             return;
         }
 
@@ -160,14 +106,16 @@ public class AddOrderTakeActivity extends BaseAddCustomerAndGoodsActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK && data != null) {
+        if (data != null) {
             if (requestCode == STORE) {
-                StoreResponse storeResponse = (StoreResponse) data.getSerializableExtra(ParameterConstant.STORE);
-                request.setStoreID(storeResponse.getStoreID());
-                storeEdit.setText(storeResponse.getStoreName());
+                request.setStoreID(data.getStringExtra("Id"));
+                storeEdit.setText(data.getStringExtra("Name"));
             } else if (requestCode == USER) {
-                request.setTakerUserID(data.getStringExtra("Id"));
-                customerEdit.setText(data.getStringExtra("Name"));
+                ZuzhiJiagouModel.StaffBean staffBean = (ZuzhiJiagouModel.StaffBean) data.getSerializableExtra(Constants.STAFFBEAN);
+                if (staffBean != null) {
+                    request.setTakerUserID(staffBean.getUserID());
+                    customerEdit.setText(staffBean.getStaffName());
+                }
             }
         }
     }

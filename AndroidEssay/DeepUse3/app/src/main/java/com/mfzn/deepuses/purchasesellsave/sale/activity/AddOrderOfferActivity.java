@@ -7,21 +7,19 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextUtils;
-import android.view.TextureView;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.mfzn.deepuses.R;
+import com.mfzn.deepuses.bean.constants.ParameterConstant;
 import com.mfzn.deepuses.bean.request.sale.OrderOfferRequest;
-import com.mfzn.deepuses.bean.response.settings.GoodsInfoResponse;
+import com.mfzn.deepuses.bean.response.sale.OrderOfferListResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
+import com.mfzn.deepuses.purchasesellsave.manager.JXCDataManager;
 import com.mfzn.deepuses.utils.DateUtils;
 import com.mfzn.deepuses.utils.OnInputChangeListener;
 import com.mfzn.deepuses.utils.UserHelper;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -46,12 +44,12 @@ public class AddOrderOfferActivity extends BaseAddCustomerAndGoodsActivity {
     EditText remark;
 
     private OrderOfferRequest orderOfferRequest = new OrderOfferRequest();
-
+    private final static int INPUT = 101;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mTitleBar.updateTitleBar("新建报价单");
+        mTitleBar.updateTitleBar("新建报价单", "导入");
         discountPriceEdit.addTextChangedListener(new OnInputChangeListener() {
             @Override
             public void afterTextChanged(Editable s) {
@@ -81,29 +79,17 @@ public class AddOrderOfferActivity extends BaseAddCustomerAndGoodsActivity {
             showToast("请输入单据总价格");
             return;
         }
-        if (TextUtils.isEmpty(mdiscountPrice)) {
-            showToast("请输入优惠金额");
-            return;
-        }
         orderOfferRequest.setOrderGoodsStr(getOrderGoodsStr7());
         orderOfferRequest.setDiscountAmount(mdiscountPrice);
         orderOfferRequest.setTotalMoney(mTotalPrice);
-        orderOfferRequest.setRealMoney(Integer.parseInt(mTotalPrice) - Integer.parseInt(mdiscountPrice) + "");
+        orderOfferRequest.setRealMoney(Double.parseDouble(mTotalPrice) - (TextUtils.isEmpty(mdiscountPrice)?0:Double.parseDouble(mdiscountPrice)) + "");
         orderOfferRequest.setOrderTime(orderTime);
         orderOfferRequest.setOutNum(outNum.getText().toString());
         orderOfferRequest.setOrderMakerUserID(UserHelper.getUserId());
         orderOfferRequest.setRemark(remark.getText().toString());
-        if (TextUtils.isEmpty(outNum.getText().toString())) {
-            showToast("请输入外部报价单号");
-            return;
-        }
 
         if (TextUtils.isEmpty(orderOfferRequest.getOrderMakerUserID())) {
             showToast("请输入公司客户");
-            return;
-        }
-        if (TextUtils.isEmpty(orderOfferRequest.getOtherCostStr())) {
-            showToast("请输入其他费用信息");
             return;
         }
         if (TextUtils.isEmpty(orderOfferRequest.getOrderGoodsStr())) {
@@ -139,22 +125,47 @@ public class AddOrderOfferActivity extends BaseAddCustomerAndGoodsActivity {
                 String otherCostStr = data.getStringExtra("data");
                 orderOfferRequest.setOtherCostStr(otherCostStr);
                 otherCostEdit.setText(TextUtils.isEmpty(otherCostStr) ? "" : "已填写");
+                setTotalPriceView();
             } else if (requestCode == GOODS) {
                 setTotalPriceView();
+            } else if (requestCode == INPUT) {
+                OrderOfferListResponse.OrderOfferResponse orderSalesResponse =
+                        (OrderOfferListResponse.OrderOfferResponse) data.getSerializableExtra(ParameterConstant.INPUT_DATA);
+                if (orderSalesResponse != null) {
+                    JXCDataManager.getInstance().addOtherCostModule(orderSalesResponse.getOtherCost());
+                    orderOfferRequest.setCompanyCustomerID(orderSalesResponse.getCustomerID());
+                    customerEdit.setText(orderSalesResponse.getCustomerName());
+                    setGoodsPriceContainer(orderSalesResponse.getGoodsInfo());
+                    discountPriceEdit.setText(orderSalesResponse.getDiscountAmount());
+                    orderTime = (int) orderSalesResponse.getOrderTime();
+                    orderTimeEdit.setText(DateUtils.longToString("yyyy/MM/dd", orderSalesResponse.getOrderTime()));
+                    outNum.setText(orderSalesResponse.getOutNum());
+                    userNameView.setText(orderSalesResponse.getOrderMakerUserName());
+                    remark.setText(orderSalesResponse.getRemark());
+                    setTotalPriceView();
+                }
             }
         }
     }
 
-    private void setTotalPriceView(){
-            String disconunt = discountPriceEdit.getText().toString();
-            int disPtice = 0;
-            if (!TextUtils.isEmpty(disconunt)) {
-                disPtice = Integer.parseInt(disconunt);
-            }
-        totalPriceEdit.setText((totalMoney - disPtice) + "");
+    private void setTotalPriceView() {
+        String disconunt = discountPriceEdit.getText().toString();
+        double disPtice = 0;
+        if (!TextUtils.isEmpty(disconunt)) {
+            disPtice = Double.parseDouble(disconunt);
+        }
+        totalPriceEdit.setText((totalMoney - disPtice + getOtherCost()) + "");
     }
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_order_offer_create;
+    }
+
+    @Override
+    protected void rightPressedAction() {
+        Intent intent = new Intent(this, OrderOfferListActivity.class);
+        intent.putExtra(ParameterConstant.IS_SELECTED, true);
+        startActivityForResult(intent, INPUT);
     }
 }

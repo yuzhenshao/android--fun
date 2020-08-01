@@ -5,35 +5,30 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.libcommon.utils.ListUtil;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BasicListActivity;
 import com.mfzn.deepuses.bean.constants.ParameterConstant;
+import com.mfzn.deepuses.bean.response.sale.PersonalStoreListResponse;
 import com.mfzn.deepuses.bean.response.settings.StoreResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
-import com.mfzn.deepuses.purchasesellsave.setting.adapter.StoreAdapter;
+import com.mfzn.deepuses.purchasesellsave.sale.adapter.PersonStoreAdapter;
 
-import java.util.List;
-
-import butterknife.BindView;
-import butterknife.OnClick;
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.XApi;
 
-public class StoreListActivity extends BasicListActivity<StoreResponse> {
+public class PersonStoreListActivity extends BasicListActivity<PersonalStoreListResponse.PersonalStoreResponse> {
 
-    private static int REQUESTCODE = 2000;
     private boolean isSelected;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mTitleBar.updateTitleBar("仓库", R.mipmap.icon_titlebar_add);
+        mTitleBar.updateTitleBar("个人仓库");
         isSelected = getIntent().getBooleanExtra(ParameterConstant.IS_SELECTED, false);
     }
 
@@ -46,55 +41,44 @@ public class StoreListActivity extends BasicListActivity<StoreResponse> {
     @Override
     protected void getResourceList() {
         showDialog();
-        ApiServiceManager.getStoreList()
+        ApiServiceManager.getPersonalStoreList()
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(bindToLifecycle())
-                .subscribe(new ApiSubscriber<HttpResult<List<StoreResponse>>>() {
+                .subscribe(new ApiSubscriber<HttpResult<PersonalStoreListResponse>>() {
                     @Override
                     protected void onFail(NetError error) {
                         showErrorView(error.getMessage());
                     }
 
                     @Override
-                    public void onNext(HttpResult<List<StoreResponse>> result) {
-                        refreshSource(result.getRes());
+                    public void onNext(HttpResult<PersonalStoreListResponse> result) {
+                        if (result.getRes() != null) {
+                            if (!ListUtil.isEmpty(result.getRes().getData())) {
+                                refreshSource(result.getRes().getData());
+                                return;
+                            }
+                        }
+                        showNoDataView();
                     }
                 });
     }
 
     @Override
     protected BaseQuickAdapter getAdapter() {
-        StoreAdapter mAdapter = new StoreAdapter(this, mSourceList);
+        PersonStoreAdapter mAdapter = new PersonStoreAdapter(this, mSourceList);
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int i) {
                 if (isSelected) {
                     Intent storeIntent = new Intent();
-                    StoreResponse storeResponse=mSourceList.get(i);
-                    storeIntent.putExtra("Id", storeResponse.getStoreID());
-                    storeIntent.putExtra("Name", storeResponse.getStoreName());
+                    storeIntent.putExtra("Id", mSourceList.get(i).getPersonalStoreID());
+                    storeIntent.putExtra("Name", "个人仓库");
                     setResult(Activity.RESULT_OK, storeIntent);
                     finish();
-                } else {
-                    Intent intent = new Intent(StoreListActivity.this, StoreCreateEditActivity.class);
-                    intent.putExtra(ParameterConstant.STORE, mSourceList.get(i));
-                    startActivityForResult(intent, REQUESTCODE);
                 }
             }
         });
         return mAdapter;
-    }
-
-    protected void rightPressedAction() {
-        startActivityForResult(new Intent(this, StoreCreateEditActivity.class), REQUESTCODE);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUESTCODE && resultCode == RESULT_OK) {
-            getResourceList();
-        }
     }
 }

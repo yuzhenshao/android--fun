@@ -145,15 +145,14 @@ public class StoreAllCheckSponsorActivity extends BasicActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK) {
+        if (resultCode == Activity.RESULT_OK&&data!=null) {
             if (requestCode == SHOP) {
                 ShopListResponse shop = (ShopListResponse) data.getSerializableExtra(ParameterConstant.SHOP);
                 shopId = shop.getShopID();
                 shopEdit.setText(shop.getShopName());
             } else if (requestCode == STORE) {
-                StoreResponse store = (StoreResponse) data.getSerializableExtra(ParameterConstant.STORE);
-                storeId = store.getStoreID();
-                storeCheckEdit.setText(store.getStoreName());
+                storeId = data.getStringExtra("Id");
+                storeCheckEdit.setText(data.getStringExtra("Name"));
 
             }
         }

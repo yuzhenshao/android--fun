@@ -9,7 +9,7 @@ import java.io.Serializable;
 public class GoodsInfoResponse implements Serializable {
 
     private String goodsID;
-    private int goodsCount;
+    private int goodsCount=1;
     private String goodsName;
     private String goodsCatID;
     @SerializedName("catName")
@@ -41,7 +41,6 @@ public class GoodsInfoResponse implements Serializable {
     private String remark;
     private long addTime;
     private int goodsSumStockNum;
-    private int goodsSize=1;
     private int systemStockNum;
     private int checkStockNum;
 
@@ -291,14 +290,6 @@ public class GoodsInfoResponse implements Serializable {
             return !TextUtils.isEmpty(getGoodsID()) && getGoodsID().equals(((GoodsInfoResponse) obj).getGoodsID());
         }
         return false;
-    }
-
-    public int getGoodsSize() {
-        return goodsSize;
-    }
-
-    public void setGoodsSize(int goodsSize) {
-        this.goodsSize = goodsSize;
     }
 
     public int getSystemStockNum() {

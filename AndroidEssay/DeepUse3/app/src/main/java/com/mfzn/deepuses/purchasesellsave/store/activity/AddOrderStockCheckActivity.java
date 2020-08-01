@@ -24,7 +24,6 @@ import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsSelectListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.StoreListActivity;
-import com.mfzn.deepuses.purchasesellsave.setting.adapter.GoodsAdapter;
 import com.mfzn.deepuses.purchasesellsave.store.adapter.StoreCheckGoodsAdapter;
 import com.mfzn.deepuses.utils.DateUtils;
 import com.mfzn.deepuses.utils.UserHelper;
@@ -210,9 +209,9 @@ public class AddOrderStockCheckActivity extends BasicActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == STORE_CODE) {
-                StoreResponse store = (StoreResponse) data.getSerializableExtra(ParameterConstant.STORE);
-                request.setStoreID(store.getStoreID());
-                storeEdit.setText(store.getStoreName());
+                request.setStoreID(data.getStringExtra("Id"));
+                storeEdit.setText(data.getStringExtra("Name"));
+
             } else if (requestCode == GOODS) {
                 goodsSelectedList.clear();
                 goodsSelectedList.addAll((List<GoodsInfoResponse>) data.getSerializableExtra("data"));

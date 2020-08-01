@@ -148,6 +148,7 @@ public class SwitchCompanyActivity extends BaseMvpActivity<SwitchCompanyPresnet>
                 EventMsg eventMsg = new EventMsg();
                 eventMsg.setMsg(Constants.COMPANY_NAME);
                 RxBus.getInstance().post(eventMsg);
+                finish();
             }
         });
 

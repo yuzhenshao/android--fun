@@ -94,7 +94,7 @@ public class GoodsSelectListActivity extends BasicListActivity<GoodsInfoResponse
     @Override
     protected void getResourceList() {
         showDialog();
-        ApiServiceManager.goodsList()
+        ApiServiceManager.goodsList(getIntent().getIntExtra(ParameterConstant.IS_PERSONAL_STORE_GOODS, 0))
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(bindToLifecycle())
@@ -173,7 +173,8 @@ public class GoodsSelectListActivity extends BasicListActivity<GoodsInfoResponse
                             Glide.with(context).load(ApiHelper.BASE_URL + item.getGoodsMainImage()).into((ImageView) helper.getView(R.id.goods_image));
                         }
                         helper.setText(R.id.name, item.getGoodsName() + "（" + item.getGoodsNum() + ")")
-                                .setText(R.id.goods_stock_num, context.getResources().getString(R.string.goods_sum_stock, item.getGoodsSumStockNum()));
+                                .setText(R.id.goods_stock_num, context.getResources().getString(R.string.goods_sum_stock, item.getGoodsSumStockNum()))
+                                .setText(R.id.system_stock_num, item.getGoodsSumStockNum());
                     }
                 })
                 .setOnViewClickListener((customDialog, bindViewHolder, view) -> {
@@ -196,7 +197,7 @@ public class GoodsSelectListActivity extends BasicListActivity<GoodsInfoResponse
                             if (index != -1) {
                                 goodsSelectedList.remove(index);
                             }
-                            if (item.getGoodsSize() > 0) {
+                            if (item.getGoodsCount() > 0) {
                                 goodsSelectedList.add(item);
                             }
                             setGoodsSelected();
@@ -247,7 +248,7 @@ public class GoodsSelectListActivity extends BasicListActivity<GoodsInfoResponse
                                 }
                             }
                             numberView.setText(value + "");
-                            item.setGoodsSize(value);
+                            item.setGoodsCount(value);
                             break;
                         case R.id.switch_button:
                             item.setHasTaxRate(!item.isHasTaxRate());
@@ -263,7 +264,7 @@ public class GoodsSelectListActivity extends BasicListActivity<GoodsInfoResponse
                             if (index != -1) {
                                 goodsSelectedList.remove(index);
                             }
-                            if (item.getGoodsSize() > 0) {
+                            if (item.getGoodsCount() > 0) {
                                 goodsSelectedList.add(item);
                             }
                             setGoodsSelected();
@@ -326,11 +327,11 @@ public class GoodsSelectListActivity extends BasicListActivity<GoodsInfoResponse
             int size = 0;
             if (!ListUtil.isEmpty(goodsSelectedList)) {
                 for (GoodsInfoResponse store : goodsSelectedList) {
-                    size += store.getGoodsSize();
+                    size += store.getGoodsCount();
                     if (store.isHasTaxRate()) {
-                        totalPrice += getPrice(store.getSalePriceWithTax()) * store.getGoodsSize();
+                        totalPrice += getPrice(store.getSalePriceWithTax()) * store.getGoodsCount();
                     } else {
-                        totalPrice += getPrice(store.getSalePrice()) * store.getGoodsSize();
+                        totalPrice += getPrice(store.getSalePrice()) * store.getGoodsCount();
                     }
                 }
             }

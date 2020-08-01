@@ -4,37 +4,19 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.mfzn.deepuses.R;
-import com.mfzn.deepuses.activity.khgl.MyCustomerActivity;
-import com.mfzn.deepuses.bass.BasicActivity;
 import com.mfzn.deepuses.bean.constants.ParameterConstant;
-import com.mfzn.deepuses.bean.request.sale.OrderOfferRequest;
 import com.mfzn.deepuses.bean.request.store.OrderAllotAddRequest;
-import com.mfzn.deepuses.bean.response.settings.GoodsInfoResponse;
 import com.mfzn.deepuses.bean.response.settings.StoreResponse;
-import com.mfzn.deepuses.common.PickerDialogView;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.purchasesellsave.sale.activity.BaseAddCustomerAndGoodsActivity;
-import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsSelectListActivity;
-import com.mfzn.deepuses.purchasesellsave.setting.activity.SetCostActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.StoreListActivity;
-import com.mfzn.deepuses.purchasesellsave.setting.adapter.GoodsAdapter;
-import com.mfzn.deepuses.utils.DateUtils;
 import com.mfzn.deepuses.utils.UserHelper;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -100,10 +82,6 @@ public class AddOrderAllotActivity extends BaseAddCustomerAndGoodsActivity {
             showToast("请输入调用仓库");
             return;
         }
-        if (TextUtils.isEmpty(orderAllotAddRequest.getOutNum())) {
-            showToast("请输入外部单号");
-            return;
-        }
 
         ApiServiceManager.addOrderAllot(orderAllotAddRequest)
                 .compose(XApi.getApiTransformer())
@@ -128,13 +106,11 @@ public class AddOrderAllotActivity extends BaseAddCustomerAndGoodsActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK && data != null) {
             if (requestCode == STORE_IN) {
-                StoreResponse inStore = (StoreResponse) data.getSerializableExtra(ParameterConstant.STORE);
-                orderAllotAddRequest.setToStoreID(inStore.getStoreID());
-                storeInEdit.setText(inStore.getStoreName());
+                orderAllotAddRequest.setToStoreID(data.getStringExtra("Id"));
+                storeInEdit.setText(data.getStringExtra("Name"));
             } else if (requestCode == STORE_OUT) {
-                StoreResponse outStore = (StoreResponse) data.getSerializableExtra(ParameterConstant.STORE);
-                orderAllotAddRequest.setFromStoreID(outStore.getStoreID());
-                storeOutEdit.setText(outStore.getStoreName());
+                orderAllotAddRequest.setFromStoreID(data.getStringExtra("Id"));
+                storeOutEdit.setText(data.getStringExtra("Name"));
             }
         }
     }

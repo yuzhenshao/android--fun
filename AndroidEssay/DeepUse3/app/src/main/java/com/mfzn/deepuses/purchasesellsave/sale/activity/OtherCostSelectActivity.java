@@ -66,14 +66,7 @@ public class OtherCostSelectActivity extends BasicActivity {
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int i) {
                 curIndex = i;
                 OtherCostModule otherCostModule = otherCostList.get(i);
-                EditText costType = view.findViewById(R.id.cost_type);
-                ImageView costTypeSelect = view.findViewById(R.id.cost_type_select);
-                EditText costPrice = view.findViewById(R.id.cost_price);
                 CheckBox hasTaxRate = view.findViewById(R.id.switch_button);
-                EditText taxRate = view.findViewById(R.id.tax_rate);
-                ImageView taxRateSelect = view.findViewById(R.id.tax_rate_select);
-
-
                 switch (view.getId()) {
                     case R.id.cost_type_select:
                         Intent intent = new Intent(OtherCostSelectActivity.this, OtherCostActivity.class);

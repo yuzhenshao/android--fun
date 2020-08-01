@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -14,11 +15,11 @@ import com.mfzn.deepuses.purchasesellsave.store.adapter.ImageAdapter;
 
 import java.util.List;
 
-public class OrderSalesAdapter extends BaseQuickAdapter<OrderOfferResponse, BaseViewHolder> {
+public class OrderOfferAdapter extends BaseQuickAdapter<OrderOfferResponse, BaseViewHolder> {
 
     protected Context context;
 
-    public OrderSalesAdapter(Context context, @Nullable List<OrderOfferResponse> data) {
+    public OrderOfferAdapter(Context context, @Nullable List<OrderOfferResponse> data) {
         super(R.layout.order_offer_item, data);
         this.context = context;
     }
@@ -30,16 +31,23 @@ public class OrderSalesAdapter extends BaseQuickAdapter<OrderOfferResponse, Base
         if (!ListUtil.isEmpty(images)) {
             RecyclerView recyclerView = helper.getView(R.id.recycler_view);
             recyclerView.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
-            recyclerView.setAdapter(new ImageAdapter(context, images));
+            ImageAdapter imageAdapter= new ImageAdapter(context, images);
+            recyclerView.setAdapter(imageAdapter);
+            imageAdapter.setOnItemClickListener(new OnItemClickListener() {
+                @Override
+                public void onItemClick(BaseQuickAdapter adapter, View view, int i) {
+                    getOnItemChildClickListener().onItemChildClick(adapter, view, i);
+                }
+            });
         }
 
         helper.setText(R.id.name, item.getCustomerName())
                 .setText(R.id.order_num, item.getOrderNum())
                 .setText(R.id.goods_size, "共计" + images.size() + "件")
                 .setImageResource(R.id.store_check_icon, getStatusResId(item.getIsCheck()))
-                .setVisible(R.id.defaule_image, ListUtil.isEmpty(images));
+                .setVisible(R.id.defaule_image, ListUtil.isEmpty(images))
+                .addOnClickListener(R.id.order_offer_container);
     }
-
 
     public int getStatusResId(int status) {//0.待审核1通过2拒绝
         switch (status) {

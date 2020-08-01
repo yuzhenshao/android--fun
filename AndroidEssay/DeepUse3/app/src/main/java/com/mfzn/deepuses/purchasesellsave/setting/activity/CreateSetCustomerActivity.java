@@ -151,10 +151,6 @@ public class CreateSetCustomerActivity extends BasicActivity {
                     showToast("请输入客户电话");
                     return;
                 }
-                if (TextUtils.isEmpty(mCustomerRequest.getCustomerLevelID())) {
-                    showToast("请输入客户等级");
-                    return;
-                }
                 if (mCustomerResponse == null) {
                     addSetCustomer();
                 } else {

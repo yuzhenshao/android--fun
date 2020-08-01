@@ -187,9 +187,8 @@ public class AddOrderOtherOutActivity extends BaseAddCustomerAndGoodsActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK && data != null) {
             if (requestCode == STORE) {
-                StoreResponse inStore = (StoreResponse) data.getSerializableExtra(ParameterConstant.STORE);
-                request.setStoreID(inStore.getStoreID());
-                storeEdit.setText(inStore.getStoreName());
+                request.setStoreID(data.getStringExtra("Id"));
+                storeEdit.setText(data.getStringExtra("Name"));
             } else if (requestCode == USER) {
                 request.setCompanyCustomerID(data.getStringExtra("Id"));
                 customerEdit.setText(data.getStringExtra("Name"));
@@ -206,7 +205,7 @@ public class AddOrderOtherOutActivity extends BaseAddCustomerAndGoodsActivity {
         if (!TextUtils.isEmpty(disconunt)) {
             disPtice = Integer.parseInt(disconunt);
         }
-        totalPrice.setText((totalMoney - disPtice) + "");
+        totalPrice.setText((totalMoney - disPtice+getOtherCost()) + "");
     }
 
     @Override

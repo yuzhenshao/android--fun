@@ -31,6 +31,6 @@ public class GoodsSelectedAdapter extends BaseQuickAdapter<GoodsInfoResponse, Ba
         }
         helper.setText(R.id.name, item.getGoodsName())
                 .setText(R.id.price, context.getResources().getString(R.string.goods_price, item.getCostPrice()))
-                .setText(R.id.number, context.getResources().getString(R.string.goods_size, item.getGoodsSumStockNum()));
+                .setText(R.id.number, context.getResources().getString(R.string.goods_size, item.getGoodsCount()));
     }
 }

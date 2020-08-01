@@ -174,16 +174,10 @@ public class MyFragment extends BaseMvpFragment<MyPresnet> {
             if(afterSale.getCompanyID()!=0) {
                 ll_my_qx.setVisibility(View.VISIBLE);
                 leftDays = afterSale.getLeftDays();
-                String timen="";
-                try {
-                    timen = DateUtils.longToDateStr(afterSale.getStartTime()) + DateUtils.longToDateStr(afterSale.getEndTime());
-                }catch (Exception e){
-
-                }
                 if (leftDays > 0) {
-                    tv_my_qx.setText(timen + " 售后试用期还剩" + leftDays + "天");
+                    tv_my_qx.setText("该公司售后试用期还剩" + leftDays+1 + "天");
                 } else {
-                    tv_my_qx.setText(timen + " 已过期");
+                    tv_my_qx.setText("该公司售后试用期已过期");
                 }
             }
         } else {
