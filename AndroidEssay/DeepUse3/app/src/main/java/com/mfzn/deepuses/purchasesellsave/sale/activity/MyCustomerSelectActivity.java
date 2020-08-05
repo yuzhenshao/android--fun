@@ -59,7 +59,7 @@ public class MyCustomerSelectActivity extends BasicListActivity<WholeCustomerMod
                 WholeCustomerModel.DataBean user = mSourceList.get(i);
                 if (user != null) {
                     Intent intent = new Intent();
-                    intent.putExtra("Id", user.getUid() + "");
+                    intent.putExtra("Id", user.getData_id() + "");
                     intent.putExtra("Name", user.getU_name());
                     setResult(Activity.RESULT_OK, intent);
                     finish();
