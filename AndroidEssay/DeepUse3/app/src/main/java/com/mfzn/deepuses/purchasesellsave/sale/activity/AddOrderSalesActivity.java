@@ -102,7 +102,7 @@ public class AddOrderSalesActivity extends BaseAddCustomerAndGoodsActivity {
                 turnToCostSelect();
                 break;
             case R.id.store_select:
-                intent.setClass(AddOrderSalesActivity.this, isRetail? PersonStoreListActivity.class:StoreListActivity.class);
+                intent.setClass(AddOrderSalesActivity.this, StoreListActivity.class);
                 intent.putExtra(ParameterConstant.IS_SELECTED, true);
                 startActivityForResult(intent, STORE);
                 break;
