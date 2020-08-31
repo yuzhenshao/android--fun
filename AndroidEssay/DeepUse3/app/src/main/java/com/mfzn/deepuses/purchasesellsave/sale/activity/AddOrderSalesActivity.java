@@ -124,6 +124,7 @@ public class AddOrderSalesActivity extends BaseAddCustomerAndGoodsActivity {
                 break;
             case R.id.money_account_select:
                 intent.setClass(AddOrderSalesActivity.this, MoneyAccountListActivity.class);
+                intent.putExtra(ParameterConstant.IS_SELECTED,true);
                 startActivityForResult(intent, ACCOUNT);
                 break;
         }

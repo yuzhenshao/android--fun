@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.libcommon.titlebar.TitleBar
+        android:id="@+id/titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <View style="@style/line_heng" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/account_name"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_42dp"
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/app_24dp"
+            android:text="建行1123"
+            android:textColor="@color/color_909399"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/left_money"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/app_42dp"
+            android:layout_alignParentRight="true"
+            android:paddingRight="@dimen/app_24dp"
+            android:gravity="center_vertical"
+            android:text="余额：11800.00 元"
+            android:textColor="#ff3d7eff"
+            android:textSize="16sp" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/account_name"
+            android:background="#ffffff" />
+
+        <include layout="@layout/empty_view" />
+    </RelativeLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F7FA">
+
+
+    <com.libcommon.titlebar.TitleBar
+        android:id="@+id/titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ScrollView
+        android:id="@+id/menu_containr"
+        android:layout_width="@dimen/app_80dp"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/titlebar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_50dp"
+                android:background="#ffffff">
+
+                <TextView
+                    android:id="@+id/order_purchase"
+                    style="@style/todo_title_tv_style"
+                    android:text="采购单" />
+
+                <TextView
+                    android:id="@+id/order_purchase_number"
+                    style="@style/todo_number_tv_style"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_50dp">
+
+                <TextView
+                    android:id="@+id/order_purchase_back"
+                    style="@style/todo_title_tv_style"
+                    android:text="采购退货单" />
+
+                <TextView
+                    android:id="@+id/order_purchase_back_number"
+                    style="@style/todo_number_tv_style"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_50dp">
+
+                <TextView
+                    android:id="@+id/order_offer"
+
+                    style="@style/todo_title_tv_style"
+                    android:text="报价单" />
+
+                <TextView
+                    android:id="@+id/order_offer_number"
+                    style="@style/todo_number_tv_style"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_50dp">
+
+                <TextView
+                    android:id="@+id/order_sales"
+
+                    style="@style/todo_title_tv_style"
+                    android:text="销售单" />
+
+                <TextView
+                    android:id="@+id/order_sales_number"
+                    style="@style/todo_number_tv_style"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_50dp">
+
+                <TextView
+                    android:id="@+id/order_sales_back"
+
+                    style="@style/todo_title_tv_style"
+                    android:text="销售退货单" />
+
+                <TextView
+                    android:id="@+id/order_sales_back_number"
+                    style="@style/todo_number_tv_style"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_50dp">
+
+                <TextView
+                    android:id="@+id/order_take_goods"
+
+                    style="@style/todo_title_tv_style"
+                    android:text="个人领用单" />
+
+                <TextView
+                    android:id="@+id/order_take_goods_number"
+                    style="@style/todo_number_tv_style"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_50dp">
+
+                <TextView
+                    android:id="@+id/order_waiting_out"
+
+                    style="@style/todo_title_tv_style"
+                    android:text="其他出库单" />
+
+                <TextView
+                    android:id="@+id/order_waiting_out_number"
+                    style="@style/todo_number_tv_style"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_50dp">
+
+                <TextView
+                    android:id="@+id/order_allot"
+
+                    style="@style/todo_title_tv_style"
+                    android:text="调拨单" />
+
+                <TextView
+                    android:id="@+id/order_allot_number"
+                    style="@style/todo_number_tv_style"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_50dp">
+
+                <TextView
+                    android:id="@+id/order_store_check"
+
+                    style="@style/todo_title_tv_style"
+                    android:text="盘点单" />
+
+                <TextView
+                    android:id="@+id/order_store_check_number"
+                    style="@style/todo_number_tv_style"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_50dp">
+
+                <TextView
+                    android:id="@+id/order_retail_back"
+
+                    style="@style/todo_title_tv_style"
+                    android:text="零售退货单" />
+
+                <TextView
+                    android:id="@+id/order_retail_back_number"
+                    style="@style/todo_number_tv_style"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <RelativeLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_50dp">
+
+                <TextView
+                    android:id="@+id/order_income_expense"
+
+                    style="@style/todo_title_tv_style"
+                    android:text="收支管理" />
+
+                <TextView
+                    android:id="@+id/order_income_expense_number"
+                    style="@style/todo_number_tv_style"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_50dp">
+
+                <TextView
+                    android:id="@+id/order_store_check_all"
+
+                    style="@style/todo_title_tv_style"
+                    android:text="全库盘点单" />
+
+                <TextView
+                    android:id="@+id/order_store_check_all_number"
+                    style="@style/todo_number_tv_style"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/titlebar"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/menu_containr"
+        android:background="#ffffff"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/menu_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_50dp"
+            android:layout_marginLeft="@dimen/app_10dp"
+            android:gravity="center_vertical"
+            android:text="采购单"
+            android:textColor="#ff606266"
+            android:textSize="14sp" />
+
+        <View style="@style/line_heng" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <include layout="@layout/empty_view" />
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

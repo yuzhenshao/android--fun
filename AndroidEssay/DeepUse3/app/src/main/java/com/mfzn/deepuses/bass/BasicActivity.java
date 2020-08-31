@@ -22,7 +22,7 @@ public abstract class BasicActivity extends BaseActivity {
         initTitleBar();
     }
 
-    private void initTitleBar() {
+    protected void initTitleBar() {
         mTitleBar = findViewById(R.id.titlebar);
         if (mTitleBar != null) {
             mTitleBar.setElementPressedListener(new TitlebarPressedListener() {

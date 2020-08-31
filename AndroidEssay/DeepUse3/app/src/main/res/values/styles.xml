@@ -84,6 +84,15 @@
         <item name="android:background">#ffffff</item>
     </style>
 
+    <style name="newly_ll_text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/app_30dp</item>
+        <item name="android:paddingLeft">@dimen/app_24dp</item>
+        <item name="android:paddingRight">@dimen/app_24dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">#ffffff</item>
+    </style>
+
     <style name="newly_tv_st">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -391,5 +400,27 @@
     </style>
     <style name="AppTheme.White">
         <item name="android:windowBackground">@color/white</item>
+    </style>
+
+    <style name="todo_title_tv_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textSize">@dimen/sp_12</item>
+        <item name="android:textColor">#ff606266</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="todo_number_tv_style">
+        <item name="android:layout_width">@dimen/app_12dp</item>
+        <item name="android:layout_height">@dimen/app_12dp</item>
+        <item name="android:textSize">8sp</item>
+        <item name="android:text">12</item>
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/red_point_shape</item>
+        <item name="android:layout_marginTop">@dimen/app_5dp</item>
+        <item name="android:layout_marginRight">@dimen/app_5dp</item>
+        <item name="android:layout_alignParentRight">true</item>
+
     </style>
 </resources>

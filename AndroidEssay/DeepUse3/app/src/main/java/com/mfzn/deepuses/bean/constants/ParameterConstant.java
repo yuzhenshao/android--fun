@@ -27,12 +27,21 @@ public interface ParameterConstant {
     String COST_TYPE_NUMBER_SET = "numberSet";
 
 
-
     //销售
     String IS_RETAIL_CREATE = "isRetail";
     String SHOP = "shop";
-    String MAP_SHOP_ID="mapShopID";
-    String INPUT_TYPE="inputType";
-    String INPUT_DATA="inputData";
-    String OTHER_COST_MODULE="OtherCostModule";
+    String MAP_SHOP_ID = "mapShopID";
+    String INPUT_TYPE = "inputType";
+    String INPUT_DATA = "inputData";
+    String OTHER_COST_MODULE = "OtherCostModule";
+
+    //财务
+    String CAPITAL_TYPE = "capitalType";
+    String ACCOUNT_ID = "moneyAccountID";
+    String ACCOUNT_NAME = "moneyAccountName";
+    String ACCOUNT_MONEY = "Accountmoney";
+    String INCOME_EXPENSE_RESPONSE = "IncomeExpenseResponse";
+
+
+    String ORDER_PURCHASE_RESPONSE = "OrderPurchaseResponse";
 }

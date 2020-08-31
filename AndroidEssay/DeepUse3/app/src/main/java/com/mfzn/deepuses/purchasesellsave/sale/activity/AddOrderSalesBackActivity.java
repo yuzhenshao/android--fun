@@ -98,6 +98,7 @@ public class AddOrderSalesBackActivity extends BaseAddCustomerAndGoodsActivity {
                 break;
             case R.id.money_account_select:
                 intent.setClass(AddOrderSalesBackActivity.this, MoneyAccountListActivity.class);
+                intent.putExtra(ParameterConstant.IS_SELECTED,true);
                 startActivityForResult(intent, ACCOUNT);
                 break;
         }
