@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -38,7 +39,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:drawableTop="@mipmap/icon_check"
+                        android:drawableTop="@mipmap/icon_purchase_check"
                         android:text="待审核"
                         android:textColor="#3D7EFF"
                         android:textSize="18sp" />
@@ -54,16 +55,36 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/status_check_finish"
+                        android:id="@+id/status_check_store"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="@dimen/app_4dp"
-                        android:drawableTop="@mipmap/icon_checked"
-                        android:text="未完成"
+                        android:drawableTop="@mipmap/icon_in_store"
+                        android:text="待入库"
                         android:textColor="#ff909399"
                         android:textSize="18sp" />
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/app_4dp"
+                        android:layout_marginBottom="@dimen/app_10dp"
+                        android:gravity="bottom"
+                        android:text="…"
+                        android:textColor="#909399"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/status_check_pay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/app_4dp"
+                        android:drawableTop="@mipmap/icon_pay"
+                        android:text="待付款"
+                        android:textColor="#ff909399"
+                        android:textSize="18sp" />
 
                 </LinearLayout>
 
@@ -78,12 +99,27 @@
                         android:text="客户名称" />
 
                     <TextView
-                        android:id="@+id/user_name"
+                        android:id="@+id/supplier_name"
                         style="@style/newly_et_st"
                         android:text="大王建材有限公司" />
 
                 </LinearLayout>
 
+                <LinearLayout
+                    style="@style/newly_ll_st"
+                    android:layout_marginTop="1dp"
+                    android:background="#ffffff">
+
+                    <TextView
+                        style="@style/newly_tv_st"
+                        android:text="联系人" />
+
+                    <TextView
+                        android:id="@+id/user_name"
+                        style="@style/newly_et_st"
+                        android:text="大王" />
+
+                </LinearLayout>
 
                 <LinearLayout
                     style="@style/newly_ll_st"
@@ -97,7 +133,7 @@
                     <TextView
                         android:id="@+id/user_phone"
                         style="@style/newly_et_st"
-                        android:text="188267" />
+                        android:text="1111" />
 
                 </LinearLayout>
 
@@ -107,6 +143,41 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/app_10dp"
                     android:background="#ffffff" />
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_cost_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/app_1dp"
+                    android:background="#ffffff"
+                    android:paddingTop="@dimen/app_6dp" />
+
+
+                <RelativeLayout
+                    style="@style/newly_ll_text"
+                    android:background="#ffffff"
+                    android:paddingBottom="@dimen/app_6dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:text="整单优惠："
+                        android:textColor="#ff909399"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/discount_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="222"
+                        android:textColor="#ff909399"
+                        android:textSize="14sp" />
+
+                </RelativeLayout>
+
 
                 <LinearLayout
                     style="@style/newly_ll_st"
@@ -125,6 +196,22 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    style="@style/newly_ll_st"
+                    android:layout_marginTop="10dp"
+                    android:background="#ffffff">
+
+                    <TextView
+                        android:id="@+id/store_name_key"
+                        style="@style/newly_tv_st"
+                        android:text="入库仓库" />
+
+                    <TextView
+                        android:id="@+id/store_name"
+                        style="@style/newly_et_st"
+                        android:text="¥2390.00" />
+
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -133,7 +220,7 @@
                     android:background="#ffffff"
                     android:gravity="center_vertical"
                     android:paddingLeft="@dimen/app_24dp"
-                    android:text="销售单信息"
+                    android:text="订单信息"
                     android:textColor="#ff303133"
                     android:textSize="16sp" />
 
@@ -215,7 +302,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
-                        android:text="制单人："
+                        android:text="报价人："
                         android:textColor="#ff909399"
                         android:textSize="14sp" />
 
@@ -245,21 +332,21 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btn_pass"
+                android:id="@+id/btn_cancel"
                 android:layout_width="@dimen/app_150dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/yuanjiao_4a9012_button_shape"
-                android:text="审核通过"
+                android:text="作废"
                 android:textColor="@color/color_ffffff"
                 android:textSize="18sp" />
 
             <Button
-                android:id="@+id/btn_unpass"
+                android:id="@+id/btn_delete"
                 android:layout_width="@dimen/app_150dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/app_20dp"
                 android:background="@drawable/yuanjiao_bfc2cc_button_shape"
-                android:text="审核不通过"
+                android:text="删除"
                 android:textColor="@color/color_ffffff"
                 android:textSize="18sp" />
         </LinearLayout>

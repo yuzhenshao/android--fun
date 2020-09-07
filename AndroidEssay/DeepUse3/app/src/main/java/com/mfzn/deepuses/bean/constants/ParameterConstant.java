@@ -42,6 +42,7 @@ public interface ParameterConstant {
     String ACCOUNT_MONEY = "Accountmoney";
     String INCOME_EXPENSE_RESPONSE = "IncomeExpenseResponse";
 
-
+    String IS_PURCHASE_CREATE = "isPurchaseCreate";
     String ORDER_PURCHASE_RESPONSE = "OrderPurchaseResponse";
+    String ORDER_ID = "orderId";
 }

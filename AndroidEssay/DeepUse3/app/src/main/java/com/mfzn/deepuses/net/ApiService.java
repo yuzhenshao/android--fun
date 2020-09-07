@@ -24,6 +24,7 @@ import com.mfzn.deepuses.bean.request.SupplierRequest;
 import com.mfzn.deepuses.bean.request.capital.AddBorrowRequest;
 import com.mfzn.deepuses.bean.request.capital.AddIncomeExpenseRequest;
 import com.mfzn.deepuses.bean.request.capital.MoneyTransferRequest;
+import com.mfzn.deepuses.bean.request.purchase.OrderPurchaseAddRequest;
 import com.mfzn.deepuses.bean.request.sale.OrderOfferRequest;
 import com.mfzn.deepuses.bean.request.sale.OrderOtherInRequest;
 import com.mfzn.deepuses.bean.request.sale.OrderSalesBackRequest;
@@ -42,6 +43,8 @@ import com.mfzn.deepuses.bean.response.capital.BorrowListResponse;
 import com.mfzn.deepuses.bean.response.capital.IncomeExpenseListResponse;
 import com.mfzn.deepuses.bean.response.capital.MoneyAccountFinancialLogListResponse;
 import com.mfzn.deepuses.bean.response.capital.PayerPayeeListResponse;
+import com.mfzn.deepuses.bean.response.purchase.OrderPurchaseDetailResponse;
+import com.mfzn.deepuses.bean.response.purchase.OrderPurchaseListResponse;
 import com.mfzn.deepuses.bean.response.sale.OrderOfferListResponse;
 import com.mfzn.deepuses.bean.response.sale.OrderSalesListResponse;
 import com.mfzn.deepuses.bean.response.sale.PersonalStoreListResponse;
@@ -967,7 +970,7 @@ public interface ApiService {
 
     @POST("pss/Setting/addMoneyAccount")
     Flowable<HttpResult> addMoneyAccount(@Query("token") String token, @Query("uid") String uid,
-                                        @Query("shopID") String shopID, @Body AddMoneyAccountRequest request);
+                                         @Query("shopID") String shopID, @Body AddMoneyAccountRequest request);
 
     @FormUrlEncoded
     @POST("pss/Setting/delMoneyAccount")
@@ -1165,7 +1168,7 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("pss/User/doOrderCheck")
     Flowable<HttpResult> doOrderCheck(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
-                                      @Field("checkApplyID") String checkApplyID,@Field("checkStatus") int checkStatus);
+                                      @Field("checkApplyID") String checkApplyID, @Field("checkStatus") int checkStatus);
 
 
     //采购
@@ -1191,14 +1194,46 @@ public interface ApiService {
 
     //借入借出--新增
     @POST("pss/Capital/addBorrow")
-    Flowable<HttpResult> addBorrow(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,@Body AddBorrowRequest request);
+    Flowable<HttpResult> addBorrow(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Body AddBorrowRequest request);
 
     //收支管理--新增
     @POST("pss/Capital/addIncomeExpense")
-    Flowable<HttpResult> addIncomeExpense(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,@Body AddIncomeExpenseRequest request);
+    Flowable<HttpResult> addIncomeExpense(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Body AddIncomeExpenseRequest request);
 
     //收支管理--新增
     @POST("pss/Capital/moneyTransfer")
-    Flowable<HttpResult> moneyTransfer(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,@Body MoneyTransferRequest request);
+    Flowable<HttpResult> moneyTransfer(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Body MoneyTransferRequest request);
+
+
+    //采购
+
+    //采购单--列表
+    @GET("pss/Purchase/orderPurchaseList")
+    Flowable<HttpResult<OrderPurchaseListResponse>> orderPurchaseList(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID);
+
+    @GET("pss/Purchase/orderPurchaseBackList")
+    Flowable<HttpResult<OrderPurchaseListResponse>> orderPurchaseBackList(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID);
+
+
+    @GET("pss/Purchase/orderPurchaseInfo")
+    Flowable<HttpResult<OrderPurchaseDetailResponse>> orderPurchaseInfo(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Query("orderID") String orderID);
+
+
+    //采购单--新增
+    @POST("pss/Purchase/orderPurchaseAdd")
+    Flowable<HttpResult> orderPurchaseAdd(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Body OrderPurchaseAddRequest request);
+
+    //采购退货单--新增
+    @POST("pss/Purchase/orderPurchaseBackAdd")
+    Flowable<HttpResult> orderPurchaseBackAdd(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Body OrderPurchaseAddRequest request);
+
+    @FormUrlEncoded
+    @POST("pss/Purchase/orderPurchaseCancel")
+    Flowable<HttpResult> orderPurchaseCancel(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Field("orderID") String orderID);
+
+    @FormUrlEncoded
+    @POST("pss/Purchase/orderPurchaseDelBatch")
+    Flowable<HttpResult> orderPurchaseDelBatch(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Field("orderIDs") String orderIDs);
+
 
 }

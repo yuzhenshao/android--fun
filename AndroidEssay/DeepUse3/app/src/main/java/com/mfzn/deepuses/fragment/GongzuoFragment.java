@@ -62,6 +62,8 @@ import com.mfzn.deepuses.purchasesellsave.capital.activity.BorrowListActivity;
 import com.mfzn.deepuses.purchasesellsave.capital.activity.IncomeExpenseListActivity;
 import com.mfzn.deepuses.purchasesellsave.capital.activity.IncomeExpenseTypeListActivity;
 import com.mfzn.deepuses.purchasesellsave.capital.activity.ShouldGatherePayActivity;
+import com.mfzn.deepuses.purchasesellsave.purchase.AddOrderPurchaseActivity;
+import com.mfzn.deepuses.purchasesellsave.purchase.OrderPurchaseListActivity;
 import com.mfzn.deepuses.purchasesellsave.sale.activity.AddOrderOfferActivity;
 import com.mfzn.deepuses.purchasesellsave.sale.activity.AddOrderSalesActivity;
 import com.mfzn.deepuses.purchasesellsave.sale.activity.AddOrderSalesBackActivity;
@@ -143,7 +145,8 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
 
     @BindView(R.id.cwgl_recyleview)
     MyRecyclerView cwglRecyleview;
-
+    @BindView(R.id.cggl_recyleview)
+    MyRecyclerView cgglRecyleview;
     @BindView(R.id.shgl_recyleview)
     MyRecyclerView shglRecyleview;
     @BindView(R.id.tdgl_recyleview)
@@ -185,6 +188,8 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
     private List<HomeShowModel> mdglModel = new ArrayList<>();
     //财务管理
     private List<HomeShowModel> cwglModel = new ArrayList<>();
+    //财务管理
+    private List<HomeShowModel> cgglModel = new ArrayList<>();
     //项目管理
     private List<HomeShowModel> xmglModel = new ArrayList<>();
     //客户管理
@@ -292,7 +297,7 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
     }
 
     @OnClick({R.id.ll_kanban_project, R.id.ll_kanban_money, R.id.ll_kanban_number,
-            R.id.iv_work_scan, R.id.iv_work_xia,R.id.todo_container})
+            R.id.iv_work_scan, R.id.iv_work_xia, R.id.todo_container})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_kanban_project:
@@ -412,6 +417,11 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
         NoScrollGridLayoutManager cwLayoutManager = new NoScrollGridLayoutManager(getActivity(),
                 4, GridLayoutManager.VERTICAL, false);
         cwglRecyleview.setLayoutManager(cwLayoutManager);
+
+        //财务管理
+        NoScrollGridLayoutManager cgLayoutManager = new NoScrollGridLayoutManager(getActivity(),
+                4, GridLayoutManager.VERTICAL, false);
+        cgglRecyleview.setLayoutManager(cgLayoutManager);
 
         //充值中心
         NoScrollGridLayoutManager czLayoutManager = new NoScrollGridLayoutManager(getActivity(),
@@ -883,7 +893,7 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
             }
         });
 
-
+        //财务管理
         cwglModel.add(new HomeShowModel("应收应付", R.mipmap.icon_sz));
         cwglModel.add(new HomeShowModel("收支管理", R.mipmap.icon_sz_manager));
         cwglModel.add(new HomeShowModel("新增收入支出", R.mipmap.icon_add_sz));
@@ -926,6 +936,39 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
             }
         });
 
+
+        //采购管理
+        cgglModel.add(new HomeShowModel("采购单据中心", R.mipmap.icon_cgdj));
+        cgglModel.add(new HomeShowModel("新建采购单", R.mipmap.icon_cgd));
+        cgglModel.add(new HomeShowModel("新建采购退货单", R.mipmap.icon_cgthd));
+        HomeWdxmAdapter cgglAdapter = new HomeWdxmAdapter(getActivity(), cgglModel);
+        cgglRecyleview.setAdapter(cgglAdapter);
+        cgglAdapter.setOnItemClickListener(new HomeWdxmAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                if (curCompany == null) {
+                    ToastUtil.showToast(getActivity(), "请先选择公司");
+                    return;
+                }
+                Intent intent = new Intent();
+                switch (position) {
+                    case 0:
+                        intent.setClass(getActivity(), OrderPurchaseListActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 1:
+                        intent.setClass(getActivity(), AddOrderPurchaseActivity.class);
+                        intent.putExtra(ParameterConstant.IS_PURCHASE_CREATE, true);
+                        startActivity(intent);
+                        break;
+                    case 2:
+                        intent.setClass(getActivity(), AddOrderPurchaseActivity.class);
+                        intent.putExtra(ParameterConstant.IS_PURCHASE_CREATE, false);
+                        startActivity(intent);
+                        break;
+                }
+            }
+        });
 
         //项目管理
         HomeShowModel showModel1 = new HomeShowModel("新建项目", "xjxm", R.mipmap.home_chuangjian);

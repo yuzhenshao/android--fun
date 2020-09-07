@@ -555,6 +555,15 @@
         <activity
             android:name=".purchasesellsave.capital.activity.MoneyAccountFinancialLogActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".purchasesellsave.purchase.AddOrderPurchaseActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".purchasesellsave.purchase.OrderPurchaseListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".purchasesellsave.purchase.OrderPurchaseDetailActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

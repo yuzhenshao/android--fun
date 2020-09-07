@@ -12,23 +12,23 @@ public class PayerPayeeListResponse {
      * list : {"total":1,"per_page":10,"current_page":1,"last_page":1,"data":[{"customerOrSupplier":2,"customerOrSupplierID":1,"payee":"供应商1","payeeSumMoney":20000,"chargePerson":"王先生","chargePersonPhone":"15311111111"}]}
      */
 
-    private int payeeNum;
-    private int sumMoney;
+    private double payeeNum;
+    private double sumMoney;
     private ListBean list;
 
-    public int getPayeeNum() {
+    public double getPayeeNum() {
         return payeeNum;
     }
 
-    public void setPayeeNum(int payeeNum) {
+    public void setPayeeNum(double payeeNum) {
         this.payeeNum = payeeNum;
     }
 
-    public int getSumMoney() {
+    public double getSumMoney() {
         return sumMoney;
     }
 
-    public void setSumMoney(int sumMoney) {
+    public void setSumMoney(double sumMoney) {
         this.sumMoney = sumMoney;
     }
 

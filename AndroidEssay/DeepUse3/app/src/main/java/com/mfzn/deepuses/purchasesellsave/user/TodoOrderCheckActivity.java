@@ -1,5 +1,6 @@
 package com.mfzn.deepuses.purchasesellsave.user;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -9,7 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -78,6 +78,9 @@ public class TodoOrderCheckActivity extends BasicActivity {
 
     private TodoOrderAdapter adapter;
     private List<WaitingCheckListResponse.WaitingCheckOrderPurchaseResponse> resourceList = new ArrayList<>();
+    Flowable<HttpResult<WaitingCheckListResponse>> todoFloeable = ApiServiceManager.waitingCheckOrderPurchase();
+    private static int REFRESH_TAG = 101;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -92,10 +95,11 @@ public class TodoOrderCheckActivity extends BasicActivity {
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int i) {
                 Intent intent = new Intent(TodoOrderCheckActivity.this, TodoOrderCheckDetailActivity.class);
                 intent.putExtra(ParameterConstant.ORDER_PURCHASE_RESPONSE, resourceList.get(i));
-                startActivity(intent);
+                startActivityForResult(intent, REFRESH_TAG);
             }
         });
-        getResource(ApiServiceManager.waitingCheckOrderPurchase());
+
+        getResource();
         initNumber();
     }
 
@@ -128,7 +132,7 @@ public class TodoOrderCheckActivity extends BasicActivity {
         view.setBackgroundColor(Color.parseColor("#FFFFFF"));
         curSelectedView = view;
         menuTitleView.setText(((TextView) view).getText());
-        Flowable<HttpResult<WaitingCheckListResponse>> todoFloeable = null;
+
         switch (view.getId()) {
             case R.id.order_purchase:
                 todoFloeable = ApiServiceManager.waitingCheckOrderPurchase();
@@ -167,10 +171,10 @@ public class TodoOrderCheckActivity extends BasicActivity {
                 todoFloeable = ApiServiceManager.waitingCheckOrderStoreCheckAll();
                 break;
         }
-        getResource(todoFloeable);
+        getResource();
     }
 
-    private void getResource(Flowable<HttpResult<WaitingCheckListResponse>> todoFloeable) {
+    private void getResource() {
         if (todoFloeable != null) {
             showDialog();
             todoFloeable.compose(XApi.getApiTransformer())
@@ -202,4 +206,12 @@ public class TodoOrderCheckActivity extends BasicActivity {
         }
     }
 
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK && requestCode == REFRESH_TAG) {
+            getResource();
+        }
+    }
 }

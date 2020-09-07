@@ -25,7 +25,10 @@ public class GoodsInfoResponse implements Serializable {
     private String goodsPosition;
     private String goodsMainImage;
     private String uniformSalePrice;
+
+    @SerializedName(value = "salePrice", alternate = {"buyPrice"})
     private String salePrice;
+    @SerializedName(value = "salePriceWithTax", alternate = {"buyPriceWithTax"})
     private String salePriceWithTax;
     private String costPrice;
     private double taxRate;

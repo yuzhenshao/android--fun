@@ -24,6 +24,7 @@ import com.mfzn.deepuses.bean.request.SupplierRequest;
 import com.mfzn.deepuses.bean.request.capital.AddBorrowRequest;
 import com.mfzn.deepuses.bean.request.capital.AddIncomeExpenseRequest;
 import com.mfzn.deepuses.bean.request.capital.MoneyTransferRequest;
+import com.mfzn.deepuses.bean.request.purchase.OrderPurchaseAddRequest;
 import com.mfzn.deepuses.bean.request.sale.OrderOfferRequest;
 import com.mfzn.deepuses.bean.request.sale.OrderOtherInRequest;
 import com.mfzn.deepuses.bean.request.sale.OrderSalesBackRequest;
@@ -41,6 +42,8 @@ import com.mfzn.deepuses.bean.response.capital.BorrowListResponse;
 import com.mfzn.deepuses.bean.response.capital.IncomeExpenseListResponse;
 import com.mfzn.deepuses.bean.response.capital.MoneyAccountFinancialLogListResponse;
 import com.mfzn.deepuses.bean.response.capital.PayerPayeeListResponse;
+import com.mfzn.deepuses.bean.response.purchase.OrderPurchaseDetailResponse;
+import com.mfzn.deepuses.bean.response.purchase.OrderPurchaseListResponse;
 import com.mfzn.deepuses.bean.response.sale.OrderOfferListResponse;
 import com.mfzn.deepuses.bean.response.sale.OrderSalesListResponse;
 import com.mfzn.deepuses.bean.response.sale.PersonalStoreListResponse;
@@ -463,7 +466,7 @@ public class ApiServiceManager {
                 request);
     }
 
-    public static Flowable<HttpResult> delMoneyAccount( String accountID) {
+    public static Flowable<HttpResult> delMoneyAccount(String accountID) {
         return ApiHelper.getApiService().delMoneyAccount(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(),
                 accountID);
     }
@@ -659,9 +662,8 @@ public class ApiServiceManager {
 
     public static Flowable<HttpResult> doOrderCheck(String checkApplyID, int checkStatus) {
         return ApiHelper.getApiService().doOrderCheck(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(),
-                checkApplyID,checkStatus);
+                checkApplyID, checkStatus);
     }
-
 
 
     //应付管理--列表
@@ -704,5 +706,33 @@ public class ApiServiceManager {
         return ApiHelper.getApiService().moneyTransfer(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), request);
     }
 
+
+    public static Flowable<HttpResult<OrderPurchaseListResponse>> orderPurchaseList() {
+        return ApiHelper.getApiService().orderPurchaseList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId());
+    }
+
+    public static Flowable<HttpResult<OrderPurchaseListResponse>> orderPurchaseBackList() {
+        return ApiHelper.getApiService().orderPurchaseBackList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId());
+    }
+
+    public static Flowable<HttpResult<OrderPurchaseDetailResponse>> orderPurchaseInfo(String orderID) {
+        return ApiHelper.getApiService().orderPurchaseInfo(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(),orderID);
+    }
+
+    public static Flowable<HttpResult> orderPurchaseAdd(OrderPurchaseAddRequest request) {
+        return ApiHelper.getApiService().orderPurchaseAdd(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), request);
+    }
+
+    public static Flowable<HttpResult> orderPurchaseBackAdd(OrderPurchaseAddRequest request) {
+        return ApiHelper.getApiService().orderPurchaseBackAdd(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), request);
+    }
+
+    public static Flowable<HttpResult> orderPurchaseCancel(String orderId) {
+        return ApiHelper.getApiService().orderPurchaseCancel(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), orderId);
+    }
+
+    public static Flowable<HttpResult> orderPurchaseDelBatch(String orderIds) {
+        return ApiHelper.getApiService().orderPurchaseDelBatch(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), orderIds);
+    }
 
 }

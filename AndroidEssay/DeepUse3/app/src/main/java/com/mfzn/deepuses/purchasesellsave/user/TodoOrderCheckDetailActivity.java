@@ -1,10 +1,14 @@
 package com.mfzn.deepuses.purchasesellsave.user;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mfzn.deepuses.R;
@@ -32,6 +36,13 @@ public class TodoOrderCheckDetailActivity extends BasicActivity {
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
 
+    @BindView(R.id.status_check)
+    TextView statusCheckView;
+    @BindView(R.id.status_check_finish)
+    TextView statusCheckFinishView;
+    @BindView(R.id.check_container)
+    LinearLayout checkContainerView;
+
     @BindView(R.id.total_money)
     TextView totalMoneyView;
     @BindView(R.id.num)
@@ -57,6 +68,13 @@ public class TodoOrderCheckDetailActivity extends BasicActivity {
         super.onCreate(savedInstanceState);
         mTitleBar.updateTitleBar("审核单据");
         orderPurchaseResponse = (WaitingCheckOrderPurchaseResponse) getIntent().getSerializableExtra(ParameterConstant.ORDER_PURCHASE_RESPONSE);
+
+        if (orderPurchaseResponse.getCheckStatus() != 0) {
+            statusCheckView.setTextColor(Color.parseColor("#ff909399"));
+            statusCheckFinishView.setTextColor(Color.parseColor("#3D7EFF"));
+            statusCheckFinishView.setText("已完成");
+            checkContainerView.setVisibility(View.GONE);
+        }
         userNameView.setText(orderPurchaseResponse.getSupplierName());
         userPhoneView.setText("无");
         numView.setText(orderPurchaseResponse.getOrderNum());
@@ -95,6 +113,8 @@ public class TodoOrderCheckDetailActivity extends BasicActivity {
                         @Override
                         public void onNext(HttpResult reuslt) {
                             showToast("操作成功");
+                            Intent intent = new Intent();
+                            setResult(Activity.RESULT_OK, intent);
                             finish();
                         }
                     });

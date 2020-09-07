@@ -29,7 +29,7 @@ public class GoodsCheckAdapter extends BaseQuickAdapter<GoodsInfoResponse, BaseV
             Glide.with(context).load(ApiHelper.BASE_URL + item.getGoodsMainImage()).into((ImageView) helper.getView(R.id.icon_goods));
         }
         helper.setText(R.id.name, item.getGoodsName())
-                .setText(R.id.price, "¥" + item.getCostPrice())
+                .setText(R.id.price, "¥" + item.getSalePriceWithTax())
                 .setText(R.id.number, "*" + item.getGoodsCount());
     }
 }

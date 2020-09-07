@@ -35,7 +35,7 @@ public class GoodsAddedAdapter extends BaseQuickAdapter<GoodsInfoResponse, BaseV
             helper.setImageResource(R.id.icon_goods, R.mipmap.icon_no_data);
         }
 
-        String content = context.getResources().getString(R.string.goods_sale_price, item.getSalePrice());
+        String content = context.getResources().getString(R.string.goods_sale_price, item.getSalePriceWithTax());
         if (item.isHasTaxRate()) {
             content += "(含税" + item.getTaxRate() * 100 + "%)";
         }

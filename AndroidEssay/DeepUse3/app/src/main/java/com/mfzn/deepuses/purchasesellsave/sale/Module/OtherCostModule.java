@@ -5,12 +5,6 @@ import android.text.TextUtils;
 import java.io.Serializable;
 
 public class OtherCostModule implements Serializable {
-    //private String costName;
-   // private String costType;
-   // private String costMoney;
-  //  private double taxRate;
-   // private boolean isTaxRate;
-
 
     private String otherCostID;
     private String otherCostTypeName;
