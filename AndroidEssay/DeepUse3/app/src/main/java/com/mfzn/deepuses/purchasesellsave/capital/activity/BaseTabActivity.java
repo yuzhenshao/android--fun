@@ -27,6 +27,7 @@ public abstract class BaseTabActivity extends BasicActivity {
     MagicIndicator mIndicator;
     @BindView(R.id.detail_view_pager)
     CustomViewPager detailPager;
+    protected int curPosition=0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public abstract class BaseTabActivity extends BasicActivity {
         commonNavigator.setScrollPivotX(0.25f);
         commonNavigator.setAdapter(new TabAdapter(mTabLabelList) {
             public void setCurrentItem(int index) {
+                curPosition=index;
                 detailPager.setCurrentItem(index);
             }
         });

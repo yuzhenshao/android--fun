@@ -15,12 +15,11 @@ import com.mfzn.deepuses.activity.project.ProjectManageActivity;
 import com.mfzn.deepuses.bean.constants.ParameterConstant;
 import com.mfzn.deepuses.bean.request.sale.OrderSalesBackRequest;
 import com.mfzn.deepuses.bean.response.sale.OrderSalesListResponse;
-import com.mfzn.deepuses.bean.response.settings.StoreResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsSelectListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.MoneyAccountListActivity;
-import com.mfzn.deepuses.purchasesellsave.setting.activity.PersonStoreListActivity;
+import com.mfzn.deepuses.purchasesellsave.setting.activity.MyStoreListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.StoreListActivity;
 import com.mfzn.deepuses.utils.DateUtils;
 import com.mfzn.deepuses.utils.OnInputChangeListener;
@@ -88,7 +87,7 @@ public class AddOrderSalesBackActivity extends BaseAddCustomerAndGoodsActivity {
                 turnToCostSelect();
                 break;
             case R.id.store_select:
-                intent.setClass(this, isRetail ? PersonStoreListActivity.class : StoreListActivity.class);
+                intent.setClass(this, isRetail ? MyStoreListActivity.class : StoreListActivity.class);
                 intent.putExtra(ParameterConstant.IS_SELECTED, true);
                 startActivityForResult(intent, STORE);
                 break;
@@ -128,7 +127,7 @@ public class AddOrderSalesBackActivity extends BaseAddCustomerAndGoodsActivity {
         request.setOrderGoodsStr(getOrderGoodsStr7());
         request.setDiscountAmount(mdiscountPrice);
         request.setTotalMoney(mTotalPrice);
-        request.setRealMoney(Double.parseDouble(mTotalPrice) - (TextUtils.isEmpty(mdiscountPrice) ? 0 : Double.parseDouble(mdiscountPrice)) + "");
+        request.setRealMoney(getRealMoney(mTotalPrice,mdiscountPrice));
         request.setOrderTime(orderTime);
         request.setOutNum(outNumEdit.getText().toString());
         request.setOrderMakerUserID(UserHelper.getUserId());

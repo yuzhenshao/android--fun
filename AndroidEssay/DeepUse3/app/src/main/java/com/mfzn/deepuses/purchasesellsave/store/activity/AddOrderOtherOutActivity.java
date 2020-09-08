@@ -116,7 +116,7 @@ public class AddOrderOtherOutActivity extends BaseAddCustomerAndGoodsActivity {
         request.setRecAddress(recAddressEdit.getText().toString());
         request.setDiscountAmount(mdiscountPrice);
         request.setTotalMoney(mTotalPrice);
-        request.setRealMoney(Integer.parseInt(mTotalPrice) - Integer.parseInt(mdiscountPrice) + "");
+        request.setRealMoney(getRealMoney(mTotalPrice,mdiscountPrice));
 
         if (TextUtils.isEmpty(request.getOrderMakerUserID())) {
             showToast("请输入客户");

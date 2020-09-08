@@ -77,6 +77,7 @@ import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsUnitListManagetActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.MoneyAccountListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.OtherCostActivity;
+import com.mfzn.deepuses.purchasesellsave.setting.activity.MyStoreListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.PersonStoreListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.SettingCustomerMangerActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.StoreListActivity;

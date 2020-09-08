@@ -174,7 +174,7 @@ public class GoodsSelectListActivity extends BasicListActivity<GoodsInfoResponse
                         }
                         helper.setText(R.id.name, item.getGoodsName() + "（" + item.getGoodsNum() + ")")
                                 .setText(R.id.goods_stock_num, context.getResources().getString(R.string.goods_sum_stock, item.getGoodsSumStockNum()))
-                                .setText(R.id.system_stock_num, item.getGoodsSumStockNum());
+                                .setText(R.id.system_stock_num, item.getGoodsSumStockNum()+"");
                     }
                 })
                 .setOnViewClickListener((customDialog, bindViewHolder, view) -> {

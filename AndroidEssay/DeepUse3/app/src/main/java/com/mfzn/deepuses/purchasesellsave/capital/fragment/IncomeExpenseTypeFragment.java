@@ -41,10 +41,8 @@ public class IncomeExpenseTypeFragment extends BasicListFragment<IncomeExpenseTy
         return fragment;
     }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        initTitleBar();
+    public void refresh(){
+        getResourceList();
     }
 
     @Override
@@ -67,32 +65,6 @@ public class IncomeExpenseTypeFragment extends BasicListFragment<IncomeExpenseTy
                         refreshSource(reuslt.getRes());
                     }
                 });
-    }
-
-    protected void initTitleBar() {
-        TitleBar mTitleBar = getActivity().findViewById(R.id.titlebar);
-        if (mTitleBar != null) {
-            mTitleBar.setElementPressedListener(new TitlebarPressedListener() {
-
-                @Override
-                public void leftPressed() {
-                    getActivity().finish();
-                }
-
-                @Override
-                public void rightPressed() {
-                    DialogUtils.showEditDialog(getActivity(), "新增收入类别", "请输入类别名称", new
-                            OnViewClickListener() {
-                                @Override
-                                public void onViewClick(BaseDialogFragment dialog, BindViewHolder viewHolder, View view) {
-                                    EditText editText = viewHolder.getView(com.libcommon.R.id.message);
-                                    addIncomeExpenseType(editText.getText().toString());
-                                }
-                            });
-                }
-            });
-        }
-
     }
 
     @Override
@@ -188,24 +160,5 @@ public class IncomeExpenseTypeFragment extends BasicListFragment<IncomeExpenseTy
                         }
                     });
         }
-    }
-
-    private void addIncomeExpenseType(String name) {
-        ApiServiceManager.addIncomeExpenseType(type, name)
-                .compose(XApi.getApiTransformer())
-                .compose(XApi.getScheduler())
-                .compose(bindToLifecycle())
-                .subscribe(new ApiSubscriber<HttpResult>() {
-                    @Override
-                    protected void onFail(NetError error) {
-                        ToastUtil.showToast(getActivity(), "新增失败");
-                    }
-
-                    @Override
-                    public void onNext(HttpResult reuslt) {
-                        ToastUtil.showToast(getActivity(), "新增成功");
-                        getResourceList();
-                    }
-                });
     }
 }

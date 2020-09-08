@@ -396,6 +396,9 @@
             android:name=".purchasesellsave.setting.activity.OtherCostActivity"
             android:screenOrientation="portrait"></activity>
         <activity
+            android:name=".purchasesellsave.setting.activity.MyStoreListActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
             android:name=".purchasesellsave.setting.activity.PersonStoreListActivity"
             android:screenOrientation="portrait"></activity>
         <activity

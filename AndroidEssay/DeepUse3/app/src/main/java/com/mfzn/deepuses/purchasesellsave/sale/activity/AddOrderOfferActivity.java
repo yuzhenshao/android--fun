@@ -82,7 +82,7 @@ public class AddOrderOfferActivity extends BaseAddCustomerAndGoodsActivity {
         orderOfferRequest.setOrderGoodsStr(getOrderGoodsStr7());
         orderOfferRequest.setDiscountAmount(mdiscountPrice);
         orderOfferRequest.setTotalMoney(mTotalPrice);
-        orderOfferRequest.setRealMoney(Double.parseDouble(mTotalPrice) - (TextUtils.isEmpty(mdiscountPrice)?0:Double.parseDouble(mdiscountPrice)) + "");
+        orderOfferRequest.setRealMoney(getRealMoney(mTotalPrice,mdiscountPrice));
         orderOfferRequest.setOrderTime(orderTime);
         orderOfferRequest.setOutNum(outNum.getText().toString());
         orderOfferRequest.setOrderMakerUserID(UserHelper.getUserId());

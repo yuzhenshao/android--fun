@@ -90,7 +90,7 @@ public class AddOrderOtherInActivity extends BaseAddCustomerAndGoodsActivity {
         orderOtherInRequest.setOrderGoodsStr(getOrderGoodsStr6());
         orderOtherInRequest.setDiscountAmount(mdiscountPrice);
         orderOtherInRequest.setTotalMoney(mTotalPrice);
-        orderOtherInRequest.setRealMoney(Integer.parseInt(mTotalPrice) - Integer.parseInt(mdiscountPrice) + "");
+        orderOtherInRequest.setRealMoney(getRealMoney(mTotalPrice,mdiscountPrice));
 
         if (TextUtils.isEmpty(orderOtherInRequest.getOrderGoodsStr())) {
             showToast("请输入商品信息");

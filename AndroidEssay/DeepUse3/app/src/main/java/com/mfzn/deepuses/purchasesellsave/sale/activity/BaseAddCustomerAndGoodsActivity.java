@@ -249,4 +249,23 @@ public abstract class BaseAddCustomerAndGoodsActivity extends BasicActivity {
         super.finish();
         JXCDataManager.getInstance().clearCost();
     }
+
+    protected String getRealMoney(String mTotalPrice,String mdiscountPrice){
+        if(TextUtils.isEmpty(mTotalPrice)){
+            return 0+"";
+        }
+        double price= doubleString(mTotalPrice) - (TextUtils.isEmpty(mdiscountPrice)?0:doubleString(mdiscountPrice));
+        return ""+(price<0?0:price);
+    }
+
+
+    protected double doubleString(String content){
+        try {
+            return Double.parseDouble(content);
+        }catch (Exception e){
+
+        }
+        return 0;
+    }
+
 }
