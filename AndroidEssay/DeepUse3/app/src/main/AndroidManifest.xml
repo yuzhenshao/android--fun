@@ -359,10 +359,10 @@
         <activity android:name=".activityxm.shgd.FwzHuizhiDetailActivity" />
         <activity android:name=".activity.fx.ZixunDetailActivity" />
         <activity
-            android:name=".purchasesellsave.setting.activity.BaseArchivesActivity"
+            android:name=".purchasesellsave.setting.activity.CommodityCreateActivity"
             android:screenOrientation="portrait"></activity>
         <activity
-            android:name=".purchasesellsave.setting.activity.CommodityCreateActivity"
+            android:name=".purchasesellsave.setting.activity.AddMoneyAccountActivity"
             android:screenOrientation="portrait"></activity>
 
         <activity
@@ -390,13 +390,13 @@
             android:name=".purchasesellsave.setting.activity.InventoryWarnSetActivity"
             android:screenOrientation="portrait"></activity>
         <activity
+            android:name=".purchasesellsave.setting.activity.IncomeExpenseTypeSelectedActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
             android:name=".purchasesellsave.setting.activity.OtherCostActivity"
             android:screenOrientation="portrait"></activity>
         <activity
             android:name=".purchasesellsave.setting.activity.PersonStoreListActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name=".purchasesellsave.setting.activity.IncomeExpenseActivity"
             android:screenOrientation="portrait"></activity>
         <activity
             android:name=".purchasesellsave.setting.activity.GoodsListActivity"
@@ -507,6 +507,9 @@
             android:name=".purchasesellsave.store.activity.OrderOtherInOutListActivity"
             android:screenOrientation="portrait"></activity>
         <activity
+            android:name=".purchasesellsave.store.activity.OrderWaitInOutListActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
             android:name=".purchasesellsave.shop.activity.AddShopActivity"
             android:screenOrientation="portrait"></activity>
         <activity
@@ -521,6 +524,49 @@
         <activity
             android:name=".activityfx.ZixunListActivity"
             android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.user.TodoOrderCheckActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.user.TodoOrderCheckDetailActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".purchasesellsave.capital.activity.IncomeExpenseDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".purchasesellsave.capital.activity.AddBorrowActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".purchasesellsave.capital.activity.AddIncomeExpenseActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".purchasesellsave.capital.activity.BorrowListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".purchasesellsave.capital.activity.IncomeExpenseListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".purchasesellsave.capital.activity.IncomeExpenseTypeListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".purchasesellsave.capital.activity.ShouldGatherePayActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".purchasesellsave.capital.activity.MoneyTransferActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".purchasesellsave.capital.activity.MoneyAccountFinancialLogActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".purchasesellsave.purchase.AddOrderPurchaseActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".purchasesellsave.purchase.OrderPurchaseListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".purchasesellsave.purchase.OrderPurchaseDetailActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

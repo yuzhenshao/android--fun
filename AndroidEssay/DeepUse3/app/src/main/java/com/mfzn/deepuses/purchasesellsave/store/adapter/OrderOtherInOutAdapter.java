@@ -34,7 +34,7 @@ public class OrderOtherInOutAdapter extends BaseQuickAdapter<OrderOtherInOutList
 
         helper.setText(R.id.name, item.getReceiverInfo()==null?"":item.getReceiverInfo().getReceiverName())
                 .setText(R.id.order_num, item.getOrderNum())
-                .setText(R.id.goods_size, "共计" + images.size() + "件")
+                .setText(R.id.goods_size, "共计" + (ListUtil.isEmpty(item.getGoodsInfo())?0: item.getGoodsInfo().size()) + "件")
                 .setText(R.id.total_price, "总计：" + item.getTotalMoney())
                 .setImageResource(R.id.store_check_icon, getStatusResId(item.getIsCheck()))
                 .setVisible(R.id.defaule_image, ListUtil.isEmpty(images));

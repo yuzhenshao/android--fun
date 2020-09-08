@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="128dp"
+    android:background="@color/color_ffffff"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/app_24dp"
+    android:paddingRight="@dimen/app_24dp">
+
+
+    <View
+        android:layout_width="3dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="3.5dp"
+        android:background="#DCDCDC" />
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="@dimen/dp_10"
+        android:layout_height="@dimen/dp_10"
+        android:layout_marginTop="@dimen/app_18dp"
+        android:background="@drawable/store_log_circle_bg" />
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginTop="@dimen/app_12dp"
+        android:layout_toRightOf="@+id/icon">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="2020/02/20"
+                android:textColor="#303133"
+                android:textSize="@dimen/app_16dp" />
+
+            <TextView
+                android:id="@+id/money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/app_15dp"
+                android:text="+1200"
+                android:textColor="#ff62c33a"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/nowMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/app_15dp"
+                android:text="余额：39000.00"
+                android:textColor="#ff303133"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/order_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="XS201910011203911"
+                android:textColor="#ff606266"
+                android:textSize="14sp"
+                />
+
+            <TextView
+                android:id="@+id/show_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/app_17dp"
+                android:text="张三（销售单）"
+                android:textColor="#ff606266"
+                android:textSize="16sp"
+                />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -124,6 +124,7 @@ public class AddOrderSalesActivity extends BaseAddCustomerAndGoodsActivity {
                 break;
             case R.id.money_account_select:
                 intent.setClass(AddOrderSalesActivity.this, MoneyAccountListActivity.class);
+                intent.putExtra(ParameterConstant.IS_SELECTED,true);
                 startActivityForResult(intent, ACCOUNT);
                 break;
         }
@@ -233,7 +234,9 @@ public class AddOrderSalesActivity extends BaseAddCustomerAndGoodsActivity {
             if (requestCode == STORE) {
                 request.setStoreID(data.getStringExtra("Id"));
                 if (isRetail) {
-                    request.setStoreType(1);
+                    int storeType=data.getIntExtra("Type",0);
+                    request.setStoreType(storeType);
+                    isPersonalStoreGoods=storeType==1?0:1;
                 }
                 storeEdit.setText(data.getStringExtra("Name"));
             } else if (requestCode == PROJECT) {

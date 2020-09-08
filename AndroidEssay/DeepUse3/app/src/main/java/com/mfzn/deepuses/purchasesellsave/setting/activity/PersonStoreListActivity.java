@@ -12,16 +12,19 @@ import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BasicListActivity;
 import com.mfzn.deepuses.bean.constants.ParameterConstant;
 import com.mfzn.deepuses.bean.response.sale.PersonalStoreListResponse;
+import com.mfzn.deepuses.bean.response.settings.MyStoreResponse;
 import com.mfzn.deepuses.bean.response.settings.StoreResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.purchasesellsave.sale.adapter.PersonStoreAdapter;
 
+import java.util.List;
+
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.XApi;
 
-public class PersonStoreListActivity extends BasicListActivity<PersonalStoreListResponse.PersonalStoreResponse> {
+public class PersonStoreListActivity extends BasicListActivity<MyStoreResponse> {
 
     private boolean isSelected;
 
@@ -41,23 +44,21 @@ public class PersonStoreListActivity extends BasicListActivity<PersonalStoreList
     @Override
     protected void getResourceList() {
         showDialog();
-        ApiServiceManager.getPersonalStoreList()
+        ApiServiceManager.storeListWithMy()
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(bindToLifecycle())
-                .subscribe(new ApiSubscriber<HttpResult<PersonalStoreListResponse>>() {
+                .subscribe(new ApiSubscriber<HttpResult<List<MyStoreResponse>>>() {
                     @Override
                     protected void onFail(NetError error) {
                         showErrorView(error.getMessage());
                     }
 
                     @Override
-                    public void onNext(HttpResult<PersonalStoreListResponse> result) {
-                        if (result.getRes() != null) {
-                            if (!ListUtil.isEmpty(result.getRes().getData())) {
-                                refreshSource(result.getRes().getData());
-                                return;
-                            }
+                    public void onNext(HttpResult<List<MyStoreResponse>> result) {
+                        if (!ListUtil.isEmpty(result.getRes())) {
+                            refreshSource(result.getRes());
+                            return;
                         }
                         showNoDataView();
                     }
@@ -66,14 +67,15 @@ public class PersonStoreListActivity extends BasicListActivity<PersonalStoreList
 
     @Override
     protected BaseQuickAdapter getAdapter() {
-        PersonStoreAdapter mAdapter = new PersonStoreAdapter(this, mSourceList);
+        PersonStoreAdapter mAdapter = new PersonStoreAdapter(mSourceList);
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int i) {
                 if (isSelected) {
                     Intent storeIntent = new Intent();
-                    storeIntent.putExtra("Id", mSourceList.get(i).getPersonalStoreID());
-                    storeIntent.putExtra("Name", "个人仓库");
+                    storeIntent.putExtra("Id", mSourceList.get(i).getStoreID());
+                    storeIntent.putExtra("Name", mSourceList.get(i).getStoreName());
+                    storeIntent.putExtra("Type", mSourceList.get(i).getStoreType());
                     setResult(Activity.RESULT_OK, storeIntent);
                     finish();
                 }

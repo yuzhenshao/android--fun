@@ -43,49 +43,50 @@ public class MoneyAccountListResponse {
          * borrowOut : 0
          */
 
-        private int sumMoney;
-        private int income;
-        private int outcome;
-        private int borrowIn;
-        private int borrowOut;
+        private String sumMoney;
+        private String income;
+        private String outcome;
+        private String borrowIn;
+        private String borrowOut;
 
-        public int getSumMoney() {
+
+        public String getSumMoney() {
             return sumMoney;
         }
 
-        public void setSumMoney(int sumMoney) {
+        public void setSumMoney(String sumMoney) {
             this.sumMoney = sumMoney;
         }
 
-        public int getIncome() {
+        public String getIncome() {
             return income;
         }
 
-        public void setIncome(int income) {
+        public void setIncome(String income) {
             this.income = income;
         }
 
-        public int getOutcome() {
+        public String getOutcome() {
             return outcome;
         }
 
-        public void setOutcome(int outcome) {
+        public void setOutcome(String outcome) {
             this.outcome = outcome;
         }
 
-        public int getBorrowIn() {
+        public String getBorrowIn() {
             return borrowIn;
         }
 
-        public void setBorrowIn(int borrowIn) {
+        public void setBorrowIn(String borrowIn) {
             this.borrowIn = borrowIn;
         }
 
-        public int getBorrowOut() {
+        public String getBorrowOut() {
             return borrowOut;
         }
 
-        public void setBorrowOut(int borrowOut) {
+        public void setBorrowOut(String borrowOut) {
             this.borrowOut = borrowOut;
         }
     }

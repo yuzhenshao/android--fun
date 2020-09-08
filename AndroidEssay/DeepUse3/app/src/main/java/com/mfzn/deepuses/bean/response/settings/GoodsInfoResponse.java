@@ -12,20 +12,23 @@ public class GoodsInfoResponse implements Serializable {
     private int goodsCount=1;
     private String goodsName;
     private String goodsCatID;
-    @SerializedName("catName")
+    @SerializedName(value = "goodsCatName", alternate = {"catName"})
     private String goodsCatName;
     private String goodsAttr;
     private String goodsNum;
 
     private String goodsUnitID;
-    @SerializedName("unitName")
+    @SerializedName(value = "goodsUnitName", alternate = {"unitName"})
     private String goodsUnitName;
     private String goodsBarCode;
     private String goodsBrand;
     private String goodsPosition;
     private String goodsMainImage;
     private String uniformSalePrice;
+
+    @SerializedName(value = "salePrice", alternate = {"buyPrice"})
     private String salePrice;
+    @SerializedName(value = "salePriceWithTax", alternate = {"buyPriceWithTax"})
     private String salePriceWithTax;
     private String costPrice;
     private double taxRate;

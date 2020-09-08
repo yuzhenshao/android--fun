@@ -21,18 +21,30 @@ import com.mfzn.deepuses.bean.request.ReSendAsOrderRequest;
 import com.mfzn.deepuses.bean.request.RegisterRequest;
 import com.mfzn.deepuses.bean.request.SendAsOrderRequest;
 import com.mfzn.deepuses.bean.request.SupplierRequest;
+import com.mfzn.deepuses.bean.request.capital.AddBorrowRequest;
+import com.mfzn.deepuses.bean.request.capital.AddIncomeExpenseRequest;
+import com.mfzn.deepuses.bean.request.capital.MoneyTransferRequest;
+import com.mfzn.deepuses.bean.request.purchase.OrderPurchaseAddRequest;
 import com.mfzn.deepuses.bean.request.sale.OrderOfferRequest;
 import com.mfzn.deepuses.bean.request.sale.OrderOtherInRequest;
 import com.mfzn.deepuses.bean.request.sale.OrderSalesBackRequest;
 import com.mfzn.deepuses.bean.request.sale.OrderSalesRequest;
 import com.mfzn.deepuses.bean.request.sale.OrderTakeGoodsBackRequest;
 import com.mfzn.deepuses.bean.request.sale.OrderTakeGoodsRequest;
+import com.mfzn.deepuses.bean.request.setting.AddMoneyAccountRequest;
 import com.mfzn.deepuses.bean.request.setting.AddSetCustomerRequest;
 import com.mfzn.deepuses.bean.request.store.OrderAllotAddRequest;
 import com.mfzn.deepuses.bean.request.store.OrderStockCheckRequest;
 import com.mfzn.deepuses.bean.response.BusinessCardResponse;
 import com.mfzn.deepuses.bean.response.GoodsCategoryResponse;
 import com.mfzn.deepuses.bean.response.GoodsUnitResponse;
+import com.mfzn.deepuses.bean.response.WaitingCheckResponse;
+import com.mfzn.deepuses.bean.response.capital.BorrowListResponse;
+import com.mfzn.deepuses.bean.response.capital.IncomeExpenseListResponse;
+import com.mfzn.deepuses.bean.response.capital.MoneyAccountFinancialLogListResponse;
+import com.mfzn.deepuses.bean.response.capital.PayerPayeeListResponse;
+import com.mfzn.deepuses.bean.response.purchase.OrderPurchaseDetailResponse;
+import com.mfzn.deepuses.bean.response.purchase.OrderPurchaseListResponse;
 import com.mfzn.deepuses.bean.response.sale.OrderOfferListResponse;
 import com.mfzn.deepuses.bean.response.sale.OrderSalesListResponse;
 import com.mfzn.deepuses.bean.response.sale.PersonalStoreListResponse;
@@ -57,6 +69,8 @@ import com.mfzn.deepuses.bean.response.store.OrderStockCheckListResponse;
 import com.mfzn.deepuses.bean.response.store.StockLogListResponse;
 import com.mfzn.deepuses.bean.response.store.StockWarningResponse;
 import com.mfzn.deepuses.bean.response.store.StoreAllCheckListResponse;
+import com.mfzn.deepuses.bean.response.store.WaitingInOutListResponse;
+import com.mfzn.deepuses.bean.response.user.WaitingCheckListResponse;
 import com.mfzn.deepuses.model.LookQuanxian2Model;
 import com.mfzn.deepuses.model.LookQuanxianModel;
 import com.mfzn.deepuses.model.UploadContractModel;
@@ -794,7 +808,7 @@ public interface ApiService {
     @GET("pss/Setting/goodsList")
     Flowable<HttpResult<GoodsListResponse>> goodsList(@Query("token") String token, @Query("uid") String uid,
                                                       @Query("shopID") String shopID, @Query("kw") String kw,
-                                                      @Query("goodsCatID") String goodsCatID,@Query("isPersonalStoreGoods") int isPersonalStoreGoods);
+                                                      @Query("goodsCatID") String goodsCatID, @Query("isPersonalStoreGoods") int isPersonalStoreGoods);
 
     @GET("pss/Setting/goodsInfo")
     Flowable<HttpResult<GoodsDetailResponse>> getGoodsInfo(@Query("token") String token, @Query("uid") String uid,
@@ -866,7 +880,7 @@ public interface ApiService {
 
     @GET("pss/Setting/incomeExpenseTypeList")
     Flowable<HttpResult<List<IncomeExpenseTypeResponse>>> getIncomeExpenseTypeListt(@Query("token") String token,
-                                                                                    @Query("uid") String uid, @Query("shopID") String shopID);
+                                                                                    @Query("uid") String uid, @Query("shopID") String shopID, @Query("type") int type);
 
     @FormUrlEncoded
     @POST("pss/Setting/editIncomeExpenseType")
@@ -885,7 +899,7 @@ public interface ApiService {
 
     @GET("pss/Setting/storeListWithMy")
     Flowable<HttpResult<List<MyStoreResponse>>> storeListWithMy(@Query("token") String token,
-                                                                @Query("uid") String uid, @Query("shopID") String shopID);
+                                                                @Query("uid") String uid, @Query("shopID") String shopID, @Query("storeType") int storeType);
 
     @GET("pss/Setting/storeList")
     Flowable<HttpResult<List<StoreResponse>>> getStoreList(@Query("token") String token,
@@ -955,6 +969,15 @@ public interface ApiService {
     Flowable<HttpResult> delSetCustomer(@Query("token") String token, @Query("uid") String uid,
                                         @Query("shopID") String shopID, @Field("companyCustomerID") String companyCustomerID);
 
+    @POST("pss/Setting/addMoneyAccount")
+    Flowable<HttpResult> addMoneyAccount(@Query("token") String token, @Query("uid") String uid,
+                                         @Query("shopID") String shopID, @Body AddMoneyAccountRequest request);
+
+    @FormUrlEncoded
+    @POST("pss/Setting/delMoneyAccount")
+    Flowable<HttpResult> delMoneyAccount(@Query("token") String token, @Query("uid") String uid,
+                                         @Query("shopID") String shopID, @Field("accountID") String accountID);
+
 
     //门店
     @GET("pss/Statistics/getShopData")
@@ -998,14 +1021,14 @@ public interface ApiService {
 
     @GET("pss/Sale/orderSalesList")
     Flowable<HttpResult<OrderSalesListResponse>> orderSalesList(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
-                                                                @Query("isCheck") int isCheck, @Query("isGathering") int isGathering, @Query("isOutStore") int isOutStore,@Query("isCanceled") int isCanceled);
+                                                                @Query("isCheck") int isCheck, @Query("isGathering") int isGathering, @Query("isOutStore") int isOutStore, @Query("isCanceled") int isCanceled);
 
     @GET("pss/Sale/orderRetailList")
-    Flowable<HttpResult<OrderSalesListResponse>> orderRetailList(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,@Query("storeType") int storeType);
+    Flowable<HttpResult<OrderSalesListResponse>> orderRetailList(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Query("storeType") int storeType);
 
     @GET("pss/Sale/orderTakeGoodsList")
     Flowable<HttpResult<OrderSalesListResponse>> orderTakeGoodsList(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
-                                                                    @Query("isCheck") int isCheck, @Query("isOutStore") int isOutStore,@Query("isCanceled") int isCanceled);
+                                                                    @Query("isCheck") int isCheck, @Query("isOutStore") int isOutStore, @Query("isCanceled") int isCanceled);
 
     @GET("pss/Sale/personalStoreList")
     Flowable<HttpResult<PersonalStoreListResponse>> personalStoreList(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID);
@@ -1076,6 +1099,153 @@ public interface ApiService {
     @POST("pss/Store/storeAllCheckDone")
     Flowable<HttpResult> storeAllCheckDone(@Query("token") String token, @Query("uid") String uid,
                                            @Query("shopID") String shopID, @Field("orderID") int storeID);
+
+
+//待入库列表
+    @GET("pss/Store/waitingInList")
+    Flowable<HttpResult<WaitingInOutListResponse>> waitingInList(@Query("token") String token, @Query("uid") String uid,
+                                                                     @Query("shopID") String shopID, @Query("orderType") int orderType);
+    //待出库列表
+    @GET("pss/Store/waitingOutList")
+    Flowable<HttpResult<WaitingInOutListResponse>> waitingOutList(@Query("token") String token, @Query("uid") String uid,
+                                                                      @Query("shopID") String shopID, @Query("orderType") int orderType);
+
+
+
+    @GET("pss/Statistics/waitingCheck")
+    Flowable<HttpResult<WaitingCheckResponse>> waitingCheck(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID);
+
+    //user
+    @GET("pss/User/waitingCheckOrderPurchase")
+    Flowable<HttpResult<WaitingCheckListResponse>> waitingCheckOrderPurchase(@Query("token") String token, @Query("uid") String uid,
+                                                                             @Query("shopID") String shopID, @Query("hasChecked") String hasChecked);
+
+    //报价单--待审核
+    @GET("pss/User/waitingCheckOrderOffer")
+    Flowable<HttpResult<WaitingCheckListResponse>> waitingCheckOrderOffer(@Query("token") String token, @Query("uid") String uid,
+                                                                          @Query("shopID") String shopID, @Query("hasChecked") String hasChecked);
+
+    //调拨单--待审核
+    @GET("pss/User/waitingCheckOrderAllot")
+    Flowable<HttpResult<WaitingCheckListResponse>> waitingCheckOrderAllot(@Query("token") String token, @Query("uid") String uid,
+                                                                          @Query("shopID") String shopID, @Query("hasChecked") String hasChecked);
+
+    //其他出库单--待审核
+    @GET("pss/User/waitingCheckOrderOtherOut")
+    Flowable<HttpResult<WaitingCheckListResponse>> waitingCheckOrderOtherOut(@Query("token") String token, @Query("uid") String uid,
+                                                                             @Query("shopID") String shopID, @Query("hasChecked") String hasChecked);
+
+    //零售退货单--待审核
+    @GET("pss/User/waitingCheckOrderRetailBack")
+    Flowable<HttpResult<WaitingCheckListResponse>> waitingCheckOrderRetailBack(@Query("token") String token, @Query("uid") String uid,
+                                                                               @Query("shopID") String shopID, @Query("hasChecked") String hasChecked);
+
+    //销售退货单--待审核
+    @GET("pss/User/waitingCheckOrderSalesBack")
+    Flowable<HttpResult<WaitingCheckListResponse>> waitingCheckOrderSalesBack(@Query("token") String token, @Query("uid") String uid,
+                                                                              @Query("shopID") String shopID, @Query("hasChecked") String hasChecked);
+
+
+    //个人领用单单--待审核
+    @GET("pss/User/waitingCheckOrderTakeGoods")
+    Flowable<HttpResult<WaitingCheckListResponse>> waitingCheckOrderTakeGoods(@Query("token") String token, @Query("uid") String uid,
+                                                                              @Query("shopID") String shopID, @Query("hasChecked") String hasChecked);
+
+    //销售单--待审核
+    @GET("pss/User/waitingCheckOrderSales")
+    Flowable<HttpResult<WaitingCheckListResponse>> waitingCheckOrderSales(@Query("token") String token, @Query("uid") String uid,
+                                                                          @Query("shopID") String shopID, @Query("hasChecked") String hasChecked);
+
+    //采购退货单--待审核
+    @GET("pss/User/waitingCheckOrderPurchaseBack")
+    Flowable<HttpResult<WaitingCheckListResponse>> waitingCheckOrderPurchaseBack(@Query("token") String token, @Query("uid") String uid,
+                                                                                 @Query("shopID") String shopID, @Query("hasChecked") String hasChecked);
+
+    //全库盘点单盈亏处理--待审核
+    @GET("pss/User/waitingCheckOrderStoreCheckAll")
+    Flowable<HttpResult<WaitingCheckListResponse>> waitingCheckOrderStoreCheckAll(@Query("token") String token, @Query("uid") String uid,
+                                                                                  @Query("shopID") String shopID, @Query("hasChecked") String hasChecked);
+
+    //盘点单盈亏处理--待审核
+    @GET("pss/User/waitingCheckOrderStoreCheck")
+    Flowable<HttpResult<WaitingCheckListResponse>> waitingCheckOrderStoreCheck(@Query("token") String token, @Query("uid") String uid,
+                                                                               @Query("shopID") String shopID, @Query("hasChecked") String hasChecked);
+
+    //收支管理--待审核
+    @GET("pss/User/waitingCheckIncomeExpense")
+    Flowable<HttpResult<WaitingCheckListResponse>> waitingCheckIncomeExpense(@Query("token") String token, @Query("uid") String uid,
+                                                                             @Query("shopID") String shopID, @Query("hasChecked") String hasChecked);
+
+    //单据审核
+    @FormUrlEncoded
+    @POST("pss/User/doOrderCheck")
+    Flowable<HttpResult> doOrderCheck(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
+                                      @Field("checkApplyID") String checkApplyID, @Field("checkStatus") int checkStatus);
+
+
+    //采购
+    //应付管理--列表
+    @GET("pss/Capital/shouldPayList")
+    Flowable<HttpResult<PayerPayeeListResponse>> shouldPayList(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID);
+
+    //应收管理--列表
+    @GET("pss/Capital/shouldGatheringList")
+    Flowable<HttpResult<PayerPayeeListResponse>> shouldGatheringList(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID);
+
+    //借入借出--列表
+    @GET("pss/Capital/borrowList")
+    Flowable<HttpResult<BorrowListResponse>> borrowList(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Query("type") int type);
+
+    //收支管理--列表
+    @GET("pss/Capital/incomeExpenseList")
+    Flowable<HttpResult<IncomeExpenseListResponse>> incomeExpenseList(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Query("type") int type);
+
+    //账户管理--账户流水
+    @GET("pss/Capital/moneyAccountFinancialLog")
+    Flowable<HttpResult<MoneyAccountFinancialLogListResponse>> moneyAccountFinancialLog(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Query("moneyAccountID") String moneyAccountID);
+
+    //借入借出--新增
+    @POST("pss/Capital/addBorrow")
+    Flowable<HttpResult> addBorrow(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Body AddBorrowRequest request);
+
+    //收支管理--新增
+    @POST("pss/Capital/addIncomeExpense")
+    Flowable<HttpResult> addIncomeExpense(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Body AddIncomeExpenseRequest request);
+
+    //收支管理--新增
+    @POST("pss/Capital/moneyTransfer")
+    Flowable<HttpResult> moneyTransfer(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Body MoneyTransferRequest request);
+
+
+    //采购
+
+    //采购单--列表
+    @GET("pss/Purchase/orderPurchaseList")
+    Flowable<HttpResult<OrderPurchaseListResponse>> orderPurchaseList(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID);
+
+    @GET("pss/Purchase/orderPurchaseBackList")
+    Flowable<HttpResult<OrderPurchaseListResponse>> orderPurchaseBackList(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID);
+
+
+    @GET("pss/Purchase/orderPurchaseInfo")
+    Flowable<HttpResult<OrderPurchaseDetailResponse>> orderPurchaseInfo(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Query("orderID") String orderID);
+
+
+    //采购单--新增
+    @POST("pss/Purchase/orderPurchaseAdd")
+    Flowable<HttpResult> orderPurchaseAdd(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Body OrderPurchaseAddRequest request);
+
+    //采购退货单--新增
+    @POST("pss/Purchase/orderPurchaseBackAdd")
+    Flowable<HttpResult> orderPurchaseBackAdd(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Body OrderPurchaseAddRequest request);
+
+    @FormUrlEncoded
+    @POST("pss/Purchase/orderPurchaseCancel")
+    Flowable<HttpResult> orderPurchaseCancel(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Field("orderID") String orderID);
+
+    @FormUrlEncoded
+    @POST("pss/Purchase/orderPurchaseDelBatch")
+    Flowable<HttpResult> orderPurchaseDelBatch(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Field("orderIDs") String orderIDs);
 
 
 }

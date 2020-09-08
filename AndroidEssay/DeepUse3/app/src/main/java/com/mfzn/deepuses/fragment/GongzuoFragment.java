@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -55,6 +56,14 @@ import com.mfzn.deepuses.model.home.JudgeLevelModel;
 import com.mfzn.deepuses.model.home.KanbDataModel;
 import com.mfzn.deepuses.net.ApiHelper;
 import com.mfzn.deepuses.present.fragment.GongzuoPresnet;
+import com.mfzn.deepuses.purchasesellsave.capital.activity.AddBorrowActivity;
+import com.mfzn.deepuses.purchasesellsave.capital.activity.AddIncomeExpenseActivity;
+import com.mfzn.deepuses.purchasesellsave.capital.activity.BorrowListActivity;
+import com.mfzn.deepuses.purchasesellsave.capital.activity.IncomeExpenseListActivity;
+import com.mfzn.deepuses.purchasesellsave.capital.activity.IncomeExpenseTypeListActivity;
+import com.mfzn.deepuses.purchasesellsave.capital.activity.ShouldGatherePayActivity;
+import com.mfzn.deepuses.purchasesellsave.purchase.AddOrderPurchaseActivity;
+import com.mfzn.deepuses.purchasesellsave.purchase.OrderPurchaseListActivity;
 import com.mfzn.deepuses.purchasesellsave.sale.activity.AddOrderOfferActivity;
 import com.mfzn.deepuses.purchasesellsave.sale.activity.AddOrderSalesActivity;
 import com.mfzn.deepuses.purchasesellsave.sale.activity.AddOrderSalesBackActivity;
@@ -66,6 +75,7 @@ import com.mfzn.deepuses.purchasesellsave.setting.activity.CommodityPhotoCreateA
 import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsCategoryManagerActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsUnitListManagetActivity;
+import com.mfzn.deepuses.purchasesellsave.setting.activity.MoneyAccountListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.OtherCostActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.PersonStoreListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.SettingCustomerMangerActivity;
@@ -79,10 +89,12 @@ import com.mfzn.deepuses.purchasesellsave.store.activity.AddOrderOtherOutActivit
 import com.mfzn.deepuses.purchasesellsave.store.activity.OrderAllotListActivity;
 import com.mfzn.deepuses.purchasesellsave.store.activity.OrderOtherInOutListActivity;
 import com.mfzn.deepuses.purchasesellsave.store.activity.AddOrderStockCheckActivity;
+import com.mfzn.deepuses.purchasesellsave.store.activity.OrderWaitInOutListActivity;
 import com.mfzn.deepuses.purchasesellsave.store.activity.StockListActivity;
 import com.mfzn.deepuses.purchasesellsave.store.activity.StockLogListActivity;
 import com.mfzn.deepuses.purchasesellsave.store.activity.StoreAllCheckListActivity;
 import com.mfzn.deepuses.purchasesellsave.store.activity.StoreCheckListActivity;
+import com.mfzn.deepuses.purchasesellsave.user.TodoOrderCheckActivity;
 import com.mfzn.deepuses.utils.Constants;
 import com.mfzn.deepuses.utils.EventMsg;
 import com.mfzn.deepuses.utils.ObtainTime;
@@ -132,6 +144,10 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
     @BindView(R.id.mdgl_recyleview)
     MyRecyclerView mdglRecyleview;
 
+    @BindView(R.id.cwgl_recyleview)
+    MyRecyclerView cwglRecyleview;
+    @BindView(R.id.cggl_recyleview)
+    MyRecyclerView cgglRecyleview;
     @BindView(R.id.shgl_recyleview)
     MyRecyclerView shglRecyleview;
     @BindView(R.id.tdgl_recyleview)
@@ -148,6 +164,10 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
     MyRecyclerView khglRecyleview;
     @BindView(R.id.tv_home_czzx)
     TextView tv_home_czzx;
+    @BindView(R.id.toco_number)
+    TextView tocoNumberView;
+    @BindView(R.id.todo_container)
+    RelativeLayout todoContainer;
 
     private PopWindow popWindow;
     //private List<SelectCompanyModel> models = new ArrayList<>();
@@ -167,7 +187,10 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
     private List<HomeShowModel> ckglModel = new ArrayList<>();
     //门店管理
     private List<HomeShowModel> mdglModel = new ArrayList<>();
-
+    //财务管理
+    private List<HomeShowModel> cwglModel = new ArrayList<>();
+    //财务管理
+    private List<HomeShowModel> cgglModel = new ArrayList<>();
     //项目管理
     private List<HomeShowModel> xmglModel = new ArrayList<>();
     //客户管理
@@ -274,7 +297,8 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
         }
     }
 
-    @OnClick({R.id.ll_kanban_project, R.id.ll_kanban_money, R.id.ll_kanban_number, R.id.iv_work_scan, R.id.iv_work_xia})
+    @OnClick({R.id.ll_kanban_project, R.id.ll_kanban_money, R.id.ll_kanban_number,
+            R.id.iv_work_scan, R.id.iv_work_xia, R.id.todo_container})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_kanban_project:
@@ -319,6 +343,9 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
                             .setView(customView)
                             .show(view);
                 }
+                break;
+            case R.id.todo_container:
+                startActivity(new Intent(getActivity(), TodoOrderCheckActivity.class));
                 break;
         }
     }
@@ -386,6 +413,16 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
         NoScrollGridLayoutManager mdLayoutManager = new NoScrollGridLayoutManager(getActivity(),
                 4, GridLayoutManager.VERTICAL, false);
         mdglRecyleview.setLayoutManager(mdLayoutManager);
+
+        //财务管理
+        NoScrollGridLayoutManager cwLayoutManager = new NoScrollGridLayoutManager(getActivity(),
+                4, GridLayoutManager.VERTICAL, false);
+        cwglRecyleview.setLayoutManager(cwLayoutManager);
+
+        //财务管理
+        NoScrollGridLayoutManager cgLayoutManager = new NoScrollGridLayoutManager(getActivity(),
+                4, GridLayoutManager.VERTICAL, false);
+        cgglRecyleview.setLayoutManager(cgLayoutManager);
 
         //充值中心
         NoScrollGridLayoutManager czLayoutManager = new NoScrollGridLayoutManager(getActivity(),
@@ -799,6 +836,7 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
                 switch (position) {
                     case 0:
                         //TODO 暂时不做
+                        startActivity(new Intent(getActivity(), OrderWaitInOutListActivity.class));
                         break;
                     case 1:
                         startActivity(new Intent(getActivity(), OrderOtherInOutListActivity.class));
@@ -857,6 +895,82 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
             }
         });
 
+        //财务管理
+        cwglModel.add(new HomeShowModel("应收应付", R.mipmap.icon_sz));
+        cwglModel.add(new HomeShowModel("收支管理", R.mipmap.icon_sz_manager));
+        cwglModel.add(new HomeShowModel("新增收入支出", R.mipmap.icon_add_sz));
+        cwglModel.add(new HomeShowModel("借入借出", R.mipmap.icon_jr_jc));
+        cwglModel.add(new HomeShowModel("新增借入借出", R.mipmap.icon_add_in_out));
+        cwglModel.add(new HomeShowModel("账户管理", R.mipmap.icon_account_manager));
+        cwglModel.add(new HomeShowModel("收支类别管理", R.mipmap.icon_sz_type));
+        HomeWdxmAdapter cwglAdapter = new HomeWdxmAdapter(getActivity(), cwglModel);
+        cwglRecyleview.setAdapter(cwglAdapter);
+        cwglAdapter.setOnItemClickListener(new HomeWdxmAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                if (curCompany == null) {
+                    ToastUtil.showToast(getActivity(), "请先选择公司");
+                    return;
+                }
+                switch (position) {
+                    case 0:
+                        startActivity(new Intent(getActivity(), ShouldGatherePayActivity.class));
+                        break;
+                    case 1:
+                        startActivity(new Intent(getActivity(), IncomeExpenseListActivity.class));
+                        break;
+                    case 2:
+                        startActivity(new Intent(getActivity(), AddIncomeExpenseActivity.class));
+                        break;
+                    case 3:
+                        startActivity(new Intent(getActivity(), BorrowListActivity.class));
+                        break;
+                    case 4:
+                        startActivity(new Intent(getActivity(), AddBorrowActivity.class));
+                        break;
+                    case 5:
+                        startActivity(new Intent(getActivity(), MoneyAccountListActivity.class));
+                        break;
+                    case 6:
+                        startActivity(new Intent(getActivity(), IncomeExpenseTypeListActivity.class));
+                        break;
+                }
+            }
+        });
+
+
+        //采购管理
+        cgglModel.add(new HomeShowModel("采购单据中心", R.mipmap.icon_cgdj));
+        cgglModel.add(new HomeShowModel("新建采购单", R.mipmap.icon_cgd));
+        cgglModel.add(new HomeShowModel("新建采购退货单", R.mipmap.icon_cgthd));
+        HomeWdxmAdapter cgglAdapter = new HomeWdxmAdapter(getActivity(), cgglModel);
+        cgglRecyleview.setAdapter(cgglAdapter);
+        cgglAdapter.setOnItemClickListener(new HomeWdxmAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                if (curCompany == null) {
+                    ToastUtil.showToast(getActivity(), "请先选择公司");
+                    return;
+                }
+                Intent intent = new Intent();
+                switch (position) {
+                    case 0:
+                        intent.setClass(getActivity(), OrderPurchaseListActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 1:
+                        intent.setClass(getActivity(), AddOrderPurchaseActivity.class);
+                        intent.putExtra(ParameterConstant.IS_PURCHASE_CREATE, true);
+                        startActivity(intent);
+                        break;
+                    case 2:
+                        intent.setClass(getActivity(), AddOrderPurchaseActivity.class);
+                        intent.putExtra(ParameterConstant.IS_PURCHASE_CREATE, false);
+                        startActivity(intent);
+                        break;
+                }
+            }
+        });
 
         //项目管理
         HomeShowModel showModel1 = new HomeShowModel("新建项目", "xjxm", R.mipmap.home_chuangjian);
