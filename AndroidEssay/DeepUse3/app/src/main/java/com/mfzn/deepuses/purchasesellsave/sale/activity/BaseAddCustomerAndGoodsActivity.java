@@ -124,6 +124,15 @@ public abstract class BaseAddCustomerAndGoodsActivity extends BasicActivity {
         }
     }
 
+    protected void clearGoods(){
+        goodsPriceContainer.setVisibility(View.GONE);
+        goodsSelectedList.clear();
+        adapter.notifyDataSetChanged();
+        number.setText(null);
+        price.setText(null);
+        totalMoney=0;
+    }
+
     protected void setGoodsPriceContainer(List<GoodsInfoResponse> goods) {
         if (!ListUtil.isEmpty(goods)) {
             int size = 0;

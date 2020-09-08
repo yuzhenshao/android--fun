@@ -22,6 +22,7 @@ import com.mfzn.deepuses.model.company.CityModel;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.purchasesellsave.manager.JXCDataManager;
+import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsSelectListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.MoneyAccountListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.PersonStoreListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.StoreListActivity;
@@ -228,6 +229,18 @@ public class AddOrderSalesActivity extends BaseAddCustomerAndGoodsActivity {
     }
 
     @Override
+    protected void turnToGoodsSelected() {
+        if(isRetail&&request.getStoreID()==null){
+            showToast("请先选择出货仓库");
+            return;
+        }
+        Intent intent = new Intent();
+        intent.setClass(this, GoodsSelectListActivity.class);
+        intent.putExtra(ParameterConstant.IS_PERSONAL_STORE_GOODS,isPersonalStoreGoods);
+        startActivityForResult(intent, GOODS);
+    }
+
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK && data != null) {
@@ -237,6 +250,7 @@ public class AddOrderSalesActivity extends BaseAddCustomerAndGoodsActivity {
                     int storeType=data.getIntExtra("Type",0);
                     request.setStoreType(storeType);
                     isPersonalStoreGoods=storeType==1?0:1;
+                    clearGoods();
                 }
                 storeEdit.setText(data.getStringExtra("Name"));
             } else if (requestCode == PROJECT) {

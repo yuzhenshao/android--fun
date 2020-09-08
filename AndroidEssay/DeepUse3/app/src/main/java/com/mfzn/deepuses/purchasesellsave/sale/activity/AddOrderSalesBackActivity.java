@@ -18,6 +18,7 @@ import com.mfzn.deepuses.bean.response.sale.OrderSalesListResponse;
 import com.mfzn.deepuses.bean.response.settings.StoreResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
+import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsSelectListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.MoneyAccountListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.PersonStoreListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.StoreListActivity;
@@ -98,10 +99,22 @@ public class AddOrderSalesBackActivity extends BaseAddCustomerAndGoodsActivity {
                 break;
             case R.id.money_account_select:
                 intent.setClass(AddOrderSalesBackActivity.this, MoneyAccountListActivity.class);
-                intent.putExtra(ParameterConstant.IS_SELECTED,true);
+                intent.putExtra(ParameterConstant.IS_SELECTED, true);
                 startActivityForResult(intent, ACCOUNT);
                 break;
         }
+    }
+
+    @Override
+    protected void turnToGoodsSelected() {
+        if(isRetail&&request.getStoreID()==null){
+            showToast("请先选择入货仓库");
+            return;
+        }
+        Intent intent = new Intent();
+        intent.setClass(this, GoodsSelectListActivity.class);
+        intent.putExtra(ParameterConstant.IS_PERSONAL_STORE_GOODS,isPersonalStoreGoods);
+        startActivityForResult(intent, GOODS);
     }
 
     @Override
@@ -185,9 +198,10 @@ public class AddOrderSalesBackActivity extends BaseAddCustomerAndGoodsActivity {
             if (requestCode == STORE) {
                 request.setStoreID(data.getStringExtra("Id"));
                 if (isRetail) {
-                    int storeType=data.getIntExtra("Type",0);
+                    int storeType = data.getIntExtra("Type", 0);
                     request.setStoreType(storeType);
-                    isPersonalStoreGoods=storeType==1?0:1;
+                    isPersonalStoreGoods = storeType == 1 ? 0 : 1;
+                    clearGoods();
                 }
                 storeEdit.setText(data.getStringExtra("Name"));
             } else if (requestCode == PROJECT) {
