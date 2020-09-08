@@ -89,6 +89,7 @@ import com.mfzn.deepuses.purchasesellsave.store.activity.AddOrderOtherOutActivit
 import com.mfzn.deepuses.purchasesellsave.store.activity.OrderAllotListActivity;
 import com.mfzn.deepuses.purchasesellsave.store.activity.OrderOtherInOutListActivity;
 import com.mfzn.deepuses.purchasesellsave.store.activity.AddOrderStockCheckActivity;
+import com.mfzn.deepuses.purchasesellsave.store.activity.OrderWaitInOutListActivity;
 import com.mfzn.deepuses.purchasesellsave.store.activity.StockListActivity;
 import com.mfzn.deepuses.purchasesellsave.store.activity.StockLogListActivity;
 import com.mfzn.deepuses.purchasesellsave.store.activity.StoreAllCheckListActivity;
@@ -835,6 +836,7 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
                 switch (position) {
                     case 0:
                         //TODO 暂时不做
+                        startActivity(new Intent(getActivity(), OrderWaitInOutListActivity.class));
                         break;
                     case 1:
                         startActivity(new Intent(getActivity(), OrderOtherInOutListActivity.class));

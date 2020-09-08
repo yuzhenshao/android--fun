@@ -44,7 +44,7 @@ public class OrderInputAdapter extends BaseQuickAdapter<OrderSalesListResponse.O
 
         helper.setText(R.id.name, item.getCustomerName())
                 .setText(R.id.order_num, item.getOrderNum())
-                .setText(R.id.goods_size, "共计" + images.size() + "件")
+                .setText(R.id.goods_size, "共计" + (ListUtil.isEmpty(item.getGoodsInfo())?0: item.getGoodsInfo().size()) + "件")
                 .setImageResource(R.id.store_check_icon, getStatusResId(item.getIsCheck()))
                 .setVisible(R.id.defaule_image, ListUtil.isEmpty(images))
                 .addOnClickListener(R.id.order_offer_container);

@@ -50,6 +50,7 @@ import com.mfzn.deepuses.bean.response.sale.PersonalStoreListResponse;
 import com.mfzn.deepuses.bean.response.settings.CustomerDetailResponse;
 import com.mfzn.deepuses.bean.response.settings.CustomerListResponse;
 import com.mfzn.deepuses.bean.response.settings.MoneyAccountListResponse;
+import com.mfzn.deepuses.bean.response.settings.MyStoreResponse;
 import com.mfzn.deepuses.bean.response.settings.RateResponse;
 import com.mfzn.deepuses.bean.response.settings.StoreResponse;
 import com.mfzn.deepuses.bean.response.UserResponse;
@@ -68,6 +69,7 @@ import com.mfzn.deepuses.bean.response.store.OrderStockCheckListResponse;
 import com.mfzn.deepuses.bean.response.store.StockLogListResponse;
 import com.mfzn.deepuses.bean.response.store.StockWarningResponse;
 import com.mfzn.deepuses.bean.response.store.StoreAllCheckListResponse;
+import com.mfzn.deepuses.bean.response.store.WaitingInOutListResponse;
 import com.mfzn.deepuses.bean.response.user.WaitingCheckListResponse;
 import com.mfzn.deepuses.model.company.SelectCompanyModel;
 import com.mfzn.deepuses.model.faxian.News;
@@ -398,6 +400,10 @@ public class ApiServiceManager {
         return ApiHelper.getApiService().getStoreList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId());
     }
 
+    public static Flowable<HttpResult<List<MyStoreResponse>>> storeListWithMy() {
+        return ApiHelper.getApiService().storeListWithMy(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(),0);
+    }
+
     public static Flowable<HttpResult> editStore(StoreResponse request) {
         return ApiHelper.getApiService().editStore(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), request);
     }
@@ -517,6 +523,14 @@ public class ApiServiceManager {
 
     public static Flowable<HttpResult<StoreAllCheckListResponse>> getSoreAllCheckList() {
         return ApiHelper.getApiService().storeAllCheckList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), 0);
+    }
+
+    public static Flowable<HttpResult<WaitingInOutListResponse>> getWaitingInList() {
+        return ApiHelper.getApiService().waitingInList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), 0);
+    }
+
+    public static Flowable<HttpResult<WaitingInOutListResponse>> getWaitingOutList() {
+        return ApiHelper.getApiService().waitingOutList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), 0);
     }
 
 
@@ -716,7 +730,7 @@ public class ApiServiceManager {
     }
 
     public static Flowable<HttpResult<OrderPurchaseDetailResponse>> orderPurchaseInfo(String orderID) {
-        return ApiHelper.getApiService().orderPurchaseInfo(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(),orderID);
+        return ApiHelper.getApiService().orderPurchaseInfo(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), orderID);
     }
 
     public static Flowable<HttpResult> orderPurchaseAdd(OrderPurchaseAddRequest request) {

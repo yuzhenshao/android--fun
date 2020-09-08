@@ -507,6 +507,9 @@
             android:name=".purchasesellsave.store.activity.OrderOtherInOutListActivity"
             android:screenOrientation="portrait"></activity>
         <activity
+            android:name=".purchasesellsave.store.activity.OrderWaitInOutListActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
             android:name=".purchasesellsave.shop.activity.AddShopActivity"
             android:screenOrientation="portrait"></activity>
         <activity

@@ -185,7 +185,9 @@ public class AddOrderSalesBackActivity extends BaseAddCustomerAndGoodsActivity {
             if (requestCode == STORE) {
                 request.setStoreID(data.getStringExtra("Id"));
                 if (isRetail) {
-                    request.setStoreType(1);
+                    int storeType=data.getIntExtra("Type",0);
+                    request.setStoreType(storeType);
+                    isPersonalStoreGoods=storeType==1?0:1;
                 }
                 storeEdit.setText(data.getStringExtra("Name"));
             } else if (requestCode == PROJECT) {

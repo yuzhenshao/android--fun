@@ -17,6 +17,7 @@ import com.mfzn.deepuses.model.jiagou.ZuzhiJiagouModel;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.PersonStoreListActivity;
+import com.mfzn.deepuses.purchasesellsave.setting.activity.StoreListActivity;
 import com.mfzn.deepuses.utils.Constants;
 import com.mfzn.deepuses.utils.DateUtils;
 import com.mfzn.deepuses.utils.UserHelper;
@@ -60,7 +61,7 @@ public class AddOrderTakeBackActivity extends BaseAddCustomerAndGoodsActivity {
                 startActivityForResult(intent, USER);
                 break;
             case R.id.store_select:
-                intent.setClass(this, PersonStoreListActivity.class);
+                intent.setClass(this, StoreListActivity.class);
                 intent.putExtra(ParameterConstant.IS_SELECTED, true);
                 startActivityForResult(intent, STORE);
                 break;

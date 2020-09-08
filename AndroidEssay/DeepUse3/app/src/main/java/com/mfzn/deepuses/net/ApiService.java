@@ -69,6 +69,7 @@ import com.mfzn.deepuses.bean.response.store.OrderStockCheckListResponse;
 import com.mfzn.deepuses.bean.response.store.StockLogListResponse;
 import com.mfzn.deepuses.bean.response.store.StockWarningResponse;
 import com.mfzn.deepuses.bean.response.store.StoreAllCheckListResponse;
+import com.mfzn.deepuses.bean.response.store.WaitingInOutListResponse;
 import com.mfzn.deepuses.bean.response.user.WaitingCheckListResponse;
 import com.mfzn.deepuses.model.LookQuanxian2Model;
 import com.mfzn.deepuses.model.LookQuanxianModel;
@@ -898,7 +899,7 @@ public interface ApiService {
 
     @GET("pss/Setting/storeListWithMy")
     Flowable<HttpResult<List<MyStoreResponse>>> storeListWithMy(@Query("token") String token,
-                                                                @Query("uid") String uid, @Query("shopID") String shopID);
+                                                                @Query("uid") String uid, @Query("shopID") String shopID, @Query("storeType") int storeType);
 
     @GET("pss/Setting/storeList")
     Flowable<HttpResult<List<StoreResponse>>> getStoreList(@Query("token") String token,
@@ -1098,6 +1099,17 @@ public interface ApiService {
     @POST("pss/Store/storeAllCheckDone")
     Flowable<HttpResult> storeAllCheckDone(@Query("token") String token, @Query("uid") String uid,
                                            @Query("shopID") String shopID, @Field("orderID") int storeID);
+
+
+//待入库列表
+    @GET("pss/Store/waitingInList")
+    Flowable<HttpResult<WaitingInOutListResponse>> waitingInList(@Query("token") String token, @Query("uid") String uid,
+                                                                     @Query("shopID") String shopID, @Query("orderType") int orderType);
+    //待出库列表
+    @GET("pss/Store/waitingOutList")
+    Flowable<HttpResult<WaitingInOutListResponse>> waitingOutList(@Query("token") String token, @Query("uid") String uid,
+                                                                      @Query("shopID") String shopID, @Query("orderType") int orderType);
+
 
 
     @GET("pss/Statistics/waitingCheck")
