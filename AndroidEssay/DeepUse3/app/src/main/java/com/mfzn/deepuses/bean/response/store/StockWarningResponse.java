@@ -85,8 +85,8 @@ public class StockWarningResponse {
         private String goodsCatID;
         private String catName;
         private String goodsAttr;
-        private int goodsNum;
-        private int goodsUnitID;
+        private String goodsNum;
+        private String goodsUnitID;
         private String unitName;
         private String goodsBarCode;
         private String goodsBrand;
@@ -145,19 +145,19 @@ public class StockWarningResponse {
             this.goodsAttr = goodsAttr;
         }
 
-        public int getGoodsNum() {
+        public String getGoodsNum() {
             return goodsNum;
         }
 
-        public void setGoodsNum(int goodsNum) {
+        public void setGoodsNum(String goodsNum) {
             this.goodsNum = goodsNum;
         }
 
-        public int getGoodsUnitID() {
+        public String getGoodsUnitID() {
             return goodsUnitID;
         }
 
-        public void setGoodsUnitID(int goodsUnitID) {
+        public void setGoodsUnitID(String goodsUnitID) {
             this.goodsUnitID = goodsUnitID;
         }
 

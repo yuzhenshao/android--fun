@@ -82,18 +82,6 @@ public class AddShopActivity extends BasicActivity {
                     showToast("请输入门店名称");
                     return;
                 }
-                if (TextUtils.isEmpty(chargePersonUserID)) {
-                    showToast("请输入联系人");
-                    return;
-                }
-                if (TextUtils.isEmpty(contactPhone)) {
-                    showToast("请输入联系电话");
-                    return;
-                }
-                if (TextUtils.isEmpty(shopAddress)) {
-                    showToast("请输入门店地址");
-                    return;
-                }
                 ApiServiceManager.addShop(shopName, chargePersonUserID, contactPhone, shopAddress, remark)
                         .compose(XApi.getApiTransformer())
                         .compose(XApi.getScheduler())

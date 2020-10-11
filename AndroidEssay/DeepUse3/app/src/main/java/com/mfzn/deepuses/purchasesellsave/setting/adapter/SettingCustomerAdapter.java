@@ -17,10 +17,12 @@ public class SettingCustomerAdapter extends BaseQuickAdapter<CustomerListRespons
     @Override
     protected void convert(BaseViewHolder holder, CustomerListResponse.CustomerResponse response) {
         holder.setText(R.id.name, response.getCustomerName())
-                .setText(R.id.number, response.getCustomerPhone());
-        int iconRes=response.getLevelIcon();
-        holder.setGone(R.id.icon_level,iconRes!=0);
-        if(iconRes!=0){
+                .setText(R.id.number, response.getCustomerPhone())
+                .addOnClickListener(R.id.container)
+                .addOnClickListener(R.id.icon_phone);
+        int iconRes = response.getLevelIcon();
+        holder.setGone(R.id.icon_level, iconRes != 0);
+        if (iconRes != 0) {
             holder.setImageResource(R.id.icon_level, iconRes);
         }
     }

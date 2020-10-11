@@ -333,6 +333,10 @@ public class ApiServiceManager {
         return ApiHelper.getApiService().editGoods(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), request);
     }
 
+    public static Flowable<HttpResult> delGoods(String  goodsID) {
+        return ApiHelper.getApiService().delGoods(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), goodsID);
+    }
+
 
     public static Flowable<HttpResult<List<GoodsUnitResponse>>> getGoodsUnitList() {
         return ApiHelper.getApiService().getGoodsUnitList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId());
@@ -481,6 +485,10 @@ public class ApiServiceManager {
         return ApiHelper.getApiService().stockWarning(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), kw, storeID);
     }
 
+    public static Flowable<HttpResult> notifyBuy(String id) {
+        return ApiHelper.getApiService().notifyBuy(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), id);
+    }
+
     public static Flowable<HttpResult<GoodsStockResponse>> getGoodsStock(String kw) {
         return ApiHelper.getApiService().goodsStock(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), kw);
     }
@@ -589,7 +597,7 @@ public class ApiServiceManager {
     }
 
     public static Flowable<HttpResult<OrderSalesListResponse>> getOrderRetailList() {
-        return ApiHelper.getApiService().orderRetailList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), -1);
+        return ApiHelper.getApiService().orderRetailList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), 0);
     }
 
     public static Flowable<HttpResult<OrderSalesListResponse>> getOrderTakeGoodsList() {
@@ -614,7 +622,7 @@ public class ApiServiceManager {
     }
 
     public static Flowable<HttpResult<StockLogListResponse>> getStockLogList() {
-        return ApiHelper.getApiService().stockLogList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), "", "", "", "", "", "", 0, "");
+        return ApiHelper.getApiService().stockLogList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), "", "", "", "", "", "", Integer.MAX_VALUE, "");
     }
 
     public static Flowable<HttpResult> storeAllCheckSponsor(String shopID, String storeID, String beginDate, String endDate) {

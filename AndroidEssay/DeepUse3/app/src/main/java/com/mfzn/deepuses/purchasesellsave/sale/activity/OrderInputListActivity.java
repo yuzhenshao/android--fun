@@ -28,11 +28,6 @@ public class OrderInputListActivity extends BasicListActivity<OrderSalesListResp
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mTitleBar.updateTitleBar("选择导入数据");
-        input = getIntent().getIntExtra(ParameterConstant.INPUT_TYPE, 0);
-        if (input == 0) {
-            showToast("没有可导入数据");
-            finish();
-        }
     }
 
     @Override
@@ -43,6 +38,11 @@ public class OrderInputListActivity extends BasicListActivity<OrderSalesListResp
 
     @Override
     protected void getResourceList() {
+        input = getIntent().getIntExtra(ParameterConstant.INPUT_TYPE, 0);
+        if (input == 0) {
+            showToast("没有可导入数据");
+            finish();
+        }
         showDialog();
         getInputList()
                 .compose(XApi.getApiTransformer())

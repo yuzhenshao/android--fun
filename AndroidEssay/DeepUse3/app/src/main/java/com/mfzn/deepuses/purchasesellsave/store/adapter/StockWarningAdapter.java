@@ -32,8 +32,8 @@ public class StockWarningAdapter extends BaseQuickAdapter<StockWarningResponse.S
         if (!TextUtils.isEmpty(item.getGoodsMainImage())) {
             Glide.with(context).load(ApiHelper.BASE_URL +item.getGoodsMainImage()).into((ImageView) helper.getView(R.id.icon_goods));
         }
-        helper.setText(R.id.name, item.getGoodsName())
-                .setText(R.id.status,"待")
-                .setText(R.id.goods_stock_num, context.getResources().getString(R.string.goods_sum_stock, item.getGoodsNum()));
+        helper.setText(R.id.name, item.getGoodsName()+"  ["+item.getGoodsNum()+"]")
+                .setText(R.id.goods_stock_num, context.getResources().getString(R.string.goods_sum_stock, item.getStockNum()))
+        .addOnClickListener(R.id.status);
     }
 }

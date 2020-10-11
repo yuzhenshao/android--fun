@@ -45,18 +45,13 @@
         android:textColor="#ffe02020"
         android:textSize="16sp" />
 
-    <TextView
+    <ImageView
         android:id="@+id/status"
-        android:layout_width="100dip"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:src="@mipmap/icon_txcg"
         android:layout_alignBottom="@+id/goods_stock_num"
         android:layout_alignParentRight="true"
         android:layout_marginTop="@dimen/app_20dp"
-        android:background="@drawable/flowing_type_tv_bule_shape"
-        android:ellipsize="end"
-        android:gravity="center"
-        android:singleLine="true"
-        android:text="库存：5"
-        android:textColor="#3d7eff"
-        android:textSize="16sp" />
+        />
 </RelativeLayout>

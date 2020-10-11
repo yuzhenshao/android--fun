@@ -479,6 +479,9 @@
         <activity
             android:name=".purchasesellsave.store.activity.StockListActivity"
             android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.store.activity.StockWarningListActivity"
+            android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".purchasesellsave.store.activity.AddOrderStockCheckActivity"

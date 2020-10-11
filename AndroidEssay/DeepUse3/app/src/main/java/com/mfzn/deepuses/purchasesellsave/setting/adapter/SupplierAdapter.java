@@ -23,6 +23,8 @@ public class SupplierAdapter extends BaseQuickAdapter<SupplierListResponse.Suppl
     @Override
     protected void convert(BaseViewHolder helper, SupplierListResponse.SupplierResponse item) {
         helper.setText(R.id.supplier_name, item.getSupplierName())
-                .setText(R.id.user_name, context.getResources().getString(R.string.supplier_name_phone, item.getChargePerson(), item.getChargePersonPhone()));
+                .setText(R.id.user_name, context.getResources().getString(R.string.supplier_name_phone, item.getChargePerson(), item.getChargePersonPhone()))
+        .addOnClickListener(R.id.root_container)
+        .addOnClickListener(R.id.phone);
     }
 }

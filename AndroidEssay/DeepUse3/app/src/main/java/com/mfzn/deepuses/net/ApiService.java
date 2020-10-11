@@ -824,6 +824,11 @@ public interface ApiService {
                                    @Body CommodityRequest request);
 
     @FormUrlEncoded
+    @POST("pss/Setting/delGoods")
+    Flowable<HttpResult> delGoods(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
+                                   @Field("goodsID") String goodsID);
+
+    @FormUrlEncoded
     @POST("pss/Setting/addGoodsCategory")
     Flowable<HttpResult> addGoodsCategory(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
                                           @Field("catName") String catName, @Field("pID") String pID);
@@ -1052,6 +1057,12 @@ public interface ApiService {
     @GET("pss/Store/stockWarning")
     Flowable<HttpResult<StockWarningResponse>> stockWarning(@Query("token") String token, @Query("uid") String uid,
                                                             @Query("shopID") String shopID, @Query("kw") String kw, @Query("storeID") String storeID);
+
+    @FormUrlEncoded
+    @POST("pss/Store/notifyBuy")
+    Flowable<HttpResult> notifyBuy(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
+                                             @Field("data_id") String data_id);
+
 
     @GET("pss/Store/goodsStock")
     Flowable<HttpResult<GoodsStockResponse>> goodsStock(@Query("token") String token, @Query("uid") String uid,

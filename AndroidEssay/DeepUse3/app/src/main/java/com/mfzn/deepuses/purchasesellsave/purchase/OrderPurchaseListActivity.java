@@ -29,7 +29,6 @@ public class OrderPurchaseListActivity extends BasicListActivity<OrderPurchaseLi
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         isSelected = getIntent().getBooleanExtra(ParameterConstant.IS_SELECTED, false);
-        isPurchase = getIntent().getBooleanExtra(ParameterConstant.IS_PURCHASE_CREATE, true);
         mTitleBar.updateTitleBar(isSelected ? "选择导入数据" : "采购");
     }
 
@@ -41,6 +40,7 @@ public class OrderPurchaseListActivity extends BasicListActivity<OrderPurchaseLi
 
     @Override
     protected void getResourceList() {
+        isPurchase = getIntent().getBooleanExtra(ParameterConstant.IS_PURCHASE_CREATE, true);
         showDialog();
         Flowable<HttpResult<OrderPurchaseListResponse>> flowable;
         if (isPurchase) {

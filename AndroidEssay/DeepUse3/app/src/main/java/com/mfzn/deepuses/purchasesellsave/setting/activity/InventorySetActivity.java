@@ -10,6 +10,8 @@ import android.widget.EditText;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.libcommon.dialog.fragment.CustomDialog;
+import com.libcommon.dialog.listener.OnBindViewListener;
+import com.libcommon.dialog.view.BindViewHolder;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BasicListActivity;
 import com.mfzn.deepuses.bean.response.settings.StoreResponse;
@@ -75,6 +77,13 @@ public class InventorySetActivity extends BasicListActivity<StoreResponse> {
                 .setGravity(Gravity.BOTTOM)
                 .setDialogAnimationRes(R.style.ActionSheetDialogAnimation)
                 .addOnClickListener(R.id.btn_commit)
+                .setOnBindViewListener(new OnBindViewListener() {
+                    @Override
+                    public void bindView(BindViewHolder viewHolder) {
+                        viewHolder.setText(R.id.name, storeResponse.getStoreName());
+                        viewHolder.setText(R.id.code, storeResponse.getStoreNum());
+                    }
+                })
                 .setOnViewClickListener((customDialog, bindViewHolder, view) -> {
                     EditText editText = bindViewHolder.getView(R.id.store_number_edit);
                     if (TextUtils.isEmpty(editText.getText())) {

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
     android:layout_height="90dp"
-    android:background="#ffffff"
     android:layout_marginTop="@dimen/app_5dp"
+    android:background="#ffffff"
     android:paddingLeft="@dimen/app_24dp"
     android:paddingRight="@dimen/app_24dp">
 
@@ -11,8 +12,8 @@
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/app_15dp"
         android:layout_gravity="center"
+        android:layout_marginTop="@dimen/app_15dp"
         android:ellipsize="end"
         android:singleLine="true"
         android:text="陈萍萍/万达集团"
@@ -24,10 +25,10 @@
         android:id="@+id/icon_level"
         android:layout_width="@dimen/app_26dp"
         android:layout_height="@dimen/app_20dp"
-        android:layout_toRightOf="@+id/name"
         android:layout_alignTop="@+id/name"
-        android:layout_marginLeft="@dimen/app_15dp"
         android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/app_15dp"
+        android:layout_toRightOf="@+id/name"
         android:scaleType="fitXY"
         android:src="@mipmap/cus_level1" />
 
@@ -35,10 +36,10 @@
         android:id="@+id/number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_toRightOf="@+id/icon_goods"
         android:layout_below="@+id/name"
+        android:layout_gravity="center"
         android:layout_marginTop="@dimen/app_15dp"
+        android:layout_toRightOf="@+id/icon_goods"
         android:ellipsize="end"
         android:singleLine="true"
         android:text="18088880000"
@@ -49,8 +50,8 @@
         android:id="@+id/icon_phone"
         android:layout_width="@dimen/app_26dp"
         android:layout_height="@dimen/app_26dp"
-        android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/number"
+        android:layout_alignParentRight="true"
         android:layout_gravity="center"
         android:scaleType="fitXY"
         android:src="@mipmap/cus_phone" />

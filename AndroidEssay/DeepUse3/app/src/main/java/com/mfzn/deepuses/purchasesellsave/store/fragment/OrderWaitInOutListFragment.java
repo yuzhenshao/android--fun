@@ -35,9 +35,9 @@ public class OrderWaitInOutListFragment extends BasicListFragment<WaitingInOutLi
         type = getArguments().getInt(ParameterConstant.CAPITAL_TYPE);
         Flowable<HttpResult<WaitingInOutListResponse>> todoFloeable;
         if (type == 0) {
-            todoFloeable = ApiServiceManager.getWaitingInList();
-        } else {
             todoFloeable = ApiServiceManager.getWaitingOutList();
+        } else {
+            todoFloeable = ApiServiceManager.getWaitingInList();
         }
         todoFloeable.compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())

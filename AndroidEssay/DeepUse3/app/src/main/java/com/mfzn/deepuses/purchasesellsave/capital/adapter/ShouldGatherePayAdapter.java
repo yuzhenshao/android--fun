@@ -22,7 +22,7 @@ public class ShouldGatherePayAdapter extends BaseQuickAdapter<PayerPayeeListResp
 
     @Override
     protected void convert(BaseViewHolder helper, PayerPayeeListResponse.ListBean.PayerPayeeResponse item) {
-        helper.setText(R.id.name, item.getCustomerOrSupplier())
+        helper.setText(R.id.name, item.getPayee())
                 .setText(R.id.user_name, context.getResources().getString(R.string.store_user_name_phone,
                         item.getChargePerson(), item.getChargePersonPhone()))
                 .setText(R.id.money, (type == 0 ? "应收：" : "应付") + item.getPayeeSumMoney() + " 元");

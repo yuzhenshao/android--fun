@@ -4,17 +4,20 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.libcommon.utils.ListUtil;
 import com.mfzn.deepuses.R;
+import com.mfzn.deepuses.activity.khgl.CustomerMangerActivity;
 import com.mfzn.deepuses.bass.BasicListActivity;
 import com.mfzn.deepuses.bean.constants.ParameterConstant;
 import com.mfzn.deepuses.bean.response.settings.CustomerListResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.purchasesellsave.setting.adapter.SettingCustomerAdapter;
+import com.mfzn.deepuses.utils.PhoneUtils;
 
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
@@ -103,12 +106,21 @@ public class SettingCustomerMangerActivity extends BasicListActivity<CustomerLis
     @Override
     protected BaseQuickAdapter getAdapter() {
         SettingCustomerAdapter mAdapter = new SettingCustomerAdapter(mSourceList);
-        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+        mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int i) {
-                Intent intent = new Intent(SettingCustomerMangerActivity.this, CustomerDetailActivity.class);
-                intent.putExtra(ParameterConstant.CUSTOMER, mSourceList.get(i));
-                startActivityForResult(intent, CUSTOMER_EDIT);
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int i) {
+                if (view.getId() == R.id.icon_phone) {
+                    String phone = mSourceList.get(i).getCustomerPhone();
+                    if (TextUtils.isEmpty(phone)) {
+                        showToast("号码为空");
+                    } else {
+                        PhoneUtils.dialogPhone2(SettingCustomerMangerActivity.this, "拨打", phone, phone);
+                    }
+                } else {
+                    Intent intent = new Intent(SettingCustomerMangerActivity.this, CustomerDetailActivity.class);
+                    intent.putExtra(ParameterConstant.CUSTOMER, mSourceList.get(i));
+                    startActivityForResult(intent, CUSTOMER_EDIT);
+                }
             }
         });
         return mAdapter;

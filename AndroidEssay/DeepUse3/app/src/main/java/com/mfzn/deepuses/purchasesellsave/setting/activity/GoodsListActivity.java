@@ -18,15 +18,19 @@ import com.libcommon.dialog.fragment.CustomDialog;
 import com.libcommon.dialog.listener.OnBindViewListener;
 import com.libcommon.dialog.listener.OnViewClickListener;
 import com.libcommon.dialog.view.BindViewHolder;
+import com.libcommon.slidemenu.MenuHelper;
+import com.libcommon.slidemenu.MenuItemClickListener;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BasicListActivity;
 import com.mfzn.deepuses.bean.constants.ParameterConstant;
 import com.mfzn.deepuses.bean.request.CommodityRequest;
+import com.mfzn.deepuses.bean.response.GoodsUnitResponse;
 import com.mfzn.deepuses.bean.response.settings.GoodsInfoResponse;
 import com.mfzn.deepuses.bean.response.settings.GoodsListResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.purchasesellsave.setting.adapter.GoodsAdapter;
+import com.mfzn.deepuses.utils.ToastUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -89,6 +93,20 @@ public class GoodsListActivity extends BasicListActivity<GoodsInfoResponse> {
     @Override
     protected BaseQuickAdapter getAdapter() {
         GoodsAdapter mAdapter = new GoodsAdapter(this, mSourceList);
+        MenuHelper.attach(recyclerView, new MenuHelper.MenuEnableDecider() {
+            @Override
+            public boolean enable(int position) {
+                return true;
+            }
+        });
+
+        mAdapter.setOnMenuItemClickListener(new MenuItemClickListener() {
+            @Override
+            public void onClick(int index, View view) {
+                showDeleteDialog(index);
+            }
+        }, R.id.cancel);
+
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
 
             @Override
@@ -103,6 +121,38 @@ public class GoodsListActivity extends BasicListActivity<GoodsInfoResponse> {
             }
         });
         return mAdapter;
+    }
+
+    private void showDeleteDialog(int index) {
+        DialogUtils.showConfirmDialog(this, "确定删除该商品？", new OnViewClickListener() {
+            @Override
+            public void onViewClick(BaseDialogFragment dialog, BindViewHolder viewHolder, View view) {
+                deleteGoods(index);
+            }
+        });
+    }
+
+    public void deleteGoods(int index) {
+        GoodsInfoResponse goodsResponse = mSourceList.get(index);
+        if (goodsResponse != null) {
+            ApiServiceManager.delGoods(goodsResponse.getGoodsID())
+                    .compose(XApi.getApiTransformer())
+                    .compose(XApi.getScheduler())
+                    .compose(bindToLifecycle())
+                    .subscribe(new ApiSubscriber<HttpResult>() {
+                        @Override
+                        protected void onFail(NetError error) {
+                            ToastUtil.showToast(GoodsListActivity.this, error.getMessage());
+                        }
+
+                        @Override
+                        public void onNext(HttpResult reuslt) {
+                            ToastUtil.showToast(GoodsListActivity.this, "删除成功");
+                            mSourceList.remove(index);
+                            adapter.notifyItemRemoved(index);
+                        }
+                    });
+        }
     }
 
     protected void searchAction(String keyword) {

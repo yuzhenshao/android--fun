@@ -22,9 +22,6 @@ import cn.droidlover.xdroidmvp.net.XApi;
 
 public class StockWarningListActivity extends BasicListActivity<StockWarningResponse.StockWarning> {
 
-    @BindView(R.id.sum_stock)
-    TextView sumStock;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +45,6 @@ public class StockWarningListActivity extends BasicListActivity<StockWarningResp
                     public void onNext(HttpResult<StockWarningResponse> reuslt) {
                         StockWarningResponse response = reuslt.getRes();
                         if (response != null) {
-                            sumStock.setText("库存总数量：" + response.getTotal());
                             if (!ListUtil.isEmpty(response.getData())) {
                                 refreshSource(response.getData());
                                 return;
@@ -62,11 +58,26 @@ public class StockWarningListActivity extends BasicListActivity<StockWarningResp
     @Override
     protected BaseQuickAdapter getAdapter() {
         StockWarningAdapter mAdapter = new StockWarningAdapter(this, mSourceList);
-        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-
+        mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int i) {
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int i) {
+                if (view.getId() == R.id.status) {
+                    ApiServiceManager.notifyBuy(mSourceList.get(i).getData_id())
+                            .compose(XApi.getApiTransformer())
+                            .compose(XApi.getScheduler())
+                            .compose(bindToLifecycle())
+                            .subscribe(new ApiSubscriber<HttpResult>() {
+                                @Override
+                                protected void onFail(NetError error) {
+                                    showToast(error.getMessage());
+                                }
 
+                                @Override
+                                public void onNext(HttpResult reuslt) {
+                                    showToast("提醒成功");
+                                }
+                            });
+                }
             }
         });
         return mAdapter;

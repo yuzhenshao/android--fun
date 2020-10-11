@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.libcommon.slidemenu.MenuQuickAdapter;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bean.request.CommodityRequest;
 import com.mfzn.deepuses.bean.response.settings.GoodsInfoResponse;
@@ -18,12 +19,12 @@ import java.util.List;
 /**
  * @author yz @date 2020-05-03
  */
-public class GoodsAdapter extends BaseQuickAdapter<GoodsInfoResponse, BaseViewHolder> {
+public class GoodsAdapter extends MenuQuickAdapter<GoodsInfoResponse, BaseViewHolder> {
 
     protected Context context;
 
     public GoodsAdapter(Context context, @Nullable List<GoodsInfoResponse> data) {
-        super(R.layout.goods_item_view, data);
+        super(R.layout.goods_item_view,R.layout.delete_menu, data);
         this.context = context;
     }
 
@@ -39,7 +40,7 @@ public class GoodsAdapter extends BaseQuickAdapter<GoodsInfoResponse, BaseViewHo
         if (item.isHasTaxRate()) {
             content += "(含税" + item.getTaxRate() * 100 + "%)";
         }
-        helper.setText(R.id.name, item.getGoodsName())
+        helper.setText(R.id.name, item.getGoodsName()+"  ["+item.getGoodsNum()+"]")
                 .setText(R.id.price, content)
                 .setText(R.id.goods_stock_num, context.getResources().getString(R.string.goods_sum_stock, item.getGoodsSumStockNum()));
     }

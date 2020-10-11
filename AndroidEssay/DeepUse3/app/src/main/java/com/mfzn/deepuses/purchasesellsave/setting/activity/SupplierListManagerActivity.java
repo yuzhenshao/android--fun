@@ -3,6 +3,7 @@ package com.mfzn.deepuses.purchasesellsave.setting.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
@@ -14,6 +15,7 @@ import com.mfzn.deepuses.bean.response.settings.SupplierListResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.purchasesellsave.setting.adapter.SupplierAdapter;
+import com.mfzn.deepuses.utils.PhoneUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -68,12 +70,22 @@ public class SupplierListManagerActivity extends BasicListActivity<SupplierListR
     @Override
     protected BaseQuickAdapter getAdapter() {
         SupplierAdapter mAdapter = new SupplierAdapter(this, mSourceList);
-        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+
+        mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int i) {
-                Intent intent = new Intent(SupplierListManagerActivity.this, SupplierCreateEditActivity.class);
-                intent.putExtra(ParameterConstant.SUPPLIER, mSourceList.get(i));
-                startActivityForResult(intent, REQUESTCODE);
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int i) {
+                if (view.getId() == R.id.phone) {
+                    String phone = mSourceList.get(i).getChargePersonPhone();
+                    if (TextUtils.isEmpty(phone)) {
+                        showToast("号码为空");
+                    } else {
+                        PhoneUtils.dialogPhone2(SupplierListManagerActivity.this, "拨打", phone, phone);
+                    }
+                } else {
+                    Intent intent = new Intent(SupplierListManagerActivity.this, SupplierCreateEditActivity.class);
+                    intent.putExtra(ParameterConstant.SUPPLIER, mSourceList.get(i));
+                    startActivityForResult(intent, REQUESTCODE);
+                }
             }
         });
         return mAdapter;

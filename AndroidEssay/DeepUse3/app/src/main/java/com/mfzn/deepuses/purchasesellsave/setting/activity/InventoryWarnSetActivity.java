@@ -10,6 +10,8 @@ import android.widget.EditText;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.libcommon.dialog.fragment.CustomDialog;
+import com.libcommon.dialog.listener.OnBindViewListener;
+import com.libcommon.dialog.view.BindViewHolder;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BasicListActivity;
 import com.mfzn.deepuses.bean.response.settings.StoreResponse;
@@ -64,26 +66,33 @@ public class InventoryWarnSetActivity extends BasicListActivity<StoreResponse> {
 
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                showStoreNumberSetDialog(mSourceList.get(position).getStoreID());
+                showStoreNumberSetDialog(mSourceList.get(position));
             }
         });
         return mAdapter;
     }
 
-    public void showStoreNumberSetDialog(String storeId) {
+    public void showStoreNumberSetDialog(StoreResponse storeResponse) {
         new CustomDialog.Builder().setLayoutRes(R.layout.dialog_set_warn_inventory)
                 .setWidth(WindowManager.LayoutParams.MATCH_PARENT)
                 .setHeight(WindowManager.LayoutParams.WRAP_CONTENT)
                 .setGravity(Gravity.BOTTOM)
                 .setDialogAnimationRes(R.style.ActionSheetDialogAnimation)
                 .addOnClickListener(R.id.btn_commit)
+                .setOnBindViewListener(new OnBindViewListener() {
+                    @Override
+                    public void bindView(BindViewHolder viewHolder) {
+                        viewHolder.setText(R.id.name, storeResponse.getStoreName());
+                        viewHolder.setText(R.id.code, storeResponse.getStoreNum());
+                    }
+                })
                 .setOnViewClickListener((customDialog, bindViewHolder, view) -> {
                     EditText minEditText = bindViewHolder.getView(R.id.store_min_edit);
                     EditText maxEditText = bindViewHolder.getView(R.id.store_max_edit);
                     if (TextUtils.isEmpty(minEditText.getText()) || TextUtils.isEmpty(maxEditText.getText())) {
                         ToastUtil.showToast(InventoryWarnSetActivity.this, "请设置库存量");
                     } else {
-                        JXCDataManager.getInstance().addStoreSet(storeId, maxEditText.getText().toString(),
+                        JXCDataManager.getInstance().addStoreSet(storeResponse.getStoreID(), maxEditText.getText().toString(),
                                 minEditText.getText().toString());
                         if (customDialog != null) {
                             customDialog.dismiss();

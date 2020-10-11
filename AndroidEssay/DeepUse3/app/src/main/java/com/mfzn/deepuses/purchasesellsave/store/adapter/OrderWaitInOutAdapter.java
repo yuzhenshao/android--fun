@@ -34,7 +34,7 @@ public class OrderWaitInOutAdapter extends BaseQuickAdapter<WaitingInOutListResp
             recyclerView.setAdapter(new ImageAdapter(context, images));
         }
 
-        helper.setText(R.id.name, item.getReceiverName())
+        helper.setText(R.id.name, item.getOrderTypeName()+"（"+item.getReceiverName()+"）")
                 .setText(R.id.order_num, item.getOrderNum())
                 .setText(R.id.goods_size, "共计" + (ListUtil.isEmpty(item.getGoodsInfo())?0: item.getGoodsInfo().size()) + "件")
                 .setVisible(R.id.total_price, false)

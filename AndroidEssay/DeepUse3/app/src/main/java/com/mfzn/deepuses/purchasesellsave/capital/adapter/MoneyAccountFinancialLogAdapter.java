@@ -23,6 +23,6 @@ public class MoneyAccountFinancialLogAdapter extends BaseQuickAdapter<MoneyAccou
                 .setTextColor(R.id.money, Color.parseColor(item.getType()==1?"#62C33A":"#E02020"))
                 .setText(R.id.nowMoney, "余额："+item.getNowMoney())
                 .setText(R.id.order_num, item.getOrderNum() )
-                .setText(R.id.show_name, item.getShowName());
+                .setText(R.id.show_name, item.getDataUserName()+"("+item.getOrderTypeName()+")");
     }
 }

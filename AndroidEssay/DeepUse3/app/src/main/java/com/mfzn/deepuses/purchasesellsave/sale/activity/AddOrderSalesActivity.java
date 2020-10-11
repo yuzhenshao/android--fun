@@ -6,9 +6,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextUtils;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.activity.project.ProjectManageActivity;
@@ -19,6 +24,9 @@ import com.mfzn.deepuses.common.PickerDialogView;
 import com.mfzn.deepuses.model.company.CityModel;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
+import com.mfzn.deepuses.purchasesellsave.setting.activity.CommodityCreateActivity;
+import com.mfzn.deepuses.purchasesellsave.setting.activity.CommodityPhotoCreateActivity;
+import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsSelectListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.MoneyAccountListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.MyStoreListActivity;
@@ -100,7 +108,7 @@ public class AddOrderSalesActivity extends BaseAddCustomerAndGoodsActivity {
                 turnToCostSelect();
                 break;
             case R.id.store_select:
-                intent.setClass(AddOrderSalesActivity.this, isRetail? MyStoreListActivity.class:StoreListActivity.class);
+                intent.setClass(AddOrderSalesActivity.this, isRetail ? MyStoreListActivity.class : StoreListActivity.class);
                 intent.putExtra(ParameterConstant.IS_SELECTED, true);
                 startActivityForResult(intent, STORE);
                 break;
@@ -122,7 +130,7 @@ public class AddOrderSalesActivity extends BaseAddCustomerAndGoodsActivity {
                 break;
             case R.id.money_account_select:
                 intent.setClass(AddOrderSalesActivity.this, MoneyAccountListActivity.class);
-                intent.putExtra(ParameterConstant.IS_SELECTED,true);
+                intent.putExtra(ParameterConstant.IS_SELECTED, true);
                 startActivityForResult(intent, ACCOUNT);
                 break;
         }
@@ -139,7 +147,7 @@ public class AddOrderSalesActivity extends BaseAddCustomerAndGoodsActivity {
         request.setOrderGoodsStr(getOrderGoodsStr7());
         request.setDiscountAmount(mdiscountPrice);
         request.setTotalMoney(mTotalPrice);
-        request.setRealMoney(getRealMoney(mTotalPrice,mdiscountPrice));
+        request.setRealMoney(getRealMoney(mTotalPrice, mdiscountPrice));
         request.setOrderTime(orderTime);
         request.setOutNum(outNumEdit.getText().toString());
         request.setOrderMakerUserID(UserHelper.getUserId());
@@ -227,13 +235,13 @@ public class AddOrderSalesActivity extends BaseAddCustomerAndGoodsActivity {
 
     @Override
     protected void turnToGoodsSelected() {
-        if(isRetail&&request.getStoreID()==null){
+        if (isRetail && request.getStoreID() == null) {
             showToast("请先选择出货仓库");
             return;
         }
         Intent intent = new Intent();
         intent.setClass(this, GoodsSelectListActivity.class);
-        intent.putExtra(ParameterConstant.IS_PERSONAL_STORE_GOODS,isPersonalStoreGoods);
+        intent.putExtra(ParameterConstant.IS_PERSONAL_STORE_GOODS, isPersonalStoreGoods);
         startActivityForResult(intent, GOODS);
     }
 
@@ -244,9 +252,9 @@ public class AddOrderSalesActivity extends BaseAddCustomerAndGoodsActivity {
             if (requestCode == STORE) {
                 request.setStoreID(data.getStringExtra("Id"));
                 if (isRetail) {
-                    int storeType=data.getIntExtra("Type",0);
+                    int storeType = data.getIntExtra("Type", 0);
                     request.setStoreType(storeType);
-                    isPersonalStoreGoods=storeType==1?0:1;
+                    isPersonalStoreGoods = storeType == 1 ? 0 : 1;
                     clearGoods();
                 }
                 storeEdit.setText(data.getStringExtra("Name"));
@@ -317,5 +325,30 @@ public class AddOrderSalesActivity extends BaseAddCustomerAndGoodsActivity {
         Intent intent = new Intent(this, OrderInputListActivity.class);
         intent.putExtra(ParameterConstant.INPUT_TYPE, isRetail ? 1 : 2);//1 零售 2销售
         startActivityForResult(intent, INPUT);
+
+//TODO 
+//        View contentView = LayoutInflater.from(this).inflate(R.layout.goods_popupwindow, null, false);
+//        TextView goodsPhotoEntry = contentView.findViewById(R.id.goods_photo_entry);
+//        goodsPhotoEntry.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(AddOrderSalesActivity.this, CommodityPhotoCreateActivity.class));
+//            }
+//        });
+//        TextView goodsFormEntry = contentView.findViewById(R.id.goods_form_entry);
+//        goodsFormEntry.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(AddOrderSalesActivity.this, CommodityCreateActivity.class));
+//            }
+//        });
+//
+//        PopupWindow popupWindow = new PopupWindow(contentView, ViewGroup.LayoutParams.WRAP_CONTENT,
+//                ViewGroup.LayoutParams.WRAP_CONTENT, true);
+//        popupWindow.setOutsideTouchable(true);
+//        popupWindow.setAnimationStyle(R.style.popup_window_anim_style);
+//        popupWindow.showAtLocation(mTitleBar, Gravity.TOP, 0,
+//                mTitleBar.getHeight());
+
     }
 }

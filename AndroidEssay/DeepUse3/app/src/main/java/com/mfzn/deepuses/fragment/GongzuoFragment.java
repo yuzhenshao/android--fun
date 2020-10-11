@@ -93,6 +93,7 @@ import com.mfzn.deepuses.purchasesellsave.store.activity.AddOrderStockCheckActiv
 import com.mfzn.deepuses.purchasesellsave.store.activity.OrderWaitInOutListActivity;
 import com.mfzn.deepuses.purchasesellsave.store.activity.StockListActivity;
 import com.mfzn.deepuses.purchasesellsave.store.activity.StockLogListActivity;
+import com.mfzn.deepuses.purchasesellsave.store.activity.StockWarningListActivity;
 import com.mfzn.deepuses.purchasesellsave.store.activity.StoreAllCheckListActivity;
 import com.mfzn.deepuses.purchasesellsave.store.activity.StoreCheckListActivity;
 import com.mfzn.deepuses.purchasesellsave.user.TodoOrderCheckActivity;
@@ -557,7 +558,7 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
     private void setKhgl() {
         khglModel.clear();
         //客户管理
-        HomeShowModel showMode20 = new HomeShowModel("客户管理", "khgl", R.mipmap.home_khgl);
+        HomeShowModel showMode20 = new HomeShowModel("公司客户", "khgl", R.mipmap.home_khgl);
         HomeShowModel showMode21 = new HomeShowModel("我的客户", "wdkh", R.mipmap.home_wdkh);
         HomeShowModel showMode22 = new HomeShowModel("添加客户", "xjkh", R.mipmap.home_xjkh);
         HomeShowModel showMode23 = new HomeShowModel("分享客户", "fxkh", R.mipmap.home_wdgx);
@@ -816,6 +817,7 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
         //只有列表和库存总量，item没有点击
         ckglModel.add(new HomeShowModel("库存流水", R.mipmap.icon_kcls));
         ckglModel.add(new HomeShowModel("库存查询", R.mipmap.icon_kccx));
+        ckglModel.add(new HomeShowModel("库存预警", R.mipmap.icon_kcyj));
 
         HomeWdxmAdapter ckglAdapter = new HomeWdxmAdapter(getActivity(), ckglModel);
         ckglRecyleview.setAdapter(ckglAdapter);
@@ -836,7 +838,6 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
                 intent.putExtra(ParameterConstant.SHOP_ID, shop.getShopID());
                 switch (position) {
                     case 0:
-                        //TODO 暂时不做
                         startActivity(new Intent(getActivity(), OrderWaitInOutListActivity.class));
                         break;
                     case 1:
@@ -868,6 +869,9 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
                         break;
                     case 10:
                         startActivity(new Intent(getActivity(), StockListActivity.class));
+                        break;
+                    case 11:
+                        startActivity(new Intent(getActivity(), StockWarningListActivity.class));
                         break;
                 }
             }
@@ -957,6 +961,7 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
                 switch (position) {
                     case 0:
                         intent.setClass(getActivity(), OrderPurchaseListActivity.class);
+                        intent.putExtra(ParameterConstant.IS_PURCHASE_CREATE, true);
                         startActivity(intent);
                         break;
                     case 1:
