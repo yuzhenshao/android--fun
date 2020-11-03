@@ -26,10 +26,16 @@ public interface ParameterConstant {
     String COST_TYPE_SELECTED = "costTypeSelected";
     String COST_TYPE_NUMBER_SET = "numberSet";
 
+//门店
+    String SHOP_STAFF = "shopStaff";
+    String SHOP_NAME = "shopName";
+    String SHOP_STAFF_ID="shopStaffId";
+
 
     //销售
     String IS_RETAIL_CREATE = "isRetail";
     String SHOP = "shop";
+
     String MAP_SHOP_ID = "mapShopID";
     String INPUT_TYPE = "inputType";
     String INPUT_DATA = "inputData";

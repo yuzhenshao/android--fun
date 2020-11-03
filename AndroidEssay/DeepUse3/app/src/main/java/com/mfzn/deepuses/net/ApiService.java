@@ -33,6 +33,7 @@ import com.mfzn.deepuses.bean.request.sale.OrderTakeGoodsBackRequest;
 import com.mfzn.deepuses.bean.request.sale.OrderTakeGoodsRequest;
 import com.mfzn.deepuses.bean.request.setting.AddMoneyAccountRequest;
 import com.mfzn.deepuses.bean.request.setting.AddSetCustomerRequest;
+import com.mfzn.deepuses.bean.request.setting.SetUserAuthRequest;
 import com.mfzn.deepuses.bean.request.store.OrderAllotAddRequest;
 import com.mfzn.deepuses.bean.request.store.OrderStockCheckRequest;
 import com.mfzn.deepuses.bean.response.BusinessCardResponse;
@@ -53,6 +54,7 @@ import com.mfzn.deepuses.bean.response.settings.CustomerListResponse;
 import com.mfzn.deepuses.bean.response.settings.MoneyAccountListResponse;
 import com.mfzn.deepuses.bean.response.settings.MyStoreResponse;
 import com.mfzn.deepuses.bean.response.settings.RateResponse;
+import com.mfzn.deepuses.bean.response.settings.ShopCheckerResponse;
 import com.mfzn.deepuses.bean.response.settings.StoreResponse;
 import com.mfzn.deepuses.bean.response.UserResponse;
 import com.mfzn.deepuses.bean.response.settings.GoodsDetailResponse;
@@ -62,6 +64,8 @@ import com.mfzn.deepuses.bean.response.settings.OtherCostResponse;
 import com.mfzn.deepuses.bean.response.settings.SupplierListResponse;
 import com.mfzn.deepuses.bean.response.shop.ShopDataResponse;
 import com.mfzn.deepuses.bean.response.shop.ShopListResponse;
+import com.mfzn.deepuses.bean.response.shop.ShopUserListResponse;
+import com.mfzn.deepuses.bean.response.shop.UserAuthResponse;
 import com.mfzn.deepuses.bean.response.store.GoodsStockResponse;
 import com.mfzn.deepuses.bean.response.store.OrderAllotListResponse;
 import com.mfzn.deepuses.bean.response.store.OrderOtherInOutListResponse;
@@ -997,6 +1001,26 @@ public interface ApiService {
                                  @Field("shopName") String shopName, @Field("chargePersonUserID") String chargePersonUserID,
                                  @Field("contactPhone") String contactPhone, @Field("shopAddress") String shopAddress,
                                  @Field("remark") String remark);
+
+    @GET("pss/Setting/shopUserList")
+    Flowable<HttpResult<ShopUserListResponse>> getShopUserList(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID);
+
+    @GET("pss/Setting/getUserAuth")
+    Flowable<HttpResult<UserAuthResponse>> getUserAuth(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Query("userID") String userID);
+
+    @FormUrlEncoded
+    @POST("pss/Setting/shopUserAdd")
+    Flowable<HttpResult> shopUserAdd(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Field("userID") String userID);
+
+    @POST("pss/Setting/setUserAuth")
+    Flowable<HttpResult> setUserAuth(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Body SetUserAuthRequest request);
+
+    @GET("pss/Setting/getShopCheckerList")
+    Flowable<HttpResult<List<ShopCheckerResponse>>> getShopCheckerList(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID);
+    @FormUrlEncoded
+    @POST("pss/Setting/setShopChecker")
+    Flowable<HttpResult> setShopChecker(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Field("data_id") String data_id,@Field("checkPersonUserID") String checkPersonUserID);
+
 
     //销售
     @GET("pss/Sale/orderOfferList")

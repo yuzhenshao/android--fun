@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F7FA"
+    android:orientation="vertical">
+
+    <com.libcommon.titlebar.TitleBar
+        android:id="@+id/titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_70dp"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/app_24dp">
+
+        <com.mfzn.deepuses.view.RoundImageView
+            android:id="@+id/user_avatar"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:scaleType="fitXY"
+            android:src="@mipmap/moren_touxiang" />
+
+
+        <TextView
+            android:id="@+id/staff_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/app_10dp"
+            android:layout_toRightOf="@+id/user_avatar"
+            android:text="MD0001"
+            android:textColor="#303133"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_toRightOf="@+id/staff_name"
+            android:src="@mipmap/personal_info" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/app_24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/app_12dp"
+            android:text="企业/团队"
+            android:textColor="#ff909399"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/company_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="麦麸智能科技（常州）有限公司"
+            android:textColor="#ff303133"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <View style="@style/line_heng" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/app_24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/app_12dp"
+            android:text="姓名"
+            android:textColor="#ff909399"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="麦麸智能科技（常州）有限公司"
+            android:textColor="#ff303133"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <View style="@style/line_heng" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/app_24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/app_12dp"
+            android:text="电话"
+            android:textColor="#ff909399"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/user_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="1234456"
+            android:textColor="#ff303133"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <View style="@style/line_heng" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/app_24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/app_12dp"
+            android:text="部门"
+            android:textColor="#ff909399"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/department_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="研发部-产品设计部"
+            android:textColor="#ff303133"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/auth"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/app_24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="权限"
+            android:textColor="#ff303133"
+            android:textSize="16sp" />
+
+        <ImageView
+            style="@style/bass_iv_you"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/app_24dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/bei_zhu"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/app_24dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="备注"
+            android:textColor="#ff303133"
+            android:textSize="16sp" />
+
+        <ImageView
+            style="@style/bass_iv_you"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/app_24dp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/call"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="@dimen/app_24dp"
+        android:layout_marginTop="@dimen/app_30dp"
+        android:layout_marginRight="@dimen/app_24dp"
+        android:layout_marginBottom="28dp"
+        android:background="@drawable/radius2_4a90e2_shape"
+        android:gravity="center"
+        android:text="打电话"
+        android:textColor="#ffffff"
+        android:textSize="18sp" />
+</LinearLayout>

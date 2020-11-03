@@ -1,6 +1,5 @@
 package com.mfzn.deepuses.purchasesellsave.shop.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,10 +9,10 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BasicListActivity;
 import com.mfzn.deepuses.bean.constants.ParameterConstant;
-import com.mfzn.deepuses.bean.response.shop.ShopListResponse;
+import com.mfzn.deepuses.bean.response.settings.ShopCheckerResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
-import com.mfzn.deepuses.purchasesellsave.shop.adapter.ShopAdapter;
+import com.mfzn.deepuses.purchasesellsave.shop.adapter.ShopAuthSetAdapter;
 
 import java.util.List;
 
@@ -21,32 +20,36 @@ import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.XApi;
 
-public class ShopListManagerActivity extends BasicListActivity<ShopListResponse> {
+public class ShopAuthSetActivity extends BasicListActivity<ShopCheckerResponse> {
 
-    private static int REQUESTCODE = 2000;
-    private boolean isSelected;
+    private static int REQUESTCODE=101;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mTitleBar.updateTitleBar("门店管理", R.mipmap.icon_titlebar_add);
-        isSelected=getIntent().getBooleanExtra(ParameterConstant.IS_SELECTED,false);
+        mTitleBar.updateTitleBar("单据审核设计");
     }
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_shop_set_auth;
+    }
+
 
     @Override
     protected void getResourceList() {
         showDialog();
-        ApiServiceManager.getShopList()
+        ApiServiceManager.getShopCheckerList()
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(bindToLifecycle())
-                .subscribe(new ApiSubscriber<HttpResult<List<ShopListResponse>>>() {
+                .subscribe(new ApiSubscriber<HttpResult<List<ShopCheckerResponse>>>() {
                     @Override
                     protected void onFail(NetError error) {
                         showErrorView(error.getMessage());
                     }
 
                     @Override
-                    public void onNext(HttpResult<List<ShopListResponse>> result) {
+                    public void onNext(HttpResult<List<ShopCheckerResponse>> result) {
                         refreshSource(result.getRes());
                     }
                 });
@@ -54,28 +57,16 @@ public class ShopListManagerActivity extends BasicListActivity<ShopListResponse>
 
     @Override
     protected BaseQuickAdapter getAdapter() {
-        ShopAdapter mAdapter = new ShopAdapter(this, mSourceList);
+        ShopAuthSetAdapter mAdapter = new ShopAuthSetAdapter(this, mSourceList);
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int i) {
-                if(isSelected){
-                    Intent storeIntent = new Intent();
-                    storeIntent.putExtra(ParameterConstant.SHOP, mSourceList.get(i));
-                    setResult(Activity.RESULT_OK, storeIntent);
-                    finish();
-                }else{
-                    Intent intent = new Intent(ShopListManagerActivity.this, ShopDetailActivity.class);
-                    intent.putExtra(ParameterConstant.MAP_SHOP_ID, mSourceList.get(i).getShopID());
-                    intent.putExtra(ParameterConstant.SHOP_NAME, mSourceList.get(i).getShopName());
-                    startActivityForResult(intent, REQUESTCODE);
-                }
+                Intent intent = new Intent(ShopAuthSetActivity.this, ShopCheckerListActivity.class);
+                intent.putExtra(ParameterConstant.ORDER_ID, mSourceList.get(i).getData_id());
+                startActivityForResult(intent, REQUESTCODE);
             }
         });
         return mAdapter;
-    }
-
-    protected void rightPressedAction() {
-        startActivityForResult(new Intent(this, AddShopActivity.class), REQUESTCODE);
     }
 
     @Override

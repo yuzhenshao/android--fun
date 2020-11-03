@@ -525,6 +525,22 @@
             android:name=".purchasesellsave.shop.activity.ShopDetailActivity"
             android:screenOrientation="portrait"></activity>
         <activity
+            android:name=".purchasesellsave.shop.activity.ShopAuthSetActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.shop.activity.ShopCheckerListActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.shop.activity.ShopStaffInfoActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.shop.activity.ShopStaffAuthActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.shop.activity.ShopUserManagerListActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
             android:name=".activityfx.ChangjingListActivity"
             android:screenOrientation="portrait"></activity>
         <activity

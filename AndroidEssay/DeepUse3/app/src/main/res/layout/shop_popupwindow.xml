@@ -7,26 +7,26 @@
     android:background="#ffffff">
 
     <TextView
-        android:id="@+id/goods_photo_entry"
+        android:id="@+id/shop_verify"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/app_50dp"
-        android:drawableLeft="@mipmap/icon_goods_photo"
+        android:drawableLeft="@mipmap/icon_shop_verify"
         android:drawablePadding="@dimen/app_6dp"
         android:gravity="center"
-        android:text="拍照录入"
+        android:text="员工管理"
         android:textColor="#ff606266"
         android:textSize="14sp" />
 
     <View style="@style/line_heng" />
 
     <TextView
-        android:id="@+id/goods_form_entry"
+        android:id="@+id/shop_staff_set"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/app_50dp"
-        android:drawableLeft="@mipmap/icon_goods_form"
+        android:drawableLeft="@mipmap/icon_staff_set"
         android:drawablePadding="@dimen/app_6dp"
         android:gravity="center"
-        android:text="表单录入"
+        android:text="审核设置"
         android:textColor="#ff606266"
         android:textSize="14sp" />
 </LinearLayout>

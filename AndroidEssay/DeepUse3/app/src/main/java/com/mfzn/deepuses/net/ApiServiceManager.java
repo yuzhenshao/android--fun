@@ -33,6 +33,7 @@ import com.mfzn.deepuses.bean.request.sale.OrderTakeGoodsBackRequest;
 import com.mfzn.deepuses.bean.request.sale.OrderTakeGoodsRequest;
 import com.mfzn.deepuses.bean.request.setting.AddMoneyAccountRequest;
 import com.mfzn.deepuses.bean.request.setting.AddSetCustomerRequest;
+import com.mfzn.deepuses.bean.request.setting.SetUserAuthRequest;
 import com.mfzn.deepuses.bean.request.store.OrderAllotAddRequest;
 import com.mfzn.deepuses.bean.request.store.OrderStockCheckRequest;
 import com.mfzn.deepuses.bean.response.GoodsCategoryResponse;
@@ -52,6 +53,7 @@ import com.mfzn.deepuses.bean.response.settings.CustomerListResponse;
 import com.mfzn.deepuses.bean.response.settings.MoneyAccountListResponse;
 import com.mfzn.deepuses.bean.response.settings.MyStoreResponse;
 import com.mfzn.deepuses.bean.response.settings.RateResponse;
+import com.mfzn.deepuses.bean.response.settings.ShopCheckerResponse;
 import com.mfzn.deepuses.bean.response.settings.StoreResponse;
 import com.mfzn.deepuses.bean.response.UserResponse;
 import com.mfzn.deepuses.bean.response.settings.GoodsDetailResponse;
@@ -62,6 +64,8 @@ import com.mfzn.deepuses.bean.response.settings.SupplierCustomerInfoResponse;
 import com.mfzn.deepuses.bean.response.settings.SupplierListResponse;
 import com.mfzn.deepuses.bean.response.shop.ShopDataResponse;
 import com.mfzn.deepuses.bean.response.shop.ShopListResponse;
+import com.mfzn.deepuses.bean.response.shop.ShopUserListResponse;
+import com.mfzn.deepuses.bean.response.shop.UserAuthResponse;
 import com.mfzn.deepuses.bean.response.store.GoodsStockResponse;
 import com.mfzn.deepuses.bean.response.store.OrderAllotListResponse;
 import com.mfzn.deepuses.bean.response.store.OrderOtherInOutListResponse;
@@ -333,7 +337,7 @@ public class ApiServiceManager {
         return ApiHelper.getApiService().editGoods(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), request);
     }
 
-    public static Flowable<HttpResult> delGoods(String  goodsID) {
+    public static Flowable<HttpResult> delGoods(String goodsID) {
         return ApiHelper.getApiService().delGoods(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), goodsID);
     }
 
@@ -405,7 +409,7 @@ public class ApiServiceManager {
     }
 
     public static Flowable<HttpResult<List<MyStoreResponse>>> storeListWithMy() {
-        return ApiHelper.getApiService().storeListWithMy(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(),0);
+        return ApiHelper.getApiService().storeListWithMy(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), 0);
     }
 
     public static Flowable<HttpResult> editStore(StoreResponse request) {
@@ -556,6 +560,29 @@ public class ApiServiceManager {
                 shopName, chargePersonUserID, contactPhone, shopAddress, remark);
     }
 
+    public static Flowable<HttpResult<ShopUserListResponse>> getShopUserList() {
+        return ApiHelper.getApiService().getShopUserList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId());
+    }
+
+    public static Flowable<HttpResult<UserAuthResponse>> getUserAuth(String userId) {
+        return ApiHelper.getApiService().getUserAuth(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), userId);
+    }
+
+    public static Flowable<HttpResult> shopUserAdd(String userId) {
+        return ApiHelper.getApiService().shopUserAdd(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), userId);
+    }
+
+    public static Flowable<HttpResult> setUserAuth(SetUserAuthRequest request) {
+        return ApiHelper.getApiService().setUserAuth(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), request);
+    }
+
+    public static Flowable<HttpResult<List<ShopCheckerResponse>>> getShopCheckerList() {
+        return ApiHelper.getApiService().getShopCheckerList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId());
+    }
+
+    public static Flowable<HttpResult> setShopChecker(String dataId,String checkPersonUserID) {
+        return ApiHelper.getApiService().setShopChecker(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), dataId,checkPersonUserID);
+    }
     //销售
 
     public static Flowable<HttpResult<OrderOfferListResponse>> getOrderOfferList() {

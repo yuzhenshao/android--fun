@@ -1,7 +1,14 @@
 package com.mfzn.deepuses.purchasesellsave.shop.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.Display;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.mfzn.deepuses.R;
@@ -10,6 +17,9 @@ import com.mfzn.deepuses.bean.constants.ParameterConstant;
 import com.mfzn.deepuses.bean.response.shop.ShopDataResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
+import com.mfzn.deepuses.purchasesellsave.sale.activity.AddOrderSalesActivity;
+import com.mfzn.deepuses.purchasesellsave.sale.activity.OrderInputListActivity;
+
 import butterknife.BindView;
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
@@ -57,7 +67,7 @@ public class ShopDetailActivity extends BasicActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mTitleBar.updateTitleBar("新增门店");
+        mTitleBar.updateTitleBar(getIntent().getStringExtra(ParameterConstant.SHOP_NAME), R.mipmap.icon_shop_set);
         mapShopID = getIntent().getStringExtra(ParameterConstant.MAP_SHOP_ID);
         ApiServiceManager.getShopData(mapShopID)
                 .compose(XApi.getApiTransformer())
@@ -77,16 +87,16 @@ public class ShopDetailActivity extends BasicActivity {
     }
 
     private void setShopDetailData(ShopDataResponse res) {
-       // salePersonEView.setText(res.getSalesData(). ());
+        // salePersonEView.setText(res.getSalesData(). ());
         monthSumSalesMoneyEView.setText(res.getSalesData().getMonthSumSalesMoney());
         yearSumSalesMoneyView.setText(res.getSalesData().getYearSumSalesMoney());
 
         storeCountView.setText(res.getStoreData().getStoreCount());
-       // rstorePersonView.setText(res.getStoreData() ());
+        // rstorePersonView.setText(res.getStoreData() ());
         storeSumStockNumView.setText(res.getStoreData().getStoreSumStockNum());
 
         moneyAccountCountView.setText(res.getCapitalData().getMoneyAccountCount());
-       // capitalPersonView.setText(res.getCapitalData(). ());
+        // capitalPersonView.setText(res.getCapitalData(). ());
         sumIncomeView.setText(res.getCapitalData().getSumIncome());
         sumOutcomeView.setText(res.getCapitalData().getSumOutcome());
         sumShouldGatheringView.setText(res.getCapitalData().getSumShouldGathering());
@@ -103,4 +113,31 @@ public class ShopDetailActivity extends BasicActivity {
         return R.layout.activity_shop_detail;
     }
 
+    @Override
+    protected void rightPressedAction() {
+        View contentView = LayoutInflater.from(this).inflate(R.layout.shop_popupwindow, null, false);
+        TextView shopVerify = contentView.findViewById(R.id.shop_verify);
+        shopVerify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ShopDetailActivity.this, ShopUserManagerListActivity.class));
+            }
+        });
+        TextView shopStaffSet = contentView.findViewById(R.id.shop_staff_set);
+        shopStaffSet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ShopDetailActivity.this, ShopAuthSetActivity.class));
+            }
+        });
+
+        Display display = getWindowManager().getDefaultDisplay();
+        PopupWindow popupWindow = new PopupWindow(contentView, ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        popupWindow.setOutsideTouchable(true);
+        popupWindow.setAnimationStyle(R.style.popup_window_anim_style);
+        popupWindow.showAtLocation(mTitleBar, Gravity.TOP, display.getWidth() - 140,
+                mTitleBar.getHeight());
+
+    }
 }

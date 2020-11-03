@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/app_60dp"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/app_24dp">
+
+    <ImageView
+        android:id="@+id/selecte_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_gravity="center_vertical"
+        android:src="@mipmap/icon_unselected" />
+
+    <com.mfzn.deepuses.view.RoundImageView
+        android:id="@+id/user_avatar"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_40"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/app_24dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/moren_touxiang" />
+
+
+    <TextView
+        android:id="@+id/staff_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/app_16dp"
+        android:text="MD0001"
+        android:textColor="#303133"
+        android:textSize="16sp" />
+</LinearLayout>

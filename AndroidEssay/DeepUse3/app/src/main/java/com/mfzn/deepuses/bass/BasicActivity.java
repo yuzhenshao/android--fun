@@ -29,7 +29,7 @@ public abstract class BasicActivity extends BaseActivity {
 
                 @Override
                 public void leftPressed() {
-                    finish();
+                    leftPressedAction();
                 }
 
                 @Override
@@ -39,6 +39,10 @@ public abstract class BasicActivity extends BaseActivity {
             });
         }
 
+    }
+
+    protected void leftPressedAction() {
+        finish();
     }
 
     protected void rightPressedAction() {
