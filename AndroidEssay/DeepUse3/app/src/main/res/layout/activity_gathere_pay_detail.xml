@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_ffffff"
+    android:orientation="vertical">
+
+    <com.libcommon.titlebar.TitleBar
+        android:id="@+id/titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <View style="@style/line_heng" />
+
+
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="198dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="@dimen/app_10dp"
+        android:layout_marginLeft="@dimen/app_24dp"
+        android:text="小米开关  [QYJYJQL23LE]"
+        android:textColor="#ff303133"
+        android:textSize="16sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/app_24dp">
+
+        <TextView
+            android:id="@+id/parameter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="@dimen/app_12dp"
+            android:text="产品参数"
+            android:textColor="#ff909399"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/parameter_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/app_13dp"
+            android:layout_marginTop="@dimen/app_12dp"
+            android:layout_toRightOf="@+id/parameter"
+            android:ellipsize="end"
+            android:maxWidth="123dp"
+            android:singleLine="true"
+            android:text="品牌 货号 规格…"
+            android:textColor="#ff303133"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/icon_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/app_12dp"
+            android:src="@mipmap/join_you" />
+    </RelativeLayout>
+
+    <net.lucode.hackware.magicindicator.MagicIndicator
+        android:id="@+id/magic_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_50dp"
+        android:layout_marginTop="@dimen/app_5dp" />
+
+    <View style="@style/line_heng" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/detail_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

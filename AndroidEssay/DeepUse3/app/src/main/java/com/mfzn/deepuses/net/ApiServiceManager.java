@@ -42,6 +42,7 @@ import com.mfzn.deepuses.bean.response.WaitingCheckResponse;
 import com.mfzn.deepuses.bean.response.capital.BorrowListResponse;
 import com.mfzn.deepuses.bean.response.capital.IncomeExpenseListResponse;
 import com.mfzn.deepuses.bean.response.capital.MoneyAccountFinancialLogListResponse;
+import com.mfzn.deepuses.bean.response.capital.PayerPayeeDetailResponse;
 import com.mfzn.deepuses.bean.response.capital.PayerPayeeListResponse;
 import com.mfzn.deepuses.bean.response.purchase.OrderPurchaseDetailResponse;
 import com.mfzn.deepuses.bean.response.purchase.OrderPurchaseListResponse;
@@ -318,11 +319,11 @@ public class ApiServiceManager {
     }
 
     public static Flowable<HttpResult<GoodsListResponse>> goodsList(int isPersonalStoreGoods) {
-        return ApiHelper.getApiService().goodsList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), null, null, isPersonalStoreGoods);
+        return ApiHelper.getApiService().goodsList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), null, null, isPersonalStoreGoods,Integer.MAX_VALUE,1);
     }
 
     public static Flowable<HttpResult<GoodsListResponse>> searchGoodsList(String kw) {
-        return ApiHelper.getApiService().goodsList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), kw, null, 0);
+        return ApiHelper.getApiService().goodsList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), kw, null, 0,Integer.MAX_VALUE,1);
     }
 
     public static Flowable<HttpResult<GoodsDetailResponse>> getGoodsInfo(String goodsID) {
@@ -580,13 +581,21 @@ public class ApiServiceManager {
         return ApiHelper.getApiService().getShopCheckerList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId());
     }
 
-    public static Flowable<HttpResult> setShopChecker(String dataId,String checkPersonUserID) {
-        return ApiHelper.getApiService().setShopChecker(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), dataId,checkPersonUserID);
+    public static Flowable<HttpResult> setShopChecker(String dataId, String checkPersonUserID) {
+        return ApiHelper.getApiService().setShopChecker(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), dataId, checkPersonUserID);
     }
     //销售
 
     public static Flowable<HttpResult<OrderOfferListResponse>> getOrderOfferList() {
         return ApiHelper.getApiService().orderOfferList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId());
+    }
+
+    public static Flowable<HttpResult<OrderOfferListResponse.OrderOfferResponse>> orderOfferInfo(String orderId) {
+        return ApiHelper.getApiService().orderOfferInfo(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), orderId);
+    }
+
+    public static Flowable<HttpResult> orderOfferDel(String  orderID) {
+        return ApiHelper.getApiService().orderOfferDel(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), orderID);
     }
 
     public static Flowable<HttpResult> addOrderOffer(OrderOfferRequest request) {
@@ -720,9 +729,28 @@ public class ApiServiceManager {
         return ApiHelper.getApiService().shouldPayList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId());
     }
 
+    public static Flowable<HttpResult<PayerPayeeDetailResponse>> shouldPayInfo(String customerOrSupplier, String customerOrSupplierID) {
+        return ApiHelper.getApiService().shouldPayInfo(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), customerOrSupplier, customerOrSupplierID);
+    }
+
+    public static Flowable<HttpResult> shouldPayDoPay(String dataID, String moneyAccountID, String showName, String money) {
+        return ApiHelper.getApiService().shouldPayDoPay(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(),
+                dataID, moneyAccountID, showName, money);
+    }
+
+
     //应收管理--列表
     public static Flowable<HttpResult<PayerPayeeListResponse>> shouldGatheringList() {
         return ApiHelper.getApiService().shouldGatheringList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId());
+    }
+
+    public static Flowable<HttpResult<PayerPayeeDetailResponse>> shouldGatheringInfo(String customerOrSupplier, String customerOrSupplierID) {
+        return ApiHelper.getApiService().shouldGatheringInfo(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), customerOrSupplier, customerOrSupplierID);
+    }
+
+    public static Flowable<HttpResult> shouldGatheringDoGathering(String dataID, String moneyAccountID, String showName, String money) {
+        return ApiHelper.getApiService().shouldGatheringDoGathering(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(),
+                dataID, moneyAccountID, showName, money);
     }
 
     //借入借出--列表

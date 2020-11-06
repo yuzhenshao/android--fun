@@ -35,7 +35,7 @@ public interface ParameterConstant {
     //销售
     String IS_RETAIL_CREATE = "isRetail";
     String SHOP = "shop";
-
+    String ORDER_NAME = "orderName";
     String MAP_SHOP_ID = "mapShopID";
     String INPUT_TYPE = "inputType";
     String INPUT_DATA = "inputData";
@@ -51,4 +51,6 @@ public interface ParameterConstant {
     String IS_PURCHASE_CREATE = "isPurchaseCreate";
     String ORDER_PURCHASE_RESPONSE = "OrderPurchaseResponse";
     String ORDER_ID = "orderId";
+    String CUTOMER_OR_SUPPLIER = "customerOrSupplier";
+    String CUTOMER_OR_SUPPLIER_ID = "customerOrSupplierID";
 }

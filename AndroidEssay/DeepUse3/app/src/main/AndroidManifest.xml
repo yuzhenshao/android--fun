@@ -446,6 +446,9 @@
             android:name=".purchasesellsave.sale.activity.OrderOfferListActivity"
             android:screenOrientation="portrait"></activity>
         <activity
+            android:name=".purchasesellsave.sale.activity.OrderOfferDetailActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
             android:name=".purchasesellsave.sale.activity.OrderInputListActivity"
             android:screenOrientation="portrait"></activity>
         <activity
@@ -564,6 +567,13 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".purchasesellsave.capital.activity.BorrowListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".purchasesellsave.capital.activity.GatherePayDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".purchasesellsave.capital.activity.GatherePayActivity"
+            android:theme="@style/dialog_activity_style"
             android:screenOrientation="portrait" />
         <activity
             android:name=".purchasesellsave.capital.activity.IncomeExpenseListActivity"

@@ -21,6 +21,7 @@ import cn.droidlover.xdroidmvp.net.XApi;
 
 public class OrderOfferListActivity extends BasicListActivity<OrderOfferListResponse.OrderOfferResponse> {
     private boolean isSelected;
+    private static int REFRESH_TAG = 101;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,9 +74,21 @@ public class OrderOfferListActivity extends BasicListActivity<OrderOfferListResp
                     intent.putExtra(ParameterConstant.INPUT_DATA, mSourceList.get(i));
                     setResult(Activity.RESULT_OK, intent);
                     finish();
+                } else {
+                    Intent intent = new Intent(OrderOfferListActivity.this, OrderOfferDetailActivity.class);
+                    intent.putExtra(ParameterConstant.ORDER_ID, mSourceList.get(i).getOrderID());
+                    startActivityForResult(intent, REFRESH_TAG);
                 }
             }
         });
         return mAdapter;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK && requestCode == REFRESH_TAG) {
+            getResourceList();
+        }
     }
 }

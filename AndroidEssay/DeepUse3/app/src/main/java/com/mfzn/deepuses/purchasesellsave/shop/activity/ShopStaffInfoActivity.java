@@ -67,13 +67,9 @@ public class ShopStaffInfoActivity extends BasicActivity {
         }
         mStaffName.setText(mShopUserResponse.getStaffName());
         mCompanyName.setText(UserHelper.getCompanyName());
-        ;
         mUserName.setText(mShopUserResponse.getStaffName());
-        ;
         mUserPhone.setText(mShopUserResponse.getUserPhone());
-        ;
         mDepartmentName.setText(mShopUserResponse.getDepartmentName());
-        ;
         mAuth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

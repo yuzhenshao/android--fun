@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.libcommon.titlebar.TitleBar
+        android:id="@+id/titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btn_commit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/app_20dp"
+        android:layout_marginTop="@dimen/app_20dp"
+        android:layout_marginRight="@dimen/app_20dp"
+        android:layout_marginBottom="@dimen/app_11dp"
+        android:background="@drawable/submit_btn_selector"
+        android:text="设置"
+        android:textColor="@color/color_ffffff"
+        android:textSize="18sp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titlebar"
+        android:layout_above="@+id/btn_commit"
+        android:layout_marginBottom="@dimen/app_10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+        <LinearLayout
+            android:id="@+id/staff_auth_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+            <View style="@style/line_space" />
+            <LinearLayout style="@style/newly_ll_st">
+
+                <TextView
+                    style="@style/newly_tv_st"
+                    android:text="折扣权限" />
+
+                <EditText
+                    android:id="@+id/discount_start"
+                    style="@style/newly_et_st"
+                    android:hint="@string/add_custom_shuru"
+                    android:paddingRight="0dp"
+                    android:inputType="number"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="%"
+                    android:textColor="#303133"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

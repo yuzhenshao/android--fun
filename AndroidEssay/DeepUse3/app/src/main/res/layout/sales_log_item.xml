@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="120dp">
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="3dp"
+        android:layout_height="match_parent"
+        android:background="#3D7EFF" />
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="115dp"
+        android:layout_marginLeft="@dimen/app_24dp"
+        android:layout_marginRight="@dimen/app_24dp"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/app_16dp">
+
+            <TextView
+                android:id="@+id/order_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="XS201910011203911"
+                android:textColor="#ff303133"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/date_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="2019/10/10"
+                android:textColor="#ff303133"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/app_15dp">
+
+            <TextView
+                android:id="@+id/money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="订单金额：216.00"
+                android:textColor="#ff606266"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/has_done_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="已收款：0.00"
+                android:textColor="#ff606266"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/app_10dp">
+
+            <TextView
+                android:id="@+id/in_or_out_store"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="出入库：已出库"
+                android:textColor="#ff606266"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:id="@+id/pay_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/pay_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="收款"
+                    android:textColor="#ffe02020"
+                    android:textSize="16sp" />
+
+                <View
+                    android:layout_width="32dp"
+                    android:layout_height="2dp"
+                    android:background="#ffe02020" />
+            </LinearLayout>
+
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@+id/container"
+        android:layout_alignParentBottom="true"
+        android:background="#F5F7FA" />
+</RelativeLayout>

@@ -116,10 +116,13 @@ public class ShopDetailActivity extends BasicActivity {
     @Override
     protected void rightPressedAction() {
         View contentView = LayoutInflater.from(this).inflate(R.layout.shop_popupwindow, null, false);
+        PopupWindow popupWindow = new PopupWindow(contentView, ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT, true);
         TextView shopVerify = contentView.findViewById(R.id.shop_verify);
         shopVerify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                popupWindow.dismiss();
                 startActivity(new Intent(ShopDetailActivity.this, ShopUserManagerListActivity.class));
             }
         });
@@ -127,13 +130,12 @@ public class ShopDetailActivity extends BasicActivity {
         shopStaffSet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                popupWindow.dismiss();
                 startActivity(new Intent(ShopDetailActivity.this, ShopAuthSetActivity.class));
             }
         });
 
         Display display = getWindowManager().getDefaultDisplay();
-        PopupWindow popupWindow = new PopupWindow(contentView, ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT, true);
         popupWindow.setOutsideTouchable(true);
         popupWindow.setAnimationStyle(R.style.popup_window_anim_style);
         popupWindow.showAtLocation(mTitleBar, Gravity.TOP, display.getWidth() - 140,

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#ffffff"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/pay_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/app_24dp"
+            android:paddingTop="@dimen/app_15dp"
+            android:paddingBottom="@dimen/app_15dp"
+            android:text="收款"
+            android:textColor="#ff303133"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <LinearLayout style="@style/newly_ll_st">
+
+            <TextView
+                style="@style/newly_tv_st"
+                android:text="单据编号" />
+
+            <EditText
+                android:id="@+id/record_num"
+                style="@style/newly_et_st2"
+                android:text="XS2019100112006311" />
+
+        </LinearLayout>
+
+        <View style="@style/line_heng" />
+
+        <LinearLayout style="@style/newly_ll_st">
+
+            <TextView
+                style="@style/newly_tv_st"
+                android:text="订单金额" />
+
+            <EditText
+                android:id="@+id/money"
+                style="@style/newly_et_st2"
+                android:text="12.00元" />
+        </LinearLayout>
+
+        <View style="@style/line_heng" />
+
+        <LinearLayout style="@style/newly_ll_st">
+
+            <TextView
+                android:id="@+id/has_money_name"
+                style="@style/newly_tv_st"
+                android:text="已收金额" />
+
+            <EditText
+                android:id="@+id/has_money"
+                style="@style/newly_et_st2"
+                android:text="12.00元" />
+        </LinearLayout>
+
+        <View style="@style/line_heng" />
+
+        <LinearLayout style="@style/newly_ll_st">
+
+            <TextView
+                android:id="@+id/need_money_name"
+                style="@style/newly_tv_st"
+                android:text="收款金额" />
+
+            <EditText
+                android:id="@+id/need_money"
+                style="@style/newly_et_st"
+                android:hint="@string/add_custom_shuru"
+                android:inputType="number"
+                android:paddingRight="0dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="元"
+                android:textColor="#303133"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/newly_ll_st">
+
+            <TextView
+                style="@style/newly_tv_st"
+                android:text="账户" />
+
+            <EditText
+                android:id="@+id/account"
+                style="@style/newly_et_st2"
+                android:hint="@string/add_custom_select"
+                android:paddingRight="0dp" />
+
+            <ImageView
+                android:id="@+id/order_time_select"
+                style="@style/bass_iv_you" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_commit"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_45dp"
+            android:layout_marginLeft="@dimen/app_20dp"
+            android:layout_marginTop="@dimen/app_30dp"
+            android:layout_marginRight="@dimen/app_20dp"
+            android:layout_marginBottom="@dimen/app_36dp"
+            android:background="@drawable/submit_btn_selector"
+            android:text="确定"
+            android:textColor="@color/color_ffffff"
+            android:textSize="18sp" />
+    </LinearLayout>
+</RelativeLayout>

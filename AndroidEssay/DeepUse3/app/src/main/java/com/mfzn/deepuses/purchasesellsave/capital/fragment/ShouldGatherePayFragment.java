@@ -1,6 +1,8 @@
 package com.mfzn.deepuses.purchasesellsave.capital.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.mfzn.deepuses.bass.BasicListFragment;
@@ -8,6 +10,8 @@ import com.mfzn.deepuses.bean.constants.ParameterConstant;
 import com.mfzn.deepuses.bean.response.capital.PayerPayeeListResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
+import com.mfzn.deepuses.purchasesellsave.capital.activity.GatherePayDetailActivity;
+import com.mfzn.deepuses.purchasesellsave.capital.activity.IncomeExpenseDetailActivity;
 import com.mfzn.deepuses.purchasesellsave.capital.adapter.ShouldGatherePayAdapter;
 
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
@@ -63,6 +67,18 @@ public class ShouldGatherePayFragment extends BasicListFragment<PayerPayeeListRe
 
     @Override
     protected BaseQuickAdapter getAdapter() {
-        return new ShouldGatherePayAdapter(getActivity(), type, mSourceList);
+        ShouldGatherePayAdapter adapter= new ShouldGatherePayAdapter(getActivity(), type, mSourceList);
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int i) {
+                PayerPayeeListResponse.ListBean.PayerPayeeResponse  payeeResponse=mSourceList.get(i);
+                Intent intent=new Intent(getActivity(), GatherePayDetailActivity.class);
+                intent.putExtra(ParameterConstant.CUTOMER_OR_SUPPLIER,payeeResponse.getCustomerOrSupplier());
+                intent.putExtra(ParameterConstant.CUTOMER_OR_SUPPLIER_ID,payeeResponse.getCustomerOrSupplierID());
+                intent.putExtra(ParameterConstant.CAPITAL_TYPE,type);
+                startActivity(intent);
+            }
+        });
+        return adapter;
     }
 }

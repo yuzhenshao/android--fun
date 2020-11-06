@@ -43,6 +43,7 @@ import com.mfzn.deepuses.bean.response.WaitingCheckResponse;
 import com.mfzn.deepuses.bean.response.capital.BorrowListResponse;
 import com.mfzn.deepuses.bean.response.capital.IncomeExpenseListResponse;
 import com.mfzn.deepuses.bean.response.capital.MoneyAccountFinancialLogListResponse;
+import com.mfzn.deepuses.bean.response.capital.PayerPayeeDetailResponse;
 import com.mfzn.deepuses.bean.response.capital.PayerPayeeListResponse;
 import com.mfzn.deepuses.bean.response.purchase.OrderPurchaseDetailResponse;
 import com.mfzn.deepuses.bean.response.purchase.OrderPurchaseListResponse;
@@ -812,7 +813,8 @@ public interface ApiService {
     @GET("pss/Setting/goodsList")
     Flowable<HttpResult<GoodsListResponse>> goodsList(@Query("token") String token, @Query("uid") String uid,
                                                       @Query("shopID") String shopID, @Query("kw") String kw,
-                                                      @Query("goodsCatID") String goodsCatID, @Query("isPersonalStoreGoods") int isPersonalStoreGoods);
+                                                      @Query("goodsCatID") String goodsCatID, @Query("isPersonalStoreGoods") int isPersonalStoreGoods
+            ,@Query("per") Integer per, @Query("page") Integer page);
 
     @GET("pss/Setting/goodsInfo")
     Flowable<HttpResult<GoodsDetailResponse>> getGoodsInfo(@Query("token") String token, @Query("uid") String uid,
@@ -1017,6 +1019,7 @@ public interface ApiService {
 
     @GET("pss/Setting/getShopCheckerList")
     Flowable<HttpResult<List<ShopCheckerResponse>>> getShopCheckerList(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID);
+
     @FormUrlEncoded
     @POST("pss/Setting/setShopChecker")
     Flowable<HttpResult> setShopChecker(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Field("data_id") String data_id,@Field("checkPersonUserID") String checkPersonUserID);
@@ -1025,6 +1028,13 @@ public interface ApiService {
     //销售
     @GET("pss/Sale/orderOfferList")
     Flowable<HttpResult<OrderOfferListResponse>> orderOfferList(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID);
+
+    @GET("pss/Sale/orderOfferInfo")
+    Flowable<HttpResult<OrderOfferListResponse.OrderOfferResponse>> orderOfferInfo(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,@Query("orderID") String orderID);
+
+    @FormUrlEncoded
+    @POST("pss/Sale/orderOfferDel")
+    Flowable<HttpResult> orderOfferDel(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Field("orderID") String orderID);
 
     @POST("pss/Sale/orderOfferAdd")
     Flowable<HttpResult> addOrderOffer(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Body OrderOfferRequest request);
@@ -1223,9 +1233,34 @@ public interface ApiService {
     @GET("pss/Capital/shouldPayList")
     Flowable<HttpResult<PayerPayeeListResponse>> shouldPayList(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID);
 
+    //应付管理--详情
+    @GET("pss/Capital/shouldPayInfo")
+    Flowable<HttpResult<PayerPayeeDetailResponse>> shouldPayInfo(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID
+    ,@Query("customerOrSupplier") String customerOrSupplier, @Query("customerOrSupplierID") String customerOrSupplierID);
+
+    //应付管理--付款
+    @FormUrlEncoded
+    @POST("pss/Capital/shouldPayDoPay")
+    Flowable<HttpResult> shouldPayDoPay(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
+                                      @Field("dataID") String dataID, @Field("moneyAccountID") String moneyAccountID,
+                                        @Field("showName") String showName, @Field("money") String money);
+
+
     //应收管理--列表
     @GET("pss/Capital/shouldGatheringList")
     Flowable<HttpResult<PayerPayeeListResponse>> shouldGatheringList(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID);
+
+    //应收管理--详情
+    @GET("pss/Capital/shouldGatheringInfo")
+    Flowable<HttpResult<PayerPayeeDetailResponse>> shouldGatheringInfo(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID
+            , @Query("customerOrSupplier") String customerOrSupplier, @Query("customerOrSupplierID") String customerOrSupplierID);
+
+    //应收管理--付款
+    @FormUrlEncoded
+    @POST("pss/Capital/shouldGatheringDoGathering")
+    Flowable<HttpResult> shouldGatheringDoGathering(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
+                                        @Field("dataID") String dataID, @Field("moneyAccountID") String moneyAccountID,
+                                        @Field("showName") String showName, @Field("money") String money);
 
     //借入借出--列表
     @GET("pss/Capital/borrowList")

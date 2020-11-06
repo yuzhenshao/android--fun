@@ -12,7 +12,7 @@ public class UserAuthResponse {
      */
 
     private String discountStart;
-    private List<NormalAuthResponse> normalAuth;
+    private List<AuthSons> normalAuth;
     private List<ShopIDsResponse> shopIDs;
     private List<StoreAuthReponse> storeAuth;
 
@@ -24,11 +24,11 @@ public class UserAuthResponse {
         this.discountStart = discountStart;
     }
 
-    public List<NormalAuthResponse> getNormalAuth() {
+    public List<AuthSons> getNormalAuth() {
         return normalAuth;
     }
 
-    public void setNormalAuth(List<NormalAuthResponse> normalAuth) {
+    public void setNormalAuth(List<AuthSons> normalAuth) {
         this.normalAuth = normalAuth;
     }
 
@@ -49,84 +49,84 @@ public class UserAuthResponse {
     }
 
 
-    private class NormalAuthResponse {
+//    public class NormalAuthResponse {
+//
+//        /**
+//         * authID : 1
+//         * authModule : 1
+//         * authName : 销售
+//         * authDescription :
+//         * pID : 0
+//         * isActive : 0
+//         * sons : [{"authID":2,"authModule":1,"authName":"销售管理","authDescription":"","pID":1,"isActive":0,"sons":[{"authID":3,"authModule":1,"authName":"","authDescription":"销售单据的操作","pID":2,"isActive":0,"sons":[]}]},{"authID":5,"authModule":1,"authName":"销售","authDescription":"","pID":1,"isActive":0,"sons":[{"authID":6,"authModule":1,"authName":"","authDescription":"销售单据的查看","pID":5,"isActive":0,"sons":[]}]}]
+//         */
+//
+//        private String authID;
+//        private int authModule;
+//        private String authName;
+//        private String authDescription;
+//        private String pID;
+//        private int isActive;
+//        private List<AuthSons> sons;
+//
+//        public String getAuthID() {
+//            return authID;
+//        }
+//
+//        public void setAuthID(String authID) {
+//            this.authID = authID;
+//        }
+//
+//        public int getAuthModule() {
+//            return authModule;
+//        }
+//
+//        public void setAuthModule(int authModule) {
+//            this.authModule = authModule;
+//        }
+//
+//        public String getAuthName() {
+//            return authName;
+//        }
+//
+//        public void setAuthName(String authName) {
+//            this.authName = authName;
+//        }
+//
+//        public String getAuthDescription() {
+//            return authDescription;
+//        }
+//
+//        public void setAuthDescription(String authDescription) {
+//            this.authDescription = authDescription;
+//        }
+//
+//        public String getPID() {
+//            return pID;
+//        }
+//
+//        public void setPID(String pID) {
+//            this.pID = pID;
+//        }
+//
+//        public int getIsActive() {
+//            return isActive;
+//        }
+//
+//        public void setIsActive(int isActive) {
+//            this.isActive = isActive;
+//        }
+//
+//        public List<AuthSons> getSons() {
+//            return sons;
+//        }
+//
+//        public void setSons(List<AuthSons> sons) {
+//            this.sons = sons;
+//        }
+//    }
 
-        /**
-         * authID : 1
-         * authModule : 1
-         * authName : 销售
-         * authDescription :
-         * pID : 0
-         * isActive : 0
-         * sons : [{"authID":2,"authModule":1,"authName":"销售管理","authDescription":"","pID":1,"isActive":0,"sons":[{"authID":3,"authModule":1,"authName":"","authDescription":"销售单据的操作","pID":2,"isActive":0,"sons":[]}]},{"authID":5,"authModule":1,"authName":"销售","authDescription":"","pID":1,"isActive":0,"sons":[{"authID":6,"authModule":1,"authName":"","authDescription":"销售单据的查看","pID":5,"isActive":0,"sons":[]}]}]
-         */
-
-        private String authID;
-        private int authModule;
-        private String authName;
-        private String authDescription;
-        private String pID;
-        private int isActive;
-        private List<AuthSons> sons;
-
-        public String getAuthID() {
-            return authID;
-        }
-
-        public void setAuthID(String authID) {
-            this.authID = authID;
-        }
-
-        public int getAuthModule() {
-            return authModule;
-        }
-
-        public void setAuthModule(int authModule) {
-            this.authModule = authModule;
-        }
-
-        public String getAuthName() {
-            return authName;
-        }
-
-        public void setAuthName(String authName) {
-            this.authName = authName;
-        }
-
-        public String getAuthDescription() {
-            return authDescription;
-        }
-
-        public void setAuthDescription(String authDescription) {
-            this.authDescription = authDescription;
-        }
-
-        public String getPID() {
-            return pID;
-        }
-
-        public void setPID(String pID) {
-            this.pID = pID;
-        }
-
-        public int getIsActive() {
-            return isActive;
-        }
-
-        public void setIsActive(int isActive) {
-            this.isActive = isActive;
-        }
-
-        public List<AuthSons> getSons() {
-            return sons;
-        }
-
-        public void setSons(List<AuthSons> sons) {
-            this.sons = sons;
-        }
-    }
-
-    private class ShopIDsResponse{
+    public class ShopIDsResponse{
 
         /**
          * shopID : 1
@@ -173,7 +173,7 @@ public class UserAuthResponse {
         }
     }
 
-    private class StoreAuthReponse{
+    public class StoreAuthReponse{
 
         /**
          * storeID : 1
@@ -229,7 +229,7 @@ public class UserAuthResponse {
             this.storeAuth = storeAuth;
         }
     }
-    class AuthSons{
+    public class AuthSons{
 
         /**
          * authID : 24
@@ -307,7 +307,7 @@ public class UserAuthResponse {
             this.isActive = isActive;
         }
 
-        public List<?> getSons() {
+        public List<AuthSons> getSons() {
             return sons;
         }
 
