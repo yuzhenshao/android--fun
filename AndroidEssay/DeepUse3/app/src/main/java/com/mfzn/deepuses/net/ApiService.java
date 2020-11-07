@@ -1150,10 +1150,29 @@ public interface ApiService {
     @GET("pss/Store/waitingInList")
     Flowable<HttpResult<WaitingInOutListResponse>> waitingInList(@Query("token") String token, @Query("uid") String uid,
                                                                      @Query("shopID") String shopID, @Query("orderType") int orderType);
+
+    //待入库列表--入库商品明细
+    @GET("pss/Store/waitingInDetail")
+    Flowable<HttpResult<T>> waitingInDetail(@Query("token") String token, @Query("uid") String uid,
+                                                                 @Query("shopID") String shopID, @Query("dataID") String dataID);
+    //待入库列表--全部入库
+    @FormUrlEncoded
+    @POST("pss/Store/doAllIn")
+    Flowable<HttpResult> doAllIn(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Field("dataID") String dataID);
+
     //待出库列表
     @GET("pss/Store/waitingOutList")
     Flowable<HttpResult<WaitingInOutListResponse>> waitingOutList(@Query("token") String token, @Query("uid") String uid,
                                                                       @Query("shopID") String shopID, @Query("orderType") int orderType);
+    //待出库列表--出库商品明细
+    @GET("pss/Store/waitingOutDetail")
+    Flowable<HttpResult<T>> waitingOutDetail(@Query("token") String token, @Query("uid") String uid,
+                                                                  @Query("shopID") String shopID, @Query("dataID") String dataID);
+
+    //待出库列表--全部出库
+    @FormUrlEncoded
+    @POST("pss/Store/doAllOut")
+    Flowable<HttpResult> doAllOut(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Field("dataID") String dataID);
 
 
 

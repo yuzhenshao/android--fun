@@ -542,8 +542,17 @@ public class ApiServiceManager {
         return ApiHelper.getApiService().waitingInList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), 0);
     }
 
+    public static Flowable<HttpResult> doAllIn( String dataID) {
+        return ApiHelper.getApiService().doAllIn(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), dataID);
+    }
+
+
     public static Flowable<HttpResult<WaitingInOutListResponse>> getWaitingOutList() {
         return ApiHelper.getApiService().waitingOutList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), 0);
+    }
+
+    public static Flowable<HttpResult> doAllOut(String dataID) {
+        return ApiHelper.getApiService().doAllOut(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), dataID);
     }
 
 
