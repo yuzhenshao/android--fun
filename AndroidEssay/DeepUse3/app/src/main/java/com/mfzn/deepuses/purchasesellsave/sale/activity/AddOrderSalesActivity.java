@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextUtils;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.activity.project.ProjectManageActivity;
 import com.mfzn.deepuses.bean.constants.ParameterConstant;
 import com.mfzn.deepuses.bean.request.sale.OrderSalesRequest;
+import com.mfzn.deepuses.bean.response.sale.OrderOfferListResponse;
 import com.mfzn.deepuses.bean.response.sale.OrderSalesListResponse;
 import com.mfzn.deepuses.common.PickerDialogView;
 import com.mfzn.deepuses.model.company.CityModel;
@@ -26,7 +28,6 @@ import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.CommodityCreateActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.CommodityPhotoCreateActivity;
-import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsSelectListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.MoneyAccountListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.MyStoreListActivity;
@@ -47,6 +48,7 @@ public class AddOrderSalesActivity extends BaseAddCustomerAndGoodsActivity {
     private final static int PROJECT = 5;//非必填
     private final static int ACCOUNT = 6;
     private final static int INPUT = 101;
+    private final static int OFFER_INPUT = 102;
 
     @BindView(R.id.customer)
     EditText customerEdit;
@@ -81,6 +83,7 @@ public class AddOrderSalesActivity extends BaseAddCustomerAndGoodsActivity {
 
     private boolean isRetail;
     private OrderSalesRequest request = new OrderSalesRequest();
+    private PopupWindow popupWindow;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -297,6 +300,23 @@ public class AddOrderSalesActivity extends BaseAddCustomerAndGoodsActivity {
                     remarkEdit.setText(orderSalesResponse.getRemark());
                     setTotalPriceView();
                 }
+            }else if(requestCode==OFFER_INPUT){
+
+                OrderOfferListResponse.OrderOfferResponse orderOfferResponse =
+                        (OrderOfferListResponse.OrderOfferResponse) data.getSerializableExtra(ParameterConstant.INPUT_DATA);
+                if (orderOfferResponse != null) {
+                    request.setCompanyCustomerID(orderOfferResponse.getCustomerID());
+                    customerEdit.setText(orderOfferResponse.getCustomerName());
+                    setGoodsPriceContainer(orderOfferResponse.getGoodsInfo());
+                    discountPriceEdit.setText(orderOfferResponse.getOrderMakerDiscount());
+                    orderTime = (int) orderOfferResponse.getOrderTime();
+                    orderTimeEdit.setText(DateUtils.longToString("yyyy/MM/dd", orderOfferResponse.getOrderTime()));
+
+                    outNumEdit.setText(orderOfferResponse.getOutNum());
+                    userNameView.setText(orderOfferResponse.getOrderMakerUserName());
+                    remarkEdit.setText(orderOfferResponse.getRemark());
+                    setTotalPriceView();
+                }
             }
         }
     }
@@ -322,33 +342,43 @@ public class AddOrderSalesActivity extends BaseAddCustomerAndGoodsActivity {
 
     @Override
     protected void rightPressedAction() {
+         if(isRetail){
+             tureToInputActivity(1);
+         }else {
+             View contentView = LayoutInflater.from(this).inflate(R.layout.order_popupwindow, null, false);
+             TextView orderOffer = contentView.findViewById(R.id.order_offer);
+             orderOffer.setOnClickListener(new View.OnClickListener() {
+                 @Override
+                 public void onClick(View v) {
+                     Intent intent = new Intent(AddOrderSalesActivity.this, OrderOfferListActivity.class);
+                     intent.putExtra(ParameterConstant.IS_SELECTED, true);
+                     startActivityForResult(intent, OFFER_INPUT);
+                     popupWindow.dismiss();
+                 }
+             });
+             TextView orderSales = contentView.findViewById(R.id.order_sales);
+             orderSales.setOnClickListener(new View.OnClickListener() {
+                 @Override
+                 public void onClick(View v) {
+                     tureToInputActivity(1);
+                     popupWindow.dismiss();
+                 }
+             });
+
+             popupWindow = new PopupWindow(contentView, ViewGroup.LayoutParams.WRAP_CONTENT,
+                     ViewGroup.LayoutParams.WRAP_CONTENT, true);
+             Display display = getWindowManager().getDefaultDisplay();
+             popupWindow.setOutsideTouchable(true);
+             popupWindow.setAnimationStyle(R.style.popup_window_anim_style);
+             popupWindow.showAtLocation(mTitleBar, Gravity.TOP, display.getWidth() - 140,
+                     mTitleBar.getHeight());
+         }
+
+    }
+
+    private void tureToInputActivity(int inputType){
         Intent intent = new Intent(this, OrderInputListActivity.class);
-        intent.putExtra(ParameterConstant.INPUT_TYPE, isRetail ? 1 : 2);//1 零售 2销售
+        intent.putExtra(ParameterConstant.INPUT_TYPE, inputType);//1 零售 2销售
         startActivityForResult(intent, INPUT);
-
-//TODO 
-//        View contentView = LayoutInflater.from(this).inflate(R.layout.goods_popupwindow, null, false);
-//        TextView goodsPhotoEntry = contentView.findViewById(R.id.goods_photo_entry);
-//        goodsPhotoEntry.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(AddOrderSalesActivity.this, CommodityPhotoCreateActivity.class));
-//            }
-//        });
-//        TextView goodsFormEntry = contentView.findViewById(R.id.goods_form_entry);
-//        goodsFormEntry.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(AddOrderSalesActivity.this, CommodityCreateActivity.class));
-//            }
-//        });
-//
-//        PopupWindow popupWindow = new PopupWindow(contentView, ViewGroup.LayoutParams.WRAP_CONTENT,
-//                ViewGroup.LayoutParams.WRAP_CONTENT, true);
-//        popupWindow.setOutsideTouchable(true);
-//        popupWindow.setAnimationStyle(R.style.popup_window_anim_style);
-//        popupWindow.showAtLocation(mTitleBar, Gravity.TOP, 0,
-//                mTitleBar.getHeight());
-
     }
 }

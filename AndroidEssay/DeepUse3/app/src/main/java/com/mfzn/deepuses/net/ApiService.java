@@ -1027,7 +1027,7 @@ public interface ApiService {
 
     //销售
     @GET("pss/Sale/orderOfferList")
-    Flowable<HttpResult<OrderOfferListResponse>> orderOfferList(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID);
+    Flowable<HttpResult<OrderOfferListResponse>> orderOfferList(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Query("keywords") String keywords, @Query("isCheck") String isCheck);
 
     @GET("pss/Sale/orderOfferInfo")
     Flowable<HttpResult<OrderOfferListResponse.OrderOfferResponse>> orderOfferInfo(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,@Query("orderID") String orderID);

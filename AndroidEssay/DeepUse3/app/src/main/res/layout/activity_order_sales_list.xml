@@ -15,8 +15,7 @@
 
         <View style="@style/line_heng" />
 
-        <include layout="@layout/search_filter_view"
-            android:visibility="gone"/>
+        <include layout="@layout/search_filter_view" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"

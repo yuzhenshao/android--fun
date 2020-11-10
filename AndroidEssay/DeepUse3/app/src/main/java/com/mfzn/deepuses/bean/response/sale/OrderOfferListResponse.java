@@ -121,6 +121,7 @@ public class OrderOfferListResponse {
         private String outNum;
         private String orderNum;
         private String totalMoney;
+        private String orderMakerDiscount;
         private String discountAmount;
         private String realMoney;
         private String remark;
@@ -433,6 +434,14 @@ public class OrderOfferListResponse {
                 }
             }
             return images;
+        }
+
+        public String getOrderMakerDiscount() {
+            return orderMakerDiscount;
+        }
+
+        public void setOrderMakerDiscount(String orderMakerDiscount) {
+            this.orderMakerDiscount = orderMakerDiscount;
         }
     }
 }

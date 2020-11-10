@@ -446,6 +446,11 @@
             android:name=".purchasesellsave.sale.activity.OrderOfferListActivity"
             android:screenOrientation="portrait"></activity>
         <activity
+            android:name=".purchasesellsave.sale.activity.OrderOfferFilterActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:theme="@style/PayDialogStyle"
+            android:screenOrientation="portrait"></activity>
+        <activity
             android:name=".purchasesellsave.sale.activity.OrderOfferDetailActivity"
             android:screenOrientation="portrait"></activity>
         <activity

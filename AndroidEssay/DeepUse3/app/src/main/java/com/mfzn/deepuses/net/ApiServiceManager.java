@@ -319,11 +319,11 @@ public class ApiServiceManager {
     }
 
     public static Flowable<HttpResult<GoodsListResponse>> goodsList(int isPersonalStoreGoods) {
-        return ApiHelper.getApiService().goodsList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), null, null, isPersonalStoreGoods,Integer.MAX_VALUE,1);
+        return ApiHelper.getApiService().goodsList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), null, null, isPersonalStoreGoods, Integer.MAX_VALUE, 1);
     }
 
     public static Flowable<HttpResult<GoodsListResponse>> searchGoodsList(String kw) {
-        return ApiHelper.getApiService().goodsList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), kw, null, 0,Integer.MAX_VALUE,1);
+        return ApiHelper.getApiService().goodsList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), kw, null, 0, Integer.MAX_VALUE, 1);
     }
 
     public static Flowable<HttpResult<GoodsDetailResponse>> getGoodsInfo(String goodsID) {
@@ -542,7 +542,7 @@ public class ApiServiceManager {
         return ApiHelper.getApiService().waitingInList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), 0);
     }
 
-    public static Flowable<HttpResult> doAllIn( String dataID) {
+    public static Flowable<HttpResult> doAllIn(String dataID) {
         return ApiHelper.getApiService().doAllIn(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), dataID);
     }
 
@@ -595,15 +595,19 @@ public class ApiServiceManager {
     }
     //销售
 
-    public static Flowable<HttpResult<OrderOfferListResponse>> getOrderOfferList() {
-        return ApiHelper.getApiService().orderOfferList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId());
+    public static Flowable<HttpResult<OrderOfferListResponse>> getOrderOfferList(String isCheck) {
+        return searchOrderOfferList(null,isCheck);
+    }
+
+    public static Flowable<HttpResult<OrderOfferListResponse>> searchOrderOfferList(String keywords,String isCheck) {
+        return ApiHelper.getApiService().orderOfferList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), keywords,isCheck);
     }
 
     public static Flowable<HttpResult<OrderOfferListResponse.OrderOfferResponse>> orderOfferInfo(String orderId) {
         return ApiHelper.getApiService().orderOfferInfo(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), orderId);
     }
 
-    public static Flowable<HttpResult> orderOfferDel(String  orderID) {
+    public static Flowable<HttpResult> orderOfferDel(String orderID) {
         return ApiHelper.getApiService().orderOfferDel(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), orderID);
     }
 
