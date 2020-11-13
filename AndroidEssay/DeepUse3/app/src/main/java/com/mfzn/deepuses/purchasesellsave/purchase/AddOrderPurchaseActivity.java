@@ -27,8 +27,6 @@ import com.mfzn.deepuses.utils.DateUtils;
 import com.mfzn.deepuses.utils.OnInputChangeListener;
 import com.mfzn.deepuses.utils.UserHelper;
 
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.OnClick;
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
@@ -38,7 +36,8 @@ import cn.droidlover.xdroidmvp.net.XApi;
 public class AddOrderPurchaseActivity extends BaseAddCustomerAndGoodsActivity {
 
     private final static int STORE = 4;
-    private final static int INPUT = 101;
+    private final static int SALES_INPUT = 100;
+    private final static int PURCHASE_INPUT = 101;
     private static int SUPPLIER_CODE = 102;
     @BindView(R.id.customer)
     EditText customerEdit;
@@ -183,23 +182,37 @@ public class AddOrderPurchaseActivity extends BaseAddCustomerAndGoodsActivity {
                 setTotalPriceView();
             } else if (requestCode == GOODS) {
                 setTotalPriceView();
-            } else if (requestCode == INPUT) {
+            } else if (requestCode == PURCHASE_INPUT) {
                 OrderPurchaseListResponse.OrderPurchaseResponse orderResponse =
                         (OrderPurchaseListResponse.OrderPurchaseResponse) data.getSerializableExtra(ParameterConstant.INPUT_DATA);
                 if (orderResponse != null) {
                     request.setSupplierID(orderResponse.getSupplierID());
                     customerEdit.setText(orderResponse.getSupplierName());
                     setGoodsContainer(orderResponse);
-                    // discountPrice.setText(orderResponse.get());
-                    // request.setStoreID(orderResponse.getstor());
-                    // storeEdit.setText(orderResponse.getStoreName());
-
                     orderTime = (int) orderResponse.getOrderTime();
                     orderTimeEdit.setText(DateUtils.longToString("yyyy/MM/dd", orderResponse.getOrderTime()));
 
-                    // outNumEdit.setText(orderResponse.getO());
                     userNameView.setText(orderResponse.getOrderMakerUserName());
                     remarkEdit.setText(orderResponse.getRemark());
+                    setTotalPriceView();
+                }
+            } else if (requestCode == SALES_INPUT) {
+                OrderSalesListResponse.OrderSalesResponse orderSalesResponse =
+                        (OrderSalesListResponse.OrderSalesResponse) data.getSerializableExtra(ParameterConstant.INPUT_DATA);
+                if (orderSalesResponse != null) {
+                    customerEdit.setText(orderSalesResponse.getCustomerName());
+                    setGoodsPriceContainer(orderSalesResponse.getGoodsInfo());
+                    discountPrice.setText(orderSalesResponse.getOrderMakerDiscount());
+
+                    request.setStoreID(orderSalesResponse.getStoreID());
+                    storeEdit.setText(orderSalesResponse.getStoreName());
+
+                    orderTime = (int) orderSalesResponse.getOrderTime();
+                    orderTimeEdit.setText(DateUtils.longToString("yyyy/MM/dd", orderSalesResponse.getOrderTime()));
+
+                    outNumEdit.setText(orderSalesResponse.getOutNum());
+                    userNameView.setText(orderSalesResponse.getOrderMakerUserName());
+                    remarkEdit.setText(orderSalesResponse.getRemark());
                     setTotalPriceView();
                 }
             }
@@ -237,10 +250,16 @@ public class AddOrderPurchaseActivity extends BaseAddCustomerAndGoodsActivity {
 
     @Override
     protected void rightPressedAction() {
-        Intent intent = new Intent(this, OrderPurchaseListActivity.class);
-         intent.putExtra(ParameterConstant.IS_PURCHASE_CREATE, isPurchaseAdd);
-        intent.putExtra(ParameterConstant.IS_SELECTED, true);
-        startActivityForResult(intent, INPUT);
+        if (isPurchaseAdd) {//采购单导入是销售单、零售单
+            Intent intent = new Intent(this, OrderInputListActivity.class);
+            intent.putExtra(ParameterConstant.INPUT_TYPE, 2);//1 零售 2销售
+            startActivityForResult(intent, SALES_INPUT);
+        } else {
+            Intent intent = new Intent(this, OrderPurchaseListActivity.class);
+            intent.putExtra(ParameterConstant.IS_PURCHASE_CREATE, true);
+            intent.putExtra(ParameterConstant.IS_SELECTED, true);
+            startActivityForResult(intent, PURCHASE_INPUT);
+        }
     }
 
 }

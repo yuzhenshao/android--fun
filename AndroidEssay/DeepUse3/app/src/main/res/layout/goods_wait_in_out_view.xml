@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/app_24dp"
+    android:layout_marginTop="@dimen/app_13dp"
+    android:layout_marginRight="@dimen/app_24dp"
+    android:layout_marginBottom="@dimen/app_12dp">
+
+    <ImageView
+        android:id="@+id/goods_image"
+        android:layout_width="@dimen/app_75dp"
+        android:layout_height="@dimen/app_75dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:scaleType="fitXY"
+        android:src="@mipmap/logo" />
+
+    <RelativeLayout
+        android:id="@+id/goods_info_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_toRightOf="@+id/goods_image">
+
+        <TextView
+            android:id="@+id/goods_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="无线路由器"
+            android:textColor="#303133"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/goods_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/goods_name"
+            android:layout_alignParentLeft="true"
+            android:text="DS-233CD-1"
+            android:textColor="#909399"
+            android:textSize="14sp" />
+
+
+        <include
+            layout="@layout/enumerator_view"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/app_20dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/dp_10" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/goods_info_container"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginTop="@dimen/app_10dp"
+        android:layout_toRightOf="@+id/goods_image">
+
+        <TextView
+            android:id="@+id/should_done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="应出库数量:1"
+            android:textColor="#ff303133"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/has_done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="已出库数量:1"
+            android:textColor="#ff303133"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

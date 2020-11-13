@@ -53,9 +53,9 @@ public class OrderWaitInOutAdapter extends BaseQuickAdapter<WaitingInOutListResp
 
         switch (response.getIsGathering()) {
             case 0:
-                return R.mipmap.icon_has_gather;
-            case 1:
                 return R.mipmap.icon_no_gather;
+            case 1:
+                return R.mipmap.icon_has_gather;
             case 2:
                 return 0;
         }

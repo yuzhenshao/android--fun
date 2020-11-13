@@ -17,8 +17,6 @@ import com.mfzn.deepuses.bean.constants.ParameterConstant;
 import com.mfzn.deepuses.bean.response.shop.ShopDataResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
-import com.mfzn.deepuses.purchasesellsave.sale.activity.AddOrderSalesActivity;
-import com.mfzn.deepuses.purchasesellsave.sale.activity.OrderInputListActivity;
 
 import butterknife.BindView;
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
