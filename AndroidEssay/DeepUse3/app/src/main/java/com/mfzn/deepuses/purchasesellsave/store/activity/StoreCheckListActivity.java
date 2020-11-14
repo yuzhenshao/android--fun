@@ -3,10 +3,12 @@ package com.mfzn.deepuses.purchasesellsave.store.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BasicListActivity;
+import com.mfzn.deepuses.bean.constants.ParameterConstant;
 import com.mfzn.deepuses.bean.response.store.OrderStockCheckListResponse;
 import com.mfzn.deepuses.bean.response.store.OrderStockCheckResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
@@ -19,6 +21,7 @@ import cn.droidlover.xdroidmvp.net.XApi;
 
 public class StoreCheckListActivity extends BasicListActivity<OrderStockCheckResponse> {
     private static int REQUESTCODE = 1001;
+    private static int REFRESH = 1002;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -88,6 +91,14 @@ public class StoreCheckListActivity extends BasicListActivity<OrderStockCheckRes
     @Override
     protected BaseQuickAdapter getAdapter() {
         StoreCheckAdapter mAdapter = new StoreCheckAdapter(this, mSourceList);
+        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int i) {
+                Intent intent = new Intent(StoreCheckListActivity.this, StoreCheckDetailActivity.class);
+                intent.putExtra(ParameterConstant.ORDER_ID, mSourceList.get(i).getOrderID());
+                startActivityForResult(intent, REFRESH);
+            }
+        });
         return mAdapter;
     }
 
@@ -113,7 +124,7 @@ public class StoreCheckListActivity extends BasicListActivity<OrderStockCheckRes
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUESTCODE && requestCode == RESULT_OK) {
+        if (resultCode == RESULT_OK) {
             getResourceList();
         }
     }

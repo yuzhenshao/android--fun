@@ -135,7 +135,7 @@ public class SupplierDetailActivity extends BasicActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == EDIT_CODE && requestCode == RESULT_OK) {
+        if (requestCode == EDIT_CODE && resultCode == RESULT_OK) {
             isRefresh = true;
             initData();
         }

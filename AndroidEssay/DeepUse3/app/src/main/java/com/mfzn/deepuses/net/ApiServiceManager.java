@@ -71,6 +71,7 @@ import com.mfzn.deepuses.bean.response.shop.UserAuthResponse;
 import com.mfzn.deepuses.bean.response.store.GoodsStockResponse;
 import com.mfzn.deepuses.bean.response.store.OrderAllotListResponse;
 import com.mfzn.deepuses.bean.response.store.OrderOtherInOutListResponse;
+import com.mfzn.deepuses.bean.response.store.OrderStockCheckInfoResponse;
 import com.mfzn.deepuses.bean.response.store.OrderStockCheckListResponse;
 import com.mfzn.deepuses.bean.response.store.OtherWaitingInOutDetailResponse;
 import com.mfzn.deepuses.bean.response.store.StockLogListResponse;
@@ -499,6 +500,14 @@ public class ApiServiceManager {
 
     public static Flowable<HttpResult<OrderStockCheckListResponse>> getOrderStockCheckList(String kw, String storeID, int status) {
         return ApiHelper.getApiService().orderStockCheckList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), kw, storeID, status);
+    }
+
+    public static Flowable<HttpResult<OrderStockCheckInfoResponse>> orderStockCheckInfo(String orderId) {
+        return ApiHelper.getApiService().orderStockCheckInfo(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), orderId);
+    }
+
+    public static Flowable<HttpResult> orderStockCheckHandle(String orderId) {
+        return ApiHelper.getApiService().orderStockCheckHandle(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), orderId);
     }
 
     public static Flowable<HttpResult> editOrderStockCheck(OrderStockCheckRequest request) {

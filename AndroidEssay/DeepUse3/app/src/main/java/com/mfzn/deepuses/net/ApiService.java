@@ -72,6 +72,7 @@ import com.mfzn.deepuses.bean.response.shop.UserAuthResponse;
 import com.mfzn.deepuses.bean.response.store.GoodsStockResponse;
 import com.mfzn.deepuses.bean.response.store.OrderAllotListResponse;
 import com.mfzn.deepuses.bean.response.store.OrderOtherInOutListResponse;
+import com.mfzn.deepuses.bean.response.store.OrderStockCheckInfoResponse;
 import com.mfzn.deepuses.bean.response.store.OrderStockCheckListResponse;
 import com.mfzn.deepuses.bean.response.store.OtherWaitingInOutDetailResponse;
 import com.mfzn.deepuses.bean.response.store.StockLogListResponse;
@@ -1110,6 +1111,17 @@ public interface ApiService {
     @GET("pss/Store/orderStockCheckList")
     Flowable<HttpResult<OrderStockCheckListResponse>> orderStockCheckList(@Query("token") String token, @Query("uid") String uid,
                                                                           @Query("shopID") String shopID, @Query("keywords") String keywords, @Query("storeID") String storeID, @Query("status") int status);
+
+
+    //盘点单--详情
+    @GET("pss/Store/orderStockCheckInfo")
+    Flowable<HttpResult<OrderStockCheckInfoResponse>> orderStockCheckInfo(@Query("token") String token, @Query("uid") String uid,
+                                                                          @Query("shopID") String shopID, @Query("orderID") String orderID);
+
+    @FormUrlEncoded
+    @POST("pss/Store/orderStockCheckHandle")
+    Flowable<HttpResult> orderStockCheckHandle(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Field("orderID") String orderID);
+
 
     @POST("pss/Store/orderStockCheckEdit")
     Flowable<HttpResult> orderStockCheckEdit(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,

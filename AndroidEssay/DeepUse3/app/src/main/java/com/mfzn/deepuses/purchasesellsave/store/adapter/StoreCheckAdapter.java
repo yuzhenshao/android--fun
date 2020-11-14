@@ -29,7 +29,23 @@ public class StoreCheckAdapter extends BaseQuickAdapter<OrderStockCheckResponse,
 
         helper.setText(R.id.name, item.getStoreName())
                 .setText(R.id.store_check_id, item.getOrderNum())
-                .setText(R.id.time, DateUtils.longToString("yyyy/MM/dd", item.getOrderTime()))
-                .setImageResource(R.id.store_check_icon, item.getStatusResId());
+                .setText(R.id.time, DateUtils.longToString("yyyy/MM/dd", item.getOrderTime()));
+        int resId=getStatusResId(item.getIsCheck());
+        helper.setGone(R.id.store_check_icon,resId!=0);
+        if(resId!=0){
+            helper.setImageResource(R.id.store_check_icon, resId);
+        }
+    }
+
+    public int getStatusResId(int status) {//0.待审核1通过2拒绝
+        switch (status) {
+            case 0:
+                return R.mipmap.examine_pending;
+            case 1:
+                return R.mipmap.examine_pass;
+            case 2:
+                return R.mipmap.examine_unpass;
+        }
+        return 0;
     }
 }

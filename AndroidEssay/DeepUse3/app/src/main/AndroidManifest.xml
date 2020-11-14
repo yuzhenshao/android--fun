@@ -479,6 +479,9 @@
             android:name=".purchasesellsave.store.activity.StoreCheckListActivity"
             android:screenOrientation="portrait"></activity>
         <activity
+            android:name=".purchasesellsave.store.activity.StoreCheckDetailActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
             android:name=".purchasesellsave.store.activity.WaitingInOutDetailActivity"
             android:screenOrientation="portrait"></activity>
 
