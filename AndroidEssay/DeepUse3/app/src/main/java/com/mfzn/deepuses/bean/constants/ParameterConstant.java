@@ -54,4 +54,7 @@ public interface ParameterConstant {
     String ORDER_ID = "orderId";
     String CUTOMER_OR_SUPPLIER = "customerOrSupplier";
     String CUTOMER_OR_SUPPLIER_ID = "customerOrSupplierID";
+
+    String BORROW_ID="borrowID";
+    String HANDLE_LOGS="handleLog";
 }

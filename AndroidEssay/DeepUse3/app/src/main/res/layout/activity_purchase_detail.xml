@@ -157,6 +157,7 @@
                 <RelativeLayout
                     style="@style/newly_ll_text"
                     android:background="#ffffff"
+                    android:visibility="gone"
                     android:paddingBottom="@dimen/app_6dp">
 
                     <TextView

@@ -120,8 +120,8 @@ public class OrderPurchaseDetailActivity extends BasicActivity {
                 statusCheckPayView.setTextColor(Color.parseColor(response.getIsPay() == 2 ? "#3D7EFF" : "#ff909399"));
             }
             supplierNameView.setText(response.getSupplierName());
-            userNameView.setText(response.getCheckUserName());
-            userPhoneView.setText("无");
+            userNameView.setText(response.getChargePerson());
+            userPhoneView.setText(response.getChargePersonPhone());
 
             if (ListUtil.isEmpty(response.getOtherCost())) {
                 costRecyclerView.setVisibility(View.GONE);

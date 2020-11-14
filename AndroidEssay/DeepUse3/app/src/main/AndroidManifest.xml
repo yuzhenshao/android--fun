@@ -578,7 +578,17 @@
             android:name=".purchasesellsave.capital.activity.GatherePayDetailActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".purchasesellsave.capital.activity.ActivityBorrowDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".purchasesellsave.capital.activity.HandleLogListActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".purchasesellsave.capital.activity.GatherePayActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/dialog_activity_style" />
+        <activity
+            android:name=".purchasesellsave.capital.activity.BorrowActivity"
             android:screenOrientation="portrait"
             android:theme="@style/dialog_activity_style" />
         <activity

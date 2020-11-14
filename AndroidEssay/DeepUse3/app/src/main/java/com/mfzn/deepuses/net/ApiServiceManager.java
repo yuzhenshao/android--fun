@@ -24,6 +24,7 @@ import com.mfzn.deepuses.bean.request.SupplierRequest;
 import com.mfzn.deepuses.bean.request.capital.AddBorrowRequest;
 import com.mfzn.deepuses.bean.request.capital.AddIncomeExpenseRequest;
 import com.mfzn.deepuses.bean.request.capital.MoneyTransferRequest;
+import com.mfzn.deepuses.bean.request.purchase.AddBorrowHandleLogRequest;
 import com.mfzn.deepuses.bean.request.purchase.OrderPurchaseAddRequest;
 import com.mfzn.deepuses.bean.request.sale.OrderOfferRequest;
 import com.mfzn.deepuses.bean.request.sale.OrderOtherInRequest;
@@ -39,6 +40,7 @@ import com.mfzn.deepuses.bean.request.store.OrderStockCheckRequest;
 import com.mfzn.deepuses.bean.response.GoodsCategoryResponse;
 import com.mfzn.deepuses.bean.response.GoodsUnitResponse;
 import com.mfzn.deepuses.bean.response.WaitingCheckResponse;
+import com.mfzn.deepuses.bean.response.capital.BorrowInfoResponse;
 import com.mfzn.deepuses.bean.response.capital.BorrowListResponse;
 import com.mfzn.deepuses.bean.response.capital.IncomeExpenseListResponse;
 import com.mfzn.deepuses.bean.response.capital.MoneyAccountFinancialLogListResponse;
@@ -803,6 +805,16 @@ public class ApiServiceManager {
     public static Flowable<HttpResult> addBorrow(AddBorrowRequest request) {
         return ApiHelper.getApiService().addBorrow(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), request);
     }
+
+    public static Flowable<HttpResult<BorrowInfoResponse>> borrowInfo(String orderId) {
+        return ApiHelper.getApiService().borrowInfo(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), orderId);
+    }
+
+
+    public static Flowable<HttpResult> addBorrowHandleLog(AddBorrowHandleLogRequest request) {
+        return ApiHelper.getApiService().addBorrowHandleLog(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), request);
+    }
+
 
     //收支管理--新增
     public static Flowable<HttpResult> addIncomeExpense(AddIncomeExpenseRequest request) {

@@ -24,6 +24,7 @@ import com.mfzn.deepuses.bean.request.SupplierRequest;
 import com.mfzn.deepuses.bean.request.capital.AddBorrowRequest;
 import com.mfzn.deepuses.bean.request.capital.AddIncomeExpenseRequest;
 import com.mfzn.deepuses.bean.request.capital.MoneyTransferRequest;
+import com.mfzn.deepuses.bean.request.purchase.AddBorrowHandleLogRequest;
 import com.mfzn.deepuses.bean.request.purchase.OrderPurchaseAddRequest;
 import com.mfzn.deepuses.bean.request.sale.OrderOfferRequest;
 import com.mfzn.deepuses.bean.request.sale.OrderOtherInRequest;
@@ -40,6 +41,7 @@ import com.mfzn.deepuses.bean.response.BusinessCardResponse;
 import com.mfzn.deepuses.bean.response.GoodsCategoryResponse;
 import com.mfzn.deepuses.bean.response.GoodsUnitResponse;
 import com.mfzn.deepuses.bean.response.WaitingCheckResponse;
+import com.mfzn.deepuses.bean.response.capital.BorrowInfoResponse;
 import com.mfzn.deepuses.bean.response.capital.BorrowListResponse;
 import com.mfzn.deepuses.bean.response.capital.IncomeExpenseListResponse;
 import com.mfzn.deepuses.bean.response.capital.MoneyAccountFinancialLogListResponse;
@@ -1323,6 +1325,15 @@ public interface ApiService {
     //借入借出--新增
     @POST("pss/Capital/addBorrow")
     Flowable<HttpResult> addBorrow(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Body AddBorrowRequest request);
+
+    //借入借出--详情
+    @GET("pss/Capital/borrowInfo")
+    Flowable<HttpResult<BorrowInfoResponse>> borrowInfo(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Query("orderID") String orderID);
+
+    //借入借出--新增结算历史
+    @POST("pss/Capital/addBorrowHandleLog")
+    Flowable<HttpResult> addBorrowHandleLog(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Body AddBorrowHandleLogRequest request);
+
 
     //收支管理--新增
     @POST("pss/Capital/addIncomeExpense")
