@@ -9,6 +9,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.activity.khgl.SelectTypeActivity;
 import com.mfzn.deepuses.bass.BasicListActivity;
+import com.mfzn.deepuses.bean.constants.ParameterConstant;
 import com.mfzn.deepuses.bean.response.store.OrderOtherInOutListResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
@@ -66,6 +67,14 @@ public class OrderOtherInOutListActivity extends BasicListActivity<OrderOtherInO
     @Override
     protected BaseQuickAdapter getAdapter() {
         OrderOtherInOutAdapter mAdapter = new OrderOtherInOutAdapter(this, mSourceList);
+        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int i) {
+                Intent intent=new Intent(OrderOtherInOutListActivity.this,OtherWaitingInOutDetailActivity.class);
+                intent.putExtra(ParameterConstant.ORDER_ID,mSourceList.get(i).getOrderID());
+                startActivityForResult(intent,REQUESTCODE);
+            }
+        });
         return mAdapter;
     }
 

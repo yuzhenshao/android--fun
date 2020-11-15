@@ -88,6 +88,8 @@ public class OrderOfferListActivity extends BasicListActivity<OrderOfferListResp
                 } else {
                     Intent intent = new Intent(OrderOfferListActivity.this, OrderOfferDetailActivity.class);
                     intent.putExtra(ParameterConstant.ORDER_ID, mSourceList.get(i).getOrderID());
+                    intent.putExtra(ParameterConstant.NAME, mSourceList.get(i).getCustomerName());
+                    intent.putExtra(ParameterConstant.PHONE, mSourceList.get(i).getCustomerPhone());
                     startActivityForResult(intent, REFRESH_TAG);
                 }
             }

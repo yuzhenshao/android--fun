@@ -4,26 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BasicListActivity;
-import com.mfzn.deepuses.bean.constants.ParameterConstant;
-import com.mfzn.deepuses.bean.response.GoodsCategoryResponse;
-import com.mfzn.deepuses.bean.response.settings.GoodsListResponse;
-import com.mfzn.deepuses.bean.response.settings.StoreResponse;
 import com.mfzn.deepuses.bean.response.settings.SupplierListResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
-import com.mfzn.deepuses.purchasesellsave.setting.adapter.StoreAdapter;
 import com.mfzn.deepuses.purchasesellsave.setting.adapter.SupplierAdapter;
-
-import java.util.List;
-
 import butterknife.BindView;
-import butterknife.OnClick;
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.XApi;
@@ -76,9 +66,9 @@ public class SupplierListActivity extends BasicListActivity<SupplierListResponse
     @Override
     protected BaseQuickAdapter getAdapter() {
         SupplierAdapter mAdapter = new SupplierAdapter(this, mSourceList);
-        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+        mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int i) {
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int i) {
                 SupplierListResponse.SupplierResponse supplierResponse=mSourceList.get(i);
                 Intent intent = new Intent();
                 intent.putExtra("Id", supplierResponse.getSupplierID());

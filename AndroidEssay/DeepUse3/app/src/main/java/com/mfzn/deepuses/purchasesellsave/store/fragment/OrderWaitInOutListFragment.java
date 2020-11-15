@@ -1,6 +1,8 @@
 package com.mfzn.deepuses.purchasesellsave.store.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.libcommon.utils.ListUtil;
@@ -9,6 +11,8 @@ import com.mfzn.deepuses.bean.constants.ParameterConstant;
 import com.mfzn.deepuses.bean.response.store.WaitingInOutListResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
+import com.mfzn.deepuses.purchasesellsave.store.activity.AddOrderStockCheckActivity;
+import com.mfzn.deepuses.purchasesellsave.store.activity.WaitingInOutDetailActivity;
 import com.mfzn.deepuses.purchasesellsave.store.adapter.OrderWaitInOutAdapter;
 
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
@@ -64,6 +68,17 @@ public class OrderWaitInOutListFragment extends BasicListFragment<WaitingInOutLi
 
     @Override
     protected BaseQuickAdapter getAdapter() {
-        return new OrderWaitInOutAdapter(getActivity(), mSourceList);
+        OrderWaitInOutAdapter adapter = new OrderWaitInOutAdapter(getActivity(), mSourceList);
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int i) {
+                Intent intent = new Intent(getActivity(), WaitingInOutDetailActivity.class);
+                intent.putExtra(ParameterConstant.ORDER_ID, mSourceList.get(i).getDataID());
+                intent.putExtra(ParameterConstant.GOODS_ID, mSourceList.get(i).getOrderNum());
+                intent.putExtra(ParameterConstant.CAPITAL_TYPE, type);
+                startActivity(intent);
+            }
+        });
+        return adapter;
     }
 }

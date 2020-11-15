@@ -5,6 +5,7 @@ package com.mfzn.deepuses.bean.constants;
  */
 public interface ParameterConstant {
 
+    String TITLE="title";
     String SHOP_ID = "shopID";
     String GOODS_ID = "goodsId";
     String BASIC_ATTR = "basicAttr";
@@ -39,7 +40,8 @@ public interface ParameterConstant {
     String MAP_SHOP_ID = "mapShopID";
     String INPUT_TYPE = "inputType";
     String INPUT_DATA = "inputData";
-    String OTHER_COST_MODULE = "OtherCostModule";
+    String NAME="name";
+    String PHONE="phone";
 
     //财务
     String CAPITAL_TYPE = "capitalType";
@@ -53,4 +55,7 @@ public interface ParameterConstant {
     String ORDER_ID = "orderId";
     String CUTOMER_OR_SUPPLIER = "customerOrSupplier";
     String CUTOMER_OR_SUPPLIER_ID = "customerOrSupplierID";
+
+    String BORROW_ID="borrowID";
+    String HANDLE_LOGS="handleLog";
 }

@@ -24,6 +24,7 @@ import com.mfzn.deepuses.bean.request.SupplierRequest;
 import com.mfzn.deepuses.bean.request.capital.AddBorrowRequest;
 import com.mfzn.deepuses.bean.request.capital.AddIncomeExpenseRequest;
 import com.mfzn.deepuses.bean.request.capital.MoneyTransferRequest;
+import com.mfzn.deepuses.bean.request.purchase.AddBorrowHandleLogRequest;
 import com.mfzn.deepuses.bean.request.purchase.OrderPurchaseAddRequest;
 import com.mfzn.deepuses.bean.request.sale.OrderOfferRequest;
 import com.mfzn.deepuses.bean.request.sale.OrderOtherInRequest;
@@ -39,6 +40,7 @@ import com.mfzn.deepuses.bean.request.store.OrderStockCheckRequest;
 import com.mfzn.deepuses.bean.response.GoodsCategoryResponse;
 import com.mfzn.deepuses.bean.response.GoodsUnitResponse;
 import com.mfzn.deepuses.bean.response.WaitingCheckResponse;
+import com.mfzn.deepuses.bean.response.capital.BorrowInfoResponse;
 import com.mfzn.deepuses.bean.response.capital.BorrowListResponse;
 import com.mfzn.deepuses.bean.response.capital.IncomeExpenseListResponse;
 import com.mfzn.deepuses.bean.response.capital.MoneyAccountFinancialLogListResponse;
@@ -61,7 +63,6 @@ import com.mfzn.deepuses.bean.response.settings.GoodsDetailResponse;
 import com.mfzn.deepuses.bean.response.settings.GoodsListResponse;
 import com.mfzn.deepuses.bean.response.settings.IncomeExpenseTypeResponse;
 import com.mfzn.deepuses.bean.response.settings.OtherCostResponse;
-import com.mfzn.deepuses.bean.response.settings.SupplierCustomerInfoResponse;
 import com.mfzn.deepuses.bean.response.settings.SupplierListResponse;
 import com.mfzn.deepuses.bean.response.shop.ShopDataResponse;
 import com.mfzn.deepuses.bean.response.shop.ShopListResponse;
@@ -70,10 +71,14 @@ import com.mfzn.deepuses.bean.response.shop.UserAuthResponse;
 import com.mfzn.deepuses.bean.response.store.GoodsStockResponse;
 import com.mfzn.deepuses.bean.response.store.OrderAllotListResponse;
 import com.mfzn.deepuses.bean.response.store.OrderOtherInOutListResponse;
+import com.mfzn.deepuses.bean.response.store.OrderStockCheckInfoResponse;
 import com.mfzn.deepuses.bean.response.store.OrderStockCheckListResponse;
+import com.mfzn.deepuses.bean.response.store.OtherWaitingInOutDetailResponse;
 import com.mfzn.deepuses.bean.response.store.StockLogListResponse;
 import com.mfzn.deepuses.bean.response.store.StockWarningResponse;
 import com.mfzn.deepuses.bean.response.store.StoreAllCheckListResponse;
+import com.mfzn.deepuses.bean.response.store.WaitingInDetailResponse;
+import com.mfzn.deepuses.bean.response.store.WaitingOutDetailResponse;
 import com.mfzn.deepuses.bean.response.store.WaitingInOutListResponse;
 import com.mfzn.deepuses.bean.response.user.WaitingCheckListResponse;
 import com.mfzn.deepuses.model.company.SelectCompanyModel;
@@ -101,11 +106,6 @@ import com.mfzn.deepuses.utils.UserHelper;
 import java.util.List;
 
 import io.reactivex.Flowable;
-import retrofit2.http.Body;
-import retrofit2.http.Field;
-import retrofit2.http.GET;
-import retrofit2.http.POST;
-import retrofit2.http.Query;
 
 /**
  * @author yz @date 2020-02-27
@@ -502,6 +502,14 @@ public class ApiServiceManager {
         return ApiHelper.getApiService().orderStockCheckList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), kw, storeID, status);
     }
 
+    public static Flowable<HttpResult<OrderStockCheckInfoResponse>> orderStockCheckInfo(String orderId) {
+        return ApiHelper.getApiService().orderStockCheckInfo(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), orderId);
+    }
+
+    public static Flowable<HttpResult> orderStockCheckHandle(String orderId) {
+        return ApiHelper.getApiService().orderStockCheckHandle(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), orderId);
+    }
+
     public static Flowable<HttpResult> editOrderStockCheck(OrderStockCheckRequest request) {
         return ApiHelper.getApiService().orderStockCheckEdit(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), request);
     }
@@ -515,15 +523,15 @@ public class ApiServiceManager {
     }
 
     public static Flowable<HttpResult<OrderOtherInOutListResponse>> getOrderOtherInOutList() {
-        return getOrderOtherInOutList(null, null, null, 9);
+        return getOrderOtherInOutList(null, null, null, null);
     }
 
-    public static Flowable<HttpResult<OrderOtherInOutListResponse>> searchOrderOtherInOutList(String keywords, int orderType) {
-        return getOrderOtherInOutList(keywords, null, null, orderType);
+    public static Flowable<HttpResult<OrderOtherInOutListResponse>> searchOrderOtherInOutList(String keywords) {
+        return getOrderOtherInOutList(keywords, null, null, null);
     }
 
     public static Flowable<HttpResult<OrderOtherInOutListResponse>> getOrderOtherInOutList(String keywords, String startTime,
-                                                                                           String endTime, int orderType) {
+                                                                                           String endTime, String orderType) {
         return ApiHelper.getApiService().orderOtherInOutList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(),
                 keywords, startTime, endTime, orderType);
     }
@@ -534,6 +542,15 @@ public class ApiServiceManager {
                 "", "", "", "", "", "", "", "");
     }
 
+    public static Flowable<HttpResult<OtherWaitingInOutDetailResponse>> orderOtherInOutInfo(String orderID) {
+        return ApiHelper.getApiService().orderOtherInOutInfo(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), orderID);
+    }
+
+    public static Flowable<HttpResult> orderOtherOutDoOutAction(String orderID) {
+        return ApiHelper.getApiService().orderOtherOutDoOutAction(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), orderID);
+    }
+
+
     public static Flowable<HttpResult<StoreAllCheckListResponse>> getSoreAllCheckList() {
         return ApiHelper.getApiService().storeAllCheckList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), 0);
     }
@@ -542,8 +559,16 @@ public class ApiServiceManager {
         return ApiHelper.getApiService().waitingInList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), 0);
     }
 
+    public static Flowable<HttpResult<List<WaitingInDetailResponse>>> waitingInDetail(String dataID) {
+        return ApiHelper.getApiService().waitingInDetail(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), dataID);
+    }
+
     public static Flowable<HttpResult> doAllIn(String dataID) {
         return ApiHelper.getApiService().doAllIn(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), dataID);
+    }
+
+    public static Flowable<HttpResult> doPartIn(String detailIDs, String outNums, String dataID) {
+        return ApiHelper.getApiService().doPartIn(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), detailIDs, outNums, dataID);
     }
 
 
@@ -551,8 +576,16 @@ public class ApiServiceManager {
         return ApiHelper.getApiService().waitingOutList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), 0);
     }
 
+    public static Flowable<HttpResult<WaitingOutDetailResponse>> waitingOutDetail(String dataID) {
+        return ApiHelper.getApiService().waitingOutDetail(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), dataID);
+    }
+
     public static Flowable<HttpResult> doAllOut(String dataID) {
         return ApiHelper.getApiService().doAllOut(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), dataID);
+    }
+
+    public static Flowable<HttpResult> doPartOut(String detailIDs, String outNums, String dataID) {
+        return ApiHelper.getApiService().doPartOut(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), detailIDs, outNums, dataID);
     }
 
 
@@ -785,6 +818,16 @@ public class ApiServiceManager {
     public static Flowable<HttpResult> addBorrow(AddBorrowRequest request) {
         return ApiHelper.getApiService().addBorrow(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), request);
     }
+
+    public static Flowable<HttpResult<BorrowInfoResponse>> borrowInfo(String orderId) {
+        return ApiHelper.getApiService().borrowInfo(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), orderId);
+    }
+
+
+    public static Flowable<HttpResult> addBorrowHandleLog(AddBorrowHandleLogRequest request) {
+        return ApiHelper.getApiService().addBorrowHandleLog(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), request);
+    }
+
 
     //收支管理--新增
     public static Flowable<HttpResult> addIncomeExpense(AddIncomeExpenseRequest request) {

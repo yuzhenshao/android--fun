@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F7FA">
+
+    <com.libcommon.titlebar.TitleBar
+        android:id="@+id/titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btn_commit"
+        android:layout_below="@+id/titlebar"
+        android:orientation="vertical">
+
+        <LinearLayout
+            style="@style/newly_ll_st"
+            android:layout_marginTop="@dimen/app_10dp"
+            android:background="#ffffff">
+
+            <TextView
+                style="@style/newly_tv_st"
+                android:text="单据编号" />
+
+            <TextView
+                android:id="@+id/order_num"
+                style="@style/newly_et_st"
+                android:text="大王建材有限公司" />
+
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/app_10dp"
+            android:background="#ffffff" />
+
+
+        <LinearLayout
+            android:id="@+id/adress_container"
+            android:layout_width="match_parent"
+            android:layout_height="94dp"
+            android:background="@color/white"
+            android:layout_marginTop="@dimen/app_8dp"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:paddingLeft="@dimen/app_24dp"
+            android:paddingRight="@dimen/app_24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/app_21dp"
+                android:text="送货信息"
+                android:textColor="#ff606266"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/adress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/app_20dp"
+                android:text="常州市武进区万达广场1楼"
+                android:textColor="#ff303133"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_commit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/app_20dp"
+        android:layout_marginTop="@dimen/app_20dp"
+        android:layout_marginRight="@dimen/app_20dp"
+        android:layout_marginBottom="@dimen/app_11dp"
+        android:background="@drawable/submit_btn_selector"
+        android:text="入库"
+        android:textColor="@color/color_ffffff"
+        android:textSize="18sp" />
+</RelativeLayout>

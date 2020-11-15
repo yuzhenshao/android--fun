@@ -1,21 +1,9 @@
 package com.mfzn.deepuses.bean.response.store;
 
-import android.text.TextUtils;
-
-import com.libcommon.utils.ListUtil;
-import com.mfzn.deepuses.R;
-import com.mfzn.deepuses.bean.response.settings.GoodsInfoResponse;
-
-import java.util.ArrayList;
 import java.util.List;
 
-public class OrderStockCheckResponse {
-    //0.待审核；1.盈亏处理中；2.审核被拒；3盈亏处理完成；4.无盈亏
-    private final static int PENDING_REVIEW = 0;
-    private final static int PROFIT_LOSS_ING = 1;
-    private final static int PROFIT_LOSS_FAILED = 2;
-    private final static int PROFIT_LOSS_SUCCEED = 3;
-    private final static int NO_PROFIT_LOSS = 4;
+public class OrderStockCheckInfoResponse {
+
 
     /**
      * orderID : 1
@@ -37,10 +25,10 @@ public class OrderStockCheckResponse {
      * checkNote : 通过
      * addTime : 1586442775
      * statusText : 盈亏处理完成
+     * goodsInfo : [{"goodsID":1,"goodsCount":0,"goodsName":"MacBook Pro","goodsCatName":"Apple","goodsAttr":"最新的","goodsNum":"SP0001","goodsUnitName":"台","goodsBarCode":"111111","goodsBrand":"Apple","goodsPosition":1,"goodsMainImage":"1.jpg","systemStockNum":100,"checkStockNum":99,"checkChangeNum":-1,"remark":""}]
      * systemSumCount : 100
      * checkSumCount : 99
      */
-
 
     private String orderID;
     private String companyID;
@@ -54,17 +42,16 @@ public class OrderStockCheckResponse {
     private String storeName;
     private String remark;
     private int isCheck;
-    private long checkTime;
+    private String checkTime;
     private String checkUserID;
-    private int status;// 4,状态：0.待审核；1.盈亏处理中；2.审核被拒；3盈亏处理完成；4.无盈亏
+    private int status;
     private String checkUserName;
     private String checkNote;
     private long addTime;
     private String statusText;
     private int systemSumCount;
     private int checkSumCount;
-
-    private List<GoodsInfoResponse> goodsInfo;
+    private List<GoodsInfoBean> goodsInfo;
 
     public String getOrderID() {
         return orderID;
@@ -162,11 +149,11 @@ public class OrderStockCheckResponse {
         this.isCheck = isCheck;
     }
 
-    public long getCheckTime() {
+    public String getCheckTime() {
         return checkTime;
     }
 
-    public void setCheckTime(long checkTime) {
+    public void setCheckTime(String checkTime) {
         this.checkTime = checkTime;
     }
 
@@ -234,24 +221,167 @@ public class OrderStockCheckResponse {
         this.checkSumCount = checkSumCount;
     }
 
-    public List<GoodsInfoResponse> getGoodsInfo() {
+    public List<GoodsInfoBean> getGoodsInfo() {
         return goodsInfo;
     }
 
-    public void setGoodsInfo(List<GoodsInfoResponse> goodsInfo) {
+    public void setGoodsInfo(List<GoodsInfoBean> goodsInfo) {
         this.goodsInfo = goodsInfo;
     }
 
-    public List<String> getGoodsMainImageList() {
-        List<String> images = new ArrayList<>();
-        if (!ListUtil.isEmpty(goodsInfo)) {
-            for (GoodsInfoResponse goodsResponse : goodsInfo) {
-                if (!TextUtils.isEmpty(goodsResponse.getGoodsMainImage())) {
-                    images.add(goodsResponse.getGoodsMainImage());
-                }
-            }
+    public static class GoodsInfoBean {
+        /**
+         * goodsID : 1
+         * goodsCount : 0
+         * goodsName : MacBook Pro
+         * goodsCatName : Apple
+         * goodsAttr : 最新的
+         * goodsNum : SP0001
+         * goodsUnitName : 台
+         * goodsBarCode : 111111
+         * goodsBrand : Apple
+         * goodsPosition : 1
+         * goodsMainImage : 1.jpg
+         * systemStockNum : 100
+         * checkStockNum : 99
+         * checkChangeNum : -1
+         * remark :
+         */
+
+        private String goodsID;
+        private int goodsCount;
+        private String goodsName;
+        private String goodsCatName;
+        private String goodsAttr;
+        private String goodsNum;
+        private String goodsUnitName;
+        private String goodsBarCode;
+        private String goodsBrand;
+        private int goodsPosition;
+        private String goodsMainImage;
+        private int systemStockNum;
+        private int checkStockNum;
+        private int checkChangeNum;
+        private String remark;
+
+        public String getGoodsID() {
+            return goodsID;
         }
-        return images;
+
+        public void setGoodsID(String goodsID) {
+            this.goodsID = goodsID;
+        }
+
+        public int getGoodsCount() {
+            return goodsCount;
+        }
+
+        public void setGoodsCount(int goodsCount) {
+            this.goodsCount = goodsCount;
+        }
+
+        public String getGoodsName() {
+            return goodsName;
+        }
+
+        public void setGoodsName(String goodsName) {
+            this.goodsName = goodsName;
+        }
+
+        public String getGoodsCatName() {
+            return goodsCatName;
+        }
+
+        public void setGoodsCatName(String goodsCatName) {
+            this.goodsCatName = goodsCatName;
+        }
+
+        public String getGoodsAttr() {
+            return goodsAttr;
+        }
+
+        public void setGoodsAttr(String goodsAttr) {
+            this.goodsAttr = goodsAttr;
+        }
+
+        public String getGoodsNum() {
+            return goodsNum;
+        }
+
+        public void setGoodsNum(String goodsNum) {
+            this.goodsNum = goodsNum;
+        }
+
+        public String getGoodsUnitName() {
+            return goodsUnitName;
+        }
+
+        public void setGoodsUnitName(String goodsUnitName) {
+            this.goodsUnitName = goodsUnitName;
+        }
+
+        public String getGoodsBarCode() {
+            return goodsBarCode;
+        }
+
+        public void setGoodsBarCode(String goodsBarCode) {
+            this.goodsBarCode = goodsBarCode;
+        }
+
+        public String getGoodsBrand() {
+            return goodsBrand;
+        }
+
+        public void setGoodsBrand(String goodsBrand) {
+            this.goodsBrand = goodsBrand;
+        }
+
+        public int getGoodsPosition() {
+            return goodsPosition;
+        }
+
+        public void setGoodsPosition(int goodsPosition) {
+            this.goodsPosition = goodsPosition;
+        }
+
+        public String getGoodsMainImage() {
+            return goodsMainImage;
+        }
+
+        public void setGoodsMainImage(String goodsMainImage) {
+            this.goodsMainImage = goodsMainImage;
+        }
+
+        public int getSystemStockNum() {
+            return systemStockNum;
+        }
+
+        public void setSystemStockNum(int systemStockNum) {
+            this.systemStockNum = systemStockNum;
+        }
+
+        public int getCheckStockNum() {
+            return checkStockNum;
+        }
+
+        public void setCheckStockNum(int checkStockNum) {
+            this.checkStockNum = checkStockNum;
+        }
+
+        public int getCheckChangeNum() {
+            return checkChangeNum;
+        }
+
+        public void setCheckChangeNum(int checkChangeNum) {
+            this.checkChangeNum = checkChangeNum;
+        }
+
+        public String getRemark() {
+            return remark;
+        }
+
+        public void setRemark(String remark) {
+            this.remark = remark;
+        }
     }
 }
-

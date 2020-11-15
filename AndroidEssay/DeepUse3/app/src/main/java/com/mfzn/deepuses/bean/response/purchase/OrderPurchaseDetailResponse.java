@@ -65,6 +65,8 @@ public class OrderPurchaseDetailResponse {
     private int isOutStore;
     private String supplierID;
     private String supplierName;
+    private String chargePerson;
+    private String chargePersonPhone;
     private String discountAmount;
     private String realMoney;
     private String totalMoney;
@@ -398,4 +400,19 @@ public class OrderPurchaseDetailResponse {
         return images;
     }
 
+    public String getChargePerson() {
+        return chargePerson;
+    }
+
+    public void setChargePerson(String chargePerson) {
+        this.chargePerson = chargePerson;
+    }
+
+    public String getChargePersonPhone() {
+        return chargePersonPhone;
+    }
+
+    public void setChargePersonPhone(String chargePersonPhone) {
+        this.chargePersonPhone = chargePersonPhone;
+    }
 }
