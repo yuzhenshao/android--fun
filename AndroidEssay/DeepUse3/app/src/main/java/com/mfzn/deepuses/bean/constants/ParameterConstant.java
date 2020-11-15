@@ -40,7 +40,8 @@ public interface ParameterConstant {
     String MAP_SHOP_ID = "mapShopID";
     String INPUT_TYPE = "inputType";
     String INPUT_DATA = "inputData";
-    String OTHER_COST_MODULE = "OtherCostModule";
+    String NAME="name";
+    String PHONE="phone";
 
     //财务
     String CAPITAL_TYPE = "capitalType";

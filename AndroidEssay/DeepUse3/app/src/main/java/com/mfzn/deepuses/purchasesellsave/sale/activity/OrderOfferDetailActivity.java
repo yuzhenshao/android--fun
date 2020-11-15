@@ -31,7 +31,6 @@ import cn.droidlover.xdroidmvp.net.XApi;
 public class OrderOfferDetailActivity extends BasicActivity {
     private ImageView mCheckStatus;
     private EditText mCustomerName;
-    private EditText mContactName;
     private EditText mContactPhone;
     private RecyclerView mGoodsRecyleview;
     private RecyclerView mGoodsCostRecyleview;
@@ -64,7 +63,6 @@ public class OrderOfferDetailActivity extends BasicActivity {
     private void initView() {
         mCheckStatus = (ImageView) findViewById(R.id.check_status);
         mCustomerName = (EditText) findViewById(R.id.customer_name);
-        mContactName = (EditText) findViewById(R.id.contact_name);
         mContactPhone = (EditText) findViewById(R.id.contact_phone);
         mGoodsRecyleview = (RecyclerView) findViewById(R.id.goods_recyleview);
         mGoodsCostRecyleview = (RecyclerView) findViewById(R.id.goods_cost_recyleview);
@@ -82,6 +80,9 @@ public class OrderOfferDetailActivity extends BasicActivity {
                 deleteOrder();
             }
         });
+
+        mCustomerName.setText(getIntent().getStringExtra(ParameterConstant.NAME));
+        mContactPhone.setText(getIntent().getStringExtra(ParameterConstant.PHONE));
     }
 
     private void initData() {
@@ -106,9 +107,6 @@ public class OrderOfferDetailActivity extends BasicActivity {
 
     private void initDetailInfo() {
         mCheckStatus.setImageResource(getStatusResId(mOrderOfferResponse.getIsCheck()));
-        mCustomerName.setText(mOrderOfferResponse.getSalesPersonUserName());//这个是什么
-        mContactName.setText(mOrderOfferResponse.getCustomerName());
-        mContactPhone.setText(mOrderOfferResponse.getCustomerPhone());
         mOrderTotalPrice.setText(mOrderOfferResponse.getTotalMoney());
         mOrderNum.setText(mOrderOfferResponse.getOrderNum());
         mOrderTime.setText(DateUtils.longToString(mOrderOfferResponse.getOrderTime()));

@@ -62,18 +62,18 @@
                         style="@style/newly_et_st2" />
                 </LinearLayout>
 
-                <View style="@style/line_heng" />
+<!--                <View style="@style/line_heng" />-->
 
-                <LinearLayout style="@style/newly_ll_st">
+<!--                <LinearLayout style="@style/newly_ll_st">-->
 
-                    <TextView
-                        style="@style/newly_tv_st"
-                        android:text="联系人" />
+<!--                    <TextView-->
+<!--                        style="@style/newly_tv_st"-->
+<!--                        android:text="联系人" />-->
 
-                    <EditText
-                        android:id="@+id/contact_name"
-                        style="@style/newly_et_st2" />
-                </LinearLayout>
+<!--                    <EditText-->
+<!--                        android:id="@+id/contact_name"-->
+<!--                        style="@style/newly_et_st2" />-->
+<!--                </LinearLayout>-->
 
                 <View style="@style/line_heng" />
 

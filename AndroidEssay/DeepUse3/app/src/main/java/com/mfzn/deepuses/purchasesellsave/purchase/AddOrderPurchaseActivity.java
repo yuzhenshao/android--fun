@@ -65,7 +65,7 @@ public class AddOrderPurchaseActivity extends BaseAddCustomerAndGoodsActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         isPurchaseAdd = getIntent().getBooleanExtra(ParameterConstant.IS_PURCHASE_CREATE, true);
-        mTitleBar.updateTitleBar(isPurchaseAdd ? "新建采购单" : "新建采购退货单", "导入");
+        mTitleBar.updateTitleBar(isPurchaseAdd ? "新建采购单" : "新建采购退货单");
         storeNameView.setText(isPurchaseAdd ? "入库仓库" : "出库仓库");
         discountPrice.addTextChangedListener(new OnInputChangeListener() {
             @Override
@@ -250,16 +250,16 @@ public class AddOrderPurchaseActivity extends BaseAddCustomerAndGoodsActivity {
 
     @Override
     protected void rightPressedAction() {
-        if (isPurchaseAdd) {//采购单导入是销售单、零售单
-            Intent intent = new Intent(this, OrderInputListActivity.class);
-            intent.putExtra(ParameterConstant.INPUT_TYPE, 2);//1 零售 2销售
-            startActivityForResult(intent, SALES_INPUT);
-        } else {
-            Intent intent = new Intent(this, OrderPurchaseListActivity.class);
-            intent.putExtra(ParameterConstant.IS_PURCHASE_CREATE, true);
-            intent.putExtra(ParameterConstant.IS_SELECTED, true);
-            startActivityForResult(intent, PURCHASE_INPUT);
-        }
+//        if (isPurchaseAdd) {//采购单导入是销售单、零售单
+//            Intent intent = new Intent(this, OrderInputListActivity.class);
+//            intent.putExtra(ParameterConstant.INPUT_TYPE, 2);//1 零售 2销售
+//            startActivityForResult(intent, SALES_INPUT);
+//        } else {
+//            Intent intent = new Intent(this, OrderPurchaseListActivity.class);
+//            intent.putExtra(ParameterConstant.IS_PURCHASE_CREATE, true);
+//            intent.putExtra(ParameterConstant.IS_SELECTED, true);
+//            startActivityForResult(intent, PURCHASE_INPUT);
+//        }
     }
 
 }
