@@ -5,31 +5,43 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BasicListActivity;
 import com.mfzn.deepuses.bean.constants.ParameterConstant;
+import com.mfzn.deepuses.bean.request.purchase.OrderPurchaseListRequest;
 import com.mfzn.deepuses.bean.response.purchase.OrderPurchaseListResponse;
+import com.mfzn.deepuses.bean.response.settings.GoodsListResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.purchasesellsave.purchase.adapter.OrderPurchaseAdapter;
+import com.mfzn.deepuses.purchasesellsave.sale.activity.OrderOfferFilterActivity;
 
+import butterknife.BindView;
+import butterknife.OnClick;
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.XApi;
+import cn.droidlover.xdroidmvp.router.Router;
 import io.reactivex.Flowable;
 
 public class OrderPurchaseListActivity extends BasicListActivity<OrderPurchaseListResponse.OrderPurchaseResponse> {
     private boolean isSelected;
-    private boolean isPurchase;
     private static int REFRESH_TAG = 101;
+    private static int FILTER_TAG= 102;
+    @BindView(R.id.filter)
+    ImageView filterView;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         isSelected = getIntent().getBooleanExtra(ParameterConstant.IS_SELECTED, false);
-        mTitleBar.updateTitleBar(isSelected ? "选择导入数据" : "采购");
+        mTitleBar.updateTitleBar(isSelected ? "选择导入数据" : "采购单");
+        initSearch("搜索单据编号");
+        filterView.setVisibility(View.GONE);
     }
 
     @Override
@@ -40,15 +52,8 @@ public class OrderPurchaseListActivity extends BasicListActivity<OrderPurchaseLi
 
     @Override
     protected void getResourceList() {
-        isPurchase = getIntent().getBooleanExtra(ParameterConstant.IS_PURCHASE_CREATE, true);
         showDialog();
-        Flowable<HttpResult<OrderPurchaseListResponse>> flowable;
-        if (isPurchase) {
-            flowable = ApiServiceManager.orderPurchaseList();
-        } else {
-            flowable = ApiServiceManager.orderPurchaseBackList();
-        }
-        flowable
+        ApiServiceManager.orderPurchaseList()
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(bindToLifecycle())
@@ -93,11 +98,45 @@ public class OrderPurchaseListActivity extends BasicListActivity<OrderPurchaseLi
         return mAdapter;
     }
 
+    protected void searchAction(String keyword) {
+        OrderPurchaseListRequest request=new OrderPurchaseListRequest();
+        request.setKeywords(keyword);
+        searchAction(request);
+    }
+
+    protected void searchAction(OrderPurchaseListRequest request) {
+        showDialog();
+        ApiServiceManager.searchOrderPurchaseList(request)
+                .compose(XApi.getApiTransformer())
+                .compose(XApi.getScheduler())
+                .compose(bindToLifecycle())
+                .subscribe(new ApiSubscriber<HttpResult<OrderPurchaseListResponse>>() {
+                    @Override
+                    protected void onFail(NetError error) {
+                        showErrorView(error.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(HttpResult<OrderPurchaseListResponse> reuslt) {
+                        OrderPurchaseListResponse response = reuslt.getRes();
+                        if (response != null) {
+                            if (response.getData() != null) {
+                                refreshSearchSource(response.getData());
+                                return;
+                            }
+                        }
+                        showNoDataView();
+                    }
+                });
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK && requestCode == REFRESH_TAG) {
-            getResourceList();
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == REFRESH_TAG) {
+                getResourceList();
+            }
         }
     }
 }

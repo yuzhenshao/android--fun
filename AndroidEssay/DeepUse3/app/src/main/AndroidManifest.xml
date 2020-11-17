@@ -448,8 +448,8 @@
         <activity
             android:name=".purchasesellsave.sale.activity.OrderOfferFilterActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
-            android:theme="@style/PayDialogStyle"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/PayDialogStyle"></activity>
         <activity
             android:name=".purchasesellsave.sale.activity.OrderOfferDetailActivity"
             android:screenOrientation="portrait"></activity>
@@ -515,6 +515,9 @@
             android:screenOrientation="portrait"></activity>
         <activity
             android:name=".purchasesellsave.store.activity.OrderAllotListActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.store.activity.OrderAllotDetailActivity"
             android:screenOrientation="portrait"></activity>
 
         <activity

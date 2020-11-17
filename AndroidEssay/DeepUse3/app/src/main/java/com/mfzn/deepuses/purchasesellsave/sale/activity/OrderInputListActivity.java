@@ -28,6 +28,11 @@ public class OrderInputListActivity extends BasicListActivity<OrderSalesListResp
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mTitleBar.updateTitleBar("选择导入数据");
+        input = getIntent().getIntExtra(ParameterConstant.INPUT_TYPE, 0);
+        if (input == 0) {
+            showToast("没有可导入数据");
+            finish();
+        }
     }
 
     @Override
@@ -38,13 +43,16 @@ public class OrderInputListActivity extends BasicListActivity<OrderSalesListResp
 
     @Override
     protected void getResourceList() {
-        input = getIntent().getIntExtra(ParameterConstant.INPUT_TYPE, 0);
-        if (input == 0) {
-            showToast("没有可导入数据");
-            finish();
-        }
+        loadInputList("");
+    }
+
+    protected void searchAction(String keyword) {
+        loadInputList(keyword);
+    }
+
+    private void loadInputList(String keyword){
         showDialog();
-        getInputList()
+        getInputList(keyword)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(bindToLifecycle())
@@ -69,17 +77,17 @@ public class OrderInputListActivity extends BasicListActivity<OrderSalesListResp
     }
 
 
-    private Flowable<HttpResult<OrderSalesListResponse>> getInputList() {
+    private Flowable<HttpResult<OrderSalesListResponse>> getInputList(String keyword) {
         switch (input) {
             case 1:
-                return ApiServiceManager.getOrderRetailList();
+                return ApiServiceManager.getOrderRetailList(keyword);
             case 2:
-                return ApiServiceManager.getOrderSalesList();
+                return ApiServiceManager.getOrderSalesList(keyword);
             case 3:
-                return ApiServiceManager.getOrderTakeGoodsList();
+                return ApiServiceManager.getOrderTakeGoodsList(keyword);
 
         }
-        return ApiServiceManager.getOrderSalesList();
+        return ApiServiceManager.getOrderSalesList("");
     }
 
     @Override

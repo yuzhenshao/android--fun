@@ -13,7 +13,9 @@ import android.widget.TextView;
 import com.libcommon.utils.ListUtil;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BasicActivity;
+import com.mfzn.deepuses.bean.constants.ParameterConstant;
 import com.mfzn.deepuses.bean.request.CommodityRequest;
+import com.mfzn.deepuses.bean.response.settings.GoodsDetailResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.net.ImageUploadManager;
@@ -44,6 +46,8 @@ public class CommodityPhotoCreateActivity extends BasicActivity {
     @BindView(R.id.store_container)
     TextView storeSet;
     protected CommodityRequest mRequest;
+
+    protected GoodsDetailResponse.GoodsInfoResponse mGoodsInfoResponse;
 
     private static int UNIT_CODE = 101;
 
@@ -94,9 +98,12 @@ public class CommodityPhotoCreateActivity extends BasicActivity {
                 intent.setClass(this, GoodsUnitListActivity.class);
                 startActivityForResult(intent, UNIT_CODE);
                 break;
-
             case R.id.store_container:
                 intent.setClass(this, InventorySetActivity.class);
+                if(mGoodsInfoResponse!=null){
+                    intent.putExtra(ParameterConstant.GOODS_NAME,mGoodsInfoResponse.getGoodsName());
+                    intent.putExtra(ParameterConstant.GOODS_NUM,mGoodsInfoResponse.getGoodsNum());
+                }
                 startActivity(intent);
                 break;
             case R.id.btn_commit:

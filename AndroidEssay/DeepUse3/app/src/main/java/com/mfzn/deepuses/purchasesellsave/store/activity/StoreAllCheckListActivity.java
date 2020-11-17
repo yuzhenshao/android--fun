@@ -3,15 +3,25 @@ package com.mfzn.deepuses.purchasesellsave.store.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.libcommon.dialog.DialogUtils;
+import com.libcommon.dialog.fragment.BaseDialogFragment;
+import com.libcommon.dialog.listener.OnViewClickListener;
+import com.libcommon.dialog.view.BindViewHolder;
+import com.libcommon.slidemenu.MenuHelper;
+import com.libcommon.slidemenu.MenuItemClickListener;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BasicListActivity;
+import com.mfzn.deepuses.bean.response.settings.GoodsInfoResponse;
 import com.mfzn.deepuses.bean.response.store.StoreAllCheckListResponse;
 import com.mfzn.deepuses.bean.response.store.StoreCheckResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
+import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsListActivity;
 import com.mfzn.deepuses.purchasesellsave.store.adapter.StoreAllCheckAdapter;
+import com.mfzn.deepuses.utils.ToastUtil;
 
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
@@ -56,22 +66,53 @@ public class StoreAllCheckListActivity extends BasicListActivity<StoreCheckRespo
     @Override
     protected BaseQuickAdapter getAdapter() {
         StoreAllCheckAdapter mAdapter = new StoreAllCheckAdapter(this, mSourceList);
+        MenuHelper.attach(recyclerView, new MenuHelper.MenuEnableDecider() {
+            @Override
+            public boolean enable(int position) {
+                return true;
+            }
+        });
+
+        mAdapter.setOnMenuItemClickListener(new MenuItemClickListener() {
+            @Override
+            public void onClick(int index, View view) {
+                showDeleteDialog(index);
+            }
+        }, R.id.cancel);
         return mAdapter;
     }
 
-//    @OnClick({R.id.filter, R.id.search_container})
-//    public void onViewClicked(View view) {
-//        switch (view.getId()) {
-//            case R.id.filter:
-//                Router.newIntent(this).to(SelectTypeActivity.class)
-//                        .requestCode(Constants.SELECT_BC)
-//                        .anim(R.anim.pay_dialog_enter, R.anim.pay_dialog_exit)
-//                        .launch();
-//                break;
-//            case R.id.search_container:
-//                break;
-//        }
-//    }
+    private void showDeleteDialog(int index) {
+        DialogUtils.showConfirmDialog(this, "确定删除该商品？", new OnViewClickListener() {
+            @Override
+            public void onViewClick(BaseDialogFragment dialog, BindViewHolder viewHolder, View view) {
+                deleteGoods(index);
+            }
+        });
+    }
+
+    public void deleteGoods(int index) {
+        StoreCheckResponse storeCheckResponse = mSourceList.get(index);
+        if (storeCheckResponse != null) {
+            ApiServiceManager.storeAllCheckDel(storeCheckResponse.getOrderID())
+                    .compose(XApi.getApiTransformer())
+                    .compose(XApi.getScheduler())
+                    .compose(bindToLifecycle())
+                    .subscribe(new ApiSubscriber<HttpResult>() {
+                        @Override
+                        protected void onFail(NetError error) {
+                            showToast(error.getMessage());
+                        }
+
+                        @Override
+                        public void onNext(HttpResult reuslt) {
+                            showToast("删除成功");
+                            mSourceList.remove(index);
+                            adapter.notifyItemRemoved(index);
+                        }
+                    });
+        }
+    }
 
     protected void rightPressedAction() {
         startActivityForResult(new Intent(this, StoreAllCheckSponsorActivity.class), REQUESTCODE);

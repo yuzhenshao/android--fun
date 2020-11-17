@@ -100,7 +100,7 @@ public class OrderOfferListActivity extends BasicListActivity<OrderOfferListResp
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK && requestCode == REFRESH_TAG) {
+        if (resultCode == Activity.RESULT_OK) {
             if (requestCode == REFRESH_TAG) {
                 getResourceList();
             } else if (requestCode == CHECK_TAG) {

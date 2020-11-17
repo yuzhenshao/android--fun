@@ -14,6 +14,7 @@ import com.libcommon.dialog.listener.OnBindViewListener;
 import com.libcommon.dialog.view.BindViewHolder;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BasicListActivity;
+import com.mfzn.deepuses.bean.constants.ParameterConstant;
 import com.mfzn.deepuses.bean.response.settings.StoreResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
@@ -32,10 +33,14 @@ import cn.droidlover.xdroidmvp.net.XApi;
  */
 public class InventorySetActivity extends BasicListActivity<StoreResponse> {
 
+    private String goodsName="";
+    private String goodsNum="";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mTitleBar.updateTitleBar("库存");
+        goodsName=getIntent().getStringExtra(ParameterConstant.GOODS_NAME);
+        goodsNum=getIntent().getStringExtra(ParameterConstant.GOODS_NUM);
     }
 
     @Override
@@ -80,8 +85,8 @@ public class InventorySetActivity extends BasicListActivity<StoreResponse> {
                 .setOnBindViewListener(new OnBindViewListener() {
                     @Override
                     public void bindView(BindViewHolder viewHolder) {
-                        viewHolder.setText(R.id.name, storeResponse.getStoreName());
-                        viewHolder.setText(R.id.code, storeResponse.getStoreNum());
+                        viewHolder.setText(R.id.name, goodsName);
+                        viewHolder.setText(R.id.code, goodsNum);
                     }
                 })
                 .setOnViewClickListener((customDialog, bindViewHolder, view) -> {

@@ -5,18 +5,19 @@ import android.support.annotation.Nullable;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.libcommon.slidemenu.MenuQuickAdapter;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bean.response.store.StoreCheckResponse;
 import com.mfzn.deepuses.utils.DateUtils;
 
 import java.util.List;
 
-public class StoreAllCheckAdapter extends BaseQuickAdapter<StoreCheckResponse, BaseViewHolder> {
+public class StoreAllCheckAdapter extends MenuQuickAdapter<StoreCheckResponse, BaseViewHolder> {
 
     protected Context context;
 
     public StoreAllCheckAdapter(Context context, @Nullable List<StoreCheckResponse> data) {
-        super(R.layout.store_all_check_item, data);
+        super(R.layout.store_all_check_item,R.layout.delete_menu, data);
         this.context = context;
     }
 

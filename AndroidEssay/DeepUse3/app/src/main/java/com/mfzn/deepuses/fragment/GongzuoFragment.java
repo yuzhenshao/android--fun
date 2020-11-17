@@ -961,7 +961,6 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
                 switch (position) {
                     case 0:
                         intent.setClass(getActivity(), OrderPurchaseListActivity.class);
-                        intent.putExtra(ParameterConstant.IS_PURCHASE_CREATE, true);
                         startActivity(intent);
                         break;
                     case 1:

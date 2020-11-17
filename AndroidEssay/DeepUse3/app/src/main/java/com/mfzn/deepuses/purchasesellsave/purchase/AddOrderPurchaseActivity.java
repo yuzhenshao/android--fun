@@ -250,16 +250,15 @@ public class AddOrderPurchaseActivity extends BaseAddCustomerAndGoodsActivity {
 
     @Override
     protected void rightPressedAction() {
-//        if (isPurchaseAdd) {//采购单导入是销售单、零售单
-//            Intent intent = new Intent(this, OrderInputListActivity.class);
-//            intent.putExtra(ParameterConstant.INPUT_TYPE, 2);//1 零售 2销售
-//            startActivityForResult(intent, SALES_INPUT);
-//        } else {
-//            Intent intent = new Intent(this, OrderPurchaseListActivity.class);
-//            intent.putExtra(ParameterConstant.IS_PURCHASE_CREATE, true);
-//            intent.putExtra(ParameterConstant.IS_SELECTED, true);
-//            startActivityForResult(intent, PURCHASE_INPUT);
-//        }
+        if (isPurchaseAdd) {//采购单导入是销售单、零售单
+            Intent intent = new Intent(this, OrderInputListActivity.class);
+            intent.putExtra(ParameterConstant.INPUT_TYPE, 2);//1 零售 2销售
+            startActivityForResult(intent, SALES_INPUT);
+        } else {
+            Intent intent = new Intent(this, OrderPurchaseListActivity.class);
+            intent.putExtra(ParameterConstant.IS_SELECTED, true);
+            startActivityForResult(intent, PURCHASE_INPUT);
+        }
     }
 
 }

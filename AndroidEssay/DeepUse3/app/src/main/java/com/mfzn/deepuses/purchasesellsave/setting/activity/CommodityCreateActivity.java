@@ -68,7 +68,6 @@ public class CommodityCreateActivity extends CommodityPhotoCreateActivity {
     private String[] goodsPositions = {"高端产品", "中低端产品"};
     private static int CATEGORY_CODE = 100;
     private static int SUPPLIER_CODE = 104;
-    private GoodsDetailResponse.GoodsInfoResponse mGoodsInfoResponse;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

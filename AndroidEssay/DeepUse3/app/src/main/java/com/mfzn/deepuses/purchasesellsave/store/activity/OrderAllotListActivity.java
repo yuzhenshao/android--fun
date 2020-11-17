@@ -1,11 +1,16 @@
 package com.mfzn.deepuses.purchasesellsave.store.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
+import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BasicListActivity;
+import com.mfzn.deepuses.bean.constants.ParameterConstant;
+import com.mfzn.deepuses.bean.response.sale.OrderOfferListResponse;
 import com.mfzn.deepuses.bean.response.store.OrderAllotListResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
@@ -32,8 +37,16 @@ public class OrderAllotListActivity extends BasicListActivity<OrderAllotListResp
 
     @Override
     protected void getResourceList() {
+        loadOrderAllot("");
+    }
+
+    protected void searchAction(String keyword) {
+        loadOrderAllot(keyword);
+    }
+
+    private void loadOrderAllot(String keyword){
         showDialog();
-        ApiServiceManager.getOrderAllotList()
+        ApiServiceManager.getOrderAllotList(keyword)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(bindToLifecycle())
@@ -48,18 +61,32 @@ public class OrderAllotListActivity extends BasicListActivity<OrderAllotListResp
                         OrderAllotListResponse response = reuslt.getRes();
                         if (response != null) {
                             if (response.getData() != null) {
-                                refreshSource(response.getData());
+                                if(TextUtils.isEmpty(keyword)){
+                                    refreshSource(response.getData());
+                                }else {
+                                    refreshSearchSource(response.getData());
+                                }
                                 return;
                             }
                         }
                         showNoDataView();
                     }
                 });
+
     }
 
     @Override
     protected BaseQuickAdapter getAdapter() {
         OrderAllotAdapter mAdapter = new OrderAllotAdapter(this, mSourceList);
+        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int i) {
+                Intent intent=new Intent(OrderAllotListActivity.this,OrderAllotDetailActivity.class);
+                intent.putExtra(ParameterConstant.ORDER_ID,mSourceList.get(i).getOrderID());
+
+                startActivityForResult(intent,101);
+            }
+        });
         return mAdapter;
     }
 }

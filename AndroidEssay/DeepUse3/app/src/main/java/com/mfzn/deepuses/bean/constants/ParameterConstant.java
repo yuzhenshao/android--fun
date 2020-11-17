@@ -5,7 +5,8 @@ package com.mfzn.deepuses.bean.constants;
  */
 public interface ParameterConstant {
 
-    String TITLE="title";
+    String GOODS_NAME="goodsName";
+    String GOODS_NUM="goodsNum";
     String SHOP_ID = "shopID";
     String GOODS_ID = "goodsId";
     String BASIC_ATTR = "basicAttr";
