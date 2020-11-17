@@ -626,6 +626,9 @@
         <activity
             android:name=".purchasesellsave.purchase.OrderPurchaseDetailActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".purchasesellsave.AppStatisticsDataActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

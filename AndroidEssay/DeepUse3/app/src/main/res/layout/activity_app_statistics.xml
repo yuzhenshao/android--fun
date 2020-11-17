@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.libcommon.titlebar.TitleBar
+        android:id="@+id/titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <View style="@style/line_heng"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_92dp"
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            style="@style/kanban_ll_bg">
+
+            <ImageView
+                android:layout_width="@dimen/app_36dp"
+                android:layout_height="@dimen/app_36dp"
+                android:src="@mipmap/icon_today_in_store" />
+
+            <TextView
+                android:id="@+id/today_in_store_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/color_303133"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="今日入库"
+                android:textColor="@color/color_909399"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <View style="@style/line_shu" />
+
+        <LinearLayout
+            style="@style/kanban_ll_bg">
+
+            <ImageView
+                android:layout_width="@dimen/app_36dp"
+                android:layout_height="@dimen/app_36dp"
+                android:src="@mipmap/icon_today_out_store" />
+
+            <TextView
+                android:id="@+id/today_out_store_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/color_303133"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="今日出库"
+                android:textColor="@color/color_909399"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <View style="@style/line_shu" />
+
+        <LinearLayout
+            style="@style/kanban_ll_bg">
+
+            <ImageView
+                android:layout_width="@dimen/app_36dp"
+                android:layout_height="@dimen/app_36dp"
+                android:src="@mipmap/icon_sum_store_num" />
+
+            <TextView
+                android:id="@+id/sum_store_num_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/color_303133"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="库存总数"
+                android:textColor="@color/color_909399"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View style="@style/line_heng"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_92dp"
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            style="@style/kanban_ll_bg">
+
+            <ImageView
+                android:layout_width="@dimen/app_36dp"
+                android:layout_height="@dimen/app_36dp"
+                android:src="@mipmap/icon_today_sales_income" />
+
+            <TextView
+                android:id="@+id/today_sales_income_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/color_303133"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="销售收入（日）"
+                android:textColor="@color/color_909399"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <View style="@style/line_shu" />
+
+        <LinearLayout
+            style="@style/kanban_ll_bg">
+
+            <ImageView
+                android:layout_width="@dimen/app_36dp"
+                android:layout_height="@dimen/app_36dp"
+                android:src="@mipmap/icon_today_money" />
+
+            <TextView
+                android:id="@+id/today_money_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/color_303133"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="今日业绩"
+                android:textColor="@color/color_909399"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <View style="@style/line_shu" />
+
+        <LinearLayout
+            style="@style/kanban_ll_bg">
+
+            <ImageView
+                android:layout_width="@dimen/app_36dp"
+                android:layout_height="@dimen/app_36dp"
+                android:src="@mipmap/icon_customer_should_gathering" />
+
+            <TextView
+                android:id="@+id/customer_should_gathering_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/color_303133"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="客户应收"
+                android:textColor="@color/color_909399"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <View style="@style/line_heng"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_92dp"
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            style="@style/kanban_ll_bg">
+
+            <ImageView
+                android:layout_width="@dimen/app_36dp"
+                android:layout_height="@dimen/app_36dp"
+                android:src="@mipmap/icon_today_in_store" />
+
+            <TextView
+                android:id="@+id/today_customer_num_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/color_303133"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="今日客户"
+                android:textColor="@color/color_909399"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <View style="@style/line_shu" />
+
+        <LinearLayout
+            style="@style/kanban_ll_bg">
+
+            <ImageView
+                android:layout_width="@dimen/app_36dp"
+                android:layout_height="@dimen/app_36dp"
+                android:src="@mipmap/icon_today_out_store" />
+
+            <TextView
+                android:id="@+id/sum_customer_num_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/color_303133"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="客户总数"
+                android:textColor="@color/color_909399"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <View style="@style/line_shu" />
+
+        <LinearLayout
+            style="@style/kanban_ll_bg">
+
+            <ImageView
+                android:layout_width="@dimen/app_36dp"
+                android:layout_height="@dimen/app_36dp"
+                android:src="@mipmap/icon_sum_store_num" />
+
+            <TextView
+                android:id="@+id/year_earn_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/color_303133"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="经营利润（年）"
+                android:textColor="@color/color_909399"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View style="@style/line_heng"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_92dp"
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            style="@style/kanban_ll_bg">
+
+            <ImageView
+                android:layout_width="@dimen/app_36dp"
+                android:layout_height="@dimen/app_36dp"
+                android:src="@mipmap/icon_today_sales_income" />
+
+            <TextView
+                android:id="@+id/sum_capital_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/color_303133"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="资金总额"
+                android:textColor="@color/color_909399"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <View style="@style/line_shu" />
+
+        <LinearLayout
+            style="@style/kanban_ll_bg"
+            android:visibility="invisible">
+
+            <ImageView
+                android:layout_width="@dimen/app_36dp"
+                android:layout_height="@dimen/app_36dp"
+                android:src="@mipmap/icon_today_money" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/color_303133"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="今日业绩"
+                android:textColor="@color/color_909399"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            style="@style/kanban_ll_bg"
+            android:visibility="invisible">
+
+            <ImageView
+                android:layout_width="@dimen/app_36dp"
+                android:layout_height="@dimen/app_36dp"
+                android:src="@mipmap/icon_customer_should_gathering" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/color_303133"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="客户应收"
+                android:textColor="@color/color_909399"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

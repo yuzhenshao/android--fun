@@ -45,6 +45,7 @@ import com.mfzn.deepuses.adapter.home.HomeTdglAdapter;
 import com.mfzn.deepuses.adapter.home.HomeWdxmAdapter;
 import com.mfzn.deepuses.bass.BaseMvpFragment;
 import com.mfzn.deepuses.bean.constants.ParameterConstant;
+import com.mfzn.deepuses.bean.response.AppStatisticsDataResponse;
 import com.mfzn.deepuses.bean.response.UserResponse;
 import com.mfzn.deepuses.common.homecompany.HomeCompanyAdapter;
 import com.mfzn.deepuses.common.homecompany.HomeCompanyView;
@@ -56,6 +57,7 @@ import com.mfzn.deepuses.model.home.JudgeLevelModel;
 import com.mfzn.deepuses.model.home.KanbDataModel;
 import com.mfzn.deepuses.net.ApiHelper;
 import com.mfzn.deepuses.present.fragment.GongzuoPresnet;
+import com.mfzn.deepuses.purchasesellsave.AppStatisticsDataActivity;
 import com.mfzn.deepuses.purchasesellsave.capital.activity.AddBorrowActivity;
 import com.mfzn.deepuses.purchasesellsave.capital.activity.AddIncomeExpenseActivity;
 import com.mfzn.deepuses.purchasesellsave.capital.activity.BorrowListActivity;
@@ -129,12 +131,21 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
     TextView tvWorkType;
     @BindView(R.id.tv_work_company)
     TextView tvWorkCompany;
-    @BindView(R.id.tv_kanban_project)
-    TextView tvKanbanProject;
-    @BindView(R.id.tv_kanban_money)
-    TextView tvKanbanMoney;
-    @BindView(R.id.tv_kanban_number)
-    TextView tvKanbanNumber;
+
+    @BindView(R.id.today_in_store_view)
+    TextView mTodayInStoreView;
+    @BindView(R.id.today_out_store_view)
+    TextView mTodayOutStoreView;
+    @BindView(R.id.sum_store_num_view)
+    TextView mSumStoreNumView;
+    @BindView(R.id.today_sales_income_view)
+    TextView mTodaySalesIncomeView;
+    @BindView(R.id.today_money_view)
+    TextView mTodayMoneyView;
+    @BindView(R.id.customer_should_gathering_view)
+    TextView mCustomerShouldGatheringView;
+
+
     @BindView(R.id.jcsz_recyleview)
     MyRecyclerView jcszRecyleview;
     @BindView(R.id.spgl_recyleview)
@@ -299,15 +310,11 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
         }
     }
 
-    @OnClick({R.id.ll_kanban_project, R.id.ll_kanban_money, R.id.ll_kanban_number,
-            R.id.iv_work_scan, R.id.iv_work_xia, R.id.todo_container})
+    @OnClick({R.id.more_data_btn,R.id.iv_work_scan, R.id.iv_work_xia, R.id.todo_container})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.ll_kanban_project:
-                break;
-            case R.id.ll_kanban_money:
-                break;
-            case R.id.ll_kanban_number:
+            case R.id.more_data_btn:
+                startActivity(new Intent(getActivity(), AppStatisticsDataActivity.class));
                 break;
             case R.id.iv_work_scan:
                 startActivity(new Intent(getActivity(), CaptureActivity.class));
@@ -653,10 +660,13 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
         }
     }
 
-    public void kanbDataSuccess(KanbDataModel model) {
-        tvKanbanProject.setText(model.getShNums());
-        tvKanbanMoney.setText(model.getWbNums());
-        tvKanbanNumber.setText(model.getProNums());
+    public void kanbDataSuccess(AppStatisticsDataResponse mAppStatisticsDataResponse) {
+        mTodayInStoreView.setText(mAppStatisticsDataResponse.getTodayInStore()+"");
+        mTodayOutStoreView.setText(mAppStatisticsDataResponse.getTodayOutStore()+"");
+        mSumStoreNumView.setText(mAppStatisticsDataResponse.getSumStoreNum()+"");
+        mTodaySalesIncomeView.setText(mAppStatisticsDataResponse.getTodaySalesIncome()+"");
+        mTodayMoneyView.setText(mAppStatisticsDataResponse.getTodayMoney()+"");
+        mCustomerShouldGatheringView.setText(mAppStatisticsDataResponse.getCustomerShouldGathering()+"");
     }
 
     private void setDatas() {

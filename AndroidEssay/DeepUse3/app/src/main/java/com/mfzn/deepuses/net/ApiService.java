@@ -37,6 +37,7 @@ import com.mfzn.deepuses.bean.request.setting.AddSetCustomerRequest;
 import com.mfzn.deepuses.bean.request.setting.SetUserAuthRequest;
 import com.mfzn.deepuses.bean.request.store.OrderAllotAddRequest;
 import com.mfzn.deepuses.bean.request.store.OrderStockCheckRequest;
+import com.mfzn.deepuses.bean.response.AppStatisticsDataResponse;
 import com.mfzn.deepuses.bean.response.BusinessCardResponse;
 import com.mfzn.deepuses.bean.response.GoodsCategoryResponse;
 import com.mfzn.deepuses.bean.response.GoodsUnitResponse;
@@ -1403,5 +1404,9 @@ public interface ApiService {
     @POST("pss/Purchase/orderPurchaseDelBatch")
     Flowable<HttpResult> orderPurchaseDelBatch(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Field("orderIDs") String orderIDs);
 
+
+    //获取APP看板数据
+    @GET("pss/Statistics/getAppData")
+    Flowable<HttpResult<AppStatisticsDataResponse>> getAppData(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID);
 
 }

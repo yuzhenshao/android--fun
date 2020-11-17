@@ -38,6 +38,7 @@ import com.mfzn.deepuses.bean.request.setting.AddSetCustomerRequest;
 import com.mfzn.deepuses.bean.request.setting.SetUserAuthRequest;
 import com.mfzn.deepuses.bean.request.store.OrderAllotAddRequest;
 import com.mfzn.deepuses.bean.request.store.OrderStockCheckRequest;
+import com.mfzn.deepuses.bean.response.AppStatisticsDataResponse;
 import com.mfzn.deepuses.bean.response.GoodsCategoryResponse;
 import com.mfzn.deepuses.bean.response.GoodsUnitResponse;
 import com.mfzn.deepuses.bean.response.WaitingCheckResponse;
@@ -886,6 +887,10 @@ public class ApiServiceManager {
 
     public static Flowable<HttpResult> orderPurchaseDelBatch(String orderIds) {
         return ApiHelper.getApiService().orderPurchaseDelBatch(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), orderIds);
+    }
+
+    public static Flowable<HttpResult<AppStatisticsDataResponse>> getAppData(){
+        return ApiHelper.getApiService().getAppData(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId());
     }
 
 }

@@ -1,6 +1,7 @@
 package com.mfzn.deepuses.present.fragment;
 
 import com.mfzn.deepuses.activity.login.LoginActivity;
+import com.mfzn.deepuses.bean.response.AppStatisticsDataResponse;
 import com.mfzn.deepuses.bean.response.UserResponse;
 import com.mfzn.deepuses.fragment.GongzuoFragment;
 import com.mfzn.deepuses.model.LookQuanxian2Model;
@@ -43,19 +44,18 @@ public class GongzuoPresnet extends XPresent<GongzuoFragment> {
     }
 
     public void kanbData() {
-        ApiHelper.getApiService().kanbData(UserHelper.getToken(), UserHelper.getUid(),UserHelper.getCompanyId())
+        ApiServiceManager.getAppData()
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
-                .compose(getV().bindToLifecycle())
-                .subscribe(new ApiSubscriber<HttpResult<KanbDataModel>>() {
+                .subscribe(new ApiSubscriber<HttpResult<AppStatisticsDataResponse>>() {
                     @Override
                     protected void onFail(NetError error) {
                         getV().showError(error);
                     }
 
                     @Override
-                    public void onNext(HttpResult<KanbDataModel> result) {
-                        getV().kanbDataSuccess(result.getRes());
+                    public void onNext(HttpResult<AppStatisticsDataResponse> reuslt) {
+                        getV().kanbDataSuccess(reuslt.getRes());
                     }
                 });
     }
