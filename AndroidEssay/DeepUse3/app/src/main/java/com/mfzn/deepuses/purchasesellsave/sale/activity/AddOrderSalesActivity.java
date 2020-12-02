@@ -360,7 +360,7 @@ public class AddOrderSalesActivity extends BaseAddCustomerAndGoodsActivity {
              orderSales.setOnClickListener(new View.OnClickListener() {
                  @Override
                  public void onClick(View v) {
-                     tureToInputActivity(1);
+                     tureToInputActivity(2);
                      popupWindow.dismiss();
                  }
              });

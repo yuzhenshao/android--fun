@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.mfzn.deepuses.R;
@@ -15,6 +16,7 @@ import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.purchasesellsave.sale.adapter.OrderInputAdapter;
 
+import butterknife.BindView;
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.XApi;
@@ -23,16 +25,19 @@ import io.reactivex.Flowable;
 public class OrderInputListActivity extends BasicListActivity<OrderSalesListResponse.OrderSalesResponse> {
 
     private int input;
+    @BindView(R.id.search_container)
+    RelativeLayout searchContainer;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mTitleBar.updateTitleBar("选择导入数据");
         input = getIntent().getIntExtra(ParameterConstant.INPUT_TYPE, 0);
         if (input == 0) {
             showToast("没有可导入数据");
             finish();
         }
+        super.onCreate(savedInstanceState);
+        mTitleBar.updateTitleBar("选择导入数据");
+        searchContainer.setVisibility(View.GONE);
     }
 
     @Override

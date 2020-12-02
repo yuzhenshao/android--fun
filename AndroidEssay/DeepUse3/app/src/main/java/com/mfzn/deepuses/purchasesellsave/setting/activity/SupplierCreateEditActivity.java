@@ -86,9 +86,7 @@ public class SupplierCreateEditActivity extends BasicActivity {
                     @Override
                     public void onNext(HttpResult reuslt) {
                         ToastUtil.showToast(SupplierCreateEditActivity.this, "成功");
-                        Intent intent=new Intent();
-                        intent.putExtra("isDelete",true);
-                        setResult(RESULT_OK,intent);
+                        setResult(DELETED);
                         finish();
                     }
                 });
@@ -139,7 +137,7 @@ public class SupplierCreateEditActivity extends BasicActivity {
                         @Override
                         public void onNext(HttpResult reuslt) {
                             ToastUtil.showToast(SupplierCreateEditActivity.this, "成功");
-                            setResult(DELETED);
+                            setResult(RESULT_OK);
                             finish();
                         }
                     });

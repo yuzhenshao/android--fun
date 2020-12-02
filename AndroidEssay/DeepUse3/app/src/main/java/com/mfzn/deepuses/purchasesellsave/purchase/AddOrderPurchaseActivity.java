@@ -6,8 +6,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextUtils;
+import android.view.Display;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.libcommon.utils.ListUtil;
@@ -19,8 +24,10 @@ import com.mfzn.deepuses.bean.response.sale.OrderSalesListResponse;
 import com.mfzn.deepuses.bean.response.settings.GoodsInfoResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
+import com.mfzn.deepuses.purchasesellsave.sale.activity.AddOrderSalesActivity;
 import com.mfzn.deepuses.purchasesellsave.sale.activity.BaseAddCustomerAndGoodsActivity;
 import com.mfzn.deepuses.purchasesellsave.sale.activity.OrderInputListActivity;
+import com.mfzn.deepuses.purchasesellsave.sale.activity.OrderOfferListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.StoreListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.SupplierListActivity;
 import com.mfzn.deepuses.utils.DateUtils;
@@ -60,12 +67,13 @@ public class AddOrderPurchaseActivity extends BaseAddCustomerAndGoodsActivity {
 
     private OrderPurchaseAddRequest request = new OrderPurchaseAddRequest();
     private boolean isPurchaseAdd = true;
+    private PopupWindow popupWindow;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         isPurchaseAdd = getIntent().getBooleanExtra(ParameterConstant.IS_PURCHASE_CREATE, true);
-        mTitleBar.updateTitleBar(isPurchaseAdd ? "新建采购单" : "新建采购退货单");
+        mTitleBar.updateTitleBar(isPurchaseAdd ? "新建采购单" : "新建采购退货单","导入");
         storeNameView.setText(isPurchaseAdd ? "入库仓库" : "出库仓库");
         discountPrice.addTextChangedListener(new OnInputChangeListener() {
             @Override
@@ -248,17 +256,48 @@ public class AddOrderPurchaseActivity extends BaseAddCustomerAndGoodsActivity {
         return R.layout.activity_order_purchase_add_create;
     }
 
+
     @Override
     protected void rightPressedAction() {
         if (isPurchaseAdd) {//采购单导入是销售单、零售单
-            Intent intent = new Intent(this, OrderInputListActivity.class);
-            intent.putExtra(ParameterConstant.INPUT_TYPE, 2);//1 零售 2销售
-            startActivityForResult(intent, SALES_INPUT);
+            View contentView = LayoutInflater.from(this).inflate(R.layout.order_popupwindow, null, false);
+            TextView orderOffer = contentView.findViewById(R.id.order_offer);
+            orderOffer.setText("零售单");
+            orderOffer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    tureToInputActivity(1);
+                    popupWindow.dismiss();
+                }
+            });
+            TextView orderSales = contentView.findViewById(R.id.order_sales);
+            orderSales.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    tureToInputActivity(2);
+                    popupWindow.dismiss();
+                }
+            });
+
+            popupWindow = new PopupWindow(contentView, ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT, true);
+            Display display = getWindowManager().getDefaultDisplay();
+            popupWindow.setOutsideTouchable(true);
+            popupWindow.setAnimationStyle(R.style.popup_window_anim_style);
+            popupWindow.showAtLocation(mTitleBar, Gravity.TOP, display.getWidth() - 140,
+                    mTitleBar.getHeight());
+
         } else {
             Intent intent = new Intent(this, OrderPurchaseListActivity.class);
             intent.putExtra(ParameterConstant.IS_SELECTED, true);
             startActivityForResult(intent, PURCHASE_INPUT);
         }
+    }
+
+    private void tureToInputActivity(int inputType){
+        Intent intent = new Intent(this, OrderInputListActivity.class);
+        intent.putExtra(ParameterConstant.INPUT_TYPE, inputType);//1 零售 2销售
+        startActivityForResult(intent, SALES_INPUT);
     }
 
 }

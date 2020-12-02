@@ -2,6 +2,7 @@ package com.mfzn.deepuses.bean.response.sale;
 
 import android.text.TextUtils;
 
+import com.google.gson.annotations.SerializedName;
 import com.libcommon.utils.ListUtil;
 import com.mfzn.deepuses.bean.response.settings.GoodsInfoResponse;
 import com.mfzn.deepuses.bean.response.store.StoreCheckGoodsResponse;
@@ -110,7 +111,9 @@ public class OrderOfferListResponse {
         private String orderID;
         private String companyID;
         private String shopID;
+        @SerializedName(value = "customerID", alternate = {"supplierID"})
         private String customerID;
+        @SerializedName(value = "customerName", alternate = {"supplierName"})
         private String customerName;
         private String customerPhone;
         private String salesPersonUserID;
