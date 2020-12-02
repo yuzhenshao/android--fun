@@ -433,6 +433,9 @@
             android:name=".purchasesellsave.setting.activity.SupplierCreateEditActivity"
             android:screenOrientation="portrait"></activity>
         <activity
+            android:name=".purchasesellsave.setting.activity.SupplierDetailActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
             android:name=".purchasesellsave.setting.activity.StoreListActivity"
             android:screenOrientation="portrait"></activity>
         <activity
@@ -446,15 +449,18 @@
             android:name=".purchasesellsave.sale.activity.OrderOfferListActivity"
             android:screenOrientation="portrait"></activity>
         <activity
-            android:name=".purchasesellsave.sale.activity.OrderOfferFilterActivity"
+            android:name=".purchasesellsave.sale.activity.SalesOrderOfferFilterActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/PayDialogStyle"></activity>
         <activity
-            android:name=".purchasesellsave.sale.activity.OrderOfferDetailActivity"
+            android:name=".purchasesellsave.sale.activity.OrderDetailActivity"
             android:screenOrientation="portrait"></activity>
         <activity
             android:name=".purchasesellsave.sale.activity.OrderInputListActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".purchasesellsave.sale.activity.SaleOrderCenterListActivity"
             android:screenOrientation="portrait"></activity>
         <activity
             android:name=".purchasesellsave.sale.activity.MyCustomerSelectActivity"
@@ -623,6 +629,14 @@
         <activity
             android:name=".purchasesellsave.purchase.OrderPurchaseListActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".purchasesellsave.purchase.PurchaseOrderListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".purchasesellsave.purchase.PurchaseOrderOfferFilterActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:theme="@style/PayDialogStyle"/>
         <activity
             android:name=".purchasesellsave.purchase.OrderPurchaseDetailActivity"
             android:screenOrientation="portrait" />

@@ -6,7 +6,6 @@ import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bean.response.settings.CustomerDetailResponse;
-import com.mfzn.deepuses.bean.response.settings.SupplierCustomerInfoResponse;
 import com.mfzn.deepuses.utils.DateUtils;
 
 import java.util.List;

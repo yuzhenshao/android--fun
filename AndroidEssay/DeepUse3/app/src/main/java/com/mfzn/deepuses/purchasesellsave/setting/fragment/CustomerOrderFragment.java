@@ -11,7 +11,6 @@ import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BaseFragment;
 import com.mfzn.deepuses.bean.constants.ParameterConstant;
 import com.mfzn.deepuses.bean.response.settings.CustomerDetailResponse;
-import com.mfzn.deepuses.bean.response.settings.SupplierCustomerInfoResponse;
 import com.mfzn.deepuses.purchasesellsave.setting.adapter.SupplierOrderAdapter;
 
 import java.util.List;

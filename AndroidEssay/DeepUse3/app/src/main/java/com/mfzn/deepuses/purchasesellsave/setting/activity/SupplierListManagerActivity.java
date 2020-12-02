@@ -17,6 +17,8 @@ import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.purchasesellsave.setting.adapter.SupplierAdapter;
 import com.mfzn.deepuses.utils.PhoneUtils;
 
+import java.io.Serializable;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
@@ -82,8 +84,8 @@ public class SupplierListManagerActivity extends BasicListActivity<SupplierListR
                         PhoneUtils.dialogPhone2(SupplierListManagerActivity.this, "拨打", phone, phone);
                     }
                 } else {
-                    Intent intent = new Intent(SupplierListManagerActivity.this, SupplierCreateEditActivity.class);
-                    intent.putExtra(ParameterConstant.SUPPLIER, mSourceList.get(i));
+                    Intent intent = new Intent(SupplierListManagerActivity.this, SupplierDetailActivity.class);
+                    intent.putExtra(ParameterConstant.SUPPLIER,  mSourceList.get(i));
                     startActivityForResult(intent, REQUESTCODE);
                 }
             }

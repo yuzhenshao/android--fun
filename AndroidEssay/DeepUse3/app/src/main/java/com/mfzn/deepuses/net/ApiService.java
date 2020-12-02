@@ -41,6 +41,7 @@ import com.mfzn.deepuses.bean.response.AppStatisticsDataResponse;
 import com.mfzn.deepuses.bean.response.BusinessCardResponse;
 import com.mfzn.deepuses.bean.response.GoodsCategoryResponse;
 import com.mfzn.deepuses.bean.response.GoodsUnitResponse;
+import com.mfzn.deepuses.bean.response.SupplierDetailResponse;
 import com.mfzn.deepuses.bean.response.WaitingCheckResponse;
 import com.mfzn.deepuses.bean.response.capital.BorrowInfoResponse;
 import com.mfzn.deepuses.bean.response.capital.BorrowListResponse;
@@ -947,6 +948,12 @@ public interface ApiService {
                                                             @Query("shopID") String shopID, @Query("kw") String kw,
                                                             @Query("per") String per, @Query("page") Integer page);
 
+    //供应管理--详情
+    @GET("pss/Setting/supplierInfo")
+    Flowable<HttpResult<SupplierDetailResponse>> supplierInfo(@Query("token") String token, @Query("uid") String uid,
+                                                              @Query("shopID") String shopID, @Query("supplierID") String supplierID);
+
+
     @POST("pss/Setting/editSupplier")
     Flowable<HttpResult> editSupplier(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
                                       @Body SupplierRequest request);
@@ -1034,11 +1041,16 @@ public interface ApiService {
 
 
     //销售
-    @GET("pss/Sale/orderOfferList")
-    Flowable<HttpResult<OrderOfferListResponse>> orderOfferList(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Query("keywords") String keywords, @Query("isCheck") String isCheck);
 
-    @GET("pss/Sale/orderOfferInfo")
-    Flowable<HttpResult<OrderOfferListResponse.OrderOfferResponse>> orderOfferInfo(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,@Query("orderID") String orderID);
+    @GET("pss/Index/getOrderList")
+    Flowable<HttpResult<OrderOfferListResponse>> getOrderList(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,
+                                                         @Query("keywords") String keywords, @Query("orderType") int orderType,
+                                                         @Query("isCheck") int isCheck, @Query("isCanceled") int isCanceled);
+    @GET("pss/Sale/orderOfferList")
+    Flowable<HttpResult<OrderOfferListResponse>> orderOfferList(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Query("keywords") String keywords);
+
+    @GET("pss/Index/getOrderInfo")
+    Flowable<HttpResult<OrderOfferListResponse.OrderOfferResponse>> getOrderInfo(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID,@Query("orderType") String orderType,@Query("orderID") String orderID);
 
     @FormUrlEncoded
     @POST("pss/Sale/orderOfferDel")

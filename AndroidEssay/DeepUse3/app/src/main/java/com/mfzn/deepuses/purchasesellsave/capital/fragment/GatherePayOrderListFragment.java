@@ -1,13 +1,11 @@
 package com.mfzn.deepuses.purchasesellsave.capital.fragment;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.EditText;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.libcommon.utils.ListUtil;

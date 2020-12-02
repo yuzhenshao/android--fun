@@ -28,7 +28,7 @@ import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.XApi;
 
-public class OrderOfferDetailActivity extends BasicActivity {
+public class OrderDetailActivity extends BasicActivity {
     private ImageView mCheckStatus;
     private EditText mCustomerName;
     private EditText mContactPhone;
@@ -43,6 +43,7 @@ public class OrderOfferDetailActivity extends BasicActivity {
     private TextView mBeiZhuView;
     private Button deleteOrder;
 
+    private String orderType;
     private String orderId;
     private OrderOfferListResponse.OrderOfferResponse mOrderOfferResponse;
 
@@ -86,7 +87,7 @@ public class OrderOfferDetailActivity extends BasicActivity {
     }
 
     private void initData() {
-        ApiServiceManager.orderOfferInfo(orderId)
+        ApiServiceManager.getOrderInfo(orderType,orderId)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
                 .compose(bindToLifecycle())
@@ -100,7 +101,12 @@ public class OrderOfferDetailActivity extends BasicActivity {
                     @Override
                     public void onNext(HttpResult<OrderOfferListResponse.OrderOfferResponse> reuslt) {
                         mOrderOfferResponse = reuslt.getRes();
-                        initDetailInfo();
+                        if(mOrderOfferResponse==null) {
+                            showToast("没有数据");
+                            finish();
+                        }else {
+                            initDetailInfo();
+                        }
                     }
                 });
     }

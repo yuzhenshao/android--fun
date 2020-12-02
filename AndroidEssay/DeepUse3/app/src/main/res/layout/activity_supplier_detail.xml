@@ -46,24 +46,15 @@
                 android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/name_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/app_6dp"
-                android:text="供应商详情"
+                android:text="张照 123456789"
                 android:textColor="#ff909399"
                 android:textSize="16sp" />
 
         </LinearLayout>
-
-        <ImageView
-            android:id="@+id/icon_detail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="@dimen/app_15dp"
-            android:layout_marginRight="@dimen/app_20dp"
-            android:src="@mipmap/join_you" />
     </RelativeLayout>
 
 

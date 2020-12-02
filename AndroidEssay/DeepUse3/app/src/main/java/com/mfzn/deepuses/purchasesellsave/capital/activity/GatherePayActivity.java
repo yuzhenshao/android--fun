@@ -38,7 +38,10 @@ public class GatherePayActivity extends BasicActivity implements View.OnClickLis
     private Button mBtnCommit;
     private final static int ACCOUNT = 101;
     private int capitalType;
-    private PayerPayeeDetailResponse.OrderListResponse mOrderListResponse;
+    private String orderNum;
+    private String money;
+    private String hasDownMoney;
+    private String dataID;
     private String accountId;
     private String showName;
 
@@ -57,7 +60,10 @@ public class GatherePayActivity extends BasicActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
         showName = getIntent().getStringExtra(ParameterConstant.SUPPLIER);
-        mOrderListResponse = (PayerPayeeDetailResponse.OrderListResponse) getIntent().getSerializableExtra(ParameterConstant.SUPPLIER_ORDER_LIST);
+        orderNum=getIntent().getStringExtra(ParameterConstant.ORDER_NUM);
+        money=getIntent().getStringExtra(ParameterConstant.MONEY);
+        hasDownMoney=getIntent().getStringExtra(ParameterConstant.HAS_DOWN_MONEY);
+        dataID=getIntent().getStringExtra(ParameterConstant.ORDER_ID);
         capitalType = getIntent().getIntExtra(ParameterConstant.CAPITAL_TYPE, 0);
         initView();
     }
@@ -76,10 +82,10 @@ public class GatherePayActivity extends BasicActivity implements View.OnClickLis
         mBtnCommit.setOnClickListener(this);
         mOrderTimeSelect.setOnClickListener(this);
         mPayType.setText(capitalType == 0 ? "收款" : "付款");
-        mRecordNum.setText(mOrderListResponse.getOrderNum());
-        mMoney.setText(mOrderListResponse.getMoney());
+        mRecordNum.setText(orderNum);
+        mMoney.setText(money);
         mHasMoneyName.setText(capitalType == 0 ? "已收金额" : "已付金额");
-        mHasMoney.setText(mOrderListResponse.getHasDoneMoney());
+        mHasMoney.setText(hasDownMoney);
         mNeedMoneyName.setText(capitalType == 0 ? "收款金额" : "付款金额");
     }
 
@@ -102,7 +108,6 @@ public class GatherePayActivity extends BasicActivity implements View.OnClickLis
             showToast(" 请选择账号");
             return;
         }
-        String dataID = mOrderListResponse.getDataID();
         String money = mNeedMoney.getText().toString();
         if (TextUtils.isEmpty(money)) {
             showToast(" 请输入金额");

@@ -41,6 +41,7 @@ import com.mfzn.deepuses.bean.request.store.OrderStockCheckRequest;
 import com.mfzn.deepuses.bean.response.AppStatisticsDataResponse;
 import com.mfzn.deepuses.bean.response.GoodsCategoryResponse;
 import com.mfzn.deepuses.bean.response.GoodsUnitResponse;
+import com.mfzn.deepuses.bean.response.SupplierDetailResponse;
 import com.mfzn.deepuses.bean.response.WaitingCheckResponse;
 import com.mfzn.deepuses.bean.response.capital.BorrowInfoResponse;
 import com.mfzn.deepuses.bean.response.capital.BorrowListResponse;
@@ -441,6 +442,10 @@ public class ApiServiceManager {
         return ApiHelper.getApiService().supplierList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), kw, Integer.MAX_VALUE + "", 0);
     }
 
+    public static Flowable<HttpResult<SupplierDetailResponse>> getSupplierInfo(String supplierID) {
+        return ApiHelper.getApiService().supplierInfo(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), supplierID);
+    }
+
 
     public static Flowable<HttpResult> editSupplier(SupplierRequest request) {
         return ApiHelper.getApiService().editSupplier(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), request);
@@ -644,16 +649,20 @@ public class ApiServiceManager {
     }
     //销售
 
-    public static Flowable<HttpResult<OrderOfferListResponse>> getOrderOfferList(String isCheck) {
-        return searchOrderOfferList(null,isCheck);
+    public static Flowable<HttpResult<OrderOfferListResponse>> getOrderOfferList() {
+        return searchOrderOfferList(null);
     }
 
-    public static Flowable<HttpResult<OrderOfferListResponse>> searchOrderOfferList(String keywords,String isCheck) {
-        return ApiHelper.getApiService().orderOfferList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), keywords,isCheck);
+    public static Flowable<HttpResult<OrderOfferListResponse>> getOrderList(String keywords,int isCheck,int isCanceled,int orderType) {
+        return ApiHelper.getApiService().getOrderList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), keywords,orderType,isCheck,isCanceled);
     }
 
-    public static Flowable<HttpResult<OrderOfferListResponse.OrderOfferResponse>> orderOfferInfo(String orderId) {
-        return ApiHelper.getApiService().orderOfferInfo(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), orderId);
+    public static Flowable<HttpResult<OrderOfferListResponse>> searchOrderOfferList(String keywords) {
+        return ApiHelper.getApiService().orderOfferList(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), keywords);
+    }
+
+    public static Flowable<HttpResult<OrderOfferListResponse.OrderOfferResponse>> getOrderInfo(String orderType,String orderId) {
+        return ApiHelper.getApiService().getOrderInfo(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), orderType,orderId);
     }
 
     public static Flowable<HttpResult> orderOfferDel(String orderID) {

@@ -54,9 +54,15 @@ public interface ParameterConstant {
     String IS_PURCHASE_CREATE = "isPurchaseCreate";
     String ORDER_PURCHASE_RESPONSE = "OrderPurchaseResponse";
     String ORDER_ID = "orderId";
+    String ORDER_NUM = "orderNum";
+    String ORDER_TYPE = "orderType";
+    String ORDER_CHECK = "orderCheck";
+    String ORDER_CACNEL = "orderCancel";
     String CUTOMER_OR_SUPPLIER = "customerOrSupplier";
     String CUTOMER_OR_SUPPLIER_ID = "customerOrSupplierID";
 
     String BORROW_ID="borrowID";
     String HANDLE_LOGS="handleLog";
+    String MONEY = "money";
+    String HAS_DOWN_MONEY = "hasDownMoney";
 }

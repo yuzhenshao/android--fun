@@ -1,5 +1,6 @@
 package com.mfzn.deepuses.purchasesellsave.setting.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -21,6 +22,8 @@ import butterknife.OnClick;
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.XApi;
+
+import static com.mfzn.deepuses.purchasesellsave.setting.activity.SupplierDetailActivity.DELETED;
 
 public class SupplierCreateEditActivity extends BasicActivity {
 
@@ -83,7 +86,9 @@ public class SupplierCreateEditActivity extends BasicActivity {
                     @Override
                     public void onNext(HttpResult reuslt) {
                         ToastUtil.showToast(SupplierCreateEditActivity.this, "成功");
-                        setResult(RESULT_OK);
+                        Intent intent=new Intent();
+                        intent.putExtra("isDelete",true);
+                        setResult(RESULT_OK,intent);
                         finish();
                     }
                 });
@@ -134,7 +139,7 @@ public class SupplierCreateEditActivity extends BasicActivity {
                         @Override
                         public void onNext(HttpResult reuslt) {
                             ToastUtil.showToast(SupplierCreateEditActivity.this, "成功");
-                            setResult(RESULT_OK);
+                            setResult(DELETED);
                             finish();
                         }
                     });

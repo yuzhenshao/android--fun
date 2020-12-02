@@ -54,7 +54,6 @@ import com.mfzn.deepuses.model.company.CompanyRepository;
 import com.mfzn.deepuses.model.company.SelectCompanyModel;
 import com.mfzn.deepuses.model.home.HomeShowModel;
 import com.mfzn.deepuses.model.home.JudgeLevelModel;
-import com.mfzn.deepuses.model.home.KanbDataModel;
 import com.mfzn.deepuses.net.ApiHelper;
 import com.mfzn.deepuses.present.fragment.GongzuoPresnet;
 import com.mfzn.deepuses.purchasesellsave.AppStatisticsDataActivity;
@@ -65,13 +64,13 @@ import com.mfzn.deepuses.purchasesellsave.capital.activity.IncomeExpenseListActi
 import com.mfzn.deepuses.purchasesellsave.capital.activity.IncomeExpenseTypeListActivity;
 import com.mfzn.deepuses.purchasesellsave.capital.activity.ShouldGatherePayActivity;
 import com.mfzn.deepuses.purchasesellsave.purchase.AddOrderPurchaseActivity;
-import com.mfzn.deepuses.purchasesellsave.purchase.OrderPurchaseListActivity;
+import com.mfzn.deepuses.purchasesellsave.purchase.PurchaseOrderListActivity;
 import com.mfzn.deepuses.purchasesellsave.sale.activity.AddOrderOfferActivity;
 import com.mfzn.deepuses.purchasesellsave.sale.activity.AddOrderSalesActivity;
 import com.mfzn.deepuses.purchasesellsave.sale.activity.AddOrderSalesBackActivity;
 import com.mfzn.deepuses.purchasesellsave.sale.activity.AddOrderTakeActivity;
 import com.mfzn.deepuses.purchasesellsave.sale.activity.AddOrderTakeBackActivity;
-import com.mfzn.deepuses.purchasesellsave.sale.activity.OrderOfferListActivity;
+import com.mfzn.deepuses.purchasesellsave.sale.activity.SaleOrderCenterListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.CommodityCreateActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.CommodityPhotoCreateActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsCategoryManagerActivity;
@@ -79,7 +78,6 @@ import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.GoodsUnitListManagetActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.MoneyAccountListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.OtherCostActivity;
-import com.mfzn.deepuses.purchasesellsave.setting.activity.MyStoreListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.PersonStoreListActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.SettingCustomerMangerActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.StoreListActivity;
@@ -778,7 +776,7 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
                 Intent intent = new Intent();
                 switch (position) {
                     case 0:
-                        intent.setClass(getActivity(), OrderOfferListActivity.class);
+                        intent.setClass(getActivity(), SaleOrderCenterListActivity.class);
                         break;
                     case 1:
                         intent.setClass(getActivity(), AddOrderOfferActivity.class);
@@ -970,7 +968,7 @@ public class GongzuoFragment extends BaseMvpFragment<GongzuoPresnet> {
                 Intent intent = new Intent();
                 switch (position) {
                     case 0:
-                        intent.setClass(getActivity(), OrderPurchaseListActivity.class);
+                        intent.setClass(getActivity(), PurchaseOrderListActivity.class);
                         startActivity(intent);
                         break;
                     case 1:

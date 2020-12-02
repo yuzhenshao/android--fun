@@ -13,19 +13,14 @@ import com.mfzn.deepuses.bass.BasicListActivity;
 import com.mfzn.deepuses.bean.constants.ParameterConstant;
 import com.mfzn.deepuses.bean.request.purchase.OrderPurchaseListRequest;
 import com.mfzn.deepuses.bean.response.purchase.OrderPurchaseListResponse;
-import com.mfzn.deepuses.bean.response.settings.GoodsListResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.purchasesellsave.purchase.adapter.OrderPurchaseAdapter;
-import com.mfzn.deepuses.purchasesellsave.sale.activity.OrderOfferFilterActivity;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.XApi;
-import cn.droidlover.xdroidmvp.router.Router;
-import io.reactivex.Flowable;
 
 public class OrderPurchaseListActivity extends BasicListActivity<OrderPurchaseListResponse.OrderPurchaseResponse> {
     private boolean isSelected;

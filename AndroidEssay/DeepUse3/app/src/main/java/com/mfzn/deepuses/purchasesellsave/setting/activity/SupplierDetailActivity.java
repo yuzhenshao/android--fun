@@ -9,17 +9,17 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.widget.TextView;
 
+import com.mfzn.deepuses.bean.response.SupplierDetailResponse;
+import com.mfzn.deepuses.bean.response.settings.SupplierListResponse;
 import com.mfzn.deepuses.common.tab.TabAdapter;
 import com.libcommon.table.TabLabel;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BasicActivity;
 import com.mfzn.deepuses.bean.constants.ParameterConstant;
-import com.mfzn.deepuses.bean.response.settings.SupplierCustomerInfoResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.purchasesellsave.setting.fragment.SupplierOrderFragment;
 import com.mfzn.deepuses.purchasesellsave.setting.fragment.SupplierPayLogFragment;
-import com.mfzn.deepuses.utils.ToastUtil;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
 import net.lucode.hackware.magicindicator.ViewPagerHelper;
@@ -30,7 +30,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.XApi;
@@ -38,20 +37,25 @@ import cn.droidlover.xdroidmvp.net.XApi;
 public class SupplierDetailActivity extends BasicActivity {
 
     private static int EDIT_CODE = 1001;
+    public static int DELETED = 1002;
 
     @BindView(R.id.supplier_name)
     TextView supplierName;
-
+    @BindView(R.id.name_phone)
+    TextView namePhone;
     @BindView(R.id.magic_indicator)
     MagicIndicator mIndicator;
     @BindView(R.id.detail_view_pager)
     ViewPager detailPager;
-
     List<TabLabel> mTabLabelList = new ArrayList<>();
     private final static int SUPPLIER_ORDER_LIST = 1;
     private final static int SUPPLIER_PAY_LOG_LIST = 2;
     private boolean isRefresh;
-    private SupplierCustomerInfoResponse mSupplierCustomerInfoResponse;
+    private SupplierDetailResponse mSupplierDetailResponse;
+    private SupplierOrderFragment orderLogFragment;
+    private SupplierPayLogFragment payLogFragment;
+
+    private SupplierListResponse.SupplierResponse mSupplierResponse;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,12 +71,44 @@ public class SupplierDetailActivity extends BasicActivity {
 
     private void initData() {
         showDialog();
+        mSupplierResponse = (SupplierListResponse.SupplierResponse )getIntent().getSerializableExtra(ParameterConstant.SUPPLIER);
+        if(mSupplierResponse==null){
+            showToast("获取详情失败");
+            finish();
+        }
+        ApiServiceManager.getSupplierInfo(mSupplierResponse.getSupplierID())
+                .compose(XApi.getApiTransformer())
+                .compose(XApi.getScheduler())
+                .compose(bindToLifecycle())
+                .subscribe(new ApiSubscriber<HttpResult<SupplierDetailResponse>>() {
+                    @Override
+                    protected void onFail(NetError error) {
+                        hideDialog();
+                        if (!isRefresh) {
+                            showToast(error.getMessage());
+                        }
+                    }
 
-    }
-
-    private void initSupplier() {
-
-
+                    @Override
+                    public void onNext(HttpResult<SupplierDetailResponse> reuslt) {
+                        hideDialog();
+                        mSupplierDetailResponse = reuslt.getRes();
+                        if (mSupplierDetailResponse != null) {
+                            supplierName.setText(mSupplierDetailResponse.getSupplierName());
+                            namePhone.setText(mSupplierDetailResponse.getChargePerson() + "  " + mSupplierDetailResponse.getChargePersonPhone());
+                        }
+                        if (isRefresh) {
+                            if (orderLogFragment != null) {
+                                orderLogFragment.refresh(mSupplierDetailResponse.getOrderList());
+                            }
+                            if (payLogFragment != null) {
+                                payLogFragment.refresh(mSupplierDetailResponse.getPayOrGatheringLogList());
+                            }
+                        } else {
+                            initDetailPager();
+                        }
+                    }
+                });
     }
 
     private void initDetailPager() {
@@ -83,9 +119,14 @@ public class SupplierDetailActivity extends BasicActivity {
         mTabLabelList.add(new TabLabel(SUPPLIER_ORDER_LIST, "采购历史"));
         mTabLabelList.add(new TabLabel(SUPPLIER_PAY_LOG_LIST, "收付款历史"));
 
-        commonNavigator.setAdapter(new TabAdapter(mTabLabelList));
+        commonNavigator.setAdapter(new TabAdapter(mTabLabelList){
+            public void setCurrentItem(int index) {
+                detailPager.setCurrentItem(index);
+            }
+        });
         mIndicator.setNavigator(commonNavigator);
         ViewPagerHelper.bind(mIndicator, detailPager);
+        detailAdapter.notifyDataSetChanged();
     }
 
     public class DetailAdapter extends FragmentPagerAdapter {
@@ -97,17 +138,18 @@ public class SupplierDetailActivity extends BasicActivity {
         public Fragment getItem(int position) {
             switch (mTabLabelList.get(position).getId()) {
                 case SUPPLIER_PAY_LOG_LIST:
-                    SupplierPayLogFragment attrFragment = new SupplierPayLogFragment();
+                    payLogFragment = new SupplierPayLogFragment();
                     Bundle attrBundle = new Bundle();
-                    attrBundle.putSerializable(ParameterConstant.SUPPLIER_PAY_LOG_LIST, (Serializable) mSupplierCustomerInfoResponse.getPayLogList());
-                    attrFragment.setArguments(attrBundle);
-                    return attrFragment;
+                    attrBundle.putSerializable(ParameterConstant.SUPPLIER_PAY_LOG_LIST, (Serializable) mSupplierDetailResponse.getPayOrGatheringLogList());
+                    payLogFragment.setArguments(attrBundle);
+                    return payLogFragment;
                 case SUPPLIER_ORDER_LIST:
-                    SupplierOrderFragment storeFragment = new SupplierOrderFragment();
+                    orderLogFragment = new SupplierOrderFragment();
                     Bundle storeBundle = new Bundle();
-                    storeBundle.putSerializable(ParameterConstant.SUPPLIER_ORDER_LIST, (Serializable) mSupplierCustomerInfoResponse.getOrderList());
-                    storeFragment.setArguments(storeBundle);
-                    return storeFragment;
+                    storeBundle.putSerializable(ParameterConstant.SUPPLIER_ORDER_LIST, (Serializable) mSupplierDetailResponse.getOrderList());
+                    storeBundle.putSerializable(ParameterConstant.SUPPLIER, mSupplierDetailResponse.getSupplierName());
+                    orderLogFragment.setArguments(storeBundle);
+                    return orderLogFragment;
             }
             return null;
         }
@@ -121,23 +163,24 @@ public class SupplierDetailActivity extends BasicActivity {
         public int getCount() {
             return mTabLabelList.size();
         }
+
     }
 
     protected void rightPressedAction() {
-        startActivityForResult(new Intent(this, SupplierCreateEditActivity.class), EDIT_CODE);
-    }
-
-    @OnClick(R.id.icon_detail)
-    public void showSupplierDetail() {
-
+        Intent intent=new Intent(this, SupplierCreateEditActivity.class);
+        intent.putExtra(ParameterConstant.SUPPLIER, mSupplierResponse);
+        startActivityForResult(intent, EDIT_CODE);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == EDIT_CODE && resultCode == RESULT_OK) {
+        if (resultCode == RESULT_OK) {
             isRefresh = true;
             initData();
+        }else if(resultCode==DELETED){
+            setResult(RESULT_OK);
+            finish();
         }
     }
 }

@@ -3,10 +3,10 @@ package com.mfzn.deepuses.purchasesellsave.sale.Module;
 
 public class FilterModule {
 
-    private String typeId;
+    private Integer typeId;
     private String typeName;
 
-    public FilterModule(String typeId,String typeName) {
+    public FilterModule(Integer typeId,String typeName) {
         this.typeId = typeId;
         this.typeName = typeName;
     }
@@ -19,11 +19,11 @@ public class FilterModule {
         this.typeName = typeName;
     }
 
-    public String getTypeId() {
+    public Integer getTypeId() {
         return typeId;
     }
 
-    public void setTypeId(String typeId) {
+    public void setTypeId(Integer typeId) {
         this.typeId = typeId;
     }
 }
