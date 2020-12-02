@@ -17,7 +17,7 @@ public class StoreAllCheckAdapter extends MenuQuickAdapter<StoreCheckResponse, B
     protected Context context;
 
     public StoreAllCheckAdapter(Context context, @Nullable List<StoreCheckResponse> data) {
-        super(R.layout.store_all_check_item,R.layout.delete_menu, data);
+        super(R.layout.store_all_check_item,R.layout.store_delete_menu, data);
         this.context = context;
     }
 
