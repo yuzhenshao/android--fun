@@ -19,6 +19,8 @@ import com.mfzn.deepuses.fragment.XiangmuFragment;
 import com.mfzn.deepuses.fragment.XiaoxiFragment;
 import com.mfzn.deepuses.model.xx.MsgMainModel;
 import com.mfzn.deepuses.present.login.MainPresent;
+import com.mfzn.deepuses.purchasesellsave.capital.activity.AddIncomeExpenseActivity;
+import com.mfzn.deepuses.purchasesellsave.purchase.AddOrderPurchaseActivity;
 import com.mfzn.deepuses.purchasesellsave.sale.activity.AddOrderOfferActivity;
 import com.mfzn.deepuses.purchasesellsave.sale.activity.AddOrderSalesActivity;
 import com.mfzn.deepuses.purchasesellsave.setting.activity.CommodityPhotoCreateActivity;
@@ -151,8 +153,13 @@ public class MainActivity extends BaseMvpActivity<MainPresent> {
                 turnToSalesActivity(false);
                 break;
             case R.id.new_ckd:
+                Intent intent = new Intent();
+                intent.setClass(this, AddOrderPurchaseActivity.class);
+                intent.putExtra(ParameterConstant.IS_PURCHASE_CREATE, true);
+                startActivity(intent);
+                break;
             case R.id.new_jz:
-                ToastUtil.showToast(this, "敬请期待");
+                turnToActivity(AddIncomeExpenseActivity.class);
                 break;
             case R.id.add_lsd:
                 turnToSalesActivity(true);
