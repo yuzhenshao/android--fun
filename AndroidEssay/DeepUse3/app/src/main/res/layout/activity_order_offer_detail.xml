@@ -14,24 +14,46 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <Button
-            android:id="@+id/btn_commit"
+        <LinearLayout
+            android:id="@+id/btn_container"
             android:layout_width="match_parent"
             android:layout_height="@dimen/app_45dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginLeft="@dimen/app_20dp"
             android:layout_marginTop="@dimen/app_20dp"
-            android:layout_marginRight="@dimen/app_20dp"
             android:layout_marginBottom="@dimen/app_11dp"
-            android:background="@drawable/submit_btn_selector"
-            android:text="删除"
-            android:textColor="@color/color_ffffff"
-            android:textSize="18sp" />
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_cancel"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/app_20dp"
+
+                android:layout_marginRight="@dimen/app_20dp"
+                android:layout_weight="1"
+                android:background="@drawable/submit_btn_selector"
+                android:text="作废"
+                android:textColor="@color/color_ffffff"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/btn_commit"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/app_20dp"
+                android:layout_marginRight="@dimen/app_20dp"
+                android:layout_weight="1"
+                android:background="@drawable/submit_btn_selector"
+                android:text="删除"
+                android:textColor="@color/color_ffffff"
+                android:textSize="18sp" />
+
+        </LinearLayout>
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/btn_commit"
+            android:layout_above="@+id/btn_container"
             android:layout_below="@+id/titlebar"
             android:layout_marginTop="@dimen/dp_10">
 
@@ -46,9 +68,9 @@
                     android:id="@+id/check_status"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/app_65dp"
-                    android:scaleType="fitXY"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentBottom="true"
+                    android:scaleType="fitXY"
                     android:src="@mipmap/order_examine_pending" />
 
                 <LinearLayout style="@style/newly_ll_st">
@@ -62,18 +84,18 @@
                         style="@style/newly_et_st2" />
                 </LinearLayout>
 
-<!--                <View style="@style/line_heng" />-->
+                <!--                <View style="@style/line_heng" />-->
 
-<!--                <LinearLayout style="@style/newly_ll_st">-->
+                <!--                <LinearLayout style="@style/newly_ll_st">-->
 
-<!--                    <TextView-->
-<!--                        style="@style/newly_tv_st"-->
-<!--                        android:text="联系人" />-->
+                <!--                    <TextView-->
+                <!--                        style="@style/newly_tv_st"-->
+                <!--                        android:text="联系人" />-->
 
-<!--                    <EditText-->
-<!--                        android:id="@+id/contact_name"-->
-<!--                        style="@style/newly_et_st2" />-->
-<!--                </LinearLayout>-->
+                <!--                    <EditText-->
+                <!--                        android:id="@+id/contact_name"-->
+                <!--                        style="@style/newly_et_st2" />-->
+                <!--                </LinearLayout>-->
 
                 <View style="@style/line_heng" />
 
@@ -123,7 +145,9 @@
                         android:textSize="14sp" />
 
                 </RelativeLayout>
+
                 <View style="@style/line_space" />
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/app_60dp"
@@ -155,8 +179,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/app_15dp"
                     android:layout_marginLeft="@dimen/app_24dp"
+                    android:layout_marginTop="@dimen/app_15dp"
                     android:text="订单信息"
                     android:textColor="#ff303133"
                     android:textSize="16sp" />
@@ -186,6 +210,7 @@
                         android:textColor="#909399"
                         android:textSize="14sp" />
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/app_30dp"
@@ -211,6 +236,7 @@
                         android:textColor="#909399"
                         android:textSize="14sp" />
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/app_30dp"
@@ -267,11 +293,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/app_24dp"
-                    android:text="备注："
                     android:layout_marginTop="@dimen/app_5dp"
+                    android:text="备注："
                     android:textColor="#ff909399"
-                    android:textSize="14sp"
-                    />
+                    android:textSize="14sp" />
+
                 <TextView
                     android:id="@+id/bei_zhu"
                     android:layout_width="wrap_content"
@@ -280,8 +306,7 @@
                     android:layout_marginTop="@dimen/app_5dp"
                     android:text="备注信息备注信息备注信息备注信息备注信息备注"
                     android:textColor="#ff909399"
-                    android:textSize="14sp"
-                    />
+                    android:textSize="14sp" />
             </LinearLayout>
         </ScrollView>
     </RelativeLayout>

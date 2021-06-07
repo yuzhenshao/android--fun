@@ -19,139 +19,139 @@ public class AppStatisticsDataResponse {
      * sumCapital : 20500
      */
 
-    private int todayAsOrder;
-    private int proSum;
-    private int todayCustomerNum;
-    private int sumCustomerNum;
-    private int todayInStore;
-    private int todayOutStore;
-    private int sumStoreNum;
-    private int todayMoney;
-    private int customerShouldGathering;
-    private int supplierShouldGathering;
-    private int todaySalesIncome;
-    private int todayIncome;
-    private int todayPurchaseOutcome;
-    private int yearEarn;
-    private int sumCapital;
+    private String todayAsOrder;
+    private String proSum;
+    private String todayCustomerNum;
+    private String sumCustomerNum;
+    private String todayInStore;
+    private String todayOutStore;
+    private String sumStoreNum;
+    private String todayMoney;
+    private String customerShouldGathering;
+    private String supplierShouldGathering;
+    private String todaySalesIncome;
+    private String todayIncome;
+    private String todayPurchaseOutcome;
+    private String yearEarn;
+    private String sumCapital;
 
-    public int getTodayAsOrder() {
+    public String getTodayAsOrder() {
         return todayAsOrder;
     }
 
-    public void setTodayAsOrder(int todayAsOrder) {
+    public void setTodayAsOrder(String todayAsOrder) {
         this.todayAsOrder = todayAsOrder;
     }
 
-    public int getProSum() {
+    public String getProSum() {
         return proSum;
     }
 
-    public void setProSum(int proSum) {
+    public void setProSum(String proSum) {
         this.proSum = proSum;
     }
 
-    public int getTodayCustomerNum() {
+    public String getTodayCustomerNum() {
         return todayCustomerNum;
     }
 
-    public void setTodayCustomerNum(int todayCustomerNum) {
+    public void setTodayCustomerNum(String todayCustomerNum) {
         this.todayCustomerNum = todayCustomerNum;
     }
 
-    public int getSumCustomerNum() {
+    public String getSumCustomerNum() {
         return sumCustomerNum;
     }
 
-    public void setSumCustomerNum(int sumCustomerNum) {
+    public void setSumCustomerNum(String sumCustomerNum) {
         this.sumCustomerNum = sumCustomerNum;
     }
 
-    public int getTodayInStore() {
+    public String getTodayInStore() {
         return todayInStore;
     }
 
-    public void setTodayInStore(int todayInStore) {
+    public void setTodayInStore(String todayInStore) {
         this.todayInStore = todayInStore;
     }
 
-    public int getTodayOutStore() {
+    public String getTodayOutStore() {
         return todayOutStore;
     }
 
-    public void setTodayOutStore(int todayOutStore) {
+    public void setTodayOutStore(String todayOutStore) {
         this.todayOutStore = todayOutStore;
     }
 
-    public int getSumStoreNum() {
+    public String getSumStoreNum() {
         return sumStoreNum;
     }
 
-    public void setSumStoreNum(int sumStoreNum) {
+    public void setSumStoreNum(String sumStoreNum) {
         this.sumStoreNum = sumStoreNum;
     }
 
-    public int getTodayMoney() {
+    public String getTodayMoney() {
         return todayMoney;
     }
 
-    public void setTodayMoney(int todayMoney) {
+    public void setTodayMoney(String todayMoney) {
         this.todayMoney = todayMoney;
     }
 
-    public int getCustomerShouldGathering() {
+    public String getCustomerShouldGathering() {
         return customerShouldGathering;
     }
 
-    public void setCustomerShouldGathering(int customerShouldGathering) {
+    public void setCustomerShouldGathering(String customerShouldGathering) {
         this.customerShouldGathering = customerShouldGathering;
     }
 
-    public int getSupplierShouldGathering() {
+    public String getSupplierShouldGathering() {
         return supplierShouldGathering;
     }
 
-    public void setSupplierShouldGathering(int supplierShouldGathering) {
+    public void setSupplierShouldGathering(String supplierShouldGathering) {
         this.supplierShouldGathering = supplierShouldGathering;
     }
 
-    public int getTodayIncome() {
+    public String getTodayIncome() {
         return todayIncome;
     }
 
-    public void setTodayIncome(int todayIncome) {
+    public void setTodayIncome(String todayIncome) {
         this.todayIncome = todayIncome;
     }
 
-    public int getTodayPurchaseOutcome() {
+    public String getTodayPurchaseOutcome() {
         return todayPurchaseOutcome;
     }
 
-    public void setTodayPurchaseOutcome(int todayPurchaseOutcome) {
+    public void setTodayPurchaseOutcome(String todayPurchaseOutcome) {
         this.todayPurchaseOutcome = todayPurchaseOutcome;
     }
 
-    public int getYearEarn() {
+    public String getYearEarn() {
         return yearEarn;
     }
 
-    public void setYearEarn(int yearEarn) {
+    public void setYearEarn(String yearEarn) {
         this.yearEarn = yearEarn;
     }
 
-    public int getSumCapital() {
+    public String getSumCapital() {
         return sumCapital;
     }
 
-    public void setSumCapital(int sumCapital) {
+    public void setSumCapital(String sumCapital) {
         this.sumCapital = sumCapital;
     }
 
-    public int getTodaySalesIncome() {
+    public String getTodaySalesIncome() {
         return todaySalesIncome;
     }
 
-    public void setTodaySalesIncome(int todaySalesIncome) {
+    public void setTodaySalesIncome(String todaySalesIncome) {
         this.todaySalesIncome = todaySalesIncome;
     }
 }

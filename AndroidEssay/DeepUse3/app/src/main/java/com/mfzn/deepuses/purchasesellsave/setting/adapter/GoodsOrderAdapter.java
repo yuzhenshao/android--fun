@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -16,15 +15,12 @@ import com.mfzn.deepuses.net.ApiHelper;
 
 import java.util.List;
 
-/**
- * @author yz @date 2020-05-03
- */
-public class GoodsAddedAdapter extends BaseQuickAdapter<GoodsInfoResponse, BaseViewHolder> {
+public class GoodsOrderAdapter extends BaseQuickAdapter<GoodsInfoResponse, BaseViewHolder> {
 
     protected Context context;
 
-    public GoodsAddedAdapter(Context context, @Nullable List<GoodsInfoResponse> data) {
-        super(R.layout.goods_add_item_view, data);
+    public GoodsOrderAdapter(Context context, @Nullable List<GoodsInfoResponse> data) {
+        super(R.layout.goods_item_view, data);
         this.context = context;
     }
 
@@ -42,7 +38,7 @@ public class GoodsAddedAdapter extends BaseQuickAdapter<GoodsInfoResponse, BaseV
         }
         helper.setText(R.id.name, item.getGoodsName())
                 .setText(R.id.price, content)
-                .setText(R.id.number, "" + item.getGoodsCount());
-        helper.addOnClickListener(R.id.plus).addOnClickListener(R.id.subtraction);
+                .setTextColor(R.id.goods_stock_num, Color.parseColor("#303133"))
+                .setText(R.id.goods_stock_num, "*" + item.getGoodsCount());
     }
 }

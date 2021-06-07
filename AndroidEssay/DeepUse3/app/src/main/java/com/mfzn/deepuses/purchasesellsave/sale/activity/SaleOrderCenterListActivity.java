@@ -81,6 +81,7 @@ public class SaleOrderCenterListActivity extends BasicListActivity<OrderOfferLis
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int i) {
                 Intent intent = new Intent(SaleOrderCenterListActivity.this, OrderDetailActivity.class);
                 intent.putExtra(ParameterConstant.ORDER_ID, mSourceList.get(i).getOrderID());
+                intent.putExtra(ParameterConstant.ORDER_TYPE, orderType);
                 intent.putExtra(ParameterConstant.NAME, mSourceList.get(i).getCustomerName());
                 intent.putExtra(ParameterConstant.PHONE, mSourceList.get(i).getCustomerPhone());
                 startActivityForResult(intent, REFRESH_TAG);
@@ -100,6 +101,7 @@ public class SaleOrderCenterListActivity extends BasicListActivity<OrderOfferLis
                     orderType = data.getIntExtra(ParameterConstant.ORDER_TYPE,3);
                     isCanceled = data.getIntExtra(ParameterConstant.ORDER_CACNEL,0);
                     isCheck = data.getIntExtra(ParameterConstant.ORDER_CHECK,-1);
+                    mTitleBar.updateTitleBar(getTypeName());
                     getResourceList();
                 }
             }
@@ -144,4 +146,23 @@ public class SaleOrderCenterListActivity extends BasicListActivity<OrderOfferLis
                 .launch();
     }
 
+    private String getTypeName(){
+        switch (orderType) {
+            case 3:
+                return "报价单";
+            case 4:
+                return "销售订单";
+            case 5:
+                return "零售单";
+            case 6:
+                return "销售退货单";
+            case 13:
+                return "零售退货单";
+            case 7:
+                return "个人领货单";
+            case 8:
+                return "个人归还单";
+        }
+       return "";
+    }
 }

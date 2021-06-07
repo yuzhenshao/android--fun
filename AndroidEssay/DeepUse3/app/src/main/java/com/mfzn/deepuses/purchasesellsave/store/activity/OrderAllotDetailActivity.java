@@ -16,7 +16,7 @@ import com.mfzn.deepuses.bean.constants.ParameterConstant;
 import com.mfzn.deepuses.bean.response.store.OrderAllotInfoResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
-import com.mfzn.deepuses.purchasesellsave.setting.adapter.GoodsAddedAdapter;
+import com.mfzn.deepuses.purchasesellsave.setting.adapter.GoodsOrderAdapter;
 import com.mfzn.deepuses.utils.DateUtils;
 
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
@@ -115,8 +115,7 @@ public class OrderAllotDetailActivity extends BasicActivity {
         mOrderUserName.setText(mOrderAllotResponse.getOrderMakerUserName());
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        GoodsAddedAdapter adapter = new GoodsAddedAdapter(this, mOrderAllotResponse.getGoodsInfo());
-        mRecyclerView.setAdapter(adapter);
+        mRecyclerView.setAdapter(new GoodsOrderAdapter(this, mOrderAllotResponse.getGoodsInfo()));
 
     }
 

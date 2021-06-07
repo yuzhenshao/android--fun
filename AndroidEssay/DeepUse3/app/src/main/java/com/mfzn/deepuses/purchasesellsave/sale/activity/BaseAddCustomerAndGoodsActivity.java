@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.libcommon.utils.ListUtil;
 import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BasicActivity;
@@ -29,6 +30,7 @@ import com.mfzn.deepuses.utils.UserHelper;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 import butterknife.BindView;
@@ -43,7 +45,7 @@ public abstract class BaseAddCustomerAndGoodsActivity extends BasicActivity {
     protected int totalMoney;
     protected List<GoodsInfoResponse> goodsSelectedList = new ArrayList<>();
     protected GoodsAddedAdapter adapter;
-    protected int isPersonalStoreGoods=0;
+    protected int isPersonalStoreGoods = 0;
 
     @BindView(R.id.goods_price_container)
     public RelativeLayout goodsPriceContainer;
@@ -65,6 +67,27 @@ public abstract class BaseAddCustomerAndGoodsActivity extends BasicActivity {
         userNameView.setText(UserHelper.getU_name());
         goodsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new GoodsAddedAdapter(this, goodsSelectedList);
+        adapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int i) {
+                GoodsInfoResponse goodsInfoResponse = goodsSelectedList.get(i);
+                if (view.getId() == R.id.subtraction) {
+                    if (goodsInfoResponse.getGoodsCount() == 1) {
+                        goodsSelectedList.remove(i);
+                        adapter.notifyItemRemoved(i);
+                    } else {
+                        goodsInfoResponse.setGoodsCount(goodsInfoResponse.getGoodsCount() - 1);
+                        adapter.notifyItemChanged(i);
+                    }
+                } else if (view.getId() == R.id.plus) {
+                    if (goodsInfoResponse.getGoodsCount() < goodsInfoResponse.getGoodsSumStockNum()) {
+                        goodsInfoResponse.setGoodsCount(goodsInfoResponse.getGoodsCount() + 1);
+                        adapter.notifyItemChanged(i);
+                    }
+                }
+                updateSizeAndPrice();
+            }
+        });
         goodsRecyclerView.setAdapter(adapter);
     }
 
@@ -97,7 +120,7 @@ public abstract class BaseAddCustomerAndGoodsActivity extends BasicActivity {
     protected void turnToGoodsSelected() {
         Intent intent = new Intent();
         intent.setClass(this, GoodsSelectListActivity.class);
-        intent.putExtra(ParameterConstant.IS_PERSONAL_STORE_GOODS,isPersonalStoreGoods);
+        intent.putExtra(ParameterConstant.IS_PERSONAL_STORE_GOODS, isPersonalStoreGoods);
         startActivityForResult(intent, GOODS);
     }
 
@@ -111,8 +134,12 @@ public abstract class BaseAddCustomerAndGoodsActivity extends BasicActivity {
         if (resultCode == Activity.RESULT_OK && data != null) {
             if (requestCode == GOODS) {
                 goodsPriceContainer.setVisibility(View.VISIBLE);
+                LinkedHashSet<GoodsInfoResponse> set = new LinkedHashSet<GoodsInfoResponse>(goodsSelectedList.size());
+                set.addAll(goodsSelectedList);
+                set.addAll((List<GoodsInfoResponse>) data.getSerializableExtra("data"));
                 goodsSelectedList.clear();
-                goodsSelectedList.addAll((List<GoodsInfoResponse>) data.getSerializableExtra("data"));
+                goodsSelectedList.addAll(set);
+
                 adapter.notifyDataSetChanged();
                 number.setText(data.getStringExtra("goodsSize"));
                 String totalPrice = data.getStringExtra("totalPrice");
@@ -124,13 +151,35 @@ public abstract class BaseAddCustomerAndGoodsActivity extends BasicActivity {
         }
     }
 
-    protected void clearGoods(){
+
+    private void updateSizeAndPrice(){
+        int totalPrice = 0;
+        int size = 0;
+        if(ListUtil.isEmpty(goodsSelectedList)){
+            goodsPriceContainer.setVisibility(View.GONE);
+            totalMoney=0;
+        } else {
+            for (GoodsInfoResponse store : goodsSelectedList) {
+                size += store.getGoodsCount();
+                if (store.isHasTaxRate()) {
+                    totalPrice += getPrice(store.getSalePriceWithTax()) * store.getGoodsCount();
+                } else {
+                    totalPrice += getPrice(store.getSalePrice()) * store.getGoodsCount();
+                }
+            }
+            number.setText("数量：" + size);
+            price.setText("总价：" + totalPrice);
+            totalMoney=totalPrice;
+        }
+    }
+
+    protected void clearGoods() {
         goodsPriceContainer.setVisibility(View.GONE);
         goodsSelectedList.clear();
         adapter.notifyDataSetChanged();
         number.setText(null);
         price.setText(null);
-        totalMoney=0;
+        totalMoney = 0;
     }
 
     protected void setGoodsPriceContainer(List<GoodsInfoResponse> goods) {
@@ -250,19 +299,19 @@ public abstract class BaseAddCustomerAndGoodsActivity extends BasicActivity {
         JXCDataManager.getInstance().clearCost();
     }
 
-    protected String getRealMoney(String mTotalPrice,String mdiscountPrice){
-        if(TextUtils.isEmpty(mTotalPrice)){
-            return 0+"";
+    protected String getRealMoney(String mTotalPrice, String mdiscountPrice) {
+        if (TextUtils.isEmpty(mTotalPrice)) {
+            return 0 + "";
         }
-        double price= doubleString(mTotalPrice) - (TextUtils.isEmpty(mdiscountPrice)?0:doubleString(mdiscountPrice));
-        return ""+(price<0?0:price);
+        double price = doubleString(mTotalPrice) - (TextUtils.isEmpty(mdiscountPrice) ? 0 : doubleString(mdiscountPrice));
+        return "" + (price < 0 ? 0 : price);
     }
 
 
-    protected double doubleString(String content){
+    protected double doubleString(String content) {
         try {
             return Double.parseDouble(content);
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
         return 0;
