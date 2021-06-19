@@ -35,8 +35,8 @@ public class SaleOrderCenterListActivity extends BasicListActivity<OrderOfferLis
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mTitleBar.updateTitleBar("销售单据中心");
-         initSearch("搜索单据编号、客户名称、联系人、电话");
+        mTitleBar.updateTitleBar(getTypeName());
+        initSearch("搜索单据编号、客户名称、联系人、电话");
         filterView.setVisibility(View.VISIBLE);
     }
 

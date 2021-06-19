@@ -1,6 +1,7 @@
 package com.mfzn.deepuses.purchasesellsave.sale.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -25,7 +26,6 @@ import com.mfzn.deepuses.R;
 import com.mfzn.deepuses.bass.BasicActivity;
 import com.mfzn.deepuses.bean.constants.ParameterConstant;
 import com.mfzn.deepuses.bean.response.sale.OrderOfferListResponse;
-import com.mfzn.deepuses.bean.response.settings.GoodsDetailResponse;
 import com.mfzn.deepuses.net.ApiServiceManager;
 import com.mfzn.deepuses.net.HttpResult;
 import com.mfzn.deepuses.purchasesellsave.setting.adapter.GoodsCostAdapter;
@@ -36,6 +36,7 @@ import com.mfzn.deepuses.utils.DateUtils;
 import cn.droidlover.xdroidmvp.net.ApiSubscriber;
 import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.XApi;
+import io.reactivex.Flowable;
 
 public class OrderDetailActivity extends BasicActivity {
     private ImageView mCheckStatus;
@@ -55,7 +56,7 @@ public class OrderDetailActivity extends BasicActivity {
 
     private int orderType;
     private String orderId;
-    int cancelType=0;
+    int cancelType = 0;
     private OrderOfferListResponse.OrderOfferResponse mOrderOfferResponse;
 
     @Override
@@ -68,7 +69,7 @@ public class OrderDetailActivity extends BasicActivity {
         super.onCreate(savedInstanceState);
         orderId = getIntent().getStringExtra(ParameterConstant.ORDER_ID);
         orderType = getIntent().getIntExtra(ParameterConstant.ORDER_TYPE, 0);
-        mTitleBar.updateTitleBar("报价单详情");
+        mTitleBar.updateTitleBar(getTypeName());
         initView();
         initData();
     }
@@ -116,10 +117,13 @@ public class OrderDetailActivity extends BasicActivity {
                     @Override
                     public void onViewClick(BaseDialogFragment customDialog, BindViewHolder bindViewHolder, View view) {
                         if (view.getId() == R.id.confirm_btn) {
+                            if(cancelType==0){
+                                showToast("请先选择作废理由");
+                                return;
+                            }
                             if (customDialog != null) {
                                 customDialog.dismiss();
                             }
-                            cancelType=0;
                             doCancelAction(cancelType);
                             return;
                         }
@@ -134,16 +138,16 @@ public class OrderDetailActivity extends BasicActivity {
 
 
                         if (view.getId() == R.id.cancel_money) {
-                            cancelType=1;
+                            cancelType = 1;
                             cancelMoney.setImageResource(R.mipmap.icon_selected);
                         } else if (view.getId() == R.id.cancel_goods) {
-                            cancelType=2;
+                            cancelType = 2;
                             cancelGoods.setImageResource(R.mipmap.icon_selected);
                         } else if (view.getId() == R.id.cancel_money_goods) {
-                            cancelType=3;
+                            cancelType = 3;
                             cancelMoneyGoods.setImageResource(R.mipmap.icon_selected);
                         } else if (view.getId() == R.id.no_cancel) {
-                            cancelType=4;
+                            cancelType = 4;
                             noCancel.setImageResource(R.mipmap.icon_selected);
                         }
                     }
@@ -152,8 +156,47 @@ public class OrderDetailActivity extends BasicActivity {
     }
 
     private void doCancelAction(int type) {
-        switch (orderType){
-            //d调用不同的接口，进行取消
+        Flowable<HttpResult> flowable = null;
+        //调用不同的接口，进行取消
+        switch (orderType) {
+            case 3:
+                flowable = ApiServiceManager.orderPurchaseCancel(orderId);
+                break;
+            case 4:
+                flowable = ApiServiceManager.orderSalesCancelApply(orderId, type + "");
+                break;
+            case 5:
+                flowable = ApiServiceManager.orderRetailCancel(orderId);
+                break;
+            case 6:
+                flowable = ApiServiceManager.orderSalesBackCancel(orderId);
+                break;
+            case 13:
+                flowable = ApiServiceManager.orderRetailBackCancel(orderId);
+                break;
+            case 7:
+                flowable = ApiServiceManager.orderTakeGoodsCancel(orderId);
+                break;
+            case 8:
+                flowable = ApiServiceManager.orderTakeGoodsBackCancel(orderId);
+                break;
+        }
+        if (flowable != null) {
+            flowable
+                    .compose(XApi.getApiTransformer())
+                    .compose(XApi.getScheduler())
+                    .compose(bindToLifecycle())
+                    .subscribe(new ApiSubscriber<HttpResult>() {
+                        @Override
+                        protected void onFail(NetError error) {
+                            showToast(error.getMessage());
+                        }
+
+                        @Override
+                        public void onNext(HttpResult reuslt) {
+                            showToast("作废成功");
+                        }
+                    });
         }
     }
 
@@ -234,5 +277,25 @@ public class OrderDetailActivity extends BasicActivity {
                         finish();
                     }
                 });
+    }
+
+    private String getTypeName() {
+        switch (orderType) {
+            case 3:
+                return "报价单详情页";
+            case 4:
+                return "销售订单详情页";
+            case 5:
+                return "零售单详情页";
+            case 6:
+                return "销售退货单详情页";
+            case 13:
+                return "零售退货单详情页";
+            case 7:
+                return "个人领货单详情页";
+            case 8:
+                return "个人归还单详情页";
+        }
+        return "";
     }
 }

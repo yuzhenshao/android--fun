@@ -890,10 +890,6 @@ public class ApiServiceManager {
         return ApiHelper.getApiService().orderPurchaseBackAdd(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), request);
     }
 
-    public static Flowable<HttpResult> orderPurchaseCancel(String orderId) {
-        return ApiHelper.getApiService().orderPurchaseCancel(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), orderId);
-    }
-
     public static Flowable<HttpResult> orderPurchaseDelBatch(String orderIds) {
         return ApiHelper.getApiService().orderPurchaseDelBatch(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), orderIds);
     }
@@ -902,4 +898,35 @@ public class ApiServiceManager {
         return ApiHelper.getApiService().getAppData(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId());
     }
 
+    public static Flowable<HttpResult> orderPurchaseCancel(String orderId) {
+        return ApiHelper.getApiService().orderPurchaseCancel(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), orderId);
+    }
+
+    public static Flowable<HttpResult> orderPurchaseBackCancel(String orderId) {
+        return ApiHelper.getApiService().orderPurchaseBackCancel(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), orderId);
+    }
+
+    public static Flowable<HttpResult> orderSalesBackCancel(String orderId) {
+        return ApiHelper.getApiService().orderSalesBackCancel(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), orderId);
+    }
+
+    public static Flowable<HttpResult> orderRetailBackCancel(String orderId) {
+        return ApiHelper.getApiService().orderRetailBackCancel(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), orderId);
+    }
+
+    public static Flowable<HttpResult> orderRetailCancel(String orderId) {
+        return ApiHelper.getApiService().orderRetailCancel(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), orderId);
+    }
+
+    public static Flowable<HttpResult> orderTakeGoodsBackCancel(String orderId) {
+        return ApiHelper.getApiService().orderTakeGoodsBackCancel(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), orderId);
+    }
+
+    public static Flowable<HttpResult> orderTakeGoodsCancel(String orderId) {
+        return ApiHelper.getApiService().orderTakeGoodsCancel(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), orderId);
+    }
+
+    public static Flowable<HttpResult> orderSalesCancelApply(String orderId,String cancelType) {
+        return ApiHelper.getApiService().orderSalesCancelApply(UserHelper.getToken(), UserHelper.getUid(), UserHelper.getShopId(), orderId, cancelType);
+    }
 }

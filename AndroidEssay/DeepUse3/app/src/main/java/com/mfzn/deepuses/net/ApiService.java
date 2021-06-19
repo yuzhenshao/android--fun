@@ -1408,9 +1408,9 @@ public interface ApiService {
     @POST("pss/Purchase/orderPurchaseBackAdd")
     Flowable<HttpResult> orderPurchaseBackAdd(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Body OrderPurchaseAddRequest request);
 
-    @FormUrlEncoded
-    @POST("pss/Purchase/orderPurchaseCancel")
-    Flowable<HttpResult> orderPurchaseCancel(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Field("orderID") String orderID);
+//    @FormUrlEncoded
+//    @POST("pss/Purchase/orderPurchaseCancel")
+//    Flowable<HttpResult> orderPurchaseCancel(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Field("orderID") String orderID);
 
     @FormUrlEncoded
     @POST("pss/Purchase/orderPurchaseDelBatch")
@@ -1420,5 +1420,47 @@ public interface ApiService {
     //获取APP看板数据
     @GET("pss/Statistics/getAppData")
     Flowable<HttpResult<AppStatisticsDataResponse>> getAppData(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID);
+
+
+    //　作废
+    //采购退货单--作废
+    @FormUrlEncoded
+    @POST("pss/Purchase/orderPurchaseBackCancel")
+    Flowable<HttpResult> orderPurchaseBackCancel(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Field("orderID") String orderID);
+
+    //采购单--作废
+    @FormUrlEncoded
+    @POST("pss/Purchase/orderPurchaseCancel")
+    Flowable<HttpResult> orderPurchaseCancel(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Field("orderID") String orderID);
+
+    //销售退货单--作废
+    @FormUrlEncoded
+    @POST("pss/Sale/orderSalesBackCancel")
+    Flowable<HttpResult> orderSalesBackCancel(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Field("orderID") String orderID);
+
+    //零售退货单--作废（作废单据，出库记录和资金记录回滚）
+    @FormUrlEncoded
+    @POST("pss/Sale/orderRetailBackCancel")
+    Flowable<HttpResult> orderRetailBackCancel(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Field("orderID") String orderID);
+
+    //零售单--作废（出库记录和资金记录回滚）
+    @FormUrlEncoded
+    @POST("pss/Sale/orderRetailCancel")
+    Flowable<HttpResult> orderRetailCancel(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Field("orderID") String orderID);
+
+    //领货归还单--作废
+    @FormUrlEncoded
+    @POST("pss/Sale/orderTakeGoodsBackCancel")
+    Flowable<HttpResult> orderTakeGoodsBackCancel(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Field("orderID") String orderID);
+
+    //个人领货单--作废
+    @FormUrlEncoded
+    @POST("pss/Sale/orderTakeGoodsCancel")
+    Flowable<HttpResult> orderTakeGoodsCancel(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Field("orderID") String orderID);
+
+    //销售单--申请作废
+    @FormUrlEncoded
+    @POST("pss/Sale/orderSalesCancelApply")
+    Flowable<HttpResult> orderSalesCancelApply(@Query("token") String token, @Query("uid") String uid, @Query("shopID") String shopID, @Field("orderID") String orderID, @Field("cancelType") String cancelType);
 
 }
